@@ -3,7 +3,7 @@ project:
   output-dir: docs
 
 book:
-  title: "Applied Data Analysis"
+  title: "Applied Data Analysis 2026"
   # author: "Anthony Di Fiore"
   subtitle: "Practical Data Science Tools, Programming, and Statistics for the Natural and Social Sciences"
   sidebar:
@@ -39,54 +39,54 @@ book:
       - 10-module.qmd
       - 11-module.qmd
     - part: "Part II - Statistics and Inference"
-      chapters:
-      - 12-module.qmd
-      - 13-module.qmd
-      - 14-module.qmd
-      - 15-module.qmd
-      - 16-module.qmd
-      - 17-module.qmd
-      - 18-module.qmd
-      - 19-module.qmd
-      - 20-module.qmd
-      - 21-module.qmd
-      - 22-module.qmd
-      - 23-module.qmd
-      - 24-module.qmd
+      # chapters:
+      # - 12-module.qmd
+      # - 13-module.qmd
+      # - 14-module.qmd
+      # - 15-module.qmd
+      # - 16-module.qmd
+      # - 17-module.qmd
+      # - 18-module.qmd
+      # - 19-module.qmd
+      # - 20-module.qmd
+      # - 21-module.qmd
+      # - 22-module.qmd
+      # - 23-module.qmd
+      # - 24-module.qmd
     - part: "Part III - Miscellany"
-      chapters:
-      - 99-maximum_likelihood.qmd
-      - 99-python-from-R.qmd
+      # chapters:
+      # - 99-maximum_likelihood.qmd
+      # - 99-python-from-R.qmd
       # - 99-geospatial-data.qmd
-      - 99-r-packages.qmd
-      - 99-shiny.qmd
-      - 99-using-packages.qmd
+      # - 99-r-packages.qmd
+      # - 99-shiny.qmd
+      # - 99-using-packages.qmd
     - part: "Exercises"
-      chapters:
-      - exercise-01.qmd
-      - exercise-02.qmd
-      - exercise-03.qmd
-      - exercise-04.qmd
-      - exercise-04-solution.qmd
-      - exercise-05.qmd
-      - exercise-05-solution.qmd
-      - exercise-06.qmd
-      - exercise-06-solution.qmd
-      - exercise-07.qmd
-      - exercise-08.qmd
-      - exercise-08-solution.qmd
-      - exercise-09.qmd
-      - exercise-09-solution.qmd
-      - exercise-10.qmd
-      - exercise-10-solution.qmd
-      - exercise-11.qmd
-      - exercise-11-solution.qmd
+      # chapters:
+      # - exercise-01.qmd
+      # - exercise-02.qmd
+      # - exercise-03.qmd
+      # - exercise-04.qmd
+      # - exercise-04-solution.qmd
+      # - exercise-05.qmd
+      # - exercise-05-solution.qmd
+      # - exercise-06.qmd
+      # - exercise-06-solution.qmd
+      # - exercise-07.qmd
+      # - exercise-08.qmd
+      # - exercise-08-solution.qmd
+      # - exercise-09.qmd
+      # - exercise-09-solution.qmd
+      # - exercise-10.qmd
+      # - exercise-10-solution.qmd
+      # - exercise-11.qmd
+      # - exercise-11-solution.qmd
     - part: "Assignments"
       chapters:
-      - data-analysis-replication-assignment.qmd
+    #  - data-analysis-replication-assignment.qmd
     #  - data-analysis-replication-assignment-template.qmd
-      - collaborative-data-science-assignment.qmd
-      - creative-dataviz-assignment.qmd
+    #  - collaborative-data-science-assignment.qmd
+    #  - creative-dataviz-assignment.qmd
     - part: "References"
       chapters:
         - packages.qmd
