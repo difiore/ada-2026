@@ -1,0 +1,9 @@
+.Rproj.user
+.Rhistory
+.RData
+.Ruserdata
+.DS_Store
+my_gmail_creds.txt
+gmail_code.qmd
+/.quarto/
+.httr-oauth
