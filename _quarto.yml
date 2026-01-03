@@ -19,12 +19,12 @@ book:
     - index.qmd
     - part: "Preliminaries"
       chapters:
-      - 00-logistics.qmd
-      - 00-structure.qmd
-      - 00-course-schedule.qmd
+      - 00-course-logistics.qmd
+      - 00-course-structure.qmd
+      - 00-schedule.qmd
       - 00-typography-and-formatting.qmd
       - 00-programming-style-guide.qmd
-      - 00-resources.qmd
+      - 00-useful-resources.qmd
     - part: "Part I - Using ***R*** and ***RStudio***"
       chapters:
       - 01-module.qmd
@@ -82,11 +82,11 @@ book:
       # - exercise-11.qmd
       # - exercise-11-solution.qmd
     - part: "Assignments"
-      chapters:
-    #  - data-analysis-replication-assignment.qmd
-    #  - data-analysis-replication-assignment-template.qmd
-    #  - collaborative-data-science-assignment.qmd
-    #  - creative-dataviz-assignment.qmd
+      # chapters:
+      # - data-analysis-replication-assignment.qmd
+      # - data-analysis-replication-assignment-template.qmd
+      # - collaborative-data-science-assignment.qmd
+      # - creative-dataviz-assignment.qmd
     - part: "References"
       chapters:
         - packages.qmd

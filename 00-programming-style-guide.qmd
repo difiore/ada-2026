@@ -1,20 +1,21 @@
 # Programming Style Guide {.unnumbered}
 
-As much as possible, your scripts, programs, and functions should be written in a **consistent** programming style, which makes them easier to read, write, and understand. Some programmers are very opinionated as to what stylistic conventions to follow, and as you become more familiar with ***R*** and more practiced with writing code, you will likely settle on a set that you find particular sensible. I try (not always successfully!) to follow recommendations below, which are largely consistent with those in the much-more-complete [{tidyverse} Style Guide](https://style.tidyverse.org/).
+As much as possible, your scripts, programs, and functions should be written in a **consistent** programming style, which makes them easier to read, write, and understand. Some programmers are very opinionated as to what stylistic conventions to follow, and as you become more familiar with ***R*** and more practiced with writing code, you will likely settle on a set that you find particular sensible. I try (not always successfully!) to follow the recommendations below, which are largely consistent with those in the much-more-complete [{tidyverse} Style Guide](https://style.tidyverse.org/).
 
 ## File Type Conventions {.unnumbered}
 
 - Use the uppercase ".R" extension for files containing ***R*** code
 - Use the ".RData" extension for files that contain binary data
-- Use the ".Rmd" extension for ***RMarkdown*** documents
 - Use the ".qmd" extension for ***Quarto*** documents
-- Use lowercase file extensions for other standard filetypes (e.g., ".csv", ".jpg", ".docx", ".xlsx")
+- Use the ".Rmd" extension for ***RMarkdown*** documents
+- Use lowercase file extensions for other standard file types (e.g., ".csv", ".jpg", ".docx", ".xlsx")
 
 ## Stylistic Conventions {.unnumbered}
 
 - Use a space before and after the standard backwards assignment operator `<-` and other infix operators (except for `=` used in function arguments), but not around parentheses or brackets:
 
     - `x <- "Hello"`
+    - `mean(x, na.rm=TRUE)`
 
 - Even though the syntax is valid, avoid using `=` for assignment, except when assigning values to named arguments in a function:
 
@@ -24,7 +25,7 @@ As much as possible, your scripts, programs, and functions should be written in 
 
 - Generally avoid using the forward assignment operator `->` except at the end of a sequence of piped operations:
 
-    - `df <- df %>% select(name, age, sex, body_weight)`
+    - `df <- df |> select(name, age, sex, body_weight)`
     - `df |> select(name, age, sex, body_weight) -> df`
 
 - Use a space after a comma when listing the arguments of a function:
@@ -42,17 +43,17 @@ As much as possible, your scripts, programs, and functions should be written in 
 - Whenever possible, use short, descriptive names for variables:
 
     - `rate <- 5.6`
-    - `sex <- c("M", "F", "F", "M", "F", "M" "F", "M")`
+    - `sex <- c("M", "F", "F", "M", "F", "M", "F", "M")`
 
 - For longer, multi-word variable, function, or argument names, use either *camelCase* or *snake_case*:
 
     - `interestRate <- 0.45`
-    - `say_hello <- function(x) {print(paste0("Hello, ",x))}`
-    - `print_n_rows <- function(x, n_rows=10) {print(x[n_rows,])}`
+    - `say_hello <- function(x) {print(paste0("Hello, ", x))}`
+    - `print_n_rows <- function(x, n_rows=10) {print(x[n_rows, ])}`
 
 - Include *default* values in your function definitions:
 
-    - `n_rows=10` in the preceding example
+    - e.g., `n_rows=10` in the preceding example
 
 - Include error checking in your functions
 
@@ -67,7 +68,7 @@ As much as possible, your scripts, programs, and functions should be written in 
 
 - Use comments liberally to make notes about what your code does
 
-    - ***R*** ignores lines starting with the hashtag character (`#`) as well as text after this character (until it encounters a line break)
+    - ***R*** ignores lines starting with the hashtag character (`#`) as well as text after this character until it encounters a line break
 
 ```{r}
 # assign `g`, the constant for gravitational acceleration
@@ -92,14 +93,16 @@ y <- 3
 z <- x + y ^ 2
 ```
 
-> **NOTE:** In ***RStudio***, you can highlight several lines and then use `⌘-SHIFT-C` to comment/uncomment multiple lines simultaneously.
+> **NOTE:** In ***RStudio***, you can highlight several lines and then use `⌘-SHIFT-C` to comment/uncomment multiple lines simultaneously!
 
 - Use indentation to identify (nested) blocks of code:
 
     - Use spaces rather than the invisible tab (`\t`) character for indentation
     - Use consistent indentation (e.g., 2 spaces, 4 spaces) to keep your code looking neat
 
-```{r echo = FALSE, out.width="80%"}
+```{r}
+#| echo: false
+#| out.width: "80%"
 knitr::include_graphics("img/indentation.png")
 ```
 
@@ -109,12 +112,14 @@ knitr::include_graphics("img/indentation.png")
 
 ## Version Control System {.unnumbered}
 
-```{r include=FALSE}
+```{r}
+#| include: false
 library(emo)
 ```
 
 - Finally, always, always, always use a *version control system*!!! `r emo::ji("smiley")` See [**Module 5**](#module-05) and [**Module 6**](#module-06) for more details.
 
-```{r include=FALSE}
+```{r}
+#| include: false
 detach(package:emo)
 ```
