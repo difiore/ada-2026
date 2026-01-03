@@ -2,7 +2,7 @@
 
 ## Objectives
 
-> The goal of this module is to get everyone's computers set up with ***R*** for the semester and to provide background and an introduction to the ***R*** programming language and environment.
+> The goal of this module is to get everyone's computers set up with ***R*** and to provide background and an introduction to the ***R*** programming language and environment.
 
 ## Backstory
 
@@ -10,22 +10,23 @@ The name ***R*** is a nod to the statistical programming language ***S*** (for "
 
 ***R*** is an high-level, interpreted language, like ***Python*** or ***Ruby***, where commands are executed directly and sequentially, without previously compiling a program into machine-language instructions. Each statement is translated, on the fly, into a sequence of subroutines that have already been compiled into machine code.
 
-***R*** is open-source software, meaning that the source code for the program is freely available for anyone to modify, extend, and improve upon. ***R*** is also FREE (!) for anyone to use and distribution. The large and active community of users and developers is one of the reasons that ***R*** has become very popular in academics, science, engineering, and business - any field that requires data analytics. Developers have also built in the capacity for easily making production-quality graphics, making it a great tool for data visualization. There are thus **many** good reasons to learn and use ***R***.
+***R*** is open-source software, meaning that the source code for the program is freely available for anyone to modify, extend, and improve upon. ***R*** is also FREE (!) for anyone to use and distribution. The large and active community of users and developers is one of the reasons that ***R*** has become very popular in academics, science, engineering, and business -- any field that requires data analytics. Developers have also built in the capacity for easily making production-quality graphics, making it a great tool for data visualization. There are thus **many** good reasons to learn and use ***R***.
 
 Here are a few of the main ones, in a nutshell:
 
 - ***R*** is high quality software. It is actively developed by an international community of statisticians and software developers with multiple releases and bug fixes every year.
-- ***R*** is FREE (as in thought). The source code is openly avaialable under the GNU General Public License, which allows others to easily evaluate the quality of the code, contribute new functionality, and quickly fix bugs.
+- ***R*** is FREE (as in thought). The source code is openly available under the GNU General Public License, which allows others to easily evaluate the quality of the code, contribute new functionality, and quickly fix bugs.
 - ***R*** is FREE (as in beer). Whereas licenses for other statistical software such as ***SAS***, ***SPSS***, or ***Stata*** may cost thousands of dollars, ***R*** is available free of charge.
-- ***R*** is available for multiple platforms. Installers are available for Windows, MacOS, and other Unix based systems and most package are OS agnostic.
-- ***R*** is extremely extensible. If there is a procedure you want to run that is not included in one of the standard packages, it is likely available in one of the thousands of extensions packages that have been developed and are also freely available. You can also use ***R*** to control or interface with external applications, including other programming languages (like ***Python***, ***SQL***, ***C++***, ***NetLogo***), other analysis tools (like GIS software), and databases (like ***MySQL***, ***PostgreSQL***, ***SQLite***, etc). It is also always possible for you to improve ***R*** yourself. You can **literally** do just about anything in ***R***.
+- ***R*** is available for multiple platforms. Installers are available for Windows, MacOS, and other Unix based systems and most packages are OS agnostic.
+- ***R*** is extremely extensible. If there is a procedure you want to run that is not included in one of the standard packages, it is likely available in one of the thousands of extensions packages that have been developed and are also freely available. Many packages are distributed through **CRAN** (the *Comprehensive R Archive Network*), which is a set of servers around the world that serve as mirrored repositories for rigorously-reviewed and up-to-date versions of code and documentation for both base ***R*** and add-on packages. **Bioconductor** is another repository for packages that focuses on bioinformatics and related analyses. Installing packages from **Bioconductor** is generally done through the ***R*** package {BioManager}. Finally, many packages are distributed directly from developers via software-development and hosting platforms like ***GitHub***.
+- You can also use ***R*** to control or interface with external applications, including other programming languages (like ***Python***, ***SQL***, ***C++***, ***NetLogo***), other analysis tools (like GIS software), and databases (like ***MySQL***, ***PostgreSQL***, ***SQLite***, etc). It is also always possible for you to improve ***R*** yourself. You can **literally** do just about anything in ***R***, including creating your own packages for sharing.
 - ***R*** has a vibrant, intelligent, and generous user community. LOTS of resources are available online for learning and troubleshooting (see, for example, the section on ***R*** at the [**Stack Overflow**](http://stackoverflow.com/tags/r/info) website.
 
 ***R*** can be run in several ways:
 
 - Interactively from a console prompt after launching the program from the command line in either a terminal window or command shell.
-- In batch mode, by sourcing commands from an ***R*** script file (which is a simple text file).
-- From within an ***R*** graphical user interface (or GUI) or integrated development envrionment (or IDE), which accommodates both of the above.
+- In batch mode, by sourcing commands from an ***R*** script file (which is just a simple text file).
+- From within an ***R*** graphical user interface (or GUI) or integrated development environment (or IDE), which accommodates both of the above.
 
 We are going to introduce several of these ways of working with ***R***, but the easiest and most convenient is to use an IDE.
 
@@ -35,7 +36,7 @@ We are going to introduce several of these ways of working with ***R***, but the
 
 ```{r}
 #| echo: false
-#| out-width: "80%"
+#| out-width: "90%"
 knitr::include_graphics("img/install-R.png")
 ```
 
@@ -43,7 +44,7 @@ knitr::include_graphics("img/install-R.png")
 
 ```{r}
 #| echo: false
-#| out-width: "80%"
+#| out-width: "90%"
 knitr::include_graphics("img/install-XQuartz.png")
 ```
 
@@ -51,19 +52,19 @@ knitr::include_graphics("img/install-XQuartz.png")
 
 Also, note that you can also run ***R*** in a terminal shell (MacOS or Unix) or from the Windows command shell after starting it with the command `r`. Depending on whether you have set your PATH variable to detect the ***R*** executable file, you may or may not need to first navigate into the directory containing the executable file.
 
-- On MacOS, the default GUI will look as follows:
+- On MacOS, the default GUI will look something like this:
 
 ```{r}
 #| echo: false
-#| out-width: "80%"
-knitr::include_graphics("img/R-console-Mac.png")
+#| out-width: "90%"
+knitr::include_graphics("img/R-console-macOS.png")
 ```
 
-- On Windows, the default GUI (***RGui***) looks like this:
+- On Windows, the default GUI (***RGui***) looks something like this:
 
 ```{r}
 #| echo: false
-#| out-width: "80%"
+#| out-width: "90%"
 knitr::include_graphics("img/RGui-windows.png")
 ```
 
@@ -71,11 +72,11 @@ knitr::include_graphics("img/RGui-windows.png")
 
 - ***R*** can be used as an interactive calculator from the console prompt, either in a GUI or in the shell.
 
-    - Standard mathematical order of operations applies (PEMDAS - parentheses, exponents, multiplication/division, addition/subtraction).
+    - Standard mathematical order of operations applies (**PEMDAS** -- parentheses, exponents, multiplication/division, addition/subtraction).
 
 - The assignment operator `<-` can be used to assign a value, the results of an operation, or specific code to an *object* (e.g., a variable, a function, a complex data structure).
 
-    - You can also use `=`, but I prefer to use that **only** to assign values to function *arguments* (more on this later).
+    - You can also use `=`, but I prefer (and recommend) to use that **only** to assign values to function *arguments* (more on this later).
 
 - You can set various *settings* to customize your interactions with ***R***.
 
@@ -89,14 +90,14 @@ knitr::include_graphics("img/RGui-windows.png")
         - On Windows, you can set the *working directory* with the **Change dir** command under the **File** menu.
         - In ***RStudio***, the *working directory* can be set under the **Session** menu.
 
-- Within the active workspace, ***R*** keeps a log of all executed commands, and you can use the *arrow keys* to scroll through this history. In ***RStudio***, this list is accessible in the **History** tab.
+- Within the active workspace, ***R*** keeps a log of all executed commands, and you can use the up and down *arrow keys* to scroll through this history. In ***RStudio***, this list is accessible in the **History** tab. This history is stored in a hidden file (".Rhistory" or ".Rapp.history") in your current working directory.
 
 - Commands and code can also be written in a text file or *script* and sent to the console for execution.
 
     - In most GUIs/IDEs, you can choose to create a new *script* document from the **File** menu, which opens in a text editor of some kind.
     - From within the text editor, you can send an individual command to the ***R*** interpreter by positioning your cursor somewhere in the line you want to execute and hitting `⌘-RETURN` (Mac) or either `control-R` (for the default GUI that ships with ***R***) or `control-ENTER` (for the ***RStudio*** GUI) (PC).
     - To send a set of commands to the console as a *batch*, you can highlight the code lines of code you want to execute and then use these same commands.
-    - You can include comments in your scripts by prefacing them with `#`.
+    - You can include comments in your scripts by prefacing them with `#`. Comments are not interpreted as code.
     - Script files can be saved just like any other type of text file, usually with the ".R" extension by default.
 
 - To view the names of all of the objects in your current *workspace*, you can use the `ls()` function. In ***RStudio***, these also all appear in the **Environment** tab.
@@ -105,21 +106,37 @@ knitr::include_graphics("img/RGui-windows.png")
 
 - To remove all objects from your workspace, you can use `rm(list=ls())`.
 
-    - In this case, you are passing to `rm()` a list consisting of all the objects in the workspace, provided by the `ls()` function.
+    - In this case, you are passing to the `rm()` (or `remove()`) function a list consisting of all the objects in the workspace, which is provided by the `ls()` function.
 
 ### CHALLENGE {.unnumbered}
 
-Fire up ***R*** in your mode of choice (by typing "R" at the console prompt in the **Terminal** in MacOS or from a **cmd** or other shell prompt in Windows) and then practice interacting with the software via the command line and console window.
+Fire up ***R*** in your mode of choice (by typing "R" at the console prompt in the **Terminal** in MacOS...
+
+```{r}
+#| echo: false
+#| out-width: "90%"
+knitr::include_graphics("img/R-terminal-macOS.png")
+```
+
+... or by typing "R" or "rterm" or "R.exe" from a **cmd** (or other shell prompt) in Windows...
+
+```{r}
+#| echo: false
+#| out-width: "85%"
+knitr::include_graphics("img/R-cmd-windows.png")
+```
+
+... and then practice interacting with the software via the command line and console window.
 
 - Try doing some math in ***R*** by using it to evaluate the following expressions:
 
-    - 8 + 5
-    - 10 - 6 / 2
-    - (10 - 6) / 2
-    - 10 \* 5
-    - 15 / 5
-    - 10 \^ 5
-    - 3 \* *pi* (where *pi* is a built-in constant)
+    - 8 plus 5
+    - 10 minus 6 divided by 2
+    - (10 minus 6) divided by 2
+    - 10 times 5
+    - 15 divided by 5
+    - 10 raised to the 5th power
+    - 3 times $\pi$ (where $\pi$ is a built-in constant)
 
 ```{r}
 #| code-fold: true
