@@ -510,7 +510,7 @@ window.Quarto = {
 </div>
 </div>
 </div>
-<p>… or by typing “R” or “rterm” or “R.exe” from a <strong>cmd</strong> (or other shell prompt) in Windows…</p>
+<p>… or by typing “R” or “rterm” or “R.exe” from a <strong>cmd</strong> or other shell prompt in Windows)…</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
@@ -521,8 +521,23 @@ window.Quarto = {
 </div>
 </div>
 <p>… and then practice interacting with the software via the command line and console window.</p>
+<blockquote class="blockquote">
+<p><strong>NOTE:</strong> To run <strong><em>R</em></strong> like this from a command prompt, you may need to add the path to the program’s executable file to your system’s PATH environmental variable. To do this, you need to know the path to the location where <strong><em>R</em></strong> was installed. On MacOS, this path is usually… “/usr/local/bin/R”, which typically is a symbolic link that points to the actual <strong><em>R</em></strong> framework, located within your system’s <code>/Library/Frameworks/</code> directory. On Windows, the path to the <strong><em>R</em></strong> executable is typically “C:\Program Files\R\R-x.x.x”, where “x.x.x” is the version number, e.g., “4.5.2”.</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>When you install <strong><em>R</em></strong> on MacOS, “/usr/local/bin” is generally already part of the system path, so you likely will not need to make any additional changes to the PATH variable, but this is not the case for Windows. To add <strong><em>R</em></strong> to the system PATH on Windows:</p>
+</blockquote>
+<blockquote class="blockquote">
 <ul>
-<li><p>Try doing some math in <strong><em>R</em></strong> by using it to evaluate the following expressions:</p>
+<li>Open the Windows search bar and type “environment variables”, then select “Edit the system environment variables”</li>
+<li>Click “Environment Variables”</li>
+<li>Under both the “User variables” and ““System variables” sections, find the “Path” variable and click the “Edit” button</li>
+<li>Click “New” and add the path to <strong><em>R</em></strong>’s executable <code>bin/</code> folder, typically “C:\Program Files\R\R-x.x.x\bin\x64” (adjust the version number as needed)</li>
+<li>Click “OK” on all windows to save changes</li>
+</ul>
+</blockquote>
+<ul>
+<li><p>Once <strong><em>R</em></strong> is running in your console, try doing some math in <strong><em>R</em></strong> by using it to evaluate the following expressions:</p>
 <ul>
 <li>8 plus 5</li>
 <li>10 minus 6 divided by 2</li>
@@ -1327,7 +1342,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb35-128"><a href="#cb35-128" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">include_graphics</span>(<span class="st">"img/R-terminal-macOS.png"</span>)</span>
 <span id="cb35-129"><a href="#cb35-129" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb35-130"><a href="#cb35-130" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb35-131"><a href="#cb35-131" aria-hidden="true" tabindex="-1"></a>... or by typing "R" or "rterm" or "R.exe" from a **cmd** (or other shell prompt) in Windows...</span>
+<span id="cb35-131"><a href="#cb35-131" aria-hidden="true" tabindex="-1"></a>... or by typing "R" or "rterm" or "R.exe" from a **cmd** or other shell prompt in Windows)...</span>
 <span id="cb35-132"><a href="#cb35-132" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb35-135"><a href="#cb35-135" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
 <span id="cb35-136"><a href="#cb35-136" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: false</span></span>
@@ -1337,103 +1352,113 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb35-140"><a href="#cb35-140" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb35-141"><a href="#cb35-141" aria-hidden="true" tabindex="-1"></a>... and then practice interacting with the software via the command line and console window.</span>
 <span id="cb35-142"><a href="#cb35-142" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb35-143"><a href="#cb35-143" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Try doing some math in ***R*** by using it to evaluate the following expressions:</span>
+<span id="cb35-143"><a href="#cb35-143" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; **NOTE:** To run ***R*** like this from a command prompt, you may need to add the path to the program's executable file to your system's PATH environmental variable. To do this, you need to know the path to the location where ***R*** was installed. On MacOS, this path is usually... "/usr/local/bin/R", which typically is a symbolic link that points to the actual ***R*** framework, located within your system's `/Library/Frameworks/` directory. On Windows, the path to the ***R*** executable is typically "C:</span><span class="sc">\\</span><span class="at">Program Files</span><span class="sc">\\</span><span class="at">R</span><span class="sc">\\</span><span class="at">R-x.x.x", where "x.x.x" is the version number, e.g., "4.5.2".</span></span>
 <span id="cb35-144"><a href="#cb35-144" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb35-145"><a href="#cb35-145" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>8 plus 5</span>
-<span id="cb35-146"><a href="#cb35-146" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>10 minus 6 divided by 2</span>
-<span id="cb35-147"><a href="#cb35-147" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>(10 minus 6) divided by 2</span>
-<span id="cb35-148"><a href="#cb35-148" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>10 times 5</span>
-<span id="cb35-149"><a href="#cb35-149" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>15 divided by 5</span>
-<span id="cb35-150"><a href="#cb35-150" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>10 raised to the 5th power</span>
-<span id="cb35-151"><a href="#cb35-151" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>3 times $\pi$ (where $\pi$ is a built-in constant)</span>
+<span id="cb35-145"><a href="#cb35-145" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; When you install ***R*** on MacOS, "/usr/local/bin" is generally already part of the system path, so you likely will not need to make any additional changes to the PATH variable, but this is not the case for Windows. To add ***R*** to the system PATH on Windows:</span></span>
+<span id="cb35-146"><a href="#cb35-146" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-147"><a href="#cb35-147" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; - Open the Windows search bar and type "environment variables", then select "Edit the system environment variables"</span></span>
+<span id="cb35-148"><a href="#cb35-148" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; - Click "Environment Variables"</span></span>
+<span id="cb35-149"><a href="#cb35-149" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; - Under both the "User variables" and ""System variables" sections, find the "Path" variable and click the "Edit" button</span></span>
+<span id="cb35-150"><a href="#cb35-150" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; - Click "New" and add the path to ***R***'s executable </span><span class="in">`bin/`</span><span class="at"> folder, typically "C:</span><span class="sc">\\</span><span class="at">Program Files</span><span class="sc">\\</span><span class="at">R</span><span class="sc">\\</span><span class="at">R-x.x.x</span><span class="sc">\\</span><span class="at">bin</span><span class="sc">\\</span><span class="at">x64" (adjust the version number as needed)</span></span>
+<span id="cb35-151"><a href="#cb35-151" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; - Click "OK" on all windows to save changes</span></span>
 <span id="cb35-152"><a href="#cb35-152" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb35-155"><a href="#cb35-155" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb35-156"><a href="#cb35-156" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-fold: true</span></span>
-<span id="cb35-157"><a href="#cb35-157" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-summary: "Show Code"</span></span>
-<span id="cb35-158"><a href="#cb35-158" aria-hidden="true" tabindex="-1"></a><span class="co">#| attr.output: '.details summary="Show Output"'</span></span>
-<span id="cb35-159"><a href="#cb35-159" aria-hidden="true" tabindex="-1"></a><span class="dv">8</span> <span class="sc">+</span> <span class="dv">5</span></span>
-<span id="cb35-160"><a href="#cb35-160" aria-hidden="true" tabindex="-1"></a><span class="dv">10</span> <span class="sc">-</span> <span class="dv">6</span> <span class="sc">/</span> <span class="dv">2</span></span>
-<span id="cb35-161"><a href="#cb35-161" aria-hidden="true" tabindex="-1"></a>(<span class="dv">10</span> <span class="sc">-</span> <span class="dv">6</span>) <span class="sc">/</span> <span class="dv">2</span></span>
-<span id="cb35-162"><a href="#cb35-162" aria-hidden="true" tabindex="-1"></a><span class="dv">10</span> <span class="sc">*</span> <span class="dv">5</span></span>
-<span id="cb35-163"><a href="#cb35-163" aria-hidden="true" tabindex="-1"></a><span class="dv">15</span> <span class="sc">/</span> <span class="dv">5</span></span>
-<span id="cb35-164"><a href="#cb35-164" aria-hidden="true" tabindex="-1"></a><span class="dv">10</span> <span class="sc">^</span> <span class="dv">5</span></span>
-<span id="cb35-165"><a href="#cb35-165" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span> <span class="sc">*</span> pi</span>
-<span id="cb35-166"><a href="#cb35-166" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb35-167"><a href="#cb35-167" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb35-168"><a href="#cb35-168" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Try working with assignments:</span>
-<span id="cb35-169"><a href="#cb35-169" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb35-170"><a href="#cb35-170" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>Assign the number 6 to a variable called **x**.</span>
-<span id="cb35-171"><a href="#cb35-171" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>Assign the number 5 to a variable called **y**.</span>
-<span id="cb35-172"><a href="#cb35-172" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>Assign x <span class="sc">\*</span> y to a variable called **z**.</span>
-<span id="cb35-173"><a href="#cb35-173" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>Assign x\^2 to a variable called **x2**.</span>
-<span id="cb35-174"><a href="#cb35-174" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb35-177"><a href="#cb35-177" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb35-178"><a href="#cb35-178" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-fold: true</span></span>
-<span id="cb35-179"><a href="#cb35-179" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-summary: "Show Code"</span></span>
-<span id="cb35-180"><a href="#cb35-180" aria-hidden="true" tabindex="-1"></a><span class="co">#| attr.output: '.details summary="Show Output"'</span></span>
-<span id="cb35-181"><a href="#cb35-181" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">6</span></span>
-<span id="cb35-182"><a href="#cb35-182" aria-hidden="true" tabindex="-1"></a>x</span>
-<span id="cb35-183"><a href="#cb35-183" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="dv">5</span></span>
-<span id="cb35-184"><a href="#cb35-184" aria-hidden="true" tabindex="-1"></a>y</span>
-<span id="cb35-185"><a href="#cb35-185" aria-hidden="true" tabindex="-1"></a>z <span class="ot">&lt;-</span> x <span class="sc">*</span> y</span>
-<span id="cb35-186"><a href="#cb35-186" aria-hidden="true" tabindex="-1"></a>z</span>
-<span id="cb35-187"><a href="#cb35-187" aria-hidden="true" tabindex="-1"></a>x2 <span class="ot">&lt;-</span> x <span class="sc">^</span> <span class="dv">2</span></span>
-<span id="cb35-188"><a href="#cb35-188" aria-hidden="true" tabindex="-1"></a>x2</span>
-<span id="cb35-189"><a href="#cb35-189" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb35-190"><a href="#cb35-190" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb35-191"><a href="#cb35-191" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Try out some of the built-in functions in ***R***:</span>
-<span id="cb35-192"><a href="#cb35-192" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb35-193"><a href="#cb35-193" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>Assign the number 10 to a variable called **x**.</span>
-<span id="cb35-194"><a href="#cb35-194" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>Take the natural log of **x** using the <span class="in">`log()`</span> function.</span>
-<span id="cb35-195"><a href="#cb35-195" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>Find the factorial of **x** using the <span class="in">`factorial()`</span> function.</span>
-<span id="cb35-196"><a href="#cb35-196" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>Assign the number 81 to a variable called **y**.</span>
-<span id="cb35-197"><a href="#cb35-197" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>Take the square root of y using the <span class="in">`sqrt()`</span> function.</span>
-<span id="cb35-198"><a href="#cb35-198" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>Assign the number -8.349218 to a variable called **z**.</span>
-<span id="cb35-199"><a href="#cb35-199" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>Use <span class="in">`?round`</span> or <span class="in">`help(round)`</span> to view the help file for the function <span class="in">`round()`</span>.</span>
-<span id="cb35-200"><a href="#cb35-200" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>Round **z** to the 1000ths place.</span>
-<span id="cb35-201"><a href="#cb35-201" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>Use <span class="in">`?abs()`</span> to view the help file for the function <span class="in">`abs()`</span>.</span>
-<span id="cb35-202"><a href="#cb35-202" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>Take the absolute value of **z** \* **y**.</span>
-<span id="cb35-203"><a href="#cb35-203" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb35-206"><a href="#cb35-206" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb35-207"><a href="#cb35-207" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-fold: true</span></span>
-<span id="cb35-208"><a href="#cb35-208" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-summary: "Show Code"</span></span>
-<span id="cb35-209"><a href="#cb35-209" aria-hidden="true" tabindex="-1"></a><span class="co">#| attr.output: '.details summary="Show Output"'</span></span>
-<span id="cb35-210"><a href="#cb35-210" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">10</span></span>
-<span id="cb35-211"><a href="#cb35-211" aria-hidden="true" tabindex="-1"></a><span class="fu">log</span>(x)</span>
-<span id="cb35-212"><a href="#cb35-212" aria-hidden="true" tabindex="-1"></a><span class="fu">factorial</span>(x)</span>
-<span id="cb35-213"><a href="#cb35-213" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="dv">81</span></span>
-<span id="cb35-214"><a href="#cb35-214" aria-hidden="true" tabindex="-1"></a><span class="fu">sqrt</span>(y)</span>
-<span id="cb35-215"><a href="#cb35-215" aria-hidden="true" tabindex="-1"></a>z <span class="ot">&lt;-</span> <span class="sc">-</span><span class="fl">8.349218</span></span>
-<span id="cb35-216"><a href="#cb35-216" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(z, <span class="at">digits =</span> <span class="dv">3</span>)</span>
-<span id="cb35-217"><a href="#cb35-217" aria-hidden="true" tabindex="-1"></a><span class="fu">abs</span>(z <span class="sc">*</span> y)</span>
-<span id="cb35-218"><a href="#cb35-218" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb35-219"><a href="#cb35-219" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb35-220"><a href="#cb35-220" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Use the <span class="in">`ls()`</span> function to list the variables currently stored in your active session.</span>
-<span id="cb35-221"><a href="#cb35-221" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb35-222"><a href="#cb35-222" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>How many variables do you have?</span>
-<span id="cb35-223"><a href="#cb35-223" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb35-226"><a href="#cb35-226" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb35-227"><a href="#cb35-227" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-fold: true</span></span>
-<span id="cb35-228"><a href="#cb35-228" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-summary: "Show Code"</span></span>
-<span id="cb35-229"><a href="#cb35-229" aria-hidden="true" tabindex="-1"></a><span class="co">#| attr.output: '.details summary="Show Output"'</span></span>
-<span id="cb35-230"><a href="#cb35-230" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span>()</span>
-<span id="cb35-231"><a href="#cb35-231" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb35-232"><a href="#cb35-232" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb35-233"><a href="#cb35-233" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Use the command <span class="in">`rm(list=ls())`</span> to clear all the variables you have defined.</span>
-<span id="cb35-234"><a href="#cb35-234" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>What happens if you type a function name without including the parentheses?</span>
-<span id="cb35-235"><a href="#cb35-235" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>What happens if you type a function with an invalid or missing argument?</span>
-<span id="cb35-236"><a href="#cb35-236" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb35-237"><a href="#cb35-237" aria-hidden="true" tabindex="-1"></a>---</span>
-<span id="cb35-238"><a href="#cb35-238" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb35-239"><a href="#cb35-239" aria-hidden="true" tabindex="-1"></a><span class="fu">## Concept Review {.unnumbered}</span></span>
-<span id="cb35-240"><a href="#cb35-240" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb35-241"><a href="#cb35-241" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Interacting with ***R*** from the console prompt</span>
-<span id="cb35-242"><a href="#cb35-242" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Variable assignment: <span class="in">`&lt;-`</span></span>
-<span id="cb35-243"><a href="#cb35-243" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Calling built-in functions: <span class="in">`function(&lt;arguments&gt;)`</span></span>
-<span id="cb35-244"><a href="#cb35-244" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Accessing ***R*** documentation and help files: <span class="in">`?function`</span> or <span class="in">`help(function)`</span></span>
-<span id="cb35-245"><a href="#cb35-245" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Workspaces and the working directory: <span class="in">`getwd()`</span>, <span class="in">`setwd()`</span></span>
-<span id="cb35-246"><a href="#cb35-246" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Listing and removing variables from the environment: <span class="in">`ls()`</span>, <span class="in">`rm()`</span></span>
-<span id="cb35-247"><a href="#cb35-247" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Accessing the console history</span>
+<span id="cb35-153"><a href="#cb35-153" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Once ***R*** is running in your console, try doing some math in ***R*** by using it to evaluate the following expressions:</span>
+<span id="cb35-154"><a href="#cb35-154" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-155"><a href="#cb35-155" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>8 plus 5</span>
+<span id="cb35-156"><a href="#cb35-156" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>10 minus 6 divided by 2</span>
+<span id="cb35-157"><a href="#cb35-157" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>(10 minus 6) divided by 2</span>
+<span id="cb35-158"><a href="#cb35-158" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>10 times 5</span>
+<span id="cb35-159"><a href="#cb35-159" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>15 divided by 5</span>
+<span id="cb35-160"><a href="#cb35-160" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>10 raised to the 5th power</span>
+<span id="cb35-161"><a href="#cb35-161" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>3 times $\pi$ (where $\pi$ is a built-in constant)</span>
+<span id="cb35-162"><a href="#cb35-162" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-165"><a href="#cb35-165" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb35-166"><a href="#cb35-166" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-fold: true</span></span>
+<span id="cb35-167"><a href="#cb35-167" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-summary: "Show Code"</span></span>
+<span id="cb35-168"><a href="#cb35-168" aria-hidden="true" tabindex="-1"></a><span class="co">#| attr.output: '.details summary="Show Output"'</span></span>
+<span id="cb35-169"><a href="#cb35-169" aria-hidden="true" tabindex="-1"></a><span class="dv">8</span> <span class="sc">+</span> <span class="dv">5</span></span>
+<span id="cb35-170"><a href="#cb35-170" aria-hidden="true" tabindex="-1"></a><span class="dv">10</span> <span class="sc">-</span> <span class="dv">6</span> <span class="sc">/</span> <span class="dv">2</span></span>
+<span id="cb35-171"><a href="#cb35-171" aria-hidden="true" tabindex="-1"></a>(<span class="dv">10</span> <span class="sc">-</span> <span class="dv">6</span>) <span class="sc">/</span> <span class="dv">2</span></span>
+<span id="cb35-172"><a href="#cb35-172" aria-hidden="true" tabindex="-1"></a><span class="dv">10</span> <span class="sc">*</span> <span class="dv">5</span></span>
+<span id="cb35-173"><a href="#cb35-173" aria-hidden="true" tabindex="-1"></a><span class="dv">15</span> <span class="sc">/</span> <span class="dv">5</span></span>
+<span id="cb35-174"><a href="#cb35-174" aria-hidden="true" tabindex="-1"></a><span class="dv">10</span> <span class="sc">^</span> <span class="dv">5</span></span>
+<span id="cb35-175"><a href="#cb35-175" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span> <span class="sc">*</span> pi</span>
+<span id="cb35-176"><a href="#cb35-176" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb35-177"><a href="#cb35-177" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-178"><a href="#cb35-178" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Try working with assignments:</span>
+<span id="cb35-179"><a href="#cb35-179" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-180"><a href="#cb35-180" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>Assign the number 6 to a variable called **x**.</span>
+<span id="cb35-181"><a href="#cb35-181" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>Assign the number 5 to a variable called **y**.</span>
+<span id="cb35-182"><a href="#cb35-182" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>Assign x <span class="sc">\*</span> y to a variable called **z**.</span>
+<span id="cb35-183"><a href="#cb35-183" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>Assign x\^2 to a variable called **x2**.</span>
+<span id="cb35-184"><a href="#cb35-184" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-187"><a href="#cb35-187" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb35-188"><a href="#cb35-188" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-fold: true</span></span>
+<span id="cb35-189"><a href="#cb35-189" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-summary: "Show Code"</span></span>
+<span id="cb35-190"><a href="#cb35-190" aria-hidden="true" tabindex="-1"></a><span class="co">#| attr.output: '.details summary="Show Output"'</span></span>
+<span id="cb35-191"><a href="#cb35-191" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">6</span></span>
+<span id="cb35-192"><a href="#cb35-192" aria-hidden="true" tabindex="-1"></a>x</span>
+<span id="cb35-193"><a href="#cb35-193" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="dv">5</span></span>
+<span id="cb35-194"><a href="#cb35-194" aria-hidden="true" tabindex="-1"></a>y</span>
+<span id="cb35-195"><a href="#cb35-195" aria-hidden="true" tabindex="-1"></a>z <span class="ot">&lt;-</span> x <span class="sc">*</span> y</span>
+<span id="cb35-196"><a href="#cb35-196" aria-hidden="true" tabindex="-1"></a>z</span>
+<span id="cb35-197"><a href="#cb35-197" aria-hidden="true" tabindex="-1"></a>x2 <span class="ot">&lt;-</span> x <span class="sc">^</span> <span class="dv">2</span></span>
+<span id="cb35-198"><a href="#cb35-198" aria-hidden="true" tabindex="-1"></a>x2</span>
+<span id="cb35-199"><a href="#cb35-199" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb35-200"><a href="#cb35-200" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-201"><a href="#cb35-201" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Try out some of the built-in functions in ***R***:</span>
+<span id="cb35-202"><a href="#cb35-202" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-203"><a href="#cb35-203" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>Assign the number 10 to a variable called **x**.</span>
+<span id="cb35-204"><a href="#cb35-204" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>Take the natural log of **x** using the <span class="in">`log()`</span> function.</span>
+<span id="cb35-205"><a href="#cb35-205" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>Find the factorial of **x** using the <span class="in">`factorial()`</span> function.</span>
+<span id="cb35-206"><a href="#cb35-206" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>Assign the number 81 to a variable called **y**.</span>
+<span id="cb35-207"><a href="#cb35-207" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>Take the square root of y using the <span class="in">`sqrt()`</span> function.</span>
+<span id="cb35-208"><a href="#cb35-208" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>Assign the number -8.349218 to a variable called **z**.</span>
+<span id="cb35-209"><a href="#cb35-209" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>Use <span class="in">`?round`</span> or <span class="in">`help(round)`</span> to view the help file for the function <span class="in">`round()`</span>.</span>
+<span id="cb35-210"><a href="#cb35-210" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>Round **z** to the 1000ths place.</span>
+<span id="cb35-211"><a href="#cb35-211" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>Use <span class="in">`?abs()`</span> to view the help file for the function <span class="in">`abs()`</span>.</span>
+<span id="cb35-212"><a href="#cb35-212" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>Take the absolute value of **z** \* **y**.</span>
+<span id="cb35-213"><a href="#cb35-213" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-216"><a href="#cb35-216" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb35-217"><a href="#cb35-217" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-fold: true</span></span>
+<span id="cb35-218"><a href="#cb35-218" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-summary: "Show Code"</span></span>
+<span id="cb35-219"><a href="#cb35-219" aria-hidden="true" tabindex="-1"></a><span class="co">#| attr.output: '.details summary="Show Output"'</span></span>
+<span id="cb35-220"><a href="#cb35-220" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">10</span></span>
+<span id="cb35-221"><a href="#cb35-221" aria-hidden="true" tabindex="-1"></a><span class="fu">log</span>(x)</span>
+<span id="cb35-222"><a href="#cb35-222" aria-hidden="true" tabindex="-1"></a><span class="fu">factorial</span>(x)</span>
+<span id="cb35-223"><a href="#cb35-223" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="dv">81</span></span>
+<span id="cb35-224"><a href="#cb35-224" aria-hidden="true" tabindex="-1"></a><span class="fu">sqrt</span>(y)</span>
+<span id="cb35-225"><a href="#cb35-225" aria-hidden="true" tabindex="-1"></a>z <span class="ot">&lt;-</span> <span class="sc">-</span><span class="fl">8.349218</span></span>
+<span id="cb35-226"><a href="#cb35-226" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(z, <span class="at">digits =</span> <span class="dv">3</span>)</span>
+<span id="cb35-227"><a href="#cb35-227" aria-hidden="true" tabindex="-1"></a><span class="fu">abs</span>(z <span class="sc">*</span> y)</span>
+<span id="cb35-228"><a href="#cb35-228" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb35-229"><a href="#cb35-229" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-230"><a href="#cb35-230" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Use the <span class="in">`ls()`</span> function to list the variables currently stored in your active session.</span>
+<span id="cb35-231"><a href="#cb35-231" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-232"><a href="#cb35-232" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>How many variables do you have?</span>
+<span id="cb35-233"><a href="#cb35-233" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-236"><a href="#cb35-236" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb35-237"><a href="#cb35-237" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-fold: true</span></span>
+<span id="cb35-238"><a href="#cb35-238" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-summary: "Show Code"</span></span>
+<span id="cb35-239"><a href="#cb35-239" aria-hidden="true" tabindex="-1"></a><span class="co">#| attr.output: '.details summary="Show Output"'</span></span>
+<span id="cb35-240"><a href="#cb35-240" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span>()</span>
+<span id="cb35-241"><a href="#cb35-241" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb35-242"><a href="#cb35-242" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-243"><a href="#cb35-243" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Use the command <span class="in">`rm(list=ls())`</span> to clear all the variables you have defined.</span>
+<span id="cb35-244"><a href="#cb35-244" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>What happens if you type a function name without including the parentheses?</span>
+<span id="cb35-245"><a href="#cb35-245" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>What happens if you type a function with an invalid or missing argument?</span>
+<span id="cb35-246"><a href="#cb35-246" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-247"><a href="#cb35-247" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb35-248"><a href="#cb35-248" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-249"><a href="#cb35-249" aria-hidden="true" tabindex="-1"></a><span class="fu">## Concept Review {.unnumbered}</span></span>
+<span id="cb35-250"><a href="#cb35-250" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-251"><a href="#cb35-251" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Interacting with ***R*** from the console prompt</span>
+<span id="cb35-252"><a href="#cb35-252" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Variable assignment: <span class="in">`&lt;-`</span></span>
+<span id="cb35-253"><a href="#cb35-253" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Calling built-in functions: <span class="in">`function(&lt;arguments&gt;)`</span></span>
+<span id="cb35-254"><a href="#cb35-254" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Accessing ***R*** documentation and help files: <span class="in">`?function`</span> or <span class="in">`help(function)`</span></span>
+<span id="cb35-255"><a href="#cb35-255" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Workspaces and the working directory: <span class="in">`getwd()`</span>, <span class="in">`setwd()`</span></span>
+<span id="cb35-256"><a href="#cb35-256" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Listing and removing variables from the environment: <span class="in">`ls()`</span>, <span class="in">`rm()`</span></span>
+<span id="cb35-257"><a href="#cb35-257" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Accessing the console history</span>
 </code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->

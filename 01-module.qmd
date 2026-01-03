@@ -118,7 +118,7 @@ Fire up ***R*** in your mode of choice (by typing "R" at the console prompt in t
 knitr::include_graphics("img/R-terminal-macOS.png")
 ```
 
-... or by typing "R" or "rterm" or "R.exe" from a **cmd** (or other shell prompt) in Windows...
+... or by typing "R" or "rterm" or "R.exe" from a **cmd** or other shell prompt in Windows)...
 
 ```{r}
 #| echo: false
@@ -128,7 +128,17 @@ knitr::include_graphics("img/R-cmd-windows.png")
 
 ... and then practice interacting with the software via the command line and console window.
 
-- Try doing some math in ***R*** by using it to evaluate the following expressions:
+> **NOTE:** To run ***R*** like this from a command prompt, you may need to add the path to the program's executable file to your system's PATH environmental variable. To do this, you need to know the path to the location where ***R*** was installed. On MacOS, this path is usually... "/usr/local/bin/R", which typically is a symbolic link that points to the actual ***R*** framework, located within your system's `/Library/Frameworks/` directory. On Windows, the path to the ***R*** executable is typically "C:\\Program Files\\R\\R-x.x.x", where "x.x.x" is the version number, e.g., "4.5.2".
+
+> When you install ***R*** on MacOS, "/usr/local/bin" is generally already part of the system path, so you likely will not need to make any additional changes to the PATH variable, but this is not the case for Windows. To add ***R*** to the system PATH on Windows:
+
+> - Open the Windows search bar and type "environment variables", then select "Edit the system environment variables"
+> - Click "Environment Variables"
+> - Under both the "User variables" and ""System variables" sections, find the "Path" variable and click the "Edit" button
+> - Click "New" and add the path to ***R***'s executable `bin/` folder, typically "C:\\Program Files\\R\\R-x.x.x\\bin\\x64" (adjust the version number as needed)
+> - Click "OK" on all windows to save changes
+
+- Once ***R*** is running in your console, try doing some math in ***R*** by using it to evaluate the following expressions:
 
     - 8 plus 5
     - 10 minus 6 divided by 2
