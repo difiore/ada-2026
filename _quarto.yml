@@ -39,8 +39,8 @@ book:
       - 10-module.qmd
       - 11-module.qmd
     - part: "Part II - Statistics and Inference"
-      # chapters:
-      # - 12-module.qmd
+      chapters:
+      - 12-module.qmd
       # - 13-module.qmd
       # - 14-module.qmd
       # - 15-module.qmd

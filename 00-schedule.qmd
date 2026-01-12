@@ -204,131 +204,133 @@
 - *R in Action*
     - Chapter 5 - Advanced Data Management
 
-<!-- ## Part II - Statistics and Inference {.unnumbered} -->
+## Part II - Statistics and Inference {.unnumbered}
 
-<!-- ### Location, Spread, and Sampling {.unnumbered} -->
+### Descriptive Statistics {.unnumbered}
 
-<!-- #### Modules {.unnumbered} -->
+#### Modules {.unnumbered}
 
-<!-- - Module 12 - [Central Tendency and Spread](#module-12) -->
+- Module 12 - [Introduction to Statistics and Sampling](#module-12)
 
-<!-- #### Topics {.unnumbered} -->
+#### Topics {.unnumbered}
 
-<!-- - Populations and samples, parameters and statistics -->
-<!-- - Describing central tendency and variance -->
-<!-- - Standard errors and quantiles -->
+- Populations and samples, parameters and statistics
+- Describing central tendency, spread, and skew
+- Standard errors and quantiles
 
-<!-- #### Suggested Readings {.unnumbered} -->
+#### Suggested Readings {.unnumbered}
 
-<!-- - *Introduction to Data Science* -->
-<!--     - Chapter 15 - Random Variables -->
-<!-- - *Statistical Inference via Data Science* -->
-<!--     - Chapter 7 - Sampling -->
-<!-- - *Modern Data Science with R* -->
-<!--     - Chapter 7 - Statistical Foundations -->
+- *The Book of R*
+    - Chapter 13 - Elementary Statistics
+- *Statistical Inference via Data Science*
+    - Chapter 7 - Sampling
+- *Modern Data Science with R*
+    - Chapter 7 - Statistical Foundations
 
-<!-- #### Other Useful Readings {.unnumbered} -->
+#### Other Useful Readings {.unnumbered}
 
-<!-- - *Statistics: An Introduction Using R* -->
-<!--     - Chapter 13 - Central Tendency -->
-<!--     - Chapter 14 - Variance -->
-<!-- - *R Programming for Data Science* -->
-<!--     - Chapter 22 - Simulation -->
+- *Statistics: An Introduction Using R*
+    - Chapter 13 - Central Tendency
+    - Chapter 14 - Variance
+- *Introduction to Data Science*
+    - Chapter 15 - Random Variables
 
-<!-- ### Probability and Distributions {.unnumbered} -->
+### Probability and Distributions {.unnumbered}
 
-<!-- #### Modules {.unnumbered} -->
+#### Modules {.unnumbered}
 
-<!-- - Module 13 - [Probability and Distributions](#module-13) -->
+- Module 13 - [Probability and Distributions](#module-13)
 
-<!-- #### Topics {.unnumbered} -->
+#### Topics {.unnumbered}
 
-<!-- - Probability and conditional probability -->
-<!-- - Random variables - discrete and continuous -->
-<!-- - Probability mass functions, probability density functions -->
-<!-- - Cumulative probability function -->
-<!-- - Some useful distributions and their properties -->
-<!--     - Distribution functions -->
-<!--         - Density (`d`) -->
-<!--         - Cumulative probability (`p`) -->
-<!--         - Quantile (`q`) -->
-<!--         - Random (`r`) functions -->
-<!--     - Discrete distributions -->
-<!--         - Bernoulli -->
-<!--         - Poisson -->
-<!--         - Binomial -->
-<!--     - Continuous distributions -->
-<!--         - Beta -->
-<!--         - Uniform -->
-<!--         - Normal -->
-<!-- - Q-Q plots -->
+- Probability and conditional probability
+- Random variables - discrete and continuous
+- Probability mass functions, probability density functions
+- Cumulative probability function
+- Some useful distributions and their properties
+    - Distribution functions
+        - Density (`d`)
+        - Cumulative probability (`p`)
+        - Quantile (`q`)
+        - Random (`r`) functions
+    - Discrete distributions
+        - Bernoulli
+        - Poisson
+        - Binomial
+    - Continuous distributions
+        - Beta
+        - Uniform
+        - Normal
+- Q-Q plots
 
-<!-- #### Suggested Readings {.unnumbered} -->
+#### Suggested Readings {.unnumbered}
 
-<!-- - *Introduction to Data Science* -->
-<!--     - Chapter 14 - Probability -->
-<!-- - *The Book of R* -->
-<!--     - Chapter 15 - Probability -->
-<!--     - Chapter 16 - Common Probability Distributions -->
+- *Introduction to Data Science*
+    - Chapter 14 - Probability
+- *The Book of R*
+    - Chapter 15 - Probability
+    - Chapter 16 - Common Probability Distributions
 
-<!-- ### Confidence Intervals {.unnumbered} -->
+### Confidence Intervals {.unnumbered}
 
-<!-- #### Modules {.unnumbered} -->
+#### Modules {.unnumbered}
 
-<!-- - Module 14 - [Confidence Intervals](#module-14) -->
+- Module 14 - [Confidence Intervals](#module-14)
 
-<!-- #### Topics {.unnumbered} -->
+#### Topics {.unnumbered}
 
-<!-- - Standard errors and confidence intervals -->
-<!--     - CIs based on a theoretical distribution -->
-<!--     - The Central Limit Theorem -->
-<!--     - CIs based on bootstrapping -->
-<!--     - CIs for proportions -->
+- Standard errors and confidence intervals
+    - CIs based on a theoretical distribution
+    - The Central Limit Theorem
+    - CIs based on bootstrapping
+    - CIs for proportions
 
-<!-- #### Suggested Readings {.unnumbered} -->
+#### Suggested Readings {.unnumbered}
 
-<!-- - *Introduction to Data Science* -->
-<!--     - Chapter 16 - Statistical Inference -->
-<!-- - *The Book of R* -->
-<!--     - Chapter 17 - Sampling Distributions and Confidence -->
+- *Introduction to Data Science*
+    - Chapter 16 - Statistical Inference
+- *The Book of R*
+    - Chapter 17 - Sampling Distributions and Confidence
 
-<!-- #### Other Useful Readings {.unnumbered} -->
+#### Other Useful Readings {.unnumbered}
 
-<!-- - *Statistical Inference via Data Science* -->
-<!--     - Chapter 8 - Bootstrapping and Confidence Intervals -->
+- *R Programming for Data Science*
+    - Chapter 22 - Simulation
+- *Statistical Inference via Data Science*
+    - Chapter 8 - Bootstrapping and Confidence Intervals
 
-<!-- ### Hypothesis Testing {.unnumbered} -->
+### Hypothesis Testing {.unnumbered}
 
-<!-- #### Modules {.unnumbered} -->
+#### Modules {.unnumbered}
 
-<!-- - Module 15 - [Classical Hypothesis Testing](#module-15) -->
-<!-- - Module 16 - [Permutation and Randomization Tests](#module-16) -->
-<!-- - Module 17 - [Error, Power, and Effect Size](#module-17) -->
+- Module 15 - [Classical Hypothesis Testing](#module-15)
+- Module 16 - [Permutation and Randomization Tests](#module-16)
+- Module 17 - [Error, Power, and Effect Size](#module-17)
 
-<!-- #### Topics {.unnumbered} -->
+#### Topics {.unnumbered}
 
-<!-- - ***p*** values and "significance" -->
-<!-- - Classic *null hypothesis significance testing* (NHST) -->
-<!--     - One- and two-sample $T$ and $Z$ tests -->
-<!-- - Permutation and randomization tests -->
-<!-- - Type I and Type II error -->
-<!-- - Statistical power, effect sizes -->
+- ***p*** values and "significance"
+- Classic *null hypothesis significance testing* (NHST)
+    - One- and two-sample $T$ and $Z$ tests
+- Permutation and randomization tests
+- Type I and Type II error
+- Statistical power, effect sizes
 
-<!-- #### Suggested Readings {.unnumbered} -->
+#### Suggested Readings {.unnumbered}
 
-<!-- - *The Book of R* -->
-<!--     - Chapter 18 - Hypothesis Testing -->
-<!-- - *Statistical Inference via Data Science* -->
-<!--     - Chapter 9 - Hypothesis Testing -->
-<!-- - Legendre & Legendre (2012). Chapter 1.2. Statistical testing by permutation. *Numerical Ecology, 3rd Edition.* Elsevier. -->
+- *The Book of R*
+    - Chapter 18 - Hypothesis Testing
+- *Statistical Inference via Data Science*
+    - Chapter 9 - Hypothesis Testing
+- Legendre & Legendre (2012). Chapter 1.2. Statistical testing by permutation. *Numerical Ecology, 3rd Edition.* Elsevier.
 
-<!-- #### Other Useful Readings {.unnumbered} -->
+#### Other Useful Readings {.unnumbered}
 
-<!-- - *Statistics Done Wrong* -->
-<!--     - Chapter 1 - An Introduction to Statistical Significance -->
-<!-- - *Statistics: An Introduction Using R* -->
-<!--     - Chapter 5 - Single Samples -->
-<!--     - Chapter 6 - Two Samples -->
+- *Statistics Done Wrong*
+    - Chapter 1 - An Introduction to Statistical Significance
+- *Statistics: An Introduction Using R*
+    - Chapter 5 - Single Samples
+    - Chapter 6 - Two Samples
 
 <!-- #### Relevant Data Camp Material {.unnumbered} -->
 

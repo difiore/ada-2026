@@ -64,4 +64,9 @@ a:hover {
 /* selected link */
 a:active {
   color: darkblue;
-} 
+}
+
+pre.output {
+  white-space: pre-wrap;
+  word-wrap: break-word; /* For older browser compatibility */
+}

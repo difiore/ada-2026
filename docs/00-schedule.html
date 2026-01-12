@@ -103,6 +103,35 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   }
 }</script>
 
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="css/style.css">
 </head>
@@ -272,8 +301,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
-      <span class="sidebar-item-text sidebar-link text-start">
- <span class="menu-text">Part II - Statistics and Inference</span></span>
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+ <span class="menu-text">Part II - Statistics and Inference</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./12-module.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Introduction to Statistics and Sampling</span></span></a>
+  </div>
+</li>
+      </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
       <span class="sidebar-item-text sidebar-link text-start">
@@ -321,6 +363,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#data-science-preliminaries" id="toc-data-science-preliminaries" class="nav-link" data-scroll-target="#data-science-preliminaries">Data Science Preliminaries</a></li>
   <li><a href="#exploratory-data-analysis" id="toc-exploratory-data-analysis" class="nav-link" data-scroll-target="#exploratory-data-analysis">Exploratory Data Analysis</a></li>
   <li><a href="#data-wrangling-and-programming" id="toc-data-wrangling-and-programming" class="nav-link" data-scroll-target="#data-wrangling-and-programming">Data Wrangling and Programming</a></li>
+  </ul></li>
+  <li><a href="#part-ii---statistics-and-inference" id="toc-part-ii---statistics-and-inference" class="nav-link" data-scroll-target="#part-ii---statistics-and-inference">Part II - Statistics and Inference</a>
+  <ul class="collapse">
+  <li><a href="#descriptive-statistics" id="toc-descriptive-statistics" class="nav-link" data-scroll-target="#descriptive-statistics">Descriptive Statistics</a></li>
+  <li><a href="#probability-and-distributions" id="toc-probability-and-distributions" class="nav-link" data-scroll-target="#probability-and-distributions">Probability and Distributions</a></li>
+  <li><a href="#confidence-intervals" id="toc-confidence-intervals" class="nav-link" data-scroll-target="#confidence-intervals">Confidence Intervals</a></li>
+  <li><a href="#hypothesis-testing" id="toc-hypothesis-testing" class="nav-link" data-scroll-target="#hypothesis-testing">Hypothesis Testing</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -672,97 +721,211 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Chapter 5 - Advanced Data Management</li>
 </ul></li>
 </ul>
-<!-- ## Part II - Statistics and Inference {.unnumbered} -->
-<!-- ### Location, Spread, and Sampling {.unnumbered} -->
-<!-- #### Modules {.unnumbered} -->
-<!-- - Module 12 - [Central Tendency and Spread](#module-12) -->
-<!-- #### Topics {.unnumbered} -->
-<!-- - Populations and samples, parameters and statistics -->
-<!-- - Describing central tendency and variance -->
-<!-- - Standard errors and quantiles -->
-<!-- #### Suggested Readings {.unnumbered} -->
-<!-- - *Introduction to Data Science* -->
-<!--     - Chapter 15 - Random Variables -->
-<!-- - *Statistical Inference via Data Science* -->
-<!--     - Chapter 7 - Sampling -->
-<!-- - *Modern Data Science with R* -->
-<!--     - Chapter 7 - Statistical Foundations -->
-<!-- #### Other Useful Readings {.unnumbered} -->
-<!-- - *Statistics: An Introduction Using R* -->
-<!--     - Chapter 13 - Central Tendency -->
-<!--     - Chapter 14 - Variance -->
-<!-- - *R Programming for Data Science* -->
-<!--     - Chapter 22 - Simulation -->
-<!-- ### Probability and Distributions {.unnumbered} -->
-<!-- #### Modules {.unnumbered} -->
-<!-- - Module 13 - [Probability and Distributions](#module-13) -->
-<!-- #### Topics {.unnumbered} -->
-<!-- - Probability and conditional probability -->
-<!-- - Random variables - discrete and continuous -->
-<!-- - Probability mass functions, probability density functions -->
-<!-- - Cumulative probability function -->
-<!-- - Some useful distributions and their properties -->
-<!--     - Distribution functions -->
-<!--         - Density (`d`) -->
-<!--         - Cumulative probability (`p`) -->
-<!--         - Quantile (`q`) -->
-<!--         - Random (`r`) functions -->
-<!--     - Discrete distributions -->
-<!--         - Bernoulli -->
-<!--         - Poisson -->
-<!--         - Binomial -->
-<!--     - Continuous distributions -->
-<!--         - Beta -->
-<!--         - Uniform -->
-<!--         - Normal -->
-<!-- - Q-Q plots -->
-<!-- #### Suggested Readings {.unnumbered} -->
-<!-- - *Introduction to Data Science* -->
-<!--     - Chapter 14 - Probability -->
-<!-- - *The Book of R* -->
-<!--     - Chapter 15 - Probability -->
-<!--     - Chapter 16 - Common Probability Distributions -->
-<!-- ### Confidence Intervals {.unnumbered} -->
-<!-- #### Modules {.unnumbered} -->
-<!-- - Module 14 - [Confidence Intervals](#module-14) -->
-<!-- #### Topics {.unnumbered} -->
-<!-- - Standard errors and confidence intervals -->
-<!--     - CIs based on a theoretical distribution -->
-<!--     - The Central Limit Theorem -->
-<!--     - CIs based on bootstrapping -->
-<!--     - CIs for proportions -->
-<!-- #### Suggested Readings {.unnumbered} -->
-<!-- - *Introduction to Data Science* -->
-<!--     - Chapter 16 - Statistical Inference -->
-<!-- - *The Book of R* -->
-<!--     - Chapter 17 - Sampling Distributions and Confidence -->
-<!-- #### Other Useful Readings {.unnumbered} -->
-<!-- - *Statistical Inference via Data Science* -->
-<!--     - Chapter 8 - Bootstrapping and Confidence Intervals -->
-<!-- ### Hypothesis Testing {.unnumbered} -->
-<!-- #### Modules {.unnumbered} -->
-<!-- - Module 15 - [Classical Hypothesis Testing](#module-15) -->
-<!-- - Module 16 - [Permutation and Randomization Tests](#module-16) -->
-<!-- - Module 17 - [Error, Power, and Effect Size](#module-17) -->
-<!-- #### Topics {.unnumbered} -->
-<!-- - ***p*** values and "significance" -->
-<!-- - Classic *null hypothesis significance testing* (NHST) -->
-<!--     - One- and two-sample $T$ and $Z$ tests -->
-<!-- - Permutation and randomization tests -->
-<!-- - Type I and Type II error -->
-<!-- - Statistical power, effect sizes -->
-<!-- #### Suggested Readings {.unnumbered} -->
-<!-- - *The Book of R* -->
-<!--     - Chapter 18 - Hypothesis Testing -->
-<!-- - *Statistical Inference via Data Science* -->
-<!--     - Chapter 9 - Hypothesis Testing -->
-<!-- - Legendre & Legendre (2012). Chapter 1.2. Statistical testing by permutation. *Numerical Ecology, 3rd Edition.* Elsevier. -->
-<!-- #### Other Useful Readings {.unnumbered} -->
-<!-- - *Statistics Done Wrong* -->
-<!--     - Chapter 1 - An Introduction to Statistical Significance -->
-<!-- - *Statistics: An Introduction Using R* -->
-<!--     - Chapter 5 - Single Samples -->
-<!--     - Chapter 6 - Two Samples -->
+</section>
+</section>
+</section>
+<section id="part-ii---statistics-and-inference" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="part-ii---statistics-and-inference">Part II - Statistics and Inference</h2>
+<section id="descriptive-statistics" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="descriptive-statistics">Descriptive Statistics</h3>
+<section id="modules-5" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="modules-5">Modules</h4>
+<ul>
+<li>Module 12 - <a href="12-module.html">Introduction to Statistics and Sampling</a></li>
+</ul>
+</section>
+<section id="topics-5" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="topics-5">Topics</h4>
+<ul>
+<li>Populations and samples, parameters and statistics</li>
+<li>Describing central tendency, spread, and skew</li>
+<li>Standard errors and quantiles</li>
+</ul>
+</section>
+<section id="suggested-readings-5" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="suggested-readings-5">Suggested Readings</h4>
+<ul>
+<li><em>The Book of R</em>
+<ul>
+<li>Chapter 13 - Elementary Statistics</li>
+</ul></li>
+<li><em>Statistical Inference via Data Science</em>
+<ul>
+<li>Chapter 7 - Sampling</li>
+</ul></li>
+<li><em>Modern Data Science with R</em>
+<ul>
+<li>Chapter 7 - Statistical Foundations</li>
+</ul></li>
+</ul>
+</section>
+<section id="other-useful-readings-5" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="other-useful-readings-5">Other Useful Readings</h4>
+<ul>
+<li><em>Statistics: An Introduction Using R</em>
+<ul>
+<li>Chapter 13 - Central Tendency</li>
+<li>Chapter 14 - Variance</li>
+</ul></li>
+<li><em>Introduction to Data Science</em>
+<ul>
+<li>Chapter 15 - Random Variables</li>
+</ul></li>
+</ul>
+</section>
+</section>
+<section id="probability-and-distributions" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="probability-and-distributions">Probability and Distributions</h3>
+<section id="modules-6" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="modules-6">Modules</h4>
+<ul>
+<li>Module 13 - <a href="packages.html#module-13">Probability and Distributions</a></li>
+</ul>
+</section>
+<section id="topics-6" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="topics-6">Topics</h4>
+<ul>
+<li>Probability and conditional probability</li>
+<li>Random variables - discrete and continuous</li>
+<li>Probability mass functions, probability density functions</li>
+<li>Cumulative probability function</li>
+<li>Some useful distributions and their properties
+<ul>
+<li>Distribution functions
+<ul>
+<li>Density (<code>d</code>)</li>
+<li>Cumulative probability (<code>p</code>)</li>
+<li>Quantile (<code>q</code>)</li>
+<li>Random (<code>r</code>) functions</li>
+</ul></li>
+<li>Discrete distributions
+<ul>
+<li>Bernoulli</li>
+<li>Poisson</li>
+<li>Binomial</li>
+</ul></li>
+<li>Continuous distributions
+<ul>
+<li>Beta</li>
+<li>Uniform</li>
+<li>Normal</li>
+</ul></li>
+</ul></li>
+<li>Q-Q plots</li>
+</ul>
+</section>
+<section id="suggested-readings-6" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="suggested-readings-6">Suggested Readings</h4>
+<ul>
+<li><em>Introduction to Data Science</em>
+<ul>
+<li>Chapter 14 - Probability</li>
+</ul></li>
+<li><em>The Book of R</em>
+<ul>
+<li>Chapter 15 - Probability</li>
+<li>Chapter 16 - Common Probability Distributions</li>
+</ul></li>
+</ul>
+</section>
+</section>
+<section id="confidence-intervals" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="confidence-intervals">Confidence Intervals</h3>
+<section id="modules-7" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="modules-7">Modules</h4>
+<ul>
+<li>Module 14 - <a href="packages.html#module-14">Confidence Intervals</a></li>
+</ul>
+</section>
+<section id="topics-7" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="topics-7">Topics</h4>
+<ul>
+<li>Standard errors and confidence intervals
+<ul>
+<li>CIs based on a theoretical distribution</li>
+<li>The Central Limit Theorem</li>
+<li>CIs based on bootstrapping</li>
+<li>CIs for proportions</li>
+</ul></li>
+</ul>
+</section>
+<section id="suggested-readings-7" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="suggested-readings-7">Suggested Readings</h4>
+<ul>
+<li><em>Introduction to Data Science</em>
+<ul>
+<li>Chapter 16 - Statistical Inference</li>
+</ul></li>
+<li><em>The Book of R</em>
+<ul>
+<li>Chapter 17 - Sampling Distributions and Confidence</li>
+</ul></li>
+</ul>
+</section>
+<section id="other-useful-readings-6" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="other-useful-readings-6">Other Useful Readings</h4>
+<ul>
+<li><em>R Programming for Data Science</em>
+<ul>
+<li>Chapter 22 - Simulation</li>
+</ul></li>
+<li><em>Statistical Inference via Data Science</em>
+<ul>
+<li>Chapter 8 - Bootstrapping and Confidence Intervals</li>
+</ul></li>
+</ul>
+</section>
+</section>
+<section id="hypothesis-testing" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="hypothesis-testing">Hypothesis Testing</h3>
+<section id="modules-8" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="modules-8">Modules</h4>
+<ul>
+<li>Module 15 - <a href="packages.html#module-15">Classical Hypothesis Testing</a></li>
+<li>Module 16 - <a href="packages.html#module-16">Permutation and Randomization Tests</a></li>
+<li>Module 17 - <a href="packages.html#module-17">Error, Power, and Effect Size</a></li>
+</ul>
+</section>
+<section id="topics-8" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="topics-8">Topics</h4>
+<ul>
+<li><strong><em>p</em></strong> values and “significance”</li>
+<li>Classic <em>null hypothesis significance testing</em> (NHST)
+<ul>
+<li>One- and two-sample <span class="math inline">\(T\)</span> and <span class="math inline">\(Z\)</span> tests</li>
+</ul></li>
+<li>Permutation and randomization tests</li>
+<li>Type I and Type II error</li>
+<li>Statistical power, effect sizes</li>
+</ul>
+</section>
+<section id="suggested-readings-8" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="suggested-readings-8">Suggested Readings</h4>
+<ul>
+<li><em>The Book of R</em>
+<ul>
+<li>Chapter 18 - Hypothesis Testing</li>
+</ul></li>
+<li><em>Statistical Inference via Data Science</em>
+<ul>
+<li>Chapter 9 - Hypothesis Testing</li>
+</ul></li>
+<li>Legendre &amp; Legendre (2012). Chapter 1.2. Statistical testing by permutation. <em>Numerical Ecology, 3rd Edition.</em> Elsevier.</li>
+</ul>
+</section>
+<section id="other-useful-readings-7" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="other-useful-readings-7">Other Useful Readings</h4>
+<ul>
+<li><em>Statistics Done Wrong</em>
+<ul>
+<li>Chapter 1 - An Introduction to Statistical Significance</li>
+</ul></li>
+<li><em>Statistics: An Introduction Using R</em>
+<ul>
+<li>Chapter 5 - Single Samples</li>
+<li>Chapter 6 - Two Samples</li>
+</ul></li>
+</ul>
 <!-- #### Relevant Data Camp Material {.unnumbered} -->
 <!-- - *Foundations of Inference* - Introduction to Ideas of Inference -->
 <!-- - *Foundations of Inference* - Confidence Intervals -->
@@ -1625,454 +1788,456 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb1-204"><a href="#cb1-204" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>*R in Action*</span>
 <span id="cb1-205"><a href="#cb1-205" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>Chapter 5 - Advanced Data Management</span>
 <span id="cb1-206"><a href="#cb1-206" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-207"><a href="#cb1-207" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- ## Part II - Statistics and Inference {.unnumbered} --&gt;</span></span>
+<span id="cb1-207"><a href="#cb1-207" aria-hidden="true" tabindex="-1"></a><span class="fu">## Part II - Statistics and Inference {.unnumbered}</span></span>
 <span id="cb1-208"><a href="#cb1-208" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-209"><a href="#cb1-209" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- </span><span class="al">###</span><span class="co"> Location, Spread, and Sampling {.unnumbered} --&gt;</span></span>
+<span id="cb1-209"><a href="#cb1-209" aria-hidden="true" tabindex="-1"></a><span class="fu">### Descriptive Statistics {.unnumbered}</span></span>
 <span id="cb1-210"><a href="#cb1-210" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-211"><a href="#cb1-211" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- #### Modules {.unnumbered} --&gt;</span></span>
+<span id="cb1-211"><a href="#cb1-211" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Modules {.unnumbered}</span></span>
 <span id="cb1-212"><a href="#cb1-212" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-213"><a href="#cb1-213" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- - Module 12 - [Central Tendency and Spread](#module-12) --&gt;</span></span>
+<span id="cb1-213"><a href="#cb1-213" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Module 12 - <span class="co">[</span><span class="ot">Introduction to Statistics and Sampling</span><span class="co">](#module-12)</span></span>
 <span id="cb1-214"><a href="#cb1-214" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-215"><a href="#cb1-215" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- #### Topics {.unnumbered} --&gt;</span></span>
+<span id="cb1-215"><a href="#cb1-215" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Topics {.unnumbered}</span></span>
 <span id="cb1-216"><a href="#cb1-216" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-217"><a href="#cb1-217" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- - Populations and samples, parameters and statistics --&gt;</span></span>
-<span id="cb1-218"><a href="#cb1-218" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- - Describing central tendency and variance --&gt;</span></span>
-<span id="cb1-219"><a href="#cb1-219" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- - Standard errors and quantiles --&gt;</span></span>
+<span id="cb1-217"><a href="#cb1-217" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Populations and samples, parameters and statistics</span>
+<span id="cb1-218"><a href="#cb1-218" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Describing central tendency, spread, and skew</span>
+<span id="cb1-219"><a href="#cb1-219" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Standard errors and quantiles</span>
 <span id="cb1-220"><a href="#cb1-220" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-221"><a href="#cb1-221" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- #### Suggested Readings {.unnumbered} --&gt;</span></span>
+<span id="cb1-221"><a href="#cb1-221" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Suggested Readings {.unnumbered}</span></span>
 <span id="cb1-222"><a href="#cb1-222" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-223"><a href="#cb1-223" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- - *Introduction to Data Science* --&gt;</span></span>
-<span id="cb1-224"><a href="#cb1-224" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--     - Chapter 15 - Random Variables --&gt;</span></span>
-<span id="cb1-225"><a href="#cb1-225" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- - *Statistical Inference via Data Science* --&gt;</span></span>
-<span id="cb1-226"><a href="#cb1-226" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--     - Chapter 7 - Sampling --&gt;</span></span>
-<span id="cb1-227"><a href="#cb1-227" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- - *Modern Data Science with R* --&gt;</span></span>
-<span id="cb1-228"><a href="#cb1-228" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--     - Chapter 7 - Statistical Foundations --&gt;</span></span>
+<span id="cb1-223"><a href="#cb1-223" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>*The Book of R*</span>
+<span id="cb1-224"><a href="#cb1-224" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>Chapter 13 - Elementary Statistics</span>
+<span id="cb1-225"><a href="#cb1-225" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>*Statistical Inference via Data Science*</span>
+<span id="cb1-226"><a href="#cb1-226" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>Chapter 7 - Sampling</span>
+<span id="cb1-227"><a href="#cb1-227" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>*Modern Data Science with R*</span>
+<span id="cb1-228"><a href="#cb1-228" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>Chapter 7 - Statistical Foundations</span>
 <span id="cb1-229"><a href="#cb1-229" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-230"><a href="#cb1-230" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- #### Other Useful Readings {.unnumbered} --&gt;</span></span>
+<span id="cb1-230"><a href="#cb1-230" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Other Useful Readings {.unnumbered}</span></span>
 <span id="cb1-231"><a href="#cb1-231" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-232"><a href="#cb1-232" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- - *Statistics: An Introduction Using R* --&gt;</span></span>
-<span id="cb1-233"><a href="#cb1-233" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--     - Chapter 13 - Central Tendency --&gt;</span></span>
-<span id="cb1-234"><a href="#cb1-234" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--     - Chapter 14 - Variance --&gt;</span></span>
-<span id="cb1-235"><a href="#cb1-235" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- - *R Programming for Data Science* --&gt;</span></span>
-<span id="cb1-236"><a href="#cb1-236" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--     - Chapter 22 - Simulation --&gt;</span></span>
+<span id="cb1-232"><a href="#cb1-232" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>*Statistics: An Introduction Using R*</span>
+<span id="cb1-233"><a href="#cb1-233" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>Chapter 13 - Central Tendency</span>
+<span id="cb1-234"><a href="#cb1-234" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>Chapter 14 - Variance</span>
+<span id="cb1-235"><a href="#cb1-235" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>*Introduction to Data Science*</span>
+<span id="cb1-236"><a href="#cb1-236" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>Chapter 15 - Random Variables</span>
 <span id="cb1-237"><a href="#cb1-237" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-238"><a href="#cb1-238" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- </span><span class="al">###</span><span class="co"> Probability and Distributions {.unnumbered} --&gt;</span></span>
+<span id="cb1-238"><a href="#cb1-238" aria-hidden="true" tabindex="-1"></a><span class="fu">### Probability and Distributions {.unnumbered}</span></span>
 <span id="cb1-239"><a href="#cb1-239" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-240"><a href="#cb1-240" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- #### Modules {.unnumbered} --&gt;</span></span>
+<span id="cb1-240"><a href="#cb1-240" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Modules {.unnumbered}</span></span>
 <span id="cb1-241"><a href="#cb1-241" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-242"><a href="#cb1-242" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- - Module 13 - [Probability and Distributions](#module-13) --&gt;</span></span>
+<span id="cb1-242"><a href="#cb1-242" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Module 13 - <span class="co">[</span><span class="ot">Probability and Distributions</span><span class="co">](#module-13)</span></span>
 <span id="cb1-243"><a href="#cb1-243" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-244"><a href="#cb1-244" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- #### Topics {.unnumbered} --&gt;</span></span>
+<span id="cb1-244"><a href="#cb1-244" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Topics {.unnumbered}</span></span>
 <span id="cb1-245"><a href="#cb1-245" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-246"><a href="#cb1-246" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- - Probability and conditional probability --&gt;</span></span>
-<span id="cb1-247"><a href="#cb1-247" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- - Random variables - discrete and continuous --&gt;</span></span>
-<span id="cb1-248"><a href="#cb1-248" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- - Probability mass functions, probability density functions --&gt;</span></span>
-<span id="cb1-249"><a href="#cb1-249" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- - Cumulative probability function --&gt;</span></span>
-<span id="cb1-250"><a href="#cb1-250" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- - Some useful distributions and their properties --&gt;</span></span>
-<span id="cb1-251"><a href="#cb1-251" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--     - Distribution functions --&gt;</span></span>
-<span id="cb1-252"><a href="#cb1-252" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--         - Density (`d`) --&gt;</span></span>
-<span id="cb1-253"><a href="#cb1-253" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--         - Cumulative probability (`p`) --&gt;</span></span>
-<span id="cb1-254"><a href="#cb1-254" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--         - Quantile (`q`) --&gt;</span></span>
-<span id="cb1-255"><a href="#cb1-255" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--         - Random (`r`) functions --&gt;</span></span>
-<span id="cb1-256"><a href="#cb1-256" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--     - Discrete distributions --&gt;</span></span>
-<span id="cb1-257"><a href="#cb1-257" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--         - Bernoulli --&gt;</span></span>
-<span id="cb1-258"><a href="#cb1-258" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--         - Poisson --&gt;</span></span>
-<span id="cb1-259"><a href="#cb1-259" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--         - Binomial --&gt;</span></span>
-<span id="cb1-260"><a href="#cb1-260" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--     - Continuous distributions --&gt;</span></span>
-<span id="cb1-261"><a href="#cb1-261" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--         - Beta --&gt;</span></span>
-<span id="cb1-262"><a href="#cb1-262" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--         - Uniform --&gt;</span></span>
-<span id="cb1-263"><a href="#cb1-263" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--         - Normal --&gt;</span></span>
-<span id="cb1-264"><a href="#cb1-264" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- - Q-Q plots --&gt;</span></span>
+<span id="cb1-246"><a href="#cb1-246" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Probability and conditional probability</span>
+<span id="cb1-247"><a href="#cb1-247" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Random variables - discrete and continuous</span>
+<span id="cb1-248"><a href="#cb1-248" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Probability mass functions, probability density functions</span>
+<span id="cb1-249"><a href="#cb1-249" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Cumulative probability function</span>
+<span id="cb1-250"><a href="#cb1-250" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Some useful distributions and their properties</span>
+<span id="cb1-251"><a href="#cb1-251" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>Distribution functions</span>
+<span id="cb1-252"><a href="#cb1-252" aria-hidden="true" tabindex="-1"></a><span class="ss">        - </span>Density (<span class="in">`d`</span>)</span>
+<span id="cb1-253"><a href="#cb1-253" aria-hidden="true" tabindex="-1"></a><span class="ss">        - </span>Cumulative probability (<span class="in">`p`</span>)</span>
+<span id="cb1-254"><a href="#cb1-254" aria-hidden="true" tabindex="-1"></a><span class="ss">        - </span>Quantile (<span class="in">`q`</span>)</span>
+<span id="cb1-255"><a href="#cb1-255" aria-hidden="true" tabindex="-1"></a><span class="ss">        - </span>Random (<span class="in">`r`</span>) functions</span>
+<span id="cb1-256"><a href="#cb1-256" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>Discrete distributions</span>
+<span id="cb1-257"><a href="#cb1-257" aria-hidden="true" tabindex="-1"></a><span class="ss">        - </span>Bernoulli</span>
+<span id="cb1-258"><a href="#cb1-258" aria-hidden="true" tabindex="-1"></a><span class="ss">        - </span>Poisson</span>
+<span id="cb1-259"><a href="#cb1-259" aria-hidden="true" tabindex="-1"></a><span class="ss">        - </span>Binomial</span>
+<span id="cb1-260"><a href="#cb1-260" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>Continuous distributions</span>
+<span id="cb1-261"><a href="#cb1-261" aria-hidden="true" tabindex="-1"></a><span class="ss">        - </span>Beta</span>
+<span id="cb1-262"><a href="#cb1-262" aria-hidden="true" tabindex="-1"></a><span class="ss">        - </span>Uniform</span>
+<span id="cb1-263"><a href="#cb1-263" aria-hidden="true" tabindex="-1"></a><span class="ss">        - </span>Normal</span>
+<span id="cb1-264"><a href="#cb1-264" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Q-Q plots</span>
 <span id="cb1-265"><a href="#cb1-265" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-266"><a href="#cb1-266" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- #### Suggested Readings {.unnumbered} --&gt;</span></span>
+<span id="cb1-266"><a href="#cb1-266" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Suggested Readings {.unnumbered}</span></span>
 <span id="cb1-267"><a href="#cb1-267" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-268"><a href="#cb1-268" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- - *Introduction to Data Science* --&gt;</span></span>
-<span id="cb1-269"><a href="#cb1-269" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--     - Chapter 14 - Probability --&gt;</span></span>
-<span id="cb1-270"><a href="#cb1-270" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- - *The Book of R* --&gt;</span></span>
-<span id="cb1-271"><a href="#cb1-271" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--     - Chapter 15 - Probability --&gt;</span></span>
-<span id="cb1-272"><a href="#cb1-272" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--     - Chapter 16 - Common Probability Distributions --&gt;</span></span>
+<span id="cb1-268"><a href="#cb1-268" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>*Introduction to Data Science*</span>
+<span id="cb1-269"><a href="#cb1-269" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>Chapter 14 - Probability</span>
+<span id="cb1-270"><a href="#cb1-270" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>*The Book of R*</span>
+<span id="cb1-271"><a href="#cb1-271" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>Chapter 15 - Probability</span>
+<span id="cb1-272"><a href="#cb1-272" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>Chapter 16 - Common Probability Distributions</span>
 <span id="cb1-273"><a href="#cb1-273" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-274"><a href="#cb1-274" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- </span><span class="al">###</span><span class="co"> Confidence Intervals {.unnumbered} --&gt;</span></span>
+<span id="cb1-274"><a href="#cb1-274" aria-hidden="true" tabindex="-1"></a><span class="fu">### Confidence Intervals {.unnumbered}</span></span>
 <span id="cb1-275"><a href="#cb1-275" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-276"><a href="#cb1-276" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- #### Modules {.unnumbered} --&gt;</span></span>
+<span id="cb1-276"><a href="#cb1-276" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Modules {.unnumbered}</span></span>
 <span id="cb1-277"><a href="#cb1-277" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-278"><a href="#cb1-278" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- - Module 14 - [Confidence Intervals](#module-14) --&gt;</span></span>
+<span id="cb1-278"><a href="#cb1-278" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Module 14 - <span class="co">[</span><span class="ot">Confidence Intervals</span><span class="co">](#module-14)</span></span>
 <span id="cb1-279"><a href="#cb1-279" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-280"><a href="#cb1-280" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- #### Topics {.unnumbered} --&gt;</span></span>
+<span id="cb1-280"><a href="#cb1-280" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Topics {.unnumbered}</span></span>
 <span id="cb1-281"><a href="#cb1-281" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-282"><a href="#cb1-282" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- - Standard errors and confidence intervals --&gt;</span></span>
-<span id="cb1-283"><a href="#cb1-283" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--     - CIs based on a theoretical distribution --&gt;</span></span>
-<span id="cb1-284"><a href="#cb1-284" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--     - The Central Limit Theorem --&gt;</span></span>
-<span id="cb1-285"><a href="#cb1-285" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--     - CIs based on bootstrapping --&gt;</span></span>
-<span id="cb1-286"><a href="#cb1-286" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--     - CIs for proportions --&gt;</span></span>
+<span id="cb1-282"><a href="#cb1-282" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Standard errors and confidence intervals</span>
+<span id="cb1-283"><a href="#cb1-283" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>CIs based on a theoretical distribution</span>
+<span id="cb1-284"><a href="#cb1-284" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>The Central Limit Theorem</span>
+<span id="cb1-285"><a href="#cb1-285" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>CIs based on bootstrapping</span>
+<span id="cb1-286"><a href="#cb1-286" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>CIs for proportions</span>
 <span id="cb1-287"><a href="#cb1-287" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-288"><a href="#cb1-288" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- #### Suggested Readings {.unnumbered} --&gt;</span></span>
+<span id="cb1-288"><a href="#cb1-288" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Suggested Readings {.unnumbered}</span></span>
 <span id="cb1-289"><a href="#cb1-289" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-290"><a href="#cb1-290" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- - *Introduction to Data Science* --&gt;</span></span>
-<span id="cb1-291"><a href="#cb1-291" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--     - Chapter 16 - Statistical Inference --&gt;</span></span>
-<span id="cb1-292"><a href="#cb1-292" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- - *The Book of R* --&gt;</span></span>
-<span id="cb1-293"><a href="#cb1-293" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--     - Chapter 17 - Sampling Distributions and Confidence --&gt;</span></span>
+<span id="cb1-290"><a href="#cb1-290" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>*Introduction to Data Science*</span>
+<span id="cb1-291"><a href="#cb1-291" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>Chapter 16 - Statistical Inference</span>
+<span id="cb1-292"><a href="#cb1-292" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>*The Book of R*</span>
+<span id="cb1-293"><a href="#cb1-293" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>Chapter 17 - Sampling Distributions and Confidence</span>
 <span id="cb1-294"><a href="#cb1-294" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-295"><a href="#cb1-295" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- #### Other Useful Readings {.unnumbered} --&gt;</span></span>
+<span id="cb1-295"><a href="#cb1-295" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Other Useful Readings {.unnumbered}</span></span>
 <span id="cb1-296"><a href="#cb1-296" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-297"><a href="#cb1-297" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- - *Statistical Inference via Data Science* --&gt;</span></span>
-<span id="cb1-298"><a href="#cb1-298" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--     - Chapter 8 - Bootstrapping and Confidence Intervals --&gt;</span></span>
-<span id="cb1-299"><a href="#cb1-299" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-300"><a href="#cb1-300" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- </span><span class="al">###</span><span class="co"> Hypothesis Testing {.unnumbered} --&gt;</span></span>
+<span id="cb1-297"><a href="#cb1-297" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>*R Programming for Data Science*</span>
+<span id="cb1-298"><a href="#cb1-298" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>Chapter 22 - Simulation</span>
+<span id="cb1-299"><a href="#cb1-299" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>*Statistical Inference via Data Science*</span>
+<span id="cb1-300"><a href="#cb1-300" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>Chapter 8 - Bootstrapping and Confidence Intervals</span>
 <span id="cb1-301"><a href="#cb1-301" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-302"><a href="#cb1-302" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- #### Modules {.unnumbered} --&gt;</span></span>
+<span id="cb1-302"><a href="#cb1-302" aria-hidden="true" tabindex="-1"></a><span class="fu">### Hypothesis Testing {.unnumbered}</span></span>
 <span id="cb1-303"><a href="#cb1-303" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-304"><a href="#cb1-304" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- - Module 15 - [Classical Hypothesis Testing](#module-15) --&gt;</span></span>
-<span id="cb1-305"><a href="#cb1-305" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- - Module 16 - [Permutation and Randomization Tests](#module-16) --&gt;</span></span>
-<span id="cb1-306"><a href="#cb1-306" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- - Module 17 - [Error, Power, and Effect Size](#module-17) --&gt;</span></span>
-<span id="cb1-307"><a href="#cb1-307" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-308"><a href="#cb1-308" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- #### Topics {.unnumbered} --&gt;</span></span>
+<span id="cb1-304"><a href="#cb1-304" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Modules {.unnumbered}</span></span>
+<span id="cb1-305"><a href="#cb1-305" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-306"><a href="#cb1-306" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Module 15 - <span class="co">[</span><span class="ot">Classical Hypothesis Testing</span><span class="co">](#module-15)</span></span>
+<span id="cb1-307"><a href="#cb1-307" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Module 16 - <span class="co">[</span><span class="ot">Permutation and Randomization Tests</span><span class="co">](#module-16)</span></span>
+<span id="cb1-308"><a href="#cb1-308" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Module 17 - <span class="co">[</span><span class="ot">Error, Power, and Effect Size</span><span class="co">](#module-17)</span></span>
 <span id="cb1-309"><a href="#cb1-309" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-310"><a href="#cb1-310" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- - ***p*** values and "significance" --&gt;</span></span>
-<span id="cb1-311"><a href="#cb1-311" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- - Classic *null hypothesis significance testing* (NHST) --&gt;</span></span>
-<span id="cb1-312"><a href="#cb1-312" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--     - One- and two-sample $T$ and $Z$ tests --&gt;</span></span>
-<span id="cb1-313"><a href="#cb1-313" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- - Permutation and randomization tests --&gt;</span></span>
-<span id="cb1-314"><a href="#cb1-314" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- - Type I and Type II error --&gt;</span></span>
-<span id="cb1-315"><a href="#cb1-315" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- - Statistical power, effect sizes --&gt;</span></span>
-<span id="cb1-316"><a href="#cb1-316" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-317"><a href="#cb1-317" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- #### Suggested Readings {.unnumbered} --&gt;</span></span>
+<span id="cb1-310"><a href="#cb1-310" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Topics {.unnumbered}</span></span>
+<span id="cb1-311"><a href="#cb1-311" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-312"><a href="#cb1-312" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>***p*** values and "significance"</span>
+<span id="cb1-313"><a href="#cb1-313" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Classic *null hypothesis significance testing* (NHST)</span>
+<span id="cb1-314"><a href="#cb1-314" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>One- and two-sample $T$ and $Z$ tests</span>
+<span id="cb1-315"><a href="#cb1-315" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Permutation and randomization tests</span>
+<span id="cb1-316"><a href="#cb1-316" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Type I and Type II error</span>
+<span id="cb1-317"><a href="#cb1-317" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Statistical power, effect sizes</span>
 <span id="cb1-318"><a href="#cb1-318" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-319"><a href="#cb1-319" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- - *The Book of R* --&gt;</span></span>
-<span id="cb1-320"><a href="#cb1-320" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--     - Chapter 18 - Hypothesis Testing --&gt;</span></span>
-<span id="cb1-321"><a href="#cb1-321" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- - *Statistical Inference via Data Science* --&gt;</span></span>
-<span id="cb1-322"><a href="#cb1-322" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--     - Chapter 9 - Hypothesis Testing --&gt;</span></span>
-<span id="cb1-323"><a href="#cb1-323" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- - Legendre &amp; Legendre (2012). Chapter 1.2. Statistical testing by permutation. *Numerical Ecology, 3rd Edition.* Elsevier. --&gt;</span></span>
-<span id="cb1-324"><a href="#cb1-324" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-325"><a href="#cb1-325" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- #### Other Useful Readings {.unnumbered} --&gt;</span></span>
+<span id="cb1-319"><a href="#cb1-319" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Suggested Readings {.unnumbered}</span></span>
+<span id="cb1-320"><a href="#cb1-320" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-321"><a href="#cb1-321" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>*The Book of R*</span>
+<span id="cb1-322"><a href="#cb1-322" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>Chapter 18 - Hypothesis Testing</span>
+<span id="cb1-323"><a href="#cb1-323" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>*Statistical Inference via Data Science*</span>
+<span id="cb1-324"><a href="#cb1-324" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>Chapter 9 - Hypothesis Testing</span>
+<span id="cb1-325"><a href="#cb1-325" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Legendre &amp; Legendre (2012). Chapter 1.2. Statistical testing by permutation. *Numerical Ecology, 3rd Edition.* Elsevier.</span>
 <span id="cb1-326"><a href="#cb1-326" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-327"><a href="#cb1-327" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- - *Statistics Done Wrong* --&gt;</span></span>
-<span id="cb1-328"><a href="#cb1-328" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--     - Chapter 1 - An Introduction to Statistical Significance --&gt;</span></span>
-<span id="cb1-329"><a href="#cb1-329" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- - *Statistics: An Introduction Using R* --&gt;</span></span>
-<span id="cb1-330"><a href="#cb1-330" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--     - Chapter 5 - Single Samples --&gt;</span></span>
-<span id="cb1-331"><a href="#cb1-331" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--     - Chapter 6 - Two Samples --&gt;</span></span>
-<span id="cb1-332"><a href="#cb1-332" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-333"><a href="#cb1-333" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- #### Relevant Data Camp Material {.unnumbered} --&gt;</span></span>
+<span id="cb1-327"><a href="#cb1-327" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Other Useful Readings {.unnumbered}</span></span>
+<span id="cb1-328"><a href="#cb1-328" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-329"><a href="#cb1-329" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>*Statistics Done Wrong*</span>
+<span id="cb1-330"><a href="#cb1-330" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>Chapter 1 - An Introduction to Statistical Significance</span>
+<span id="cb1-331"><a href="#cb1-331" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>*Statistics: An Introduction Using R*</span>
+<span id="cb1-332"><a href="#cb1-332" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>Chapter 5 - Single Samples</span>
+<span id="cb1-333"><a href="#cb1-333" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>Chapter 6 - Two Samples</span>
 <span id="cb1-334"><a href="#cb1-334" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-335"><a href="#cb1-335" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- - *Foundations of Inference* - Introduction to Ideas of Inference --&gt;</span></span>
-<span id="cb1-336"><a href="#cb1-336" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- - *Foundations of Inference* - Confidence Intervals --&gt;</span></span>
-<span id="cb1-337"><a href="#cb1-337" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- - *Foundations of Inference* - Completing a Randomization Test --&gt;</span></span>
-<span id="cb1-338"><a href="#cb1-338" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- - *Foundations of Inference* - Hypothesis Testing Errors --&gt;</span></span>
-<span id="cb1-339"><a href="#cb1-339" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-340"><a href="#cb1-340" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- </span><span class="al">###</span><span class="co"> Introduction to Linear Modeling {.unnumbered} --&gt;</span></span>
+<span id="cb1-335"><a href="#cb1-335" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- #### Relevant Data Camp Material {.unnumbered} --&gt;</span></span>
+<span id="cb1-336"><a href="#cb1-336" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-337"><a href="#cb1-337" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- - *Foundations of Inference* - Introduction to Ideas of Inference --&gt;</span></span>
+<span id="cb1-338"><a href="#cb1-338" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- - *Foundations of Inference* - Confidence Intervals --&gt;</span></span>
+<span id="cb1-339"><a href="#cb1-339" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- - *Foundations of Inference* - Completing a Randomization Test --&gt;</span></span>
+<span id="cb1-340"><a href="#cb1-340" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- - *Foundations of Inference* - Hypothesis Testing Errors --&gt;</span></span>
 <span id="cb1-341"><a href="#cb1-341" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-342"><a href="#cb1-342" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- #### Modules {.unnumbered} --&gt;</span></span>
+<span id="cb1-342"><a href="#cb1-342" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- </span><span class="al">###</span><span class="co"> Introduction to Linear Modeling {.unnumbered} --&gt;</span></span>
 <span id="cb1-343"><a href="#cb1-343" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-344"><a href="#cb1-344" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- - Module 18 - [Introduction to Linear Regression](#module-18) --&gt;</span></span>
+<span id="cb1-344"><a href="#cb1-344" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- #### Modules {.unnumbered} --&gt;</span></span>
 <span id="cb1-345"><a href="#cb1-345" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-346"><a href="#cb1-346" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- #### Topics {.unnumbered} --&gt;</span></span>
+<span id="cb1-346"><a href="#cb1-346" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- - Module 18 - [Introduction to Linear Regression](#module-18) --&gt;</span></span>
 <span id="cb1-347"><a href="#cb1-347" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-348"><a href="#cb1-348" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- - Correlation and covariation --&gt;</span></span>
-<span id="cb1-349"><a href="#cb1-349" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- - Basic linear modeling --&gt;</span></span>
-<span id="cb1-350"><a href="#cb1-350" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--     - Continuous random predictor and response variables --&gt;</span></span>
-<span id="cb1-351"><a href="#cb1-351" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--     - Simple linear regression (1 predictor and 1 response variable) --&gt;</span></span>
-<span id="cb1-352"><a href="#cb1-352" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--     - Estimating and interpreting regression coefficients --&gt;</span></span>
-<span id="cb1-353"><a href="#cb1-353" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--     - Model I versus Model II regression --&gt;</span></span>
-<span id="cb1-354"><a href="#cb1-354" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--     - The `lm()` function --&gt;</span></span>
-<span id="cb1-355"><a href="#cb1-355" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-356"><a href="#cb1-356" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- #### Suggested Readings {.unnumbered} --&gt;</span></span>
+<span id="cb1-348"><a href="#cb1-348" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- #### Topics {.unnumbered} --&gt;</span></span>
+<span id="cb1-349"><a href="#cb1-349" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-350"><a href="#cb1-350" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- - Correlation and covariation --&gt;</span></span>
+<span id="cb1-351"><a href="#cb1-351" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- - Basic linear modeling --&gt;</span></span>
+<span id="cb1-352"><a href="#cb1-352" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--     - Continuous random predictor and response variables --&gt;</span></span>
+<span id="cb1-353"><a href="#cb1-353" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--     - Simple linear regression (1 predictor and 1 response variable) --&gt;</span></span>
+<span id="cb1-354"><a href="#cb1-354" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--     - Estimating and interpreting regression coefficients --&gt;</span></span>
+<span id="cb1-355"><a href="#cb1-355" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--     - Model I versus Model II regression --&gt;</span></span>
+<span id="cb1-356"><a href="#cb1-356" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--     - The `lm()` function --&gt;</span></span>
 <span id="cb1-357"><a href="#cb1-357" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-358"><a href="#cb1-358" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- - *The Book of R* --&gt;</span></span>
-<span id="cb1-359"><a href="#cb1-359" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--     - Chapter 20 - Simple Linear Regression --&gt;</span></span>
-<span id="cb1-360"><a href="#cb1-360" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-361"><a href="#cb1-361" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- #### Other Useful Readings {.unnumbered} --&gt;</span></span>
+<span id="cb1-358"><a href="#cb1-358" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- #### Suggested Readings {.unnumbered} --&gt;</span></span>
+<span id="cb1-359"><a href="#cb1-359" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-360"><a href="#cb1-360" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- - *The Book of R* --&gt;</span></span>
+<span id="cb1-361"><a href="#cb1-361" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--     - Chapter 20 - Simple Linear Regression --&gt;</span></span>
 <span id="cb1-362"><a href="#cb1-362" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-363"><a href="#cb1-363" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- - *Statistics: An Introduction Using R* --&gt;</span></span>
-<span id="cb1-364"><a href="#cb1-364" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--     - Chapter 7 - Regression --&gt;</span></span>
-<span id="cb1-365"><a href="#cb1-365" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- - *Statistical Inference via Data Science* --&gt;</span></span>
-<span id="cb1-366"><a href="#cb1-366" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--     - Chapter 5 - Basic Regression --&gt;</span></span>
-<span id="cb1-367"><a href="#cb1-367" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-368"><a href="#cb1-368" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- #### Relevant Data Camp Material {.unnumbered} --&gt;</span></span>
+<span id="cb1-363"><a href="#cb1-363" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- #### Other Useful Readings {.unnumbered} --&gt;</span></span>
+<span id="cb1-364"><a href="#cb1-364" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-365"><a href="#cb1-365" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- - *Statistics: An Introduction Using R* --&gt;</span></span>
+<span id="cb1-366"><a href="#cb1-366" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--     - Chapter 7 - Regression --&gt;</span></span>
+<span id="cb1-367"><a href="#cb1-367" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- - *Statistical Inference via Data Science* --&gt;</span></span>
+<span id="cb1-368"><a href="#cb1-368" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--     - Chapter 5 - Basic Regression --&gt;</span></span>
 <span id="cb1-369"><a href="#cb1-369" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-370"><a href="#cb1-370" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- - *Correlation and Regression in R* - Visualizing Two Variables --&gt;</span></span>
-<span id="cb1-371"><a href="#cb1-371" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- - *Correlation and Regression in R* - Correlation --&gt;</span></span>
-<span id="cb1-372"><a href="#cb1-372" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- - *Correlation and Regression in R* - Simple Linear Regression --&gt;</span></span>
-<span id="cb1-373"><a href="#cb1-373" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- - *Correlation and Regression in R* - Interpreting Regression Models --&gt;</span></span>
-<span id="cb1-374"><a href="#cb1-374" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-375"><a href="#cb1-375" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- </span><span class="al">###</span><span class="co"> Elements of Regression Analysis {.unnumbered} --&gt;</span></span>
+<span id="cb1-370"><a href="#cb1-370" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- #### Relevant Data Camp Material {.unnumbered} --&gt;</span></span>
+<span id="cb1-371"><a href="#cb1-371" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-372"><a href="#cb1-372" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- - *Correlation and Regression in R* - Visualizing Two Variables --&gt;</span></span>
+<span id="cb1-373"><a href="#cb1-373" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- - *Correlation and Regression in R* - Correlation --&gt;</span></span>
+<span id="cb1-374"><a href="#cb1-374" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- - *Correlation and Regression in R* - Simple Linear Regression --&gt;</span></span>
+<span id="cb1-375"><a href="#cb1-375" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- - *Correlation and Regression in R* - Interpreting Regression Models --&gt;</span></span>
 <span id="cb1-376"><a href="#cb1-376" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-377"><a href="#cb1-377" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- #### Modules {.unnumbered} --&gt;</span></span>
+<span id="cb1-377"><a href="#cb1-377" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- </span><span class="al">###</span><span class="co"> Elements of Regression Analysis {.unnumbered} --&gt;</span></span>
 <span id="cb1-378"><a href="#cb1-378" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-379"><a href="#cb1-379" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- - Module 19 - [Elements of Regression Analysis](#module-19) --&gt;</span></span>
+<span id="cb1-379"><a href="#cb1-379" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- #### Modules {.unnumbered} --&gt;</span></span>
 <span id="cb1-380"><a href="#cb1-380" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-381"><a href="#cb1-381" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- #### Topics {.unnumbered} --&gt;</span></span>
+<span id="cb1-381"><a href="#cb1-381" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- - Module 19 - [Elements of Regression Analysis](#module-19) --&gt;</span></span>
 <span id="cb1-382"><a href="#cb1-382" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-383"><a href="#cb1-383" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- - Inference in regression --&gt;</span></span>
-<span id="cb1-384"><a href="#cb1-384" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--     - Estimating standard errors for regression cofficients --&gt;</span></span>
-<span id="cb1-385"><a href="#cb1-385" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--     - Confidence intervals and prediction intervals --&gt;</span></span>
-<span id="cb1-386"><a href="#cb1-386" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--     - Residuals --&gt;</span></span>
-<span id="cb1-387"><a href="#cb1-387" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- - Model checking --&gt;</span></span>
-<span id="cb1-388"><a href="#cb1-388" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- - Partitioning of variance in linear models --&gt;</span></span>
-<span id="cb1-389"><a href="#cb1-389" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- - Data transformations --&gt;</span></span>
-<span id="cb1-390"><a href="#cb1-390" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-391"><a href="#cb1-391" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- #### Suggested Readings {.unnumbered} --&gt;</span></span>
+<span id="cb1-383"><a href="#cb1-383" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- #### Topics {.unnumbered} --&gt;</span></span>
+<span id="cb1-384"><a href="#cb1-384" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-385"><a href="#cb1-385" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- - Inference in regression --&gt;</span></span>
+<span id="cb1-386"><a href="#cb1-386" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--     - Estimating standard errors for regression cofficients --&gt;</span></span>
+<span id="cb1-387"><a href="#cb1-387" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--     - Confidence intervals and prediction intervals --&gt;</span></span>
+<span id="cb1-388"><a href="#cb1-388" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--     - Residuals --&gt;</span></span>
+<span id="cb1-389"><a href="#cb1-389" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- - Model checking --&gt;</span></span>
+<span id="cb1-390"><a href="#cb1-390" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- - Partitioning of variance in linear models --&gt;</span></span>
+<span id="cb1-391"><a href="#cb1-391" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- - Data transformations --&gt;</span></span>
 <span id="cb1-392"><a href="#cb1-392" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-393"><a href="#cb1-393" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- - *Statistical Inference via Data Science* --&gt;</span></span>
-<span id="cb1-394"><a href="#cb1-394" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--     - Chapter 10 - Inference for Regression --&gt;</span></span>
-<span id="cb1-395"><a href="#cb1-395" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-396"><a href="#cb1-396" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- #### Other Useful Readings {.unnumbered} --&gt;</span></span>
+<span id="cb1-393"><a href="#cb1-393" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- #### Suggested Readings {.unnumbered} --&gt;</span></span>
+<span id="cb1-394"><a href="#cb1-394" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-395"><a href="#cb1-395" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- - *Statistical Inference via Data Science* --&gt;</span></span>
+<span id="cb1-396"><a href="#cb1-396" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--     - Chapter 10 - Inference for Regression --&gt;</span></span>
 <span id="cb1-397"><a href="#cb1-397" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-398"><a href="#cb1-398" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- - Gotelli, N.J. &amp; Ellison, A.M. (2012). Chapter 9. Regression. *A Primer of Ecological Statistics, 2nd Edition.* Sinauer Associates, Inc. --&gt;</span></span>
+<span id="cb1-398"><a href="#cb1-398" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- #### Other Useful Readings {.unnumbered} --&gt;</span></span>
 <span id="cb1-399"><a href="#cb1-399" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-400"><a href="#cb1-400" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- </span><span class="al">###</span><span class="co"> Extending Linear Regression {.unnumbered} --&gt;</span></span>
+<span id="cb1-400"><a href="#cb1-400" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- - Gotelli, N.J. &amp; Ellison, A.M. (2012). Chapter 9. Regression. *A Primer of Ecological Statistics, 2nd Edition.* Sinauer Associates, Inc. --&gt;</span></span>
 <span id="cb1-401"><a href="#cb1-401" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-402"><a href="#cb1-402" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- #### Modules {.unnumbered} --&gt;</span></span>
+<span id="cb1-402"><a href="#cb1-402" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- </span><span class="al">###</span><span class="co"> Extending Linear Regression {.unnumbered} --&gt;</span></span>
 <span id="cb1-403"><a href="#cb1-403" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-404"><a href="#cb1-404" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- - Module 20 - [Categorical Data Analysis](#module-20) --&gt;</span></span>
-<span id="cb1-405"><a href="#cb1-405" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- - Module 21 - [Multiple Regression and ANCOVA](#module-21) --&gt;</span></span>
-<span id="cb1-406"><a href="#cb1-406" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-407"><a href="#cb1-407" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- #### Topics {.unnumbered} --&gt;</span></span>
+<span id="cb1-404"><a href="#cb1-404" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- #### Modules {.unnumbered} --&gt;</span></span>
+<span id="cb1-405"><a href="#cb1-405" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-406"><a href="#cb1-406" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- - Module 20 - [Categorical Data Analysis](#module-20) --&gt;</span></span>
+<span id="cb1-407"><a href="#cb1-407" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- - Module 21 - [Multiple Regression and ANCOVA](#module-21) --&gt;</span></span>
 <span id="cb1-408"><a href="#cb1-408" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-409"><a href="#cb1-409" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- - Regression with categorical predictors --&gt;</span></span>
-<span id="cb1-410"><a href="#cb1-410" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--     - One- and multiple-factor ANOVA --&gt;</span></span>
-<span id="cb1-411"><a href="#cb1-411" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--     - Type I, Type II, Type III sums of squares --&gt;</span></span>
-<span id="cb1-412"><a href="#cb1-412" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--     - Interaction plots to visualize changes across groups --&gt;</span></span>
-<span id="cb1-413"><a href="#cb1-413" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- - Simple categorical data analysis --&gt;</span></span>
-<span id="cb1-414"><a href="#cb1-414" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--     - Kruskall-Wallis tests --&gt;</span></span>
-<span id="cb1-415"><a href="#cb1-415" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--     - Chi-Square tests of goodness-of-fit and independence --&gt;</span></span>
-<span id="cb1-416"><a href="#cb1-416" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- - Generating mock data with a defined correlation structure --&gt;</span></span>
-<span id="cb1-417"><a href="#cb1-417" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- - Regression with multiple predictors --&gt;</span></span>
-<span id="cb1-418"><a href="#cb1-418" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--     - More than one continuous predictor --&gt;</span></span>
-<span id="cb1-419"><a href="#cb1-419" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--     - Combinations of continuous and categorical predictors --&gt;</span></span>
-<span id="cb1-420"><a href="#cb1-420" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--     - Visualizing linear models with more than one predictor --&gt;</span></span>
-<span id="cb1-421"><a href="#cb1-421" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--     - Confidence intervals and prediction in multiple regression --&gt;</span></span>
-<span id="cb1-422"><a href="#cb1-422" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--     - Interactions between predictors --&gt;</span></span>
-<span id="cb1-423"><a href="#cb1-423" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--     - Interaction plots to visualize changes across groups --&gt;</span></span>
-<span id="cb1-424"><a href="#cb1-424" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-425"><a href="#cb1-425" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- #### Suggested Readings {.unnumbered} --&gt;</span></span>
+<span id="cb1-409"><a href="#cb1-409" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- #### Topics {.unnumbered} --&gt;</span></span>
+<span id="cb1-410"><a href="#cb1-410" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-411"><a href="#cb1-411" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- - Regression with categorical predictors --&gt;</span></span>
+<span id="cb1-412"><a href="#cb1-412" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--     - One- and multiple-factor ANOVA --&gt;</span></span>
+<span id="cb1-413"><a href="#cb1-413" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--     - Type I, Type II, Type III sums of squares --&gt;</span></span>
+<span id="cb1-414"><a href="#cb1-414" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--     - Interaction plots to visualize changes across groups --&gt;</span></span>
+<span id="cb1-415"><a href="#cb1-415" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- - Simple categorical data analysis --&gt;</span></span>
+<span id="cb1-416"><a href="#cb1-416" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--     - Kruskall-Wallis tests --&gt;</span></span>
+<span id="cb1-417"><a href="#cb1-417" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--     - Chi-Square tests of goodness-of-fit and independence --&gt;</span></span>
+<span id="cb1-418"><a href="#cb1-418" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- - Generating mock data with a defined correlation structure --&gt;</span></span>
+<span id="cb1-419"><a href="#cb1-419" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- - Regression with multiple predictors --&gt;</span></span>
+<span id="cb1-420"><a href="#cb1-420" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--     - More than one continuous predictor --&gt;</span></span>
+<span id="cb1-421"><a href="#cb1-421" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--     - Combinations of continuous and categorical predictors --&gt;</span></span>
+<span id="cb1-422"><a href="#cb1-422" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--     - Visualizing linear models with more than one predictor --&gt;</span></span>
+<span id="cb1-423"><a href="#cb1-423" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--     - Confidence intervals and prediction in multiple regression --&gt;</span></span>
+<span id="cb1-424"><a href="#cb1-424" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--     - Interactions between predictors --&gt;</span></span>
+<span id="cb1-425"><a href="#cb1-425" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--     - Interaction plots to visualize changes across groups --&gt;</span></span>
 <span id="cb1-426"><a href="#cb1-426" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-427"><a href="#cb1-427" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- - *The Book of R* --&gt;</span></span>
-<span id="cb1-428"><a href="#cb1-428" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--     - Chapter 19 - Analysis of Variance --&gt;</span></span>
-<span id="cb1-429"><a href="#cb1-429" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--     - Chapter 21 - Multiple Linear Regression --&gt;</span></span>
-<span id="cb1-430"><a href="#cb1-430" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-431"><a href="#cb1-431" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- #### Other Useful Readings {.unnumbered} --&gt;</span></span>
+<span id="cb1-427"><a href="#cb1-427" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- #### Suggested Readings {.unnumbered} --&gt;</span></span>
+<span id="cb1-428"><a href="#cb1-428" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-429"><a href="#cb1-429" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- - *The Book of R* --&gt;</span></span>
+<span id="cb1-430"><a href="#cb1-430" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--     - Chapter 19 - Analysis of Variance --&gt;</span></span>
+<span id="cb1-431"><a href="#cb1-431" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--     - Chapter 21 - Multiple Linear Regression --&gt;</span></span>
 <span id="cb1-432"><a href="#cb1-432" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-433"><a href="#cb1-433" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- - Gotelli, N.J. &amp; Ellison, A.M. (2012). Chapter 10. The analysis of variance. *A Primer of Ecological Statistics, 2nd Edition.* Sunderland, Sinauer Associates, Inc. --&gt;</span></span>
-<span id="cb1-434"><a href="#cb1-434" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- - *Statistics: An Introduction Using R* --&gt;</span></span>
-<span id="cb1-435"><a href="#cb1-435" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--     - Chapter 8 - Analysis of Variance --&gt;</span></span>
-<span id="cb1-436"><a href="#cb1-436" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--     - Chapter 9 - Analysis of Covariance --&gt;</span></span>
-<span id="cb1-437"><a href="#cb1-437" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-438"><a href="#cb1-438" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- </span><span class="al">###</span><span class="co"> Model Selection {.unnumbered} --&gt;</span></span>
+<span id="cb1-433"><a href="#cb1-433" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- #### Other Useful Readings {.unnumbered} --&gt;</span></span>
+<span id="cb1-434"><a href="#cb1-434" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-435"><a href="#cb1-435" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- - Gotelli, N.J. &amp; Ellison, A.M. (2012). Chapter 10. The analysis of variance. *A Primer of Ecological Statistics, 2nd Edition.* Sunderland, Sinauer Associates, Inc. --&gt;</span></span>
+<span id="cb1-436"><a href="#cb1-436" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- - *Statistics: An Introduction Using R* --&gt;</span></span>
+<span id="cb1-437"><a href="#cb1-437" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--     - Chapter 8 - Analysis of Variance --&gt;</span></span>
+<span id="cb1-438"><a href="#cb1-438" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--     - Chapter 9 - Analysis of Covariance --&gt;</span></span>
 <span id="cb1-439"><a href="#cb1-439" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-440"><a href="#cb1-440" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- #### Modules {.unnumbered} --&gt;</span></span>
+<span id="cb1-440"><a href="#cb1-440" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- </span><span class="al">###</span><span class="co"> Model Selection {.unnumbered} --&gt;</span></span>
 <span id="cb1-441"><a href="#cb1-441" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-442"><a href="#cb1-442" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- - Module 22 - [Model Selection in Linear Regression](#module-22) --&gt;</span></span>
+<span id="cb1-442"><a href="#cb1-442" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- #### Modules {.unnumbered} --&gt;</span></span>
 <span id="cb1-443"><a href="#cb1-443" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-444"><a href="#cb1-444" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- #### Topics {.unnumbered} --&gt;</span></span>
+<span id="cb1-444"><a href="#cb1-444" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- - Module 22 - [Model Selection in Linear Regression](#module-22) --&gt;</span></span>
 <span id="cb1-445"><a href="#cb1-445" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-446"><a href="#cb1-446" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- - Model simplification and selection --&gt;</span></span>
-<span id="cb1-447"><a href="#cb1-447" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--     - Partial F tests for comparing models --&gt;</span></span>
-<span id="cb1-448"><a href="#cb1-448" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--     - Forward and backward selection --&gt;</span></span>
-<span id="cb1-449"><a href="#cb1-449" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--     - Information criteria considerations for comparing models --&gt;</span></span>
-<span id="cb1-450"><a href="#cb1-450" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- - The Akaike Information Criterion (AIC) and others --&gt;</span></span>
-<span id="cb1-451"><a href="#cb1-451" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--     - {stats} `step()` --&gt;</span></span>
-<span id="cb1-452"><a href="#cb1-452" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--     - {MASS} `stepwise()` --&gt;</span></span>
-<span id="cb1-453"><a href="#cb1-453" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--     - {AICcmodavg} --&gt;</span></span>
-<span id="cb1-454"><a href="#cb1-454" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-455"><a href="#cb1-455" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- #### Suggested Readings {.unnumbered} --&gt;</span></span>
+<span id="cb1-446"><a href="#cb1-446" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- #### Topics {.unnumbered} --&gt;</span></span>
+<span id="cb1-447"><a href="#cb1-447" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-448"><a href="#cb1-448" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- - Model simplification and selection --&gt;</span></span>
+<span id="cb1-449"><a href="#cb1-449" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--     - Partial F tests for comparing models --&gt;</span></span>
+<span id="cb1-450"><a href="#cb1-450" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--     - Forward and backward selection --&gt;</span></span>
+<span id="cb1-451"><a href="#cb1-451" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--     - Information criteria considerations for comparing models --&gt;</span></span>
+<span id="cb1-452"><a href="#cb1-452" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- - The Akaike Information Criterion (AIC) and others --&gt;</span></span>
+<span id="cb1-453"><a href="#cb1-453" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--     - {stats} `step()` --&gt;</span></span>
+<span id="cb1-454"><a href="#cb1-454" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--     - {MASS} `stepwise()` --&gt;</span></span>
+<span id="cb1-455"><a href="#cb1-455" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--     - {AICcmodavg} --&gt;</span></span>
 <span id="cb1-456"><a href="#cb1-456" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-457"><a href="#cb1-457" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- - *The Book of R* --&gt;</span></span>
-<span id="cb1-458"><a href="#cb1-458" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--     - Chapter 22 - Linear Model Selection and Diagnostics --&gt;</span></span>
-<span id="cb1-459"><a href="#cb1-459" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-460"><a href="#cb1-460" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- #### Other Useful Readings {.unnumbered} --&gt;</span></span>
+<span id="cb1-457"><a href="#cb1-457" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- #### Suggested Readings {.unnumbered} --&gt;</span></span>
+<span id="cb1-458"><a href="#cb1-458" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-459"><a href="#cb1-459" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- - *The Book of R* --&gt;</span></span>
+<span id="cb1-460"><a href="#cb1-460" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--     - Chapter 22 - Linear Model Selection and Diagnostics --&gt;</span></span>
 <span id="cb1-461"><a href="#cb1-461" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-462"><a href="#cb1-462" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- - Package descriptions for {AICcmodavg} and {MuMIn} --&gt;</span></span>
+<span id="cb1-462"><a href="#cb1-462" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- #### Other Useful Readings {.unnumbered} --&gt;</span></span>
 <span id="cb1-463"><a href="#cb1-463" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-464"><a href="#cb1-464" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- #### Relevant Data Camp Material {.unnumbered} --&gt;</span></span>
+<span id="cb1-464"><a href="#cb1-464" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- - Package descriptions for {AICcmodavg} and {MuMIn} --&gt;</span></span>
 <span id="cb1-465"><a href="#cb1-465" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-466"><a href="#cb1-466" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- - *Correlation and Regression in R* - Model Fit --&gt;</span></span>
+<span id="cb1-466"><a href="#cb1-466" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- #### Relevant Data Camp Material {.unnumbered} --&gt;</span></span>
 <span id="cb1-467"><a href="#cb1-467" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-468"><a href="#cb1-468" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- </span><span class="al">###</span><span class="co"> Linear and Mixed Effects Modeling {.unnumbered} --&gt;</span></span>
+<span id="cb1-468"><a href="#cb1-468" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- - *Correlation and Regression in R* - Model Fit --&gt;</span></span>
 <span id="cb1-469"><a href="#cb1-469" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-470"><a href="#cb1-470" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- #### Modules {.unnumbered} --&gt;</span></span>
+<span id="cb1-470"><a href="#cb1-470" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- </span><span class="al">###</span><span class="co"> Linear and Mixed Effects Modeling {.unnumbered} --&gt;</span></span>
 <span id="cb1-471"><a href="#cb1-471" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-472"><a href="#cb1-472" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- - Module 23 - [Generalized Linear Models](#module-23) --&gt;</span></span>
-<span id="cb1-473"><a href="#cb1-473" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- - Module 24 - [Mixed Effects or Multilevel Modeling](#module-24) --&gt;</span></span>
-<span id="cb1-474"><a href="#cb1-474" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-475"><a href="#cb1-475" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- #### Topics {.unnumbered} --&gt;</span></span>
+<span id="cb1-472"><a href="#cb1-472" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- #### Modules {.unnumbered} --&gt;</span></span>
+<span id="cb1-473"><a href="#cb1-473" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-474"><a href="#cb1-474" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- - Module 23 - [Generalized Linear Models](#module-23) --&gt;</span></span>
+<span id="cb1-475"><a href="#cb1-475" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- - Module 24 - [Mixed Effects or Multilevel Modeling](#module-24) --&gt;</span></span>
 <span id="cb1-476"><a href="#cb1-476" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-477"><a href="#cb1-477" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- - Generalized linear models --&gt;</span></span>
-<span id="cb1-478"><a href="#cb1-478" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--     - Other response variables types (e.g., counts, binary responses) --&gt;</span></span>
-<span id="cb1-479"><a href="#cb1-479" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--     - Logistic regression, multiple logistic regression --&gt;</span></span>
-<span id="cb1-480"><a href="#cb1-480" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--     - Log-linear modeling --&gt;</span></span>
-<span id="cb1-481"><a href="#cb1-481" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--     - Likelihood ratio tests --&gt;</span></span>
-<span id="cb1-482"><a href="#cb1-482" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- - Introduction to mixed effects modeling --&gt;</span></span>
-<span id="cb1-483"><a href="#cb1-483" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--     - Combining fixed and random factors --&gt;</span></span>
-<span id="cb1-484"><a href="#cb1-484" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- - Assessing model fit for GLMs and mixed models --&gt;</span></span>
-<span id="cb1-485"><a href="#cb1-485" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-486"><a href="#cb1-486" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- #### Suggested Readings {.unnumbered} --&gt;</span></span>
+<span id="cb1-477"><a href="#cb1-477" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- #### Topics {.unnumbered} --&gt;</span></span>
+<span id="cb1-478"><a href="#cb1-478" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-479"><a href="#cb1-479" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- - Generalized linear models --&gt;</span></span>
+<span id="cb1-480"><a href="#cb1-480" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--     - Other response variables types (e.g., counts, binary responses) --&gt;</span></span>
+<span id="cb1-481"><a href="#cb1-481" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--     - Logistic regression, multiple logistic regression --&gt;</span></span>
+<span id="cb1-482"><a href="#cb1-482" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--     - Log-linear modeling --&gt;</span></span>
+<span id="cb1-483"><a href="#cb1-483" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--     - Likelihood ratio tests --&gt;</span></span>
+<span id="cb1-484"><a href="#cb1-484" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- - Introduction to mixed effects modeling --&gt;</span></span>
+<span id="cb1-485"><a href="#cb1-485" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--     - Combining fixed and random factors --&gt;</span></span>
+<span id="cb1-486"><a href="#cb1-486" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- - Assessing model fit for GLMs and mixed models --&gt;</span></span>
 <span id="cb1-487"><a href="#cb1-487" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-488"><a href="#cb1-488" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- - *R in Action* --&gt;</span></span>
-<span id="cb1-489"><a href="#cb1-489" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--     - Chapter 13 - Generalized Linear Models --&gt;</span></span>
-<span id="cb1-490"><a href="#cb1-490" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- - Bolker, B.M., Brooks, M.E., Clark, C.J., Geange, S.W., Poulsen, J.R., Stevens, M.H.H., White, &amp; J.-S.S. (2008) Generalized linear mixed models: A practical guide for ecology and evolution. *Trends in Ecology and Evolution* 24: 127-135. --&gt;</span></span>
-<span id="cb1-491"><a href="#cb1-491" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-492"><a href="#cb1-492" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- #### Other Useful Readings {.unnumbered} --&gt;</span></span>
+<span id="cb1-488"><a href="#cb1-488" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- #### Suggested Readings {.unnumbered} --&gt;</span></span>
+<span id="cb1-489"><a href="#cb1-489" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-490"><a href="#cb1-490" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- - *R in Action* --&gt;</span></span>
+<span id="cb1-491"><a href="#cb1-491" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--     - Chapter 13 - Generalized Linear Models --&gt;</span></span>
+<span id="cb1-492"><a href="#cb1-492" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- - Bolker, B.M., Brooks, M.E., Clark, C.J., Geange, S.W., Poulsen, J.R., Stevens, M.H.H., White, &amp; J.-S.S. (2008) Generalized linear mixed models: A practical guide for ecology and evolution. *Trends in Ecology and Evolution* 24: 127-135. --&gt;</span></span>
 <span id="cb1-493"><a href="#cb1-493" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-494"><a href="#cb1-494" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- - *Statistics: An Introduction Using R* --&gt;</span></span>
-<span id="cb1-495"><a href="#cb1-495" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--     - Chapter 12 - Other Response Variables --&gt;</span></span>
-<span id="cb1-496"><a href="#cb1-496" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- - Bolker, B.M. (2008). Chapter 9. Standard statistics revisited. In: *Ecological Models and Data in R.* Princeton, NJ: Princeton University Press. --&gt;</span></span>
-<span id="cb1-497"><a href="#cb1-497" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- - Quinn, G.P. &amp; Keough, M.J. (2002). Chapter 13. Generalized linear models and logistic regression. *Experimental Design and Data Analysis for Biologists.* Cambridge, UK: Cambridge University Press. --&gt;</span></span>
-<span id="cb1-498"><a href="#cb1-498" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-499"><a href="#cb1-499" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- ## Part III - Miscellany {.unnumbered} --&gt;</span></span>
+<span id="cb1-494"><a href="#cb1-494" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- #### Other Useful Readings {.unnumbered} --&gt;</span></span>
+<span id="cb1-495"><a href="#cb1-495" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-496"><a href="#cb1-496" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- - *Statistics: An Introduction Using R* --&gt;</span></span>
+<span id="cb1-497"><a href="#cb1-497" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--     - Chapter 12 - Other Response Variables --&gt;</span></span>
+<span id="cb1-498"><a href="#cb1-498" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- - Bolker, B.M. (2008). Chapter 9. Standard statistics revisited. In: *Ecological Models and Data in R.* Princeton, NJ: Princeton University Press. --&gt;</span></span>
+<span id="cb1-499"><a href="#cb1-499" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- - Quinn, G.P. &amp; Keough, M.J. (2002). Chapter 13. Generalized linear models and logistic regression. *Experimental Design and Data Analysis for Biologists.* Cambridge, UK: Cambridge University Press. --&gt;</span></span>
 <span id="cb1-500"><a href="#cb1-500" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-501"><a href="#cb1-501" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- </span><span class="al">###</span><span class="co"> [Building Custom ***R*** Packages](#building-r-packages) {.unnumbered .unlisted} --&gt;</span></span>
+<span id="cb1-501"><a href="#cb1-501" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- ## Part III - Miscellany {.unnumbered} --&gt;</span></span>
 <span id="cb1-502"><a href="#cb1-502" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-503"><a href="#cb1-503" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- #### Suggested Readings {.unnumbered} --&gt;</span></span>
+<span id="cb1-503"><a href="#cb1-503" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- </span><span class="al">###</span><span class="co"> [Building Custom ***R*** Packages](#building-r-packages) {.unnumbered .unlisted} --&gt;</span></span>
 <span id="cb1-504"><a href="#cb1-504" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-505"><a href="#cb1-505" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- - *R in Action* --&gt;</span></span>
-<span id="cb1-506"><a href="#cb1-506" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--     - Chapter 21 - Creating a Package --&gt;</span></span>
-<span id="cb1-507"><a href="#cb1-507" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-508"><a href="#cb1-508" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- #### Other Useful Resources {.unnumbered} --&gt;</span></span>
+<span id="cb1-505"><a href="#cb1-505" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- #### Suggested Readings {.unnumbered} --&gt;</span></span>
+<span id="cb1-506"><a href="#cb1-506" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-507"><a href="#cb1-507" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- - *R in Action* --&gt;</span></span>
+<span id="cb1-508"><a href="#cb1-508" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--     - Chapter 21 - Creating a Package --&gt;</span></span>
 <span id="cb1-509"><a href="#cb1-509" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-510"><a href="#cb1-510" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- - [Hadley Wickham's Definitive Guide to ***R*** Packages](http://r-pkgs.had.co.nz/) --&gt;</span></span>
-<span id="cb1-511"><a href="#cb1-511" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- - [Karl Broman's ***R*** Package Primer](https://kbroman.org/pkg_primer/) --&gt;</span></span>
-<span id="cb1-512"><a href="#cb1-512" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- - [Hilary Parker's ***R*** Package Tutorial](https://hilaryparker.com/2014/04/29/writing-an-r-package-from-scratch/) --&gt;</span></span>
-<span id="cb1-513"><a href="#cb1-513" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- - [Fong Chun's Making your First ***R*** Package Tutorial](http://tinyheero.github.io/jekyll/update/2015/07/26/making-your-first-R-package.html) --&gt;</span></span>
-<span id="cb1-514"><a href="#cb1-514" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- - [Thomas Westlake's Writing an ***R*** Package from Scratch Tutorial](https://r-mageddon.netlify.com/post/writing-an-r-package-from-scratch/) --&gt;</span></span>
-<span id="cb1-515"><a href="#cb1-515" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- - [Building ***R*** Packages](https://rstats-pkgs.readthedocs.io/en/latest/index.html) --&gt;</span></span>
-<span id="cb1-516"><a href="#cb1-516" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-517"><a href="#cb1-517" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- </span><span class="al">###</span><span class="co"> [Building Interactive Web Apps](#shiny) {.unnumbered .unlisted} --&gt;</span></span>
+<span id="cb1-510"><a href="#cb1-510" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- #### Other Useful Resources {.unnumbered} --&gt;</span></span>
+<span id="cb1-511"><a href="#cb1-511" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-512"><a href="#cb1-512" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- - [Hadley Wickham's Definitive Guide to ***R*** Packages](http://r-pkgs.had.co.nz/) --&gt;</span></span>
+<span id="cb1-513"><a href="#cb1-513" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- - [Karl Broman's ***R*** Package Primer](https://kbroman.org/pkg_primer/) --&gt;</span></span>
+<span id="cb1-514"><a href="#cb1-514" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- - [Hilary Parker's ***R*** Package Tutorial](https://hilaryparker.com/2014/04/29/writing-an-r-package-from-scratch/) --&gt;</span></span>
+<span id="cb1-515"><a href="#cb1-515" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- - [Fong Chun's Making your First ***R*** Package Tutorial](http://tinyheero.github.io/jekyll/update/2015/07/26/making-your-first-R-package.html) --&gt;</span></span>
+<span id="cb1-516"><a href="#cb1-516" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- - [Thomas Westlake's Writing an ***R*** Package from Scratch Tutorial](https://r-mageddon.netlify.com/post/writing-an-r-package-from-scratch/) --&gt;</span></span>
+<span id="cb1-517"><a href="#cb1-517" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- - [Building ***R*** Packages](https://rstats-pkgs.readthedocs.io/en/latest/index.html) --&gt;</span></span>
 <span id="cb1-518"><a href="#cb1-518" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-519"><a href="#cb1-519" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- #### Other Useful Resources {.unnumbered} --&gt;</span></span>
+<span id="cb1-519"><a href="#cb1-519" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- </span><span class="al">###</span><span class="co"> [Building Interactive Web Apps](#shiny) {.unnumbered .unlisted} --&gt;</span></span>
 <span id="cb1-520"><a href="#cb1-520" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-521"><a href="#cb1-521" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- - [Learning Shiny Resources from RStudio](http://shiny.rstudio.com/tutorial/) --&gt;</span></span>
-<span id="cb1-522"><a href="#cb1-522" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- - [Zev Ross' Shiny Tutorial](http://zevross.com/blog/2016/04/19/r-powered-web-applications-with-shiny-a-tutorial-and-cheat-sheet-with-40-example-apps/) --&gt;</span></span>
-<span id="cb1-523"><a href="#cb1-523" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-524"><a href="#cb1-524" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- ## Part IV - Possible Future Modules {.unnumbered} --&gt;</span></span>
+<span id="cb1-521"><a href="#cb1-521" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- #### Other Useful Resources {.unnumbered} --&gt;</span></span>
+<span id="cb1-522"><a href="#cb1-522" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-523"><a href="#cb1-523" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- - [Learning Shiny Resources from RStudio](http://shiny.rstudio.com/tutorial/) --&gt;</span></span>
+<span id="cb1-524"><a href="#cb1-524" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- - [Zev Ross' Shiny Tutorial](http://zevross.com/blog/2016/04/19/r-powered-web-applications-with-shiny-a-tutorial-and-cheat-sheet-with-40-example-apps/) --&gt;</span></span>
 <span id="cb1-525"><a href="#cb1-525" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-526"><a href="#cb1-526" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- </span><span class="al">###</span><span class="co"> [Using ***Python*** with ***R***](#python-from-R.html) {.unnumbered} --&gt;</span></span>
+<span id="cb1-526"><a href="#cb1-526" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- ## Part IV - Possible Future Modules {.unnumbered} --&gt;</span></span>
 <span id="cb1-527"><a href="#cb1-527" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-528"><a href="#cb1-528" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- &lt;!-- #### Useful Resources {-} --&gt;</span></span>
+<span id="cb1-528"><a href="#cb1-528" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- </span><span class="al">###</span><span class="co"> [Using ***Python*** with ***R***](#python-from-R.html) {.unnumbered} --&gt;</span></span>
 <span id="cb1-529"><a href="#cb1-529" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-530"><a href="#cb1-530" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- - [{reticulate}: The ***R*** Interface to ***Python***](https://rstudio.github.io/reticulate/) --&gt;</span></span>
+<span id="cb1-530"><a href="#cb1-530" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- &lt;!-- #### Useful Resources {-} --&gt;</span></span>
 <span id="cb1-531"><a href="#cb1-531" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-532"><a href="#cb1-532" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- </span><span class="al">###</span><span class="co"> Additional Topics --&gt;</span></span>
+<span id="cb1-532"><a href="#cb1-532" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- - [{reticulate}: The ***R*** Interface to ***Python***](https://rstudio.github.io/reticulate/) --&gt;</span></span>
 <span id="cb1-533"><a href="#cb1-533" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-534"><a href="#cb1-534" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- - [Complete "lm.R" App](shiny-tutorial/lm.R) --&gt;</span></span>
+<span id="cb1-534"><a href="#cb1-534" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- </span><span class="al">###</span><span class="co"> Additional Topics --&gt;</span></span>
 <span id="cb1-535"><a href="#cb1-535" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-536"><a href="#cb1-536" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- </span><span class="al">###</span><span class="co"> [A Very Brief Introduction to Bayesian Methods]() --&gt;</span></span>
+<span id="cb1-536"><a href="#cb1-536" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- - [Complete "lm.R" App](shiny-tutorial/lm.R) --&gt;</span></span>
 <span id="cb1-537"><a href="#cb1-537" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-538"><a href="#cb1-538" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- </span><span class="al">###</span><span class="co"> [Using APIs and Basics of Text Mining]() --&gt;</span></span>
+<span id="cb1-538"><a href="#cb1-538" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- </span><span class="al">###</span><span class="co"> [A Very Brief Introduction to Bayesian Methods]() --&gt;</span></span>
 <span id="cb1-539"><a href="#cb1-539" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-540"><a href="#cb1-540" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- &gt; Using APIs and Basics of Text Mining --&gt;</span></span>
+<span id="cb1-540"><a href="#cb1-540" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- </span><span class="al">###</span><span class="co"> [Using APIs and Basics of Text Mining]() --&gt;</span></span>
 <span id="cb1-541"><a href="#cb1-541" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-542"><a href="#cb1-542" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- - Using APIs ("application programing interfaces") --&gt;</span></span>
+<span id="cb1-542"><a href="#cb1-542" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- &gt; Using APIs and Basics of Text Mining --&gt;</span></span>
 <span id="cb1-543"><a href="#cb1-543" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-544"><a href="#cb1-544" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--  - Accessing data from Twitter and Facebook --&gt;</span></span>
+<span id="cb1-544"><a href="#cb1-544" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- - Using APIs ("application programing interfaces") --&gt;</span></span>
 <span id="cb1-545"><a href="#cb1-545" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-546"><a href="#cb1-546" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--  - Tweeting and posting from R --&gt;</span></span>
+<span id="cb1-546"><a href="#cb1-546" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--  - Accessing data from Twitter and Facebook --&gt;</span></span>
 <span id="cb1-547"><a href="#cb1-547" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-548"><a href="#cb1-548" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- - Text mining basics --&gt;</span></span>
+<span id="cb1-548"><a href="#cb1-548" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--  - Tweeting and posting from R --&gt;</span></span>
 <span id="cb1-549"><a href="#cb1-549" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-550"><a href="#cb1-550" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--  - Building a corpus --&gt;</span></span>
+<span id="cb1-550"><a href="#cb1-550" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- - Text mining basics --&gt;</span></span>
 <span id="cb1-551"><a href="#cb1-551" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-552"><a href="#cb1-552" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--  - Introduction to regular expressions --&gt;</span></span>
+<span id="cb1-552"><a href="#cb1-552" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--  - Building a corpus --&gt;</span></span>
 <span id="cb1-553"><a href="#cb1-553" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-554"><a href="#cb1-554" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--  - Building a document-term matrix --&gt;</span></span>
+<span id="cb1-554"><a href="#cb1-554" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--  - Introduction to regular expressions --&gt;</span></span>
 <span id="cb1-555"><a href="#cb1-555" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-556"><a href="#cb1-556" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--  - Term frequency analysis --&gt;</span></span>
+<span id="cb1-556"><a href="#cb1-556" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--  - Building a document-term matrix --&gt;</span></span>
 <span id="cb1-557"><a href="#cb1-557" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-558"><a href="#cb1-558" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--  - Visualizing text data --&gt;</span></span>
+<span id="cb1-558"><a href="#cb1-558" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--  - Term frequency analysis --&gt;</span></span>
 <span id="cb1-559"><a href="#cb1-559" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-560"><a href="#cb1-560" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- #### Other Useful Readings {-} --&gt;</span></span>
+<span id="cb1-560"><a href="#cb1-560" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--  - Visualizing text data --&gt;</span></span>
 <span id="cb1-561"><a href="#cb1-561" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-562"><a href="#cb1-562" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--  - Williams, G. (2016). Hands-on data science with R - Text Mining. --&gt;</span></span>
+<span id="cb1-562"><a href="#cb1-562" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- #### Other Useful Readings {-} --&gt;</span></span>
 <span id="cb1-563"><a href="#cb1-563" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-564"><a href="#cb1-564" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--  - Gentry, J. (2014). Twitter client for R. --&gt;</span></span>
+<span id="cb1-564"><a href="#cb1-564" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--  - Williams, G. (2016). Hands-on data science with R - Text Mining. --&gt;</span></span>
 <span id="cb1-565"><a href="#cb1-565" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-566"><a href="#cb1-566" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--  - Kumar, S., Morstatter, F., and Huan, L. 2014. *Twitter Data Analytics.* New York: Springer. --&gt;</span></span>
+<span id="cb1-566"><a href="#cb1-566" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--  - Gentry, J. (2014). Twitter client for R. --&gt;</span></span>
 <span id="cb1-567"><a href="#cb1-567" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-568"><a href="#cb1-568" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--  - Package descriptions for {rtweet}, {RFacebook}, {SocialMediaLab} --&gt;</span></span>
+<span id="cb1-568"><a href="#cb1-568" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--  - Kumar, S., Morstatter, F., and Huan, L. 2014. *Twitter Data Analytics.* New York: Springer. --&gt;</span></span>
 <span id="cb1-569"><a href="#cb1-569" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-570"><a href="#cb1-570" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- #### Cluster Analysis, Classification Trees, and Random Forests --&gt;</span></span>
+<span id="cb1-570"><a href="#cb1-570" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--  - Package descriptions for {rtweet}, {RFacebook}, {SocialMediaLab} --&gt;</span></span>
 <span id="cb1-571"><a href="#cb1-571" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-572"><a href="#cb1-572" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- #### Text Mining and Natural Language Processing --&gt;</span></span>
+<span id="cb1-572"><a href="#cb1-572" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- #### Cluster Analysis, Classification Trees, and Random Forests --&gt;</span></span>
 <span id="cb1-573"><a href="#cb1-573" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-574"><a href="#cb1-574" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- #### Social Networks and Visualizations --&gt;</span></span>
+<span id="cb1-574"><a href="#cb1-574" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- #### Text Mining and Natural Language Processing --&gt;</span></span>
 <span id="cb1-575"><a href="#cb1-575" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-576"><a href="#cb1-576" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- #### Discriminant Function Analysis --&gt;</span></span>
+<span id="cb1-576"><a href="#cb1-576" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- #### Social Networks and Visualizations --&gt;</span></span>
 <span id="cb1-577"><a href="#cb1-577" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-578"><a href="#cb1-578" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- #### Spatial Data and Analysis --&gt;</span></span>
+<span id="cb1-578"><a href="#cb1-578" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- #### Discriminant Function Analysis --&gt;</span></span>
 <span id="cb1-579"><a href="#cb1-579" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-580"><a href="#cb1-580" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- #### Working with LIDAR Data and GIS --&gt;</span></span>
+<span id="cb1-580"><a href="#cb1-580" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- #### Spatial Data and Analysis --&gt;</span></span>
 <span id="cb1-581"><a href="#cb1-581" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-582"><a href="#cb1-582" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- #### Principal Components Analysis --&gt;</span></span>
+<span id="cb1-582"><a href="#cb1-582" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- #### Working with LIDAR Data and GIS --&gt;</span></span>
 <span id="cb1-583"><a href="#cb1-583" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-584"><a href="#cb1-584" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!---#### Factor Analysis --&gt;</span></span>
+<span id="cb1-584"><a href="#cb1-584" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- #### Principal Components Analysis --&gt;</span></span>
 <span id="cb1-585"><a href="#cb1-585" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-586"><a href="#cb1-586" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- #### Phylogenetic Comparative Analysis --&gt;</span></span>
+<span id="cb1-586"><a href="#cb1-586" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!---#### Factor Analysis --&gt;</span></span>
 <span id="cb1-587"><a href="#cb1-587" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-588"><a href="#cb1-588" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- #### Phylogenetic Tree Construction --&gt;</span></span>
+<span id="cb1-588"><a href="#cb1-588" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- #### Phylogenetic Comparative Analysis --&gt;</span></span>
 <span id="cb1-589"><a href="#cb1-589" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-590"><a href="#cb1-590" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- #### Interacting with Relationtional/Nonrelational Databases and Query Languages --&gt;</span></span>
+<span id="cb1-590"><a href="#cb1-590" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- #### Phylogenetic Tree Construction --&gt;</span></span>
 <span id="cb1-591"><a href="#cb1-591" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-592"><a href="#cb1-592" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- #### Manipulating and Analyzing DNA Sequence Data --&gt;</span></span>
+<span id="cb1-592"><a href="#cb1-592" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- #### Interacting with Relationtional/Nonrelational Databases and Query Languages --&gt;</span></span>
 <span id="cb1-593"><a href="#cb1-593" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-594"><a href="#cb1-594" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- [//]:- Manipulating and analyzing DNA sequence data --&gt;</span></span>
+<span id="cb1-594"><a href="#cb1-594" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- #### Manipulating and Analyzing DNA Sequence Data --&gt;</span></span>
 <span id="cb1-595"><a href="#cb1-595" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-596"><a href="#cb1-596" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- [//]:   - Data cleanup --&gt;</span></span>
+<span id="cb1-596"><a href="#cb1-596" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- [//]:- Manipulating and analyzing DNA sequence data --&gt;</span></span>
 <span id="cb1-597"><a href="#cb1-597" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-598"><a href="#cb1-598" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- [//]:   - Phylogenetic analysis --&gt;</span></span>
+<span id="cb1-598"><a href="#cb1-598" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- [//]:   - Data cleanup --&gt;</span></span>
 <span id="cb1-599"><a href="#cb1-599" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-600"><a href="#cb1-600" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- [//]:- Manipulating and analyzing genotype data (SNPs, MSATS) --&gt;</span></span>
+<span id="cb1-600"><a href="#cb1-600" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- [//]:   - Phylogenetic analysis --&gt;</span></span>
 <span id="cb1-601"><a href="#cb1-601" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-602"><a href="#cb1-602" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- [//]:   - Population genetic analysis --&gt;</span></span>
+<span id="cb1-602"><a href="#cb1-602" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- [//]:- Manipulating and analyzing genotype data (SNPs, MSATS) --&gt;</span></span>
 <span id="cb1-603"><a href="#cb1-603" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-604"><a href="#cb1-604" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- [//]: </span><span class="al">###</span><span class="co"> Working with Geospatial Data --&gt;</span></span>
+<span id="cb1-604"><a href="#cb1-604" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- [//]:   - Population genetic analysis --&gt;</span></span>
 <span id="cb1-605"><a href="#cb1-605" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-606"><a href="#cb1-606" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- [//]: #### Topics {-} --&gt;</span></span>
+<span id="cb1-606"><a href="#cb1-606" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- [//]: </span><span class="al">###</span><span class="co"> Working with Geospatial Data --&gt;</span></span>
 <span id="cb1-607"><a href="#cb1-607" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-608"><a href="#cb1-608" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- [//]:- **R** as a GIS --&gt;</span></span>
+<span id="cb1-608"><a href="#cb1-608" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- [//]: #### Topics {-} --&gt;</span></span>
 <span id="cb1-609"><a href="#cb1-609" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-610"><a href="#cb1-610" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- [//]:  - Connecting to spatial databases --&gt;</span></span>
+<span id="cb1-610"><a href="#cb1-610" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- [//]:- **R** as a GIS --&gt;</span></span>
 <span id="cb1-611"><a href="#cb1-611" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-612"><a href="#cb1-612" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- [//]:  - Raster and vector data types --&gt;</span></span>
+<span id="cb1-612"><a href="#cb1-612" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- [//]:  - Connecting to spatial databases --&gt;</span></span>
 <span id="cb1-613"><a href="#cb1-613" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-614"><a href="#cb1-614" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- [//]:  - Visualizing and querying spatial data --&gt;</span></span>
+<span id="cb1-614"><a href="#cb1-614" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- [//]:  - Raster and vector data types --&gt;</span></span>
 <span id="cb1-615"><a href="#cb1-615" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-616"><a href="#cb1-616" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- [//]:- Coordinate system transformations --&gt;</span></span>
+<span id="cb1-616"><a href="#cb1-616" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- [//]:  - Visualizing and querying spatial data --&gt;</span></span>
 <span id="cb1-617"><a href="#cb1-617" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-618"><a href="#cb1-618" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- [//]: #### Suggested Readings {-} --&gt;</span></span>
+<span id="cb1-618"><a href="#cb1-618" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- [//]:- Coordinate system transformations --&gt;</span></span>
 <span id="cb1-619"><a href="#cb1-619" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-620"><a href="#cb1-620" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- [//]: #### Other Useful Readings {-} --&gt;</span></span>
+<span id="cb1-620"><a href="#cb1-620" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- [//]: #### Suggested Readings {-} --&gt;</span></span>
 <span id="cb1-621"><a href="#cb1-621" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-622"><a href="#cb1-622" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- #### Reshaping, Graphing, and Plotting for Exploratory Data Analysis --&gt;</span></span>
+<span id="cb1-622"><a href="#cb1-622" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- [//]: #### Other Useful Readings {-} --&gt;</span></span>
 <span id="cb1-623"><a href="#cb1-623" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-624"><a href="#cb1-624" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- - FitBit API --&gt;</span></span>
+<span id="cb1-624"><a href="#cb1-624" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- #### Reshaping, Graphing, and Plotting for Exploratory Data Analysis --&gt;</span></span>
 <span id="cb1-625"><a href="#cb1-625" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-626"><a href="#cb1-626" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- - OCR --&gt;</span></span>
+<span id="cb1-626"><a href="#cb1-626" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- - FitBit API --&gt;</span></span>
 <span id="cb1-627"><a href="#cb1-627" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-628"><a href="#cb1-628" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- Topics --&gt;</span></span>
+<span id="cb1-628"><a href="#cb1-628" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- - OCR --&gt;</span></span>
 <span id="cb1-629"><a href="#cb1-629" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-630"><a href="#cb1-630" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- Bayesian vs. frequentist statistics --&gt;</span></span>
+<span id="cb1-630"><a href="#cb1-630" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- Topics --&gt;</span></span>
 <span id="cb1-631"><a href="#cb1-631" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-632"><a href="#cb1-632" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- Basics and Bayes’ Theorem --&gt;</span></span>
+<span id="cb1-632"><a href="#cb1-632" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- Bayesian vs. frequentist statistics --&gt;</span></span>
 <span id="cb1-633"><a href="#cb1-633" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-634"><a href="#cb1-634" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- Priors (when they matter and when they don’t) --&gt;</span></span>
+<span id="cb1-634"><a href="#cb1-634" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- Basics and Bayes’ Theorem --&gt;</span></span>
 <span id="cb1-635"><a href="#cb1-635" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-636"><a href="#cb1-636" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- Implementing Bayesian (regression) models in R --&gt;</span></span>
+<span id="cb1-636"><a href="#cb1-636" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- Priors (when they matter and when they don’t) --&gt;</span></span>
 <span id="cb1-637"><a href="#cb1-637" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-638"><a href="#cb1-638" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- Using {MCMCglmm} --&gt;</span></span>
+<span id="cb1-638"><a href="#cb1-638" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- Implementing Bayesian (regression) models in R --&gt;</span></span>
 <span id="cb1-639"><a href="#cb1-639" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-640"><a href="#cb1-640" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- Burn-in, iterations, and intervals --&gt;</span></span>
+<span id="cb1-640"><a href="#cb1-640" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- Using {MCMCglmm} --&gt;</span></span>
 <span id="cb1-641"><a href="#cb1-641" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-642"><a href="#cb1-642" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- Model assessment --&gt;</span></span>
+<span id="cb1-642"><a href="#cb1-642" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- Burn-in, iterations, and intervals --&gt;</span></span>
 <span id="cb1-643"><a href="#cb1-643" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-644"><a href="#cb1-644" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- Implementing Bayesian models in the {rethinking} package framework --&gt;</span></span>
+<span id="cb1-644"><a href="#cb1-644" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- Model assessment --&gt;</span></span>
 <span id="cb1-645"><a href="#cb1-645" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-646"><a href="#cb1-646" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- Required Readings --&gt;</span></span>
+<span id="cb1-646"><a href="#cb1-646" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- Implementing Bayesian models in the {rethinking} package framework --&gt;</span></span>
 <span id="cb1-647"><a href="#cb1-647" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-648"><a href="#cb1-648" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- Ellison, A.M. (1996). An introduction to Bayesian inference for ecological research and environmental decision-making. Ecological Applications 6(4):1036-1046. --&gt;</span></span>
+<span id="cb1-648"><a href="#cb1-648" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- Required Readings --&gt;</span></span>
 <span id="cb1-649"><a href="#cb1-649" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-650"><a href="#cb1-650" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- Useful but Optional Readings --&gt;</span></span>
+<span id="cb1-650"><a href="#cb1-650" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- Ellison, A.M. (1996). An introduction to Bayesian inference for ecological research and environmental decision-making. Ecological Applications 6(4):1036-1046. --&gt;</span></span>
 <span id="cb1-651"><a href="#cb1-651" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-652"><a href="#cb1-652" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- Hadfield, J. (2016) MCMCglmm Course Notes --&gt;</span></span>
+<span id="cb1-652"><a href="#cb1-652" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- Useful but Optional Readings --&gt;</span></span>
 <span id="cb1-653"><a href="#cb1-653" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-654"><a href="#cb1-654" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- Package descriptions for {MCMCglmm} and {rethinking} --&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-654"><a href="#cb1-654" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- Hadfield, J. (2016) MCMCglmm Course Notes --&gt;</span></span>
+<span id="cb1-655"><a href="#cb1-655" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-656"><a href="#cb1-656" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- Package descriptions for {MCMCglmm} and {rethinking} --&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 
