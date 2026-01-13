@@ -14,7 +14,6 @@ T-Mobile: number@tmomail.net
 (Confirm current gateways; they can change and may have limits.)
 
 ```{r}
-pwd_gmail <- "dojf doba nhmt dcba"
 smtp_gmail <- server(
   host = "smtp.gmail.com",
   port = 465,
@@ -31,31 +30,52 @@ msg <- envelope() %>%
 smtp_gmail(msg, verbose = TRUE)
 ```
 
-# Using Textbelt
+# Using Textbelt to send text messages
 
-Got to [https://textbelt.com/](https://textbelt.com/)
-Create an API key ($3 for 50 messages)
+- Go to [https://textbelt.com/](https://textbelt.com/)
+- Create an API key ($3 for 50 messages)
+- Save this key!
 
-## Checking your quota
-Use /quota/<key> to view remaining quota. For example, if your key is abc123...
+## Send text via curl
 
-````
-$ curl https://textbelt.com/quota/abc123
-````
-
-```{bash}
-curl https://textbelt.com/quota/fe40d06b937ce145c7e4f282001a92a827886db2SCKTEDTXUJNA6t4Pxn6ftaLJ2
+```
+$ curl -X POST https://textbelt.com/text \
+       --data-urlencode phone='phone number' \
+       --data-urlencode message='text message' \
+       -d key='apikey'
 ```
 
+## Checking status of a sent message via curl
+Use /status/<textID> to view status For example, if your textID is 'textID'...
+
+```
+$ curl https://textbelt.com/status/textID
+```
+
+## Checking your quota via curl
+Use /quota/<key> to view remaining quota. For example, if your key is 'apikey'...
+
+````
+$ curl https://textbelt.com/quota/apikey
+````
+
 ## Testing your key
+
 If you want to validate your key without actually using your text quota, append "_test" to your key and you will receive a response from the /text endpoint confirming that a text would send, but it will not consume your credits.
 
+````
+$ curl https://textbelt.com/quota/apikey_test
+````
+
+# Sending Textbelt messages from R using {httr}
 
 ```{r}
 library(httr)
 
-key <- "fe40d06b937ce145c7e4f282001a92a827886db2SCKTEDTXUJNA6t4Pxn6ftaLJ2"
+# set your Textbelt API key
+key <- ""
 
+# simple message
 send_textbelt_sms_simple <- function(phone, message, api_key = key) {
   url <- "https://textbelt.com/text"
   res <- POST(
@@ -92,7 +112,8 @@ send_textbelt_sms_log <- function(phone, message, api_key = key, check_status = 
   )
   stop_for_status(res)
   result <- content(res, "parsed")
-  log <- list(initial_response = result, status_checks = list())
+  log <- list(initial_response = result,
+              status_checks = list())
   if (!result$success) {
     cat("❌ SMS failed: ", result$error, "\n")
     return(log)
@@ -119,5 +140,7 @@ send_textbelt_sms_log <- function(phone, message, api_key = key, check_status = 
 # Example usage:
 phone <- "+16464004285"
 message <- "This is a test of SMS from R using Textbelt"
-status_log <- send_textbelt_sms_log(phone, message)
+status_log <- send_textbelt_sms_log(phone, message, key)
+status_log$initial_response$textId # returns textID
+status_log$initial_response$quotaRemaining # returns quota remaining
 ```
