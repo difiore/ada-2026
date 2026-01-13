@@ -62,8 +62,8 @@ book:
       # - 99-shiny.qmd
       # - 99-using-packages.qmd
     - part: "Exercises"
-      # chapters:
-      # - exercise-01.qmd
+      chapters:
+      - exercise-01.qmd
       # - exercise-02.qmd
       # - exercise-03.qmd
       # - exercise-04.qmd

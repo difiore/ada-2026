@@ -6,7 +6,7 @@
 
 - Installing and loading/attaching packages
 - Introducing functions and arguments
-- Introducing the pipe (`%>%` or `|>`) operator
+- Introducing the pipe (`|>` or `%>%`) operator
 
 ## Preliminary Steps {.unnumbered}
 
@@ -34,7 +34,7 @@ knitr::include_graphics("img/user-manage-google.png")
 knitr::include_graphics("img/user-manage-utexas.png")
 ```
 
-- Select "Security"...
+- Select "Security & sign-in"...
 
 ```{r}
 #| echo: false
@@ -42,7 +42,7 @@ knitr::include_graphics("img/user-manage-utexas.png")
 knitr::include_graphics("img/security.png")
 ```
 
-... and in the window that opens scroll down to the section on "2-Step Verification" and click the arrow at the right.
+... and in the window that opens, scroll down to the section on "2-Step Verification" and click it.
 
 ```{r}
 #| echo: false
@@ -50,7 +50,7 @@ knitr::include_graphics("img/security.png")
 knitr::include_graphics("img/2-step.png")
 ```
 
-At this point, you may need to provide information to verify your identity, e.g., by entering a password and/or entering a code you receive from Google. Once you have verified your identity, in the "Security" section, scroll down to the bottom of the page to the section on "App passwords" and click the "App passwords" button.
+At this point, you may need to provide information to verify your identity, e.g., by entering a password and/or entering a code you receive from Google. Once you have verified your identity, scroll down to the bottom of the page to the section on "App passwords" and click the "App passwords" button.
 
 ```{r}
 #| echo: false
@@ -66,7 +66,7 @@ knitr::include_graphics("img/app-passwords.png")
 knitr::include_graphics("img/app-name.png")
 ```
 
-Google will now create new 16-digit password that you can use in lieu of your actual Google password when sending emails via **Gmail** in the {emayili} and {blastula} functions below. Copy and save this code in a safe place!
+Google will now create new 16-digit password that you can use **in lieu of your actual Google** password when sending emails via **Gmail** in the {emayili} and {blastula} functions below. Copy and save this code in a safe place!
 
 ```{r}
 #| echo: false
