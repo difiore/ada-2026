@@ -1,6 +1,6 @@
 # Exercise 01 {.unnumbered}
 
-# Send Emails Programmatically {.unnumbered}
+# Send Emails and Texts Programmatically {.unnumbered}
 
 ## Learning Objectives {.unnumbered}
 
@@ -82,7 +82,7 @@ knitr::include_graphics("img/password.png")
 pwd_gmail <- "" # enter your app password between the quotation marks
 ```
 
-## Sending an Email Version 1: Using the {emayaili} package {.unnumbered}
+## Sending an Email Version 1: Using the {emayili} package {.unnumbered}
 
 The {emayili} package makes sending simple text emails very easy.
 
@@ -474,8 +474,177 @@ message |>
 delete_all_credential_keys()
 ```
 
+## Sending an SMS or MMS Text 
+With a little bit of setup, it is possible to send text messages from ***R*** as well. There are two basic ways this can be done. One way is by using a package like {emaliyi} or {blastula} to send the message to a cell carrier's servers, which then passes that on via SMS using an email-SMS converter. Some carriers are picky, however, about passing on what their algorithms may perceive as spam messages. The other way is to use a paid text messaging service API (application programming interface) to create and send messages. One such paid service is **Textbelt**, which is easy to set up and has a simple pricing package.
+
+### Using Textbelt to send text messages
+
+- Go to [https://textbelt.com/](https://textbelt.com/)...
+- Select "Create an API key"...
+
+```{r}
+#| echo: false
+#| out-width: "80%"
+knitr::include_graphics("img/textbelt.png")
+```
+
+- Purchase a desired number of credits...
+
+```{r}
+#| echo: false
+#| out-width: "80%"
+knitr::include_graphics("img/textbelt-api-key.png")
+```
+
+- And save the key!
+
+```{r}
+key <- "" # enter your Textbelt API key between the quotation marks
+```
+
+To send messages, we will use the {httr} package, which includes functions for working with URLs and sending HTTP requests over the web.
+
+- Install and attach the {httr} package.
+
+```{r}
+#| eval: false
+install.packages("httr")
+```
+
+```{r}
+#| message: false
+library(httr)
+```
+
+We can set up a simple function to create an SMS message. It takes as arguments a phone number, a message, and an API key. It then uses the `POST()` function to create and send a HTTP "POST" request to Textbelt's servers that consists of a URL and a POST body.
+
+> **NOTE:** If we set verbose = TRUE, we will see what response is sent from Textbelt's servers...
+
+```{r}
+# simple message
+send_textbelt_sms <- function(phone, message, api_key = key, verbose = FALSE) {
+  url <- "https://textbelt.com/text"
+  res <- POST(
+    url,
+    body = list(
+      phone = phone,
+      message = message,
+      key = api_key
+    ),
+    encode = "form"
+  )
+  if (verbose) { print(res) }
+  stop_for_status(res)
+  result <- content(res, "parsed")
+  # Print delivery status
+  if (result$success) {
+    cat("✅ SMS sent successfully!\n")
+  } else {
+    cat("❌ SMS failed: ", result$error, "\n")
+  }
+  return(result)
+}
+```
+
+We can also create a version of this function that does the same thing, but also sends a follow--up request to query more information about whether the text was successfully delivered to the recipient.
+
+```{r}
+send_textbelt_sms_log <- function(phone, message, api_key = key, verbose = FALSE, check_status = TRUE, poll_interval = 5, max_checks = 6) {
+  # Step 1: Send SMS
+  url <- "https://textbelt.com/text"
+  res <- POST(
+    url,
+    body = list(
+      phone = phone,
+      message = message,
+      key = api_key
+    ),
+    encode = "form"
+  )
+  if (verbose) { print(res) }
+  stop_for_status(res)
+  result <- content(res, "parsed")
+  log <- list(
+    initial_response = result,
+    status_checks = list())
+  if (!result$success) {
+    cat("❌ SMS failed: ", result$error, "\n")
+    return(log)
+  }
+  cat("✅ SMS sent successfully!\n")
+  # Step 2: Poll for delivery status (paid keys only)
+  if (check_status && !is.null(result$textId)) {
+    status_url <- paste0("https://textbelt.com/status/", result$textId)
+    for (i in 1:max_checks) {
+      Sys.sleep(poll_interval)
+      status_res <- GET(status_url)
+      status <- content(status_res, "parsed")
+      log$status_checks[[i]] <- status
+      cat(sprintf("Status check %d: %s\n", i, status$status))
+      if (status$status == "DELIVERED") {
+        cat("✅ Message delivered!\n")
+        break
+      }
+    }
+  }
+  return(log)
+}
+```
+
+Example usage:
+
+```{r}
+#| eval: false
+phone <- "+16464004285"
+message <- "This is a test of SMS from R using Textbelt"
+
+status <- send_textbelt_sms(phone, message, key)
+status$success # returns whether text was sent successfully
+status$textID # returns textID
+status$quotaRemaining # returns number of texts remaining
+
+status <- send_textbelt_sms_log(phone, message, key)
+status$initial_response$success # returns textID
+status$initial_response$textId # returns textID
+status$initial_response$quotaRemaining # returns quota remaining
+```
+
+### Sending text via curl
+
+Incidently, because this Textbelt API is based on standard HTTP requests, you can also use a terminal and the ***curl*** program to to send texts in a similar fashion, bypassing ***R***. In the examples below, simpley replace phone number, message, and apikey with the relevant variable values (inside of the single `'`s).
+
+```
+$ curl -X POST https://textbelt.com/text \
+       --data-urlencode phone='phone number' \
+       --data-urlencode message='text message' \
+       -d key='apikey'
+```
+
+### Checking status of a sent message via curl
+Use /status/<textID> to view status For example, if your textID is 'textID'...
+
+```
+$ curl https://textbelt.com/status/textID
+```
+
+### Checking your quota via curl
+Use /quota/<key> to view remaining quota. For example, if your key is 'apikey'...
+
+````
+$ curl https://textbelt.com/quota/apikey
+````
+
+### Testing your API key with curl
+
+If you want to just validate your key without actually using your text quota, append "_test" to your key and you will receive a response from the /text endpoint confirming that a text would send, but it will not consume your credits.
+
+````
+$ curl https://textbelt.com/quota/apikey_test
+````
+
 ```{r}
 #| include: false
+detach(package:httr)
 detach(package:emayili)
 detach(package:tidyverse)
 detach(package:blastula)

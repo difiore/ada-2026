@@ -332,171 +332,171 @@
     - Chapter 5 - Single Samples
     - Chapter 6 - Two Samples
 
-<!-- #### Relevant Data Camp Material {.unnumbered} -->
+#### Relevant Data Camp Material {.unnumbered}
 
-<!-- - *Foundations of Inference* - Introduction to Ideas of Inference -->
-<!-- - *Foundations of Inference* - Confidence Intervals -->
-<!-- - *Foundations of Inference* - Completing a Randomization Test -->
-<!-- - *Foundations of Inference* - Hypothesis Testing Errors -->
+- *Foundations of Inference* - Introduction to Ideas of Inference
+- *Foundations of Inference* - Confidence Intervals
+- *Foundations of Inference* - Completing a Randomization Test
+- *Foundations of Inference* - Hypothesis Testing Errors
 
-<!-- ### Introduction to Linear Modeling {.unnumbered} -->
+### Introduction to Linear Modeling {.unnumbered}
 
-<!-- #### Modules {.unnumbered} -->
+#### Modules {.unnumbered}
 
-<!-- - Module 18 - [Introduction to Linear Regression](#module-18) -->
+- Module 18 - [Introduction to Linear Regression](#module-18)
 
-<!-- #### Topics {.unnumbered} -->
+#### Topics {.unnumbered}
 
-<!-- - Correlation and covariation -->
-<!-- - Basic linear modeling -->
-<!--     - Continuous random predictor and response variables -->
-<!--     - Simple linear regression (1 predictor and 1 response variable) -->
-<!--     - Estimating and interpreting regression coefficients -->
-<!--     - Model I versus Model II regression -->
-<!--     - The `lm()` function -->
+- Correlation and covariation
+- Basic linear modeling
+    - Continuous random predictor and response variables
+    - Simple linear regression (1 predictor and 1 response variable)
+    - Estimating and interpreting regression coefficients
+    - Model I versus Model II regression
+    - The `lm()` function
 
-<!-- #### Suggested Readings {.unnumbered} -->
+#### Suggested Readings {.unnumbered}
 
-<!-- - *The Book of R* -->
-<!--     - Chapter 20 - Simple Linear Regression -->
+- *The Book of R*
+    - Chapter 20 - Simple Linear Regression
 
-<!-- #### Other Useful Readings {.unnumbered} -->
+#### Other Useful Readings {.unnumbered}
 
-<!-- - *Statistics: An Introduction Using R* -->
-<!--     - Chapter 7 - Regression -->
-<!-- - *Statistical Inference via Data Science* -->
-<!--     - Chapter 5 - Basic Regression -->
+- *Statistics: An Introduction Using R*
+    - Chapter 7 - Regression
+- *Statistical Inference via Data Science*
+    - Chapter 5 - Basic Regression
 
-<!-- #### Relevant Data Camp Material {.unnumbered} -->
+#### Relevant Data Camp Material {.unnumbered}
 
-<!-- - *Correlation and Regression in R* - Visualizing Two Variables -->
-<!-- - *Correlation and Regression in R* - Correlation -->
-<!-- - *Correlation and Regression in R* - Simple Linear Regression -->
-<!-- - *Correlation and Regression in R* - Interpreting Regression Models -->
+- *Correlation and Regression in R* - Visualizing Two Variables
+- *Correlation and Regression in R* - Correlation
+- *Correlation and Regression in R* - Simple Linear Regression
+- *Correlation and Regression in R* - Interpreting Regression Models
 
-<!-- ### Elements of Regression Analysis {.unnumbered} -->
+### Elements of Regression Analysis {.unnumbered}
 
-<!-- #### Modules {.unnumbered} -->
+#### Modules {.unnumbered}
 
-<!-- - Module 19 - [Elements of Regression Analysis](#module-19) -->
+- Module 19 - [Elements of Regression Analysis](#module-19)
 
-<!-- #### Topics {.unnumbered} -->
+#### Topics {.unnumbered}
 
-<!-- - Inference in regression -->
-<!--     - Estimating standard errors for regression cofficients -->
-<!--     - Confidence intervals and prediction intervals -->
-<!--     - Residuals -->
-<!-- - Model checking -->
-<!-- - Partitioning of variance in linear models -->
-<!-- - Data transformations -->
+- Inference in regression
+    - Estimating standard errors for regression cofficients
+    - Confidence intervals and prediction intervals
+    - Residuals
+- Model checking
+- Partitioning of variance in linear models
+- Data transformations
 
-<!-- #### Suggested Readings {.unnumbered} -->
+#### Suggested Readings {.unnumbered}
 
-<!-- - *Statistical Inference via Data Science* -->
-<!--     - Chapter 10 - Inference for Regression -->
+- *Statistical Inference via Data Science*
+    - Chapter 10 - Inference for Regression
 
-<!-- #### Other Useful Readings {.unnumbered} -->
+#### Other Useful Readings {.unnumbered}
 
-<!-- - Gotelli, N.J. & Ellison, A.M. (2012). Chapter 9. Regression. *A Primer of Ecological Statistics, 2nd Edition.* Sinauer Associates, Inc. -->
+- Gotelli, N.J. & Ellison, A.M. (2012). Chapter 9. Regression. *A Primer of Ecological Statistics, 2nd Edition.* Sinauer Associates, Inc.
 
-<!-- ### Extending Linear Regression {.unnumbered} -->
+### Extending Linear Regression {.unnumbered}
 
-<!-- #### Modules {.unnumbered} -->
+#### Modules {.unnumbered}
 
-<!-- - Module 20 - [Categorical Data Analysis](#module-20) -->
-<!-- - Module 21 - [Multiple Regression and ANCOVA](#module-21) -->
+- Module 20 - [Categorical Data Analysis](#module-20)
+- Module 21 - [Multiple Regression and ANCOVA](#module-21)
 
-<!-- #### Topics {.unnumbered} -->
+#### Topics {.unnumbered}
 
-<!-- - Regression with categorical predictors -->
-<!--     - One- and multiple-factor ANOVA -->
-<!--     - Type I, Type II, Type III sums of squares -->
-<!--     - Interaction plots to visualize changes across groups -->
-<!-- - Simple categorical data analysis -->
-<!--     - Kruskall-Wallis tests -->
-<!--     - Chi-Square tests of goodness-of-fit and independence -->
-<!-- - Generating mock data with a defined correlation structure -->
-<!-- - Regression with multiple predictors -->
-<!--     - More than one continuous predictor -->
-<!--     - Combinations of continuous and categorical predictors -->
-<!--     - Visualizing linear models with more than one predictor -->
-<!--     - Confidence intervals and prediction in multiple regression -->
-<!--     - Interactions between predictors -->
-<!--     - Interaction plots to visualize changes across groups -->
+- Regression with categorical predictors
+    - One- and multiple-factor ANOVA
+    - Type I, Type II, Type III sums of squares
+    - Interaction plots to visualize changes across groups
+- Simple categorical data analysis
+    - Kruskall-Wallis tests
+    - Chi-Square tests of goodness-of-fit and independence
+- Generating mock data with a defined correlation structure
+- Regression with multiple predictors
+    - More than one continuous predictor
+    - Combinations of continuous and categorical predictors
+    - Visualizing linear models with more than one predictor
+    - Confidence intervals and prediction in multiple regression
+    - Interactions between predictors
+    - Interaction plots to visualize changes across groups
 
-<!-- #### Suggested Readings {.unnumbered} -->
+#### Suggested Readings {.unnumbered}
 
-<!-- - *The Book of R* -->
-<!--     - Chapter 19 - Analysis of Variance -->
-<!--     - Chapter 21 - Multiple Linear Regression -->
+- *The Book of R*
+    - Chapter 19 - Analysis of Variance
+    - Chapter 21 - Multiple Linear Regression
 
-<!-- #### Other Useful Readings {.unnumbered} -->
+#### Other Useful Readings {.unnumbered}
 
-<!-- - Gotelli, N.J. & Ellison, A.M. (2012). Chapter 10. The analysis of variance. *A Primer of Ecological Statistics, 2nd Edition.* Sunderland, Sinauer Associates, Inc. -->
-<!-- - *Statistics: An Introduction Using R* -->
-<!--     - Chapter 8 - Analysis of Variance -->
-<!--     - Chapter 9 - Analysis of Covariance -->
+- Gotelli, N.J. & Ellison, A.M. (2012). Chapter 10. The analysis of variance. *A Primer of Ecological Statistics, 2nd Edition.* Sunderland, Sinauer Associates, Inc.
+- *Statistics: An Introduction Using R*
+    - Chapter 8 - Analysis of Variance
+    - Chapter 9 - Analysis of Covariance
 
-<!-- ### Model Selection {.unnumbered} -->
+### Model Selection {.unnumbered}
 
-<!-- #### Modules {.unnumbered} -->
+#### Modules {.unnumbered}
 
-<!-- - Module 22 - [Model Selection in Linear Regression](#module-22) -->
+- Module 22 - [Model Selection in Linear Regression](#module-22)
 
-<!-- #### Topics {.unnumbered} -->
+#### Topics {.unnumbered}
 
-<!-- - Model simplification and selection -->
-<!--     - Partial F tests for comparing models -->
-<!--     - Forward and backward selection -->
-<!--     - Information criteria considerations for comparing models -->
-<!-- - The Akaike Information Criterion (AIC) and others -->
-<!--     - {stats} `step()` -->
-<!--     - {MASS} `stepwise()` -->
-<!--     - {AICcmodavg} -->
+- Model simplification and selection
+    - Partial F tests for comparing models
+    - Forward and backward selection
+    - Information criteria considerations for comparing models
+- The Akaike Information Criterion (AIC) and others
+    - {stats} `step()`
+    - {MASS} `stepwise()`
+    - {AICcmodavg}
 
-<!-- #### Suggested Readings {.unnumbered} -->
+#### Suggested Readings {.unnumbered}
 
-<!-- - *The Book of R* -->
-<!--     - Chapter 22 - Linear Model Selection and Diagnostics -->
+- *The Book of R*
+    - Chapter 22 - Linear Model Selection and Diagnostics
 
-<!-- #### Other Useful Readings {.unnumbered} -->
+#### Other Useful Readings {.unnumbered}
 
-<!-- - Package descriptions for {AICcmodavg} and {MuMIn} -->
+- Package descriptions for {AICcmodavg} and {MuMIn}
 
-<!-- #### Relevant Data Camp Material {.unnumbered} -->
+#### Relevant Data Camp Material {.unnumbered}
 
-<!-- - *Correlation and Regression in R* - Model Fit -->
+- *Correlation and Regression in R* - Model Fit
 
-<!-- ### Linear and Mixed Effects Modeling {.unnumbered} -->
+### Linear and Mixed Effects Modeling {.unnumbered}
 
-<!-- #### Modules {.unnumbered} -->
+#### Modules {.unnumbered}
 
-<!-- - Module 23 - [Generalized Linear Models](#module-23) -->
-<!-- - Module 24 - [Mixed Effects or Multilevel Modeling](#module-24) -->
+- Module 23 - [Generalized Linear Models](#module-23)
+- Module 24 - [Mixed Effects or Multilevel Modeling](#module-24)
 
-<!-- #### Topics {.unnumbered} -->
+#### Topics {.unnumbered}
 
-<!-- - Generalized linear models -->
-<!--     - Other response variables types (e.g., counts, binary responses) -->
-<!--     - Logistic regression, multiple logistic regression -->
-<!--     - Log-linear modeling -->
-<!--     - Likelihood ratio tests -->
-<!-- - Introduction to mixed effects modeling -->
-<!--     - Combining fixed and random factors -->
-<!-- - Assessing model fit for GLMs and mixed models -->
+- Generalized linear models
+    - Other response variables types (e.g., counts, binary responses)
+    - Logistic regression, multiple logistic regression
+    - Log-linear modeling
+    - Likelihood ratio tests
+- Introduction to mixed effects modeling
+    - Combining fixed and random factors
+- Assessing model fit for GLMs and mixed models
 
-<!-- #### Suggested Readings {.unnumbered} -->
+#### Suggested Readings {.unnumbered}
 
-<!-- - *R in Action* -->
-<!--     - Chapter 13 - Generalized Linear Models -->
-<!-- - Bolker, B.M., Brooks, M.E., Clark, C.J., Geange, S.W., Poulsen, J.R., Stevens, M.H.H., White, & J.-S.S. (2008) Generalized linear mixed models: A practical guide for ecology and evolution. *Trends in Ecology and Evolution* 24: 127-135. -->
+- *R in Action*
+    - Chapter 13 - Generalized Linear Models
+- Bolker, B.M., Brooks, M.E., Clark, C.J., Geange, S.W., Poulsen, J.R., Stevens, M.H.H., White, & J.-S.S. (2008) Generalized linear mixed models: A practical guide for ecology and evolution. *Trends in Ecology and Evolution* 24: 127-135.
 
-<!-- #### Other Useful Readings {.unnumbered} -->
+#### Other Useful Readings {.unnumbered}
 
-<!-- - *Statistics: An Introduction Using R* -->
-<!--     - Chapter 12 - Other Response Variables -->
-<!-- - Bolker, B.M. (2008). Chapter 9. Standard statistics revisited. In: *Ecological Models and Data in R.* Princeton, NJ: Princeton University Press. -->
-<!-- - Quinn, G.P. & Keough, M.J. (2002). Chapter 13. Generalized linear models and logistic regression. *Experimental Design and Data Analysis for Biologists.* Cambridge, UK: Cambridge University Press. -->
+- *Statistics: An Introduction Using R*
+    - Chapter 12 - Other Response Variables
+- Bolker, B.M. (2008). Chapter 9. Standard statistics revisited. In: *Ecological Models and Data in R.* Princeton, NJ: Princeton University Press.
+- Quinn, G.P. & Keough, M.J. (2002). Chapter 13. Generalized linear models and logistic regression. *Experimental Design and Data Analysis for Biologists.* Cambridge, UK: Cambridge University Press.
 
 <!-- ## Part III - Miscellany {.unnumbered} -->
 

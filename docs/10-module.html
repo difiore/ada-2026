@@ -307,6 +307,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text">Exercise 01</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./exercise-02.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Exercise 02</span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -687,12 +693,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="other-useful-dplyr-functions" class="level2" data-number="10.4">
 <h2 data-number="10.4" class="anchored" data-anchor-id="other-useful-dplyr-functions"><span class="header-section-number">10.4</span> Other Useful {dplyr} Functions</h2>
 <ul>
-<li><code>ungroup()</code> - clears group metadata from a table put in place <code>group_by()</code></li>
-<li><code>bind_rows()</code> and <code>bind_cols()</code> - adds rows and columns, respectively, to a dataframe or tibble; when binding rows, if the column names do not match, the column will still be added and missing values filled with <code>NA</code>; when binding columns, the number of rows in each dataframe needs to be the same</li>
-<li><code>pull()</code> - pulls a single variable out of a dataframe as a vector</li>
-<li><code>sample_n()</code> - randomly samples a set of “size=” rows from a dataframe with (“replace=TRUE”) or without (“replace=FALSE”) replacement; this function is being superceded in favor of <code>slice_sample()</code>, where an additional argument (<code>n=</code> or <code>prop=</code>) allows you to specify the number or proportion of rows, respectively, to sample randomly</li>
-<li><code>drop_na()</code> - drops rows from a dataframe that have <code>NA</code> values for any variable names passed as arguments to the function</li>
-<li><code>rowwise()</code> - allows you to explicitly perform functions on a data frame on a row-at-a-time basis, which is useful if a vectorized function does not exit</li>
+<li><code>ungroup()</code>: clears group metadata from a table put in place <code>group_by()</code></li>
+<li><code>bind_rows()</code> and <code>bind_cols()</code>: adds rows and columns, respectively, to a dataframe or tibble; when binding rows, if the column names do not match, the column will still be added and missing values filled with <code>NA</code>; when binding columns, the number of rows in each dataframe needs to be the same</li>
+<li><code>pull()</code>: pulls a single variable out of a dataframe as a vector</li>
+<li><code>sample_n()</code>: randomly samples a set of “size=” rows from a dataframe with (“replace=TRUE”) or without (“replace=FALSE”) replacement; this function is being superceded in favor of <code>slice_sample()</code>, where an additional argument (<code>n=</code> or <code>prop=</code>) allows you to specify the number or proportion of rows, respectively, to sample randomly</li>
+<li><code>drop_na()</code>: drops rows from a dataframe that have <code>NA</code> values for any variable names passed as arguments to the function</li>
+<li><code>rowwise()</code>: allows you to explicitly perform functions on a data frame on a row-at-a-time basis, which is useful if a vectorized function does not exit</li>
 </ul>
 <p>A full list of {dplyr} functions and their descriptions is available <a href="https://dplyr.tidyverse.org/reference/index.html">here</a>.</p>
 </section>
@@ -882,6 +888,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="chaining-and-piping" class="level2" data-number="10.6">
 <h2 data-number="10.6" class="anchored" data-anchor-id="chaining-and-piping"><span class="header-section-number">10.6</span> Chaining and Piping</h2>
 <p>One other cool thing about the {dplyr} package is that it provides a convenient way to chain together operations on a data frame using the “forward pipe” operator (<code>%&gt;%</code>). The <code>%&gt;%</code> operator basically takes what is on the left-hand side (LHS) of the operator and directly applies the function call on the right-hand side (RHS) of the operator to it. That is, it “pipes” what is on the LHS of the operator directly to the first argument of the function on the right. This process allows us to build of chains of successive operations, each one being applied to the outcome of the previous operation in the chain.</p>
+<p>Because of how useful “piping” is for data wranging, newer versions of <strong><em>R</em></strong> incorporated this functionality by adding a “native” forward pipe operator (<code>|&gt;</code>) into the {base} package. In the code below, you could use <code>|&gt;</code> in lieu of <code>%&gt;%</code>.</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
@@ -904,7 +911,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="co"># this...</span></span>
 <span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>d <span class="sc">%&gt;%</span></span>
-<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">select</span>(Scientific_Name, Body_mass_female_mean) <span class="sc">%&gt;%</span></span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">select</span>(Scientific_Name, Body_mass_female_mean) <span class="sc">|&gt;</span></span>
 <span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">head</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>## # A tibble: 6 × 2
@@ -949,7 +956,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <summary>Show Code</summary>
 <div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>s <span class="ot">&lt;-</span> <span class="fu">mutate</span>(d, <span class="at">Binomial =</span> <span class="fu">paste</span>(Genus, Species, <span class="at">sep =</span> <span class="st">" "</span>)) <span class="sc">%&gt;%</span></span>
 <span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">select</span>(Binomial, Family, Body_mass_female_mean, Body_mass_male_mean, Mass_Dimorphism) <span class="sc">%&gt;%</span></span>
-<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">group_by</span>(Family) <span class="sc">%&gt;%</span></span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">group_by</span>(Family) <span class="sc">|&gt;</span></span>
 <span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">summarise</span>(<span class="at">avgF =</span> <span class="fu">mean</span>(Body_mass_female_mean, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">avgM =</span> <span class="fu">mean</span>(Body_mass_male_mean,</span>
 <span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a>        <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">avgBMD =</span> <span class="fu">mean</span>(Mass_Dimorphism, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)) <span class="sc">%&gt;%</span></span>
 <span id="cb39-6"><a href="#cb39-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">arrange</span>(<span class="fu">desc</span>(avgBMD))</span>
@@ -977,13 +984,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </details>
 </div>
 </div>
-<p>There are several other, very cool, “special case” pipe operators that are useful in particular situations. These are available from the {magrittr} package. [Actually, the functionality of the forward pipe operator also comes from the {magrittr} package, but it is replicated in {dplyr}.]</p>
+<p>There are several other, very cool, “special case” pipe operators that are useful in particular situations. These are available from the {magrittr} package. [Actually, the functionality of the original forward pipe operator (<code>%&gt;%</code>) also comes from the {magrittr} package, but it is replicated in {dplyr}.]</p>
 <ul>
-<li>The “tee” pipe (<code>%T&gt;%</code>) allows you to pipe the outcome of a process into a new expression (just like the forward pipe operator does) <em>and</em> to simultaneously return the original value instead of the forward-piped result to an intermediate expression. This is useful, for example, for printing out or plotting intermediate results. In the example below, we filter our data frame for just observations of the genus <em>Alouatta</em>, print those to the screen as an intermediate side effect, and pass the filtered data to the <code>summarise()</code> function.</li>
+<li>The “tee” pipe (<code>%T&gt;%</code>) operator allows you to pipe the outcome of a process into a new expression (just like the forward pipe operator does) <em>and</em> to simultaneously return the original value instead of the forward-piped result to an intermediate expression. This is useful, for example, for printing out or plotting intermediate results. In the example below, we filter our data frame for just observations of the genus <em>Alouatta</em>, print those to the screen as an intermediate side effect, and pass the filtered data to the <code>summarise()</code> function.</li>
 </ul>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>s <span class="ot">&lt;-</span> <span class="fu">filter</span>(d, Genus <span class="sc">==</span> <span class="st">"Alouatta"</span>) <span class="sc">%T&gt;%</span></span>
-<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">print</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">print</span>() <span class="sc">|&gt;</span></span>
 <span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">summarise</span>(<span class="at">avgF =</span> <span class="fu">mean</span>(Body_mass_female_mean, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>## # A tibble: 6 × 45
@@ -1012,7 +1019,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <ul>
-<li>The “assignment” pipe (<code>%&lt;&gt;%</code>) evaluates the expression on the right-hand side of the pipe operator and reassigns the resultant value to the left-hand side.</li>
+<li>The “assignment” pipe (<code>%&lt;&gt;%</code>) operator evaluates the expression on the right-hand side of the pipe operator <em>and</em> simultaneosuly reassigns the resultant value to the left-hand side.</li>
 </ul>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>s <span class="ot">&lt;-</span> <span class="fu">filter</span>(d, Genus <span class="sc">==</span> <span class="st">"Alouatta"</span>)</span>
@@ -1032,7 +1039,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <ul>
-<li>Finally, the “exposition” pipe (<code>%$%</code>) exposes the names <em>within</em> the object on the left-hand side of the pipe to the right-hand side expression.</li>
+<li>Finally, the “exposition” pipe (<code>%$%</code>) operator exposes the names <em>within</em> the object on the left-hand side of the pipe to the right-hand side expression.</li>
 </ul>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a>s <span class="ot">&lt;-</span> <span class="fu">filter</span>(d, Genus <span class="sc">==</span> <span class="st">"Alouatta"</span>) <span class="sc">%$%</span></span>
@@ -1047,7 +1054,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="dot-syntax-and-the-pipe" class="level2" data-number="10.7">
 <h2 data-number="10.7" class="anchored" data-anchor-id="dot-syntax-and-the-pipe"><span class="header-section-number">10.7</span> Dot Syntax and the Pipe</h2>
-<p>Normally, when we use the forward pipe operator, the LHS of the operator is passed to the first argument of the function on the RHS. Thus, the following are all equivalent:</p>
+<p>Normally, when we use the forward pipe operator, the LHS of the operator is passed to the <em>first argument</em> of the function on the RHS. Thus, the following are all equivalent:</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a>s <span class="ot">&lt;-</span> <span class="fu">filter</span>(d, Genus <span class="sc">==</span> <span class="st">"Alouatta"</span>)</span>
 <span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a>s <span class="ot">&lt;-</span> d <span class="sc">%&gt;%</span></span>
@@ -1100,7 +1107,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <blockquote class="blockquote">
-<p><strong>NOTE:</strong> <strong><em>R</em></strong> recently introduced a “native” pipe operator <code>|&gt;</code> into its {base} syntax. It behaves very similarly to the {magrittr} forward pipe, but does not support dot syntax the same way. It also requires an explicit functions call on the RHS, which means appending <code>()</code> to the end of the function name, rather than just using the name. The first version of the line below using <code>%&gt;%</code> could be used to take the log of all <strong>Brain_Size_Female_Mean</strong> values in <strong>d</strong>, while the second version, using <code>|&gt;</code>, needs to have <code>()</code> appended to the functions calls to work properly.</p>
+<p><strong>NOTE:</strong> As mentioned above, <strong><em>R</em></strong> recently introduced a “native” pipe operator (<code>|&gt;</code>) into its {base} syntax. It behaves very similarly to the {dplyr}/{magrittr} forward pipe, <strong>but it does not support dot syntax</strong> the same way. It also requires an explicit function call on the RHS, which means that it is necessary to append <code>()</code> to the end of the function name, rather than just using the name. The first version of the line below using <code>%&gt;%</code> could be used to take the log of all <strong>Brain_Size_Female_Mean</strong> values in <strong>d</strong>, while the second version using <code>|&gt;</code> needs to have <code>()</code> appended to the functions calls to work properly.</p>
 </blockquote>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb54"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a>d <span class="sc">%&gt;%</span></span>
@@ -1210,7 +1217,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 class="unnumbered anchored" data-anchor-id="concept-review">Concept Review</h2>
 <ul>
 <li>Using {dplyr}: <code>select()</code>, <code>filter()</code>, <code>arrange()</code>, <code>rename()</code>, <code>mutate()</code>, <code>summarise()</code>, <code>group_by()</code></li>
-<li>Chaining and piping with <code>%&gt;%</code> and other pipe operators</li>
+<li>Chaining and piping with <code>%&gt;%</code> or <code>|&gt;</code> and other pipe operators</li>
 <li>Joining tables: <code>inner_join()</code>, <code>left_join()</code>, <code>right_join()</code>, <code>full_join()</code></li>
 <li>Using the {tidylog} package</li>
 </ul>
@@ -1881,12 +1888,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb71-240"><a href="#cb71-240" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb71-241"><a href="#cb71-241" aria-hidden="true" tabindex="-1"></a><span class="fu">## Other Useful {dplyr} Functions</span></span>
 <span id="cb71-242"><a href="#cb71-242" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb71-243"><a href="#cb71-243" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`ungroup()`</span> - clears group metadata from a table put in place <span class="in">`group_by()`</span></span>
-<span id="cb71-244"><a href="#cb71-244" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`bind_rows()`</span> and <span class="in">`bind_cols()`</span> - adds rows and columns, respectively, to a dataframe or tibble; when binding rows, if the column names do not match, the column will still be added and missing values filled with <span class="in">`NA`</span>; when binding columns, the number of rows in each dataframe needs to be the same</span>
-<span id="cb71-245"><a href="#cb71-245" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`pull()`</span> - pulls a single variable out of a dataframe as a vector</span>
-<span id="cb71-246"><a href="#cb71-246" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`sample_n()`</span> - randomly samples a set of "size=" rows from a dataframe with ("replace=TRUE") or without ("replace=FALSE") replacement; this function is being superceded in favor of <span class="in">`slice_sample()`</span>, where an additional argument (<span class="in">`n=`</span> or <span class="in">`prop=`</span>) allows you to specify the number or proportion of rows, respectively, to sample randomly</span>
-<span id="cb71-247"><a href="#cb71-247" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`drop_na()`</span> - drops rows from a dataframe that have <span class="in">`NA`</span> values for any variable names passed as arguments to the function</span>
-<span id="cb71-248"><a href="#cb71-248" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`rowwise()`</span> - allows you to explicitly perform functions on a data frame on a row-at-a-time basis, which is useful if a vectorized function does not exit</span>
+<span id="cb71-243"><a href="#cb71-243" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`ungroup()`</span>: clears group metadata from a table put in place <span class="in">`group_by()`</span></span>
+<span id="cb71-244"><a href="#cb71-244" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`bind_rows()`</span> and <span class="in">`bind_cols()`</span>: adds rows and columns, respectively, to a dataframe or tibble; when binding rows, if the column names do not match, the column will still be added and missing values filled with <span class="in">`NA`</span>; when binding columns, the number of rows in each dataframe needs to be the same</span>
+<span id="cb71-245"><a href="#cb71-245" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`pull()`</span>: pulls a single variable out of a dataframe as a vector</span>
+<span id="cb71-246"><a href="#cb71-246" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`sample_n()`</span>: randomly samples a set of "size=" rows from a dataframe with ("replace=TRUE") or without ("replace=FALSE") replacement; this function is being superceded in favor of <span class="in">`slice_sample()`</span>, where an additional argument (<span class="in">`n=`</span> or <span class="in">`prop=`</span>) allows you to specify the number or proportion of rows, respectively, to sample randomly</span>
+<span id="cb71-247"><a href="#cb71-247" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`drop_na()`</span>: drops rows from a dataframe that have <span class="in">`NA`</span> values for any variable names passed as arguments to the function</span>
+<span id="cb71-248"><a href="#cb71-248" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`rowwise()`</span>: allows you to explicitly perform functions on a data frame on a row-at-a-time basis, which is useful if a vectorized function does not exit</span>
 <span id="cb71-249"><a href="#cb71-249" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb71-250"><a href="#cb71-250" aria-hidden="true" tabindex="-1"></a>A full list of {dplyr} functions and their descriptions is available <span class="co">[</span><span class="ot">here</span><span class="co">](https://dplyr.tidyverse.org/reference/index.html)</span>.</span>
 <span id="cb71-251"><a href="#cb71-251" aria-hidden="true" tabindex="-1"></a></span>
@@ -1999,167 +2006,169 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb71-370"><a href="#cb71-370" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb71-371"><a href="#cb71-371" aria-hidden="true" tabindex="-1"></a>One other cool thing about the {dplyr} package is that it provides a convenient way to chain together operations on a data frame using the "forward pipe" operator (<span class="in">`%&gt;%`</span>). The <span class="in">`%&gt;%`</span> operator basically takes what is on the left-hand side (LHS) of the operator and directly applies the function call on the right-hand side (RHS) of the operator to it. That is, it "pipes" what is on the LHS of the operator directly to the first argument of the function on the right. This process allows us to build of chains of successive operations, each one being applied to the outcome of the previous operation in the chain.</span>
 <span id="cb71-372"><a href="#cb71-372" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb71-375"><a href="#cb71-375" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb71-376"><a href="#cb71-376" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: false</span></span>
-<span id="cb71-377"><a href="#cb71-377" aria-hidden="true" tabindex="-1"></a><span class="co">#| out-width: "25%"</span></span>
-<span id="cb71-378"><a href="#cb71-378" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">include_graphics</span>(<span class="st">"img/pipe.png"</span>)</span>
-<span id="cb71-379"><a href="#cb71-379" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb71-380"><a href="#cb71-380" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb71-383"><a href="#cb71-383" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb71-384"><a href="#cb71-384" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: false</span></span>
-<span id="cb71-385"><a href="#cb71-385" aria-hidden="true" tabindex="-1"></a><span class="co">#| out-width: "25%"</span></span>
-<span id="cb71-386"><a href="#cb71-386" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">include_graphics</span>(<span class="st">"img/MagrittePipe.jpg"</span>)</span>
-<span id="cb71-387"><a href="#cb71-387" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb71-388"><a href="#cb71-388" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb71-389"><a href="#cb71-389" aria-hidden="true" tabindex="-1"></a>**EXAMPLE:**</span>
+<span id="cb71-373"><a href="#cb71-373" aria-hidden="true" tabindex="-1"></a>Because of how useful "piping" is for data wranging, newer versions of ***R*** incorporated this functionality by adding a "native" forward pipe operator (<span class="in">`|&gt;`</span>) into the {base} package. In the code below, you could use <span class="in">`|&gt;`</span> in lieu of <span class="in">`%&gt;%`</span>.</span>
+<span id="cb71-374"><a href="#cb71-374" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-377"><a href="#cb71-377" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb71-378"><a href="#cb71-378" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: false</span></span>
+<span id="cb71-379"><a href="#cb71-379" aria-hidden="true" tabindex="-1"></a><span class="co">#| out-width: "25%"</span></span>
+<span id="cb71-380"><a href="#cb71-380" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">include_graphics</span>(<span class="st">"img/pipe.png"</span>)</span>
+<span id="cb71-381"><a href="#cb71-381" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb71-382"><a href="#cb71-382" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-385"><a href="#cb71-385" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb71-386"><a href="#cb71-386" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: false</span></span>
+<span id="cb71-387"><a href="#cb71-387" aria-hidden="true" tabindex="-1"></a><span class="co">#| out-width: "25%"</span></span>
+<span id="cb71-388"><a href="#cb71-388" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">include_graphics</span>(<span class="st">"img/MagrittePipe.jpg"</span>)</span>
+<span id="cb71-389"><a href="#cb71-389" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb71-390"><a href="#cb71-390" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb71-393"><a href="#cb71-393" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb71-394"><a href="#cb71-394" aria-hidden="true" tabindex="-1"></a><span class="co"># this...</span></span>
-<span id="cb71-395"><a href="#cb71-395" aria-hidden="true" tabindex="-1"></a>d <span class="sc">%&gt;%</span> <span class="fu">select</span>(Scientific_Name, Body_mass_female_mean) <span class="sc">%&gt;%</span> <span class="fu">head</span>()</span>
-<span id="cb71-396"><a href="#cb71-396" aria-hidden="true" tabindex="-1"></a><span class="co"># is equivalent to...</span></span>
-<span id="cb71-397"><a href="#cb71-397" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(<span class="fu">select</span>(d,Scientific_Name, Body_mass_female_mean))</span>
-<span id="cb71-398"><a href="#cb71-398" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb71-399"><a href="#cb71-399" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb71-400"><a href="#cb71-400" aria-hidden="true" tabindex="-1"></a>The forward pipe is useful because it allows us to write and follow code from left to right (as when writing in English), instead of right to left with many nested parentheses.</span>
+<span id="cb71-391"><a href="#cb71-391" aria-hidden="true" tabindex="-1"></a>**EXAMPLE:**</span>
+<span id="cb71-392"><a href="#cb71-392" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-395"><a href="#cb71-395" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb71-396"><a href="#cb71-396" aria-hidden="true" tabindex="-1"></a><span class="co"># this...</span></span>
+<span id="cb71-397"><a href="#cb71-397" aria-hidden="true" tabindex="-1"></a>d <span class="sc">%&gt;%</span> <span class="fu">select</span>(Scientific_Name, Body_mass_female_mean) <span class="sc">|&gt;</span> <span class="fu">head</span>()</span>
+<span id="cb71-398"><a href="#cb71-398" aria-hidden="true" tabindex="-1"></a><span class="co"># is equivalent to...</span></span>
+<span id="cb71-399"><a href="#cb71-399" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(<span class="fu">select</span>(d,Scientific_Name, Body_mass_female_mean))</span>
+<span id="cb71-400"><a href="#cb71-400" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb71-401"><a href="#cb71-401" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb71-402"><a href="#cb71-402" aria-hidden="true" tabindex="-1"></a><span class="fu">### CHALLENGE {.unnumbered}</span></span>
+<span id="cb71-402"><a href="#cb71-402" aria-hidden="true" tabindex="-1"></a>The forward pipe is useful because it allows us to write and follow code from left to right (as when writing in English), instead of right to left with many nested parentheses.</span>
 <span id="cb71-403"><a href="#cb71-403" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb71-404"><a href="#cb71-404" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>In **one line of code**, do the following:</span>
+<span id="cb71-404"><a href="#cb71-404" aria-hidden="true" tabindex="-1"></a><span class="fu">### CHALLENGE {.unnumbered}</span></span>
 <span id="cb71-405"><a href="#cb71-405" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb71-406"><a href="#cb71-406" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>Add a variable, **Binomial** to our data frame **d**, which is a concatenation of the **Genus** and **Species**...</span>
-<span id="cb71-407"><a href="#cb71-407" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>Trim the data frame to only include the variables **Binomial**, **Family**, **Body_mass_female_mean**, **Body_mass_male_mean** and **Mass_Dimorphism**...</span>
-<span id="cb71-408"><a href="#cb71-408" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>Group these variables by **Family**...</span>
-<span id="cb71-409"><a href="#cb71-409" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>Calculate the average value for female body mass, male body mass, and mass dimorphism (remember, you will need to specify <span class="in">`na.rm = TRUE`</span>...)</span>
-<span id="cb71-410"><a href="#cb71-410" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>And arrange by *decreasing* average mass dimorphism.</span>
-<span id="cb71-411"><a href="#cb71-411" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb71-414"><a href="#cb71-414" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb71-415"><a href="#cb71-415" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-fold: true</span></span>
-<span id="cb71-416"><a href="#cb71-416" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-summary: "Show Code"</span></span>
-<span id="cb71-417"><a href="#cb71-417" aria-hidden="true" tabindex="-1"></a><span class="co">#| attr.output: '.details summary="Show Output"'</span></span>
-<span id="cb71-418"><a href="#cb71-418" aria-hidden="true" tabindex="-1"></a>s <span class="ot">&lt;-</span> <span class="fu">mutate</span>(d, <span class="at">Binomial =</span> <span class="fu">paste</span>(Genus, Species, <span class="at">sep =</span> <span class="st">" "</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb71-419"><a href="#cb71-419" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Binomial,</span>
-<span id="cb71-420"><a href="#cb71-420" aria-hidden="true" tabindex="-1"></a>         Family,</span>
-<span id="cb71-421"><a href="#cb71-421" aria-hidden="true" tabindex="-1"></a>         Body_mass_female_mean,</span>
-<span id="cb71-422"><a href="#cb71-422" aria-hidden="true" tabindex="-1"></a>         Body_mass_male_mean,</span>
-<span id="cb71-423"><a href="#cb71-423" aria-hidden="true" tabindex="-1"></a>         Mass_Dimorphism) <span class="sc">%&gt;%</span></span>
-<span id="cb71-424"><a href="#cb71-424" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Family) <span class="sc">%&gt;%</span></span>
-<span id="cb71-425"><a href="#cb71-425" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
-<span id="cb71-426"><a href="#cb71-426" aria-hidden="true" tabindex="-1"></a>    <span class="at">avgF =</span> <span class="fu">mean</span>(Body_mass_female_mean, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb71-427"><a href="#cb71-427" aria-hidden="true" tabindex="-1"></a>    <span class="at">avgM =</span> <span class="fu">mean</span>(Body_mass_male_mean, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb71-428"><a href="#cb71-428" aria-hidden="true" tabindex="-1"></a>    <span class="at">avgBMD =</span> <span class="fu">mean</span>(Mass_Dimorphism, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb71-429"><a href="#cb71-429" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
-<span id="cb71-430"><a href="#cb71-430" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(avgBMD))</span>
-<span id="cb71-431"><a href="#cb71-431" aria-hidden="true" tabindex="-1"></a>s</span>
-<span id="cb71-432"><a href="#cb71-432" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb71-433"><a href="#cb71-433" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb71-434"><a href="#cb71-434" aria-hidden="true" tabindex="-1"></a>There are several other, very cool, "special case" pipe operators that are useful in particular situations. These are available from the {magrittr} package. <span class="co">[</span><span class="ot">Actually, the functionality of the forward pipe operator also comes from the {magrittr} package, but it is replicated in {dplyr}.</span><span class="co">]</span></span>
+<span id="cb71-406"><a href="#cb71-406" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>In **one line of code**, do the following:</span>
+<span id="cb71-407"><a href="#cb71-407" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-408"><a href="#cb71-408" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>Add a variable, **Binomial** to our data frame **d**, which is a concatenation of the **Genus** and **Species**...</span>
+<span id="cb71-409"><a href="#cb71-409" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>Trim the data frame to only include the variables **Binomial**, **Family**, **Body_mass_female_mean**, **Body_mass_male_mean** and **Mass_Dimorphism**...</span>
+<span id="cb71-410"><a href="#cb71-410" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>Group these variables by **Family**...</span>
+<span id="cb71-411"><a href="#cb71-411" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>Calculate the average value for female body mass, male body mass, and mass dimorphism (remember, you will need to specify <span class="in">`na.rm = TRUE`</span>...)</span>
+<span id="cb71-412"><a href="#cb71-412" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>And arrange by *decreasing* average mass dimorphism.</span>
+<span id="cb71-413"><a href="#cb71-413" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-416"><a href="#cb71-416" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb71-417"><a href="#cb71-417" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-fold: true</span></span>
+<span id="cb71-418"><a href="#cb71-418" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-summary: "Show Code"</span></span>
+<span id="cb71-419"><a href="#cb71-419" aria-hidden="true" tabindex="-1"></a><span class="co">#| attr.output: '.details summary="Show Output"'</span></span>
+<span id="cb71-420"><a href="#cb71-420" aria-hidden="true" tabindex="-1"></a>s <span class="ot">&lt;-</span> <span class="fu">mutate</span>(d, <span class="at">Binomial =</span> <span class="fu">paste</span>(Genus, Species, <span class="at">sep =</span> <span class="st">" "</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb71-421"><a href="#cb71-421" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Binomial,</span>
+<span id="cb71-422"><a href="#cb71-422" aria-hidden="true" tabindex="-1"></a>         Family,</span>
+<span id="cb71-423"><a href="#cb71-423" aria-hidden="true" tabindex="-1"></a>         Body_mass_female_mean,</span>
+<span id="cb71-424"><a href="#cb71-424" aria-hidden="true" tabindex="-1"></a>         Body_mass_male_mean,</span>
+<span id="cb71-425"><a href="#cb71-425" aria-hidden="true" tabindex="-1"></a>         Mass_Dimorphism) <span class="sc">%&gt;%</span></span>
+<span id="cb71-426"><a href="#cb71-426" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Family) <span class="sc">|&gt;</span></span>
+<span id="cb71-427"><a href="#cb71-427" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb71-428"><a href="#cb71-428" aria-hidden="true" tabindex="-1"></a>    <span class="at">avgF =</span> <span class="fu">mean</span>(Body_mass_female_mean, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb71-429"><a href="#cb71-429" aria-hidden="true" tabindex="-1"></a>    <span class="at">avgM =</span> <span class="fu">mean</span>(Body_mass_male_mean, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb71-430"><a href="#cb71-430" aria-hidden="true" tabindex="-1"></a>    <span class="at">avgBMD =</span> <span class="fu">mean</span>(Mass_Dimorphism, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb71-431"><a href="#cb71-431" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb71-432"><a href="#cb71-432" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(avgBMD))</span>
+<span id="cb71-433"><a href="#cb71-433" aria-hidden="true" tabindex="-1"></a>s</span>
+<span id="cb71-434"><a href="#cb71-434" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb71-435"><a href="#cb71-435" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb71-436"><a href="#cb71-436" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>The "tee" pipe (<span class="in">`%T&gt;%`</span>) allows you to pipe the outcome of a process into a new expression (just like the forward pipe operator does) *and* to simultaneously return the original value instead of the forward-piped result to an intermediate expression. This is useful, for example, for printing out or plotting intermediate results. In the example below, we filter our data frame for just observations of the genus *Alouatta*, print those to the screen as an intermediate side effect, and pass the filtered data to the <span class="in">`summarise()`</span> function.</span>
+<span id="cb71-436"><a href="#cb71-436" aria-hidden="true" tabindex="-1"></a>There are several other, very cool, "special case" pipe operators that are useful in particular situations. These are available from the {magrittr} package. <span class="co">[</span><span class="ot">Actually, the functionality of the original forward pipe operator (`%&gt;%`) also comes from the {magrittr} package, but it is replicated in {dplyr}.</span><span class="co">]</span></span>
 <span id="cb71-437"><a href="#cb71-437" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb71-440"><a href="#cb71-440" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb71-441"><a href="#cb71-441" aria-hidden="true" tabindex="-1"></a>s <span class="ot">&lt;-</span> <span class="fu">filter</span>(d, Genus <span class="sc">==</span> <span class="st">"Alouatta"</span>) <span class="sc">%T&gt;%</span> <span class="fu">print</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb71-442"><a href="#cb71-442" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">avgF =</span> <span class="fu">mean</span>(Body_mass_female_mean, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span>
-<span id="cb71-443"><a href="#cb71-443" aria-hidden="true" tabindex="-1"></a>s</span>
-<span id="cb71-444"><a href="#cb71-444" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb71-445"><a href="#cb71-445" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb71-446"><a href="#cb71-446" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>The "assignment" pipe (<span class="in">`%&lt;&gt;%`</span>) evaluates the expression on the right-hand side of the pipe operator and reassigns the resultant value to the left-hand side.</span>
+<span id="cb71-438"><a href="#cb71-438" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>The "tee" pipe (<span class="in">`%T&gt;%`</span>) operator allows you to pipe the outcome of a process into a new expression (just like the forward pipe operator does) *and* to simultaneously return the original value instead of the forward-piped result to an intermediate expression. This is useful, for example, for printing out or plotting intermediate results. In the example below, we filter our data frame for just observations of the genus *Alouatta*, print those to the screen as an intermediate side effect, and pass the filtered data to the <span class="in">`summarise()`</span> function.</span>
+<span id="cb71-439"><a href="#cb71-439" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-442"><a href="#cb71-442" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb71-443"><a href="#cb71-443" aria-hidden="true" tabindex="-1"></a>s <span class="ot">&lt;-</span> <span class="fu">filter</span>(d, Genus <span class="sc">==</span> <span class="st">"Alouatta"</span>) <span class="sc">%T&gt;%</span> <span class="fu">print</span>() <span class="sc">|&gt;</span></span>
+<span id="cb71-444"><a href="#cb71-444" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">avgF =</span> <span class="fu">mean</span>(Body_mass_female_mean, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span>
+<span id="cb71-445"><a href="#cb71-445" aria-hidden="true" tabindex="-1"></a>s</span>
+<span id="cb71-446"><a href="#cb71-446" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb71-447"><a href="#cb71-447" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb71-450"><a href="#cb71-450" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb71-451"><a href="#cb71-451" aria-hidden="true" tabindex="-1"></a>s <span class="ot">&lt;-</span> <span class="fu">filter</span>(d, Genus <span class="sc">==</span> <span class="st">"Alouatta"</span>)</span>
-<span id="cb71-452"><a href="#cb71-452" aria-hidden="true" tabindex="-1"></a>s <span class="sc">%&lt;&gt;%</span> <span class="fu">select</span>(Genus, Species)</span>
-<span id="cb71-453"><a href="#cb71-453" aria-hidden="true" tabindex="-1"></a>s</span>
-<span id="cb71-454"><a href="#cb71-454" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb71-455"><a href="#cb71-455" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb71-456"><a href="#cb71-456" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Finally, the "exposition" pipe (<span class="in">`%$%`</span>) exposes the names *within* the object on the left-hand side of the pipe to the right-hand side expression.</span>
+<span id="cb71-448"><a href="#cb71-448" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>The "assignment" pipe (<span class="in">`%&lt;&gt;%`</span>) operator evaluates the expression on the right-hand side of the pipe operator *and* simultaneosuly reassigns the resultant value to the left-hand side.</span>
+<span id="cb71-449"><a href="#cb71-449" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-452"><a href="#cb71-452" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb71-453"><a href="#cb71-453" aria-hidden="true" tabindex="-1"></a>s <span class="ot">&lt;-</span> <span class="fu">filter</span>(d, Genus <span class="sc">==</span> <span class="st">"Alouatta"</span>)</span>
+<span id="cb71-454"><a href="#cb71-454" aria-hidden="true" tabindex="-1"></a>s <span class="sc">%&lt;&gt;%</span> <span class="fu">select</span>(Genus, Species)</span>
+<span id="cb71-455"><a href="#cb71-455" aria-hidden="true" tabindex="-1"></a>s</span>
+<span id="cb71-456"><a href="#cb71-456" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb71-457"><a href="#cb71-457" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb71-460"><a href="#cb71-460" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb71-461"><a href="#cb71-461" aria-hidden="true" tabindex="-1"></a>s <span class="ot">&lt;-</span> <span class="fu">filter</span>(d, Genus <span class="sc">==</span> <span class="st">"Alouatta"</span>) <span class="sc">%$%</span> <span class="fu">paste0</span>(Genus, <span class="st">" "</span>, Species)</span>
-<span id="cb71-462"><a href="#cb71-462" aria-hidden="true" tabindex="-1"></a>s </span>
-<span id="cb71-463"><a href="#cb71-463" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb71-464"><a href="#cb71-464" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb71-465"><a href="#cb71-465" aria-hidden="true" tabindex="-1"></a><span class="fu">## Dot Syntax and the Pipe</span></span>
+<span id="cb71-458"><a href="#cb71-458" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Finally, the "exposition" pipe (<span class="in">`%$%`</span>) operator exposes the names *within* the object on the left-hand side of the pipe to the right-hand side expression.</span>
+<span id="cb71-459"><a href="#cb71-459" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-462"><a href="#cb71-462" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb71-463"><a href="#cb71-463" aria-hidden="true" tabindex="-1"></a>s <span class="ot">&lt;-</span> <span class="fu">filter</span>(d, Genus <span class="sc">==</span> <span class="st">"Alouatta"</span>) <span class="sc">%$%</span> <span class="fu">paste0</span>(Genus, <span class="st">" "</span>, Species)</span>
+<span id="cb71-464"><a href="#cb71-464" aria-hidden="true" tabindex="-1"></a>s </span>
+<span id="cb71-465"><a href="#cb71-465" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb71-466"><a href="#cb71-466" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb71-467"><a href="#cb71-467" aria-hidden="true" tabindex="-1"></a>Normally, when we use the forward pipe operator, the LHS of the operator is passed to the first argument of the function on the RHS. Thus, the following are all equivalent:</span>
+<span id="cb71-467"><a href="#cb71-467" aria-hidden="true" tabindex="-1"></a><span class="fu">## Dot Syntax and the Pipe</span></span>
 <span id="cb71-468"><a href="#cb71-468" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb71-471"><a href="#cb71-471" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb71-472"><a href="#cb71-472" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
-<span id="cb71-473"><a href="#cb71-473" aria-hidden="true" tabindex="-1"></a>s <span class="ot">&lt;-</span> <span class="fu">filter</span>(d, Genus <span class="sc">==</span> <span class="st">"Alouatta"</span>)</span>
-<span id="cb71-474"><a href="#cb71-474" aria-hidden="true" tabindex="-1"></a>s <span class="ot">&lt;-</span> d <span class="sc">%&gt;%</span> <span class="fu">filter</span>(Genus <span class="sc">==</span> <span class="st">"Alouatta"</span>)</span>
-<span id="cb71-475"><a href="#cb71-475" aria-hidden="true" tabindex="-1"></a>d <span class="sc">%&gt;%</span> <span class="fu">filter</span>(Genus <span class="sc">==</span> <span class="st">"Alouatta"</span>) <span class="ot">-&gt;</span> s</span>
-<span id="cb71-476"><a href="#cb71-476" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb71-477"><a href="#cb71-477" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb71-478"><a href="#cb71-478" aria-hidden="true" tabindex="-1"></a>The behavior of the forward pipe operator means we can use it do something like the following, where **d** is implicitly piped into the <span class="in">`data`</span> argument for <span class="in">`ggplot()`</span></span>
+<span id="cb71-469"><a href="#cb71-469" aria-hidden="true" tabindex="-1"></a>Normally, when we use the forward pipe operator, the LHS of the operator is passed to the *first argument* of the function on the RHS. Thus, the following are all equivalent:</span>
+<span id="cb71-470"><a href="#cb71-470" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-473"><a href="#cb71-473" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb71-474"><a href="#cb71-474" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
+<span id="cb71-475"><a href="#cb71-475" aria-hidden="true" tabindex="-1"></a>s <span class="ot">&lt;-</span> <span class="fu">filter</span>(d, Genus <span class="sc">==</span> <span class="st">"Alouatta"</span>)</span>
+<span id="cb71-476"><a href="#cb71-476" aria-hidden="true" tabindex="-1"></a>s <span class="ot">&lt;-</span> d <span class="sc">%&gt;%</span> <span class="fu">filter</span>(Genus <span class="sc">==</span> <span class="st">"Alouatta"</span>)</span>
+<span id="cb71-477"><a href="#cb71-477" aria-hidden="true" tabindex="-1"></a>d <span class="sc">%&gt;%</span> <span class="fu">filter</span>(Genus <span class="sc">==</span> <span class="st">"Alouatta"</span>) <span class="ot">-&gt;</span> s</span>
+<span id="cb71-478"><a href="#cb71-478" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb71-479"><a href="#cb71-479" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb71-482"><a href="#cb71-482" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb71-483"><a href="#cb71-483" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
-<span id="cb71-484"><a href="#cb71-484" aria-hidden="true" tabindex="-1"></a>d <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span><span class="fu">log</span>(Body_mass_female_mean), <span class="at">y=</span><span class="fu">log</span>(Brain_Size_Species_Mean))) <span class="sc">+</span> <span class="fu">geom_point</span>()</span>
-<span id="cb71-485"><a href="#cb71-485" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb71-486"><a href="#cb71-486" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb71-487"><a href="#cb71-487" aria-hidden="true" tabindex="-1"></a>We can also use dot (<span class="in">`.`</span>) syntax with the {magrittr} forward pipe operator to pass the LHS of a statement to somewhere other than the first argument of the function on the RHS. Thus...</span>
+<span id="cb71-480"><a href="#cb71-480" aria-hidden="true" tabindex="-1"></a>The behavior of the forward pipe operator means we can use it do something like the following, where **d** is implicitly piped into the <span class="in">`data`</span> argument for <span class="in">`ggplot()`</span></span>
+<span id="cb71-481"><a href="#cb71-481" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-484"><a href="#cb71-484" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb71-485"><a href="#cb71-485" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
+<span id="cb71-486"><a href="#cb71-486" aria-hidden="true" tabindex="-1"></a>d <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span><span class="fu">log</span>(Body_mass_female_mean), <span class="at">y=</span><span class="fu">log</span>(Brain_Size_Species_Mean))) <span class="sc">+</span> <span class="fu">geom_point</span>()</span>
+<span id="cb71-487"><a href="#cb71-487" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb71-488"><a href="#cb71-488" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb71-489"><a href="#cb71-489" aria-hidden="true" tabindex="-1"></a><span class="in">`y %&gt;% function(x, .)`</span> is equivalent to <span class="in">`function(x, y)`</span></span>
+<span id="cb71-489"><a href="#cb71-489" aria-hidden="true" tabindex="-1"></a>We can also use dot (<span class="in">`.`</span>) syntax with the {magrittr} forward pipe operator to pass the LHS of a statement to somewhere other than the first argument of the function on the RHS. Thus...</span>
 <span id="cb71-490"><a href="#cb71-490" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb71-491"><a href="#cb71-491" aria-hidden="true" tabindex="-1"></a>... which means we can do something like this to pipe **d** into a function such as <span class="in">`lm()`</span> ("linear model"), where the data frame that the function is run on is not the first argument: </span>
+<span id="cb71-491"><a href="#cb71-491" aria-hidden="true" tabindex="-1"></a><span class="in">`y %&gt;% function(x, .)`</span> is equivalent to <span class="in">`function(x, y)`</span></span>
 <span id="cb71-492"><a href="#cb71-492" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb71-495"><a href="#cb71-495" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb71-496"><a href="#cb71-496" aria-hidden="true" tabindex="-1"></a>d <span class="sc">%&gt;%</span> <span class="fu">lm</span>(<span class="fu">log</span>(Body_mass_female_mean) <span class="sc">~</span> <span class="fu">log</span>(Brain_Size_Species_Mean), <span class="at">data =</span> .)</span>
-<span id="cb71-497"><a href="#cb71-497" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb71-498"><a href="#cb71-498" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb71-499"><a href="#cb71-499" aria-hidden="true" tabindex="-1"></a>We can also use the {magrittr} pipe's curly brace (<span class="in">`{}`</span>) syntax to wrap the RHS of a statement and pass the LHS into several places:</span>
+<span id="cb71-493"><a href="#cb71-493" aria-hidden="true" tabindex="-1"></a>... which means we can do something like this to pipe **d** into a function such as <span class="in">`lm()`</span> ("linear model"), where the data frame that the function is run on is not the first argument: </span>
+<span id="cb71-494"><a href="#cb71-494" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-497"><a href="#cb71-497" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb71-498"><a href="#cb71-498" aria-hidden="true" tabindex="-1"></a>d <span class="sc">%&gt;%</span> <span class="fu">lm</span>(<span class="fu">log</span>(Body_mass_female_mean) <span class="sc">~</span> <span class="fu">log</span>(Brain_Size_Species_Mean), <span class="at">data =</span> .)</span>
+<span id="cb71-499"><a href="#cb71-499" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb71-500"><a href="#cb71-500" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb71-503"><a href="#cb71-503" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb71-504"><a href="#cb71-504" aria-hidden="true" tabindex="-1"></a>d <span class="sc">%&gt;%</span> {<span class="fu">plot</span>(<span class="fu">log</span>(.<span class="sc">$</span>Brain_Size_Species_Mean), <span class="fu">log</span>(.<span class="sc">$</span>Body_mass_female_mean))}</span>
-<span id="cb71-505"><a href="#cb71-505" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb71-506"><a href="#cb71-506" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb71-507"><a href="#cb71-507" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; **NOTE:** ***R*** recently introduced a "native" pipe operator `|&gt;` into its {base} syntax. It behaves very similarly to the {magrittr} forward pipe, but does not support dot syntax the same way. It also requires an explicit functions call on the RHS, which means appending `()` to the end of the function name, rather than just using the name. The first version of the line below using `%&gt;%` could be used to take the log of all **Brain_Size_Female_Mean** values in **d**, while the second version, using </span><span class="in">`|&gt;`</span><span class="at">, needs to have </span><span class="in">`()`</span><span class="at"> appended to the functions calls to work properly.</span></span>
+<span id="cb71-501"><a href="#cb71-501" aria-hidden="true" tabindex="-1"></a>We can also use the {magrittr} pipe's curly brace (<span class="in">`{}`</span>) syntax to wrap the RHS of a statement and pass the LHS into several places:</span>
+<span id="cb71-502"><a href="#cb71-502" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-505"><a href="#cb71-505" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb71-506"><a href="#cb71-506" aria-hidden="true" tabindex="-1"></a>d <span class="sc">%&gt;%</span> {<span class="fu">plot</span>(<span class="fu">log</span>(.<span class="sc">$</span>Brain_Size_Species_Mean), <span class="fu">log</span>(.<span class="sc">$</span>Body_mass_female_mean))}</span>
+<span id="cb71-507"><a href="#cb71-507" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb71-508"><a href="#cb71-508" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb71-511"><a href="#cb71-511" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb71-512"><a href="#cb71-512" aria-hidden="true" tabindex="-1"></a>d <span class="sc">%&gt;%</span> <span class="fu">select</span>(Brain_Size_Female_Mean) <span class="sc">%&gt;%</span> log <span class="sc">%&gt;%</span> head</span>
-<span id="cb71-513"><a href="#cb71-513" aria-hidden="true" tabindex="-1"></a>d <span class="sc">|&gt;</span> <span class="fu">select</span>(Brain_Size_Female_Mean) <span class="sc">|&gt;</span> <span class="fu">log</span>() <span class="sc">|&gt;</span> <span class="fu">head</span>()</span>
-<span id="cb71-514"><a href="#cb71-514" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb71-515"><a href="#cb71-515" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb71-516"><a href="#cb71-516" aria-hidden="true" tabindex="-1"></a><span class="fu">## Useful Related Packages</span></span>
+<span id="cb71-509"><a href="#cb71-509" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; **NOTE:** As mentioned above, ***R*** recently introduced a "native" pipe operator (`|&gt;`) into its {base} syntax. It behaves very similarly to the {dplyr}/{magrittr} forward pipe, **but it does not support dot syntax** the same way. It also requires an explicit function call on the RHS, which means that it is necessary to append `()` to the end of the function name, rather than just using the name. The first version of the line below using `%&gt;%` could be used to take the log of all **Brain_Size_Female_Mean** values in **d**, while the second version using </span><span class="in">`|&gt;`</span><span class="at"> needs to have </span><span class="in">`()`</span><span class="at"> appended to the functions calls to work properly.</span></span>
+<span id="cb71-510"><a href="#cb71-510" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-513"><a href="#cb71-513" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb71-514"><a href="#cb71-514" aria-hidden="true" tabindex="-1"></a>d <span class="sc">%&gt;%</span> <span class="fu">select</span>(Brain_Size_Female_Mean) <span class="sc">%&gt;%</span> log <span class="sc">%&gt;%</span> head</span>
+<span id="cb71-515"><a href="#cb71-515" aria-hidden="true" tabindex="-1"></a>d <span class="sc">|&gt;</span> <span class="fu">select</span>(Brain_Size_Female_Mean) <span class="sc">|&gt;</span> <span class="fu">log</span>() <span class="sc">|&gt;</span> <span class="fu">head</span>()</span>
+<span id="cb71-516"><a href="#cb71-516" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb71-517"><a href="#cb71-517" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb71-518"><a href="#cb71-518" aria-hidden="true" tabindex="-1"></a>The {tidylog} package provides wrappers around many {dplyr} and {tidyr} package functions that provide logged feedback on the outcome of those functions, which can be useful for understanding the effects of whatever data wrangling processes we run. For example, running <span class="in">`filter()`</span> will provide feedback on the number of runs removed and kept as part of a filtering operation...</span>
+<span id="cb71-518"><a href="#cb71-518" aria-hidden="true" tabindex="-1"></a><span class="fu">## Useful Related Packages</span></span>
 <span id="cb71-519"><a href="#cb71-519" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb71-522"><a href="#cb71-522" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb71-523"><a href="#cb71-523" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidylog)</span>
-<span id="cb71-524"><a href="#cb71-524" aria-hidden="true" tabindex="-1"></a><span class="co"># compare...</span></span>
-<span id="cb71-525"><a href="#cb71-525" aria-hidden="true" tabindex="-1"></a>s <span class="ot">&lt;-</span> dplyr<span class="sc">::</span><span class="fu">filter</span>(d, Family <span class="sc">==</span> <span class="st">"Hominidae"</span> <span class="sc">&amp;</span> Mass_Dimorphism <span class="sc">&gt;</span> <span class="dv">2</span>)</span>
-<span id="cb71-526"><a href="#cb71-526" aria-hidden="true" tabindex="-1"></a><span class="co"># to...</span></span>
-<span id="cb71-527"><a href="#cb71-527" aria-hidden="true" tabindex="-1"></a>s <span class="ot">&lt;-</span> <span class="fu">filter</span>(d, Family <span class="sc">==</span> <span class="st">"Hominidae"</span> <span class="sc">&amp;</span> Mass_Dimorphism <span class="sc">&gt;</span> <span class="dv">2</span>)</span>
-<span id="cb71-528"><a href="#cb71-528" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb71-529"><a href="#cb71-529" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb71-530"><a href="#cb71-530" aria-hidden="true" tabindex="-1"></a>Similarly, running <span class="in">`sample_n()`</span> will give us logged output on that random record sampling process...</span>
+<span id="cb71-520"><a href="#cb71-520" aria-hidden="true" tabindex="-1"></a>The {tidylog} package provides wrappers around many {dplyr} and {tidyr} package functions that provide logged feedback on the outcome of those functions, which can be useful for understanding the effects of whatever data wrangling processes we run. For example, running <span class="in">`filter()`</span> will provide feedback on the number of runs removed and kept as part of a filtering operation...</span>
+<span id="cb71-521"><a href="#cb71-521" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-524"><a href="#cb71-524" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb71-525"><a href="#cb71-525" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidylog)</span>
+<span id="cb71-526"><a href="#cb71-526" aria-hidden="true" tabindex="-1"></a><span class="co"># compare...</span></span>
+<span id="cb71-527"><a href="#cb71-527" aria-hidden="true" tabindex="-1"></a>s <span class="ot">&lt;-</span> dplyr<span class="sc">::</span><span class="fu">filter</span>(d, Family <span class="sc">==</span> <span class="st">"Hominidae"</span> <span class="sc">&amp;</span> Mass_Dimorphism <span class="sc">&gt;</span> <span class="dv">2</span>)</span>
+<span id="cb71-528"><a href="#cb71-528" aria-hidden="true" tabindex="-1"></a><span class="co"># to...</span></span>
+<span id="cb71-529"><a href="#cb71-529" aria-hidden="true" tabindex="-1"></a>s <span class="ot">&lt;-</span> <span class="fu">filter</span>(d, Family <span class="sc">==</span> <span class="st">"Hominidae"</span> <span class="sc">&amp;</span> Mass_Dimorphism <span class="sc">&gt;</span> <span class="dv">2</span>)</span>
+<span id="cb71-530"><a href="#cb71-530" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb71-531"><a href="#cb71-531" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb71-534"><a href="#cb71-534" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb71-535"><a href="#cb71-535" aria-hidden="true" tabindex="-1"></a><span class="co"># compare...</span></span>
-<span id="cb71-536"><a href="#cb71-536" aria-hidden="true" tabindex="-1"></a>s <span class="ot">&lt;-</span> dplyr<span class="sc">::</span><span class="fu">sample_n</span>(d, <span class="at">size =</span> <span class="dv">100</span>, <span class="at">replace =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb71-537"><a href="#cb71-537" aria-hidden="true" tabindex="-1"></a><span class="co"># to...</span></span>
-<span id="cb71-538"><a href="#cb71-538" aria-hidden="true" tabindex="-1"></a>s <span class="ot">&lt;-</span> <span class="fu">sample_n</span>(d, <span class="at">size =</span> <span class="dv">100</span>, <span class="at">replace =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb71-539"><a href="#cb71-539" aria-hidden="true" tabindex="-1"></a><span class="fu">detach</span>(package<span class="sc">:</span>tidylog)</span>
-<span id="cb71-540"><a href="#cb71-540" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb71-541"><a href="#cb71-541" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb71-542"><a href="#cb71-542" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; **NOTE:** Loading in {tidylog} function will conflict with or "mask" corresponding function names from {dplyr} and {tidyr}. In the examples above, then, to run the {tidyverse} versions of </span><span class="in">`filter()`</span><span class="at"> and </span><span class="in">`select_n()`</span><span class="at">, it was necessary to use the </span><span class="in">`::`</span><span class="at"> notation to specifically call the {dplyr} version of the functions directly. The {tidylog} versions of these functions run a bit more slowly, so if speed is important, you may not want to use {tidylog}, you may want to call the {dplyr} or {tidyr} functions explicitly after loading {tidylog}, or you may want to simply call the {tidylog} version of a function explicitly.</span></span>
+<span id="cb71-532"><a href="#cb71-532" aria-hidden="true" tabindex="-1"></a>Similarly, running <span class="in">`sample_n()`</span> will give us logged output on that random record sampling process...</span>
+<span id="cb71-533"><a href="#cb71-533" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-536"><a href="#cb71-536" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb71-537"><a href="#cb71-537" aria-hidden="true" tabindex="-1"></a><span class="co"># compare...</span></span>
+<span id="cb71-538"><a href="#cb71-538" aria-hidden="true" tabindex="-1"></a>s <span class="ot">&lt;-</span> dplyr<span class="sc">::</span><span class="fu">sample_n</span>(d, <span class="at">size =</span> <span class="dv">100</span>, <span class="at">replace =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb71-539"><a href="#cb71-539" aria-hidden="true" tabindex="-1"></a><span class="co"># to...</span></span>
+<span id="cb71-540"><a href="#cb71-540" aria-hidden="true" tabindex="-1"></a>s <span class="ot">&lt;-</span> <span class="fu">sample_n</span>(d, <span class="at">size =</span> <span class="dv">100</span>, <span class="at">replace =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb71-541"><a href="#cb71-541" aria-hidden="true" tabindex="-1"></a><span class="fu">detach</span>(package<span class="sc">:</span>tidylog)</span>
+<span id="cb71-542"><a href="#cb71-542" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb71-543"><a href="#cb71-543" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb71-546"><a href="#cb71-546" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb71-547"><a href="#cb71-547" aria-hidden="true" tabindex="-1"></a>s <span class="ot">&lt;-</span> tidylog<span class="sc">::</span><span class="fu">filter</span>(d, Family <span class="sc">==</span> <span class="st">"Hominidae"</span> <span class="sc">&amp;</span> Mass_Dimorphism <span class="sc">&gt;</span> <span class="dv">2</span>)</span>
-<span id="cb71-548"><a href="#cb71-548" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb71-549"><a href="#cb71-549" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb71-552"><a href="#cb71-552" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb71-553"><a href="#cb71-553" aria-hidden="true" tabindex="-1"></a><span class="co"># | include: false</span></span>
-<span id="cb71-554"><a href="#cb71-554" aria-hidden="true" tabindex="-1"></a><span class="fu">detach</span>(package<span class="sc">:</span>magrittr)</span>
-<span id="cb71-555"><a href="#cb71-555" aria-hidden="true" tabindex="-1"></a><span class="fu">detach</span>(package<span class="sc">:</span>tidyverse)</span>
-<span id="cb71-556"><a href="#cb71-556" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb71-557"><a href="#cb71-557" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb71-558"><a href="#cb71-558" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb71-544"><a href="#cb71-544" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; **NOTE:** Loading in {tidylog} function will conflict with or "mask" corresponding function names from {dplyr} and {tidyr}. In the examples above, then, to run the {tidyverse} versions of </span><span class="in">`filter()`</span><span class="at"> and </span><span class="in">`select_n()`</span><span class="at">, it was necessary to use the </span><span class="in">`::`</span><span class="at"> notation to specifically call the {dplyr} version of the functions directly. The {tidylog} versions of these functions run a bit more slowly, so if speed is important, you may not want to use {tidylog}, you may want to call the {dplyr} or {tidyr} functions explicitly after loading {tidylog}, or you may want to simply call the {tidylog} version of a function explicitly.</span></span>
+<span id="cb71-545"><a href="#cb71-545" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-548"><a href="#cb71-548" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb71-549"><a href="#cb71-549" aria-hidden="true" tabindex="-1"></a>s <span class="ot">&lt;-</span> tidylog<span class="sc">::</span><span class="fu">filter</span>(d, Family <span class="sc">==</span> <span class="st">"Hominidae"</span> <span class="sc">&amp;</span> Mass_Dimorphism <span class="sc">&gt;</span> <span class="dv">2</span>)</span>
+<span id="cb71-550"><a href="#cb71-550" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb71-551"><a href="#cb71-551" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-554"><a href="#cb71-554" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb71-555"><a href="#cb71-555" aria-hidden="true" tabindex="-1"></a><span class="co"># | include: false</span></span>
+<span id="cb71-556"><a href="#cb71-556" aria-hidden="true" tabindex="-1"></a><span class="fu">detach</span>(package<span class="sc">:</span>magrittr)</span>
+<span id="cb71-557"><a href="#cb71-557" aria-hidden="true" tabindex="-1"></a><span class="fu">detach</span>(package<span class="sc">:</span>tidyverse)</span>
+<span id="cb71-558"><a href="#cb71-558" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb71-559"><a href="#cb71-559" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb71-560"><a href="#cb71-560" aria-hidden="true" tabindex="-1"></a><span class="fu">## Concept Review {.unnumbered}</span></span>
+<span id="cb71-560"><a href="#cb71-560" aria-hidden="true" tabindex="-1"></a>---</span>
 <span id="cb71-561"><a href="#cb71-561" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb71-562"><a href="#cb71-562" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Using {dplyr}: <span class="in">`select()`</span>, <span class="in">`filter()`</span>, <span class="in">`arrange()`</span>, <span class="in">`rename()`</span>, <span class="in">`mutate()`</span>, <span class="in">`summarise()`</span>, <span class="in">`group_by()`</span></span>
-<span id="cb71-563"><a href="#cb71-563" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Chaining and piping with <span class="in">`%&gt;%`</span> and other pipe operators</span>
-<span id="cb71-564"><a href="#cb71-564" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Joining tables: <span class="in">`inner_join()`</span>, <span class="in">`left_join()`</span>, <span class="in">`right_join()`</span>, <span class="in">`full_join()`</span></span>
-<span id="cb71-565"><a href="#cb71-565" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Using the {tidylog} package</span>
+<span id="cb71-562"><a href="#cb71-562" aria-hidden="true" tabindex="-1"></a><span class="fu">## Concept Review {.unnumbered}</span></span>
+<span id="cb71-563"><a href="#cb71-563" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-564"><a href="#cb71-564" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Using {dplyr}: <span class="in">`select()`</span>, <span class="in">`filter()`</span>, <span class="in">`arrange()`</span>, <span class="in">`rename()`</span>, <span class="in">`mutate()`</span>, <span class="in">`summarise()`</span>, <span class="in">`group_by()`</span></span>
+<span id="cb71-565"><a href="#cb71-565" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Chaining and piping with <span class="in">`%&gt;%`</span>  or <span class="in">`|&gt;`</span> and other pipe operators</span>
+<span id="cb71-566"><a href="#cb71-566" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Joining tables: <span class="in">`inner_join()`</span>, <span class="in">`left_join()`</span>, <span class="in">`right_join()`</span>, <span class="in">`full_join()`</span></span>
+<span id="cb71-567"><a href="#cb71-567" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Using the {tidylog} package</span>
 </code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->

@@ -242,7 +242,7 @@ It is good form and improves efficiency if we allocate memory to whatever output
 #| message: false
 f <- "https://raw.githubusercontent.com/difiore/ada-datasets/main/KamilarAndCooperData.csv"
 d <- read_csv(f, col_names = TRUE) # creates a "tibble"
-s <- filter(d, Family %in% c("Atelidae","Pitheciidae","Cebidae")) %>%
+s <- filter(d, Family %in% c("Atelidae","Pitheciidae","Cebidae")) |>
   select(Brain_Size_Female_Mean,Body_mass_female_mean,Canine_Dimorphism)
 # good practice
 output <- vector("double", ncol(s))

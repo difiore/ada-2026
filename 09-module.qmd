@@ -266,6 +266,8 @@ There are a number of other packages and associated functions we might also use 
 
 For example, with the `skim()` function from {skimr}, you can get for numeric variables a count of observations, the number of missing observations, the mean and standard deviation, and the five-number summary. The `select()`, `kable()` and `kable_styling()` functions will format the output nicely!
 
+> **NOTE:** The following code block chains together a set of data wrangling commands using the native pipe operator (`|>`), which we have not covered yet, but is discussed in detail in [**Module 10**](#module-10).
+
 ```{r}
 #| message: false
 library(skimr)
@@ -274,13 +276,14 @@ library(kableExtra)
 
 ```{r}
 s <- skim(d) # the main `skimr()` function
-s %>% filter(skim_type == "numeric") %>%
+s |>
+  filter(skim_type == "numeric") |>
   rename(variable=skim_variable, missing=n_missing, mean=numeric.mean,
          sd=numeric.sd, min=numeric.p0, p25=numeric.p25, median=numeric.p50,
-         p75=numeric.p75, max=numeric.p100, hist=numeric.hist) %>%
-  select(variable, missing, mean, sd, min, median, max, hist) %>%
+         p75=numeric.p75, max=numeric.p100, hist=numeric.hist) |>
+  select(variable, missing, mean, sd, min, median, max, hist) |>
   # drop p25 and p75 for purposes of display
-  kable() %>%
+  kable() |>
   kable_styling(font_size = 10, full_width = FALSE)
 ```
 
@@ -297,10 +300,10 @@ With `descr()`, `dfSummary()`, and `view()` from the {summarytools} package, you
 #| eval: false
 library(summarytools)
 s <- descr(d, style = "rmarkdown", transpose = TRUE)
-# %>% to view() print nicely formatted table to viewer
-s %>% summarytools::view()
+# |> to view() print nicely formatted table to viewer
+s |> summarytools::view()
 s <- dfSummary(d, style = "grid", plain.ascii = FALSE)
-s %>% summarytools::view()
+s |> summarytools::view()
 detach(package:summarytools)
 ```
 
@@ -520,8 +523,8 @@ Doing the same thing with {dplyr} verbs (see [**Module 10**](#module-10)) provid
 
 ```{r}
 t <-
-  group_by(d, govt_form) %>%
-  summarize(count = n()) %>%
+  group_by(d, govt_form) |>
+  summarize(count = n()) |>
   arrange(desc(count))
 t
 ```
@@ -559,15 +562,15 @@ library(kableExtra)
 #| code-summary: "Show Code"
 #| attr.output: '.details summary="Show Output"'
 s <- skim(d) # formats results to a wide table
-# here we make use of the `%>%` operator and {dplyr} verbs... see below
-s %>%
-  filter(skim_variable == "Scientific_Name" | skim_type == "numeric") %>%
+# here we make use of the `|>` operator and {dplyr} verbs... see below
+s |>
+  filter(skim_variable == "Scientific_Name" | skim_type == "numeric") |>
   rename(variable=skim_variable, missing=n_missing, mean=numeric.mean,
     sd=numeric.sd, min=numeric.p0, p25=numeric.p25, median=numeric.p50,
-    p75=numeric.p75, max=numeric.p100, hist=numeric.hist) %>%
-  select(variable, missing, mean, sd, min, median, max, hist) %>%
+    p75=numeric.p75, max=numeric.p100, hist=numeric.hist) |>
+  select(variable, missing, mean, sd, min, median, max, hist) |>
   # drop p25 and p75 for purposes of display
-  kable() %>%
+  kable() |>
   kable_styling(font_size = 10, full_width = FALSE)
 ```
 

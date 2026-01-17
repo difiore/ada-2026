@@ -66,7 +66,7 @@ The `file.choose()` command is a useful command for interactive engagement with 
 f <- file.choose()
 ```
 
-Alternatively, you can directly assign a variable, e.g., **f**, to be the path to a locally-stored file. The file paths below refer to where I have saved the data files I downloaded - in a folder called `data/` within my working directory. You may need to change this path if you have saved downloaded data to a different location on your computer.
+Alternatively, you can directly assign a variable, e.g., **f**, to be the path to a locally-stored file. The file paths below refer to where I have saved the data files I downloaded -- in a folder called `data/` within my working directory. You may need to change this path if you have saved downloaded data to a different location on your computer.
 
 ### Loading Data from Text Files {.unnumbered}
 
@@ -273,7 +273,7 @@ head(d)
 
 To load data from a ".csv" file located in a *personal* ***Dropbox*** account you can use the {rdrop2} package.
 
-> **NOTE:** The {rdrop2} package has been deprecated because one of the dependencies upon which it relies - {assertive} - and, in turn, many of the dependencies upon which {assertive} relies, have not been maintained for some time. Still, it is possible with some care to install an older versions of {rdrop2} and all of its recursive dependencies from Package Archive Files downloaded from CRAN and thus get it working. It takes some time, but may be worthwhile.
+> **NOTE:** The {rdrop2} package has been deprecated because one of the dependencies upon which it relies -- {assertive} -- and, in turn, many of the dependencies upon which {assertive} relies, have not been maintained for some time. Still, it is possible with some care to install an older versions of {rdrop2} and all of its recursive dependencies from Package Archive Files downloaded from CRAN and thus get it working. It takes some time, but may be worthwhile.
 
 > Also note that the following code block cannot be rendered to show you the output because it requires an interactive ***R*** environment for `drop_auth()`, `drop_search()`, etc.
 
@@ -399,7 +399,7 @@ detach(package:repmis)
 
 Finally, you can also load data directly from a ***Google Sheets*** spreadsheet into ***R*** using the {googledrive} and {googlesheets4} packages. Try saving one of the "CPDS-1960-2014-reduced" file as a Google Sheet and then extracting it into ***R*** using the code below.
 
-> **NOTE:** The following code block cannot be rendered to show you the output because it requires an interactive ***R*** environment for several functions (e.g., `drive_auth()`).
+> **NOTE:** The following code block cannot be rendered to show you the output because it requires an interactive ***R*** environment for several functions (e.g., `drive_auth()`). It also uses the native pipe operator (`|>`), which we have not covered yet, but is discussed in detail in [**Module 10**](#module-10).
 
 ```{r}
 #| eval: false
@@ -409,7 +409,7 @@ drive_auth() # authenticate access to Google Drive
 # usually only needed once
 # opens a web browser and has you sign in
 gs4_auth(token = drive_token()) # apply that authentication to Google Sheets
-f <- gs4_find() %>%
+f <- gs4_find() |>
   filter(name == "CPDS-1960-2014-reduced")
 # first find all Google Sheets in your drive and then filter for one of interest
 gs4_get(f)

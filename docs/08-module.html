@@ -307,6 +307,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text">Exercise 01</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./exercise-02.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Exercise 02</span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -450,7 +456,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>f <span class="ot">&lt;-</span> <span class="fu">file.choose</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Alternatively, you can directly assign a variable, e.g., <strong>f</strong>, to be the path to a locally-stored file. The file paths below refer to where I have saved the data files I downloaded - in a folder called <code>data/</code> within my working directory. You may need to change this path if you have saved downloaded data to a different location on your computer.</p>
+<p>Alternatively, you can directly assign a variable, e.g., <strong>f</strong>, to be the path to a locally-stored file. The file paths below refer to where I have saved the data files I downloaded – in a folder called <code>data/</code> within my working directory. You may need to change this path if you have saved downloaded data to a different location on your computer.</p>
 </section>
 <section id="loading-data-from-text-files" class="level3 unnumbered">
 <h3 class="unnumbered anchored" data-anchor-id="loading-data-from-text-files">Loading Data from Text Files</h3>
@@ -959,7 +965,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h3 class="unnumbered anchored" data-anchor-id="accessing-files-on-dropbox">Accessing Files on <strong><em>Dropbox</em></strong></h3>
 <p>To load data from a “.csv” file located in a <em>personal</em> <strong><em>Dropbox</em></strong> account you can use the {rdrop2} package.</p>
 <blockquote class="blockquote">
-<p><strong>NOTE:</strong> The {rdrop2} package has been deprecated because one of the dependencies upon which it relies - {assertive} - and, in turn, many of the dependencies upon which {assertive} relies, have not been maintained for some time. Still, it is possible with some care to install an older versions of {rdrop2} and all of its recursive dependencies from Package Archive Files downloaded from CRAN and thus get it working. It takes some time, but may be worthwhile.</p>
+<p><strong>NOTE:</strong> The {rdrop2} package has been deprecated because one of the dependencies upon which it relies – {assertive} – and, in turn, many of the dependencies upon which {assertive} relies, have not been maintained for some time. Still, it is possible with some care to install an older versions of {rdrop2} and all of its recursive dependencies from Package Archive Files downloaded from CRAN and thus get it working. It takes some time, but may be worthwhile.</p>
 </blockquote>
 <blockquote class="blockquote">
 <p>Also note that the following code block cannot be rendered to show you the output because it requires an interactive <strong><em>R</em></strong> environment for <code>drop_auth()</code>, <code>drop_search()</code>, etc.</p>
@@ -1075,7 +1081,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h3 class="unnumbered anchored" data-anchor-id="importing-data-from-google-sheets">Importing Data from <strong><em>Google Sheets</em></strong></h3>
 <p>Finally, you can also load data directly from a <strong><em>Google Sheets</em></strong> spreadsheet into <strong><em>R</em></strong> using the {googledrive} and {googlesheets4} packages. Try saving one of the “CPDS-1960-2014-reduced” file as a Google Sheet and then extracting it into <strong><em>R</em></strong> using the code below.</p>
 <blockquote class="blockquote">
-<p><strong>NOTE:</strong> The following code block cannot be rendered to show you the output because it requires an interactive <strong><em>R</em></strong> environment for several functions (e.g., <code>drive_auth()</code>).</p>
+<p><strong>NOTE:</strong> The following code block cannot be rendered to show you the output because it requires an interactive <strong><em>R</em></strong> environment for several functions (e.g., <code>drive_auth()</code>). It also uses the native pipe operator (<code>|&gt;</code>), which we have not covered yet, but is discussed in detail in <a href="10-module.html"><strong>Module 10</strong></a>.</p>
 </blockquote>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb60"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(googledrive)</span>
@@ -1083,7 +1089,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb60-3"><a href="#cb60-3" aria-hidden="true" tabindex="-1"></a><span class="fu">drive_auth</span>()  <span class="co"># authenticate access to Google Drive</span></span>
 <span id="cb60-4"><a href="#cb60-4" aria-hidden="true" tabindex="-1"></a><span class="co"># usually only needed once opens a web browser and has you sign in</span></span>
 <span id="cb60-5"><a href="#cb60-5" aria-hidden="true" tabindex="-1"></a><span class="fu">gs4_auth</span>(<span class="at">token =</span> <span class="fu">drive_token</span>())  <span class="co"># apply that authentication to Google Sheets</span></span>
-<span id="cb60-6"><a href="#cb60-6" aria-hidden="true" tabindex="-1"></a>f <span class="ot">&lt;-</span> <span class="fu">gs4_find</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb60-6"><a href="#cb60-6" aria-hidden="true" tabindex="-1"></a>f <span class="ot">&lt;-</span> <span class="fu">gs4_find</span>() <span class="sc">|&gt;</span></span>
 <span id="cb60-7"><a href="#cb60-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(name <span class="sc">==</span> <span class="st">"CPDS-1960-2014-reduced"</span>)</span>
 <span id="cb60-8"><a href="#cb60-8" aria-hidden="true" tabindex="-1"></a><span class="co"># first find all Google Sheets in your drive and then filter for one of</span></span>
 <span id="cb60-9"><a href="#cb60-9" aria-hidden="true" tabindex="-1"></a><span class="co"># interest</span></span>
@@ -1722,7 +1728,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb65-72"><a href="#cb65-72" aria-hidden="true" tabindex="-1"></a>f <span class="ot">&lt;-</span> <span class="fu">file.choose</span>()</span>
 <span id="cb65-73"><a href="#cb65-73" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb65-74"><a href="#cb65-74" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb65-75"><a href="#cb65-75" aria-hidden="true" tabindex="-1"></a>Alternatively, you can directly assign a variable, e.g., **f**, to be the path to a locally-stored file. The file paths below refer to where I have saved the data files I downloaded - in a folder called <span class="in">`data/`</span> within my working directory. You may need to change this path if you have saved downloaded data to a different location on your computer.</span>
+<span id="cb65-75"><a href="#cb65-75" aria-hidden="true" tabindex="-1"></a>Alternatively, you can directly assign a variable, e.g., **f**, to be the path to a locally-stored file. The file paths below refer to where I have saved the data files I downloaded -- in a folder called <span class="in">`data/`</span> within my working directory. You may need to change this path if you have saved downloaded data to a different location on your computer.</span>
 <span id="cb65-76"><a href="#cb65-76" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb65-77"><a href="#cb65-77" aria-hidden="true" tabindex="-1"></a><span class="fu">### Loading Data from Text Files {.unnumbered}</span></span>
 <span id="cb65-78"><a href="#cb65-78" aria-hidden="true" tabindex="-1"></a></span>
@@ -1929,7 +1935,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb65-313"><a href="#cb65-313" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb65-314"><a href="#cb65-314" aria-hidden="true" tabindex="-1"></a>To load data from a ".csv" file located in a *personal* ***Dropbox*** account you can use the {rdrop2} package.</span>
 <span id="cb65-315"><a href="#cb65-315" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb65-316"><a href="#cb65-316" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; **NOTE:** The {rdrop2} package has been deprecated because one of the dependencies upon which it relies - {assertive} - and, in turn, many of the dependencies upon which {assertive} relies, have not been maintained for some time. Still, it is possible with some care to install an older versions of {rdrop2} and all of its recursive dependencies from Package Archive Files downloaded from CRAN and thus get it working. It takes some time, but may be worthwhile.</span></span>
+<span id="cb65-316"><a href="#cb65-316" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; **NOTE:** The {rdrop2} package has been deprecated because one of the dependencies upon which it relies -- {assertive} -- and, in turn, many of the dependencies upon which {assertive} relies, have not been maintained for some time. Still, it is possible with some care to install an older versions of {rdrop2} and all of its recursive dependencies from Package Archive Files downloaded from CRAN and thus get it working. It takes some time, but may be worthwhile.</span></span>
 <span id="cb65-317"><a href="#cb65-317" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb65-318"><a href="#cb65-318" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; Also note that the following code block cannot be rendered to show you the output because it requires an interactive ***R*** environment for </span><span class="in">`drop_auth()`</span><span class="at">, </span><span class="in">`drop_search()`</span><span class="at">, etc.</span></span>
 <span id="cb65-319"><a href="#cb65-319" aria-hidden="true" tabindex="-1"></a></span>
@@ -2055,7 +2061,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb65-461"><a href="#cb65-461" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb65-462"><a href="#cb65-462" aria-hidden="true" tabindex="-1"></a>Finally, you can also load data directly from a ***Google Sheets*** spreadsheet into ***R*** using the {googledrive} and {googlesheets4} packages. Try saving one of the "CPDS-1960-2014-reduced" file as a Google Sheet and then extracting it into ***R*** using the code below.</span>
 <span id="cb65-463"><a href="#cb65-463" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb65-464"><a href="#cb65-464" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; **NOTE:** The following code block cannot be rendered to show you the output because it requires an interactive ***R*** environment for several functions (e.g., </span><span class="in">`drive_auth()`</span><span class="at">).</span></span>
+<span id="cb65-464"><a href="#cb65-464" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; **NOTE:** The following code block cannot be rendered to show you the output because it requires an interactive ***R*** environment for several functions (e.g., `drive_auth()`). It also uses the native pipe operator (`|&gt;`), which we have not covered yet, but is discussed in detail in [**Module 10**](#module-10).</span></span>
 <span id="cb65-465"><a href="#cb65-465" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb65-468"><a href="#cb65-468" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
 <span id="cb65-469"><a href="#cb65-469" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
@@ -2065,7 +2071,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb65-473"><a href="#cb65-473" aria-hidden="true" tabindex="-1"></a><span class="co"># usually only needed once</span></span>
 <span id="cb65-474"><a href="#cb65-474" aria-hidden="true" tabindex="-1"></a><span class="co"># opens a web browser and has you sign in</span></span>
 <span id="cb65-475"><a href="#cb65-475" aria-hidden="true" tabindex="-1"></a><span class="fu">gs4_auth</span>(<span class="at">token =</span> <span class="fu">drive_token</span>()) <span class="co"># apply that authentication to Google Sheets</span></span>
-<span id="cb65-476"><a href="#cb65-476" aria-hidden="true" tabindex="-1"></a>f <span class="ot">&lt;-</span> <span class="fu">gs4_find</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb65-476"><a href="#cb65-476" aria-hidden="true" tabindex="-1"></a>f <span class="ot">&lt;-</span> <span class="fu">gs4_find</span>() <span class="sc">|&gt;</span></span>
 <span id="cb65-477"><a href="#cb65-477" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(name <span class="sc">==</span> <span class="st">"CPDS-1960-2014-reduced"</span>)</span>
 <span id="cb65-478"><a href="#cb65-478" aria-hidden="true" tabindex="-1"></a><span class="co"># first find all Google Sheets in your drive and then filter for one of interest</span></span>
 <span id="cb65-479"><a href="#cb65-479" aria-hidden="true" tabindex="-1"></a><span class="fu">gs4_get</span>(f)</span>

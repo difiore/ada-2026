@@ -2,7 +2,7 @@
 
 ## Objectives
 
-> To introduce the basics of working with version control systems in ***R***, using ***git*** and ***GitHub***
+> The goal of this module is to introduce the basics of working with version control systems in ***R***, using ***git*** and ***GitHub***
 
 ## Preliminaries
 
@@ -12,7 +12,7 @@
 
 For any of us who work with data files and associated analyses and documents over a long period of time, it can become very complicated to keep track of the "latest version" of what we're working on. This is especially true if we are collaborating with others on a project and need to share these things back and forth. This is a problem that software developers have been dealing with for a long time, however, and there is a robust ecosystem of "version control systems" (VCSs) out there for dealing with this problem. The basic idea behind these systems is that all of the work on a particular project is stored in a *repository* (or *repo*), and as you work on and modify files and data for the project, you "commit" your changes periodically. The VCS keeps track of what changes between commits and allows you to roll back to previous versions if need be.
 
-You can also *branch* a repository - basically, make a duplicate copy of it - and work on the new branch and then, later, merge your changes back into the `main` branch. Multiple people can each work on different branches simultaneously, and the software will take care of looking for and highlighting changes that occur on different branches so that they can be merged back in appropriately. This module will introduce you to one such system.
+You can also *branch* a repository -- basically, make a duplicate copy of it -- and work on the new branch and then, later, merge your changes back into the `main` branch. Multiple people can each work on different branches simultaneously, and the software will take care of looking for and highlighting changes that occur on different branches so that they can be merged back in appropriately. This module will introduce you to one such system.
 
 > **NOTE:** The source for some of the information covered below, along with a host of other valuable information about using ***R*** and ***git***, is provided on the web book [*Happy Git and GitHub for the useR*](https://happygitwithr.com/) by Jenny Bryan (RStudio).
 
@@ -309,7 +309,7 @@ knitr::include_graphics("img/readme-commit-changes.png")
 
 ### Working with Branches {.unnumbered}
 
-So far, all of the changes you have made have been to the `main` branch of your repository, but one of the powerful features of ***git*** is that you can create different versions or *branches* of your repository to try out new things and then merge these back into the `main` branch. This feature - along with automated checking for merge conflicts created when different modifications have been made on two different branches - is what makes ***git*** and other VCSs so valuable for software development.
+So far, all of the changes you have made have been to the `main` branch of your repository, but one of the powerful features of ***git*** is that you can create different versions or *branches* of your repository to try out new things and then merge these back into the `main` branch. This feature -- along with automated checking for merge conflicts created when different modifications have been made on two different branches -- is what makes ***git*** and other VCSs so valuable for software development.
 
 Here, we are going to create a new branch of our repository, edit a file in that new branch, and then merge the changes back into the `main` branch.
 
@@ -570,7 +570,7 @@ Similarly, we can make edits to files in a remote repository on ***GitHub*** usi
 knitr::include_graphics("img/readme-edit-again.png")
 ```
 
-- Add some new text to the file and then scroll to the bottom of the page and "commit" your changes - remember that you need to enter a commit message in the text box (or accept the default "Update README.md" that is auto-filled).
+- Add some new text to the file and then scroll to the bottom of the page and "commit" your changes -- remember that you need to enter a commit message in the text box (or accept the default "Update README.md" that is auto-filled).
 
 - Return to the shell prompt inside the local directory for your repository and enter the command `git pull`. You should see something like the following, indicating that the `main` branch of the local repository has been "fast-forwarded" to the state of the remote `main` branch that is being tracked:
 
@@ -745,7 +745,7 @@ Sometimes, getting ***git*** set up and working properly on Windows machines can
 
 #### Some Notes {.unnumbered}
 
-[1] When you install ***git*** and you are going through the installation dialog boxes, you can keep the defaults on all of them - just be sure to confirm that...
+[1] When you install ***git*** and you are going through the installation dialog boxes, you can keep the defaults on all of them -- just be sure to confirm that...
 
 - In the box about "Adjusting your PATH environment" you check the radio button to say "Git from the command line and also from 3rd party software"
 

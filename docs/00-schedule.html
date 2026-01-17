@@ -336,6 +336,12 @@ window.Quarto = {
  <span class="menu-text">Exercise 01</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./exercise-02.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Exercise 02</span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -383,6 +389,11 @@ window.Quarto = {
   <li><a href="#probability-and-distributions" id="toc-probability-and-distributions" class="nav-link" data-scroll-target="#probability-and-distributions">Probability and Distributions</a></li>
   <li><a href="#confidence-intervals" id="toc-confidence-intervals" class="nav-link" data-scroll-target="#confidence-intervals">Confidence Intervals</a></li>
   <li><a href="#hypothesis-testing" id="toc-hypothesis-testing" class="nav-link" data-scroll-target="#hypothesis-testing">Hypothesis Testing</a></li>
+  <li><a href="#introduction-to-linear-modeling" id="toc-introduction-to-linear-modeling" class="nav-link" data-scroll-target="#introduction-to-linear-modeling">Introduction to Linear Modeling</a></li>
+  <li><a href="#elements-of-regression-analysis" id="toc-elements-of-regression-analysis" class="nav-link" data-scroll-target="#elements-of-regression-analysis">Elements of Regression Analysis</a></li>
+  <li><a href="#extending-linear-regression" id="toc-extending-linear-regression" class="nav-link" data-scroll-target="#extending-linear-regression">Extending Linear Regression</a></li>
+  <li><a href="#model-selection" id="toc-model-selection" class="nav-link" data-scroll-target="#model-selection">Model Selection</a></li>
+  <li><a href="#linear-and-mixed-effects-modeling" id="toc-linear-and-mixed-effects-modeling" class="nav-link" data-scroll-target="#linear-and-mixed-effects-modeling">Linear and Mixed Effects Modeling</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -939,121 +950,259 @@ window.Quarto = {
 <li>Chapter 6 - Two Samples</li>
 </ul></li>
 </ul>
-<!-- #### Relevant Data Camp Material {.unnumbered} -->
-<!-- - *Foundations of Inference* - Introduction to Ideas of Inference -->
-<!-- - *Foundations of Inference* - Confidence Intervals -->
-<!-- - *Foundations of Inference* - Completing a Randomization Test -->
-<!-- - *Foundations of Inference* - Hypothesis Testing Errors -->
-<!-- ### Introduction to Linear Modeling {.unnumbered} -->
-<!-- #### Modules {.unnumbered} -->
-<!-- - Module 18 - [Introduction to Linear Regression](#module-18) -->
-<!-- #### Topics {.unnumbered} -->
-<!-- - Correlation and covariation -->
-<!-- - Basic linear modeling -->
-<!--     - Continuous random predictor and response variables -->
-<!--     - Simple linear regression (1 predictor and 1 response variable) -->
-<!--     - Estimating and interpreting regression coefficients -->
-<!--     - Model I versus Model II regression -->
-<!--     - The `lm()` function -->
-<!-- #### Suggested Readings {.unnumbered} -->
-<!-- - *The Book of R* -->
-<!--     - Chapter 20 - Simple Linear Regression -->
-<!-- #### Other Useful Readings {.unnumbered} -->
-<!-- - *Statistics: An Introduction Using R* -->
-<!--     - Chapter 7 - Regression -->
-<!-- - *Statistical Inference via Data Science* -->
-<!--     - Chapter 5 - Basic Regression -->
-<!-- #### Relevant Data Camp Material {.unnumbered} -->
-<!-- - *Correlation and Regression in R* - Visualizing Two Variables -->
-<!-- - *Correlation and Regression in R* - Correlation -->
-<!-- - *Correlation and Regression in R* - Simple Linear Regression -->
-<!-- - *Correlation and Regression in R* - Interpreting Regression Models -->
-<!-- ### Elements of Regression Analysis {.unnumbered} -->
-<!-- #### Modules {.unnumbered} -->
-<!-- - Module 19 - [Elements of Regression Analysis](#module-19) -->
-<!-- #### Topics {.unnumbered} -->
-<!-- - Inference in regression -->
-<!--     - Estimating standard errors for regression cofficients -->
-<!--     - Confidence intervals and prediction intervals -->
-<!--     - Residuals -->
-<!-- - Model checking -->
-<!-- - Partitioning of variance in linear models -->
-<!-- - Data transformations -->
-<!-- #### Suggested Readings {.unnumbered} -->
-<!-- - *Statistical Inference via Data Science* -->
-<!--     - Chapter 10 - Inference for Regression -->
-<!-- #### Other Useful Readings {.unnumbered} -->
-<!-- - Gotelli, N.J. & Ellison, A.M. (2012). Chapter 9. Regression. *A Primer of Ecological Statistics, 2nd Edition.* Sinauer Associates, Inc. -->
-<!-- ### Extending Linear Regression {.unnumbered} -->
-<!-- #### Modules {.unnumbered} -->
-<!-- - Module 20 - [Categorical Data Analysis](#module-20) -->
-<!-- - Module 21 - [Multiple Regression and ANCOVA](#module-21) -->
-<!-- #### Topics {.unnumbered} -->
-<!-- - Regression with categorical predictors -->
-<!--     - One- and multiple-factor ANOVA -->
-<!--     - Type I, Type II, Type III sums of squares -->
-<!--     - Interaction plots to visualize changes across groups -->
-<!-- - Simple categorical data analysis -->
-<!--     - Kruskall-Wallis tests -->
-<!--     - Chi-Square tests of goodness-of-fit and independence -->
-<!-- - Generating mock data with a defined correlation structure -->
-<!-- - Regression with multiple predictors -->
-<!--     - More than one continuous predictor -->
-<!--     - Combinations of continuous and categorical predictors -->
-<!--     - Visualizing linear models with more than one predictor -->
-<!--     - Confidence intervals and prediction in multiple regression -->
-<!--     - Interactions between predictors -->
-<!--     - Interaction plots to visualize changes across groups -->
-<!-- #### Suggested Readings {.unnumbered} -->
-<!-- - *The Book of R* -->
-<!--     - Chapter 19 - Analysis of Variance -->
-<!--     - Chapter 21 - Multiple Linear Regression -->
-<!-- #### Other Useful Readings {.unnumbered} -->
-<!-- - Gotelli, N.J. & Ellison, A.M. (2012). Chapter 10. The analysis of variance. *A Primer of Ecological Statistics, 2nd Edition.* Sunderland, Sinauer Associates, Inc. -->
-<!-- - *Statistics: An Introduction Using R* -->
-<!--     - Chapter 8 - Analysis of Variance -->
-<!--     - Chapter 9 - Analysis of Covariance -->
-<!-- ### Model Selection {.unnumbered} -->
-<!-- #### Modules {.unnumbered} -->
-<!-- - Module 22 - [Model Selection in Linear Regression](#module-22) -->
-<!-- #### Topics {.unnumbered} -->
-<!-- - Model simplification and selection -->
-<!--     - Partial F tests for comparing models -->
-<!--     - Forward and backward selection -->
-<!--     - Information criteria considerations for comparing models -->
-<!-- - The Akaike Information Criterion (AIC) and others -->
-<!--     - {stats} `step()` -->
-<!--     - {MASS} `stepwise()` -->
-<!--     - {AICcmodavg} -->
-<!-- #### Suggested Readings {.unnumbered} -->
-<!-- - *The Book of R* -->
-<!--     - Chapter 22 - Linear Model Selection and Diagnostics -->
-<!-- #### Other Useful Readings {.unnumbered} -->
-<!-- - Package descriptions for {AICcmodavg} and {MuMIn} -->
-<!-- #### Relevant Data Camp Material {.unnumbered} -->
-<!-- - *Correlation and Regression in R* - Model Fit -->
-<!-- ### Linear and Mixed Effects Modeling {.unnumbered} -->
-<!-- #### Modules {.unnumbered} -->
-<!-- - Module 23 - [Generalized Linear Models](#module-23) -->
-<!-- - Module 24 - [Mixed Effects or Multilevel Modeling](#module-24) -->
-<!-- #### Topics {.unnumbered} -->
-<!-- - Generalized linear models -->
-<!--     - Other response variables types (e.g., counts, binary responses) -->
-<!--     - Logistic regression, multiple logistic regression -->
-<!--     - Log-linear modeling -->
-<!--     - Likelihood ratio tests -->
-<!-- - Introduction to mixed effects modeling -->
-<!--     - Combining fixed and random factors -->
-<!-- - Assessing model fit for GLMs and mixed models -->
-<!-- #### Suggested Readings {.unnumbered} -->
-<!-- - *R in Action* -->
-<!--     - Chapter 13 - Generalized Linear Models -->
-<!-- - Bolker, B.M., Brooks, M.E., Clark, C.J., Geange, S.W., Poulsen, J.R., Stevens, M.H.H., White, & J.-S.S. (2008) Generalized linear mixed models: A practical guide for ecology and evolution. *Trends in Ecology and Evolution* 24: 127-135. -->
-<!-- #### Other Useful Readings {.unnumbered} -->
-<!-- - *Statistics: An Introduction Using R* -->
-<!--     - Chapter 12 - Other Response Variables -->
-<!-- - Bolker, B.M. (2008). Chapter 9. Standard statistics revisited. In: *Ecological Models and Data in R.* Princeton, NJ: Princeton University Press. -->
-<!-- - Quinn, G.P. & Keough, M.J. (2002). Chapter 13. Generalized linear models and logistic regression. *Experimental Design and Data Analysis for Biologists.* Cambridge, UK: Cambridge University Press. -->
+</section>
+<section id="relevant-data-camp-material" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="relevant-data-camp-material">Relevant Data Camp Material</h4>
+<ul>
+<li><em>Foundations of Inference</em> - Introduction to Ideas of Inference</li>
+<li><em>Foundations of Inference</em> - Confidence Intervals</li>
+<li><em>Foundations of Inference</em> - Completing a Randomization Test</li>
+<li><em>Foundations of Inference</em> - Hypothesis Testing Errors</li>
+</ul>
+</section>
+</section>
+<section id="introduction-to-linear-modeling" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="introduction-to-linear-modeling">Introduction to Linear Modeling</h3>
+<section id="modules-9" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="modules-9">Modules</h4>
+<ul>
+<li>Module 18 - <a href="packages.html#module-18">Introduction to Linear Regression</a></li>
+</ul>
+</section>
+<section id="topics-9" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="topics-9">Topics</h4>
+<ul>
+<li>Correlation and covariation</li>
+<li>Basic linear modeling
+<ul>
+<li>Continuous random predictor and response variables</li>
+<li>Simple linear regression (1 predictor and 1 response variable)</li>
+<li>Estimating and interpreting regression coefficients</li>
+<li>Model I versus Model II regression</li>
+<li>The <code>lm()</code> function</li>
+</ul></li>
+</ul>
+</section>
+<section id="suggested-readings-9" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="suggested-readings-9">Suggested Readings</h4>
+<ul>
+<li><em>The Book of R</em>
+<ul>
+<li>Chapter 20 - Simple Linear Regression</li>
+</ul></li>
+</ul>
+</section>
+<section id="other-useful-readings-8" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="other-useful-readings-8">Other Useful Readings</h4>
+<ul>
+<li><em>Statistics: An Introduction Using R</em>
+<ul>
+<li>Chapter 7 - Regression</li>
+</ul></li>
+<li><em>Statistical Inference via Data Science</em>
+<ul>
+<li>Chapter 5 - Basic Regression</li>
+</ul></li>
+</ul>
+</section>
+<section id="relevant-data-camp-material-1" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="relevant-data-camp-material-1">Relevant Data Camp Material</h4>
+<ul>
+<li><em>Correlation and Regression in R</em> - Visualizing Two Variables</li>
+<li><em>Correlation and Regression in R</em> - Correlation</li>
+<li><em>Correlation and Regression in R</em> - Simple Linear Regression</li>
+<li><em>Correlation and Regression in R</em> - Interpreting Regression Models</li>
+</ul>
+</section>
+</section>
+<section id="elements-of-regression-analysis" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="elements-of-regression-analysis">Elements of Regression Analysis</h3>
+<section id="modules-10" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="modules-10">Modules</h4>
+<ul>
+<li>Module 19 - <a href="packages.html#module-19">Elements of Regression Analysis</a></li>
+</ul>
+</section>
+<section id="topics-10" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="topics-10">Topics</h4>
+<ul>
+<li>Inference in regression
+<ul>
+<li>Estimating standard errors for regression cofficients</li>
+<li>Confidence intervals and prediction intervals</li>
+<li>Residuals</li>
+</ul></li>
+<li>Model checking</li>
+<li>Partitioning of variance in linear models</li>
+<li>Data transformations</li>
+</ul>
+</section>
+<section id="suggested-readings-10" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="suggested-readings-10">Suggested Readings</h4>
+<ul>
+<li><em>Statistical Inference via Data Science</em>
+<ul>
+<li>Chapter 10 - Inference for Regression</li>
+</ul></li>
+</ul>
+</section>
+<section id="other-useful-readings-9" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="other-useful-readings-9">Other Useful Readings</h4>
+<ul>
+<li>Gotelli, N.J. &amp; Ellison, A.M. (2012). Chapter 9. Regression. <em>A Primer of Ecological Statistics, 2nd Edition.</em> Sinauer Associates, Inc.</li>
+</ul>
+</section>
+</section>
+<section id="extending-linear-regression" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="extending-linear-regression">Extending Linear Regression</h3>
+<section id="modules-11" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="modules-11">Modules</h4>
+<ul>
+<li>Module 20 - <a href="packages.html#module-20">Categorical Data Analysis</a></li>
+<li>Module 21 - <a href="packages.html#module-21">Multiple Regression and ANCOVA</a></li>
+</ul>
+</section>
+<section id="topics-11" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="topics-11">Topics</h4>
+<ul>
+<li>Regression with categorical predictors
+<ul>
+<li>One- and multiple-factor ANOVA</li>
+<li>Type I, Type II, Type III sums of squares</li>
+<li>Interaction plots to visualize changes across groups</li>
+</ul></li>
+<li>Simple categorical data analysis
+<ul>
+<li>Kruskall-Wallis tests</li>
+<li>Chi-Square tests of goodness-of-fit and independence</li>
+</ul></li>
+<li>Generating mock data with a defined correlation structure</li>
+<li>Regression with multiple predictors
+<ul>
+<li>More than one continuous predictor</li>
+<li>Combinations of continuous and categorical predictors</li>
+<li>Visualizing linear models with more than one predictor</li>
+<li>Confidence intervals and prediction in multiple regression</li>
+<li>Interactions between predictors</li>
+<li>Interaction plots to visualize changes across groups</li>
+</ul></li>
+</ul>
+</section>
+<section id="suggested-readings-11" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="suggested-readings-11">Suggested Readings</h4>
+<ul>
+<li><em>The Book of R</em>
+<ul>
+<li>Chapter 19 - Analysis of Variance</li>
+<li>Chapter 21 - Multiple Linear Regression</li>
+</ul></li>
+</ul>
+</section>
+<section id="other-useful-readings-10" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="other-useful-readings-10">Other Useful Readings</h4>
+<ul>
+<li>Gotelli, N.J. &amp; Ellison, A.M. (2012). Chapter 10. The analysis of variance. <em>A Primer of Ecological Statistics, 2nd Edition.</em> Sunderland, Sinauer Associates, Inc.</li>
+<li><em>Statistics: An Introduction Using R</em>
+<ul>
+<li>Chapter 8 - Analysis of Variance</li>
+<li>Chapter 9 - Analysis of Covariance</li>
+</ul></li>
+</ul>
+</section>
+</section>
+<section id="model-selection" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="model-selection">Model Selection</h3>
+<section id="modules-12" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="modules-12">Modules</h4>
+<ul>
+<li>Module 22 - <a href="packages.html#module-22">Model Selection in Linear Regression</a></li>
+</ul>
+</section>
+<section id="topics-12" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="topics-12">Topics</h4>
+<ul>
+<li>Model simplification and selection
+<ul>
+<li>Partial F tests for comparing models</li>
+<li>Forward and backward selection</li>
+<li>Information criteria considerations for comparing models</li>
+</ul></li>
+<li>The Akaike Information Criterion (AIC) and others
+<ul>
+<li>{stats} <code>step()</code></li>
+<li>{MASS} <code>stepwise()</code></li>
+<li>{AICcmodavg}</li>
+</ul></li>
+</ul>
+</section>
+<section id="suggested-readings-12" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="suggested-readings-12">Suggested Readings</h4>
+<ul>
+<li><em>The Book of R</em>
+<ul>
+<li>Chapter 22 - Linear Model Selection and Diagnostics</li>
+</ul></li>
+</ul>
+</section>
+<section id="other-useful-readings-11" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="other-useful-readings-11">Other Useful Readings</h4>
+<ul>
+<li>Package descriptions for {AICcmodavg} and {MuMIn}</li>
+</ul>
+</section>
+<section id="relevant-data-camp-material-2" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="relevant-data-camp-material-2">Relevant Data Camp Material</h4>
+<ul>
+<li><em>Correlation and Regression in R</em> - Model Fit</li>
+</ul>
+</section>
+</section>
+<section id="linear-and-mixed-effects-modeling" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="linear-and-mixed-effects-modeling">Linear and Mixed Effects Modeling</h3>
+<section id="modules-13" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="modules-13">Modules</h4>
+<ul>
+<li>Module 23 - <a href="packages.html#module-23">Generalized Linear Models</a></li>
+<li>Module 24 - <a href="packages.html#module-24">Mixed Effects or Multilevel Modeling</a></li>
+</ul>
+</section>
+<section id="topics-13" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="topics-13">Topics</h4>
+<ul>
+<li>Generalized linear models
+<ul>
+<li>Other response variables types (e.g., counts, binary responses)</li>
+<li>Logistic regression, multiple logistic regression</li>
+<li>Log-linear modeling</li>
+<li>Likelihood ratio tests</li>
+</ul></li>
+<li>Introduction to mixed effects modeling
+<ul>
+<li>Combining fixed and random factors</li>
+</ul></li>
+<li>Assessing model fit for GLMs and mixed models</li>
+</ul>
+</section>
+<section id="suggested-readings-13" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="suggested-readings-13">Suggested Readings</h4>
+<ul>
+<li><em>R in Action</em>
+<ul>
+<li>Chapter 13 - Generalized Linear Models</li>
+</ul></li>
+<li>Bolker, B.M., Brooks, M.E., Clark, C.J., Geange, S.W., Poulsen, J.R., Stevens, M.H.H., White, &amp; J.-S.S. (2008) Generalized linear mixed models: A practical guide for ecology and evolution. <em>Trends in Ecology and Evolution</em> 24: 127-135.</li>
+</ul>
+</section>
+<section id="other-useful-readings-12" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="other-useful-readings-12">Other Useful Readings</h4>
+<ul>
+<li><em>Statistics: An Introduction Using R</em>
+<ul>
+<li>Chapter 12 - Other Response Variables</li>
+</ul></li>
+<li>Bolker, B.M. (2008). Chapter 9. Standard statistics revisited. In: <em>Ecological Models and Data in R.</em> Princeton, NJ: Princeton University Press.</li>
+<li>Quinn, G.P. &amp; Keough, M.J. (2002). Chapter 13. Generalized linear models and logistic regression. <em>Experimental Design and Data Analysis for Biologists.</em> Cambridge, UK: Cambridge University Press.</li>
+</ul>
 <!-- ## Part III - Miscellany {.unnumbered} -->
 <!-- ### [Building Custom ***R*** Packages](#building-r-packages) {.unnumbered .unlisted} -->
 <!-- #### Suggested Readings {.unnumbered} -->
@@ -1929,171 +2078,171 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb1-332"><a href="#cb1-332" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>Chapter 5 - Single Samples</span>
 <span id="cb1-333"><a href="#cb1-333" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>Chapter 6 - Two Samples</span>
 <span id="cb1-334"><a href="#cb1-334" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-335"><a href="#cb1-335" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- #### Relevant Data Camp Material {.unnumbered} --&gt;</span></span>
+<span id="cb1-335"><a href="#cb1-335" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Relevant Data Camp Material {.unnumbered}</span></span>
 <span id="cb1-336"><a href="#cb1-336" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-337"><a href="#cb1-337" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- - *Foundations of Inference* - Introduction to Ideas of Inference --&gt;</span></span>
-<span id="cb1-338"><a href="#cb1-338" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- - *Foundations of Inference* - Confidence Intervals --&gt;</span></span>
-<span id="cb1-339"><a href="#cb1-339" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- - *Foundations of Inference* - Completing a Randomization Test --&gt;</span></span>
-<span id="cb1-340"><a href="#cb1-340" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- - *Foundations of Inference* - Hypothesis Testing Errors --&gt;</span></span>
+<span id="cb1-337"><a href="#cb1-337" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>*Foundations of Inference* - Introduction to Ideas of Inference</span>
+<span id="cb1-338"><a href="#cb1-338" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>*Foundations of Inference* - Confidence Intervals</span>
+<span id="cb1-339"><a href="#cb1-339" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>*Foundations of Inference* - Completing a Randomization Test</span>
+<span id="cb1-340"><a href="#cb1-340" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>*Foundations of Inference* - Hypothesis Testing Errors</span>
 <span id="cb1-341"><a href="#cb1-341" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-342"><a href="#cb1-342" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- </span><span class="al">###</span><span class="co"> Introduction to Linear Modeling {.unnumbered} --&gt;</span></span>
+<span id="cb1-342"><a href="#cb1-342" aria-hidden="true" tabindex="-1"></a><span class="fu">### Introduction to Linear Modeling {.unnumbered}</span></span>
 <span id="cb1-343"><a href="#cb1-343" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-344"><a href="#cb1-344" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- #### Modules {.unnumbered} --&gt;</span></span>
+<span id="cb1-344"><a href="#cb1-344" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Modules {.unnumbered}</span></span>
 <span id="cb1-345"><a href="#cb1-345" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-346"><a href="#cb1-346" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- - Module 18 - [Introduction to Linear Regression](#module-18) --&gt;</span></span>
+<span id="cb1-346"><a href="#cb1-346" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Module 18 - <span class="co">[</span><span class="ot">Introduction to Linear Regression</span><span class="co">](#module-18)</span></span>
 <span id="cb1-347"><a href="#cb1-347" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-348"><a href="#cb1-348" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- #### Topics {.unnumbered} --&gt;</span></span>
+<span id="cb1-348"><a href="#cb1-348" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Topics {.unnumbered}</span></span>
 <span id="cb1-349"><a href="#cb1-349" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-350"><a href="#cb1-350" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- - Correlation and covariation --&gt;</span></span>
-<span id="cb1-351"><a href="#cb1-351" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- - Basic linear modeling --&gt;</span></span>
-<span id="cb1-352"><a href="#cb1-352" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--     - Continuous random predictor and response variables --&gt;</span></span>
-<span id="cb1-353"><a href="#cb1-353" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--     - Simple linear regression (1 predictor and 1 response variable) --&gt;</span></span>
-<span id="cb1-354"><a href="#cb1-354" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--     - Estimating and interpreting regression coefficients --&gt;</span></span>
-<span id="cb1-355"><a href="#cb1-355" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--     - Model I versus Model II regression --&gt;</span></span>
-<span id="cb1-356"><a href="#cb1-356" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--     - The `lm()` function --&gt;</span></span>
+<span id="cb1-350"><a href="#cb1-350" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Correlation and covariation</span>
+<span id="cb1-351"><a href="#cb1-351" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Basic linear modeling</span>
+<span id="cb1-352"><a href="#cb1-352" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>Continuous random predictor and response variables</span>
+<span id="cb1-353"><a href="#cb1-353" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>Simple linear regression (1 predictor and 1 response variable)</span>
+<span id="cb1-354"><a href="#cb1-354" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>Estimating and interpreting regression coefficients</span>
+<span id="cb1-355"><a href="#cb1-355" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>Model I versus Model II regression</span>
+<span id="cb1-356"><a href="#cb1-356" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>The <span class="in">`lm()`</span> function</span>
 <span id="cb1-357"><a href="#cb1-357" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-358"><a href="#cb1-358" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- #### Suggested Readings {.unnumbered} --&gt;</span></span>
+<span id="cb1-358"><a href="#cb1-358" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Suggested Readings {.unnumbered}</span></span>
 <span id="cb1-359"><a href="#cb1-359" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-360"><a href="#cb1-360" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- - *The Book of R* --&gt;</span></span>
-<span id="cb1-361"><a href="#cb1-361" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--     - Chapter 20 - Simple Linear Regression --&gt;</span></span>
+<span id="cb1-360"><a href="#cb1-360" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>*The Book of R*</span>
+<span id="cb1-361"><a href="#cb1-361" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>Chapter 20 - Simple Linear Regression</span>
 <span id="cb1-362"><a href="#cb1-362" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-363"><a href="#cb1-363" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- #### Other Useful Readings {.unnumbered} --&gt;</span></span>
+<span id="cb1-363"><a href="#cb1-363" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Other Useful Readings {.unnumbered}</span></span>
 <span id="cb1-364"><a href="#cb1-364" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-365"><a href="#cb1-365" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- - *Statistics: An Introduction Using R* --&gt;</span></span>
-<span id="cb1-366"><a href="#cb1-366" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--     - Chapter 7 - Regression --&gt;</span></span>
-<span id="cb1-367"><a href="#cb1-367" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- - *Statistical Inference via Data Science* --&gt;</span></span>
-<span id="cb1-368"><a href="#cb1-368" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--     - Chapter 5 - Basic Regression --&gt;</span></span>
+<span id="cb1-365"><a href="#cb1-365" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>*Statistics: An Introduction Using R*</span>
+<span id="cb1-366"><a href="#cb1-366" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>Chapter 7 - Regression</span>
+<span id="cb1-367"><a href="#cb1-367" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>*Statistical Inference via Data Science*</span>
+<span id="cb1-368"><a href="#cb1-368" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>Chapter 5 - Basic Regression</span>
 <span id="cb1-369"><a href="#cb1-369" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-370"><a href="#cb1-370" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- #### Relevant Data Camp Material {.unnumbered} --&gt;</span></span>
+<span id="cb1-370"><a href="#cb1-370" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Relevant Data Camp Material {.unnumbered}</span></span>
 <span id="cb1-371"><a href="#cb1-371" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-372"><a href="#cb1-372" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- - *Correlation and Regression in R* - Visualizing Two Variables --&gt;</span></span>
-<span id="cb1-373"><a href="#cb1-373" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- - *Correlation and Regression in R* - Correlation --&gt;</span></span>
-<span id="cb1-374"><a href="#cb1-374" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- - *Correlation and Regression in R* - Simple Linear Regression --&gt;</span></span>
-<span id="cb1-375"><a href="#cb1-375" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- - *Correlation and Regression in R* - Interpreting Regression Models --&gt;</span></span>
+<span id="cb1-372"><a href="#cb1-372" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>*Correlation and Regression in R* - Visualizing Two Variables</span>
+<span id="cb1-373"><a href="#cb1-373" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>*Correlation and Regression in R* - Correlation</span>
+<span id="cb1-374"><a href="#cb1-374" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>*Correlation and Regression in R* - Simple Linear Regression</span>
+<span id="cb1-375"><a href="#cb1-375" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>*Correlation and Regression in R* - Interpreting Regression Models</span>
 <span id="cb1-376"><a href="#cb1-376" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-377"><a href="#cb1-377" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- </span><span class="al">###</span><span class="co"> Elements of Regression Analysis {.unnumbered} --&gt;</span></span>
+<span id="cb1-377"><a href="#cb1-377" aria-hidden="true" tabindex="-1"></a><span class="fu">### Elements of Regression Analysis {.unnumbered}</span></span>
 <span id="cb1-378"><a href="#cb1-378" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-379"><a href="#cb1-379" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- #### Modules {.unnumbered} --&gt;</span></span>
+<span id="cb1-379"><a href="#cb1-379" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Modules {.unnumbered}</span></span>
 <span id="cb1-380"><a href="#cb1-380" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-381"><a href="#cb1-381" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- - Module 19 - [Elements of Regression Analysis](#module-19) --&gt;</span></span>
+<span id="cb1-381"><a href="#cb1-381" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Module 19 - <span class="co">[</span><span class="ot">Elements of Regression Analysis</span><span class="co">](#module-19)</span></span>
 <span id="cb1-382"><a href="#cb1-382" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-383"><a href="#cb1-383" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- #### Topics {.unnumbered} --&gt;</span></span>
+<span id="cb1-383"><a href="#cb1-383" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Topics {.unnumbered}</span></span>
 <span id="cb1-384"><a href="#cb1-384" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-385"><a href="#cb1-385" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- - Inference in regression --&gt;</span></span>
-<span id="cb1-386"><a href="#cb1-386" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--     - Estimating standard errors for regression cofficients --&gt;</span></span>
-<span id="cb1-387"><a href="#cb1-387" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--     - Confidence intervals and prediction intervals --&gt;</span></span>
-<span id="cb1-388"><a href="#cb1-388" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--     - Residuals --&gt;</span></span>
-<span id="cb1-389"><a href="#cb1-389" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- - Model checking --&gt;</span></span>
-<span id="cb1-390"><a href="#cb1-390" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- - Partitioning of variance in linear models --&gt;</span></span>
-<span id="cb1-391"><a href="#cb1-391" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- - Data transformations --&gt;</span></span>
+<span id="cb1-385"><a href="#cb1-385" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Inference in regression</span>
+<span id="cb1-386"><a href="#cb1-386" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>Estimating standard errors for regression cofficients</span>
+<span id="cb1-387"><a href="#cb1-387" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>Confidence intervals and prediction intervals</span>
+<span id="cb1-388"><a href="#cb1-388" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>Residuals</span>
+<span id="cb1-389"><a href="#cb1-389" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Model checking</span>
+<span id="cb1-390"><a href="#cb1-390" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Partitioning of variance in linear models</span>
+<span id="cb1-391"><a href="#cb1-391" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Data transformations</span>
 <span id="cb1-392"><a href="#cb1-392" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-393"><a href="#cb1-393" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- #### Suggested Readings {.unnumbered} --&gt;</span></span>
+<span id="cb1-393"><a href="#cb1-393" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Suggested Readings {.unnumbered}</span></span>
 <span id="cb1-394"><a href="#cb1-394" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-395"><a href="#cb1-395" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- - *Statistical Inference via Data Science* --&gt;</span></span>
-<span id="cb1-396"><a href="#cb1-396" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--     - Chapter 10 - Inference for Regression --&gt;</span></span>
+<span id="cb1-395"><a href="#cb1-395" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>*Statistical Inference via Data Science*</span>
+<span id="cb1-396"><a href="#cb1-396" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>Chapter 10 - Inference for Regression</span>
 <span id="cb1-397"><a href="#cb1-397" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-398"><a href="#cb1-398" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- #### Other Useful Readings {.unnumbered} --&gt;</span></span>
+<span id="cb1-398"><a href="#cb1-398" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Other Useful Readings {.unnumbered}</span></span>
 <span id="cb1-399"><a href="#cb1-399" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-400"><a href="#cb1-400" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- - Gotelli, N.J. &amp; Ellison, A.M. (2012). Chapter 9. Regression. *A Primer of Ecological Statistics, 2nd Edition.* Sinauer Associates, Inc. --&gt;</span></span>
+<span id="cb1-400"><a href="#cb1-400" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Gotelli, N.J. &amp; Ellison, A.M. (2012). Chapter 9. Regression. *A Primer of Ecological Statistics, 2nd Edition.* Sinauer Associates, Inc.</span>
 <span id="cb1-401"><a href="#cb1-401" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-402"><a href="#cb1-402" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- </span><span class="al">###</span><span class="co"> Extending Linear Regression {.unnumbered} --&gt;</span></span>
+<span id="cb1-402"><a href="#cb1-402" aria-hidden="true" tabindex="-1"></a><span class="fu">### Extending Linear Regression {.unnumbered}</span></span>
 <span id="cb1-403"><a href="#cb1-403" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-404"><a href="#cb1-404" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- #### Modules {.unnumbered} --&gt;</span></span>
+<span id="cb1-404"><a href="#cb1-404" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Modules {.unnumbered}</span></span>
 <span id="cb1-405"><a href="#cb1-405" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-406"><a href="#cb1-406" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- - Module 20 - [Categorical Data Analysis](#module-20) --&gt;</span></span>
-<span id="cb1-407"><a href="#cb1-407" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- - Module 21 - [Multiple Regression and ANCOVA](#module-21) --&gt;</span></span>
+<span id="cb1-406"><a href="#cb1-406" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Module 20 - <span class="co">[</span><span class="ot">Categorical Data Analysis</span><span class="co">](#module-20)</span></span>
+<span id="cb1-407"><a href="#cb1-407" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Module 21 - <span class="co">[</span><span class="ot">Multiple Regression and ANCOVA</span><span class="co">](#module-21)</span></span>
 <span id="cb1-408"><a href="#cb1-408" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-409"><a href="#cb1-409" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- #### Topics {.unnumbered} --&gt;</span></span>
+<span id="cb1-409"><a href="#cb1-409" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Topics {.unnumbered}</span></span>
 <span id="cb1-410"><a href="#cb1-410" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-411"><a href="#cb1-411" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- - Regression with categorical predictors --&gt;</span></span>
-<span id="cb1-412"><a href="#cb1-412" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--     - One- and multiple-factor ANOVA --&gt;</span></span>
-<span id="cb1-413"><a href="#cb1-413" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--     - Type I, Type II, Type III sums of squares --&gt;</span></span>
-<span id="cb1-414"><a href="#cb1-414" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--     - Interaction plots to visualize changes across groups --&gt;</span></span>
-<span id="cb1-415"><a href="#cb1-415" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- - Simple categorical data analysis --&gt;</span></span>
-<span id="cb1-416"><a href="#cb1-416" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--     - Kruskall-Wallis tests --&gt;</span></span>
-<span id="cb1-417"><a href="#cb1-417" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--     - Chi-Square tests of goodness-of-fit and independence --&gt;</span></span>
-<span id="cb1-418"><a href="#cb1-418" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- - Generating mock data with a defined correlation structure --&gt;</span></span>
-<span id="cb1-419"><a href="#cb1-419" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- - Regression with multiple predictors --&gt;</span></span>
-<span id="cb1-420"><a href="#cb1-420" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--     - More than one continuous predictor --&gt;</span></span>
-<span id="cb1-421"><a href="#cb1-421" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--     - Combinations of continuous and categorical predictors --&gt;</span></span>
-<span id="cb1-422"><a href="#cb1-422" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--     - Visualizing linear models with more than one predictor --&gt;</span></span>
-<span id="cb1-423"><a href="#cb1-423" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--     - Confidence intervals and prediction in multiple regression --&gt;</span></span>
-<span id="cb1-424"><a href="#cb1-424" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--     - Interactions between predictors --&gt;</span></span>
-<span id="cb1-425"><a href="#cb1-425" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--     - Interaction plots to visualize changes across groups --&gt;</span></span>
+<span id="cb1-411"><a href="#cb1-411" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Regression with categorical predictors</span>
+<span id="cb1-412"><a href="#cb1-412" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>One- and multiple-factor ANOVA</span>
+<span id="cb1-413"><a href="#cb1-413" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>Type I, Type II, Type III sums of squares</span>
+<span id="cb1-414"><a href="#cb1-414" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>Interaction plots to visualize changes across groups</span>
+<span id="cb1-415"><a href="#cb1-415" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Simple categorical data analysis</span>
+<span id="cb1-416"><a href="#cb1-416" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>Kruskall-Wallis tests</span>
+<span id="cb1-417"><a href="#cb1-417" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>Chi-Square tests of goodness-of-fit and independence</span>
+<span id="cb1-418"><a href="#cb1-418" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Generating mock data with a defined correlation structure</span>
+<span id="cb1-419"><a href="#cb1-419" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Regression with multiple predictors</span>
+<span id="cb1-420"><a href="#cb1-420" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>More than one continuous predictor</span>
+<span id="cb1-421"><a href="#cb1-421" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>Combinations of continuous and categorical predictors</span>
+<span id="cb1-422"><a href="#cb1-422" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>Visualizing linear models with more than one predictor</span>
+<span id="cb1-423"><a href="#cb1-423" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>Confidence intervals and prediction in multiple regression</span>
+<span id="cb1-424"><a href="#cb1-424" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>Interactions between predictors</span>
+<span id="cb1-425"><a href="#cb1-425" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>Interaction plots to visualize changes across groups</span>
 <span id="cb1-426"><a href="#cb1-426" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-427"><a href="#cb1-427" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- #### Suggested Readings {.unnumbered} --&gt;</span></span>
+<span id="cb1-427"><a href="#cb1-427" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Suggested Readings {.unnumbered}</span></span>
 <span id="cb1-428"><a href="#cb1-428" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-429"><a href="#cb1-429" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- - *The Book of R* --&gt;</span></span>
-<span id="cb1-430"><a href="#cb1-430" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--     - Chapter 19 - Analysis of Variance --&gt;</span></span>
-<span id="cb1-431"><a href="#cb1-431" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--     - Chapter 21 - Multiple Linear Regression --&gt;</span></span>
+<span id="cb1-429"><a href="#cb1-429" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>*The Book of R*</span>
+<span id="cb1-430"><a href="#cb1-430" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>Chapter 19 - Analysis of Variance</span>
+<span id="cb1-431"><a href="#cb1-431" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>Chapter 21 - Multiple Linear Regression</span>
 <span id="cb1-432"><a href="#cb1-432" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-433"><a href="#cb1-433" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- #### Other Useful Readings {.unnumbered} --&gt;</span></span>
+<span id="cb1-433"><a href="#cb1-433" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Other Useful Readings {.unnumbered}</span></span>
 <span id="cb1-434"><a href="#cb1-434" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-435"><a href="#cb1-435" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- - Gotelli, N.J. &amp; Ellison, A.M. (2012). Chapter 10. The analysis of variance. *A Primer of Ecological Statistics, 2nd Edition.* Sunderland, Sinauer Associates, Inc. --&gt;</span></span>
-<span id="cb1-436"><a href="#cb1-436" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- - *Statistics: An Introduction Using R* --&gt;</span></span>
-<span id="cb1-437"><a href="#cb1-437" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--     - Chapter 8 - Analysis of Variance --&gt;</span></span>
-<span id="cb1-438"><a href="#cb1-438" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--     - Chapter 9 - Analysis of Covariance --&gt;</span></span>
+<span id="cb1-435"><a href="#cb1-435" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Gotelli, N.J. &amp; Ellison, A.M. (2012). Chapter 10. The analysis of variance. *A Primer of Ecological Statistics, 2nd Edition.* Sunderland, Sinauer Associates, Inc.</span>
+<span id="cb1-436"><a href="#cb1-436" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>*Statistics: An Introduction Using R*</span>
+<span id="cb1-437"><a href="#cb1-437" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>Chapter 8 - Analysis of Variance</span>
+<span id="cb1-438"><a href="#cb1-438" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>Chapter 9 - Analysis of Covariance</span>
 <span id="cb1-439"><a href="#cb1-439" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-440"><a href="#cb1-440" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- </span><span class="al">###</span><span class="co"> Model Selection {.unnumbered} --&gt;</span></span>
+<span id="cb1-440"><a href="#cb1-440" aria-hidden="true" tabindex="-1"></a><span class="fu">### Model Selection {.unnumbered}</span></span>
 <span id="cb1-441"><a href="#cb1-441" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-442"><a href="#cb1-442" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- #### Modules {.unnumbered} --&gt;</span></span>
+<span id="cb1-442"><a href="#cb1-442" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Modules {.unnumbered}</span></span>
 <span id="cb1-443"><a href="#cb1-443" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-444"><a href="#cb1-444" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- - Module 22 - [Model Selection in Linear Regression](#module-22) --&gt;</span></span>
+<span id="cb1-444"><a href="#cb1-444" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Module 22 - <span class="co">[</span><span class="ot">Model Selection in Linear Regression</span><span class="co">](#module-22)</span></span>
 <span id="cb1-445"><a href="#cb1-445" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-446"><a href="#cb1-446" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- #### Topics {.unnumbered} --&gt;</span></span>
+<span id="cb1-446"><a href="#cb1-446" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Topics {.unnumbered}</span></span>
 <span id="cb1-447"><a href="#cb1-447" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-448"><a href="#cb1-448" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- - Model simplification and selection --&gt;</span></span>
-<span id="cb1-449"><a href="#cb1-449" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--     - Partial F tests for comparing models --&gt;</span></span>
-<span id="cb1-450"><a href="#cb1-450" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--     - Forward and backward selection --&gt;</span></span>
-<span id="cb1-451"><a href="#cb1-451" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--     - Information criteria considerations for comparing models --&gt;</span></span>
-<span id="cb1-452"><a href="#cb1-452" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- - The Akaike Information Criterion (AIC) and others --&gt;</span></span>
-<span id="cb1-453"><a href="#cb1-453" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--     - {stats} `step()` --&gt;</span></span>
-<span id="cb1-454"><a href="#cb1-454" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--     - {MASS} `stepwise()` --&gt;</span></span>
-<span id="cb1-455"><a href="#cb1-455" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--     - {AICcmodavg} --&gt;</span></span>
+<span id="cb1-448"><a href="#cb1-448" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Model simplification and selection</span>
+<span id="cb1-449"><a href="#cb1-449" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>Partial F tests for comparing models</span>
+<span id="cb1-450"><a href="#cb1-450" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>Forward and backward selection</span>
+<span id="cb1-451"><a href="#cb1-451" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>Information criteria considerations for comparing models</span>
+<span id="cb1-452"><a href="#cb1-452" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>The Akaike Information Criterion (AIC) and others</span>
+<span id="cb1-453"><a href="#cb1-453" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>{stats} <span class="in">`step()`</span></span>
+<span id="cb1-454"><a href="#cb1-454" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>{MASS} <span class="in">`stepwise()`</span></span>
+<span id="cb1-455"><a href="#cb1-455" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>{AICcmodavg}</span>
 <span id="cb1-456"><a href="#cb1-456" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-457"><a href="#cb1-457" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- #### Suggested Readings {.unnumbered} --&gt;</span></span>
+<span id="cb1-457"><a href="#cb1-457" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Suggested Readings {.unnumbered}</span></span>
 <span id="cb1-458"><a href="#cb1-458" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-459"><a href="#cb1-459" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- - *The Book of R* --&gt;</span></span>
-<span id="cb1-460"><a href="#cb1-460" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--     - Chapter 22 - Linear Model Selection and Diagnostics --&gt;</span></span>
+<span id="cb1-459"><a href="#cb1-459" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>*The Book of R*</span>
+<span id="cb1-460"><a href="#cb1-460" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>Chapter 22 - Linear Model Selection and Diagnostics</span>
 <span id="cb1-461"><a href="#cb1-461" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-462"><a href="#cb1-462" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- #### Other Useful Readings {.unnumbered} --&gt;</span></span>
+<span id="cb1-462"><a href="#cb1-462" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Other Useful Readings {.unnumbered}</span></span>
 <span id="cb1-463"><a href="#cb1-463" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-464"><a href="#cb1-464" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- - Package descriptions for {AICcmodavg} and {MuMIn} --&gt;</span></span>
+<span id="cb1-464"><a href="#cb1-464" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Package descriptions for {AICcmodavg} and {MuMIn}</span>
 <span id="cb1-465"><a href="#cb1-465" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-466"><a href="#cb1-466" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- #### Relevant Data Camp Material {.unnumbered} --&gt;</span></span>
+<span id="cb1-466"><a href="#cb1-466" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Relevant Data Camp Material {.unnumbered}</span></span>
 <span id="cb1-467"><a href="#cb1-467" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-468"><a href="#cb1-468" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- - *Correlation and Regression in R* - Model Fit --&gt;</span></span>
+<span id="cb1-468"><a href="#cb1-468" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>*Correlation and Regression in R* - Model Fit</span>
 <span id="cb1-469"><a href="#cb1-469" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-470"><a href="#cb1-470" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- </span><span class="al">###</span><span class="co"> Linear and Mixed Effects Modeling {.unnumbered} --&gt;</span></span>
+<span id="cb1-470"><a href="#cb1-470" aria-hidden="true" tabindex="-1"></a><span class="fu">### Linear and Mixed Effects Modeling {.unnumbered}</span></span>
 <span id="cb1-471"><a href="#cb1-471" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-472"><a href="#cb1-472" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- #### Modules {.unnumbered} --&gt;</span></span>
+<span id="cb1-472"><a href="#cb1-472" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Modules {.unnumbered}</span></span>
 <span id="cb1-473"><a href="#cb1-473" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-474"><a href="#cb1-474" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- - Module 23 - [Generalized Linear Models](#module-23) --&gt;</span></span>
-<span id="cb1-475"><a href="#cb1-475" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- - Module 24 - [Mixed Effects or Multilevel Modeling](#module-24) --&gt;</span></span>
+<span id="cb1-474"><a href="#cb1-474" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Module 23 - <span class="co">[</span><span class="ot">Generalized Linear Models</span><span class="co">](#module-23)</span></span>
+<span id="cb1-475"><a href="#cb1-475" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Module 24 - <span class="co">[</span><span class="ot">Mixed Effects or Multilevel Modeling</span><span class="co">](#module-24)</span></span>
 <span id="cb1-476"><a href="#cb1-476" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-477"><a href="#cb1-477" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- #### Topics {.unnumbered} --&gt;</span></span>
+<span id="cb1-477"><a href="#cb1-477" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Topics {.unnumbered}</span></span>
 <span id="cb1-478"><a href="#cb1-478" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-479"><a href="#cb1-479" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- - Generalized linear models --&gt;</span></span>
-<span id="cb1-480"><a href="#cb1-480" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--     - Other response variables types (e.g., counts, binary responses) --&gt;</span></span>
-<span id="cb1-481"><a href="#cb1-481" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--     - Logistic regression, multiple logistic regression --&gt;</span></span>
-<span id="cb1-482"><a href="#cb1-482" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--     - Log-linear modeling --&gt;</span></span>
-<span id="cb1-483"><a href="#cb1-483" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--     - Likelihood ratio tests --&gt;</span></span>
-<span id="cb1-484"><a href="#cb1-484" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- - Introduction to mixed effects modeling --&gt;</span></span>
-<span id="cb1-485"><a href="#cb1-485" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--     - Combining fixed and random factors --&gt;</span></span>
-<span id="cb1-486"><a href="#cb1-486" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- - Assessing model fit for GLMs and mixed models --&gt;</span></span>
+<span id="cb1-479"><a href="#cb1-479" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Generalized linear models</span>
+<span id="cb1-480"><a href="#cb1-480" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>Other response variables types (e.g., counts, binary responses)</span>
+<span id="cb1-481"><a href="#cb1-481" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>Logistic regression, multiple logistic regression</span>
+<span id="cb1-482"><a href="#cb1-482" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>Log-linear modeling</span>
+<span id="cb1-483"><a href="#cb1-483" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>Likelihood ratio tests</span>
+<span id="cb1-484"><a href="#cb1-484" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Introduction to mixed effects modeling</span>
+<span id="cb1-485"><a href="#cb1-485" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>Combining fixed and random factors</span>
+<span id="cb1-486"><a href="#cb1-486" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Assessing model fit for GLMs and mixed models</span>
 <span id="cb1-487"><a href="#cb1-487" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-488"><a href="#cb1-488" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- #### Suggested Readings {.unnumbered} --&gt;</span></span>
+<span id="cb1-488"><a href="#cb1-488" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Suggested Readings {.unnumbered}</span></span>
 <span id="cb1-489"><a href="#cb1-489" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-490"><a href="#cb1-490" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- - *R in Action* --&gt;</span></span>
-<span id="cb1-491"><a href="#cb1-491" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--     - Chapter 13 - Generalized Linear Models --&gt;</span></span>
-<span id="cb1-492"><a href="#cb1-492" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- - Bolker, B.M., Brooks, M.E., Clark, C.J., Geange, S.W., Poulsen, J.R., Stevens, M.H.H., White, &amp; J.-S.S. (2008) Generalized linear mixed models: A practical guide for ecology and evolution. *Trends in Ecology and Evolution* 24: 127-135. --&gt;</span></span>
+<span id="cb1-490"><a href="#cb1-490" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>*R in Action*</span>
+<span id="cb1-491"><a href="#cb1-491" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>Chapter 13 - Generalized Linear Models</span>
+<span id="cb1-492"><a href="#cb1-492" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Bolker, B.M., Brooks, M.E., Clark, C.J., Geange, S.W., Poulsen, J.R., Stevens, M.H.H., White, &amp; J.-S.S. (2008) Generalized linear mixed models: A practical guide for ecology and evolution. *Trends in Ecology and Evolution* 24: 127-135.</span>
 <span id="cb1-493"><a href="#cb1-493" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-494"><a href="#cb1-494" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- #### Other Useful Readings {.unnumbered} --&gt;</span></span>
+<span id="cb1-494"><a href="#cb1-494" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Other Useful Readings {.unnumbered}</span></span>
 <span id="cb1-495"><a href="#cb1-495" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-496"><a href="#cb1-496" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- - *Statistics: An Introduction Using R* --&gt;</span></span>
-<span id="cb1-497"><a href="#cb1-497" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--     - Chapter 12 - Other Response Variables --&gt;</span></span>
-<span id="cb1-498"><a href="#cb1-498" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- - Bolker, B.M. (2008). Chapter 9. Standard statistics revisited. In: *Ecological Models and Data in R.* Princeton, NJ: Princeton University Press. --&gt;</span></span>
-<span id="cb1-499"><a href="#cb1-499" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- - Quinn, G.P. &amp; Keough, M.J. (2002). Chapter 13. Generalized linear models and logistic regression. *Experimental Design and Data Analysis for Biologists.* Cambridge, UK: Cambridge University Press. --&gt;</span></span>
+<span id="cb1-496"><a href="#cb1-496" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>*Statistics: An Introduction Using R*</span>
+<span id="cb1-497"><a href="#cb1-497" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>Chapter 12 - Other Response Variables</span>
+<span id="cb1-498"><a href="#cb1-498" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Bolker, B.M. (2008). Chapter 9. Standard statistics revisited. In: *Ecological Models and Data in R.* Princeton, NJ: Princeton University Press.</span>
+<span id="cb1-499"><a href="#cb1-499" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Quinn, G.P. &amp; Keough, M.J. (2002). Chapter 13. Generalized linear models and logistic regression. *Experimental Design and Data Analysis for Biologists.* Cambridge, UK: Cambridge University Press.</span>
 <span id="cb1-500"><a href="#cb1-500" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-501"><a href="#cb1-501" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- ## Part III - Miscellany {.unnumbered} --&gt;</span></span>
 <span id="cb1-502"><a href="#cb1-502" aria-hidden="true" tabindex="-1"></a></span>

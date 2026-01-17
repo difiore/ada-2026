@@ -6,7 +6,7 @@
 
 ## Objectives
 
-> The goal of this module is review important conceptual aspects of the ***R*** language as well as practices for updating ***R*** components of interest.
+> The goal of this module is to review important conceptual aspects of the ***R*** language as well as practices for updating ***R*** components of interest.
 
 ## ***R*** Objects
 
@@ -392,6 +392,7 @@ packageStatus() # shows number of installed packages
 If you want to save a dataframe of all your installed packages, you can run...
 
 ```{r}
+#| eval: FALSE
 my_packages <- as.data.frame(installed.packages())
 write.csv(my_packages, "~/Desktop/my_packages.csv")
 ```

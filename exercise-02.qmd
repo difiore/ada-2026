@@ -12,7 +12,7 @@ Follow the instructions outlined as **Method 1** in [**Module 6**](#module-06) t
 
 #### Step 1 {.unnumbered}
 
-- Set up a new ***GitHub*** repo in your ***GitHub*** workspace named "exercise-02a".
+- Set up a new ***GitHub*** repo in your ***GitHub*** workspace named "exercise-02a" (be sure to use this name and capitalization EXACTLY).
 
 ```{r}
 #| echo: false
@@ -48,7 +48,7 @@ knitr::include_graphics("img/add-collaborator.png")
 
 #### Step 4 {.unnumbered}
 
-- Create an new **RMarkdown** or **Quarto** document locally with notes you take in class this week - maybe call it "notes.qmd" or "notes.Rmd"? - including at least some expository text written in **Markdown** and at least one ***R*** code block. If you make a ".qmd" document, I recommend unchecking "Use visual markdown editor", though that is your choice.
+- Create a new **Quarto** or **RMarkdown** document locally with notes you take in class this week -- call it "notes.qmd" or "notes.Rmd" -- including at least some expository text written in **Markdown** and at least one ***R*** code block. If you make a ".qmd" document, I recommend unchecking "Use visual markdown editor", though that is your choice.
 
 ```{r}
 #| echo: false
@@ -71,7 +71,7 @@ knitr::include_graphics("img/new-qmd.png")
 ```{r}
 #| echo: false
 #| out-width: "75%"
-knitr::include_graphics("img/knit-Rmd.png")
+knitr::include_graphics("img/render-qmd.png")
 ```
 
 ... OR ...
@@ -79,7 +79,7 @@ knitr::include_graphics("img/knit-Rmd.png")
 ```{r}
 #| echo: false
 #| out-width: "75%"
-knitr::include_graphics("img/render-qmd.png")
+knitr::include_graphics("img/knit-Rmd.png")
 ```
 
 #### Step 6 {.unnumbered}
@@ -100,7 +100,7 @@ This is an alternative workflow to that described above, which also works well. 
 
 #### Step 1 {.unnumbered}
 
-- From within ***RStudio***, create a new project called "exercise-2b" in a brand new directory also called "exercise-2b".
+- From within ***RStudio***, create a new project called "exercise-2b" in a brand new directory also called "exercise-2b" (be sure to use this name and capitalization EXACTLY).
 
 ```{r}
 #| echo: false
@@ -120,7 +120,7 @@ knitr::include_graphics("img/choose-project-type.png")
 knitr::include_graphics("img/exercise-2b.png")
 ```
 
-> **NOTE** Be sure to check the box marked "Create a git repository" pressing the "Create Project" button.
+> **NOTE**: Be sure to check the box marked "Create a git repository" before pressing the "Create Project" button.
 
 #### Step 2 {.unnumbered}
 

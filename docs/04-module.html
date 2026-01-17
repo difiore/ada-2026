@@ -307,6 +307,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text">Exercise 01</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./exercise-02.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Exercise 02</span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -391,7 +397,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="objectives" class="level2" data-number="4.2">
 <h2 data-number="4.2" class="anchored" data-anchor-id="objectives"><span class="header-section-number">4.2</span> Objectives</h2>
 <blockquote class="blockquote">
-<p>The goal of this module is review important conceptual aspects of the <strong><em>R</em></strong> language as well as practices for updating <strong><em>R</em></strong> components of interest.</p>
+<p>The goal of this module is to review important conceptual aspects of the <strong><em>R</em></strong> language as well as practices for updating <strong><em>R</em></strong> components of interest.</p>
 </blockquote>
 </section>
 <section id="r-objects" class="level2" data-number="4.3">
@@ -780,7 +786,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </details>
 <div class="cell-output cell-output-stdout">
 <details><summary>Show Output</summary>
-<pre class="details" data-summary="Show Output"><code>## [1] 79.97224</code></pre>
+<pre class="details" data-summary="Show Output"><code>## [1] 79.94492</code></pre>
 </details>
 </div>
 <details class="code-fold">
@@ -789,7 +795,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </details>
 <div class="cell-output cell-output-stdout">
 <details><summary>Show Output</summary>
-<pre class="details" data-summary="Show Output"><code>## [1] 9.901371</code></pre>
+<pre class="details" data-summary="Show Output"><code>## [1] 10.08662</code></pre>
 </details>
 </div>
 </div>
@@ -1426,7 +1432,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb100-6"><a href="#cb100-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb100-7"><a href="#cb100-7" aria-hidden="true" tabindex="-1"></a><span class="fu">## Objectives</span></span>
 <span id="cb100-8"><a href="#cb100-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb100-9"><a href="#cb100-9" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; The goal of this module is review important conceptual aspects of the ***R*** language as well as practices for updating ***R*** components of interest.</span></span>
+<span id="cb100-9"><a href="#cb100-9" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; The goal of this module is to review important conceptual aspects of the ***R*** language as well as practices for updating ***R*** components of interest.</span></span>
 <span id="cb100-10"><a href="#cb100-10" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb100-11"><a href="#cb100-11" aria-hidden="true" tabindex="-1"></a><span class="fu">## ***R*** Objects</span></span>
 <span id="cb100-12"><a href="#cb100-12" aria-hidden="true" tabindex="-1"></a></span>
@@ -1812,28 +1818,29 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb100-448"><a href="#cb100-448" aria-hidden="true" tabindex="-1"></a>If you want to save a dataframe of all your installed packages, you can run...</span>
 <span id="cb100-449"><a href="#cb100-449" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb100-452"><a href="#cb100-452" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb100-453"><a href="#cb100-453" aria-hidden="true" tabindex="-1"></a>my_packages <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(<span class="fu">installed.packages</span>())</span>
-<span id="cb100-454"><a href="#cb100-454" aria-hidden="true" tabindex="-1"></a><span class="fu">write.csv</span>(my_packages, <span class="st">"~/Desktop/my_packages.csv"</span>)</span>
-<span id="cb100-455"><a href="#cb100-455" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb100-456"><a href="#cb100-456" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb100-457"><a href="#cb100-457" aria-hidden="true" tabindex="-1"></a>Often, packages build for an earlier version of ***R*** will work fine following an upgrade to a new version, but sometimes they do not. In that case, you can use the <span class="in">`rebuild()`</span> function from the {renv} package to recompile each of your packages (and, by default, their dependencies)</span>
-<span id="cb100-458"><a href="#cb100-458" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb100-461"><a href="#cb100-461" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb100-462"><a href="#cb100-462" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
-<span id="cb100-463"><a href="#cb100-463" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(renv)</span>
-<span id="cb100-464"><a href="#cb100-464" aria-hidden="true" tabindex="-1"></a><span class="fu">rebuild</span>(<span class="at">packages =</span> my_packages<span class="sc">$</span>Package)</span>
-<span id="cb100-465"><a href="#cb100-465" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb100-466"><a href="#cb100-466" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb100-467"><a href="#cb100-467" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; **NOTE:** With lots of installed packages, this can take some time! You can specify, instead, a single package or a shorter vector of packages using the </span><span class="in">`packages =`</span><span class="at"> argument.</span></span>
-<span id="cb100-468"><a href="#cb100-468" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb100-469"><a href="#cb100-469" aria-hidden="true" tabindex="-1"></a>---</span>
-<span id="cb100-470"><a href="#cb100-470" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb100-471"><a href="#cb100-471" aria-hidden="true" tabindex="-1"></a><span class="fu">## Concept Review {.unnumbered}</span></span>
-<span id="cb100-472"><a href="#cb100-472" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb100-473"><a href="#cb100-473" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Characteristics of ***R*** objects: <span class="in">`class()`</span>, <span class="in">`mode()`</span>, <span class="in">`typeof()`</span>, <span class="in">`str()`</span>, <span class="in">`attributes()`</span>, <span class="in">`dplyr::glimpse()`</span></span>
-<span id="cb100-474"><a href="#cb100-474" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Using scripts: <span class="in">`source()`</span></span>
-<span id="cb100-475"><a href="#cb100-475" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>".RData" and ".Rhistory" files</span>
-<span id="cb100-476"><a href="#cb100-476" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Updating ***R*** and installed packages</span>
+<span id="cb100-453"><a href="#cb100-453" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: FALSE</span></span>
+<span id="cb100-454"><a href="#cb100-454" aria-hidden="true" tabindex="-1"></a>my_packages <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(<span class="fu">installed.packages</span>())</span>
+<span id="cb100-455"><a href="#cb100-455" aria-hidden="true" tabindex="-1"></a><span class="fu">write.csv</span>(my_packages, <span class="st">"~/Desktop/my_packages.csv"</span>)</span>
+<span id="cb100-456"><a href="#cb100-456" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb100-457"><a href="#cb100-457" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb100-458"><a href="#cb100-458" aria-hidden="true" tabindex="-1"></a>Often, packages build for an earlier version of ***R*** will work fine following an upgrade to a new version, but sometimes they do not. In that case, you can use the <span class="in">`rebuild()`</span> function from the {renv} package to recompile each of your packages (and, by default, their dependencies)</span>
+<span id="cb100-459"><a href="#cb100-459" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb100-462"><a href="#cb100-462" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb100-463"><a href="#cb100-463" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
+<span id="cb100-464"><a href="#cb100-464" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(renv)</span>
+<span id="cb100-465"><a href="#cb100-465" aria-hidden="true" tabindex="-1"></a><span class="fu">rebuild</span>(<span class="at">packages =</span> my_packages<span class="sc">$</span>Package)</span>
+<span id="cb100-466"><a href="#cb100-466" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb100-467"><a href="#cb100-467" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb100-468"><a href="#cb100-468" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; **NOTE:** With lots of installed packages, this can take some time! You can specify, instead, a single package or a shorter vector of packages using the </span><span class="in">`packages =`</span><span class="at"> argument.</span></span>
+<span id="cb100-469"><a href="#cb100-469" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb100-470"><a href="#cb100-470" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb100-471"><a href="#cb100-471" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb100-472"><a href="#cb100-472" aria-hidden="true" tabindex="-1"></a><span class="fu">## Concept Review {.unnumbered}</span></span>
+<span id="cb100-473"><a href="#cb100-473" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb100-474"><a href="#cb100-474" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Characteristics of ***R*** objects: <span class="in">`class()`</span>, <span class="in">`mode()`</span>, <span class="in">`typeof()`</span>, <span class="in">`str()`</span>, <span class="in">`attributes()`</span>, <span class="in">`dplyr::glimpse()`</span></span>
+<span id="cb100-475"><a href="#cb100-475" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Using scripts: <span class="in">`source()`</span></span>
+<span id="cb100-476"><a href="#cb100-476" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>".RData" and ".Rhistory" files</span>
+<span id="cb100-477"><a href="#cb100-477" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Updating ***R*** and installed packages</span>
 </code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->

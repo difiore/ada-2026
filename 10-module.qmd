@@ -208,12 +208,12 @@ s
 
 ## Other Useful {dplyr} Functions
 
-- `ungroup()` - clears group metadata from a table put in place `group_by()`
-- `bind_rows()` and `bind_cols()` - adds rows and columns, respectively, to a dataframe or tibble; when binding rows, if the column names do not match, the column will still be added and missing values filled with `NA`; when binding columns, the number of rows in each dataframe needs to be the same
-- `pull()` - pulls a single variable out of a dataframe as a vector
-- `sample_n()` - randomly samples a set of "size=" rows from a dataframe with ("replace=TRUE") or without ("replace=FALSE") replacement; this function is being superceded in favor of `slice_sample()`, where an additional argument (`n=` or `prop=`) allows you to specify the number or proportion of rows, respectively, to sample randomly
-- `drop_na()` - drops rows from a dataframe that have `NA` values for any variable names passed as arguments to the function
-- `rowwise()` - allows you to explicitly perform functions on a data frame on a row-at-a-time basis, which is useful if a vectorized function does not exit
+- `ungroup()`: clears group metadata from a table put in place `group_by()`
+- `bind_rows()` and `bind_cols()`: adds rows and columns, respectively, to a dataframe or tibble; when binding rows, if the column names do not match, the column will still be added and missing values filled with `NA`; when binding columns, the number of rows in each dataframe needs to be the same
+- `pull()`: pulls a single variable out of a dataframe as a vector
+- `sample_n()`: randomly samples a set of "size=" rows from a dataframe with ("replace=TRUE") or without ("replace=FALSE") replacement; this function is being superceded in favor of `slice_sample()`, where an additional argument (`n=` or `prop=`) allows you to specify the number or proportion of rows, respectively, to sample randomly
+- `drop_na()`: drops rows from a dataframe that have `NA` values for any variable names passed as arguments to the function
+- `rowwise()`: allows you to explicitly perform functions on a data frame on a row-at-a-time basis, which is useful if a vectorized function does not exit
 
 A full list of {dplyr} functions and their descriptions is available [here](https://dplyr.tidyverse.org/reference/index.html).
 
@@ -326,6 +326,8 @@ The cheatsheet on [Data Transformation with {dplyr}](cheatsheets/data-transforma
 
 One other cool thing about the {dplyr} package is that it provides a convenient way to chain together operations on a data frame using the "forward pipe" operator (`%>%`). The `%>%` operator basically takes what is on the left-hand side (LHS) of the operator and directly applies the function call on the right-hand side (RHS) of the operator to it. That is, it "pipes" what is on the LHS of the operator directly to the first argument of the function on the right. This process allows us to build of chains of successive operations, each one being applied to the outcome of the previous operation in the chain.
 
+Because of how useful "piping" is for data wranging, newer versions of ***R*** incorporated this functionality by adding a "native" forward pipe operator (`|>`) into the {base} package. In the code below, you could use `|>` in lieu of `%>%`.
+
 ```{r}
 #| echo: false
 #| out-width: "25%"
@@ -342,7 +344,7 @@ knitr::include_graphics("img/MagrittePipe.jpg")
 
 ```{r}
 # this...
-d %>% select(Scientific_Name, Body_mass_female_mean) %>% head()
+d %>% select(Scientific_Name, Body_mass_female_mean) |> head()
 # is equivalent to...
 head(select(d,Scientific_Name, Body_mass_female_mean))
 ```
@@ -369,7 +371,7 @@ s <- mutate(d, Binomial = paste(Genus, Species, sep = " ")) %>%
          Body_mass_female_mean,
          Body_mass_male_mean,
          Mass_Dimorphism) %>%
-  group_by(Family) %>%
+  group_by(Family) |>
   summarise(
     avgF = mean(Body_mass_female_mean, na.rm = TRUE),
     avgM = mean(Body_mass_male_mean, na.rm = TRUE),
@@ -379,17 +381,17 @@ s <- mutate(d, Binomial = paste(Genus, Species, sep = " ")) %>%
 s
 ```
 
-There are several other, very cool, "special case" pipe operators that are useful in particular situations. These are available from the {magrittr} package. [Actually, the functionality of the forward pipe operator also comes from the {magrittr} package, but it is replicated in {dplyr}.]
+There are several other, very cool, "special case" pipe operators that are useful in particular situations. These are available from the {magrittr} package. [Actually, the functionality of the original forward pipe operator (`%>%`) also comes from the {magrittr} package, but it is replicated in {dplyr}.]
 
-- The "tee" pipe (`%T>%`) allows you to pipe the outcome of a process into a new expression (just like the forward pipe operator does) *and* to simultaneously return the original value instead of the forward-piped result to an intermediate expression. This is useful, for example, for printing out or plotting intermediate results. In the example below, we filter our data frame for just observations of the genus *Alouatta*, print those to the screen as an intermediate side effect, and pass the filtered data to the `summarise()` function.
+- The "tee" pipe (`%T>%`) operator allows you to pipe the outcome of a process into a new expression (just like the forward pipe operator does) *and* to simultaneously return the original value instead of the forward-piped result to an intermediate expression. This is useful, for example, for printing out or plotting intermediate results. In the example below, we filter our data frame for just observations of the genus *Alouatta*, print those to the screen as an intermediate side effect, and pass the filtered data to the `summarise()` function.
 
 ```{r}
-s <- filter(d, Genus == "Alouatta") %T>% print() %>%
+s <- filter(d, Genus == "Alouatta") %T>% print() |>
   summarise(avgF = mean(Body_mass_female_mean, na.rm = TRUE))
 s
 ```
 
-- The "assignment" pipe (`%<>%`) evaluates the expression on the right-hand side of the pipe operator and reassigns the resultant value to the left-hand side.
+- The "assignment" pipe (`%<>%`) operator evaluates the expression on the right-hand side of the pipe operator *and* simultaneosuly reassigns the resultant value to the left-hand side.
 
 ```{r}
 s <- filter(d, Genus == "Alouatta")
@@ -397,7 +399,7 @@ s %<>% select(Genus, Species)
 s
 ```
 
-- Finally, the "exposition" pipe (`%$%`) exposes the names *within* the object on the left-hand side of the pipe to the right-hand side expression.
+- Finally, the "exposition" pipe (`%$%`) operator exposes the names *within* the object on the left-hand side of the pipe to the right-hand side expression.
 
 ```{r}
 s <- filter(d, Genus == "Alouatta") %$% paste0(Genus, " ", Species)
@@ -406,7 +408,7 @@ s
 
 ## Dot Syntax and the Pipe
 
-Normally, when we use the forward pipe operator, the LHS of the operator is passed to the first argument of the function on the RHS. Thus, the following are all equivalent:
+Normally, when we use the forward pipe operator, the LHS of the operator is passed to the *first argument* of the function on the RHS. Thus, the following are all equivalent:
 
 ```{r}
 #| warning: false
@@ -438,7 +440,7 @@ We can also use the {magrittr} pipe's curly brace (`{}`) syntax to wrap the RHS 
 d %>% {plot(log(.$Brain_Size_Species_Mean), log(.$Body_mass_female_mean))}
 ```
 
-> **NOTE:** ***R*** recently introduced a "native" pipe operator `|>` into its {base} syntax. It behaves very similarly to the {magrittr} forward pipe, but does not support dot syntax the same way. It also requires an explicit functions call on the RHS, which means appending `()` to the end of the function name, rather than just using the name. The first version of the line below using `%>%` could be used to take the log of all **Brain_Size_Female_Mean** values in **d**, while the second version, using `|>`, needs to have `()` appended to the functions calls to work properly.
+> **NOTE:** As mentioned above, ***R*** recently introduced a "native" pipe operator (`|>`) into its {base} syntax. It behaves very similarly to the {dplyr}/{magrittr} forward pipe, **but it does not support dot syntax** the same way. It also requires an explicit function call on the RHS, which means that it is necessary to append `()` to the end of the function name, rather than just using the name. The first version of the line below using `%>%` could be used to take the log of all **Brain_Size_Female_Mean** values in **d**, while the second version using `|>` needs to have `()` appended to the functions calls to work properly.
 
 ```{r}
 d %>% select(Brain_Size_Female_Mean) %>% log %>% head
@@ -484,6 +486,6 @@ detach(package:tidyverse)
 ## Concept Review {.unnumbered}
 
 - Using {dplyr}: `select()`, `filter()`, `arrange()`, `rename()`, `mutate()`, `summarise()`, `group_by()`
-- Chaining and piping with `%>%` and other pipe operators
+- Chaining and piping with `%>%`  or `|>` and other pipe operators
 - Joining tables: `inner_join()`, `left_join()`, `right_join()`, `full_join()`
 - Using the {tidylog} package

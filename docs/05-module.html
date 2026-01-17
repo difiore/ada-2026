@@ -307,6 +307,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text">Exercise 01</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./exercise-02.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Exercise 02</span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -397,7 +403,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="objectives" class="level2" data-number="5.1">
 <h2 data-number="5.1" class="anchored" data-anchor-id="objectives"><span class="header-section-number">5.1</span> Objectives</h2>
 <blockquote class="blockquote">
-<p>To introduce the basics of working with version control systems in <strong><em>R</em></strong>, using <strong><em>git</em></strong> and <strong><em>GitHub</em></strong></p>
+<p>The goal of this module is to introduce the basics of working with version control systems in <strong><em>R</em></strong>, using <strong><em>git</em></strong> and <strong><em>GitHub</em></strong></p>
 </blockquote>
 </section>
 <section id="preliminaries" class="level2" data-number="5.2">
@@ -409,7 +415,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="version-control-systems" class="level2" data-number="5.3">
 <h2 data-number="5.3" class="anchored" data-anchor-id="version-control-systems"><span class="header-section-number">5.3</span> Version Control Systems</h2>
 <p>For any of us who work with data files and associated analyses and documents over a long period of time, it can become very complicated to keep track of the “latest version” of what we’re working on. This is especially true if we are collaborating with others on a project and need to share these things back and forth. This is a problem that software developers have been dealing with for a long time, however, and there is a robust ecosystem of “version control systems” (VCSs) out there for dealing with this problem. The basic idea behind these systems is that all of the work on a particular project is stored in a <em>repository</em> (or <em>repo</em>), and as you work on and modify files and data for the project, you “commit” your changes periodically. The VCS keeps track of what changes between commits and allows you to roll back to previous versions if need be.</p>
-<p>You can also <em>branch</em> a repository - basically, make a duplicate copy of it - and work on the new branch and then, later, merge your changes back into the <code>main</code> branch. Multiple people can each work on different branches simultaneously, and the software will take care of looking for and highlighting changes that occur on different branches so that they can be merged back in appropriately. This module will introduce you to one such system.</p>
+<p>You can also <em>branch</em> a repository – basically, make a duplicate copy of it – and work on the new branch and then, later, merge your changes back into the <code>main</code> branch. Multiple people can each work on different branches simultaneously, and the software will take care of looking for and highlighting changes that occur on different branches so that they can be merged back in appropriately. This module will introduce you to one such system.</p>
 <blockquote class="blockquote">
 <p><strong>NOTE:</strong> The source for some of the information covered below, along with a host of other valuable information about using <strong><em>R</em></strong> and <strong><em>git</em></strong>, is provided on the web book <a href="https://happygitwithr.com/"><em>Happy Git and GitHub for the useR</em></a> by Jenny Bryan (RStudio).</p>
 </blockquote>
@@ -750,7 +756,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="working-with-branches" class="level3 unnumbered">
 <h3 class="unnumbered anchored" data-anchor-id="working-with-branches">Working with Branches</h3>
-<p>So far, all of the changes you have made have been to the <code>main</code> branch of your repository, but one of the powerful features of <strong><em>git</em></strong> is that you can create different versions or <em>branches</em> of your repository to try out new things and then merge these back into the <code>main</code> branch. This feature - along with automated checking for merge conflicts created when different modifications have been made on two different branches - is what makes <strong><em>git</em></strong> and other VCSs so valuable for software development.</p>
+<p>So far, all of the changes you have made have been to the <code>main</code> branch of your repository, but one of the powerful features of <strong><em>git</em></strong> is that you can create different versions or <em>branches</em> of your repository to try out new things and then merge these back into the <code>main</code> branch. This feature – along with automated checking for merge conflicts created when different modifications have been made on two different branches – is what makes <strong><em>git</em></strong> and other VCSs so valuable for software development.</p>
 <p>Here, we are going to create a new branch of our repository, edit a file in that new branch, and then merge the changes back into the <code>main</code> branch.</p>
 <ul>
 <li>Create a new <em>branch</em> of your repository (e.g., “readme-edits”) by opening the “branch” popdown menu, typing a new branch name, and then clicking on the “Create branch:” text. This will switch you over to the new branch.</li>
@@ -1046,7 +1052,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <ul>
-<li><p>Add some new text to the file and then scroll to the bottom of the page and “commit” your changes - remember that you need to enter a commit message in the text box (or accept the default “Update README.md” that is auto-filled).</p></li>
+<li><p>Add some new text to the file and then scroll to the bottom of the page and “commit” your changes – remember that you need to enter a commit message in the text box (or accept the default “Update README.md” that is auto-filled).</p></li>
 <li><p>Return to the shell prompt inside the local directory for your repository and enter the command <code>git pull</code>. You should see something like the following, indicating that the <code>main</code> branch of the local repository has been “fast-forwarded” to the state of the remote <code>main</code> branch that is being tracked:</p></li>
 </ul>
 <div class="cell" data-layout-align="center">
@@ -1232,7 +1238,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Sometimes, getting <strong><em>git</em></strong> set up and working properly on Windows machines can be a bit tricky, but I have included information below that might be helpful if you experience difficulties. These notes and procedures were useful for me to install <strong><em>git</em></strong> on a Windows 10 PC and to connect it successfully with <strong><em>RStudio</em></strong>.</p>
 <section id="some-notes" class="level4 unnumbered">
 <h4 class="unnumbered anchored" data-anchor-id="some-notes">Some Notes</h4>
-<p>[1] When you install <strong><em>git</em></strong> and you are going through the installation dialog boxes, you can keep the defaults on all of them - just be sure to confirm that…</p>
+<p>[1] When you install <strong><em>git</em></strong> and you are going through the installation dialog boxes, you can keep the defaults on all of them – just be sure to confirm that…</p>
 <ul>
 <li>In the box about “Adjusting your PATH environment” you check the radio button to say “Git from the command line and also from 3rd party software”</li>
 </ul>
@@ -1903,7 +1909,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="fu">## Objectives</span></span>
 <span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; To introduce the basics of working with version control systems in ***R***, using ***git*** and ***GitHub***</span></span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; The goal of this module is to introduce the basics of working with version control systems in ***R***, using ***git*** and ***GitHub***</span></span>
 <span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a><span class="fu">## Preliminaries</span></span>
 <span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a></span>
@@ -1913,7 +1919,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a>For any of us who work with data files and associated analyses and documents over a long period of time, it can become very complicated to keep track of the "latest version" of what we're working on. This is especially true if we are collaborating with others on a project and need to share these things back and forth. This is a problem that software developers have been dealing with for a long time, however, and there is a robust ecosystem of "version control systems" (VCSs) out there for dealing with this problem. The basic idea behind these systems is that all of the work on a particular project is stored in a *repository* (or *repo*), and as you work on and modify files and data for the project, you "commit" your changes periodically. The VCS keeps track of what changes between commits and allows you to roll back to previous versions if need be.</span>
 <span id="cb21-14"><a href="#cb21-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-15"><a href="#cb21-15" aria-hidden="true" tabindex="-1"></a>You can also *branch* a repository - basically, make a duplicate copy of it - and work on the new branch and then, later, merge your changes back into the <span class="in">`main`</span> branch. Multiple people can each work on different branches simultaneously, and the software will take care of looking for and highlighting changes that occur on different branches so that they can be merged back in appropriately. This module will introduce you to one such system.</span>
+<span id="cb21-15"><a href="#cb21-15" aria-hidden="true" tabindex="-1"></a>You can also *branch* a repository -- basically, make a duplicate copy of it -- and work on the new branch and then, later, merge your changes back into the <span class="in">`main`</span> branch. Multiple people can each work on different branches simultaneously, and the software will take care of looking for and highlighting changes that occur on different branches so that they can be merged back in appropriately. This module will introduce you to one such system.</span>
 <span id="cb21-16"><a href="#cb21-16" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb21-17"><a href="#cb21-17" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; **NOTE:** The source for some of the information covered below, along with a host of other valuable information about using ***R*** and ***git***, is provided on the web book [*Happy Git and GitHub for the useR*](https://happygitwithr.com/) by Jenny Bryan (RStudio).</span></span>
 <span id="cb21-18"><a href="#cb21-18" aria-hidden="true" tabindex="-1"></a></span>
@@ -2210,7 +2216,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb21-351"><a href="#cb21-351" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb21-352"><a href="#cb21-352" aria-hidden="true" tabindex="-1"></a><span class="fu">### Working with Branches {.unnumbered}</span></span>
 <span id="cb21-353"><a href="#cb21-353" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-354"><a href="#cb21-354" aria-hidden="true" tabindex="-1"></a>So far, all of the changes you have made have been to the <span class="in">`main`</span> branch of your repository, but one of the powerful features of ***git*** is that you can create different versions or *branches* of your repository to try out new things and then merge these back into the `main` branch. This feature - along with automated checking for merge conflicts created when different modifications have been made on two different branches - is what makes ***git*** and other VCSs so valuable for software development.</span>
+<span id="cb21-354"><a href="#cb21-354" aria-hidden="true" tabindex="-1"></a>So far, all of the changes you have made have been to the <span class="in">`main`</span> branch of your repository, but one of the powerful features of ***git*** is that you can create different versions or *branches* of your repository to try out new things and then merge these back into the `main` branch. This feature -- along with automated checking for merge conflicts created when different modifications have been made on two different branches -- is what makes ***git*** and other VCSs so valuable for software development.</span>
 <span id="cb21-355"><a href="#cb21-355" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb21-356"><a href="#cb21-356" aria-hidden="true" tabindex="-1"></a>Here, we are going to create a new branch of our repository, edit a file in that new branch, and then merge the changes back into the <span class="in">`main`</span> branch.</span>
 <span id="cb21-357"><a href="#cb21-357" aria-hidden="true" tabindex="-1"></a></span>
@@ -2471,7 +2477,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb21-650"><a href="#cb21-650" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">include_graphics</span>(<span class="st">"img/readme-edit-again.png"</span>)</span>
 <span id="cb21-651"><a href="#cb21-651" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb21-652"><a href="#cb21-652" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-653"><a href="#cb21-653" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Add some new text to the file and then scroll to the bottom of the page and "commit" your changes - remember that you need to enter a commit message in the text box (or accept the default "Update README.md" that is auto-filled).</span>
+<span id="cb21-653"><a href="#cb21-653" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Add some new text to the file and then scroll to the bottom of the page and "commit" your changes -- remember that you need to enter a commit message in the text box (or accept the default "Update README.md" that is auto-filled).</span>
 <span id="cb21-654"><a href="#cb21-654" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb21-655"><a href="#cb21-655" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Return to the shell prompt inside the local directory for your repository and enter the command <span class="in">`git pull`</span>. You should see something like the following, indicating that the <span class="in">`main`</span> branch of the local repository has been "fast-forwarded" to the state of the remote <span class="in">`main`</span> branch that is being tracked:</span>
 <span id="cb21-656"><a href="#cb21-656" aria-hidden="true" tabindex="-1"></a></span>
@@ -2646,7 +2652,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb21-847"><a href="#cb21-847" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb21-848"><a href="#cb21-848" aria-hidden="true" tabindex="-1"></a><span class="st">#### Some Notes {.unnumbered}</span></span>
 <span id="cb21-849"><a href="#cb21-849" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-850"><a href="#cb21-850" aria-hidden="true" tabindex="-1"></a><span class="st">[1] When you install ***git*** and you are going through the installation dialog boxes, you can keep the defaults on all of them - just be sure to confirm that...</span></span>
+<span id="cb21-850"><a href="#cb21-850" aria-hidden="true" tabindex="-1"></a><span class="st">[1] When you install ***git*** and you are going through the installation dialog boxes, you can keep the defaults on all of them -- just be sure to confirm that...</span></span>
 <span id="cb21-851"><a href="#cb21-851" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb21-852"><a href="#cb21-852" aria-hidden="true" tabindex="-1"></a><span class="st">- In the box about "Adjusting your PATH environment" you check the radio button to say "Git from the command line and also from 3rd party software"</span></span>
 <span id="cb21-853"><a href="#cb21-853" aria-hidden="true" tabindex="-1"></a></span>

@@ -233,7 +233,7 @@ m[ ,8] <- c("a", "b")
 
 ## Lists and Data Frames
 
-Unlike vectors, matrices, and arrays, two other data structures - **lists** and **data frames** - can be used to group together a heterogeneous mix of ***R*** structures and objects. A single list, for example, could contain a matrix, vector of character strings, vector of factors, an array, even another list.
+Unlike vectors, matrices, and arrays, two other data structures -- **lists** and **data frames** -- can be used to group together a heterogeneous mix of ***R*** structures and objects. A single list, for example, could contain a matrix, vector of character strings, vector of factors, an array, even another list.
 
 **Lists** are created using the `list()` function where the elements to add to the list are given as arguments to the function, separated by commas. Type in the following example:
 
@@ -590,7 +590,7 @@ df[, c("sex")] # returns the variable "sex"
 str(df[, c("sex")]) # sex is a FACTOR with 2 levels
 ```
 
-The data table structure also allows us more straightforward syntax - and implements much faster algorithms - for computations on columns and for perform aggregations of data by a grouping variable.
+The data table structure also allows us more straightforward syntax -- and implements much faster algorithms -- for computations on columns and for perform aggregations of data by a grouping variable.
 
 ### "Tibbles" {.unnumbered}
 
