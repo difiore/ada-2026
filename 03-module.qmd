@@ -10,13 +10,19 @@
 
 ## ***R*** Packages
 
-One of the fantastic things about ***R***, and one of the reasons it is such a flexible tool for so many types of data analysis, is the ability to extend its functionality in a huge variety of ways with *packages*. Packages are sets of reusable ***R*** functions created by the core development team or by users and are akin to *libraries* in other programming software, like ***Python***. As of January 2020, there are over 15,300 packages that have been contributed to the most common package repository, hosted on the [Comprehensive R Archive Network (CRAN)](https://cran.r-project.org/) site.
+One of the fantastic things about ***R***, and one of the reasons it is such a flexible tool for so many types of data analysis, is the ability to extend its functionality in a huge variety of ways with *packages*. Packages are sets of reusable ***R*** functions created by the core development team or by users and are akin to *libraries* in other programming software, like ***Python***. As of January 2026, there are almost 23,000(!) packages that have been contributed to the most common package repository, hosted on the [Comprehensive R Archive Network (CRAN)](https://cran.r-project.org/) site.
 
-From the console prompt, packages can be installed into ***R*** (using the `install.packages()` function, with the name of the package in parentheses) and then loaded (using the `require()` or `library()` functions), which then gives the user access to the functions contained therein. Both ***RStudio*** and the base ***R*** GUIs for MacOS and Windows have built-in package managers that allow you to search for and install packages.
+From the console prompt, packages can be installed into ***R*** (using the `install.packages()` function, with the name of the package included in quotation marks inside the parentheses). Once installed, a package can be loaded into a user's workspace (using the `library()` or `require()` functions), which then gives the user access to all of the functions contained therein, as well as function documentation, datasets, and code vignettes. Both ***RStudio*** and the base ***R*** GUIs for MacOS and Windows have built-in "package managers" that allow you to search for and install packages.
 
-Each package includes a *namespace* associated with the functions contained therein, and those functions are loaded into their own, separate ***R*** *environments*, distinct from the global environment, where the variables we assigned values to in [**Module 01**](#module-01) were created. An *environment* can be thought of as a collection of objects (functions, variables etc.) associated either globally, with the ***R*** interpreter (the "R_GlobalEnv") or with a particular package and its namespace. In ***RStudio***, you can see all of the objects associated with a particular environment in the **Environment** tab.
+Each package includes a *namespace* associated with the functions contained therein, and those functions are loaded into their own, separate ***R*** *environments*, distinct from the **global** environment, which is where the variables we assigned values to in [**Module 01**](#module-01) were created. An *environment* can be thought of as a collection of objects (functions, data objects, variables, etc.) associated either globally, with the ***R*** interpreter (the "R_GlobalEnv"), or with a particular package and its namespace. In ***RStudio***, you can see all of the objects associated with a particular environment by using the **Environment** tab and selecting the environment of interest from the popdown menu.
 
-If a package is loaded that has a function with the same name as one in a previously loaded package or in base ***R***, then the older function will be *masked* and the newer will be used if called by a user. This is because whenever an object is referenced in a command, the ***R*** interpreter searches for that object in various loaded environments in a particular order and operates on the first one it encounters. The global environment is searched first, followed by the environments associated with each loaded package in *reverse chronological order* of when they are loaded and ending with the base ***R*** environment.
+```{r}
+#| echo: false
+#| out-width: "75%"
+knitr::include_graphics("img/environments.png")
+```
+
+If a package is loaded that has a function with the same name as one in a previously loaded package or in base ***R***, then the older function will be *masked* and the newer will be used if called by a user. This is because whenever an object is referenced in a command, the ***R*** interpreter searches for that object in various loaded environments in a particular order and operates on the first one it encounters. The global environment is searched first, followed by the environments associated with each loaded package in *reverse chronological order* of when they were loaded and ending with the base ***R*** environment.
 
 ```{r}
 #| echo: false
@@ -34,7 +40,7 @@ FROM: Wickham (2019). *Advanced R, Second Edition.* Chapman & Hall/CRC.
 <br>
 :::
 
-However, functions from different packages with the same name can be called explicitly by using the `::` operator, using the construct `package-name::function` to access the desired namespace and environment. A particular function can be called in this way even if the package as a whole has not been loaded into ***R*** using `library()` or `require()`. The `search()` function can be used to return a vector of environment names in the order they will be searched.
+However, functions from different packages with the same name can be called explicitly by using the `::` operator, using the construct `package-name::function()` to access the desired namespace and environment. A particular function can be called in this way as long as the user has installed the package, i.e., even if the package has not been loaded into ***R*** using `library()` or `require()`. The `search()` function (with no arguments) can be used to return a vector of environment names in the order they will be searched.
 
 ### Installing Packages {.unnumbered}
 
@@ -46,8 +52,11 @@ However, functions from different packages with the same name can be called expl
 - Choose **Package Installer**.
 - Select a package repository to install from, e.g., **CRAN (binaries)**.
 - The first time you go to install packages, you will be prompted to select a mirror site (i.e., the remote server from where you can download any of the packages hosted in the selected package repository).
-- Select an install location. I usually install packages to the *system* rather than *user* level.
-- Check the box "Install dependencies".
+- Select an install location.
+
+I usually install packages to the my personal *user* library rather than at the *system* level (and, depending on permissions about software installation on your device, you may not even be able to install to a system-level library). For a user-specific installation, your library is typically located at "~/Library/R/<architecture>/<R-version>/library", where `<architecture>` refers to the processor type (e.g., "arm64") and `<R-version>` (e.g., `4.5.2`) is the version number of your ***R*** installation. The system-wide library is located at "/Library/Frameworks/R.framework/Versions/<R-version>/Resources/library" and is used to make packages accessible to all users on the system. It often requires administrator privileges to install packages to the system-wide library.
+
+- Check the box "Install dependencies" to make sure that any missing dependencies are also installed by default.
 - Select a package to install.
 
 #### Using the base Windows GUI {.unnumbered}
@@ -56,18 +65,19 @@ However, functions from different packages with the same name can be called expl
 - Choose **Install package(s)...**.
 - By default, the package repository that you will install from is **CRAN (binaries)**.
 - The first time you go to install packages, you will be prompted to select a mirror site (a.k.a., the remote server from where you can download any of the packages hosted in the selected package repository).
-- Select a package to install.
-- By default, packages are installed at the *system* level (inside of the **library** folder within your ***R*** installation), and any missing dependenices are also installed by default.
+- Select a package to install. An install location should be selected by default. Typically, this will be to a personal *user* library, which on a Windows machine is likely to be at "C:\\Users\\YourUsername\\AppData\\Local\\R\\win-library\\x.y" (where `x.y` is the ***R*** major.minor version number, e.g., "4.5"). If you have administrator privileges, then packages may be installed by default at the *system* level (inside of the **library** folder within your machine's ***R*** installation, usually at "C:\\Program Files\\R\\R-x.y.z\\library" (where `x.y.z` is the full ***R*** version number).
+
+Any missing dependencies should be installed by default.
 
 #### Using the ***R*** console prompt {.unnumbered}
 
-- Use the function `install.packages("<package name>")`, where you include, between the quotes, the name of the package you want to install. This command installs the package, by default, to the *user* level, though this can be changed by providing a path to install to using the `lib="<path>` argument. Other arguments for this function can be set to specify the repository to download from, etc.
+- Use the function `install.packages("<package name>")`, where you include, between the quotes, the name of the package you want to install. This command installs the package, by default, to a personal *user* library, though this can be changed by providing a full path to install to using the `lib="<path>` argument. Other arguments for this function can be set to specify the repository to download from, etc.
 
 #### Using ***RStudio*** {.unnumbered}
 
 - Select the **Packages** tab and then click the "Install" button.
-- A dialog box will open where you can choose where to install the package from (the central CRAN repository is typically the source you will use) and the install location on your computer.
-- You can install packages either to the *user* level library (in which case, only the user who is logged in when the package is installed will have access to it) or to the *system* library (which will make the package available for all users).
+- A dialog box will open where you can choose where to install the package from (the central CRAN repository is typically the source you will use) as well as the install location on your computer.
+- You can install packages either to a personal *user* level library (in which case, only the user who is logged in when the package is installed will have access to it) or to the *system* library (which will make the package available for all users). I typically install all of my packages at the *user* level.
 - Type the name of the package you want to install in the text field in the middle of the dialog box (code completion will list available packages that match what you are typing as you type). You can install multiple packages at the same time by separating them with a space or comma.
 - Make sure the "Install dependencies" checkbox is selected... this will automatically check whether other packages that are referenced in the package you want to install are already installed and, if not, will install them as well.
 
@@ -79,7 +89,7 @@ knitr::include_graphics("img/install-dialog.png")
 
 ### Loading and Attaching Packages {.unnumbered}
 
-Note that *installing* packages simply places them into a standard location on your computer. To actually *use* the functions they contain in an ***R*** session, you need to also load them into your ***R*** workspace.
+Note that *installing* packages simply places them into a standard location on your computer (i.e., in your personal *user* or *system* level ***R*** library directory. To actually *use* the functions they contain in an ***R*** session, you need to also load them into your ***R*** workspace.
 
 #### Using the base MacOS GUI {.unnumbered}
 
@@ -106,7 +116,7 @@ knitr::include_graphics("img/load-tidyverse.png")
 #### Using the console prompt or a script {.unnumbered}
 
 - The most common way that you will load packages is to do so either interactively at the console prompt or in a script using the command `library(<package name>)` with the package name, not in quotes, as an argument.
-- The `require()` function is nearly identical to the `library()` function except that the former is safer to use inside functions because it will not throw an error if a package is not installed. `require()` also returns a value of **TRUE** or **FALSE** depending on whether the package loaded successfully or not. However, I almost always use the `library()` function in my scripts. Using `library()` and `require()` both load a package's named components (its "namespace") and attach those to the global environments search list.
+- The `require()` function is nearly identical to the `library()` function except that the former is safer to use inside functions because it will not throw an error if a package is not installed. The `require()` function also returns a value of **TRUE** or **FALSE** depending on whether the package loaded successfully or not. However, I almost always use the `library()` function in my scripts. Using `library()` and `require()` both loads a package's named components (i.e., all of the elements in its "namespace") and attaches those components to the environments search list.
 
 > **NOTE:** When loading a package with `library()` or `require()`, the package name need *not* be in quotes, although it works if you were to do that.
 
@@ -114,7 +124,7 @@ Be aware that if a named function of a package conflicts with one in an already 
 
 ### Working with Packages {.unnumbered}
 
-- You can use either of the following to list the set of packages you have installed:
+- You can use either of the following to return a list of the set of packages you have installed:
 
     - `library()`
     - `installed.packages()`
@@ -140,7 +150,7 @@ knitr::include_graphics("img/loaded-packages.png")
 knitr::include_graphics("img/update-packages.png")
 ```
 
-- To remove installed packages from your ***R*** installation, you can use the function `remove.packages()` or click the small "x" to the right of the package name in the ***RStudio*** packages tab.
+- To remove installed packages from your ***R*** installation (i.e., to delete them from the *user* or *system* location where they have been installed), you can use the function `remove.packages()` or click the small "x" to the right of the package name in the ***RStudio*** packages tab.
 
 ```{r}
 #| echo: false

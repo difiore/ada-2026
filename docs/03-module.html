@@ -394,10 +394,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="r-packages" class="level2" data-number="3.3">
 <h2 data-number="3.3" class="anchored" data-anchor-id="r-packages"><span class="header-section-number">3.3</span> <strong><em>R</em></strong> Packages</h2>
-<p>One of the fantastic things about <strong><em>R</em></strong>, and one of the reasons it is such a flexible tool for so many types of data analysis, is the ability to extend its functionality in a huge variety of ways with <em>packages</em>. Packages are sets of reusable <strong><em>R</em></strong> functions created by the core development team or by users and are akin to <em>libraries</em> in other programming software, like <strong><em>Python</em></strong>. As of January 2020, there are over 15,300 packages that have been contributed to the most common package repository, hosted on the <a href="https://cran.r-project.org/">Comprehensive R Archive Network (CRAN)</a> site.</p>
-<p>From the console prompt, packages can be installed into <strong><em>R</em></strong> (using the <code>install.packages()</code> function, with the name of the package in parentheses) and then loaded (using the <code>require()</code> or <code>library()</code> functions), which then gives the user access to the functions contained therein. Both <strong><em>RStudio</em></strong> and the base <strong><em>R</em></strong> GUIs for MacOS and Windows have built-in package managers that allow you to search for and install packages.</p>
-<p>Each package includes a <em>namespace</em> associated with the functions contained therein, and those functions are loaded into their own, separate <strong><em>R</em></strong> <em>environments</em>, distinct from the global environment, where the variables we assigned values to in <a href="01-module.html"><strong>Module 01</strong></a> were created. An <em>environment</em> can be thought of as a collection of objects (functions, variables etc.) associated either globally, with the <strong><em>R</em></strong> interpreter (the “R_GlobalEnv”) or with a particular package and its namespace. In <strong><em>RStudio</em></strong>, you can see all of the objects associated with a particular environment in the <strong>Environment</strong> tab.</p>
-<p>If a package is loaded that has a function with the same name as one in a previously loaded package or in base <strong><em>R</em></strong>, then the older function will be <em>masked</em> and the newer will be used if called by a user. This is because whenever an object is referenced in a command, the <strong><em>R</em></strong> interpreter searches for that object in various loaded environments in a particular order and operates on the first one it encounters. The global environment is searched first, followed by the environments associated with each loaded package in <em>reverse chronological order</em> of when they are loaded and ending with the base <strong><em>R</em></strong> environment.</p>
+<p>One of the fantastic things about <strong><em>R</em></strong>, and one of the reasons it is such a flexible tool for so many types of data analysis, is the ability to extend its functionality in a huge variety of ways with <em>packages</em>. Packages are sets of reusable <strong><em>R</em></strong> functions created by the core development team or by users and are akin to <em>libraries</em> in other programming software, like <strong><em>Python</em></strong>. As of January 2026, there are almost 23,000(!) packages that have been contributed to the most common package repository, hosted on the <a href="https://cran.r-project.org/">Comprehensive R Archive Network (CRAN)</a> site.</p>
+<p>From the console prompt, packages can be installed into <strong><em>R</em></strong> (using the <code>install.packages()</code> function, with the name of the package included in quotation marks inside the parentheses). Once installed, a package can be loaded into a user’s workspace (using the <code>library()</code> or <code>require()</code> functions), which then gives the user access to all of the functions contained therein, as well as function documentation, datasets, and code vignettes. Both <strong><em>RStudio</em></strong> and the base <strong><em>R</em></strong> GUIs for MacOS and Windows have built-in “package managers” that allow you to search for and install packages.</p>
+<p>Each package includes a <em>namespace</em> associated with the functions contained therein, and those functions are loaded into their own, separate <strong><em>R</em></strong> <em>environments</em>, distinct from the <strong>global</strong> environment, which is where the variables we assigned values to in <a href="01-module.html"><strong>Module 01</strong></a> were created. An <em>environment</em> can be thought of as a collection of objects (functions, data objects, variables, etc.) associated either globally, with the <strong><em>R</em></strong> interpreter (the “R_GlobalEnv”), or with a particular package and its namespace. In <strong><em>RStudio</em></strong>, you can see all of the objects associated with a particular environment by using the <strong>Environment</strong> tab and selecting the environment of interest from the popdown menu.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="img/environments.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:75.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>If a package is loaded that has a function with the same name as one in a previously loaded package or in base <strong><em>R</em></strong>, then the older function will be <em>masked</em> and the newer will be used if called by a user. This is because whenever an object is referenced in a command, the <strong><em>R</em></strong> interpreter searches for that object in various loaded environments in a particular order and operates on the first one it encounters. The global environment is searched first, followed by the environments associated with each loaded package in <em>reverse chronological order</em> of when they were loaded and ending with the base <strong><em>R</em></strong> environment.</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
@@ -413,7 +422,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </center>
 <p><br></p>
 </div>
-<p>However, functions from different packages with the same name can be called explicitly by using the <code>::</code> operator, using the construct <code>package-name::function</code> to access the desired namespace and environment. A particular function can be called in this way even if the package as a whole has not been loaded into <strong><em>R</em></strong> using <code>library()</code> or <code>require()</code>. The <code>search()</code> function can be used to return a vector of environment names in the order they will be searched.</p>
+<p>However, functions from different packages with the same name can be called explicitly by using the <code>::</code> operator, using the construct <code>package-name::function()</code> to access the desired namespace and environment. A particular function can be called in this way as long as the user has installed the package, i.e., even if the package has not been loaded into <strong><em>R</em></strong> using <code>library()</code> or <code>require()</code>. The <code>search()</code> function (with no arguments) can be used to return a vector of environment names in the order they will be searched.</p>
 <section id="installing-packages" class="level3 unnumbered">
 <h3 class="unnumbered anchored" data-anchor-id="installing-packages">Installing Packages</h3>
 <blockquote class="blockquote">
@@ -426,8 +435,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Choose <strong>Package Installer</strong>.</li>
 <li>Select a package repository to install from, e.g., <strong>CRAN (binaries)</strong>.</li>
 <li>The first time you go to install packages, you will be prompted to select a mirror site (i.e., the remote server from where you can download any of the packages hosted in the selected package repository).</li>
-<li>Select an install location. I usually install packages to the <em>system</em> rather than <em>user</em> level.</li>
-<li>Check the box “Install dependencies”.</li>
+<li>Select an install location.</li>
+</ul>
+<p>I usually install packages to the my personal <em>user</em> library rather than at the <em>system</em> level (and, depending on permissions about software installation on your device, you may not even be able to install to a system-level library). For a user-specific installation, your library is typically located at “~/Library/R/<architecture>/<r-version>/library”, where <code>&lt;architecture&gt;</code> refers to the processor type (e.g., “arm64”) and <code>&lt;R-version&gt;</code> (e.g., <code>4.5.2</code>) is the version number of your <strong><em>R</em></strong> installation. The system-wide library is located at “/Library/Frameworks/R.framework/Versions/<r-version>/Resources/library” and is used to make packages accessible to all users on the system. It often requires administrator privileges to install packages to the system-wide library.</r-version></r-version></architecture></p>
+<ul>
+<li>Check the box “Install dependencies” to make sure that any missing dependencies are also installed by default.</li>
 <li>Select a package to install.</li>
 </ul>
 </section>
@@ -438,22 +450,22 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Choose <strong>Install package(s)…</strong>.</li>
 <li>By default, the package repository that you will install from is <strong>CRAN (binaries)</strong>.</li>
 <li>The first time you go to install packages, you will be prompted to select a mirror site (a.k.a., the remote server from where you can download any of the packages hosted in the selected package repository).</li>
-<li>Select a package to install.</li>
-<li>By default, packages are installed at the <em>system</em> level (inside of the <strong>library</strong> folder within your <strong><em>R</em></strong> installation), and any missing dependenices are also installed by default.</li>
+<li>Select a package to install. An install location should be selected by default. Typically, this will be to a personal <em>user</em> library, which on a Windows machine is likely to be at “C:\Users\YourUsername\AppData\Local\R\win-library\x.y” (where <code>x.y</code> is the <strong><em>R</em></strong> major.minor version number, e.g., “4.5”). If you have administrator privileges, then packages may be installed by default at the <em>system</em> level (inside of the <strong>library</strong> folder within your machine’s <strong><em>R</em></strong> installation, usually at “C:\Program Files\R\R-x.y.z\library” (where <code>x.y.z</code> is the full <strong><em>R</em></strong> version number).</li>
 </ul>
+<p>Any missing dependencies should be installed by default.</p>
 </section>
 <section id="using-the-r-console-prompt" class="level4 unnumbered">
 <h4 class="unnumbered anchored" data-anchor-id="using-the-r-console-prompt">Using the <strong><em>R</em></strong> console prompt</h4>
 <ul>
-<li>Use the function <code>install.packages("&lt;package name&gt;")</code>, where you include, between the quotes, the name of the package you want to install. This command installs the package, by default, to the <em>user</em> level, though this can be changed by providing a path to install to using the <code>lib="&lt;path&gt;</code> argument. Other arguments for this function can be set to specify the repository to download from, etc.</li>
+<li>Use the function <code>install.packages("&lt;package name&gt;")</code>, where you include, between the quotes, the name of the package you want to install. This command installs the package, by default, to a personal <em>user</em> library, though this can be changed by providing a full path to install to using the <code>lib="&lt;path&gt;</code> argument. Other arguments for this function can be set to specify the repository to download from, etc.</li>
 </ul>
 </section>
 <section id="using-rstudio" class="level4 unnumbered">
 <h4 class="unnumbered anchored" data-anchor-id="using-rstudio">Using <strong><em>RStudio</em></strong></h4>
 <ul>
 <li>Select the <strong>Packages</strong> tab and then click the “Install” button.</li>
-<li>A dialog box will open where you can choose where to install the package from (the central CRAN repository is typically the source you will use) and the install location on your computer.</li>
-<li>You can install packages either to the <em>user</em> level library (in which case, only the user who is logged in when the package is installed will have access to it) or to the <em>system</em> library (which will make the package available for all users).</li>
+<li>A dialog box will open where you can choose where to install the package from (the central CRAN repository is typically the source you will use) as well as the install location on your computer.</li>
+<li>You can install packages either to a personal <em>user</em> level library (in which case, only the user who is logged in when the package is installed will have access to it) or to the <em>system</em> library (which will make the package available for all users). I typically install all of my packages at the <em>user</em> level.</li>
 <li>Type the name of the package you want to install in the text field in the middle of the dialog box (code completion will list available packages that match what you are typing as you type). You can install multiple packages at the same time by separating them with a space or comma.</li>
 <li>Make sure the “Install dependencies” checkbox is selected… this will automatically check whether other packages that are referenced in the package you want to install are already installed and, if not, will install them as well.</li>
 </ul>
@@ -470,7 +482,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="loading-and-attaching-packages" class="level3 unnumbered">
 <h3 class="unnumbered anchored" data-anchor-id="loading-and-attaching-packages">Loading and Attaching Packages</h3>
-<p>Note that <em>installing</em> packages simply places them into a standard location on your computer. To actually <em>use</em> the functions they contain in an <strong><em>R</em></strong> session, you need to also load them into your <strong><em>R</em></strong> workspace.</p>
+<p>Note that <em>installing</em> packages simply places them into a standard location on your computer (i.e., in your personal <em>user</em> or <em>system</em> level <strong><em>R</em></strong> library directory. To actually <em>use</em> the functions they contain in an <strong><em>R</em></strong> session, you need to also load them into your <strong><em>R</em></strong> workspace.</p>
 <section id="using-the-base-macos-gui-1" class="level4 unnumbered">
 <h4 class="unnumbered anchored" data-anchor-id="using-the-base-macos-gui-1">Using the base MacOS GUI</h4>
 <ul>
@@ -506,7 +518,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h4 class="unnumbered anchored" data-anchor-id="using-the-console-prompt-or-a-script">Using the console prompt or a script</h4>
 <ul>
 <li>The most common way that you will load packages is to do so either interactively at the console prompt or in a script using the command <code>library(&lt;package name&gt;)</code> with the package name, not in quotes, as an argument.</li>
-<li>The <code>require()</code> function is nearly identical to the <code>library()</code> function except that the former is safer to use inside functions because it will not throw an error if a package is not installed. <code>require()</code> also returns a value of <strong>TRUE</strong> or <strong>FALSE</strong> depending on whether the package loaded successfully or not. However, I almost always use the <code>library()</code> function in my scripts. Using <code>library()</code> and <code>require()</code> both load a package’s named components (its “namespace”) and attach those to the global environments search list.</li>
+<li>The <code>require()</code> function is nearly identical to the <code>library()</code> function except that the former is safer to use inside functions because it will not throw an error if a package is not installed. The <code>require()</code> function also returns a value of <strong>TRUE</strong> or <strong>FALSE</strong> depending on whether the package loaded successfully or not. However, I almost always use the <code>library()</code> function in my scripts. Using <code>library()</code> and <code>require()</code> both loads a package’s named components (i.e., all of the elements in its “namespace”) and attaches those components to the environments search list.</li>
 </ul>
 <blockquote class="blockquote">
 <p><strong>NOTE:</strong> When loading a package with <code>library()</code> or <code>require()</code>, the package name need <em>not</em> be in quotes, although it works if you were to do that.</p>
@@ -517,7 +529,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="working-with-packages" class="level3 unnumbered">
 <h3 class="unnumbered anchored" data-anchor-id="working-with-packages">Working with Packages</h3>
 <ul>
-<li><p>You can use either of the following to list the set of packages you have installed:</p>
+<li><p>You can use either of the following to return a list of the set of packages you have installed:</p>
 <ul>
 <li><code>library()</code></li>
 <li><code>installed.packages()</code></li>
@@ -551,7 +563,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <ul>
-<li>To remove installed packages from your <strong><em>R</em></strong> installation, you can use the function <code>remove.packages()</code> or click the small “x” to the right of the package name in the <strong><em>RStudio</em></strong> packages tab.</li>
+<li>To remove installed packages from your <strong><em>R</em></strong> installation (i.e., to delete them from the <em>user</em> or <em>system</em> location where they have been installed), you can use the function <code>remove.packages()</code> or click the small “x” to the right of the package name in the <strong><em>RStudio</em></strong> packages tab.</li>
 </ul>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
@@ -1044,154 +1056,164 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="fu">## ***R*** Packages</span></span>
 <span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>One of the fantastic things about ***R***, and one of the reasons it is such a flexible tool for so many types of data analysis, is the ability to extend its functionality in a huge variety of ways with *packages*. Packages are sets of reusable ***R*** functions created by the core development team or by users and are akin to *libraries* in other programming software, like ***Python***. As of January 2020, there are over 15,300 packages that have been contributed to the most common package repository, hosted on the <span class="co">[</span><span class="ot">Comprehensive R Archive Network (CRAN)</span><span class="co">](https://cran.r-project.org/)</span> site.</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>One of the fantastic things about ***R***, and one of the reasons it is such a flexible tool for so many types of data analysis, is the ability to extend its functionality in a huge variety of ways with *packages*. Packages are sets of reusable ***R*** functions created by the core development team or by users and are akin to *libraries* in other programming software, like ***Python***. As of January 2026, there are almost 23,000(!) packages that have been contributed to the most common package repository, hosted on the <span class="co">[</span><span class="ot">Comprehensive R Archive Network (CRAN)</span><span class="co">](https://cran.r-project.org/)</span> site.</span>
 <span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>From the console prompt, packages can be installed into ***R*** (using the `install.packages()` function, with the name of the package in parentheses) and then loaded (using the `require()` or `library()` functions), which then gives the user access to the functions contained therein. Both ***RStudio*** and the base ***R*** GUIs for MacOS and Windows have built-in package managers that allow you to search for and install packages.</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>From the console prompt, packages can be installed into ***R*** (using the `install.packages()` function, with the name of the package included in quotation marks inside the parentheses). Once installed, a package can be loaded into a user's workspace (using the `library()` or `require()` functions), which then gives the user access to all of the functions contained therein, as well as function documentation, datasets, and code vignettes. Both ***RStudio*** and the base ***R*** GUIs for MacOS and Windows have built-in "package managers" that allow you to search for and install packages.</span>
 <span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>Each package includes a *namespace* associated with the functions contained therein, and those functions are loaded into their own, separate ***R*** *environments*, distinct from the global environment, where the variables we assigned values to in [**Module 01**](#module-01) were created. An *environment* can be thought of as a collection of objects (functions, variables etc.) associated either globally, with the ***R*** interpreter (the "R_GlobalEnv") or with a particular package and its namespace. In ***RStudio***, you can see all of the objects associated with a particular environment in the **Environment** tab.</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>Each package includes a *namespace* associated with the functions contained therein, and those functions are loaded into their own, separate ***R*** *environments*, distinct from the **global** environment, which is where the variables we assigned values to in [**Module 01**](#module-01) were created. An *environment* can be thought of as a collection of objects (functions, data objects, variables, etc.) associated either globally, with the ***R*** interpreter (the "R_GlobalEnv"), or with a particular package and its namespace. In ***RStudio***, you can see all of the objects associated with a particular environment by using the **Environment** tab and selecting the environment of interest from the popdown menu.</span>
 <span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>If a package is loaded that has a function with the same name as one in a previously loaded package or in base ***R***, then the older function will be *masked* and the newer will be used if called by a user. This is because whenever an object is referenced in a command, the ***R*** interpreter searches for that object in various loaded environments in a particular order and operates on the first one it encounters. The global environment is searched first, followed by the environments associated with each loaded package in *reverse chronological order* of when they are loaded and ending with the base ***R*** environment.</span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: false</span></span>
-<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a><span class="co">#| out-width: "75%"</span></span>
-<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">include_graphics</span>(<span class="st">"img/search-path-2.png"</span>)</span>
-<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: false</span></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="co">#| out-width: "75%"</span></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">include_graphics</span>(<span class="st">"img/environments.png"</span>)</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>If a package is loaded that has a function with the same name as one in a previously loaded package or in base ***R***, then the older function will be *masked* and the newer will be used if called by a user. This is because whenever an object is referenced in a command, the ***R*** interpreter searches for that object in various loaded environments in a particular order and operates on the first one it encounters. The global environment is searched first, followed by the environments associated with each loaded package in *reverse chronological order* of when they were loaded and ending with the base ***R*** environment.</span>
 <span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>::: {style="color:#787878; font-size: 14px;"}</span>
-<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>&lt;center&gt;</span>
-<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>FROM: Wickham (2019). *Advanced R, Second Edition.* Chapman &amp; Hall/CRC.</span>
-<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>&lt;/center&gt;</span>
-<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>&lt;br&gt;</span>
-<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>However, functions from different packages with the same name can be called explicitly by using the <span class="in">`::`</span> operator, using the construct <span class="in">`package-name::function`</span> to access the desired namespace and environment. A particular function can be called in this way even if the package as a whole has not been loaded into ***R*** using <span class="in">`library()`</span> or <span class="in">`require()`</span>. The <span class="in">`search()`</span> function can be used to return a vector of environment names in the order they will be searched.</span>
-<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a><span class="fu">### Installing Packages {.unnumbered}</span></span>
-<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; **NOTE:** A list of packages we will be using in this course is available </span><span class="co">[</span><span class="ot">here</span><span class="co">](#package-list)</span><span class="at">.</span></span>
-<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Using the base MacOS GUI {.unnumbered}</span></span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: false</span></span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a><span class="co">#| out-width: "75%"</span></span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">include_graphics</span>(<span class="st">"img/search-path-2.png"</span>)</span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>::: {style="color:#787878; font-size: 14px;"}</span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>&lt;center&gt;</span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a>FROM: Wickham (2019). *Advanced R, Second Edition.* Chapman &amp; Hall/CRC.</span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a>&lt;/center&gt;</span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a>&lt;br&gt;</span>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a>:::</span>
 <span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Select the **Packages &amp; Data** menu.</span>
-<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Choose **Package Installer**.</span>
-<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Select a package repository to install from, e.g., **CRAN (binaries)**.</span>
-<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>The first time you go to install packages, you will be prompted to select a mirror site (i.e., the remote server from where you can download any of the packages hosted in the selected package repository).</span>
-<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Select an install location. I usually install packages to the *system* rather than *user* level.</span>
-<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Check the box "Install dependencies".</span>
-<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Select a package to install.</span>
+<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a>However, functions from different packages with the same name can be called explicitly by using the <span class="in">`::`</span> operator, using the construct <span class="in">`package-name::function()`</span> to access the desired namespace and environment. A particular function can be called in this way as long as the user has installed the package, i.e., even if the package has not been loaded into ***R*** using <span class="in">`library()`</span> or <span class="in">`require()`</span>. The <span class="in">`search()`</span> function (with no arguments) can be used to return a vector of environment names in the order they will be searched.</span>
+<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a><span class="fu">### Installing Packages {.unnumbered}</span></span>
+<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; **NOTE:** A list of packages we will be using in this course is available </span><span class="co">[</span><span class="ot">here</span><span class="co">](#package-list)</span><span class="at">.</span></span>
+<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Using the base MacOS GUI {.unnumbered}</span></span>
 <span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Using the base Windows GUI {.unnumbered}</span></span>
-<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-57"><a href="#cb1-57" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Select the **Packages** menu.</span>
-<span id="cb1-58"><a href="#cb1-58" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Choose **Install package(s)...**.</span>
-<span id="cb1-59"><a href="#cb1-59" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>By default, the package repository that you will install from is **CRAN (binaries)**.</span>
-<span id="cb1-60"><a href="#cb1-60" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>The first time you go to install packages, you will be prompted to select a mirror site (a.k.a., the remote server from where you can download any of the packages hosted in the selected package repository).</span>
-<span id="cb1-61"><a href="#cb1-61" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Select a package to install.</span>
-<span id="cb1-62"><a href="#cb1-62" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>By default, packages are installed at the *system* level (inside of the **library** folder within your ***R*** installation), and any missing dependenices are also installed by default.</span>
-<span id="cb1-63"><a href="#cb1-63" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-64"><a href="#cb1-64" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Using the ***R*** console prompt {.unnumbered}</span></span>
+<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Select the **Packages &amp; Data** menu.</span>
+<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Choose **Package Installer**.</span>
+<span id="cb1-57"><a href="#cb1-57" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Select a package repository to install from, e.g., **CRAN (binaries)**.</span>
+<span id="cb1-58"><a href="#cb1-58" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>The first time you go to install packages, you will be prompted to select a mirror site (i.e., the remote server from where you can download any of the packages hosted in the selected package repository).</span>
+<span id="cb1-59"><a href="#cb1-59" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Select an install location.</span>
+<span id="cb1-60"><a href="#cb1-60" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-61"><a href="#cb1-61" aria-hidden="true" tabindex="-1"></a>I usually install packages to the my personal *user* library rather than at the *system* level (and, depending on permissions about software installation on your device, you may not even be able to install to a system-level library). For a user-specific installation, your library is typically located at "~/Library/R/&lt;architecture&gt;/&lt;R-version&gt;/library", where `&lt;architecture&gt;` refers to the processor type (e.g., "arm64") and `&lt;R-version&gt;` (e.g., `4.5.2`) is the version number of your ***R*** installation. The system-wide library is located at "/Library/Frameworks/R.framework/Versions/&lt;R-version&gt;/Resources/library" and is used to make packages accessible to all users on the system. It often requires administrator privileges to install packages to the system-wide library.</span>
+<span id="cb1-62"><a href="#cb1-62" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-63"><a href="#cb1-63" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Check the box "Install dependencies" to make sure that any missing dependencies are also installed by default.</span>
+<span id="cb1-64"><a href="#cb1-64" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Select a package to install.</span>
 <span id="cb1-65"><a href="#cb1-65" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-66"><a href="#cb1-66" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Use the function <span class="in">`install.packages("&lt;package name&gt;")`</span>, where you include, between the quotes, the name of the package you want to install. This command installs the package, by default, to the *user* level, though this can be changed by providing a path to install to using the <span class="in">`lib="&lt;path&gt;`</span> argument. Other arguments for this function can be set to specify the repository to download from, etc.</span>
+<span id="cb1-66"><a href="#cb1-66" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Using the base Windows GUI {.unnumbered}</span></span>
 <span id="cb1-67"><a href="#cb1-67" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-68"><a href="#cb1-68" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Using ***RStudio*** {.unnumbered}</span></span>
-<span id="cb1-69"><a href="#cb1-69" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-70"><a href="#cb1-70" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Select the **Packages** tab and then click the "Install" button.</span>
-<span id="cb1-71"><a href="#cb1-71" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>A dialog box will open where you can choose where to install the package from (the central CRAN repository is typically the source you will use) and the install location on your computer.</span>
-<span id="cb1-72"><a href="#cb1-72" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>You can install packages either to the *user* level library (in which case, only the user who is logged in when the package is installed will have access to it) or to the *system* library (which will make the package available for all users).</span>
-<span id="cb1-73"><a href="#cb1-73" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Type the name of the package you want to install in the text field in the middle of the dialog box (code completion will list available packages that match what you are typing as you type). You can install multiple packages at the same time by separating them with a space or comma.</span>
-<span id="cb1-74"><a href="#cb1-74" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Make sure the "Install dependencies" checkbox is selected... this will automatically check whether other packages that are referenced in the package you want to install are already installed and, if not, will install them as well.</span>
+<span id="cb1-68"><a href="#cb1-68" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Select the **Packages** menu.</span>
+<span id="cb1-69"><a href="#cb1-69" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Choose **Install package(s)...**.</span>
+<span id="cb1-70"><a href="#cb1-70" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>By default, the package repository that you will install from is **CRAN (binaries)**.</span>
+<span id="cb1-71"><a href="#cb1-71" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>The first time you go to install packages, you will be prompted to select a mirror site (a.k.a., the remote server from where you can download any of the packages hosted in the selected package repository).</span>
+<span id="cb1-72"><a href="#cb1-72" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Select a package to install. An install location should be selected by default. Typically, this will be to a personal *user* library, which on a Windows machine is likely to be at "C:\\Users\\YourUsername\\AppData\\Local\\R\\win-library\\x.y" (where `x.y` is the ***R*** major.minor version number, e.g., "4.5"). If you have administrator privileges, then packages may be installed by default at the *system* level (inside of the **library** folder within your machine's ***R*** installation, usually at "C:\\Program Files\\R\\R-x.y.z\\library" (where `x.y.z` is the full ***R*** version number).</span>
+<span id="cb1-73"><a href="#cb1-73" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-74"><a href="#cb1-74" aria-hidden="true" tabindex="-1"></a>Any missing dependencies should be installed by default.</span>
 <span id="cb1-75"><a href="#cb1-75" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-78"><a href="#cb1-78" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb1-79"><a href="#cb1-79" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: false</span></span>
-<span id="cb1-80"><a href="#cb1-80" aria-hidden="true" tabindex="-1"></a><span class="co">#| out-width: "60%"</span></span>
-<span id="cb1-81"><a href="#cb1-81" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">include_graphics</span>(<span class="st">"img/install-dialog.png"</span>)</span>
-<span id="cb1-82"><a href="#cb1-82" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb1-83"><a href="#cb1-83" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-84"><a href="#cb1-84" aria-hidden="true" tabindex="-1"></a><span class="fu">### Loading and Attaching Packages {.unnumbered}</span></span>
-<span id="cb1-85"><a href="#cb1-85" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-86"><a href="#cb1-86" aria-hidden="true" tabindex="-1"></a>Note that *installing* packages simply places them into a standard location on your computer. To actually *use* the functions they contain in an ***R*** session, you need to also load them into your ***R*** workspace.</span>
+<span id="cb1-76"><a href="#cb1-76" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Using the ***R*** console prompt {.unnumbered}</span></span>
+<span id="cb1-77"><a href="#cb1-77" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-78"><a href="#cb1-78" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Use the function <span class="in">`install.packages("&lt;package name&gt;")`</span>, where you include, between the quotes, the name of the package you want to install. This command installs the package, by default, to a personal *user* library, though this can be changed by providing a full path to install to using the <span class="in">`lib="&lt;path&gt;`</span> argument. Other arguments for this function can be set to specify the repository to download from, etc.</span>
+<span id="cb1-79"><a href="#cb1-79" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-80"><a href="#cb1-80" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Using ***RStudio*** {.unnumbered}</span></span>
+<span id="cb1-81"><a href="#cb1-81" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-82"><a href="#cb1-82" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Select the **Packages** tab and then click the "Install" button.</span>
+<span id="cb1-83"><a href="#cb1-83" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>A dialog box will open where you can choose where to install the package from (the central CRAN repository is typically the source you will use) as well as the install location on your computer.</span>
+<span id="cb1-84"><a href="#cb1-84" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>You can install packages either to a personal *user* level library (in which case, only the user who is logged in when the package is installed will have access to it) or to the *system* library (which will make the package available for all users). I typically install all of my packages at the *user* level.</span>
+<span id="cb1-85"><a href="#cb1-85" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Type the name of the package you want to install in the text field in the middle of the dialog box (code completion will list available packages that match what you are typing as you type). You can install multiple packages at the same time by separating them with a space or comma.</span>
+<span id="cb1-86"><a href="#cb1-86" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Make sure the "Install dependencies" checkbox is selected... this will automatically check whether other packages that are referenced in the package you want to install are already installed and, if not, will install them as well.</span>
 <span id="cb1-87"><a href="#cb1-87" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-88"><a href="#cb1-88" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Using the base MacOS GUI {.unnumbered}</span></span>
-<span id="cb1-89"><a href="#cb1-89" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-90"><a href="#cb1-90" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Select the **Packages &amp; Data** menu.</span>
-<span id="cb1-91"><a href="#cb1-91" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Choose **Package Manager**.</span>
-<span id="cb1-92"><a href="#cb1-92" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Check the box next to the package name.</span>
-<span id="cb1-93"><a href="#cb1-93" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-94"><a href="#cb1-94" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Using the base Windows GUI {.unnumbered}</span></span>
+<span id="cb1-90"><a href="#cb1-90" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb1-91"><a href="#cb1-91" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: false</span></span>
+<span id="cb1-92"><a href="#cb1-92" aria-hidden="true" tabindex="-1"></a><span class="co">#| out-width: "60%"</span></span>
+<span id="cb1-93"><a href="#cb1-93" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">include_graphics</span>(<span class="st">"img/install-dialog.png"</span>)</span>
+<span id="cb1-94"><a href="#cb1-94" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb1-95"><a href="#cb1-95" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-96"><a href="#cb1-96" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Select the **Packages** menu.</span>
-<span id="cb1-97"><a href="#cb1-97" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Choose **Load package...**.</span>
-<span id="cb1-98"><a href="#cb1-98" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Select the package to load.</span>
+<span id="cb1-96"><a href="#cb1-96" aria-hidden="true" tabindex="-1"></a><span class="fu">### Loading and Attaching Packages {.unnumbered}</span></span>
+<span id="cb1-97"><a href="#cb1-97" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-98"><a href="#cb1-98" aria-hidden="true" tabindex="-1"></a>Note that *installing* packages simply places them into a standard location on your computer (i.e., in your personal *user* or *system* level ***R*** library directory. To actually *use* the functions they contain in an ***R*** session, you need to also load them into your ***R*** workspace.</span>
 <span id="cb1-99"><a href="#cb1-99" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-100"><a href="#cb1-100" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Using ***RStudio*** {.unnumbered}</span></span>
+<span id="cb1-100"><a href="#cb1-100" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Using the base MacOS GUI {.unnumbered}</span></span>
 <span id="cb1-101"><a href="#cb1-101" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-102"><a href="#cb1-102" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>You can load a package interactively in ***RStudio*** by clicking the checkbox next to the package name in the *Packages* tab.</span>
-<span id="cb1-103"><a href="#cb1-103" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-106"><a href="#cb1-106" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb1-107"><a href="#cb1-107" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: false</span></span>
-<span id="cb1-108"><a href="#cb1-108" aria-hidden="true" tabindex="-1"></a><span class="co">#| out-width: "60%"</span></span>
-<span id="cb1-109"><a href="#cb1-109" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">include_graphics</span>(<span class="st">"img/load-tidyverse.png"</span>)</span>
-<span id="cb1-110"><a href="#cb1-110" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb1-102"><a href="#cb1-102" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Select the **Packages &amp; Data** menu.</span>
+<span id="cb1-103"><a href="#cb1-103" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Choose **Package Manager**.</span>
+<span id="cb1-104"><a href="#cb1-104" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Check the box next to the package name.</span>
+<span id="cb1-105"><a href="#cb1-105" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-106"><a href="#cb1-106" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Using the base Windows GUI {.unnumbered}</span></span>
+<span id="cb1-107"><a href="#cb1-107" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-108"><a href="#cb1-108" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Select the **Packages** menu.</span>
+<span id="cb1-109"><a href="#cb1-109" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Choose **Load package...**.</span>
+<span id="cb1-110"><a href="#cb1-110" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Select the package to load.</span>
 <span id="cb1-111"><a href="#cb1-111" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-112"><a href="#cb1-112" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Using the console prompt or a script {.unnumbered}</span></span>
+<span id="cb1-112"><a href="#cb1-112" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Using ***RStudio*** {.unnumbered}</span></span>
 <span id="cb1-113"><a href="#cb1-113" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-114"><a href="#cb1-114" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>The most common way that you will load packages is to do so either interactively at the console prompt or in a script using the command <span class="in">`library(&lt;package name&gt;)`</span> with the package name, not in quotes, as an argument.</span>
-<span id="cb1-115"><a href="#cb1-115" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>The <span class="in">`require()`</span> function is nearly identical to the <span class="in">`library()`</span> function except that the former is safer to use inside functions because it will not throw an error if a package is not installed. <span class="in">`require()`</span> also returns a value of **TRUE** or **FALSE** depending on whether the package loaded successfully or not. However, I almost always use the <span class="in">`library()`</span> function in my scripts. Using <span class="in">`library()`</span> and <span class="in">`require()`</span> both load a package's named components (its "namespace") and attach those to the global environments search list.</span>
-<span id="cb1-116"><a href="#cb1-116" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-117"><a href="#cb1-117" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; **NOTE:** When loading a package with </span><span class="in">`library()`</span><span class="at"> or </span><span class="in">`require()`</span><span class="at">, the package name need *not* be in quotes, although it works if you were to do that.</span></span>
-<span id="cb1-118"><a href="#cb1-118" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-119"><a href="#cb1-119" aria-hidden="true" tabindex="-1"></a>Be aware that if a named function of a package conflicts with one in an already loaded/attached package, then by default ***R*** will warn of the conflict. In that case, it is good form to use explicit function calls, i.e., use the <span class="in">`::`</span> operator to specify first the package and then the function (e.g., <span class="in">`dplyr::filter()`</span>) you wish to call.</span>
-<span id="cb1-120"><a href="#cb1-120" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-121"><a href="#cb1-121" aria-hidden="true" tabindex="-1"></a><span class="fu">### Working with Packages {.unnumbered}</span></span>
-<span id="cb1-122"><a href="#cb1-122" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-123"><a href="#cb1-123" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>You can use either of the following to list the set of packages you have installed:</span>
-<span id="cb1-124"><a href="#cb1-124" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-125"><a href="#cb1-125" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span><span class="in">`library()`</span></span>
-<span id="cb1-126"><a href="#cb1-126" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span><span class="in">`installed.packages()`</span></span>
-<span id="cb1-127"><a href="#cb1-127" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-128"><a href="#cb1-128" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>The command <span class="in">`(.packages())`</span> can be used print out the set packages that have been loaded/attached in your current workspace.</span>
-<span id="cb1-129"><a href="#cb1-129" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-130"><a href="#cb1-130" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; **NOTE:** In the example above, the </span><span class="in">`.packages()`</span><span class="at"> function is wrapped in parentheses to immediately print the result of the function.</span></span>
-<span id="cb1-131"><a href="#cb1-131" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-132"><a href="#cb1-132" aria-hidden="true" tabindex="-1"></a>In ***RStudio***, you can also see a list of all loaded packages by clicking the down arrow next to "Global Environment" in the *Environment* tab.</span>
-<span id="cb1-133"><a href="#cb1-133" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-136"><a href="#cb1-136" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb1-137"><a href="#cb1-137" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: false</span></span>
-<span id="cb1-138"><a href="#cb1-138" aria-hidden="true" tabindex="-1"></a><span class="co">#| out-width: "50%"</span></span>
-<span id="cb1-139"><a href="#cb1-139" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">include_graphics</span>(<span class="st">"img/loaded-packages.png"</span>)</span>
-<span id="cb1-140"><a href="#cb1-140" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb1-114"><a href="#cb1-114" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>You can load a package interactively in ***RStudio*** by clicking the checkbox next to the package name in the *Packages* tab.</span>
+<span id="cb1-115"><a href="#cb1-115" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-118"><a href="#cb1-118" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb1-119"><a href="#cb1-119" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: false</span></span>
+<span id="cb1-120"><a href="#cb1-120" aria-hidden="true" tabindex="-1"></a><span class="co">#| out-width: "60%"</span></span>
+<span id="cb1-121"><a href="#cb1-121" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">include_graphics</span>(<span class="st">"img/load-tidyverse.png"</span>)</span>
+<span id="cb1-122"><a href="#cb1-122" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb1-123"><a href="#cb1-123" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-124"><a href="#cb1-124" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Using the console prompt or a script {.unnumbered}</span></span>
+<span id="cb1-125"><a href="#cb1-125" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-126"><a href="#cb1-126" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>The most common way that you will load packages is to do so either interactively at the console prompt or in a script using the command <span class="in">`library(&lt;package name&gt;)`</span> with the package name, not in quotes, as an argument.</span>
+<span id="cb1-127"><a href="#cb1-127" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>The <span class="in">`require()`</span> function is nearly identical to the <span class="in">`library()`</span> function except that the former is safer to use inside functions because it will not throw an error if a package is not installed. The <span class="in">`require()`</span> function also returns a value of **TRUE** or **FALSE** depending on whether the package loaded successfully or not. However, I almost always use the <span class="in">`library()`</span> function in my scripts. Using <span class="in">`library()`</span> and <span class="in">`require()`</span> both loads a package's named components (i.e., all of the elements in its "namespace") and attaches those components to the environments search list.</span>
+<span id="cb1-128"><a href="#cb1-128" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-129"><a href="#cb1-129" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; **NOTE:** When loading a package with </span><span class="in">`library()`</span><span class="at"> or </span><span class="in">`require()`</span><span class="at">, the package name need *not* be in quotes, although it works if you were to do that.</span></span>
+<span id="cb1-130"><a href="#cb1-130" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-131"><a href="#cb1-131" aria-hidden="true" tabindex="-1"></a>Be aware that if a named function of a package conflicts with one in an already loaded/attached package, then by default ***R*** will warn of the conflict. In that case, it is good form to use explicit function calls, i.e., use the <span class="in">`::`</span> operator to specify first the package and then the function (e.g., <span class="in">`dplyr::filter()`</span>) you wish to call.</span>
+<span id="cb1-132"><a href="#cb1-132" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-133"><a href="#cb1-133" aria-hidden="true" tabindex="-1"></a><span class="fu">### Working with Packages {.unnumbered}</span></span>
+<span id="cb1-134"><a href="#cb1-134" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-135"><a href="#cb1-135" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>You can use either of the following to return a list of the set of packages you have installed:</span>
+<span id="cb1-136"><a href="#cb1-136" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-137"><a href="#cb1-137" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span><span class="in">`library()`</span></span>
+<span id="cb1-138"><a href="#cb1-138" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span><span class="in">`installed.packages()`</span></span>
+<span id="cb1-139"><a href="#cb1-139" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-140"><a href="#cb1-140" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>The command <span class="in">`(.packages())`</span> can be used print out the set packages that have been loaded/attached in your current workspace.</span>
 <span id="cb1-141"><a href="#cb1-141" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-142"><a href="#cb1-142" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>The command <span class="in">`detach(package:&lt;package name&gt;)`</span>, where "package name", **not** in quotes, is the name of the package you want to unload, will unload a currently loaded package from memory. You can also do this interactively in ***RStudio*** by unchecking the box next to the package name in the *Packages* tab.</span>
-<span id="cb1-143"><a href="#cb1-143" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>To update your installed packages to the latest version, you can use the function <span class="in">`update.packages()`</span>. Using ***RStudio***, you can also select "Update" from the *Packages* tab to get an interactive dialog box showing you what updates are available from **CRAN** and letting you install them.</span>
-<span id="cb1-144"><a href="#cb1-144" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-147"><a href="#cb1-147" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb1-148"><a href="#cb1-148" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: false</span></span>
-<span id="cb1-149"><a href="#cb1-149" aria-hidden="true" tabindex="-1"></a><span class="co">#| out-width: "60%"</span></span>
-<span id="cb1-150"><a href="#cb1-150" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">include_graphics</span>(<span class="st">"img/update-packages.png"</span>)</span>
-<span id="cb1-151"><a href="#cb1-151" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb1-152"><a href="#cb1-152" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-153"><a href="#cb1-153" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>To remove installed packages from your ***R*** installation, you can use the function `remove.packages()` or click the small "x" to the right of the package name in the ***RStudio*** packages tab.</span>
-<span id="cb1-154"><a href="#cb1-154" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-157"><a href="#cb1-157" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb1-158"><a href="#cb1-158" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: false</span></span>
-<span id="cb1-159"><a href="#cb1-159" aria-hidden="true" tabindex="-1"></a><span class="co">#| out-width: "50%"</span></span>
-<span id="cb1-160"><a href="#cb1-160" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">include_graphics</span>(<span class="st">"img/remove-tidyverse.png"</span>)</span>
-<span id="cb1-161"><a href="#cb1-161" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb1-162"><a href="#cb1-162" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-163"><a href="#cb1-163" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>To process several package at once, you can pass a vector of package names to many of these functions as an argument, e.g., <span class="in">`remove.packages(c("abc","citr"))`</span></span>
+<span id="cb1-142"><a href="#cb1-142" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; **NOTE:** In the example above, the </span><span class="in">`.packages()`</span><span class="at"> function is wrapped in parentheses to immediately print the result of the function.</span></span>
+<span id="cb1-143"><a href="#cb1-143" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-144"><a href="#cb1-144" aria-hidden="true" tabindex="-1"></a>In ***RStudio***, you can also see a list of all loaded packages by clicking the down arrow next to "Global Environment" in the *Environment* tab.</span>
+<span id="cb1-145"><a href="#cb1-145" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-148"><a href="#cb1-148" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb1-149"><a href="#cb1-149" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: false</span></span>
+<span id="cb1-150"><a href="#cb1-150" aria-hidden="true" tabindex="-1"></a><span class="co">#| out-width: "50%"</span></span>
+<span id="cb1-151"><a href="#cb1-151" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">include_graphics</span>(<span class="st">"img/loaded-packages.png"</span>)</span>
+<span id="cb1-152"><a href="#cb1-152" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb1-153"><a href="#cb1-153" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-154"><a href="#cb1-154" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>The command <span class="in">`detach(package:&lt;package name&gt;)`</span>, where "package name", **not** in quotes, is the name of the package you want to unload, will unload a currently loaded package from memory. You can also do this interactively in ***RStudio*** by unchecking the box next to the package name in the *Packages* tab.</span>
+<span id="cb1-155"><a href="#cb1-155" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>To update your installed packages to the latest version, you can use the function <span class="in">`update.packages()`</span>. Using ***RStudio***, you can also select "Update" from the *Packages* tab to get an interactive dialog box showing you what updates are available from **CRAN** and letting you install them.</span>
+<span id="cb1-156"><a href="#cb1-156" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-159"><a href="#cb1-159" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb1-160"><a href="#cb1-160" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: false</span></span>
+<span id="cb1-161"><a href="#cb1-161" aria-hidden="true" tabindex="-1"></a><span class="co">#| out-width: "60%"</span></span>
+<span id="cb1-162"><a href="#cb1-162" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">include_graphics</span>(<span class="st">"img/update-packages.png"</span>)</span>
+<span id="cb1-163"><a href="#cb1-163" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb1-164"><a href="#cb1-164" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-165"><a href="#cb1-165" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Finally, the {easypackages} packages makes installing and loading multiple packages "easy" by introducing two helper functions, <span class="in">`packages()`</span> and <span class="in">`libraries()`</span>. Both let you specify a vector of package names to either install (e.g., <span class="in">`packages(c("tidyverse", "magrittr"))`</span>) or load (e.g., <span class="in">`libraries(c("tidyverse", "magrittr"))`</span>). For these functions, package names need to be specified in quotation marks.</span>
+<span id="cb1-165"><a href="#cb1-165" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>To remove installed packages from your ***R*** installation (i.e., to delete them from the *user* or *system* location where they have been installed), you can use the function `remove.packages()` or click the small "x" to the right of the package name in the ***RStudio*** packages tab.</span>
 <span id="cb1-166"><a href="#cb1-166" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-167"><a href="#cb1-167" aria-hidden="true" tabindex="-1"></a>---</span>
-<span id="cb1-168"><a href="#cb1-168" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-169"><a href="#cb1-169" aria-hidden="true" tabindex="-1"></a><span class="fu">## Concept Review {.unnumbered}</span></span>
-<span id="cb1-170"><a href="#cb1-170" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-171"><a href="#cb1-171" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Working with packages: <span class="in">`install_packages()`</span>, <span class="in">`library()`</span>, <span class="in">`require()`</span>, <span class="in">`detach()`</span>, <span class="in">`update.packages()`</span>, <span class="in">`remove.packages()`</span>, and {easypackages}</span>
-<span id="cb1-172"><a href="#cb1-172" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Environments and namespaces: <span class="in">`::`</span>, <span class="in">`search()`</span></span>
+<span id="cb1-169"><a href="#cb1-169" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb1-170"><a href="#cb1-170" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: false</span></span>
+<span id="cb1-171"><a href="#cb1-171" aria-hidden="true" tabindex="-1"></a><span class="co">#| out-width: "50%"</span></span>
+<span id="cb1-172"><a href="#cb1-172" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">include_graphics</span>(<span class="st">"img/remove-tidyverse.png"</span>)</span>
+<span id="cb1-173"><a href="#cb1-173" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb1-174"><a href="#cb1-174" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-175"><a href="#cb1-175" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>To process several package at once, you can pass a vector of package names to many of these functions as an argument, e.g., <span class="in">`remove.packages(c("abc","citr"))`</span></span>
+<span id="cb1-176"><a href="#cb1-176" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-177"><a href="#cb1-177" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Finally, the {easypackages} packages makes installing and loading multiple packages "easy" by introducing two helper functions, <span class="in">`packages()`</span> and <span class="in">`libraries()`</span>. Both let you specify a vector of package names to either install (e.g., <span class="in">`packages(c("tidyverse", "magrittr"))`</span>) or load (e.g., <span class="in">`libraries(c("tidyverse", "magrittr"))`</span>). For these functions, package names need to be specified in quotation marks.</span>
+<span id="cb1-178"><a href="#cb1-178" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-179"><a href="#cb1-179" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb1-180"><a href="#cb1-180" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-181"><a href="#cb1-181" aria-hidden="true" tabindex="-1"></a><span class="fu">## Concept Review {.unnumbered}</span></span>
+<span id="cb1-182"><a href="#cb1-182" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-183"><a href="#cb1-183" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Working with packages: <span class="in">`install_packages()`</span>, <span class="in">`library()`</span>, <span class="in">`require()`</span>, <span class="in">`detach()`</span>, <span class="in">`update.packages()`</span>, <span class="in">`remove.packages()`</span>, and {easypackages}</span>
+<span id="cb1-184"><a href="#cb1-184" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Environments and namespaces: <span class="in">`::`</span>, <span class="in">`search()`</span></span>
 </code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
