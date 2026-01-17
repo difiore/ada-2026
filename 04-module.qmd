@@ -14,7 +14,9 @@ Almost everything in ***R*** can be thought of as an *object*, including variabl
 
 ### Classes, Modes, and Types {.unnumbered}
 
-Objects in ***R*** fall into different *classes*. There are a few basic (or *atomic*) classes that pertain to variables: **numeric** (real numbers), **integer** (integer numbers), **character** (for text), **logical** (Boolean values, i.e., **TRUE** or **FALSE**, represented as 1 and 0, respectively), **complex** (for imaginary numbers), and **factor** (for defined levels of categorical variables... we will talk more about factors later on). There are other classes beyond this set of atomic classes relevant to variables. For example, both built-in and user defined functions have the class **function**. You can ask ***R*** to return the class of any object with the `class()` function, and ***R*** objects can have more than one class. You can think of class as being a property of an object that determines how generic functions operate with it.
+Objects in ***R*** fall into different *classes*. There are six basic (or *atomic*) classes that pertain to vector variables: **numeric** (real numbers), **integer** (integer numbers), **character** (for text), **logical** (Boolean values, i.e., **TRUE** or **FALSE**, represented as 1 and 0, respectively), **complex** (for imaginary numbers), **raw** (a rarely used type that stores data as raw bytes). An additional class, **factor**, is used for defined levels of categorical variables where, behind the scenes, factor levels are represented as **integer** numbers... we will talk more about factors later on). There are other classes beyond this set of basic ones that pertain to objects other than vectors. For example, tabular data structures have the have the class **data.frame**, and both built-in and user defined functions have the class **function**.
+
+You can ask ***R*** to return the class of any object with the `class()` function, and ***R*** objects can have more than one class. You can think of class as being a property of an object that determines how generic functions operate with it.
 
 Examples:
 
@@ -27,6 +29,10 @@ class(x)
 
 # class of a function
 class(mean)
+
+# class of a dataframe
+d <- data.frame(v1 = c("a","b"), v2 = c(1,2), v3 = c(TRUE, FALSE))
+class(d)
 ```
 
 In ***R***, *environments* are objects as well.
@@ -40,7 +46,9 @@ In ***R***, *environments* are objects as well.
 class(globalenv())
 ```
 
-Objects in ***R*** also each have a *mode* and a *base type*. These are often closely aligned with and similar to the *class* of an object, but the three terms refer to slightly different things. If an object has no specific class assigned to it, its class is typically the same as its mode. Mode is a mutually exclusive classification of objects, according to their basic structure. When we coerce an object to another basic structure, we are changing its mode but not necessarily the class.
+Objects in ***R*** also each have a *mode* and a *base type*. These are often closely aligned with and similar or identical to the *class* of an object, but the three terms refer to slightly different things. If an object has no specific class assigned to it, its class is typically the same as its mode.
+
+Mode is a mutually exclusive classification of objects, according to their basic structure. When we coerce an object to another basic structure, we are changing its mode but not necessarily the class.
 
 ```{r}
 # mode of a variable
@@ -53,22 +61,26 @@ mode(x)
 mode(mean)
 ```
 
+The `typeof()` a variable is often the same as its class and mode. The exception is for "factor" variables...
+
 ```{r}
 # type of a variable
-x <- 4
-typeof(x)
-x <- "hi there"
+x <- "male"
+class(x)
 typeof(x)
 
-# type of a function
-typeof(mean)
+# coerce x to be a factor variable
+x <- as.factor(x)
+class(x)
+typeof(x)
+levels(x)
 ```
 
 > **NOTE:** For more details on the difference between the *class*, *mode*, and *base type* of an object, check out the book [*Advanced R, Second Edition*](https://adv-r.hadley.nz/) by Hadley Wickham (RStudio).
 
 ### Vectors {.unnumbered}
 
-***R*** also supports a variety of *data structures* for variable objects, the most fundamental of which is the *vector*. Vectors are *variables consisting of one or more values of the same type*, e.g., student's grades on an exam. The *class* of a vector has to be one of the atomic classes described above. A *scalar* variable, such as a constant, is simply a vector with only one value.
+***R*** also supports a variety of *data structures* for variable objects, the most fundamental of which is the *vector*. Vectors are *variables consisting of one or more values of the same type*, e.g., student's grades on an exam. The *class* of a vector has to be one of the atomic data types described above. A *scalar* variable, such as a constant, is simply a vector with only one value.
 
 - There are lots of ways to create vectors... one of the most common is to use the `c()` or "combine" command:
 
@@ -103,9 +115,9 @@ x <- c("2", 2, "zombies")
 class(x)
 ```
 
-This last case is an example of *coercion*, which happens automatically and often behind the scenes in ***R***. When you attempt to combine different types of elements in the same vector, they are coerced to all be of the same type - the most restrictive type that can accommodate all of the elements. This takes place in a fixed order: logical → integer → double → character. For example, combining a character and an integer yields a character; combining a logical and a double yields a double.
+This last case is an example of *coercion*, which happens automatically and often behind the scenes in ***R***. When you attempt to combine different types of elements in the same vector, they are coerced to all be of the same type -- the most restrictive type that can accommodate all of the elements. This takes place in a fixed order: logical → integer → double → character. For example, combining a character and an integer yields a character; combining a logical and a double yields a double.
 
-You can also deliberately coerce a vector to be represented as a different base type by using an `as.*()` function, like `as.logical()`, `as.integer()`, `as.double()`, or `as.character()`.
+You can also deliberately coerce a vector to be represented as a different base type by using an `as.*()` function, like `as.logical()`, `as.integer()`, `as.double()`, `as.character()`, or `as.factor()`.
 
 ```{r}
 x <- c(3, 4, 5, 6, 7)
@@ -144,7 +156,7 @@ x
 
 ### Attributes and Structure {.unnumbered}
 
-Many objects in ***R*** also have *attributes* associated with them, which we can think of as metadata, or data describing the object. Some attributes are intrinsic to an object. For example, a useful attribute to know about a *vector* object is the number of elements in it, which can be queried using the `length()` command.
+Many objects in ***R*** also have *attributes* associated with them, which we can think of as metadata, or data describing the object. Some attributes are intrinsic to an object. For example, a useful attribute to know about a *vector* object is the number of elements in it, which can be queried using the `length()` function.
 
 ```{r}
 length(x)
@@ -274,7 +286,7 @@ m <- s / l
 print(m)
 ```
 
-If you save a script, you can then use the `source()` function (with the path to the script file of interest as an argument) at the console prompt (or in another script) to read and execute the entire contents of the script file. In ***RStudio*** you may also go to **Code \> Source** to run an entire script, or you can run select lines from within a script by opening the script text file, highlighting the lines of interest, and sending those lines to the console using the "Run" button or the appropriate keyboard shortcut, `⌘-RETURN` (Mac) or `control-R` (PC).
+If you save a script, you can then use the `source()` function (with the path to the script file of interest as an argument) at the console prompt (or in another script) to read and execute the entire contents of the script file. In ***RStudio*** you may also go to **Code > Source** to run an entire script, or you can run select lines from within a script by opening the script text file, highlighting the lines of interest, and sending those lines to the console using the "Run" button or the appropriate keyboard shortcut, `⌘-RETURN` (Mac) or `control-ENTER` (PC).
 
 ```{r}
 source("src/my_script.R")
@@ -289,7 +301,7 @@ Try writing a function!
 
 - Open a new blank document in ***RStudio***
 
-    - **File \> New \> R Script**
+    - **File > New > R Script**
 
 - Type in the code below to create the `say_hi()` function, which adds a name to a greeting:
 
@@ -301,7 +313,7 @@ say_hi <- function(x) {
 }
 ```
 
-> **NOTE:** Here, the `paste()` command allows string concatenation. Alternatively, we could use `paste0()` and omit the `sep=` argument.
+> **NOTE:** Here, the `paste()` command allows string concatenation. Alternatively, we could use the function `paste0()` and omit the `sep=` argument: `hi <- paste0("Greetings, ", x, "!")`.
 
 In general, the format for a function is as follows: `function_name <- function(<arguments>) {<function code>}`
 
@@ -322,7 +334,7 @@ say_hi(name1)
 say_hi(name2)
 ```
 
-You can also save the function in a file, e.g., in the `src/` folder inside your working directory, and then `source("<path>")` it in code. Save your function script as "say_hi.R" and then run the following:
+You can also save the function in a file and then run `source("<path to file>")` in code. Create an `src/` folder inside your working directory, save your function script in that folder as "say_hi.R", and then run the following:
 
 ```{r}
 source("src/say_hi.R")
@@ -338,9 +350,9 @@ When you go to quit ***R*** (by using the `q()` function or by trying to close *
 
 "Save workspace image to \<path\>/.Rdata?", where \<path\> is the path to your working directory.
 
-Saying "Save" will store all of the contents of your workspace in a single *hidden* file, named ".Rdata". The leading period (".") makes this invisible to most operating systems, unless you deliberately make it possible to see hidden files.
+Saying "Save" will store all of the contents of your workspace in a single *hidden* file, named ".Rdata", inside of the working directory. The leading period (".") makes this invisible to most operating systems, unless you deliberately make it possible to see hidden files.
 
-> **NOTE:** I tend to NOT save my workspace images. You can change the default behavior for this by editing ***RStudio***'s preferences and choosing "Always", "Never", or "Ask".
+> **NOTE:** I tend to NOT save my workspace images. You can change the default behavior for this by editing ***RStudio***'s preferences. To do so, go to **Tools > Global Options**, select the "General" tab, and then choose "Always", "Never", or "Ask" under "Save workspace to .RData on exit".
 
 ```{r}
 #| echo: false
@@ -350,11 +362,11 @@ knitr::include_graphics("img/rdata-prefs.png")
 
 The next time you start ***R***, the workspace from ".RData" will be loaded again automatically, provided you have not changed your working directory and you have not unchecked "Restore .RData into workspace at startup" in preferences.
 
-A second hidden file, ".Rhistory", will also be stored in the same directory, which will contain a log of all commands you sent to the console, provided you have not unchecked "Always save history".
+A second hidden file, ".Rhistory", will also be stored in the same directory, which will contain a log of all commands you sent to the console, provided you have not unchecked "Always save history". You can clear your history in the ***RStudio*** IDE by clicking the broom icon on the **History** tab.
 
 ## Updating ***R***
 
-***R*** has been under continuous and active development since its inception in the late 1990s, and several updates are made available each year. These update help to fix bugs, improve speed and computational efficiency, and add new functionality to the software. The following information on how to update ***R*** is based on [**this post from Stack Overflow**](http://stackoverflow.com/questions/13656699/update-r-using-rstudio)
+***R*** has been under continuous and active development since its inception in the late 1990s, and, typically, multiple updates are made available each year. These updates help to fix bugs, improve speed and computational efficiency, and add new functionality to the software. The following information on how to update ***R*** is based on [**this post from Stack Overflow**](http://stackoverflow.com/questions/13656699/update-r-using-rstudio)
 
 - Step 1: Get the latest version of ***R***
 
@@ -367,18 +379,20 @@ A second hidden file, ".Rhistory", will also be stored in the same directory, wh
 
 - Step 2: Relocate your packages
 
-    - To ensure that your packages work with your shiny new version of ***R***, you need to:
+    - To ensure that your packages work with your new version of ***R***, you need to:
 
         - Move the packages from your old ***R*** installation into the new one.
-        - On MacOS, this typically means moving all library folders from "/Library/Frameworks/R.framework/Versions/3.x/Resources/library" to "/Library/Frameworks/R.framework/Versions/4.x/Resources/library"
+        - On MacOS, this typically means moving all library folders from either...
+        "/Users/\<username\>/Library/R/\<architecture\>/\<old-R-version\>/library" to "/Users/\<username\>/Library/R/\<architecture\>/\<new-R-version\>/library" (for packages installed to a *user* library) or from...
+        "/Library/Frameworks/R.framework/Versions/\<old R-version\>/Resources/library" to "/Library/Frameworks/R.framework/Versions/\<new R-version\>/Resources/library" (for packages installed to the *system* library)
 
-> **NOTE:** You should replace "3.x" and "4.x" with whatever versions you are upgrading from and to, respectively.
+> **NOTE:** You will need to replace `<username>`, `<architecture>`, `<old R-version>`, and `<new R-version>` with your own user name, computer processor type, and versions of ***R*** you are upgrading from and to, respectively.
 
-- On Windows, this typically means moving all library folders from "C:\\Program Files\\R\\R-3.x\\library" to "C:\\Program Files\\R\\R-4.x\\library" (if your packages are installed at the *system* level) or from "C:\\Users\\\<user name\>\\R\\win-library\\3.x\\" to "C:\\Users\\\<user name\>\\R\\win-library\\4.x\\" (if your packages are installed at the *user* level)
+- On Windows, this typically means moving all library folders from "C:\\Program Files\\R\\\<old R-version\>\\library" to "C:\\Program Files\\R\\\<new R-version\>\\library" (if your packages are installed at the *system* level) or from "C:\\Users\\\\<username\\>\\R\\win-library\\\<old R-version\>\\" to "C:\\Users\\\<username\\>\\R\\win-library\\<new R-version\>\\" (if your packages are installed at the *user* level)
 
 > **NOTE:** You only need to copy whatever packages are not already in the destination directory, i.e., you do not need to overwrite your new {base} package, etc., with your old one.
 
-- If those paths do not work for you, try using `installed.packages()` to find the proper path names. These may vary on your system, depending on where you installed ***R***
+- If those paths do not work for you, try using `installed.packages()` or `.libPaths()` to find the proper path names. These may vary on your system, depending on where you installed ***R***
 - Once you have moved your library folders, you should now can update all your packages by typing `update.packages()` in your ***RStudio*** console and answering "y" to all of the prompts or by going to the *Packages* tab, pressing the "Update" button, and then "Select All" and "Install Updates" to refresh all of your installed packages.
 - Finally, to reassure yourself that you have done everything correctly, type these two commands in the ***RStudio*** console to see what you've got in terms of what version of ***R*** you are running, the number of packages you have installed, and what packages you have loaded:
 
