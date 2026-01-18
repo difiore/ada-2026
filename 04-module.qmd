@@ -1,12 +1,12 @@
 # Fundamentals of the ***R*** Language {#module-04}
 
-## Preliminaries
-
-- Install this package in ***R***: [{renv}](https://cran.r-project.org/web/packages/easypackages/renv.pdf)
-
 ## Objectives
 
 > The goal of this module is to review important conceptual aspects of the ***R*** language as well as practices for updating ***R*** components of interest.
+
+## Preliminaries
+
+- Install this package in ***R***: [{renv}](https://cran.r-project.org/web/packages/easypackages/renv.pdf)
 
 ## ***R*** Objects
 
