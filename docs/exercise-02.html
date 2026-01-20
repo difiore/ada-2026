@@ -549,6 +549,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <blockquote class="blockquote">
 <p><strong>NOTE</strong>: Be sure to check the box marked “Create a git repository” before pressing the “Create Project” button.</p>
 </blockquote>
+<p>After making the repository, you will need to make a first commit to get <strong><em>git</em></strong> to begin tracking changes.</p>
 </section>
 <section id="step-2-1" class="level4 unnumbered">
 <h4 class="unnumbered anchored" data-anchor-id="step-2-1">Step 2</h4>
@@ -559,13 +560,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="step-3-1" class="level4 unnumbered">
 <h4 class="unnumbered anchored" data-anchor-id="step-3-1">Step 3</h4>
 <ul>
-<li>As outlined in <a href="06-module.html"><strong>Module 6</strong></a> <strong>Method 3 Option 1</strong>, open your project locally and run <code>usethis::use_github(protocol="https")</code> from the <strong><em>R</em></strong> console within your project’s working directory.</li>
+<li>As outlined in <a href="06-module.html"><strong>Module 6</strong></a> <strong>Connecting a Local Repo to GitHub Option 1</strong>, open your project locally and run <code>usethis::use_github(protocol="https")</code> from the <strong><em>R</em></strong> console within your project’s working directory.</li>
 </ul>
 </section>
 <section id="step-4-1" class="level4 unnumbered">
 <h4 class="unnumbered anchored" data-anchor-id="step-4-1">Step 4</h4>
 <ul>
-<li>Answer the question about whether the suggested name for the remote repository is adequate and hit <enter>.</enter></li>
+<li>Answer the question about whether the suggested name for the remote repository is adequate and hit <enter>. [This question may not always appear.]</enter></li>
 </ul>
 <p>This will create a new remote repository on <strong><em>GitHub</em></strong>, add it as a <code>remote origin/main</code>, and open the <strong><em>GitHub</em></strong> page for the repository in your browser. Switch back to <strong><em>RStudio</em></strong> and continue with Steps 4 to 8 from above.</p>
 
@@ -1151,19 +1152,21 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb1-144"><a href="#cb1-144" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-145"><a href="#cb1-145" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; **NOTE**: Be sure to check the box marked "Create a git repository" before pressing the "Create Project" button.</span></span>
 <span id="cb1-146"><a href="#cb1-146" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-147"><a href="#cb1-147" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Step 2 {.unnumbered}</span></span>
+<span id="cb1-147"><a href="#cb1-147" aria-hidden="true" tabindex="-1"></a>After making the repository, you will need to make a first commit to get ***git*** to begin tracking changes.</span>
 <span id="cb1-148"><a href="#cb1-148" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-149"><a href="#cb1-149" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Configure a ***GitHub*** Personal Access Token (PAT) as described in [**Module 5**](#module-05) and [**Module 6**](#module-06), making sure that ***R*** and ***RStudio*** can access your cached credentials.</span>
+<span id="cb1-149"><a href="#cb1-149" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Step 2 {.unnumbered}</span></span>
 <span id="cb1-150"><a href="#cb1-150" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-151"><a href="#cb1-151" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Step 3 {.unnumbered}</span></span>
+<span id="cb1-151"><a href="#cb1-151" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Configure a ***GitHub*** Personal Access Token (PAT) as described in [**Module 5**](#module-05) and [**Module 6**](#module-06), making sure that ***R*** and ***RStudio*** can access your cached credentials.</span>
 <span id="cb1-152"><a href="#cb1-152" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-153"><a href="#cb1-153" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>As outlined in <span class="co">[</span><span class="ot">**Module 6**</span><span class="co">](#module-06)</span> **Method 3 Option 1**, open your project locally and run `usethis::use_github(protocol="https")` from the ***R*** console within your project's working directory.</span>
+<span id="cb1-153"><a href="#cb1-153" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Step 3 {.unnumbered}</span></span>
 <span id="cb1-154"><a href="#cb1-154" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-155"><a href="#cb1-155" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Step 4 {.unnumbered}</span></span>
+<span id="cb1-155"><a href="#cb1-155" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>As outlined in <span class="co">[</span><span class="ot">**Module 6**</span><span class="co">](#module-06)</span> **Connecting a Local Repo to GitHub Option 1**, open your project locally and run `usethis::use_github(protocol="https")` from the ***R*** console within your project's working directory.</span>
 <span id="cb1-156"><a href="#cb1-156" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-157"><a href="#cb1-157" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Answer the question about whether the suggested name for the remote repository is adequate and hit &lt;Enter&gt;.</span>
+<span id="cb1-157"><a href="#cb1-157" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Step 4 {.unnumbered}</span></span>
 <span id="cb1-158"><a href="#cb1-158" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-159"><a href="#cb1-159" aria-hidden="true" tabindex="-1"></a>This will create a new remote repository on ***GitHub***, add it as a `remote origin/main`, and open the ***GitHub*** page for the repository in your browser. Switch back to ***RStudio*** and continue with Steps 4 to 8 from above.</span>
+<span id="cb1-159"><a href="#cb1-159" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Answer the question about whether the suggested name for the remote repository is adequate and hit &lt;Enter&gt;. <span class="co">[</span><span class="ot">This question may not always appear.</span><span class="co">]</span></span>
+<span id="cb1-160"><a href="#cb1-160" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-161"><a href="#cb1-161" aria-hidden="true" tabindex="-1"></a>This will create a new remote repository on ***GitHub***, add it as a `remote origin/main`, and open the ***GitHub*** page for the repository in your browser. Switch back to ***RStudio*** and continue with Steps 4 to 8 from above.</span>
 </code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->

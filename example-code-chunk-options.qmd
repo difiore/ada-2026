@@ -1,0 +1,62 @@
+---
+title: "Example Code Chunk Options"
+author: Anthony Di Fiore
+date: today
+---
+
+# Standard code block
+
+```{r}
+x <- 1
+print(x)
+log(-x)
+```
+
+# Exclude source code
+
+```{r}
+#| echo: false
+x <- 2
+print(x)
+log(-x)
+```
+
+# Exclude output
+
+```{r}
+#| eval: false
+x <- 3
+print(x)
+log(-x)
+```
+
+# Exclude warnings
+
+```{r}
+#| warning: false
+x <- 4
+print(x)
+log(-4)
+```
+
+# Suppress everything
+
+```{r}
+#| include: false
+x <- 5
+print(x)
+log(-x)
+```
+
+# Add a figure
+
+```{r}
+#| out-width: "90%"
+knitr::include_graphics("img/wanna_see_the_code_2x.png")
+```
+
+```{r}
+#| echo: false
+#| out-width: "4in"
+knitr::include_graphics("img/wanna_see_the_code_2x.png")
+```
