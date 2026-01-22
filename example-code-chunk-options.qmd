@@ -60,3 +60,9 @@ knitr::include_graphics("img/wanna_see_the_code_2x.png")
 #| out-width: "4in"
 knitr::include_graphics("img/wanna_see_the_code_2x.png")
 ```
+
+```{r}
+#| echo: false
+#| out-height: "4in"
+knitr::include_graphics("img/pvz-zombie1.pdf")
+```
