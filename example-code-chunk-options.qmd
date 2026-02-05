@@ -1,10 +1,23 @@
 ---
 title: "Example Code Chunk Options"
-author: Anthony Di Fiore
-date: today
+author: "Anthony Di Fiore"
+date: last-modified
+format:
+  html:
+    self-contained: true
+    embed-resources: true
+    css: css/style.css
+    theme:
+      - cosmo
+    code-fold: false
+    code-tools: true
+    toc: true
+    toc-depth: 3
 ---
 
 # Standard code block
+
+No YAML chunk options specified
 
 ```{r}
 x <- 1
@@ -13,6 +26,8 @@ log(-x)
 ```
 
 # Exclude source code
+
+Use: ```#| echo: false```
 
 ```{r}
 #| echo: false
@@ -23,6 +38,8 @@ log(-x)
 
 # Exclude output
 
+Use: ```#| eval: false```
+
 ```{r}
 #| eval: false
 x <- 3
@@ -31,6 +48,8 @@ log(-x)
 ```
 
 # Exclude warnings
+
+Use: ```#| warning: false```
 
 ```{r}
 #| warning: false
@@ -41,6 +60,8 @@ log(-4)
 
 # Suppress everything
 
+Use: ```#| include: false```
+
 ```{r}
 #| include: false
 x <- 5
@@ -50,19 +71,22 @@ log(-x)
 
 # Add a figure
 
+Use: ```#| echo: fenced``` to show entire code block
+
 ```{r}
+#| echo: fenced
 #| out-width: "90%"
 knitr::include_graphics("img/wanna_see_the_code_2x.png")
 ```
 
 ```{r}
-#| echo: false
+#| echo: fenced
 #| out-width: "4in"
 knitr::include_graphics("img/wanna_see_the_code_2x.png")
 ```
 
 ```{r}
-#| echo: false
+#| echo: fenced
 #| out-height: "4in"
 knitr::include_graphics("img/pvz-zombie1.pdf")
 ```

@@ -1,0 +1,133 @@
+---
+title: "Notes on Plotting"
+author: "Anthony Di Fiore"
+date: last-modified
+format:
+  html:
+    self-contained: true
+    embed-resources: true
+    css: css/style.css
+    theme:
+      - cosmo
+    code-fold: true
+    code-tools: true
+    toc: true
+    toc-depth: 3
+execute:
+  echo: true
+  warning: false
+  message: false
+  error: true
+knitr:
+  opts_chunk:
+    fig.width: 6
+    fig.height: 4
+    fig.retina: 2
+    fig.align: center
+    fig.dpi: 144
+    out.width: "80%"
+    cache: false
+    dev: "png"
+---
+
+You cannot reliably add to a {base} R plot across code chunks in either a ***Quarto*** or ***R Markdown*** document. {base} graphics are tied to a graphics device (output window) that is opened and closed within a chunk. When the chunk ends, the device is closed and the plot is gone. Within the same code chunk, however, you can add to the same plot.
+
+{ggplot2} graphics work a little differently. When you create a plot object and assign it to a variable, you can reference that variable across code chunks and add to it incrementally in different code chunks.
+
+# Load {tidyverse} and data
+
+```{r}
+#| warning: false
+library(tidyverse)
+f <- "https://raw.githubusercontent.com/difiore/ada-datasets/main/KamilarAndCooperData.csv"
+d <- read_csv(f, col_names = TRUE)
+```
+
+# {base} R example
+
+::: callout-note
+Plotting all in one code chunk...
+:::
+
+```{r}
+boxplot(data = d, log(Body_mass_female_mean) ~ Family)
+stripchart(data = d, log(d$Body_mass_female_mean) ~ Family,
+             method = "jitter",
+             col = "blue",
+             vertical = TRUE,
+             add = TRUE)
+```
+
+# {ggplot2} example
+
+::: callout-note
+Plotting split across multiple code chunks
+:::
+
+::: callout-tip
+# Tip
+create plot object
+:::
+
+```{r}
+p <- ggplot(
+   data = d,
+   aes(x = Family, y = log(Body_mass_female_mean))
+   )
+```
+
+::: callout-tip
+# Tip
+add boxplot
+:::
+
+```{r}
+p <- p + geom_boxplot(na.rm = TRUE)
+```
+
+::: callout-tip
+# Tip
+add points
+:::
+
+```{r}
+p <- p + geom_jitter(color = "blue", width = 0.1, na.rm = TRUE)
+```
+
+::: callout-tip
+# Tip
+change theme
+:::
+
+```{r}
+p <- p + theme_bw()
+```
+
+::: callout-tip
+# Tip
+tweak theme by rotating X axis labels
+:::
+
+```{r}
+p <- p + theme(axis.text.x = element_text(angle = 90))
+```
+
+::: callout-tip
+# Tip
+rename Y axis
+:::
+
+```{r}
+p <- p + ylab("log(Female Body Mass)")
+```
+
+::: callout-tip
+# Tip
+actually visualize plot
+:::
+
+```{r}
+p
+```
+
+
