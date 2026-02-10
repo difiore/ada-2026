@@ -26,22 +26,25 @@ d$sex_ratio <- d$AdultMales/d$AdultFemale
 d$DI <- d$DayLength_km/(2 * sqrt(d$HomeRange_km2/pi))
 
 # 4
-(p <- ggplot(data = d, aes(x = DayLength_km, y = Move)) +
-    geom_point())
-(p <- ggplot(data = d, aes(x = DayLength_km, y = Move)) +
-    geom_point() +
+(p <- ggplot(data = d, aes(x = Move, y = DayLength_km)) +
+    geom_point(na.rm = TRUE))
+(p <- ggplot(data = d, aes(x = Move, y = DayLength_km)) +
+    geom_point(na.rm = TRUE) +
     facet_wrap(~Family))
 
 # 5
-(p <- ggplot(data = d, aes(x = MeanGroupSize, y = Move)) +
-    geom_point())
-(p <- ggplot(data = d, aes(x = MeanGroupSize, y = Move)) +
-    geom_point() +
+(p <- ggplot(data = d, aes(x = MeanGroupSize, y = DayLength_km)) +
+    geom_point(na.rm = TRUE))
+(p <- ggplot(data = d, aes(x = MeanGroupSize, y = DayLength_km)) +
+    geom_point(na.rm = TRUE) +
     facet_wrap(~Family))
 
 # 6
 (p <- ggplot(data = d, aes(x = BSD, y = Canine_Dimorphism)) +
-    geom_point())
+    geom_point(na.rm = TRUE))
+(p <- ggplot(data = d, aes(x = BSD, y = Canine_Dimorphism)) +
+    geom_point(na.rm = TRUE)) +
+    facet_wrap(~Family)
 
 # 7
 d <- d |> mutate(

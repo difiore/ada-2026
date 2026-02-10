@@ -234,16 +234,6 @@ s <- d |>
 
 dim(s)
 
-
-%>%
-
-
-
-dim(s)
-
-
-
-
 # order
 s <- d[order(d$Family,d$Genus,-d$Body_mass_male_mean),]
 s <- arrange(d, Family,Genus,desc(Body_mass_male_mean))
@@ -285,15 +275,12 @@ g <- d |> select(Taxonomy, c("Body_mass_female_mean", "Species"))
 
 
 
-
+library(tidyverse)
 
 f <- "https://raw.githubusercontent.com/difiore/ada-datasets/main/IMDB-movies.csv"
 d <- read_csv(f, col_names = TRUE) # creates a "tibble"
 
 names(d)
-
-
-
 
 
 
@@ -320,40 +307,42 @@ while (i <= 10) {
 runtime <- 0
 
 for (i in 1:nrow(d)) {
-  runtime <- runtime + d[i,]$runtimeMinutes
+  if (!is.na(d[i, ]$runtimeMinutes)) {
+    runtime <- runtime + d[i, ]$runtimeMinutes
+  }
 }
-
+# or
 sum(d$runtimeMinutes, na.rm = TRUE)
+
+# or
 runtime <- d |> summarize(sum = sum(runtimeMinutes, na.rm = TRUE))
 
 papers <- "https://raw.githubusercontent.com/difiore/ada-datasets/main/papers.csv"
 
-creators <- "https://raw.githubusercontent.com/difiore/ada-datasets/main/creators.csv"
-
 p <- read_csv(papers, col_names = TRUE)
-c <- read_csv(creators, col_names = TRUE)
+
+author <-
+  tibble(fullName = c("Abbott, David"), lastName = "Abbott", firstName = "David")
+
+# inner join on papers
+inner_join(p, author, by = c("First Author Last Name" = "lastName", "First Author First Name" = "firstName"))
+
+inner_join(author, p, by = c("lastName" = "First Author Last Name", "firstName" = "First Author First Name"))
 
 p <- p |>
   separate_wider_delim(cols = Author,
-                       delim = ";",
-                       names = c("First Author", "A2", "A3", "A4"),
-                       too_few = "align_start", too_many = "drop") |>
+    delim = ";",
+    names = c("First Author", "A2", "A3", "A4"),
+    too_few = "align_start", too_many = "drop") |>
   mutate(A2 = str_trim(`A2`, "both"),
          A3 = str_trim(`A3`, "both"),
          A4 = str_trim(`A4`, "both"))
 
-c <- c |>
-  distinct()
+inner <- inner_join(p, author, by = c("First Author" = "fullName"))
 
+author <-
+  tibble(partialName = c("^Abbott"))
 
 library(fuzzyjoin)
 
-find_pubs <-
-  tibble(name = c("Abbott, David"))
-
-inner <- inner_join(p, find_pubs, by = c("First Author" = "name"))
-
-find_pubs <-
-  tibble(partialName = c("^Abbott"))
-
-inner_fuzzy <- regex_inner_join(p, find_pubs, by = c("First Author" = "partialName"))
+inner_fuzzy <- regex_inner_join(p, author, by = c("First Author" = "partialName"))
