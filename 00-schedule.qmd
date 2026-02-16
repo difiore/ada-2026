@@ -200,17 +200,17 @@
     - Chapter 10 - Conditions and Loops
     - Chapter 11 - Writing Functions
 - *R for Data Science*
-    - Chapter 3 - Data Transformation
+    - Chapter 10 - Relational Data with {dplyr}
 - *R in Action*
     - Chapter 5 - Advanced Data Management
 
 ## Part II - Statistics and Inference {.unnumbered}
 
-### Descriptive Statistics {.unnumbered}
+### Beginning Statistics {.unnumbered}
 
 #### Modules {.unnumbered}
 
-- Module 12 - [Introduction to Statistics and Sampling](#module-12)
+- Module 12 - [Beginning Statistics](#module-12)
 
 #### Topics {.unnumbered}
 
@@ -220,20 +220,18 @@
 
 #### Suggested Readings {.unnumbered}
 
-- *The Book of R*
-    - Chapter 13 - Elementary Statistics
-- *Statistical Inference via Data Science*
-    - Chapter 7 - Sampling
 - *Modern Data Science with R*
     - Chapter 7 - Statistical Foundations
+- *Introduction to Data Science*
+    - Chapter 15 - Random Variables
+- *Statistical Inference via Data Science*
+    - Chapter 7 - Sampling
 
 #### Other Useful Readings {.unnumbered}
 
 - *Statistics: An Introduction Using R*
-    - Chapter 13 - Central Tendency
-    - Chapter 14 - Variance
-- *Introduction to Data Science*
-    - Chapter 15 - Random Variables
+    - Chapter 3 - Central Tendency
+    - Chapter 4 - Variance
 
 ### Probability and Distributions {.unnumbered}
 
@@ -252,7 +250,7 @@
         - Density (`d`)
         - Cumulative probability (`p`)
         - Quantile (`q`)
-        - Random (`r`) functions
+        - Random (`r`)
     - Discrete distributions
         - Bernoulli
         - Poisson

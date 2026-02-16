@@ -1,4 +1,4 @@
-# Introduction to Statistics and Sampling {#module-12}
+# Beginning Statistics {#module-12}
 
 ## Objectives
 
@@ -204,7 +204,7 @@ hist(x, main = "Beta: Left-Skewed", freq = FALSE)
 
 $$\frac{\sum\limits_{i=1}^{N}(x_i-\bar{x})^4}{(N-1)\sigma^4}$$
 
-That is, kurtosis is based on deviations of each observation raised to the fourth power. Data drawn from a normal distribution have an expected kurtosis of three, while those with "negative" kurtosis have a value of greater than three and those with "postive" kurtosis have values of less than three.
+That is, kurtosis is based on deviations of each observation raised to the fourth power. Data drawn from a normal distribution have an expected kurtosis of three, while those with "negative" kurtosis have a value of greater than three and those with "positive" kurtosis have values of less than three.
 
 ```{r}
 # draw a random sample from a normal distribution with mean = 0 and stdev = 1
