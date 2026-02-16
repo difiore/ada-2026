@@ -282,17 +282,54 @@ d <- read_csv(f, col_names = TRUE) # creates a "tibble"
 
 names(d)
 
+unique(d$genres)
 
-
-d$genres
-
-d <- d |> mutate(comedy = if_else(grepl("Comedy", genres), TRUE, FALSE))
+d <- d |> mutate(comedy = if_else(grepl("Comedy", genres), "Y", "N"))
 
 d$comedy
 
 d <- d |> mutate(comedy = if_else(str_detect(genres, "Comedy"), TRUE, FALSE))
 d <- d |> relocate(comedy, .after = primaryTitle)
-s <- d |> summarize(count = n(), comedies = sum(comedy, na.rm = TRUE))
+
+c <- d |>
+
+c <- sum(d$comedy)
+dim(d)
+
+s <- d |>
+  summarize(count = n(),
+            comedies = sum(comedy, na.rm = TRUE))
+
+s
+
+d$ranking <- case_when(
+  d$averageRating < 3.3 ~ "low",
+  d$averageRating < 6.7 ~ "med",
+  d$averageRating <= 10.0 ~ "high")
+)
+
+d$ranking <- NULL
+
+d <- d |>
+  mutate(ranking = case_when(
+            averageRating < 3.3 ~ "low",
+            averageRating >= 3.3 & averageRating < 6.7 ~ "med",
+            averageRating <= 10.0 ~ "high"
+           )
+        )
+
+s <- d |>
+  group_by(ranking) |>
+  summarize(count = n(),
+            avgRuntime = mean(runtimeMinutes, na.rm = TRUE)
+            )
+
+
+
+
+
+
+
 
 for (i in 1:10) {
   print(i)
@@ -304,22 +341,42 @@ while (i <= 10) {
   i <- i + 1
 }
 
+cruntime <- 0
+for (i in 1:nrow(d)) {
+  cruntime <- cruntime + d[i,]$runtimeMinutes
+}
+
+cruntime
+
 runtime <- 0
 
+
+cruntime <- 0
 for (i in 1:nrow(d)) {
-  if (!is.na(d[i, ]$runtimeMinutes)) {
-    runtime <- runtime + d[i, ]$runtimeMinutes
+  if (!is.na(d[i, ][["runtimeMinutes"]])) {
+    cruntime <- cruntime + d[i, ]$runtimeMinutes
   }
 }
+cruntime
+
+
 # or
 sum(d$runtimeMinutes, na.rm = TRUE)
 
 # or
 runtime <- d |> summarize(sum = sum(runtimeMinutes, na.rm = TRUE))
 
-papers <- "https://raw.githubusercontent.com/difiore/ada-datasets/main/papers.csv"
 
+cruntime <- 0
+for (i in 1:nrow(d)) {
+  if (!is.na(d[i, ]$runtimeMinutes)) {
+    cruntime<- cruntime + d[i, ]$runtimeMinutes }
+}
+
+library(tidyverse)
+papers <- "https://raw.githubusercontent.com/difiore/ada-datasets/main/papers.csv"
 p <- read_csv(papers, col_names = TRUE)
+head(p)
 
 author <-
   tibble(fullName = c("Abbott, David"), lastName = "Abbott", firstName = "David")
@@ -328,6 +385,7 @@ author <-
 inner_join(p, author, by = c("First Author Last Name" = "lastName", "First Author First Name" = "firstName"))
 
 inner_join(author, p, by = c("lastName" = "First Author Last Name", "firstName" = "First Author First Name"))
+
 
 p <- p |>
   separate_wider_delim(cols = Author,
@@ -339,10 +397,67 @@ p <- p |>
          A4 = str_trim(`A4`, "both"))
 
 inner <- inner_join(p, author, by = c("First Author" = "fullName"))
-
-author <-
-  tibble(partialName = c("^Abbott"))
-
+library(tidyverse)
 library(fuzzyjoin)
 
+author <-
+  tibble(partialName = c("^Abbott, D", "^Di Fiore"))
+
 inner_fuzzy <- regex_inner_join(p, author, by = c("First Author" = "partialName"))
+
+
+my_print_reps <- function (x, reps = 2){
+  for (i in 1:reps){
+    print(x)
+  }
+  for (i in 1: nrow(x)){
+    print(x[i,])
+  }
+  return(x[1,])
+}
+
+library(tidyverse)
+# load data
+f <- "https://raw.githubusercontent.com/difiore/ada-datasets/main/sample_gps_data.csv"
+gps <- read_csv(f, col_names = TRUE)
+f <- "https://raw.githubusercontent.com/difiore/ada-datasets/main/sample_behavioral_data.csv"
+beh <- read_csv(f, col_names = TRUE)
+
+# wrangle data
+beh <- beh |>
+  separate_wider_delim(
+    cols = Date.Time,
+    delim = "-",
+    names = "Year",
+    too_many = "drop",
+    cols_remove = FALSE
+  ) |>
+  filter(Year %in% c("2012", "2013", "2014"))
+
+# join tables
+d <- inner_join(beh, gps, by = c("Observer" = "Observer", "Date.Time" = "Date.Time"))
+
+# convert to UTM
+library(oce)
+d <- d |>
+  mutate(
+    easting = lonlat2utm(
+      Mean.Longitude, Mean.Latitude)$easting,
+    northing = lonlat2utm(
+      Mean.Longitude, Mean.Latitude)$northing + 10000000
+    )
+
+# list of animals
+unique(d$Focal.Animal)
+
+# filter to one animal (choose 1)
+animal <- "Nenki"
+focal <- d |>
+  filter(Focal.Animal == "Nenki")
+
+p <- ggplot(focal, aes(x = easting, y = northing)) +
+  geom_point() +
+  labs(
+    title = paste0("Location Records for ", animal)
+  )
+p

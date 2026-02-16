@@ -41,7 +41,7 @@ book:
     - part: "Part II - Statistics and Inference"
       chapters:
       - 12-module.qmd
-      # - 13-module.qmd
+      - 13-module.qmd
       # - 14-module.qmd
       # - 15-module.qmd
       # - 16-module.qmd
@@ -66,6 +66,7 @@ book:
       - exercise-01.qmd
       - exercise-02.qmd
       - exercise-03.qmd
+      - exercise-03-solution.qmd
       - exercise-04.qmd
       # - exercise-04-solution.qmd
       # - exercise-05.qmd
@@ -82,8 +83,8 @@ book:
       # - exercise-11.qmd
       # - exercise-11-solution.qmd
     - part: "Assignments"
-      # chapters:
-      # - data-analysis-replication-assignment.qmd
+      chapters:
+      - data-analysis-replication-assignment.qmd
       # - data-analysis-replication-assignment-template.qmd
       # - collaborative-data-science-assignment.qmd
       # - creative-dataviz-assignment.qmd

@@ -611,7 +611,7 @@ For this distribution, $\mu_X = \lambda$ and $\sigma_X^2 = \lambda$
 
 Note that for the Poisson Distribution the mean and the variance are the same!
 
-Let's use ***R*** and the {moasic} package to look at the probability mass functions for different values of $\lambda$:
+Let's use ***R*** and the {mosaic} package to look at the probability mass functions for different values of $\lambda$:
 
 ```{r}
 #| fig-height: 3

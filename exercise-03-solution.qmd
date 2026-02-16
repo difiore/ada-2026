@@ -56,7 +56,7 @@ d <- d |> mutate(
   )
 )
 
-(p <- ggplot(data = filter(d, !is.na(diet)), aes(x = diet_strategy, y = MeanGroupSize)) +
+(p <- ggplot(data = filter(d, !is.na(diet_strategy)), aes(x = diet_strategy, y = MeanGroupSize)) +
     geom_boxplot())
 
 # 8
