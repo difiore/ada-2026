@@ -461,3 +461,164 @@ p <- ggplot(focal, aes(x = easting, y = northing)) +
     title = paste0("Location Records for ", animal)
   )
 p
+
+mu <- 10
+sd <- 2
+plotDist("norm", mean = mu, sigma = sd)
+
+
+
+
+
+
+
+
+
+
+s1 <- rnorm(n = 10, mean = 10, sd = 2)
+mean(s1)
+sd(s1)
+
+s2 <- rnorm(n = 10000, mean = 10, sd = 2)
+mean(s2)
+sd(s2)
+
+skewness <- function(x){
+  sum(((x-mean(x))/sd(x))^3)/(length(x)-1)
+}
+
+skewness_corrected <- function(x){
+  n <- length(x)
+  s <- sd(x)
+  (n/((n-1)*(n-2))) * sum(((x - mean(x))/s)^3)
+}
+
+skewness(s2)
+moments::skewness(s2)
+moments::kurtosis(s2)
+
+df1 <- 5
+df2 <- 20
+# Plot the F density
+plotDist("f", df1 = df1, df2 = df2, xlab="x", ylab="Frequency")
+
+
+
+
+s <- rf(n = 100000, df1 = 5, df2 = 20)
+
+
+histogram(s)
+
+
+
+mean(s)
+sd(s)
+moments::skewness(s)
+moments::kurtosis(s)
+
+
+
+
+plotDist("f",
+         df1 = df1, df2 = df2,
+         col = "purple", lwd = 4)
+
+shape1= 5
+shape2= 2
+
+plotDist("beta",
+         shape1 = shape1, shape2 = shape2,
+         col="purple", lwd=5)
+
+s <- rbeta(n = 100000, shape1 = shape1, shape2 = shape2)
+
+library(mosaic)
+
+reps <-500
+
+samp_dist_mean <-
+  do(reps) * mean(rnorm (n = 10, mean = 10, sd =2))
+glimpse(samp_dist_mean)
+
+samp_dist_median <-
+  do(reps) * median(rnorm (n = 10, mean = 10, sd =2))
+glimpse(samp_dist_median)
+
+samp_dist_sd <-
+  do(reps) * sd(rnorm (n = 10, mean = 10, sd = 2))
+glimpse(samp_dist_sd)
+
+histogram(~mean, data = samp_dist_mean)
+histogram(~median, data = samp_dist_median)
+histogram(~sd, data = samp_dist_sd)
+
+mean(samp_dist_mean$mean)
+se_mean <- sd(samp_dist_mean$mean)
+se_median <- sd(samp_dist_median$median)
+
+x <- rnorm(n = 10, mean = 10, sd = 2)
+(se <- sd(x)/sqrt(length(x)))
+
+x <- rnorm(n = 1000, mean = 10, sd = 2)
+(se <- sd(x)/sqrt(length(x)))
+
+samp_dist_mean <-
+  do(reps) * mean(rnorm(n = 1000, mean = 10, sd = 2))
+
+histogram(~ mean, data = samp_dist_mean, xlab = "Samp Dist for the Mean")
+
+(se_mean <- sd(samp_dist_mean$mean))
+
+plotDist("t", df = 99, xlab ="x", ylab = "Frequency", col = "red")
+plotDist("t", df = 50, xlab ="x", ylab = "Frequency", col = "red", add = TRUE)
+plotDist("t", df = 25, xlab ="x", ylab = "Frequency", col = "red", add = TRUE)
+plotDist("t", df = 12, xlab ="x", ylab = "Frequency", col = "red", add = TRUE)
+plotDist("t", df = 6, xlab ="x", ylab = "Frequency", col = "red", add = TRUE)
+plotDist("t", df = 3, xlab ="x", ylab = "Frequency", col = "red", add = TRUE)
+plotDist("t", df = 1, xlab ="x", ylab = "Frequency", col = "red", add = TRUE)
+
+plotDist("t", df = 30, xlab ="x", ylab = "Frequency", col = "red")
+plotDist("norm", mu = 0, sd =1, add = TRUE)
+
+plotDist("beta", shape1 = 2, shape2 = 4, xlab="x", ylab="Frequency", col="red", xlim = c(0,1))
+plotDist("beta", shape1 = 1, shape2 = 1, add = TRUE)
+plotDist("beta", shape1 = 0.5, shape2 = 0.5, add = TRUE)
+plotDist("beta", shape1 = 2, shape2 = 0.5, add = TRUE)
+plotDist("beta", shape1 = 0.5, shape2 = 2, add = TRUE)
+plotDist("beta", shape1 = 4, shape2 = 2, add = TRUE)
+
+qnorm(p = c(0.025, 0.975), mean = 0, sd = 1)
+qbeta(p = c(0.025, 0.975), shape1 = 2, shape2 = 4)
+
+lower <- qnorm(0.025, mean = 0, sd = 1)
+upper <- qnorm(0.975, mean = 0, sd = 1)
+curve(dnorm(x, mean = 0, sd = 1), from = -4, to = 4, lwd = 2)
+x <- seq(lower, upper, length = 500)
+polygon(c(lower, x, upper),
+        c(0, dnorm(x, mean = 0, sd = 1), 0),
+        col = "lightblue")
+abline(v = c(lower, upper), col = "red", lwd = 2)
+
+
+lower <- qbeta(0.025, shape1 = 2, shape2 = 4)
+upper <- qbeta(0.975, shape1 = 2, shape2 = 4)
+curve(dbeta(x, shape1 = 2, shape2 = 4), from = 0, to = 1, lwd = 2)
+x <- seq(lower, upper, length = 500)
+polygon(c(lower, x, upper),
+          c(0, dbeta(x, shape1 = 2, shape2 = 4), 0),
+          col = "lightblue")
+abline(v = c(lower, upper), col = "red", lwd = 2)
+
+x <- c(2.9, 4.8, 8.9, -3.2, 9.1, -2.5, -0.9, -0.1, 2.8, -1.7)
+m <- mean(x)
+se <- sd(x)/sqrt(length(x))
+ci <- m + qnorm(c(0.025, 0.975)) * se
+# or
+ci <- m + c(qnorm(0.025), qnorm(0.975)) * se
+
+percent_ci <- 0.95
+alpha <- 1 - percent_ci/100
+ci <- m + qnorm(c(alpha/2, (1 - (alpha/2)))) * se
+
+mean(x) + qnorm(c(0.025, 0.975)) * sd(x)/sqrt(length(x))

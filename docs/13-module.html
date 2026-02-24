@@ -64,7 +64,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./exercise-01.html" rel="next">
+<link href="./14-module.html" rel="next">
 <link href="./12-module.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -321,6 +321,18 @@ window.Quarto = {
  <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Probability and Distributions</span></span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./14-module.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Confidence Intervals</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./15-module.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Classical Hypothesis Testing</span></span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -364,6 +376,12 @@ window.Quarto = {
   <div class="sidebar-item-container"> 
   <a href="./exercise-04.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Exercise 04</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./exercise-05.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Exercise 05</span></a>
   </div>
 </li>
       </ul>
@@ -890,11 +908,11 @@ window.Quarto = {
 <span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>spade <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(card <span class="sc">&lt;=</span> <span class="dv">13</span>, <span class="cn">TRUE</span>, <span class="cn">FALSE</span>)</span>
 <span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>(exp_spade <span class="ot">&lt;-</span> <span class="fu">sum</span>(spade)<span class="sc">/</span>reps)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>## [1] 0.25141</code></pre>
+<pre><code>## [1] 0.25114</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>(exp_var_spade <span class="ot">&lt;-</span> <span class="fu">var</span>(spade))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>## [1] 0.1882049</code></pre>
+<pre><code>## [1] 0.1880706</code></pre>
 </div>
 </div>
 <section id="the-binomial-distribution" class="level4 unnumbered">
@@ -1054,22 +1072,22 @@ window.Quarto = {
 <span id="cb58-18"><a href="#cb58-18" aria-hidden="true" tabindex="-1"></a><span class="co"># all 'ones' in 6 rolls</span></span>
 <span id="cb58-19"><a href="#cb58-19" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(all_ones)<span class="sc">/</span>reps</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>## [1] 2.2e-05</code></pre>
+<pre><code>## [1] 2.5e-05</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb60"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a><span class="co"># three 'ones' in 6 rolls</span></span>
 <span id="cb60-2"><a href="#cb60-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(three_ones)<span class="sc">/</span>reps</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>## [1] 0.053457</code></pre>
+<pre><code>## [1] 0.0534</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb62"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a><span class="co"># expected # 'ones' in 6 rolls</span></span>
 <span id="cb62-2"><a href="#cb62-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(count_ones)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>## [1] 0.999362</code></pre>
+<pre><code>## [1] 1.000613</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb64"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a><span class="co"># variance in expected # 'ones' across rolls</span></span>
 <span id="cb64-2"><a href="#cb64-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>((count_ones <span class="sc">-</span> <span class="fu">mean</span>(count_ones))<span class="sc">^</span><span class="dv">2</span>)<span class="sc">/</span>(<span class="fu">length</span>(count_ones))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>## [1] 0.8325116</code></pre>
+<pre><code>## [1] 0.8335706</code></pre>
 </div>
 </div>
 <section id="the-poisson-distribution" class="level4 unnumbered">
@@ -1177,7 +1195,7 @@ window.Quarto = {
 </details>
 <div class="cell-output cell-output-stdout">
 <details><summary>Show Output</summary>
-<pre class="details" data-summary="Show Output"><code>## [1] 7.001048</code></pre>
+<pre class="details" data-summary="Show Output"><code>## [1] 6.998688</code></pre>
 </details>
 </div>
 <details class="code-fold">
@@ -1186,7 +1204,7 @@ window.Quarto = {
 </details>
 <div class="cell-output cell-output-stdout">
 <details><summary>Show Output</summary>
-<pre class="details" data-summary="Show Output"><code>## [1] 0.3307744</code></pre>
+<pre class="details" data-summary="Show Output"><code>## [1] 0.3347538</code></pre>
 </details>
 </div>
 <details class="code-fold">
@@ -1210,7 +1228,7 @@ window.Quarto = {
 </div>
 <section id="the-normal-distribution" class="level4 unnumbered">
 <h4 class="unnumbered anchored" data-anchor-id="the-normal-distribution">The Normal Distribution</h4>
-<p>The <strong>Normal</strong> or <strong>Gaussian Distribution</strong> is perhaps the most familiar and most commonly applied probability density functions for modeling continuous random variables. Why is the normal distribution so important? Well, many traits are normally distributed, and the additive combination of many random factors is also commonly normally distributed. Even more importantly, as we will see in <a href="packages.html#module-14"><strong>Module 14</strong></a>, the sampling distribution for many summary statistics (e.g., sample means) tends to be normally distributed when sample size is sufficiently large, and this fact is central to statistical inference.</p>
+<p>The <strong>Normal</strong> or <strong>Gaussian Distribution</strong> is perhaps the most familiar and most commonly applied probability density functions for modeling continuous random variables. Why is the normal distribution so important? Well, many traits are normally distributed, and the additive combination of many random factors is also commonly normally distributed. Even more importantly, as we will see in <a href="14-module.html"><strong>Module 14</strong></a>, the sampling distribution for many summary statistics (e.g., sample means) tends to be normally distributed when sample size is sufficiently large, and this fact is central to statistical inference.</p>
 <p>For the normal distribution, two parameters, <span class="math inline">\(\mu\)</span> and <span class="math inline">\(\sigma\)</span>, are used to describe the shape of the distribution.</p>
 <p>The code below allows us to visualize and play around with a normal distribution. First, try maniupulating <span class="math inline">\(\mu\)</span> and <span class="math inline">\(\sigma\)</span>.</p>
 <div class="cell" data-layout-align="center">
@@ -2139,8 +2157,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./exercise-01.html" class="pagination-link" aria-label="Exercise 01">
-        <span class="nav-page-text">Exercise 01</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./14-module.html" class="pagination-link" aria-label="<span class='chapter-number'>14</span>&nbsp; <span class='chapter-title'>Confidence Intervals</span>">
+        <span class="nav-page-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Confidence Intervals</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">

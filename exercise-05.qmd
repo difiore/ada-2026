@@ -46,7 +46,7 @@
 
 ### Step 7 {.unnumbered}
 
-- Compare these estimates to the actual population mean **runtimeMinutes** for each decade and to the calculated SE in the population mean for samples of size 100 based on the population standard deviation for each decade.
+- Compare these estimates to the actual population mean **runtimeMinutes** for each decade and to the expected SE in the population mean for samples of size 100 based on the known population standard deviation for each decade.
 
 ### Step 8 {.unnumbered}
 

@@ -42,8 +42,8 @@ book:
       chapters:
       - 12-module.qmd
       - 13-module.qmd
-      # - 14-module.qmd
-      # - 15-module.qmd
+      - 14-module.qmd
+      - 15-module.qmd
       # - 16-module.qmd
       # - 17-module.qmd
       # - 18-module.qmd
@@ -69,7 +69,7 @@ book:
       - exercise-03-solution.qmd
       - exercise-04.qmd
       # - exercise-04-solution.qmd
-      # - exercise-05.qmd
+      - exercise-05.qmd
       # - exercise-05-solution.qmd
       # - exercise-06.qmd
       # - exercise-06-solution.qmd
