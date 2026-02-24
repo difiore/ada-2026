@@ -533,8 +533,8 @@ plotDist("beta",
 
 s <- rbeta(n = 100000, shape1 = shape1, shape2 = shape2)
 
-library(mosaic)
 
+library(mosaic)
 reps <-500
 
 samp_dist_mean <-
@@ -542,11 +542,11 @@ samp_dist_mean <-
 glimpse(samp_dist_mean)
 
 samp_dist_median <-
-  do(reps) * median(rnorm (n = 10, mean = 10, sd =2))
+  do(reps) * median(rnorm (n = 1000, mean = 10, sd =2))
 glimpse(samp_dist_median)
 
 samp_dist_sd <-
-  do(reps) * sd(rnorm (n = 10, mean = 10, sd = 2))
+  do(reps) * sd(rnorm (n = 1000, mean = 10, sd = 2))
 glimpse(samp_dist_sd)
 
 histogram(~mean, data = samp_dist_mean)
@@ -556,6 +556,13 @@ histogram(~sd, data = samp_dist_sd)
 mean(samp_dist_mean$mean)
 se_mean <- sd(samp_dist_mean$mean)
 se_median <- sd(samp_dist_median$median)
+
+
+s <- rnorm(10, mean =10, sd =2)
+sd(s)
+sd(s)/sqrt(length(s))
+
+
 
 x <- rnorm(n = 10, mean = 10, sd = 2)
 (se <- sd(x)/sqrt(length(x)))
@@ -570,23 +577,49 @@ histogram(~ mean, data = samp_dist_mean, xlab = "Samp Dist for the Mean")
 
 (se_mean <- sd(samp_dist_mean$mean))
 
-plotDist("t", df = 99, xlab ="x", ylab = "Frequency", col = "red")
+plotDist("t", df = 100, xlab ="x", ylab = "Frequency", col = "red")
 plotDist("t", df = 50, xlab ="x", ylab = "Frequency", col = "red", add = TRUE)
+
+
 plotDist("t", df = 25, xlab ="x", ylab = "Frequency", col = "red", add = TRUE)
 plotDist("t", df = 12, xlab ="x", ylab = "Frequency", col = "red", add = TRUE)
 plotDist("t", df = 6, xlab ="x", ylab = "Frequency", col = "red", add = TRUE)
 plotDist("t", df = 3, xlab ="x", ylab = "Frequency", col = "red", add = TRUE)
 plotDist("t", df = 1, xlab ="x", ylab = "Frequency", col = "red", add = TRUE)
 
+reps <-1000
+
+x <- do(reps) * mean(rt(n = 100, df = 99, ncp = 2))
+
+
+histogram(~ mean, data = x)
+
+
+
+
 plotDist("t", df = 30, xlab ="x", ylab = "Frequency", col = "red")
 plotDist("norm", mu = 0, sd =1, add = TRUE)
 
+
+
+
+
+
 plotDist("beta", shape1 = 2, shape2 = 4, xlab="x", ylab="Frequency", col="red", xlim = c(0,1))
+
+
+
+
+
 plotDist("beta", shape1 = 1, shape2 = 1, add = TRUE)
 plotDist("beta", shape1 = 0.5, shape2 = 0.5, add = TRUE)
 plotDist("beta", shape1 = 2, shape2 = 0.5, add = TRUE)
 plotDist("beta", shape1 = 0.5, shape2 = 2, add = TRUE)
 plotDist("beta", shape1 = 4, shape2 = 2, add = TRUE)
+
+pnorm(q = 0, mean = 0, sd =1)
+
+
 
 qnorm(p = c(0.025, 0.975), mean = 0, sd = 1)
 qbeta(p = c(0.025, 0.975), shape1 = 2, shape2 = 4)
@@ -601,14 +634,18 @@ polygon(c(lower, x, upper),
 abline(v = c(lower, upper), col = "red", lwd = 2)
 
 
-lower <- qbeta(0.025, shape1 = 2, shape2 = 4)
-upper <- qbeta(0.975, shape1 = 2, shape2 = 4)
+lower <- .2
+upper <- .5
 curve(dbeta(x, shape1 = 2, shape2 = 4), from = 0, to = 1, lwd = 2)
 x <- seq(lower, upper, length = 500)
 polygon(c(lower, x, upper),
           c(0, dbeta(x, shape1 = 2, shape2 = 4), 0),
           col = "lightblue")
 abline(v = c(lower, upper), col = "red", lwd = 2)
+
+pbeta(q =.2, shape1 = 2, shape2 = 4)
+qbeta(p = .5, shape1 = 2, shape2 = 4)
+
 
 x <- c(2.9, 4.8, 8.9, -3.2, 9.1, -2.5, -0.9, -0.1, 2.8, -1.7)
 m <- mean(x)
