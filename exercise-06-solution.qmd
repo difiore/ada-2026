@@ -17,7 +17,7 @@ head(d)
 
 ### Step 1 {.unnumbered}
 
-- Reduce the dataset to just the two variables of interest.
+- Reduce the dataset to just the variables of interest.
 
 ```{r}
 d <- d |> select(sex, kernel95)
@@ -34,6 +34,7 @@ hr_summary <- d |>
   summarize(mean = mean(kernel95),
             sd = sd(kernel95),
             n = n(),
+            # note: do not use nrow(d) as that would be the entire dataset
             se = sd/sqrt(n)
   )
 hr_summary
@@ -44,7 +45,9 @@ hr_summary
 - Create boxplots comparing “kernel95” home range size by sex.
 
 ```{r}
-p <- ggplot(data = d, aes(x = sex, y = kernel95)) + geom_boxplot() + geom_jitter()
+p <- ggplot(data = d, aes(x = sex, y = kernel95)) +
+  geom_boxplot() +
+  geom_jitter()
 p
 ```
 
@@ -69,8 +72,8 @@ for (i in 1:n_boot){
 }
 
 # option 2 - using {mosaic}
-boot <- do(n_boot) * mean(sample(s$kernel95, size = length(s$kernel95), replace = TRUE))
-boot <- boot$mean # pull out mean column as vector
+boot <- (do(n_boot) * mean(sample(s$kernel95, size = length(s$kernel95), replace = TRUE))) |>
+  pull(mean) # pull out mean column as vector
 
 # option 3 - using {infer}
 boot <- s %>%
@@ -78,8 +81,8 @@ boot <- s %>%
                size = nrow(.),
                reps = 10000) |>
   group_by(replicate) |>
-  summarize(mean = mean(kernel95))
-boot <- boot$mean # pull out mean column as vector
+  summarize(mean = mean(kernel95)) |>
+  pull(mean) # pull out mean column as vector
 ```
 
 ### Step 5 {.unnumbered}
@@ -137,56 +140,86 @@ ci_theory <- boot |>
     type = "se", level = 0.95,
     point_estimate = mean(s$kernel95))
 
-visualize(boot) + shade_confidence_interval(endpoints = ci_theory, color = "blue", lty = 1, size = 0.5, fill = "#c0c0c0") + shade_confidence_interval(endpoints = ci_boot, color = "red", lty = 3, size = 0.5, fill = "#c0c0c0")
+visualize(boot) + shade_confidence_interval(endpoints = ci_theory, color = "blue", lty = 1, fill = "#c0c0c0") + shade_confidence_interval(endpoints = ci_boot, color = "red", lty = 3, fill = "#c0c0c0")
 ```
 
 ### Step 7 {.unnumbered}
 
-- Use simulation-based permutation to evaluate the difference in mean kernel95 home range size for males versus females. To do this, you will want to shuffle either the variable "sex" or "kernel95" home range size a total of 10,000 times, recalculating mean kernel95 size by sex for each permuted sample and then compare the difference in male and female kernel95 means from your original sample to the permutation distribution for the difference in means.
+- Use simulation-based permutation to evaluate the difference in mean kernel95 home range size for males versus females. To do this, you will want to shuffle either the variable "sex" or "kernel95" home range size a total of 10,000 times, recalculating mean kernel95 size by sex for each permuted sample and then compare the difference in male and female kernel95 means from your original sample to the permutation distribution for the difference in means. We can do this with a `for()` loop...
 
 ```{r}
+obs_diff <- d |>
+  summarize(diff = mean(kernel95[sex == "M"]) -
+                   mean(kernel95[sex =="F"])) |>
+pull(diff)
+
 n_perm <- 10000 # number of permutations
 # create a dummy vector to hold results for each permutation
-permuted_diff <- vector()
-permuted_data <- d
+perm_diff <- vector()
 for (i in 1:n_perm) {
-  # scramble the sex vector:
+  # scramble the sex vector and then calculate difference between means
   # `sample()` with a vector as an argument yields a random permutation of the vector
-  permuted_data$sex <- sample(permuted_data$sex)
-  m <- permuted_data[permuted_data$sex == "M",]$kernel95
-  f <- permuted_data[permuted_data$sex == "F",]$kernel95
-  permuted_diff[[i]] <- mean(m) - mean(f)
+  d |>
+    mutate(sex = sample(sex)) |>
+    summarize(diff = mean(kernel95[sex == "M"]) -
+                     mean(kernel95[sex == "F"])) |>
+    pull(diff) -> perm_diff[[i]]
   }
-histogram(permuted_diff)
-actual_diff <- mean(d[d$sex == "M",]$kernel95) - mean(d[d$sex == "F",]$kernel95)
-
-p <- (sum(permuted_diff >= abs(actual_diff)) +
-        sum(permuted_diff <= -abs(actual_diff))) / n_perm
+histogram(perm_diff)
+p <- (sum(perm_diff >= abs(obs_diff)) +
+      sum(perm_diff <= -abs(obs_diff))) / n_perm
+# or
+p <- sum(abs(perm_diff) >= abs(obs_diff)) / n_perm
 p
 
 ladd(
-  panel.abline(v=actual_diff, col="red", lty=3, lwd=2))
+  panel.abline(v=obs_diff, col="red", lty=3, lwd=2))
 ```
 
-Again, we can do this whole process using the {infer} package workflow...
+We can also use the `do()*` or `replicate()` functions to do our permutations...
 
 ```{r}
-null_distribution <- d |>
+# using do()*... note that entire do()* code is wrapped in parentheses before pull()
+perm_diff <- (do(n_perm) *
+  d |>
+    mutate(sex=sample(sex)) |>
+    summarize(diff =	mean(kernel95[sex == "M"]) -
+                      mean(kernel95[sex == "F"]))
+  ) |>
+  pull(diff) # extract column of value as vector
+histogram(perm_diff)
+
+# using replicate()... note the {} wrapped around the code within replicate() to perform in each replicate
+perm_diff <- replicate(n_perm, {
+  d |>
+    mutate(sex=sample(sex)) |>
+    summarize(diff =	mean(kernel95[sex == "M"]) -
+                      mean(kernel95[sex == "F"])) |>
+    pull(diff) # extract column of value as vector
+  	}
+  )
+histogram(perm_diff)
+```
+
+And, again, we could do this whole process using the {infer} package workflow...
+
+```{r}
+perm_diff <- d |>
   specify(formula = kernel95 ~ sex) |>
   hypothesize(null = "independence") |>
   generate(reps = n_perm, type = "permute") |>
   calculate(stat = "diff in means", order = c("M", "F"))
 
-actual_diff <- d |>
+obs_diff <- d |>
   specify(formula = kernel95 ~ sex) |>
   calculate(stat = "diff in means", order = c("M", "F"))
-actual_diff
+obs_diff
 
-null_distribution |>
-  get_p_value(obs_stat = actual_diff, direction = "both")
+perm_diff |>
+  get_p_value(obs_stat = obs_diff, direction = "both")
 
-visualize(null_distribution) +
-  shade_p_value(obs_stat = actual_diff, lty = 1, size = 0.5, fill = "#c0c0c0", direction = "both")
+visualize(perm_diff) +
+  shade_p_value(obs_stat = obs_diff, size = 0.5, fill = "#c0c0c0", direction = "both")
 ```
 
   - Under this approach, what is the "null" hypothesis? What is the test statistic? Is the difference in mean kernel95 home range size "significant"?
@@ -205,6 +238,7 @@ m <- d |> filter(sex == "M")
 var_f <- var(f$kernel95)
 var_m <- var(m$kernel95)
 var_f/var_m
+
 # ratio is less than 2.0, so we can use equal variance version of t test...
 
 num_f <- nrow(f)
@@ -229,7 +263,7 @@ t_test
 
   - Under this approach, what is the test statistic? Is the difference in mean kernel95 home range size "significant"?
 
-Here, the null hypothesis again is that the difference in mean kernel95 home range size for males versus females is zero. The test statistic is the actual difference in means **scaled by something equivalent to a standard error** that takes into account the variance and size of our two samples. This test statistic is then evaluated relative to a t distribution that depends on the number of degrees of freedom, which depends on the sample size of our two samples. Again, based on the very low p value, we would conclude that the difference is "significant" under a null hypothesis significance testing framework (assuming that p is less than the alpha level we specify).
+Here, the null hypothesis again is that the difference in mean kernel95 home range size for males versus females is zero. The test statistic is the actual difference in means **scaled by something equivalent to a standard error** that takes into account the variance and size of our two samples. This test statistic is then evaluated relative to a t distribution that depends on the number of degrees of freedom, which depends on the sample size of our two samples (if the variances were not roughly equal, we would calculate degrees of freedom taking those unequal variances into account). Again, based on the very low p value, we would conclude that the difference is "significant" under a null hypothesis significance testing framework (assuming that p is less than the alpha level we specify).
 
 ```{r}
 #| include: false

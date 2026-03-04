@@ -6,7 +6,7 @@
 
 ```{r}
 #| include: false
-options(dplyr.summarise.inform = FALSE) # to suppress extraneous messages
+options(dplyr.summarize.inform = FALSE) # to suppress extraneous messages
 ```
 
 ```{r}
@@ -76,7 +76,7 @@ nrow(d)
 
 ```{r}
 results <- d |> group_by(decade) |>
-  dplyr::summarise(pop_n = n(),
+  dplyr::summarize(pop_n = n(),
     pop_mean = mean(runtimeMinutes, na.rm = TRUE),
     pop_sd =sd_pop(runtimeMinutes, na.rm = TRUE))
     # user-defined function
@@ -99,7 +99,7 @@ s <- d |> group_by(decade) |>
   sample_n(n, replace=FALSE) |>
   # or use `slice_sample()` instead of `sample_n()`
   # if we use `slice_sample()`, we need to pass it either the number of rows ("n=") or the proportion of rows ("p=") as an argument, i.e., `slice_sample(n=100, replace=FALSE)`
-  dplyr::summarise(samp_size = n(),
+  dplyr::summarize(samp_size = n(),
     samp_1_mean=mean(runtimeMinutes, na.rm = TRUE),
     samp_1_sd=sd(runtimeMinutes, na.rm = TRUE),
     samp_1_se=sd(runtimeMinutes, na.rm = TRUE)/sqrt(samp_size))
@@ -132,7 +132,7 @@ reps <- 1000
 s <- {do(reps) * sample_n(group_by(d, decade), n, replace=FALSE)} |>
   # `do(rep) *` needs to be wrapped in braces in order to introduce the variable ".index" that we need to then pass as an argument to `group_by()`
   group_by(decade, .index) |>
-  summarise(avg_runtimeMinutes = mean(runtimeMinutes, na.rm = TRUE), sd_runtimeMinutes = sd(runtimeMinutes, na.rm = TRUE))
+  summarize(avg_runtimeMinutes = mean(runtimeMinutes, na.rm = TRUE), sd_runtimeMinutes = sd(runtimeMinutes, na.rm = TRUE))
 
 # or...
 # using {purrr}
@@ -211,12 +211,12 @@ kable(head(survivors), digits = 3) |>
 
 ```{r}
 #| message: false
-pop_means <- dplyr::summarise(survivors, mean(height), mean(weight),  mean(age), mean(zombies_killed), mean(years_of_education)) # {dplyr} rocks!
+pop_means <- dplyr::summarize(survivors, mean(height), mean(weight),  mean(age), mean(zombies_killed), mean(years_of_education)) # {dplyr} rocks!
 
-pop_sds <- dplyr::summarise(survivors, sd_pop(height), sd_pop(weight), sd_pop(age), sd_pop(zombies_killed), sd_pop(years_of_education)) # {dplyr} rocks!
+pop_sds <- dplyr::summarize(survivors, sd_pop(height), sd_pop(weight), sd_pop(age), sd_pop(zombies_killed), sd_pop(years_of_education)) # {dplyr} rocks!
 
 # or, using `sdpop()` from {radiant}
-# pop_SDs <- dplyr::summarise(survivors,
+# pop_SDs <- dplyr::summarize(survivors,
 #   sdpop(height),
 #   sdpop(weight),
 #   sdpop(age),
@@ -224,7 +224,7 @@ pop_sds <- dplyr::summarise(survivors, sd_pop(height), sd_pop(weight), sd_pop(ag
 #   sdpop(years_of_education))
 
 # ALTERNATIVELY...
-#   we can use new dplyr::summarise(across()) construction
+#   we can use new dplyr::summarize(across()) construction
 #   this takes two arguments, .cols and .fns
 #   .cols is a vector of columns to apply the functions to
 #     e.g., c(height, weight, age, zombies_killed, years_of_education)
@@ -237,25 +237,25 @@ pop_sds <- dplyr::summarise(survivors, sd_pop(height), sd_pop(weight), sd_pop(ag
 
 # [a]
 pop_means_a <- survivors |>
-  dplyr::summarise(across(
+  dplyr::summarize(across(
     c(height, weight, age, zombies_killed, years_of_education),
     mean))
 
 # [b]
 pop_means_b <- survivors |>
-  dplyr::summarise(across(
+  dplyr::summarize(across(
     c(height, weight, age, zombies_killed, years_of_education),
     ~ mean(.)))
 
 # [c]
 pop_means_c <- survivors |>
-  dplyr::summarise(across(
+  dplyr::summarize(across(
     c(height, weight, age, zombies_killed, years_of_education),
     list(mean=mean)))
 
 # [d]
 pop_means_d <- survivors |>
-  dplyr::summarise(across(
+  dplyr::summarize(across(
     c(height, weight, age, zombies_killed, years_of_education),
     list(~ mean(.))))
 
@@ -424,15 +424,15 @@ s <- survivors |> sample_n(size = n, replace = FALSE)
 # or... `s <- survivors |> slice_sample(n = n, replace = FALSE)`
 # head(s) # uncomment to show start of first sample of size n
 
-samp_1_means <- s |> dplyr::summarise(across(
+samp_1_means <- s |> dplyr::summarize(across(
   .cols = c(height, weight, age, zombies_killed, years_of_education),
   .fns = ~ mean(.)))
 
-samp_1_SDs <- s |> dplyr::summarise(across(
+samp_1_SDs <- s |> dplyr::summarize(across(
   .cols = c(height, weight, age, zombies_killed, years_of_education),
   .fns = ~ sd(.)))
 
-samp_1_SEs <- s |> dplyr::summarise(across(
+samp_1_SEs <- s |> dplyr::summarize(across(
     .cols = c(height, weight, age),
     .fns = ~ se(., type = "normal")),
   across(
@@ -441,19 +441,19 @@ samp_1_SEs <- s |> dplyr::summarise(across(
 
 # create a tibble of CIs based on normal distribution
 samp_1_CI_norm <- s |>
-  dplyr::summarise(across(
+  dplyr::summarize(across(
     .cols = c(height, weight, age, zombies_killed, years_of_education),
     .fns = ~ ci_norm(.)))
 
 # create a tibble of CIs based on t distribution
 samp_1_CI_t <- s |>
-  dplyr::summarise(across(
+  dplyr::summarize(across(
     .cols = c(height, weight, age, zombies_killed, years_of_education),
     .fns = ~ ci_t(.)))
 
 # create a tibble of CIs based on bootstrapping
 samp_1_CI_boot <- s |>
-  dplyr::summarise(across(
+  dplyr::summarize(across(
     .cols = c(height, weight, age, zombies_killed, years_of_education),
     .fns = ~ ci_boot(., n_boot = 1000)))
 
@@ -489,14 +489,14 @@ all_s <- bind_rows(additional_samples, s)
 
 samp_dist <- all_s |>
   group_by(.index) |>
-  dplyr::summarise(across(
+  dplyr::summarize(across(
     .cols = c(height, weight, age, zombies_killed, years_of_education),
     .fns = ~ mean(.))) |>
   dplyr::select(-.index)
 
 samp_SEs <- all_s |>
   group_by(.index) |>
-  dplyr::summarise(across(
+  dplyr::summarize(across(
     .cols = c(height, weight, age),
     .fns = ~ se(., type = "normal")),
   across(
@@ -506,11 +506,11 @@ samp_SEs <- all_s |>
 
 # head(sampling_distribution) # uncomment to show start of sampling distributions
 
-samp_dist_means <- samp_dist |>  dplyr::summarise(across(
+samp_dist_means <- samp_dist |>  dplyr::summarize(across(
   .cols = everything(),
   .fns = ~ mean(.)))
 
-samp_dist_SDs <- samp_dist |>  dplyr::summarise(across(
+samp_dist_SDs <- samp_dist |>  dplyr::summarize(across(
   .cols = everything(),
   .fns = ~ sd(.)))
 
@@ -526,7 +526,7 @@ kable(samp_dist_summary, digits = 3) |>
 - How do the standard deviations of the sampling distribution for each variable compare to the standard errors estimated from your first sample of size 50?
 
 ```{r}
-samp_SE_means <- samp_SEs |>  dplyr::summarise(across(
+samp_SE_means <- samp_SEs |>  dplyr::summarize(across(
   .cols = everything(),
   .fns = ~ mean(.)))
 
@@ -593,7 +593,7 @@ ci_quant <- function(x, level = 0.95){
   return(ci)
 }
 
-samp_dist_CI <- dplyr::summarise(samp_dist, across(
+samp_dist_CI <- dplyr::summarize(samp_dist, across(
   .cols = everything(),
   .fns =  ~ ci_quant(., level = 0.95)))
 
