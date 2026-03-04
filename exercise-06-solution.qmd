@@ -34,7 +34,6 @@ hr_summary <- d |>
   summarize(mean = mean(kernel95),
             sd = sd(kernel95),
             n = n(),
-            # note: do not use nrow(d) as that would be the entire dataset
             se = sd/sqrt(n)
   )
 hr_summary
