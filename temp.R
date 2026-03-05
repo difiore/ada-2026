@@ -1,6 +1,7 @@
 library(tidyverse)
 library(mosaic)
 library(infer)
+library(manipulate)
 f <- "https://raw.githubusercontent.com/difiore/ada-datasets/main/woolly-weights.csv"
 d <- read_csv(f, col_names = TRUE)
 m <- mean(d$weight)
@@ -175,8 +176,9 @@ f <- "https://raw.githubusercontent.com/difiore/ada-datasets/main/zombies.csv"
 
 d <- read_csv(f, col_names = TRUE)
 
-d <- mutate(d, centered_height = height - mean(height))
-d <- mutate(d, centered_weight = weight - mean(weight))
+temp <- d |> mutate(
+  centered_height = height - mean(height),
+  centered_weight = weight - mean(weight))
 
 slope.test <- function(beta1, data){
   g <- ggplot(data=data, aes(x = centered_weight, y = centered_height))
@@ -186,3 +188,24 @@ slope.test <- function(beta1, data){
   g <- g + ggtitle(paste("Slope = ", beta1, "\nSum of Squared Deviations = ", round(ols, 3)))
   g
 }
+
+manipulate(slope.test(beta1, data=temp),
+           beta1 = slider(-1, 1, initial = 0, step = 0.005))
+
+m <- lm(height ~ weight, data = d)
+summary(m)
+
+beta1 <- cov(d$height, d$weight) / var(d$weight)
+
+beta0 <- mean(d$height) - beta1 * mean(d$weight)
+
+
+f <- "https://raw.githubusercontent.com/difiore/ada-datasets/main/comparative_primate_sexuality_data.csv"
+
+d <- read_csv(f, col_names = TRUE)
+names(d)
+ggplot(data = d, aes(x=log(Body_mass_male_mean), y = log(Combined_testis_mass))) + geom_point()
+
+m <- lm(log(Combined_testis_mass) ~ log(Body_mass_male_mean), data = d)
+summary(m)
+names(m)
