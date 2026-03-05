@@ -641,10 +641,10 @@ This p value is similar to that returned by our custom permutation test!
 
 Some of the key advantages of permutation tests include the following:
 
-- They are "distribution-free" - i.e., they do not make any assumptions about the distribution of the underlying data
-- There is no presumption of random sampling from some imaginary hypothetical population
+- They are "distribution-free" - i.e., they do not make any assumptions about the distribution of the underlying data or of the sampling distribution
+- There is no presumption of random sampling from some imaginary, idealized, hypothetical population
 - Unlike some other nonparametric tests, they do not depend on large sample sizes for their validity
-- Many common nonparametric tests **are** permutation tests, just carried out on RANKS
+- Many common nonparametric tests **are**, essentially, permutation tests, just are carried out on RANKS
 - They can be used with many kinds of data (nominal, ordinal, interval/ratio)
 - They are relatively straightforward to conduct and interpret
 
@@ -660,15 +660,15 @@ detach(package:tidyverse)
 - Permutation/randomization tests involve these steps:
 
     - Compute a sample statistic of your choice (mean, median, proportion, etc.) using the set of original observations
-    - Rearrange attributes of the original observations in all or a very large number of random possible permutations, computing the test statistic each time, to yield a permutation or null distribution for the test statistic under the null hypothesis
+    - Rearrange attributes of the original observations in all or a very large number of random possible permutations, computing the test statistic each time, to yield a permutation (null) distribution for the test statistic under the null hypothesis
     - Look at the value of the sample statistic relative to the permutation distribution
-    - Based on the permutation distribution, calculate the probability of seeing a sample statistic as high or higher than that observed, i.e., the portion of the permutation distribution that equals or exceed the value of the sample statistic... this is the permutation test p value
+    - Based on the permutation distribution, calculate the probability of seeing a sample statistic as high or higher than that observed, i.e., the proportion of the permutation distribution that equals or exceed the value of the sample statistic... this is the permutation test p value
 
 - `jmuOutlier::perm.test()`, `coin::indepedence_test()`, or write your own!
 
 - {infer} workflow
 
-> **NOTE:** This permutation-based approach to statistical inference is consistent with the philosophy promoted by statistician Allen Downey that, "There is really only test", and that at all statistical tests are based on the same framework. Note that this is still a form of null hypothesis significance testing, or NHST!
+> **NOTE:** This permutation-based approach to statistical inference is consistent with the philosophy promoted by statistician Allen Downey that, "There is really only one test", and that at all statistical tests are based on the same framework. Note that this is still a form of null hypothesis significance testing, or NHST!
 
 ```{r}
 #| echo: false

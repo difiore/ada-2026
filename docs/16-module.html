@@ -571,12 +571,12 @@ window.Quarto = {
 <span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="co"># calculate the two.sided p value</span></span>
 <span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>(p <span class="ot">&lt;-</span> (<span class="fu">sum</span>(permuted_diff <span class="sc">&gt;=</span> <span class="fu">abs</span>(actual_diff)) <span class="sc">+</span> <span class="fu">sum</span>(permuted_diff <span class="sc">&lt;=</span> <span class="sc">-</span><span class="fu">abs</span>(actual_diff)))<span class="sc">/</span>nperm)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>## [1] 0.0225</code></pre>
+<pre><code>## [1] 0.0216</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># or</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>(p <span class="ot">&lt;-</span> <span class="fu">sum</span>(<span class="fu">abs</span>(permuted_diff) <span class="sc">&gt;=</span> <span class="fu">abs</span>(actual_diff))<span class="sc">/</span>nperm)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>## [1] 0.0225</code></pre>
+<pre><code>## [1] 0.0216</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># or add 1 to both numerator and denominator to avoid p = 0</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -622,7 +622,7 @@ window.Quarto = {
 ## [1] 5
 ## 
 ## $p.value
-## [1] 0.0212</code></pre>
+## [1] 0.0219</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">detach</span>(package<span class="sc">:</span>jmuOutlier)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -1107,7 +1107,7 @@ window.Quarto = {
 <pre><code>## # A tibble: 1 × 1
 ##   p_value
 ##     &lt;dbl&gt;
-## 1   0.016</code></pre>
+## 1   0.022</code></pre>
 </div>
 </div>
 <p>Note that this p value is pretty similar to that returned by <code>jmuOutlier::perm.test()</code> and by our custom <code>perm1samp()</code> function, though as noted above, those use slightly different permutation processes.</p>
@@ -1172,7 +1172,7 @@ window.Quarto = {
 <pre class="details" data-summary="Show Output"><code>## # A tibble: 1 × 1
 ##   p_value
 ##     &lt;dbl&gt;
-## 1   0.444</code></pre>
+## 1   0.422</code></pre>
 </details>
 </div>
 <details class="code-fold">
@@ -1187,10 +1187,10 @@ window.Quarto = {
 <h2 data-number="16.7" class="anchored" data-anchor-id="advantages-of-permutation-tests"><span class="header-section-number">16.7</span> Advantages of Permutation Tests</h2>
 <p>Some of the key advantages of permutation tests include the following:</p>
 <ul>
-<li>They are “distribution-free” - i.e., they do not make any assumptions about the distribution of the underlying data</li>
-<li>There is no presumption of random sampling from some imaginary hypothetical population</li>
+<li>They are “distribution-free” - i.e., they do not make any assumptions about the distribution of the underlying data or of the sampling distribution</li>
+<li>There is no presumption of random sampling from some imaginary, idealized, hypothetical population</li>
 <li>Unlike some other nonparametric tests, they do not depend on large sample sizes for their validity</li>
-<li>Many common nonparametric tests <strong>are</strong> permutation tests, just carried out on RANKS</li>
+<li>Many common nonparametric tests <strong>are</strong>, essentially, permutation tests, just are carried out on RANKS</li>
 <li>They can be used with many kinds of data (nominal, ordinal, interval/ratio)</li>
 <li>They are relatively straightforward to conduct and interpret</li>
 </ul>
@@ -1202,15 +1202,15 @@ window.Quarto = {
 <li><p>Permutation/randomization tests involve these steps:</p>
 <ul>
 <li>Compute a sample statistic of your choice (mean, median, proportion, etc.) using the set of original observations</li>
-<li>Rearrange attributes of the original observations in all or a very large number of random possible permutations, computing the test statistic each time, to yield a permutation or null distribution for the test statistic under the null hypothesis</li>
+<li>Rearrange attributes of the original observations in all or a very large number of random possible permutations, computing the test statistic each time, to yield a permutation (null) distribution for the test statistic under the null hypothesis</li>
 <li>Look at the value of the sample statistic relative to the permutation distribution</li>
-<li>Based on the permutation distribution, calculate the probability of seeing a sample statistic as high or higher than that observed, i.e., the portion of the permutation distribution that equals or exceed the value of the sample statistic… this is the permutation test p value</li>
+<li>Based on the permutation distribution, calculate the probability of seeing a sample statistic as high or higher than that observed, i.e., the proportion of the permutation distribution that equals or exceed the value of the sample statistic… this is the permutation test p value</li>
 </ul></li>
 <li><p><code>jmuOutlier::perm.test()</code>, <code>coin::indepedence_test()</code>, or write your own!</p></li>
 <li><p>{infer} workflow</p></li>
 </ul>
 <blockquote class="blockquote">
-<p><strong>NOTE:</strong> This permutation-based approach to statistical inference is consistent with the philosophy promoted by statistician Allen Downey that, “There is really only test”, and that at all statistical tests are based on the same framework. Note that this is still a form of null hypothesis significance testing, or NHST!</p>
+<p><strong>NOTE:</strong> This permutation-based approach to statistical inference is consistent with the philosophy promoted by statistician Allen Downey that, “There is really only one test”, and that at all statistical tests are based on the same framework. Note that this is still a form of null hypothesis significance testing, or NHST!</p>
 </blockquote>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
@@ -2321,10 +2321,10 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb62-695"><a href="#cb62-695" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb62-696"><a href="#cb62-696" aria-hidden="true" tabindex="-1"></a>Some of the key advantages of permutation tests include the following:</span>
 <span id="cb62-697"><a href="#cb62-697" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb62-698"><a href="#cb62-698" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>They are "distribution-free" - i.e., they do not make any assumptions about the distribution of the underlying data</span>
-<span id="cb62-699"><a href="#cb62-699" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>There is no presumption of random sampling from some imaginary hypothetical population</span>
+<span id="cb62-698"><a href="#cb62-698" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>They are "distribution-free" - i.e., they do not make any assumptions about the distribution of the underlying data or of the sampling distribution</span>
+<span id="cb62-699"><a href="#cb62-699" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>There is no presumption of random sampling from some imaginary, idealized, hypothetical population</span>
 <span id="cb62-700"><a href="#cb62-700" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Unlike some other nonparametric tests, they do not depend on large sample sizes for their validity</span>
-<span id="cb62-701"><a href="#cb62-701" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Many common nonparametric tests **are** permutation tests, just carried out on RANKS</span>
+<span id="cb62-701"><a href="#cb62-701" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Many common nonparametric tests **are**, essentially, permutation tests, just are carried out on RANKS</span>
 <span id="cb62-702"><a href="#cb62-702" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>They can be used with many kinds of data (nominal, ordinal, interval/ratio)</span>
 <span id="cb62-703"><a href="#cb62-703" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>They are relatively straightforward to conduct and interpret</span>
 <span id="cb62-704"><a href="#cb62-704" aria-hidden="true" tabindex="-1"></a></span>
@@ -2340,15 +2340,15 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb62-714"><a href="#cb62-714" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Permutation/randomization tests involve these steps:</span>
 <span id="cb62-715"><a href="#cb62-715" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb62-716"><a href="#cb62-716" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>Compute a sample statistic of your choice (mean, median, proportion, etc.) using the set of original observations</span>
-<span id="cb62-717"><a href="#cb62-717" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>Rearrange attributes of the original observations in all or a very large number of random possible permutations, computing the test statistic each time, to yield a permutation or null distribution for the test statistic under the null hypothesis</span>
+<span id="cb62-717"><a href="#cb62-717" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>Rearrange attributes of the original observations in all or a very large number of random possible permutations, computing the test statistic each time, to yield a permutation (null) distribution for the test statistic under the null hypothesis</span>
 <span id="cb62-718"><a href="#cb62-718" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>Look at the value of the sample statistic relative to the permutation distribution</span>
-<span id="cb62-719"><a href="#cb62-719" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>Based on the permutation distribution, calculate the probability of seeing a sample statistic as high or higher than that observed, i.e., the portion of the permutation distribution that equals or exceed the value of the sample statistic... this is the permutation test p value</span>
+<span id="cb62-719"><a href="#cb62-719" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>Based on the permutation distribution, calculate the probability of seeing a sample statistic as high or higher than that observed, i.e., the proportion of the permutation distribution that equals or exceed the value of the sample statistic... this is the permutation test p value</span>
 <span id="cb62-720"><a href="#cb62-720" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb62-721"><a href="#cb62-721" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`jmuOutlier::perm.test()`</span>, <span class="in">`coin::indepedence_test()`</span>, or write your own!</span>
 <span id="cb62-722"><a href="#cb62-722" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb62-723"><a href="#cb62-723" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>{infer} workflow</span>
 <span id="cb62-724"><a href="#cb62-724" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb62-725"><a href="#cb62-725" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; **NOTE:** This permutation-based approach to statistical inference is consistent with the philosophy promoted by statistician Allen Downey that, "There is really only test", and that at all statistical tests are based on the same framework. Note that this is still a form of null hypothesis significance testing, or NHST!</span></span>
+<span id="cb62-725"><a href="#cb62-725" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; **NOTE:** This permutation-based approach to statistical inference is consistent with the philosophy promoted by statistician Allen Downey that, "There is really only one test", and that at all statistical tests are based on the same framework. Note that this is still a form of null hypothesis significance testing, or NHST!</span></span>
 <span id="cb62-726"><a href="#cb62-726" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb62-729"><a href="#cb62-729" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
 <span id="cb62-730"><a href="#cb62-730" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: false</span></span>

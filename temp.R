@@ -80,7 +80,6 @@ boot_females <- {do(n_boot) *
                    mean(resample(females$kernel95))}|>
   pull(mean)
 
-
 m_females <- mean(boot_females)
 sd_females <- sd(boot_females)
 
