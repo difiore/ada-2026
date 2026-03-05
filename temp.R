@@ -169,3 +169,20 @@ obs_diff <- d |>
 visualize(perm_diff, bins = 20) +
   shade_p_value(obs_stat = obs_diff, direction = "both")
 get_p_value(perm_diff, obs_diff, direction = "both")
+
+
+f <- "https://raw.githubusercontent.com/difiore/ada-datasets/main/zombies.csv"
+
+d <- read_csv(f, col_names = TRUE)
+
+d <- mutate(d, centered_height = height - mean(height))
+d <- mutate(d, centered_weight = weight - mean(weight))
+
+slope.test <- function(beta1, data){
+  g <- ggplot(data=data, aes(x = centered_weight, y = centered_height))
+  g <- g + geom_point()
+  g <- g + geom_abline(intercept = 0, slope = beta1, size = 1, colour="blue", alpha=1/2)
+  ols <- sum((data$centered_height - beta1 * data$centered_weight) ^2)
+  g <- g + ggtitle(paste("Slope = ", beta1, "\nSum of Squared Deviations = ", round(ols, 3)))
+  g
+}
