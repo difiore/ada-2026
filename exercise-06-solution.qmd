@@ -63,15 +63,17 @@ s <- d |> filter(sex == "M")
 
 # option 1 - using {base} R
 boot <- vector()
-# the size of each bootstrap sample should equivalent to
-# the size our original sample
+# the size of each bootstrap sample should equivalent to the size our original sample
 for (i in 1:n_boot){
   boot[[i]] <-
     mean(sample(s$kernel95, length(s$kernel95), replace=TRUE))
 }
 
 # option 2 - using {mosaic}
-boot <- (do(n_boot) * mean(sample(s$kernel95, size = length(s$kernel95), replace = TRUE))) |>
+# note that the entire do()* loop code needs to be wrapped in braces or parentheses before pull()
+boot <- {do(n_boot) *
+    mean(sample(s$kernel95, size = length(s$kernel95), replace = TRUE))
+  } |>
   pull(mean) # pull out mean column as vector
 
 # option 3 - using {infer}
@@ -178,17 +180,17 @@ ladd(
 We can also use the `do()*` or `replicate()` functions to do our permutations...
 
 ```{r}
-# using do()*... note that entire do()* code is wrapped in parentheses before pull()
-perm_diff <- (do(n_perm) *
+# using do()*...
+perm_diff <- {do(n_perm) *
   d |>
     mutate(sex=sample(sex)) |>
     summarize(diff =	mean(kernel95[sex == "M"]) -
                       mean(kernel95[sex == "F"]))
-  ) |>
+  } |>
   pull(diff) # extract column of value as vector
 histogram(perm_diff)
 
-# using replicate()... note the {} wrapped around the code within replicate() to perform in each replicate
+# using replicate()... note the braces `{}` wrapped around the code to perform in each replicate within the `replicate()` function
 perm_diff <- replicate(n_perm, {
   d |>
     mutate(sex=sample(sex)) |>

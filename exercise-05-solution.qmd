@@ -130,7 +130,7 @@ n <- 100
 reps <- 1000
 # using {mosaic}
 s <- {do(reps) * sample_n(group_by(d, decade), n, replace=FALSE)} |>
-  # `do(rep) *` needs to be wrapped in braces in order to introduce the variable ".index" that we need to then pass as an argument to `group_by()`
+  # note that the entire do()* loop code needs to be wrapped in braces (or parentheses) in order to introduce the variable ".index" that we need to then pass as an argument to `group_by()` before pull()
   group_by(decade, .index) |>
   summarize(avg_runtimeMinutes = mean(runtimeMinutes, na.rm = TRUE), sd_runtimeMinutes = sd(runtimeMinutes, na.rm = TRUE))
 
