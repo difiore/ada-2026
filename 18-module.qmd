@@ -170,7 +170,7 @@ First we define a custom function...
 slope.test <- function(beta1, data){
   g <- ggplot(data=data, aes(x = centered_weight, y = centered_height))
   g <- g + geom_point()
-  g <- g + geom_abline(intercept = 0, slope = beta1, size = 1, colour="blue", alpha=1/2)
+  g <- g + geom_abline(intercept = 0, slope = beta1, linewidth = 1, colour="blue", alpha=1/2)
   ols <- sum((data$centered_height - beta1 * data$centered_weight) ^2)
   g <- g + ggtitle(paste("Slope = ", beta1,
     "\nSum of Squared Deviations = ", round(ols, 3)))

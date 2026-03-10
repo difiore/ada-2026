@@ -54,8 +54,8 @@ book:
       # - 23-module.qmd
       # - 24-module.qmd
     - part: "Part III - Miscellany"
-      # chapters:
-      # - 99-maximum_likelihood.qmd
+      chapters:
+      - 99-maximum_likelihood.qmd
       # - 99-python-from-R.qmd
       # - 99-geospatial-data.qmd
       # - 99-r-packages.qmd

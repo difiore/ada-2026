@@ -378,8 +378,21 @@ window.Quarto = {
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
-      <span class="sidebar-item-text sidebar-link text-start">
- <span class="menu-text">Part III - Miscellany</span></span>
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
+ <span class="menu-text">Part III - Miscellany</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./99-maximum_likelihood.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Maximum Likelihood Estimation</span></a>
+  </div>
+</li>
+      </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
@@ -601,12 +614,12 @@ window.Quarto = {
 <span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="co"># calculate the two.sided p value</span></span>
 <span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>(p <span class="ot">&lt;-</span> (<span class="fu">sum</span>(permuted_diff <span class="sc">&gt;=</span> <span class="fu">abs</span>(actual_diff)) <span class="sc">+</span> <span class="fu">sum</span>(permuted_diff <span class="sc">&lt;=</span> <span class="sc">-</span><span class="fu">abs</span>(actual_diff)))<span class="sc">/</span>nperm)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>## [1] 0.0204</code></pre>
+<pre><code>## [1] 0.0226</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># or</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>(p <span class="ot">&lt;-</span> <span class="fu">sum</span>(<span class="fu">abs</span>(permuted_diff) <span class="sc">&gt;=</span> <span class="fu">abs</span>(actual_diff))<span class="sc">/</span>nperm)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>## [1] 0.0204</code></pre>
+<pre><code>## [1] 0.0226</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># or add 1 to both numerator and denominator to avoid p = 0</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -652,7 +665,7 @@ window.Quarto = {
 ## [1] 5
 ## 
 ## $p.value
-## [1] 0.0206</code></pre>
+## [1] 0.0189</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">detach</span>(package<span class="sc">:</span>jmuOutlier)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -1137,7 +1150,7 @@ window.Quarto = {
 <pre><code>## # A tibble: 1 × 1
 ##   p_value
 ##     &lt;dbl&gt;
-## 1   0.008</code></pre>
+## 1   0.016</code></pre>
 </div>
 </div>
 <p>Note that this p value is pretty similar to that returned by <code>jmuOutlier::perm.test()</code> and by our custom <code>perm1samp()</code> function, though as noted above, those use slightly different permutation processes.</p>
@@ -1202,7 +1215,7 @@ window.Quarto = {
 <pre class="details" data-summary="Show Output"><code>## # A tibble: 1 × 1
 ##   p_value
 ##     &lt;dbl&gt;
-## 1    0.42</code></pre>
+## 1   0.398</code></pre>
 </details>
 </div>
 <details class="code-fold">
