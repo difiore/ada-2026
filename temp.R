@@ -26,6 +26,8 @@ p
 t.test(d$weight, mu = 7.2)
 
 f <- "https://raw.githubusercontent.com/difiore/ada-datasets/main/tbs-2006-2008-ranges.csv"
+
+
 d <- read_csv(f, col_names = TRUE)
 
 s <- d |>
@@ -158,9 +160,10 @@ d <- d |>
 d <- d |>
   hypothesize(null = "independence")
 perm <- d |>
-  generate(reps = 1000, type = "permute")
+  generate(reps = 100000, type = "permute")
 perm_diff <- perm |>
   calculate(stat = "diff in means", order = c("M", "F"))
+histogram(perm_diff$stat)
 visualize(perm_diff, bins = 20)
 
 obs_diff <- d |>
@@ -175,6 +178,18 @@ get_p_value(perm_diff, obs_diff, direction = "both")
 f <- "https://raw.githubusercontent.com/difiore/ada-datasets/main/zombies.csv"
 
 d <- read_csv(f, col_names = TRUE)
+names(d)
+
+cov <- sum(((d$height-mean(d$height)) * (d$weight-mean(d$weight)))/(nrow(d)-1))
+cov(d$height,d$weight)
+cor <- cov/(sd(d$height)*sd(d$weight))
+
+plot(d$weight, d$height)
+
+
+
+
+
 
 temp <- d |> mutate(
   centered_height = height - mean(height),

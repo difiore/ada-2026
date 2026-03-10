@@ -353,6 +353,30 @@ window.Quarto = {
  <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Introduction to Linear Modeling</span></span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./19-module.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Elements of Regression Analysis</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./20-module.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Categorical Data Analysis</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./21-module.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Multiple Regression and ANCOVA</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./22-module.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Model Selection in Regression</span></span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -764,7 +788,7 @@ window.Quarto = {
 <span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(n, <span class="at">mean =</span> <span class="dv">2</span>, <span class="at">sd =</span> <span class="dv">1</span>)</span>
 <span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>## [1] 1.454418</code></pre>
+<pre><code>## [1] 1.374523</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># close to, but not the same, as the population mean</span></span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>se <span class="ot">&lt;-</span> <span class="fu">sd</span>(x)<span class="sc">/</span><span class="fu">sqrt</span>(<span class="fu">length</span>(x))</span>
@@ -843,23 +867,23 @@ window.Quarto = {
 <tbody>
 <tr class="odd">
 <td style="text-align: left;">ci.boot.quantiles</td>
-<td style="text-align: right;">0.785</td>
-<td style="text-align: right;">2.021</td>
+<td style="text-align: right;">0.992</td>
+<td style="text-align: right;">1.806</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">ci.boot.theory</td>
-<td style="text-align: right;">0.833</td>
-<td style="text-align: right;">2.075</td>
+<td style="text-align: right;">0.966</td>
+<td style="text-align: right;">1.783</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">ci.norm.theory</td>
-<td style="text-align: right;">0.801</td>
-<td style="text-align: right;">2.108</td>
+<td style="text-align: right;">0.942</td>
+<td style="text-align: right;">1.807</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">ci.t.theory</td>
-<td style="text-align: right;">0.700</td>
-<td style="text-align: right;">2.209</td>
+<td style="text-align: right;">0.876</td>
+<td style="text-align: right;">1.873</td>
 </tr>
 </tbody>
 </table>

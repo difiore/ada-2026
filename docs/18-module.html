@@ -64,7 +64,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./exercise-01.html" rel="next">
+<link href="./19-module.html" rel="next">
 <link href="./17-module.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -349,6 +349,30 @@ window.Quarto = {
   <div class="sidebar-item-container"> 
   <a href="./18-module.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Introduction to Linear Modeling</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./19-module.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Elements of Regression Analysis</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./20-module.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Categorical Data Analysis</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./21-module.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Multiple Regression and ANCOVA</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./22-module.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Model Selection in Regression</span></span></a>
   </div>
 </li>
       </ul>
@@ -1182,12 +1206,12 @@ window.Quarto = {
 ## # A tibble: 6 × 2
 ##   replicate      stat
 ##       &lt;int&gt;     &lt;dbl&gt;
-## 1         1  0.00243 
-## 2         2  0.00495 
-## 3         3  0.0118  
-## 4         4 -0.00764 
-## 5         5  0.00968 
-## 6         6  0.000324</code></pre>
+## 1         1  0.00887 
+## 2         2 -0.00429 
+## 3         3 -0.00733 
+## 4         4 -0.000272
+## 5         5 -0.00375 
+## 6         6 -0.00560</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb81"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb81-1"><a href="#cb81-1" aria-hidden="true" tabindex="-1"></a><span class="co"># create confidence intervals</span></span>
 <span id="cb81-2"><a href="#cb81-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -1203,9 +1227,9 @@ window.Quarto = {
 <span id="cb81-12"><a href="#cb81-12" aria-hidden="true" tabindex="-1"></a>permuted.slope.summary</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>## # A tibble: 1 × 6
-##   estimate std.error   lower  upper perm.lower perm.upper
-##      &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;      &lt;dbl&gt;      &lt;dbl&gt;
-## 1 0.000260   0.00718 -0.0138 0.0143    -0.0147     0.0147</code></pre>
+##    estimate std.error   lower  upper perm.lower perm.upper
+##       &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;      &lt;dbl&gt;      &lt;dbl&gt;
+## 1 -0.000111   0.00730 -0.0144 0.0142    -0.0140     0.0144</code></pre>
 </div>
 </div>
 <p>The <code>get_ci()</code> function from {infer} can be used to return these different types of confidence intervals, too… i.e., either based on the standard error of the permutation distribution or actual quantiles from that distribution.</p>
@@ -1215,7 +1239,7 @@ window.Quarto = {
 <pre><code>## # A tibble: 1 × 2
 ##   lower_ci upper_ci
 ##      &lt;dbl&gt;    &lt;dbl&gt;
-## 1  -0.0147   0.0147</code></pre>
+## 1  -0.0140   0.0144</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb85"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb85-1"><a href="#cb85-1" aria-hidden="true" tabindex="-1"></a><span class="fu">get_ci</span>(permuted.slope, <span class="at">level =</span> <span class="dv">1</span> <span class="sc">-</span> alpha, <span class="at">type =</span> <span class="st">"se"</span>, <span class="at">point_estimate =</span> <span class="fu">pull</span>(permuted.slope.summary,</span>
 <span id="cb85-2"><a href="#cb85-2" aria-hidden="true" tabindex="-1"></a>    estimate))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1223,7 +1247,7 @@ window.Quarto = {
 <pre><code>## # A tibble: 1 × 2
 ##   lower_ci upper_ci
 ##      &lt;dbl&gt;    &lt;dbl&gt;
-## 1  -0.0138   0.0143</code></pre>
+## 1  -0.0144   0.0142</code></pre>
 </div>
 </div>
 <p>We can also visualize the null distribution of slope coefficients based on permutation and superimpose our actual slope coefficient.</p>
@@ -1300,12 +1324,12 @@ window.Quarto = {
 ## # A tibble: 6 × 2
 ##   replicate  stat
 ##       &lt;int&gt; &lt;dbl&gt;
-## 1         1 0.200
-## 2         2 0.194
-## 3         3 0.195
-## 4         4 0.198
-## 5         5 0.196
-## 6         6 0.193</code></pre>
+## 1         1 0.196
+## 2         2 0.198
+## 3         3 0.192
+## 4         4 0.196
+## 5         5 0.195
+## 6         6 0.197</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb96"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb96-1"><a href="#cb96-1" aria-hidden="true" tabindex="-1"></a><span class="co"># create confidence intervals for regression coefficients</span></span>
 <span id="cb96-2"><a href="#cb96-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -1322,7 +1346,7 @@ window.Quarto = {
 <pre><code>## # A tibble: 1 × 6
 ##   estimate std.error lower upper boot.lower boot.upper
 ##      &lt;dbl&gt;     &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;      &lt;dbl&gt;      &lt;dbl&gt;
-## 1    0.195   0.00389 0.188 0.203      0.188      0.203</code></pre>
+## 1    0.195   0.00414 0.187 0.204      0.187      0.203</code></pre>
 </div>
 </div>
 <p>Again, the <code>get_ci()</code> function from {infer} can be used to return these different types of confidence intervals…</p>
@@ -2187,8 +2211,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./exercise-01.html" class="pagination-link" aria-label="Exercise 01">
-        <span class="nav-page-text">Exercise 01</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./19-module.html" class="pagination-link" aria-label="<span class='chapter-number'>19</span>&nbsp; <span class='chapter-title'>Elements of Regression Analysis</span>">
+        <span class="nav-page-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Elements of Regression Analysis</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
