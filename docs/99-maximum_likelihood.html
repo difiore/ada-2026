@@ -595,9 +595,10 @@ window.Quarto = {
 </div>
 <p>To further explore calculating likelihoods, let’s create and plot a sample of 100 random variables from a normal distribution with a <span class="math inline">\(\mu\)</span> of 50 and a <span class="math inline">\(\sigma\)</span> of 10:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">val =</span> <span class="fu">rnorm</span>(<span class="dv">100</span>, <span class="at">mean =</span> <span class="dv">50</span>, <span class="at">sd =</span> <span class="dv">10</span>))</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(d) <span class="sc">+</span> <span class="fu">geom_histogram</span>(<span class="fu">aes</span>(<span class="at">x =</span> val, <span class="at">y =</span> <span class="fu">after_stat</span>(density)))</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>p</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">0</span>)  <span class="co"># for reproducibility in rnorm</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">val =</span> <span class="fu">rnorm</span>(<span class="dv">100</span>, <span class="at">mean =</span> <span class="dv">50</span>, <span class="at">sd =</span> <span class="dv">10</span>))</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(d) <span class="sc">+</span> <span class="fu">geom_histogram</span>(<span class="fu">aes</span>(<span class="at">x =</span> val, <span class="at">y =</span> <span class="fu">after_stat</span>(density)))</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>p</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>## `stat_bin()` using `bins = 30`. Pick better value `binwidth`.</code></pre>
 </div>
@@ -613,11 +614,11 @@ window.Quarto = {
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>(mean <span class="ot">&lt;-</span> <span class="fu">mean</span>(d<span class="sc">$</span>val))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>## [1] 50.83986</code></pre>
+<pre><code>## [1] 50.22668</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>(sd <span class="ot">&lt;-</span> <span class="fu">sd</span>(d<span class="sc">$</span>val))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>## [1] 9.656135</code></pre>
+<pre><code>## [1] 8.826502</code></pre>
 </div>
 </div>
 <p>Now, on top of the histogram of our sample data, let’s plot two different normal distributions, one with the distribution our sample was drawn from (<span class="math inline">\(\mu\)</span> = 50 and <span class="math inline">\(\sigma\)</span> = 10, in red) and another with a different <span class="math inline">\(\mu\)</span> (65) and <span class="math inline">\(\sigma\)</span> (20).</p>
@@ -732,7 +733,7 @@ window.Quarto = {
 <span id="cb35-6"><a href="#cb35-6" aria-hidden="true" tabindex="-1"></a>ll <span class="ot">&lt;-</span> <span class="fu">sum</span>(ll)</span>
 <span id="cb35-7"><a href="#cb35-7" aria-hidden="true" tabindex="-1"></a>(l <span class="ot">&lt;-</span> <span class="fu">exp</span>(ll))  <span class="co"># a very tiny number!</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>## [1] 7.821621e-161</code></pre>
+<pre><code>## [1] 2.146356e-157</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>mean <span class="ot">&lt;-</span> <span class="dv">65</span></span>
 <span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>sd <span class="ot">&lt;-</span> <span class="dv">20</span></span>
@@ -741,7 +742,7 @@ window.Quarto = {
 <span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a>ll <span class="ot">&lt;-</span> <span class="fu">sum</span>(ll)</span>
 <span id="cb37-6"><a href="#cb37-6" aria-hidden="true" tabindex="-1"></a>(l <span class="ot">&lt;-</span> <span class="fu">exp</span>(ll))  <span class="co"># an even tinier number</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>## [1] 1.23551e-186</code></pre>
+<pre><code>## [1] 8.970731e-187</code></pre>
 </div>
 </div>
 <p>The log likelihood and likelihood are both HIGHER (more likely to have been drawn) from the first distribution.</p>
@@ -775,41 +776,641 @@ window.Quarto = {
 <span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a>val <span class="ot">&lt;-</span> d<span class="sc">$</span>val</span>
 <span id="cb40-5"><a href="#cb40-5" aria-hidden="true" tabindex="-1"></a>mean <span class="ot">&lt;-</span> <span class="dv">50</span></span>
 <span id="cb40-6"><a href="#cb40-6" aria-hidden="true" tabindex="-1"></a>sd <span class="ot">&lt;-</span> <span class="dv">10</span></span>
-<span id="cb40-7"><a href="#cb40-7" aria-hidden="true" tabindex="-1"></a><span class="fu">verbose_nll</span>(val, mean, sd)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>## [1] 368.6593</code></pre>
+<span id="cb40-7"><a href="#cb40-7" aria-hidden="true" tabindex="-1"></a><span class="fu">verbose_nll</span>(val, mean, sd, <span class="at">verbose =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>## x=62.6295 mu=50 sigma=10 L=0.018 logL=-4.0191</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>mean <span class="ot">&lt;-</span> <span class="dv">65</span></span>
-<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>sd <span class="ot">&lt;-</span> <span class="dv">20</span></span>
-<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a><span class="fu">verbose_nll</span>(val, mean, sd)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>## x=46.7377 mu=50 sigma=10 L=0.0378 logL=-3.2747</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>## x=63.298 mu=50 sigma=10 L=0.0165 logL=-4.1057</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>## x=62.7243 mu=50 sigma=10 L=0.0178 logL=-4.0311</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>## x=54.1464 mu=50 sigma=10 L=0.0366 logL=-3.3075</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>## x=34.6005 mu=50 sigma=10 L=0.0122 logL=-4.4072</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>## x=40.7143 mu=50 sigma=10 L=0.0259 logL=-3.6526</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>## x=47.0528 mu=50 sigma=10 L=0.0382 logL=-3.265</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>## x=49.9423 mu=50 sigma=10 L=0.0399 logL=-3.2215</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>## x=74.0465 mu=50 sigma=10 L=0.0022 logL=-6.1127</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>## x=57.6359 mu=50 sigma=10 L=0.0298 logL=-3.5131</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>## x=42.0099 mu=50 sigma=10 L=0.029 logL=-3.5407</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>## x=38.5234 mu=50 sigma=10 L=0.0206 logL=-3.8801</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>## x=47.1054 mu=50 sigma=10 L=0.0383 logL=-3.2634</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>## x=47.0078 mu=50 sigma=10 L=0.0381 logL=-3.2663</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>## x=45.8849 mu=50 sigma=10 L=0.0367 logL=-3.3062</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>## x=52.5222 mu=50 sigma=10 L=0.0386 logL=-3.2533</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>## x=41.0808 mu=50 sigma=10 L=0.0268 logL=-3.6193</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>## x=54.3568 mu=50 sigma=10 L=0.0363 logL=-3.3164</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>## x=37.6246 mu=50 sigma=10 L=0.0186 logL=-3.9873</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>## x=47.7573 mu=50 sigma=10 L=0.0389 logL=-3.2467</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>## x=53.774 mu=50 sigma=10 L=0.0372 logL=-3.2927</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>## x=51.3334 mu=50 sigma=10 L=0.0395 logL=-3.2304</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>## x=58.0419 mu=50 sigma=10 L=0.0289 logL=-3.5449</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>## x=49.4289 mu=50 sigma=10 L=0.0398 logL=-3.2232</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>## x=55.0361 mu=50 sigma=10 L=0.0351 logL=-3.3483</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>## x=60.8577 mu=50 sigma=10 L=0.0221 logL=-3.811</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>## x=43.0905 mu=50 sigma=10 L=0.0314 logL=-3.4602</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>## x=37.154 mu=50 sigma=10 L=0.0175 logL=-4.0466</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>## x=50.4673 mu=50 sigma=10 L=0.0399 logL=-3.2226</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>## x=47.6429 mu=50 sigma=10 L=0.0388 logL=-3.2493</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>## x=44.5711 mu=50 sigma=10 L=0.0344 logL=-3.3689</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>## x=45.6669 mu=50 sigma=10 L=0.0363 logL=-3.3154</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>## x=43.5053 mu=50 sigma=10 L=0.0323 logL=-3.4324</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>## x=57.2675 mu=50 sigma=10 L=0.0306 logL=-3.4856</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>## x=61.5191 mu=50 sigma=10 L=0.0205 logL=-3.885</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>## x=59.9216 mu=50 sigma=10 L=0.0244 logL=-3.7137</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>## x=45.7049 mu=50 sigma=10 L=0.0364 logL=-3.3138</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>## x=62.383 mu=50 sigma=10 L=0.0185 logL=-3.9882</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>## x=47.2065 mu=50 sigma=10 L=0.0384 logL=-3.2605</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>## x=67.579 mu=50 sigma=10 L=0.0085 logL=-4.7666</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>## x=55.6075 mu=50 sigma=10 L=0.0341 logL=-3.3787</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>## x=45.4722 mu=50 sigma=10 L=0.036 logL=-3.324</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>## x=41.6796 mu=50 sigma=10 L=0.0282 logL=-3.5677</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>## x=38.3343 mu=50 sigma=10 L=0.0202 logL=-3.902</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>## x=39.3441 mu=50 sigma=10 L=0.0226 logL=-3.7893</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>## x=34.3622 mu=50 sigma=10 L=0.0117 logL=-4.4442</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>## x=61.5654 mu=50 sigma=10 L=0.0204 logL=-3.8903</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>## x=58.3205 mu=50 sigma=10 L=0.0282 logL=-3.5677</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>## x=47.7267 mu=50 sigma=10 L=0.0389 logL=-3.2474</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>## x=52.6614 mu=50 sigma=10 L=0.0385 logL=-3.2569</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>## x=46.233 mu=50 sigma=10 L=0.0372 logL=-3.2925</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>## x=74.4136 mu=50 sigma=10 L=0.002 logL=-6.2017</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>## x=42.0466 mu=50 sigma=10 L=0.0291 logL=-3.5378</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>## x=49.4512 mu=50 sigma=10 L=0.0398 logL=-3.223</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>## x=52.5014 mu=50 sigma=10 L=0.0387 logL=-3.2528</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>## x=56.1824 mu=50 sigma=10 L=0.033 logL=-3.4126</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>## x=48.2738 mu=50 sigma=10 L=0.0393 logL=-3.2364</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>## x=27.761 mu=50 sigma=10 L=0.0034 logL=-5.6944</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>## x=37.3639 mu=50 sigma=10 L=0.018 logL=-4.0199</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>## x=53.5873 mu=50 sigma=10 L=0.0374 logL=-3.2859</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>## x=49.8895 mu=50 sigma=10 L=0.0399 logL=-3.2216</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>## x=40.5935 mu=50 sigma=10 L=0.0256 logL=-3.6639</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>## x=48.8417 mu=50 sigma=10 L=0.0396 logL=-3.2282</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>## x=41.8503 mu=50 sigma=10 L=0.0286 logL=-3.5536</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>## x=52.4226 mu=50 sigma=10 L=0.0387 logL=-3.2509</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>## x=35.749 mu=50 sigma=10 L=0.0145 logL=-4.237</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>## x=53.6594 mu=50 sigma=10 L=0.0373 logL=-3.2885</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>## x=52.4841 mu=50 sigma=10 L=0.0387 logL=-3.2524</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>## x=50.6529 mu=50 sigma=10 L=0.0398 logL=-3.2237</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>## x=50.1916 mu=50 sigma=10 L=0.0399 logL=-3.2217</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>## x=52.5734 mu=50 sigma=10 L=0.0386 logL=-3.2546</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>## x=43.5099 mu=50 sigma=10 L=0.0323 logL=-3.4321</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>## x=48.8083 mu=50 sigma=10 L=0.0396 logL=-3.2286</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>## x=56.6414 mu=50 sigma=10 L=0.032 logL=-3.4421</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>## x=61.0097 mu=50 sigma=10 L=0.0218 logL=-3.8276</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>## x=51.4377 mu=50 sigma=10 L=0.0395 logL=-3.2319</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>## x=48.8225 mu=50 sigma=10 L=0.0396 logL=-3.2285</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>## x=40.8793 mu=50 sigma=10 L=0.0263 logL=-3.6375</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>## x=35.6241 mu=50 sigma=10 L=0.0142 logL=-4.2549</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>## x=42.0291 mu=50 sigma=10 L=0.029 logL=-3.5392</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>## x=62.5408 mu=50 sigma=10 L=0.0182 logL=-4.0079</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>## x=57.7214 mu=50 sigma=10 L=0.0296 logL=-3.5196</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>## x=47.8048 mu=50 sigma=10 L=0.0389 logL=-3.2456</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>## x=45.7519 mu=50 sigma=10 L=0.0365 logL=-3.3118</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>## x=45.8102 mu=50 sigma=10 L=0.0365 logL=-3.3093</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>## x=59.9699 mu=50 sigma=10 L=0.0243 logL=-3.7185</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>## x=47.2422 mu=50 sigma=10 L=0.0384 logL=-3.2596</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>## x=62.5602 mu=50 sigma=10 L=0.0181 logL=-4.0103</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>## x=56.4667 mu=50 sigma=10 L=0.0324 logL=-3.4306</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>## x=62.9931 mu=50 sigma=10 L=0.0172 logL=-4.0656</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>## x=41.2674 mu=50 sigma=10 L=0.0272 logL=-3.6028</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>## x=50.0837 mu=50 sigma=10 L=0.0399 logL=-3.2216</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>## x=41.1913 mu=50 sigma=10 L=0.0271 logL=-3.6095</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>## x=55.9626 mu=50 sigma=10 L=0.0334 logL=-3.3993</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>## x=51.1972 mu=50 sigma=10 L=0.0396 logL=-3.2287</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>## x=47.1783 mu=50 sigma=10 L=0.0383 logL=-3.2613</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>## x=64.5599 mu=50 sigma=10 L=0.0138 logL=-4.2815</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>## x=52.2902 mu=50 sigma=10 L=0.0389 logL=-3.2477</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>## x=59.9654 mu=50 sigma=10 L=0.0243 logL=-3.7181</code></pre>
+</div>
 <div class="cell-output cell-output-stdout">
-<pre><code>## [1] 428.0693</code></pre>
+<pre><code>## [1] 360.7421</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb142"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb142-1"><a href="#cb142-1" aria-hidden="true" tabindex="-1"></a>mean <span class="ot">&lt;-</span> <span class="dv">65</span></span>
+<span id="cb142-2"><a href="#cb142-2" aria-hidden="true" tabindex="-1"></a>sd <span class="ot">&lt;-</span> <span class="dv">20</span></span>
+<span id="cb142-3"><a href="#cb142-3" aria-hidden="true" tabindex="-1"></a><span class="fu">verbose_nll</span>(val, mean, sd, <span class="at">verbose =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>## x=62.6295 mu=65 sigma=20 L=0.0198 logL=-3.9217</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>## x=46.7377 mu=65 sigma=20 L=0.0131 logL=-4.3316</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>## x=63.298 mu=65 sigma=20 L=0.0199 logL=-3.9183</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>## x=62.7243 mu=65 sigma=20 L=0.0198 logL=-3.9211</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>## x=54.1464 mu=65 sigma=20 L=0.0172 logL=-4.0619</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>## x=34.6005 mu=65 sigma=20 L=0.0063 logL=-5.0698</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>## x=40.7143 mu=65 sigma=20 L=0.0095 logL=-4.6519</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>## x=47.0528 mu=65 sigma=20 L=0.0133 logL=-4.3173</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>## x=49.9423 mu=65 sigma=20 L=0.015 logL=-4.1981</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>## x=74.0465 mu=65 sigma=20 L=0.018 logL=-4.017</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>## x=57.6359 mu=65 sigma=20 L=0.0186 logL=-3.9825</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>## x=42.0099 mu=65 sigma=20 L=0.0103 logL=-4.5754</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>## x=38.5234 mu=65 sigma=20 L=0.0083 logL=-4.7909</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>## x=47.1054 mu=65 sigma=20 L=0.0134 logL=-4.3149</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>## x=47.0078 mu=65 sigma=20 L=0.0133 logL=-4.3193</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>## x=45.8849 mu=65 sigma=20 L=0.0126 logL=-4.3714</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>## x=52.5222 mu=65 sigma=20 L=0.0164 logL=-4.1093</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>## x=41.0808 mu=65 sigma=20 L=0.0098 logL=-4.6298</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>## x=54.3568 mu=65 sigma=20 L=0.0173 logL=-4.0563</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>## x=37.6246 mu=65 sigma=20 L=0.0078 logL=-4.8514</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>## x=47.7573 mu=65 sigma=20 L=0.0138 logL=-4.2863</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>## x=53.774 mu=65 sigma=20 L=0.017 logL=-4.0722</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>## x=51.3334 mu=65 sigma=20 L=0.0158 logL=-4.1481</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>## x=58.0419 mu=65 sigma=20 L=0.0188 logL=-3.9752</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>## x=49.4289 mu=65 sigma=20 L=0.0147 logL=-4.2177</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>## x=55.0361 mu=65 sigma=20 L=0.0176 logL=-4.0388</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>## x=60.8577 mu=65 sigma=20 L=0.0195 logL=-3.9361</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>## x=43.0905 mu=65 sigma=20 L=0.0109 logL=-4.5147</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>## x=37.154 mu=65 sigma=20 L=0.0076 logL=-4.8839</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>## x=50.4673 mu=65 sigma=20 L=0.0153 logL=-4.1787</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>## x=47.6429 mu=65 sigma=20 L=0.0137 logL=-4.2913</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>## x=44.5711 mu=65 sigma=20 L=0.0118 logL=-4.4363</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>## x=45.6669 mu=65 sigma=20 L=0.0125 logL=-4.3819</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>## x=43.5053 mu=65 sigma=20 L=0.0112 logL=-4.4922</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>## x=57.2675 mu=65 sigma=20 L=0.0185 logL=-3.9894</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>## x=61.5191 mu=65 sigma=20 L=0.0196 logL=-3.9298</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>## x=59.9216 mu=65 sigma=20 L=0.0193 logL=-3.9469</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>## x=45.7049 mu=65 sigma=20 L=0.0125 logL=-4.38</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>## x=62.383 mu=65 sigma=20 L=0.0198 logL=-3.9232</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>## x=47.2065 mu=65 sigma=20 L=0.0134 logL=-4.3104</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>## x=67.579 mu=65 sigma=20 L=0.0198 logL=-3.923</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>## x=55.6075 mu=65 sigma=20 L=0.0179 logL=-4.0249</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>## x=45.4722 mu=65 sigma=20 L=0.0124 logL=-4.3913</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>## x=41.6796 mu=65 sigma=20 L=0.0101 logL=-4.5945</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>## x=38.3343 mu=65 sigma=20 L=0.0082 logL=-4.8035</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>## x=39.3441 mu=65 sigma=20 L=0.0088 logL=-4.7375</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>## x=34.3622 mu=65 sigma=20 L=0.0062 logL=-5.088</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>## x=61.5654 mu=65 sigma=20 L=0.0197 logL=-3.9294</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>## x=58.3205 mu=65 sigma=20 L=0.0189 logL=-3.9704</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>## x=47.7267 mu=65 sigma=20 L=0.0137 logL=-4.2876</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>## x=52.6614 mu=65 sigma=20 L=0.0165 logL=-4.105</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>## x=46.233 mu=65 sigma=20 L=0.0128 logL=-4.3549</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>## x=74.4136 mu=65 sigma=20 L=0.0179 logL=-4.0254</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>## x=42.0466 mu=65 sigma=20 L=0.0103 logL=-4.5732</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>## x=49.4512 mu=65 sigma=20 L=0.0147 logL=-4.2169</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>## x=52.5014 mu=65 sigma=20 L=0.0164 logL=-4.1099</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>## x=56.1824 mu=65 sigma=20 L=0.0181 logL=-4.0119</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>## x=48.2738 mu=65 sigma=20 L=0.0141 logL=-4.2644</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>## x=27.761 mu=65 sigma=20 L=0.0035 logL=-5.6481</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>## x=37.3639 mu=65 sigma=20 L=0.0077 logL=-4.8694</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>## x=53.5873 mu=65 sigma=20 L=0.017 logL=-4.0775</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>## x=49.8895 mu=65 sigma=20 L=0.015 logL=-4.2001</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>## x=40.5935 mu=65 sigma=20 L=0.0095 logL=-4.6593</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>## x=48.8417 mu=65 sigma=20 L=0.0144 logL=-4.241</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>## x=41.8503 mu=65 sigma=20 L=0.0102 logL=-4.5846</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>## x=52.4226 mu=65 sigma=20 L=0.0164 logL=-4.1124</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>## x=35.749 mu=65 sigma=20 L=0.0068 logL=-4.9842</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>## x=53.6594 mu=65 sigma=20 L=0.017 logL=-4.0754</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>## x=52.4841 mu=65 sigma=20 L=0.0164 logL=-4.1105</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>## x=50.6529 mu=65 sigma=20 L=0.0154 logL=-4.172</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>## x=50.1916 mu=65 sigma=20 L=0.0152 logL=-4.1888</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>## x=52.5734 mu=65 sigma=20 L=0.0164 logL=-4.1077</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>## x=43.5099 mu=65 sigma=20 L=0.0112 logL=-4.492</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>## x=48.8083 mu=65 sigma=20 L=0.0144 logL=-4.2424</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>## x=56.6414 mu=65 sigma=20 L=0.0183 logL=-4.002</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>## x=61.0097 mu=65 sigma=20 L=0.0196 logL=-3.9346</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>## x=51.4377 mu=65 sigma=20 L=0.0158 logL=-4.1446</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>## x=48.8225 mu=65 sigma=20 L=0.0144 logL=-4.2418</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>## x=40.8793 mu=65 sigma=20 L=0.0096 logL=-4.6419</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>## x=35.6241 mu=65 sigma=20 L=0.0068 logL=-4.9933</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>## x=42.0291 mu=65 sigma=20 L=0.0103 logL=-4.5742</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>## x=62.5408 mu=65 sigma=20 L=0.0198 logL=-3.9222</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>## x=57.7214 mu=65 sigma=20 L=0.0187 logL=-3.9809</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>## x=47.8048 mu=65 sigma=20 L=0.0138 logL=-4.2843</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>## x=45.7519 mu=65 sigma=20 L=0.0126 logL=-4.3778</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>## x=45.8102 mu=65 sigma=20 L=0.0126 logL=-4.375</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>## x=59.9699 mu=65 sigma=20 L=0.0193 logL=-3.9463</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>## x=47.2422 mu=65 sigma=20 L=0.0134 logL=-4.3088</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>## x=62.5602 mu=65 sigma=20 L=0.0198 logL=-3.9221</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>## x=56.4667 mu=65 sigma=20 L=0.0182 logL=-4.0057</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>## x=62.9931 mu=65 sigma=20 L=0.0198 logL=-3.9197</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>## x=41.2674 mu=65 sigma=20 L=0.0099 logL=-4.6187</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>## x=50.0837 mu=65 sigma=20 L=0.0151 logL=-4.1928</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>## x=41.1913 mu=65 sigma=20 L=0.0098 logL=-4.6232</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>## x=55.9626 mu=65 sigma=20 L=0.018 logL=-4.0168</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>## x=51.1972 mu=65 sigma=20 L=0.0157 logL=-4.1528</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>## x=47.1783 mu=65 sigma=20 L=0.0134 logL=-4.3117</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>## x=64.5599 mu=65 sigma=20 L=0.0199 logL=-3.9149</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>## x=52.2902 mu=65 sigma=20 L=0.0163 logL=-4.1166</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>## x=59.9654 mu=65 sigma=20 L=0.0193 logL=-3.9464</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>## [1] 428.3894</code></pre>
 </div>
 </div>
 <p>… we see that <strong>negative log likelihood</strong> of our data under the first distribution is smaller than under the second, indicating that it is more likely that are data are drawn from the first distribution.</p>
 <p>To use maximum likelihood estimation, we need to create a simpler version of this function that does not have the data as argument, but rather only involves the parameter we want to estimate. The function below does this. Note that unlike the function above, this version does not use a loop and has the vector variable <em>val</em> included as the first argument to the <code>dnorm()</code> function. We also include the argument <code>log = TRUE</code> within the <code>dnorm()</code> function to calculate the log likelihood directly, instead of including that as an extra step.</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>simple_nll <span class="ot">&lt;-</span> <span class="cf">function</span>(mu, sigma, <span class="at">verbose =</span> <span class="cn">TRUE</span>) {</span>
-<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>    ll <span class="ot">=</span> <span class="fu">sum</span>(<span class="fu">dnorm</span>(val, <span class="at">mean =</span> mu, <span class="at">sd =</span> sigma, <span class="at">log =</span> <span class="cn">TRUE</span>))</span>
-<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a>    nll <span class="ot">&lt;-</span> <span class="sc">-</span><span class="dv">1</span> <span class="sc">*</span> ll</span>
-<span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(nll)</span>
-<span id="cb44-5"><a href="#cb44-5" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb244"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb244-1"><a href="#cb244-1" aria-hidden="true" tabindex="-1"></a>simple_nll <span class="ot">&lt;-</span> <span class="cf">function</span>(mu, sigma, <span class="at">verbose =</span> <span class="cn">TRUE</span>) {</span>
+<span id="cb244-2"><a href="#cb244-2" aria-hidden="true" tabindex="-1"></a>    ll <span class="ot">=</span> <span class="fu">sum</span>(<span class="fu">dnorm</span>(val, <span class="at">mean =</span> mu, <span class="at">sd =</span> sigma, <span class="at">log =</span> <span class="cn">TRUE</span>))</span>
+<span id="cb244-3"><a href="#cb244-3" aria-hidden="true" tabindex="-1"></a>    nll <span class="ot">&lt;-</span> <span class="sc">-</span><span class="dv">1</span> <span class="sc">*</span> ll</span>
+<span id="cb244-4"><a href="#cb244-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(nll)</span>
+<span id="cb244-5"><a href="#cb244-5" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Testing our function, we should get the same results as above…</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>val <span class="ot">&lt;-</span> d<span class="sc">$</span>val</span>
-<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>mean <span class="ot">&lt;-</span> <span class="dv">50</span></span>
-<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a>sd <span class="ot">&lt;-</span> <span class="dv">10</span></span>
-<span id="cb45-4"><a href="#cb45-4" aria-hidden="true" tabindex="-1"></a><span class="fu">simple_nll</span>(mean, sd)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb245"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb245-1"><a href="#cb245-1" aria-hidden="true" tabindex="-1"></a>val <span class="ot">&lt;-</span> d<span class="sc">$</span>val</span>
+<span id="cb245-2"><a href="#cb245-2" aria-hidden="true" tabindex="-1"></a>mean <span class="ot">&lt;-</span> <span class="dv">50</span></span>
+<span id="cb245-3"><a href="#cb245-3" aria-hidden="true" tabindex="-1"></a>sd <span class="ot">&lt;-</span> <span class="dv">10</span></span>
+<span id="cb245-4"><a href="#cb245-4" aria-hidden="true" tabindex="-1"></a><span class="fu">simple_nll</span>(mean, sd)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>## [1] 368.6593</code></pre>
+<pre><code>## [1] 360.7421</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a>val <span class="ot">&lt;-</span> d<span class="sc">$</span>val</span>
-<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a>mean <span class="ot">&lt;-</span> <span class="dv">65</span></span>
-<span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a>sd <span class="ot">&lt;-</span> <span class="dv">20</span></span>
-<span id="cb47-4"><a href="#cb47-4" aria-hidden="true" tabindex="-1"></a><span class="fu">simple_nll</span>(mean, sd)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb247"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb247-1"><a href="#cb247-1" aria-hidden="true" tabindex="-1"></a>val <span class="ot">&lt;-</span> d<span class="sc">$</span>val</span>
+<span id="cb247-2"><a href="#cb247-2" aria-hidden="true" tabindex="-1"></a>mean <span class="ot">&lt;-</span> <span class="dv">65</span></span>
+<span id="cb247-3"><a href="#cb247-3" aria-hidden="true" tabindex="-1"></a>sd <span class="ot">&lt;-</span> <span class="dv">20</span></span>
+<span id="cb247-4"><a href="#cb247-4" aria-hidden="true" tabindex="-1"></a><span class="fu">simple_nll</span>(mean, sd)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>## [1] 428.0693</code></pre>
+<pre><code>## [1] 428.3894</code></pre>
 </div>
 </div>
 <p>So far, we have just used this function to calculate the (negative) log likelihood of our data being generated by a Gaussian (normal) process with specific <span class="math inline">\(\mu\)</span> and <span class="math inline">\(\sigma\)</span> parameters… but what we really want to do is estimate values for <span class="math inline">\(\mu\)</span> and <span class="math inline">\(\sigma\)</span> that have highest likelihood for generating our data. To do this, we will use the <code>mle2()</code> function from the {bbmle} package. This function takes the following arguments…</p>
@@ -822,13 +1423,13 @@ window.Quarto = {
 <p>NOTE: Be aware that to run the function below, we need to have the variable <strong>val</strong>, a vector of values, specified outside of the function. We previously set <strong>val</strong> to <strong>d</strong>, our random sample of 100 draws from a normal distribution with <span class="math inline">\(\mu\)</span>=50 and <span class="math inline">\(\sigma\)</span>=10… feel free to play around with alternatives and see how well the MLE process estimates these parameters.</p>
 </blockquote>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a>val <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">1000</span>, <span class="at">mean =</span> <span class="dv">50</span>, <span class="at">sd =</span> <span class="dv">10</span>)</span>
-<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a>mle_norm <span class="ot">&lt;-</span> <span class="fu">mle2</span>(<span class="at">minuslogl =</span> simple_nll, <span class="at">start =</span> <span class="fu">list</span>(<span class="at">mu =</span> <span class="dv">0</span>, <span class="at">sigma =</span> <span class="dv">1</span>), <span class="at">method =</span> <span class="st">"SANN"</span>  <span class="co"># simulated annealing method of optimization, one of several options</span></span>
-<span id="cb49-4"><a href="#cb49-4" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb49-5"><a href="#cb49-5" aria-hidden="true" tabindex="-1"></a><span class="co"># note that we may sometimes see a warning about NaNs being produced... this is</span></span>
-<span id="cb49-6"><a href="#cb49-6" aria-hidden="true" tabindex="-1"></a><span class="co"># okay!</span></span>
-<span id="cb49-7"><a href="#cb49-7" aria-hidden="true" tabindex="-1"></a>mle_norm</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb249"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb249-1"><a href="#cb249-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(bbmle)</span>
+<span id="cb249-2"><a href="#cb249-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb249-3"><a href="#cb249-3" aria-hidden="true" tabindex="-1"></a>mle_norm <span class="ot">&lt;-</span> <span class="fu">mle2</span>(<span class="at">minuslogl =</span> simple_nll, <span class="at">start =</span> <span class="fu">list</span>(<span class="at">mu =</span> <span class="dv">0</span>, <span class="at">sigma =</span> <span class="dv">1</span>), <span class="at">method =</span> <span class="st">"SANN"</span>  <span class="co"># simulated annealing method of optimization, one of several options</span></span>
+<span id="cb249-4"><a href="#cb249-4" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb249-5"><a href="#cb249-5" aria-hidden="true" tabindex="-1"></a><span class="co"># note that we may sometimes see a warning about NaNs being produced... this is</span></span>
+<span id="cb249-6"><a href="#cb249-6" aria-hidden="true" tabindex="-1"></a><span class="co"># okay!</span></span>
+<span id="cb249-7"><a href="#cb249-7" aria-hidden="true" tabindex="-1"></a>mle_norm</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>## 
 ## Call:
@@ -836,43 +1437,43 @@ window.Quarto = {
 ##     method = "SANN")
 ## 
 ## Coefficients:
-##       mu    sigma 
-## 50.36092 10.13195 
+##      mu   sigma 
+## 50.2349  8.7631 
 ## 
-## Log-likelihood: -3733.97</code></pre>
+## Log-likelihood: -359.17</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="co"># note the estimates for `mu` and `sigma` are very close to the population</span></span>
-<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a><span class="co"># level parameters of the normal distribution that our vector `val` was drawn</span></span>
-<span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a><span class="co"># from</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb251"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb251-1"><a href="#cb251-1" aria-hidden="true" tabindex="-1"></a><span class="co"># note the estimates for `mu` and `sigma` are very close to the population</span></span>
+<span id="cb251-2"><a href="#cb251-2" aria-hidden="true" tabindex="-1"></a><span class="co"># level parameters of the normal distribution that our vector `val` was drawn</span></span>
+<span id="cb251-3"><a href="#cb251-3" aria-hidden="true" tabindex="-1"></a><span class="co"># from</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>An alternative for MLE is the <code>maxLik()</code> function from the {maxLik} package. To use function, we again first define our own log likelihood function, but this time we do not want an negative log likelihood, so we do not multiply it by minus 1. This is because the first argument to <code>maxLik()</code> is a log likelihood function, not a <strong>negative</strong> log likelihood function. Our function should also have only one argument… a <strong>vector</strong> of parameter values… rather than separate arguments for each parameter.</p>
+<p>An alternative for MLE is the <code>maxLik()</code> function from the {maxLik} package. To use function, we again first define our own log likelihood function, but this time we do not want a <strong>negative</strong> log likelihood, so we do not multiply it by minus 1 (i.e., the first argument <code>maxLik()</code> expects is a log likelihood function, not a <strong>negative</strong> log likelihood function). Our function should also have only one argument… a <strong>vector</strong> of parameter values… rather than separate arguments for each parameter.</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a>simple_ll <span class="ot">&lt;-</span> <span class="cf">function</span>(parameters) {</span>
-<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># `parameters` is a vector of parameter values</span></span>
-<span id="cb52-3"><a href="#cb52-3" aria-hidden="true" tabindex="-1"></a>    mu <span class="ot">&lt;-</span> parameters[<span class="dv">1</span>]</span>
-<span id="cb52-4"><a href="#cb52-4" aria-hidden="true" tabindex="-1"></a>    sigma <span class="ot">&lt;-</span> parameters[<span class="dv">2</span>]</span>
-<span id="cb52-5"><a href="#cb52-5" aria-hidden="true" tabindex="-1"></a>    ll <span class="ot">=</span> <span class="fu">sum</span>(<span class="fu">dnorm</span>(val, <span class="at">mean =</span> mu, <span class="at">sd =</span> sigma, <span class="at">log =</span> <span class="cn">TRUE</span>))</span>
-<span id="cb52-6"><a href="#cb52-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(ll)</span>
-<span id="cb52-7"><a href="#cb52-7" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb52-8"><a href="#cb52-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb52-9"><a href="#cb52-9" aria-hidden="true" tabindex="-1"></a><span class="co"># test...</span></span>
-<span id="cb52-10"><a href="#cb52-10" aria-hidden="true" tabindex="-1"></a><span class="fu">simple_ll</span>(<span class="fu">c</span>(<span class="dv">50</span>, <span class="dv">10</span>))  <span class="co"># this should be very close to the log likelihood returned above</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb252"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb252-1"><a href="#cb252-1" aria-hidden="true" tabindex="-1"></a>simple_ll <span class="ot">&lt;-</span> <span class="cf">function</span>(parameters) {</span>
+<span id="cb252-2"><a href="#cb252-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># `parameters` is a vector of parameter values</span></span>
+<span id="cb252-3"><a href="#cb252-3" aria-hidden="true" tabindex="-1"></a>    mu <span class="ot">&lt;-</span> parameters[<span class="dv">1</span>]</span>
+<span id="cb252-4"><a href="#cb252-4" aria-hidden="true" tabindex="-1"></a>    sigma <span class="ot">&lt;-</span> parameters[<span class="dv">2</span>]</span>
+<span id="cb252-5"><a href="#cb252-5" aria-hidden="true" tabindex="-1"></a>    ll <span class="ot">=</span> <span class="fu">sum</span>(<span class="fu">dnorm</span>(val, <span class="at">mean =</span> mu, <span class="at">sd =</span> sigma, <span class="at">log =</span> <span class="cn">TRUE</span>))</span>
+<span id="cb252-6"><a href="#cb252-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(ll)</span>
+<span id="cb252-7"><a href="#cb252-7" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb252-8"><a href="#cb252-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb252-9"><a href="#cb252-9" aria-hidden="true" tabindex="-1"></a><span class="co"># test...</span></span>
+<span id="cb252-10"><a href="#cb252-10" aria-hidden="true" tabindex="-1"></a><span class="fu">simple_ll</span>(<span class="fu">c</span>(<span class="dv">50</span>, <span class="dv">10</span>))  <span class="co"># this should be very close to the log likelihood returned above</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>## [1] -3734.795</code></pre>
+<pre><code>## [1] -360.7421</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="co"># an alternative function</span></span>
-<span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a>simple_ll <span class="ot">&lt;-</span> <span class="cf">function</span>(parameters) {</span>
-<span id="cb54-3"><a href="#cb54-3" aria-hidden="true" tabindex="-1"></a>    mu <span class="ot">&lt;-</span> parameters[<span class="dv">1</span>]</span>
-<span id="cb54-4"><a href="#cb54-4" aria-hidden="true" tabindex="-1"></a>    sigma <span class="ot">&lt;-</span> parameters[<span class="dv">2</span>]</span>
-<span id="cb54-5"><a href="#cb54-5" aria-hidden="true" tabindex="-1"></a>    N <span class="ot">&lt;-</span> <span class="fu">length</span>(val)</span>
-<span id="cb54-6"><a href="#cb54-6" aria-hidden="true" tabindex="-1"></a>    ll <span class="ot">&lt;-</span> <span class="sc">-</span><span class="dv">1</span> <span class="sc">*</span> N <span class="sc">*</span> <span class="fu">log</span>(<span class="fu">sqrt</span>(<span class="dv">2</span> <span class="sc">*</span> pi)) <span class="sc">-</span> N <span class="sc">*</span> <span class="fu">log</span>(sigma) <span class="sc">-</span> <span class="fl">0.5</span> <span class="sc">*</span> <span class="fu">sum</span>((val <span class="sc">-</span> mu)<span class="sc">^</span><span class="dv">2</span><span class="sc">/</span>sigma<span class="sc">^</span><span class="dv">2</span>)</span>
-<span id="cb54-7"><a href="#cb54-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(ll)</span>
-<span id="cb54-8"><a href="#cb54-8" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb54-9"><a href="#cb54-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb54-10"><a href="#cb54-10" aria-hidden="true" tabindex="-1"></a><span class="co"># test...</span></span>
-<span id="cb54-11"><a href="#cb54-11" aria-hidden="true" tabindex="-1"></a><span class="fu">simple_ll</span>(<span class="fu">c</span>(<span class="dv">50</span>, <span class="dv">10</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb254"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb254-1"><a href="#cb254-1" aria-hidden="true" tabindex="-1"></a><span class="co"># an alternative function</span></span>
+<span id="cb254-2"><a href="#cb254-2" aria-hidden="true" tabindex="-1"></a>simple_ll <span class="ot">&lt;-</span> <span class="cf">function</span>(parameters) {</span>
+<span id="cb254-3"><a href="#cb254-3" aria-hidden="true" tabindex="-1"></a>    mu <span class="ot">&lt;-</span> parameters[<span class="dv">1</span>]</span>
+<span id="cb254-4"><a href="#cb254-4" aria-hidden="true" tabindex="-1"></a>    sigma <span class="ot">&lt;-</span> parameters[<span class="dv">2</span>]</span>
+<span id="cb254-5"><a href="#cb254-5" aria-hidden="true" tabindex="-1"></a>    N <span class="ot">&lt;-</span> <span class="fu">length</span>(val)</span>
+<span id="cb254-6"><a href="#cb254-6" aria-hidden="true" tabindex="-1"></a>    ll <span class="ot">&lt;-</span> <span class="sc">-</span><span class="dv">1</span> <span class="sc">*</span> N <span class="sc">*</span> <span class="fu">log</span>(<span class="fu">sqrt</span>(<span class="dv">2</span> <span class="sc">*</span> pi)) <span class="sc">-</span> N <span class="sc">*</span> <span class="fu">log</span>(sigma) <span class="sc">-</span> <span class="fl">0.5</span> <span class="sc">*</span> <span class="fu">sum</span>((val <span class="sc">-</span> mu)<span class="sc">^</span><span class="dv">2</span><span class="sc">/</span>sigma<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb254-7"><a href="#cb254-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(ll)</span>
+<span id="cb254-8"><a href="#cb254-8" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb254-9"><a href="#cb254-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb254-10"><a href="#cb254-10" aria-hidden="true" tabindex="-1"></a><span class="co"># test...</span></span>
+<span id="cb254-11"><a href="#cb254-11" aria-hidden="true" tabindex="-1"></a><span class="fu">simple_ll</span>(<span class="fu">c</span>(<span class="dv">50</span>, <span class="dv">10</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>## [1] -3734.795</code></pre>
+<pre><code>## [1] -360.7421</code></pre>
 </div>
 </div>
 <p>As for <code>mle2()</code>, for <code>maxLik()</code> we need to specify several arguments:</p>
@@ -882,19 +1483,22 @@ window.Quarto = {
 <li><strong>method</strong>, which is the particular algorithm used for optimization of the parameter estimates</li>
 </ul>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a>mle_norm <span class="ot">&lt;-</span> <span class="fu">maxLik</span>(<span class="at">logLik =</span> simple_ll, <span class="at">start =</span> <span class="fu">c</span>(<span class="at">mu =</span> <span class="dv">0</span>, <span class="at">sigma =</span> <span class="dv">1</span>), <span class="at">method =</span> <span class="st">"NM"</span>)</span>
-<span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mle_norm)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb256"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb256-1"><a href="#cb256-1" aria-hidden="true" tabindex="-1"></a>mle_norm <span class="ot">&lt;-</span> <span class="fu">maxLik</span>(<span class="at">logLik =</span> simple_ll, <span class="at">start =</span> <span class="fu">c</span>(<span class="at">mu =</span> <span class="dv">0</span>, <span class="at">sigma =</span> <span class="dv">1</span>), <span class="at">method =</span> <span class="st">"NM"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>## Warning in log(sigma): NaNs produced</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb258"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb258-1"><a href="#cb258-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mle_norm)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>## --------------------------------------------
 ## Maximum Likelihood estimation
-## Nelder-Mead maximization, 87 iterations
+## Nelder-Mead maximization, 85 iterations
 ## Return code 0: successful convergence 
-## Log-Likelihood: -3733.986 
+## Log-Likelihood: -359.1675 
 ## 2  free parameters
 ## Estimates:
 ##       Estimate Std. error t value Pr(&gt; t)    
-## mu     50.3232     0.3236  155.51  &lt;2e-16 ***
-## sigma  10.1488     0.2288   44.35  &lt;2e-16 ***
+## mu     50.2392     0.8942   56.18  &lt;2e-16 ***
+## sigma   8.7952     0.6323   13.91  &lt;2e-16 ***
 ## ---
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ## --------------------------------------------</code></pre>
@@ -906,9 +1510,9 @@ window.Quarto = {
 <h2 class="anchored" data-anchor-id="mle-for-simple-linear-regression">MLE for Simple Linear Regression</h2>
 <p>Now let’s work through an example of using MLE for simple linear regression. Load in our zombie apocalypse survivors dataset…</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a>f <span class="ot">&lt;-</span> <span class="st">"https://raw.githubusercontent.com/difiore/ada-datasets/main/zombies.csv"</span></span>
-<span id="cb58-3"><a href="#cb58-3" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(f, <span class="at">col_names =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb260"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb260-1"><a href="#cb260-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb260-2"><a href="#cb260-2" aria-hidden="true" tabindex="-1"></a>f <span class="ot">&lt;-</span> <span class="st">"https://raw.githubusercontent.com/difiore/ada-datasets/main/zombies.csv"</span></span>
+<span id="cb260-3"><a href="#cb260-3" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(f, <span class="at">col_names =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>## Rows: 1000 Columns: 10
 ## ── Column specification ────────────────────────────────────────────────────────
@@ -919,9 +1523,9 @@ window.Quarto = {
 ## ℹ Use `spec()` to retrieve the full column specification for this data.
 ## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Standard OLS linear regression model with our zombie apocalypse survivor dataset</span></span>
-<span id="cb60-2"><a href="#cb60-2" aria-hidden="true" tabindex="-1"></a>m <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="at">data =</span> d, height <span class="sc">~</span> weight)</span>
-<span id="cb60-3"><a href="#cb60-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(m)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb262"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb262-1"><a href="#cb262-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Standard OLS linear regression model with our zombie apocalypse survivor dataset</span></span>
+<span id="cb262-2"><a href="#cb262-2" aria-hidden="true" tabindex="-1"></a>m <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="at">data =</span> d, height <span class="sc">~</span> weight)</span>
+<span id="cb262-3"><a href="#cb262-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(m)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>## 
 ## Call:
@@ -942,24 +1546,24 @@ window.Quarto = {
 ## Multiple R-squared:  0.6932, Adjusted R-squared:  0.6929 
 ## F-statistic:  2255 on 1 and 998 DF,  p-value: &lt; 2.2e-16</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb62"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Compare to...</span></span>
-<span id="cb62-2"><a href="#cb62-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Likelihood based linear regression with `mle2()`... now we have our own likelihood function that has three instead of two parameters: b0, b1, and sigma, or the standard deviation in (presumably normally distributed!) residuals...</span></span>
-<span id="cb62-3"><a href="#cb62-3" aria-hidden="true" tabindex="-1"></a>simple_nll <span class="ot">&lt;-</span> <span class="cf">function</span>(b0, b1, sigma, <span class="at">verbose =</span> <span class="cn">TRUE</span>) {</span>
-<span id="cb62-4"><a href="#cb62-4" aria-hidden="true" tabindex="-1"></a>  <span class="co"># here, we say how our expectation for how our response variable, y, is calculated based on two parameters</span></span>
-<span id="cb62-5"><a href="#cb62-5" aria-hidden="true" tabindex="-1"></a>  y <span class="ot">&lt;-</span> b0 <span class="sc">+</span> b1 <span class="sc">*</span> d<span class="sc">$</span>weight </span>
-<span id="cb62-6"><a href="#cb62-6" aria-hidden="true" tabindex="-1"></a>  N <span class="ot">&lt;-</span> <span class="fu">nrow</span>(d)</span>
-<span id="cb62-7"><a href="#cb62-7" aria-hidden="true" tabindex="-1"></a>  <span class="co"># decomposition of log density function into R terms...</span></span>
-<span id="cb62-8"><a href="#cb62-8" aria-hidden="true" tabindex="-1"></a>  ll <span class="ot">&lt;-</span> <span class="sc">-</span><span class="dv">1</span> <span class="sc">*</span> N<span class="sc">*</span><span class="fu">log</span>(<span class="fu">sqrt</span>(<span class="dv">2</span><span class="sc">*</span>pi)) <span class="sc">-</span> N<span class="sc">*</span><span class="fu">log</span>(sigma) <span class="sc">-</span> <span class="fl">0.5</span><span class="sc">*</span><span class="fu">sum</span>((d<span class="sc">$</span>height <span class="sc">-</span> y)<span class="sc">^</span><span class="dv">2</span><span class="sc">/</span>sigma<span class="sc">^</span><span class="dv">2</span>)</span>
-<span id="cb62-9"><a href="#cb62-9" aria-hidden="true" tabindex="-1"></a>  nll <span class="ot">&lt;-</span> <span class="sc">-</span><span class="dv">1</span> <span class="sc">*</span> ll</span>
-<span id="cb62-10"><a href="#cb62-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(nll)</span>
-<span id="cb62-11"><a href="#cb62-11" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb62-12"><a href="#cb62-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb62-13"><a href="#cb62-13" aria-hidden="true" tabindex="-1"></a>mle_norm <span class="ot">&lt;-</span> <span class="fu">mle2</span>(</span>
-<span id="cb62-14"><a href="#cb62-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">minuslogl =</span> simple_nll, <span class="co"># our likelihood function</span></span>
-<span id="cb62-15"><a href="#cb62-15" aria-hidden="true" tabindex="-1"></a>  <span class="at">start  =</span> <span class="fu">list</span>(<span class="at">b0=</span><span class="dv">10</span>, <span class="at">b1=</span><span class="dv">0</span>, <span class="at">sigma=</span><span class="dv">1</span>), </span>
-<span id="cb62-16"><a href="#cb62-16" aria-hidden="true" tabindex="-1"></a>  <span class="at">method =</span> <span class="st">"Nelder-Mead"</span> <span class="co"># implements the Nelder-Mead algorithm for likelihood maximization</span></span>
-<span id="cb62-17"><a href="#cb62-17" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb62-18"><a href="#cb62-18" aria-hidden="true" tabindex="-1"></a>mle_norm</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb264"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb264-1"><a href="#cb264-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Compare to...</span></span>
+<span id="cb264-2"><a href="#cb264-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Likelihood based linear regression with `mle2()`... now we have our own likelihood function that has three instead of two parameters: b0, b1, and sigma, or the standard deviation in (presumably normally distributed!) residuals...</span></span>
+<span id="cb264-3"><a href="#cb264-3" aria-hidden="true" tabindex="-1"></a>simple_nll <span class="ot">&lt;-</span> <span class="cf">function</span>(b0, b1, sigma, <span class="at">verbose =</span> <span class="cn">TRUE</span>) {</span>
+<span id="cb264-4"><a href="#cb264-4" aria-hidden="true" tabindex="-1"></a>  <span class="co"># here, we say how our expectation for how our response variable, y, is calculated based on two parameters</span></span>
+<span id="cb264-5"><a href="#cb264-5" aria-hidden="true" tabindex="-1"></a>  y <span class="ot">&lt;-</span> b0 <span class="sc">+</span> b1 <span class="sc">*</span> d<span class="sc">$</span>weight </span>
+<span id="cb264-6"><a href="#cb264-6" aria-hidden="true" tabindex="-1"></a>  N <span class="ot">&lt;-</span> <span class="fu">nrow</span>(d)</span>
+<span id="cb264-7"><a href="#cb264-7" aria-hidden="true" tabindex="-1"></a>  <span class="co"># decomposition of log density function into R terms...</span></span>
+<span id="cb264-8"><a href="#cb264-8" aria-hidden="true" tabindex="-1"></a>  ll <span class="ot">&lt;-</span> <span class="sc">-</span><span class="dv">1</span> <span class="sc">*</span> N<span class="sc">*</span><span class="fu">log</span>(<span class="fu">sqrt</span>(<span class="dv">2</span><span class="sc">*</span>pi)) <span class="sc">-</span> N<span class="sc">*</span><span class="fu">log</span>(sigma) <span class="sc">-</span> <span class="fl">0.5</span><span class="sc">*</span><span class="fu">sum</span>((d<span class="sc">$</span>height <span class="sc">-</span> y)<span class="sc">^</span><span class="dv">2</span><span class="sc">/</span>sigma<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb264-9"><a href="#cb264-9" aria-hidden="true" tabindex="-1"></a>  nll <span class="ot">&lt;-</span> <span class="sc">-</span><span class="dv">1</span> <span class="sc">*</span> ll</span>
+<span id="cb264-10"><a href="#cb264-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(nll)</span>
+<span id="cb264-11"><a href="#cb264-11" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb264-12"><a href="#cb264-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb264-13"><a href="#cb264-13" aria-hidden="true" tabindex="-1"></a>mle_norm <span class="ot">&lt;-</span> <span class="fu">mle2</span>(</span>
+<span id="cb264-14"><a href="#cb264-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">minuslogl =</span> simple_nll, <span class="co"># our likelihood function</span></span>
+<span id="cb264-15"><a href="#cb264-15" aria-hidden="true" tabindex="-1"></a>  <span class="at">start  =</span> <span class="fu">list</span>(<span class="at">b0=</span><span class="dv">10</span>, <span class="at">b1=</span><span class="dv">0</span>, <span class="at">sigma=</span><span class="dv">1</span>), </span>
+<span id="cb264-16"><a href="#cb264-16" aria-hidden="true" tabindex="-1"></a>  <span class="at">method =</span> <span class="st">"Nelder-Mead"</span> <span class="co"># implements the Nelder-Mead algorithm for likelihood maximization</span></span>
+<span id="cb264-17"><a href="#cb264-17" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb264-18"><a href="#cb264-18" aria-hidden="true" tabindex="-1"></a>mle_norm</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>## 
 ## Call:
@@ -972,7 +1576,7 @@ window.Quarto = {
 ## 
 ## Log-likelihood: -2288.65</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb64"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mle_norm)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb266"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb266-1"><a href="#cb266-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mle_norm)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>## Maximum likelihood estimation
 ## 
@@ -990,24 +1594,24 @@ window.Quarto = {
 ## 
 ## -2 log L: 4577.301</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb66"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Compare to...</span></span>
-<span id="cb66-2"><a href="#cb66-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Likelihood based linear regression with `maxLik()`</span></span>
-<span id="cb66-3"><a href="#cb66-3" aria-hidden="true" tabindex="-1"></a>loglik <span class="ot">&lt;-</span> <span class="cf">function</span>(parameters) {</span>
-<span id="cb66-4"><a href="#cb66-4" aria-hidden="true" tabindex="-1"></a>  b0 <span class="ot">&lt;-</span> parameters[<span class="dv">1</span>]</span>
-<span id="cb66-5"><a href="#cb66-5" aria-hidden="true" tabindex="-1"></a>  b1 <span class="ot">&lt;-</span> parameters[<span class="dv">2</span>]</span>
-<span id="cb66-6"><a href="#cb66-6" aria-hidden="true" tabindex="-1"></a>  sigma <span class="ot">&lt;-</span> parameters[<span class="dv">3</span>]</span>
-<span id="cb66-7"><a href="#cb66-7" aria-hidden="true" tabindex="-1"></a>  N <span class="ot">&lt;-</span> <span class="fu">nrow</span>(d)</span>
-<span id="cb66-8"><a href="#cb66-8" aria-hidden="true" tabindex="-1"></a>  <span class="co"># here, we say how our expectation for how our response variable, y, is calculated based on parameters</span></span>
-<span id="cb66-9"><a href="#cb66-9" aria-hidden="true" tabindex="-1"></a>  y <span class="ot">&lt;-</span> b0 <span class="sc">+</span> b1 <span class="sc">*</span> d<span class="sc">$</span>weight <span class="co"># estimating mean height as a function of weight</span></span>
-<span id="cb66-10"><a href="#cb66-10" aria-hidden="true" tabindex="-1"></a>  <span class="co"># then use this mu in a similar fashion as previously</span></span>
-<span id="cb66-11"><a href="#cb66-11" aria-hidden="true" tabindex="-1"></a>  ll <span class="ot">&lt;-</span> <span class="sc">-</span><span class="dv">1</span> <span class="sc">*</span> N<span class="sc">*</span><span class="fu">log</span>(<span class="fu">sqrt</span>(<span class="dv">2</span><span class="sc">*</span>pi)) <span class="sc">-</span> N<span class="sc">*</span><span class="fu">log</span>(sigma) <span class="sc">-</span> <span class="fl">0.5</span><span class="sc">*</span><span class="fu">sum</span>((d<span class="sc">$</span>height <span class="sc">-</span> y)<span class="sc">^</span><span class="dv">2</span><span class="sc">/</span>sigma<span class="sc">^</span><span class="dv">2</span>)</span>
-<span id="cb66-12"><a href="#cb66-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(ll)</span>
-<span id="cb66-13"><a href="#cb66-13" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb66-14"><a href="#cb66-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb66-15"><a href="#cb66-15" aria-hidden="true" tabindex="-1"></a>mle_norm <span class="ot">&lt;-</span> <span class="fu">maxLik</span>(loglik,</span>
-<span id="cb66-16"><a href="#cb66-16" aria-hidden="true" tabindex="-1"></a>                   <span class="at">start=</span><span class="fu">c</span>(<span class="at">beta0=</span><span class="dv">0</span>, <span class="at">beta1=</span><span class="dv">0</span>, <span class="at">sigma=</span><span class="dv">1</span>),</span>
-<span id="cb66-17"><a href="#cb66-17" aria-hidden="true" tabindex="-1"></a>                   <span class="at">method =</span> <span class="st">"NM"</span>) <span class="co"># implements the Nelder-Mead algorithm for likelihood maximization</span></span>
-<span id="cb66-18"><a href="#cb66-18" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mle_norm)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb268"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb268-1"><a href="#cb268-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Compare to...</span></span>
+<span id="cb268-2"><a href="#cb268-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Likelihood based linear regression with `maxLik()`</span></span>
+<span id="cb268-3"><a href="#cb268-3" aria-hidden="true" tabindex="-1"></a>loglik <span class="ot">&lt;-</span> <span class="cf">function</span>(parameters) {</span>
+<span id="cb268-4"><a href="#cb268-4" aria-hidden="true" tabindex="-1"></a>  b0 <span class="ot">&lt;-</span> parameters[<span class="dv">1</span>]</span>
+<span id="cb268-5"><a href="#cb268-5" aria-hidden="true" tabindex="-1"></a>  b1 <span class="ot">&lt;-</span> parameters[<span class="dv">2</span>]</span>
+<span id="cb268-6"><a href="#cb268-6" aria-hidden="true" tabindex="-1"></a>  sigma <span class="ot">&lt;-</span> parameters[<span class="dv">3</span>]</span>
+<span id="cb268-7"><a href="#cb268-7" aria-hidden="true" tabindex="-1"></a>  N <span class="ot">&lt;-</span> <span class="fu">nrow</span>(d)</span>
+<span id="cb268-8"><a href="#cb268-8" aria-hidden="true" tabindex="-1"></a>  <span class="co"># here, we say how our expectation for how our response variable, y, is calculated based on parameters</span></span>
+<span id="cb268-9"><a href="#cb268-9" aria-hidden="true" tabindex="-1"></a>  y <span class="ot">&lt;-</span> b0 <span class="sc">+</span> b1 <span class="sc">*</span> d<span class="sc">$</span>weight <span class="co"># estimating mean height as a function of weight</span></span>
+<span id="cb268-10"><a href="#cb268-10" aria-hidden="true" tabindex="-1"></a>  <span class="co"># then use this mu in a similar fashion as previously</span></span>
+<span id="cb268-11"><a href="#cb268-11" aria-hidden="true" tabindex="-1"></a>  ll <span class="ot">&lt;-</span> <span class="sc">-</span><span class="dv">1</span> <span class="sc">*</span> N<span class="sc">*</span><span class="fu">log</span>(<span class="fu">sqrt</span>(<span class="dv">2</span><span class="sc">*</span>pi)) <span class="sc">-</span> N<span class="sc">*</span><span class="fu">log</span>(sigma) <span class="sc">-</span> <span class="fl">0.5</span><span class="sc">*</span><span class="fu">sum</span>((d<span class="sc">$</span>height <span class="sc">-</span> y)<span class="sc">^</span><span class="dv">2</span><span class="sc">/</span>sigma<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb268-12"><a href="#cb268-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(ll)</span>
+<span id="cb268-13"><a href="#cb268-13" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb268-14"><a href="#cb268-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb268-15"><a href="#cb268-15" aria-hidden="true" tabindex="-1"></a>mle_norm <span class="ot">&lt;-</span> <span class="fu">maxLik</span>(loglik,</span>
+<span id="cb268-16"><a href="#cb268-16" aria-hidden="true" tabindex="-1"></a>                   <span class="at">start=</span><span class="fu">c</span>(<span class="at">beta0=</span><span class="dv">0</span>, <span class="at">beta1=</span><span class="dv">0</span>, <span class="at">sigma=</span><span class="dv">1</span>),</span>
+<span id="cb268-17"><a href="#cb268-17" aria-hidden="true" tabindex="-1"></a>                   <span class="at">method =</span> <span class="st">"NM"</span>) <span class="co"># implements the Nelder-Mead algorithm for likelihood maximization</span></span>
+<span id="cb268-18"><a href="#cb268-18" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mle_norm)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>## --------------------------------------------
 ## Maximum Likelihood estimation
@@ -1024,7 +1628,7 @@ window.Quarto = {
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ## --------------------------------------------</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb68"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a><span class="co"># results of both of these should be similar!</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb270"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb270-1"><a href="#cb270-1" aria-hidden="true" tabindex="-1"></a><span class="co"># results of both of these should be similar!</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 
 
@@ -1483,347 +2087,348 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>
   </div>
 </nav><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
-<div class="sourceCode" id="cb69" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb69-1"><a href="#cb69-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># Maximum Likelihood Estimation {#maximum-likelihood .unnumbered}</span></span>
-<span id="cb69-2"><a href="#cb69-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb69-3"><a href="#cb69-3" aria-hidden="true" tabindex="-1"></a><span class="fu">## Objectives {.unnumbered}</span></span>
-<span id="cb69-4"><a href="#cb69-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb69-5"><a href="#cb69-5" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; This module provides a simple introduction to Maximum Likelihood Estimation.</span></span>
-<span id="cb69-6"><a href="#cb69-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb69-7"><a href="#cb69-7" aria-hidden="true" tabindex="-1"></a>**Maximum Likelihood Estimation** (MLE) is a method for estimating population parameters (such as the mean and variance for a normal distribution, the rate parameter (lambda) for a Poisson distribution, the regression coefficients for a linear model) from sample data such that the combined probability (likelihood) of obtaining the observed data is maximized. Here, we first explore the calculation of likelihood values generally and then use MLE to estimate the best parameters for defining from what particular normal distribution a set of data is most likely drawn.</span>
-<span id="cb69-8"><a href="#cb69-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb69-9"><a href="#cb69-9" aria-hidden="true" tabindex="-1"></a><span class="fu">## Preliminaries {.unnumbered}</span></span>
-<span id="cb69-10"><a href="#cb69-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb69-11"><a href="#cb69-11" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Install and load these packages in ***R***: <span class="co">[</span><span class="ot">{bbmle}</span><span class="co">](https://cran.r-project.org/web/packages/devtools/bblme.pdf)</span> and <span class="co">[</span><span class="ot">{maxLik}</span><span class="co">](https://cran.r-project.org/web/packages/roxygen2/maxLik.pdf)</span></span>
-<span id="cb69-12"><a href="#cb69-12" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Load {tidyverse} and {mosaic}</span>
-<span id="cb69-13"><a href="#cb69-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb69-16"><a href="#cb69-16" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb69-17"><a href="#cb69-17" aria-hidden="true" tabindex="-1"></a><span class="co">#| include: false</span></span>
-<span id="cb69-18"><a href="#cb69-18" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(bbmle)</span>
-<span id="cb69-19"><a href="#cb69-19" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(maxLik)</span>
-<span id="cb69-20"><a href="#cb69-20" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb69-21"><a href="#cb69-21" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(mosaic)</span>
-<span id="cb69-22"><a href="#cb69-22" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb69-23"><a href="#cb69-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb69-24"><a href="#cb69-24" aria-hidden="true" tabindex="-1"></a><span class="fu">## Probability Density Functions and Likelihoods</span></span>
-<span id="cb69-25"><a href="#cb69-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb69-26"><a href="#cb69-26" aria-hidden="true" tabindex="-1"></a>A **Probability Density Function** (PDF) is a function describing the density of a continuous random variable (a probability mass function, or PMF, is an analogous function for discrete random variables). The function's value can be calculated at any given point in the sample space (i.e., the range of possible values that the random variable might take) and provides the **relative likelihood** of obtaining that value on a draw from the given distribution.</span>
-<span id="cb69-27"><a href="#cb69-27" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb69-28"><a href="#cb69-28" aria-hidden="true" tabindex="-1"></a>The PDF for a normal distribution defined by the parameters $\mu$ and $\sigma$ is...</span>
-<span id="cb69-29"><a href="#cb69-29" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb69-30"><a href="#cb69-30" aria-hidden="true" tabindex="-1"></a>$$f(x | \mu, \sigma) = \frac{1}{\sqrt{2\pi\sigma^2}}e^\frac{-(x-\mu)^2}{2\sigma^2}$$</span>
-<span id="cb69-31"><a href="#cb69-31" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb69-32"><a href="#cb69-32" aria-hidden="true" tabindex="-1"></a>Where:</span>
-<span id="cb69-33"><a href="#cb69-33" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>$\mu$ is the mean (or expected value) of the distribution</span>
-<span id="cb69-34"><a href="#cb69-34" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>$\sigma^2$ is the variance of the distribution. </span>
-<span id="cb69-35"><a href="#cb69-35" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>$\sigma$ the standard deviation. </span>
-<span id="cb69-36"><a href="#cb69-36" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>$e$ is the base of the natural logarithm (approximately 2.71828)</span>
-<span id="cb69-37"><a href="#cb69-37" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>$\pi$ is a mathematical constant (approximately 3.14159) </span>
-<span id="cb69-38"><a href="#cb69-38" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb69-39"><a href="#cb69-39" aria-hidden="true" tabindex="-1"></a>Solving this function for any value of $x$ yields the relative likelihood ($L$) of drawing that value from the distribution.</span>
-<span id="cb69-40"><a href="#cb69-40" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb69-41"><a href="#cb69-41" aria-hidden="true" tabindex="-1"></a><span class="fu">## Calculating Likelihoods</span></span>
-<span id="cb69-42"><a href="#cb69-42" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb69-43"><a href="#cb69-43" aria-hidden="true" tabindex="-1"></a>As an example, we can calculate the relative likelihood of drawing the number 45.6 out of a normal distribution with a mean ($\mu$) of 50 and a standard deviation ($\sigma$) of 10...</span>
-<span id="cb69-44"><a href="#cb69-44" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb69-47"><a href="#cb69-47" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb69-48"><a href="#cb69-48" aria-hidden="true" tabindex="-1"></a>val <span class="ot">&lt;-</span> <span class="fl">45.6</span></span>
-<span id="cb69-49"><a href="#cb69-49" aria-hidden="true" tabindex="-1"></a>mean <span class="ot">&lt;-</span> <span class="dv">50</span></span>
-<span id="cb69-50"><a href="#cb69-50" aria-hidden="true" tabindex="-1"></a>sd <span class="ot">&lt;-</span> <span class="dv">10</span></span>
-<span id="cb69-51"><a href="#cb69-51" aria-hidden="true" tabindex="-1"></a>(l <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">/</span><span class="fu">sqrt</span>(<span class="dv">2</span> <span class="sc">*</span> pi <span class="sc">*</span> sd<span class="sc">^</span><span class="dv">2</span>) <span class="sc">*</span> <span class="fu">exp</span>((<span class="sc">-</span>(val <span class="sc">-</span> mean)<span class="sc">^</span><span class="dv">2</span>)<span class="sc">/</span>(<span class="dv">2</span> <span class="sc">*</span> sd<span class="sc">^</span><span class="dv">2</span>)))</span>
-<span id="cb69-52"><a href="#cb69-52" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb69-53"><a href="#cb69-53" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb69-54"><a href="#cb69-54" aria-hidden="true" tabindex="-1"></a>The <span class="in">`dnorm()`</span> function returns this relative likelihood directly...</span>
-<span id="cb69-55"><a href="#cb69-55" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb69-58"><a href="#cb69-58" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb69-59"><a href="#cb69-59" aria-hidden="true" tabindex="-1"></a>(l <span class="ot">&lt;-</span> <span class="fu">dnorm</span>(val, mean, sd))</span>
-<span id="cb69-60"><a href="#cb69-60" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb69-61"><a href="#cb69-61" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb69-62"><a href="#cb69-62" aria-hidden="true" tabindex="-1"></a>To further explore calculating likelihoods, let's create and plot a sample of 100 random variables from a normal distribution with a $\mu$ of 50 and a $\sigma$ of 10:</span>
-<span id="cb69-63"><a href="#cb69-63" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb69-66"><a href="#cb69-66" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb69-67"><a href="#cb69-67" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">val =</span> <span class="fu">rnorm</span>(<span class="dv">100</span>, <span class="at">mean =</span> <span class="dv">50</span>, <span class="at">sd =</span> <span class="dv">10</span>))</span>
-<span id="cb69-68"><a href="#cb69-68" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(d) <span class="sc">+</span></span>
-<span id="cb69-69"><a href="#cb69-69" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="fu">aes</span>(<span class="at">x =</span> val, <span class="at">y =</span> <span class="fu">after_stat</span>(density)))</span>
-<span id="cb69-70"><a href="#cb69-70" aria-hidden="true" tabindex="-1"></a>p</span>
-<span id="cb69-71"><a href="#cb69-71" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb69-72"><a href="#cb69-72" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb69-73"><a href="#cb69-73" aria-hidden="true" tabindex="-1"></a>The mean and standard deviation of this sample are pretty are close to the parameters that we pass to the <span class="in">`rnorm()`</span> function, even though (given the limited size of our sample) the distribution is not smooth...</span>
-<span id="cb69-74"><a href="#cb69-74" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb69-77"><a href="#cb69-77" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb69-78"><a href="#cb69-78" aria-hidden="true" tabindex="-1"></a>(mean <span class="ot">&lt;-</span> <span class="fu">mean</span>(d<span class="sc">$</span>val))</span>
-<span id="cb69-79"><a href="#cb69-79" aria-hidden="true" tabindex="-1"></a>(sd <span class="ot">&lt;-</span> <span class="fu">sd</span>(d<span class="sc">$</span>val))</span>
-<span id="cb69-80"><a href="#cb69-80" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb69-81"><a href="#cb69-81" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb69-82"><a href="#cb69-82" aria-hidden="true" tabindex="-1"></a>Now, on top of the histogram of our sample data, let's plot two different normal distributions, one with the distribution our sample was drawn from ($\mu$ = 50 and $\sigma$ = 10, in red) and another with a different $\mu$ (65) and $\sigma$ (20).</span>
-<span id="cb69-83"><a href="#cb69-83" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb69-86"><a href="#cb69-86" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb69-87"><a href="#cb69-87" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> p <span class="sc">+</span></span>
-<span id="cb69-88"><a href="#cb69-88" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_function</span>(<span class="at">fun =</span> <span class="cf">function</span>(x) <span class="fu">dnorm</span>(x, <span class="at">mean =</span> <span class="dv">50</span>, <span class="at">sd =</span> <span class="dv">10</span>), <span class="at">color =</span> <span class="st">"red"</span>, <span class="at">linewidth =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
-<span id="cb69-89"><a href="#cb69-89" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_function</span>(<span class="at">fun =</span> <span class="cf">function</span>(x) <span class="fu">dnorm</span>(x, <span class="at">mean =</span> <span class="dv">65</span>, <span class="at">sd =</span> <span class="dv">20</span>), <span class="at">color =</span> <span class="st">"blue"</span>, <span class="at">linewidth =</span> <span class="dv">1</span>)</span>
-<span id="cb69-90"><a href="#cb69-90" aria-hidden="true" tabindex="-1"></a>p</span>
-<span id="cb69-91"><a href="#cb69-91" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb69-92"><a href="#cb69-92" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb69-93"><a href="#cb69-93" aria-hidden="true" tabindex="-1"></a>Based on the figure, it should be pretty clear that our observed sample (our set of 100 random draws) is **more likely** to have been drawn from the former distribution than the latter.</span>
-<span id="cb69-94"><a href="#cb69-94" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb69-95"><a href="#cb69-95" aria-hidden="true" tabindex="-1"></a><span class="fu">### CHALLENGE {.unnumbered}</span></span>
-<span id="cb69-96"><a href="#cb69-96" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb69-97"><a href="#cb69-97" aria-hidden="true" tabindex="-1"></a>What is the relative likelihood of seeing a value of 41 on a random draw from a normal distribution with $\mu$ = 50 and $\sigma$ = 10?</span>
-<span id="cb69-98"><a href="#cb69-98" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb69-101"><a href="#cb69-101" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb69-102"><a href="#cb69-102" aria-hidden="true" tabindex="-1"></a>val <span class="ot">&lt;-</span> <span class="dv">41</span></span>
-<span id="cb69-103"><a href="#cb69-103" aria-hidden="true" tabindex="-1"></a>mean <span class="ot">&lt;-</span> <span class="dv">50</span></span>
-<span id="cb69-104"><a href="#cb69-104" aria-hidden="true" tabindex="-1"></a>sd <span class="ot">&lt;-</span> <span class="dv">10</span></span>
-<span id="cb69-105"><a href="#cb69-105" aria-hidden="true" tabindex="-1"></a><span class="co"># or</span></span>
-<span id="cb69-106"><a href="#cb69-106" aria-hidden="true" tabindex="-1"></a>(l1 <span class="ot">&lt;-</span> <span class="fu">dnorm</span>(val, mean, sd))</span>
-<span id="cb69-107"><a href="#cb69-107" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb69-108"><a href="#cb69-108" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb69-109"><a href="#cb69-109" aria-hidden="true" tabindex="-1"></a><span class="fu">### CHALLENGE {.unnumbered}</span></span>
-<span id="cb69-110"><a href="#cb69-110" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb69-111"><a href="#cb69-111" aria-hidden="true" tabindex="-1"></a>What is the relative likelihood of seeing a value of 41 on a random draw from a normal distribution with $\mu$ = 65 and $\sigma$ = 20?</span>
-<span id="cb69-112"><a href="#cb69-112" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb69-115"><a href="#cb69-115" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb69-116"><a href="#cb69-116" aria-hidden="true" tabindex="-1"></a>val <span class="ot">&lt;-</span> <span class="dv">41</span></span>
-<span id="cb69-117"><a href="#cb69-117" aria-hidden="true" tabindex="-1"></a>mean <span class="ot">&lt;-</span> <span class="dv">65</span></span>
-<span id="cb69-118"><a href="#cb69-118" aria-hidden="true" tabindex="-1"></a>sd <span class="ot">&lt;-</span> <span class="dv">10</span></span>
-<span id="cb69-119"><a href="#cb69-119" aria-hidden="true" tabindex="-1"></a>(l2 <span class="ot">&lt;-</span> <span class="fu">dnorm</span>(val, mean, sd))</span>
-<span id="cb69-120"><a href="#cb69-120" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb69-121"><a href="#cb69-121" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb69-122"><a href="#cb69-122" aria-hidden="true" tabindex="-1"></a>Note the difference in these two likelihoods, **l1** and **l2**... there is a much higher likelhood of an observation of 41 coming from the first of the two normal distributions we considered. In this case, the **likelihood ratio** is **l1/l2**.</span>
-<span id="cb69-123"><a href="#cb69-123" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb69-126"><a href="#cb69-126" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb69-127"><a href="#cb69-127" aria-hidden="true" tabindex="-1"></a>l1<span class="sc">/</span>l2</span>
-<span id="cb69-128"><a href="#cb69-128" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb69-129"><a href="#cb69-129" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb69-130"><a href="#cb69-130" aria-hidden="true" tabindex="-1"></a>We can also calculate the relative likelihood of drawing a particular set of observations from a given distribution as the product of the likelihoods of each observation as the probability of *n* independent events is simply the product ($∏$) of their independent probabilities. An easy way to calculate the product of a set of numbers is by taking the natural log of each number, summing those values, and then exponentiating the sum. For this reason, likelihood calculations are often operationalized in terms of *log likelihoods*.</span>
-<span id="cb69-131"><a href="#cb69-131" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb69-132"><a href="#cb69-132" aria-hidden="true" tabindex="-1"></a>For example, the following operations are equivalent...</span>
-<span id="cb69-133"><a href="#cb69-133" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb69-136"><a href="#cb69-136" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb69-137"><a href="#cb69-137" aria-hidden="true" tabindex="-1"></a><span class="dv">5</span> <span class="sc">*</span> <span class="dv">8</span> <span class="sc">*</span> <span class="dv">9</span> <span class="sc">*</span> <span class="dv">4</span></span>
-<span id="cb69-138"><a href="#cb69-138" aria-hidden="true" tabindex="-1"></a><span class="fu">exp</span>(<span class="fu">log</span>(<span class="dv">5</span>) <span class="sc">+</span> <span class="fu">log</span>(<span class="dv">8</span>) <span class="sc">+</span> <span class="fu">log</span>(<span class="dv">9</span>) <span class="sc">+</span> <span class="fu">log</span>(<span class="dv">4</span>))</span>
-<span id="cb69-139"><a href="#cb69-139" aria-hidden="true" tabindex="-1"></a><span class="fu">exp</span>(<span class="fu">sum</span>(<span class="fu">log</span>(<span class="fu">c</span>(<span class="dv">5</span>, <span class="dv">8</span>, <span class="dv">9</span>, <span class="dv">4</span>))))</span>
-<span id="cb69-140"><a href="#cb69-140" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb69-141"><a href="#cb69-141" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb69-142"><a href="#cb69-142" aria-hidden="true" tabindex="-1"></a><span class="fu">### CHALLENGE {.unnumbered}</span></span>
-<span id="cb69-143"><a href="#cb69-143" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb69-144"><a href="#cb69-144" aria-hidden="true" tabindex="-1"></a>What is the relative likelihood of drawing the set of three numbers 41, 70, and 10 from a normal distribution with $\mu$ = 50 and $\sigma$ = 10?</span>
-<span id="cb69-145"><a href="#cb69-145" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb69-148"><a href="#cb69-148" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb69-149"><a href="#cb69-149" aria-hidden="true" tabindex="-1"></a>val <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">41</span>, <span class="dv">70</span>, <span class="dv">10</span>)</span>
-<span id="cb69-150"><a href="#cb69-150" aria-hidden="true" tabindex="-1"></a>mean <span class="ot">&lt;-</span> <span class="dv">65</span></span>
-<span id="cb69-151"><a href="#cb69-151" aria-hidden="true" tabindex="-1"></a>sd <span class="ot">&lt;-</span> <span class="dv">10</span></span>
-<span id="cb69-152"><a href="#cb69-152" aria-hidden="true" tabindex="-1"></a>(l <span class="ot">&lt;-</span> <span class="fu">dnorm</span>(val, mean, sd)) <span class="co"># vector of likelihoods of each value</span></span>
-<span id="cb69-153"><a href="#cb69-153" aria-hidden="true" tabindex="-1"></a>(l[<span class="dv">1</span>] <span class="sc">*</span> l[<span class="dv">2</span>] <span class="sc">*</span> l[<span class="dv">3</span>]) <span class="co"># product of likelihoods</span></span>
-<span id="cb69-154"><a href="#cb69-154" aria-hidden="true" tabindex="-1"></a>(ll <span class="ot">&lt;-</span> <span class="fu">log</span>(l)) <span class="co"># log likelihoods of each value</span></span>
-<span id="cb69-155"><a href="#cb69-155" aria-hidden="true" tabindex="-1"></a>(ll <span class="ot">&lt;-</span> <span class="fu">sum</span>(ll)) <span class="co"># summed log likelihood</span></span>
-<span id="cb69-156"><a href="#cb69-156" aria-hidden="true" tabindex="-1"></a>(l <span class="ot">&lt;-</span> <span class="fu">exp</span>(ll)) <span class="co"># convert back to likelihood</span></span>
-<span id="cb69-157"><a href="#cb69-157" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb69-158"><a href="#cb69-158" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb69-159"><a href="#cb69-159" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; NOTE: Likelihoods are always going to be zero or greater, but log likelihoods can be negative. A less negative log likelihood is nonetheless more likely than a more negative one.</span></span>
-<span id="cb69-160"><a href="#cb69-160" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb69-161"><a href="#cb69-161" aria-hidden="true" tabindex="-1"></a><span class="fu">### CHALLENGE {.unnumbered}</span></span>
-<span id="cb69-162"><a href="#cb69-162" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb69-163"><a href="#cb69-163" aria-hidden="true" tabindex="-1"></a>What are the log likelihood and likelihood of drawing the sample, *d*, we constructed above from a normal distribution with $\mu$ = 50 and $\sigma$ = 10? How do these compare to the log likelihood and likelihood of that same sample being drawn from a normal distribution with $\mu$ = 65 and $\sigma$ = 20?</span>
-<span id="cb69-164"><a href="#cb69-164" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb69-167"><a href="#cb69-167" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb69-168"><a href="#cb69-168" aria-hidden="true" tabindex="-1"></a>val <span class="ot">&lt;-</span> d<span class="sc">$</span>val</span>
-<span id="cb69-169"><a href="#cb69-169" aria-hidden="true" tabindex="-1"></a>mean <span class="ot">&lt;-</span> <span class="dv">50</span></span>
-<span id="cb69-170"><a href="#cb69-170" aria-hidden="true" tabindex="-1"></a>sd <span class="ot">&lt;-</span> <span class="dv">10</span></span>
-<span id="cb69-171"><a href="#cb69-171" aria-hidden="true" tabindex="-1"></a>l <span class="ot">&lt;-</span> <span class="fu">dnorm</span>(val, mean, sd)</span>
-<span id="cb69-172"><a href="#cb69-172" aria-hidden="true" tabindex="-1"></a>ll <span class="ot">&lt;-</span> <span class="fu">log</span>(l)</span>
-<span id="cb69-173"><a href="#cb69-173" aria-hidden="true" tabindex="-1"></a>ll <span class="ot">&lt;-</span> <span class="fu">sum</span>(ll)</span>
-<span id="cb69-174"><a href="#cb69-174" aria-hidden="true" tabindex="-1"></a>(l <span class="ot">&lt;-</span> <span class="fu">exp</span>(ll)) <span class="co"># a very tiny number!</span></span>
-<span id="cb69-175"><a href="#cb69-175" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb69-176"><a href="#cb69-176" aria-hidden="true" tabindex="-1"></a>mean <span class="ot">&lt;-</span> <span class="dv">65</span></span>
-<span id="cb69-177"><a href="#cb69-177" aria-hidden="true" tabindex="-1"></a>sd <span class="ot">&lt;-</span> <span class="dv">20</span></span>
-<span id="cb69-178"><a href="#cb69-178" aria-hidden="true" tabindex="-1"></a>l <span class="ot">&lt;-</span> <span class="fu">dnorm</span>(val, mean, sd)</span>
-<span id="cb69-179"><a href="#cb69-179" aria-hidden="true" tabindex="-1"></a>ll <span class="ot">&lt;-</span> <span class="fu">log</span>(l)</span>
-<span id="cb69-180"><a href="#cb69-180" aria-hidden="true" tabindex="-1"></a>ll <span class="ot">&lt;-</span> <span class="fu">sum</span>(ll)</span>
-<span id="cb69-181"><a href="#cb69-181" aria-hidden="true" tabindex="-1"></a>(l <span class="ot">&lt;-</span> <span class="fu">exp</span>(ll)) <span class="co"># an even tinier number</span></span>
-<span id="cb69-182"><a href="#cb69-182" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb69-183"><a href="#cb69-183" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb69-184"><a href="#cb69-184" aria-hidden="true" tabindex="-1"></a>The log likelihood and likelihood are both HIGHER (more likely to have been drawn) from the first distribution.</span>
-<span id="cb69-185"><a href="#cb69-185" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb69-186"><a href="#cb69-186" aria-hidden="true" tabindex="-1"></a><span class="fu">## Maximum Likelihood Estimation</span></span>
-<span id="cb69-187"><a href="#cb69-187" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb69-188"><a href="#cb69-188" aria-hidden="true" tabindex="-1"></a>Now that we have an understanding of how likelihood calculations are done, we can consider the process of **maximum likelihood estimation** (MLE). MLE allows us to estimate what values of population parameters (e.g., $\mu$ and $\sigma$) are most likely *given* a dataset and a probability distribution function for the process generating the data (e.g., a Gaussian process).</span>
-<span id="cb69-189"><a href="#cb69-189" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb69-190"><a href="#cb69-190" aria-hidden="true" tabindex="-1"></a>First, let's create a function for calculating the **negative** log likelihood for a set of data under a particular normal distribution. To convert the log likelihood to a negative, we simply multiply it negative 1. The reason we do this is because most optimization algorithms function by searching for parameter values that yield the minimum negative log likelihood rather than the maximum likelihood directly.</span>
-<span id="cb69-191"><a href="#cb69-191" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb69-194"><a href="#cb69-194" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb69-195"><a href="#cb69-195" aria-hidden="true" tabindex="-1"></a>verbose_nll <span class="ot">&lt;-</span> <span class="cf">function</span>(val, mu, sigma, <span class="at">verbose =</span> <span class="cn">FALSE</span>) {</span>
-<span id="cb69-196"><a href="#cb69-196" aria-hidden="true" tabindex="-1"></a>  l <span class="ot">&lt;-</span> <span class="dv">0</span> <span class="co"># set initial likelihood to 0 to define variable</span></span>
-<span id="cb69-197"><a href="#cb69-197" aria-hidden="true" tabindex="-1"></a>  ll <span class="ot">&lt;-</span> <span class="dv">0</span> <span class="co"># set initial log likelihood to 0 to define variable</span></span>
-<span id="cb69-198"><a href="#cb69-198" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(val)){</span>
-<span id="cb69-199"><a href="#cb69-199" aria-hidden="true" tabindex="-1"></a>    l[[i]] <span class="ot">=</span> <span class="fu">dnorm</span>(val[[i]], <span class="at">mean =</span> mu, <span class="at">sd =</span> sigma) <span class="co"># likelihoods</span></span>
-<span id="cb69-200"><a href="#cb69-200" aria-hidden="true" tabindex="-1"></a>    ll[[i]] <span class="ot">&lt;-</span> <span class="fu">log</span>(l[[i]]) <span class="co"># log likelihoods</span></span>
-<span id="cb69-201"><a href="#cb69-201" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (verbose <span class="sc">==</span> <span class="cn">TRUE</span>) {</span>
-<span id="cb69-202"><a href="#cb69-202" aria-hidden="true" tabindex="-1"></a>      <span class="fu">message</span>(<span class="fu">paste0</span>(<span class="st">"x="</span>, <span class="fu">round</span>(val[[i]], <span class="dv">4</span>),</span>
-<span id="cb69-203"><a href="#cb69-203" aria-hidden="true" tabindex="-1"></a>                     <span class="st">" mu="</span>, mu,</span>
-<span id="cb69-204"><a href="#cb69-204" aria-hidden="true" tabindex="-1"></a>                     <span class="st">" sigma="</span>, sigma,</span>
-<span id="cb69-205"><a href="#cb69-205" aria-hidden="true" tabindex="-1"></a>                     <span class="st">" L="</span>, <span class="fu">round</span>(l[[i]], <span class="dv">4</span>),</span>
-<span id="cb69-206"><a href="#cb69-206" aria-hidden="true" tabindex="-1"></a>                     <span class="st">" logL="</span>, <span class="fu">round</span>(ll[[i]],<span class="dv">4</span>)))</span>
-<span id="cb69-207"><a href="#cb69-207" aria-hidden="true" tabindex="-1"></a>    }</span>
-<span id="cb69-208"><a href="#cb69-208" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb69-209"><a href="#cb69-209" aria-hidden="true" tabindex="-1"></a>  nll <span class="ot">&lt;-</span> <span class="sc">-</span><span class="dv">1</span> <span class="sc">*</span> <span class="fu">sum</span>(ll)</span>
-<span id="cb69-210"><a href="#cb69-210" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(nll)</span>
-<span id="cb69-211"><a href="#cb69-211" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb69-212"><a href="#cb69-212" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb69-213"><a href="#cb69-213" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb69-214"><a href="#cb69-214" aria-hidden="true" tabindex="-1"></a>Testing our function...</span>
-<span id="cb69-215"><a href="#cb69-215" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb69-218"><a href="#cb69-218" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb69-219"><a href="#cb69-219" aria-hidden="true" tabindex="-1"></a><span class="co"># if we include verbose = TRUE as an argument to `verbose_nll`, the function will print each likelihood and log likelihood value before returning the summed negative log likelihood</span></span>
-<span id="cb69-220"><a href="#cb69-220" aria-hidden="true" tabindex="-1"></a>val <span class="ot">&lt;-</span> d<span class="sc">$</span>val</span>
-<span id="cb69-221"><a href="#cb69-221" aria-hidden="true" tabindex="-1"></a>mean <span class="ot">&lt;-</span> <span class="dv">50</span></span>
-<span id="cb69-222"><a href="#cb69-222" aria-hidden="true" tabindex="-1"></a>sd <span class="ot">&lt;-</span> <span class="dv">10</span></span>
-<span id="cb69-223"><a href="#cb69-223" aria-hidden="true" tabindex="-1"></a><span class="fu">verbose_nll</span>(val, mean, sd)</span>
-<span id="cb69-224"><a href="#cb69-224" aria-hidden="true" tabindex="-1"></a>mean <span class="ot">&lt;-</span> <span class="dv">65</span></span>
-<span id="cb69-225"><a href="#cb69-225" aria-hidden="true" tabindex="-1"></a>sd <span class="ot">&lt;-</span> <span class="dv">20</span></span>
-<span id="cb69-226"><a href="#cb69-226" aria-hidden="true" tabindex="-1"></a><span class="fu">verbose_nll</span>(val, mean, sd)</span>
-<span id="cb69-227"><a href="#cb69-227" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb69-228"><a href="#cb69-228" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb69-229"><a href="#cb69-229" aria-hidden="true" tabindex="-1"></a>... we see that **negative log likelihood** of our data under the first distribution is smaller than under the second, indicating that it is more likely that are data are drawn from the first distribution.</span>
-<span id="cb69-230"><a href="#cb69-230" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb69-231"><a href="#cb69-231" aria-hidden="true" tabindex="-1"></a>To use maximum likelihood estimation, we need to create a simpler version of this function that does not have the data as argument, but rather only involves the parameter we want to estimate. The function below does this. Note that unlike the function above, this version does not use a loop and has the vector variable *val* included as the first argument to the <span class="in">`dnorm()`</span> function. We also include the argument <span class="in">`log = TRUE`</span> within the <span class="in">`dnorm()`</span> function to calculate the log likelihood directly, instead of including that as an extra step.</span>
-<span id="cb69-232"><a href="#cb69-232" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb69-235"><a href="#cb69-235" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb69-236"><a href="#cb69-236" aria-hidden="true" tabindex="-1"></a>simple_nll <span class="ot">&lt;-</span> <span class="cf">function</span>(mu, sigma, <span class="at">verbose =</span> <span class="cn">TRUE</span>) {</span>
-<span id="cb69-237"><a href="#cb69-237" aria-hidden="true" tabindex="-1"></a>  ll <span class="ot">=</span> <span class="fu">sum</span>(<span class="fu">dnorm</span>(val, <span class="at">mean =</span> mu, <span class="at">sd =</span> sigma, <span class="at">log =</span> <span class="cn">TRUE</span>))</span>
-<span id="cb69-238"><a href="#cb69-238" aria-hidden="true" tabindex="-1"></a>  nll <span class="ot">&lt;-</span> <span class="sc">-</span><span class="dv">1</span> <span class="sc">*</span> ll</span>
-<span id="cb69-239"><a href="#cb69-239" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(nll)</span>
-<span id="cb69-240"><a href="#cb69-240" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb69-241"><a href="#cb69-241" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb69-242"><a href="#cb69-242" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb69-243"><a href="#cb69-243" aria-hidden="true" tabindex="-1"></a>Testing our function, we should get the same results as above...</span>
-<span id="cb69-244"><a href="#cb69-244" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb69-247"><a href="#cb69-247" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb69-248"><a href="#cb69-248" aria-hidden="true" tabindex="-1"></a>val <span class="ot">&lt;-</span> d<span class="sc">$</span>val</span>
-<span id="cb69-249"><a href="#cb69-249" aria-hidden="true" tabindex="-1"></a>mean <span class="ot">&lt;-</span> <span class="dv">50</span></span>
-<span id="cb69-250"><a href="#cb69-250" aria-hidden="true" tabindex="-1"></a>sd <span class="ot">&lt;-</span> <span class="dv">10</span></span>
-<span id="cb69-251"><a href="#cb69-251" aria-hidden="true" tabindex="-1"></a><span class="fu">simple_nll</span>(mean, sd)</span>
-<span id="cb69-252"><a href="#cb69-252" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb69-253"><a href="#cb69-253" aria-hidden="true" tabindex="-1"></a>val <span class="ot">&lt;-</span> d<span class="sc">$</span>val</span>
-<span id="cb69-254"><a href="#cb69-254" aria-hidden="true" tabindex="-1"></a>mean <span class="ot">&lt;-</span> <span class="dv">65</span></span>
-<span id="cb69-255"><a href="#cb69-255" aria-hidden="true" tabindex="-1"></a>sd <span class="ot">&lt;-</span> <span class="dv">20</span></span>
-<span id="cb69-256"><a href="#cb69-256" aria-hidden="true" tabindex="-1"></a><span class="fu">simple_nll</span>(mean, sd)</span>
-<span id="cb69-257"><a href="#cb69-257" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb69-258"><a href="#cb69-258" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb69-259"><a href="#cb69-259" aria-hidden="true" tabindex="-1"></a>So far, we have just used this function to calculate the (negative) log likelihood of our data being generated by a Gaussian (normal) process with specific $\mu$ and $\sigma$ parameters... but what we really want to do is estimate values for $\mu$ and $\sigma$ that have highest likelihood for generating our data. To do this, we will use the <span class="in">`mle2()`</span> function from the {bbmle} package. This function takes the following arguments...</span>
-<span id="cb69-260"><a href="#cb69-260" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb69-261"><a href="#cb69-261" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**minuslogl**, which is a user-defined function for generating negative log likelihoods... this is what we created above</span>
-<span id="cb69-262"><a href="#cb69-262" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**start**, which is a list of initial values for the parameters we want to estimate</span>
-<span id="cb69-263"><a href="#cb69-263" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**method**, which is the particular algorithm used for optimization of the parameter estimates (<span class="in">`mle2()`</span> and the <span class="in">`optim()`</span> function, which it calls, are highly customizable)</span>
-<span id="cb69-264"><a href="#cb69-264" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb69-265"><a href="#cb69-265" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; NOTE: Be aware that to run the function below, we need to have the variable **val**, a vector of values, specified outside of the function. We previously set **val** to **d**, our random sample of 100 draws from a normal distribution with $\mu$=50 and $\sigma$=10... feel free to play around with alternatives and see how well the MLE process estimates these parameters.</span></span>
-<span id="cb69-266"><a href="#cb69-266" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb69-269"><a href="#cb69-269" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb69-270"><a href="#cb69-270" aria-hidden="true" tabindex="-1"></a>val <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">1000</span>, <span class="at">mean =</span> <span class="dv">50</span>, <span class="at">sd =</span> <span class="dv">10</span>)</span>
-<span id="cb69-271"><a href="#cb69-271" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb69-272"><a href="#cb69-272" aria-hidden="true" tabindex="-1"></a>mle_norm <span class="ot">&lt;-</span> <span class="fu">mle2</span>(</span>
-<span id="cb69-273"><a href="#cb69-273" aria-hidden="true" tabindex="-1"></a>  <span class="at">minuslogl =</span> simple_nll,</span>
-<span id="cb69-274"><a href="#cb69-274" aria-hidden="true" tabindex="-1"></a>  <span class="at">start  =</span> <span class="fu">list</span>(<span class="at">mu =</span> <span class="dv">0</span>, <span class="at">sigma =</span> <span class="dv">1</span>),</span>
-<span id="cb69-275"><a href="#cb69-275" aria-hidden="true" tabindex="-1"></a>  <span class="at">method =</span> <span class="st">"SANN"</span> <span class="co"># simulated annealing method of optimization, one of several options</span></span>
-<span id="cb69-276"><a href="#cb69-276" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb69-277"><a href="#cb69-277" aria-hidden="true" tabindex="-1"></a><span class="co"># note that we may sometimes see a warning about NaNs being produced... this is okay!</span></span>
-<span id="cb69-278"><a href="#cb69-278" aria-hidden="true" tabindex="-1"></a>mle_norm</span>
-<span id="cb69-279"><a href="#cb69-279" aria-hidden="true" tabindex="-1"></a><span class="co"># note the estimates for `mu` and `sigma` are very close to the population level parameters of the normal distribution that our vector `val` was drawn from</span></span>
-<span id="cb69-280"><a href="#cb69-280" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb69-281"><a href="#cb69-281" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb69-282"><a href="#cb69-282" aria-hidden="true" tabindex="-1"></a>An alternative for MLE is the <span class="in">`maxLik()`</span> function from the {maxLik} package. To use function, we again first define our own log likelihood function, but this time we do not want an negative log likelihood, so we do not multiply it by minus 1. This is because the first argument to <span class="in">`maxLik()`</span> is a log likelihood function, not a **negative** log likelihood function. Our function should also have only one argument... a **vector** of parameter values... rather than separate arguments for each parameter.</span>
-<span id="cb69-283"><a href="#cb69-283" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb69-286"><a href="#cb69-286" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb69-287"><a href="#cb69-287" aria-hidden="true" tabindex="-1"></a>simple_ll <span class="ot">&lt;-</span> <span class="cf">function</span>(parameters) {</span>
-<span id="cb69-288"><a href="#cb69-288" aria-hidden="true" tabindex="-1"></a>  <span class="co"># `parameters` is a vector of parameter values</span></span>
-<span id="cb69-289"><a href="#cb69-289" aria-hidden="true" tabindex="-1"></a>  mu <span class="ot">&lt;-</span> parameters[<span class="dv">1</span>]</span>
-<span id="cb69-290"><a href="#cb69-290" aria-hidden="true" tabindex="-1"></a>  sigma <span class="ot">&lt;-</span> parameters[<span class="dv">2</span>]</span>
-<span id="cb69-291"><a href="#cb69-291" aria-hidden="true" tabindex="-1"></a>  ll <span class="ot">=</span> <span class="fu">sum</span>(<span class="fu">dnorm</span>(val, <span class="at">mean =</span> mu, <span class="at">sd =</span> sigma, <span class="at">log =</span> <span class="cn">TRUE</span>))</span>
-<span id="cb69-292"><a href="#cb69-292" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(ll)</span>
-<span id="cb69-293"><a href="#cb69-293" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb69-294"><a href="#cb69-294" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb69-295"><a href="#cb69-295" aria-hidden="true" tabindex="-1"></a><span class="co"># test...</span></span>
-<span id="cb69-296"><a href="#cb69-296" aria-hidden="true" tabindex="-1"></a><span class="fu">simple_ll</span>(<span class="fu">c</span>(<span class="dv">50</span>, <span class="dv">10</span>)) <span class="co"># this should be very close to the log likelihood returned above</span></span>
-<span id="cb69-297"><a href="#cb69-297" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb69-298"><a href="#cb69-298" aria-hidden="true" tabindex="-1"></a><span class="co"># an alternative function</span></span>
-<span id="cb69-299"><a href="#cb69-299" aria-hidden="true" tabindex="-1"></a>simple_ll <span class="ot">&lt;-</span> <span class="cf">function</span>(parameters) {</span>
-<span id="cb69-300"><a href="#cb69-300" aria-hidden="true" tabindex="-1"></a>  mu <span class="ot">&lt;-</span> parameters[<span class="dv">1</span>]</span>
-<span id="cb69-301"><a href="#cb69-301" aria-hidden="true" tabindex="-1"></a>  sigma <span class="ot">&lt;-</span> parameters[<span class="dv">2</span>]</span>
-<span id="cb69-302"><a href="#cb69-302" aria-hidden="true" tabindex="-1"></a>  N <span class="ot">&lt;-</span> <span class="fu">length</span>(val)</span>
-<span id="cb69-303"><a href="#cb69-303" aria-hidden="true" tabindex="-1"></a>  ll <span class="ot">&lt;-</span> <span class="sc">-</span><span class="dv">1</span> <span class="sc">*</span> N <span class="sc">*</span> <span class="fu">log</span>(<span class="fu">sqrt</span>(<span class="dv">2</span><span class="sc">*</span>pi)) <span class="sc">-</span> N<span class="sc">*</span><span class="fu">log</span>(sigma) <span class="sc">-</span> <span class="fl">0.5</span><span class="sc">*</span><span class="fu">sum</span>((val <span class="sc">-</span> mu)<span class="sc">^</span><span class="dv">2</span><span class="sc">/</span>sigma<span class="sc">^</span><span class="dv">2</span>)</span>
-<span id="cb69-304"><a href="#cb69-304" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(ll)</span>
-<span id="cb69-305"><a href="#cb69-305" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb69-306"><a href="#cb69-306" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb69-307"><a href="#cb69-307" aria-hidden="true" tabindex="-1"></a><span class="co"># test...</span></span>
-<span id="cb69-308"><a href="#cb69-308" aria-hidden="true" tabindex="-1"></a><span class="fu">simple_ll</span>(<span class="fu">c</span>(<span class="dv">50</span>, <span class="dv">10</span>))</span>
-<span id="cb69-309"><a href="#cb69-309" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb69-310"><a href="#cb69-310" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb69-311"><a href="#cb69-311" aria-hidden="true" tabindex="-1"></a>As for <span class="in">`mle2()`</span>, for <span class="in">`maxLik()`</span> we need to specify several arguments:</span>
-<span id="cb69-312"><a href="#cb69-312" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb69-313"><a href="#cb69-313" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**logLik**, which is our user-defined function for generating log likelihoods (**not** negative log likelihoods)</span>
-<span id="cb69-314"><a href="#cb69-314" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**start**, which is a named vector of initial values for the parameters we want estimate</span>
-<span id="cb69-315"><a href="#cb69-315" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**method**, which is the particular algorithm used for optimization of the parameter estimates</span>
-<span id="cb69-316"><a href="#cb69-316" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb69-319"><a href="#cb69-319" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb69-320"><a href="#cb69-320" aria-hidden="true" tabindex="-1"></a>mle_norm <span class="ot">&lt;-</span> <span class="fu">maxLik</span>(<span class="at">logLik =</span> simple_ll, <span class="at">start=</span><span class="fu">c</span>(<span class="at">mu=</span><span class="dv">0</span>, <span class="at">sigma=</span><span class="dv">1</span>), <span class="at">method =</span> <span class="st">"NM"</span>)</span>
-<span id="cb69-321"><a href="#cb69-321" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mle_norm)</span>
-<span id="cb69-322"><a href="#cb69-322" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb69-323"><a href="#cb69-323" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb69-324"><a href="#cb69-324" aria-hidden="true" tabindex="-1"></a>The results should be very comparable to those generated using <span class="in">`mle2()`</span>.</span>
-<span id="cb69-325"><a href="#cb69-325" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb69-326"><a href="#cb69-326" aria-hidden="true" tabindex="-1"></a><span class="fu">## MLE for Simple Linear Regression</span></span>
-<span id="cb69-327"><a href="#cb69-327" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb69-328"><a href="#cb69-328" aria-hidden="true" tabindex="-1"></a>Now let's work through an example of using MLE for simple linear regression. Load in our zombie apocalypse survivors dataset...</span>
-<span id="cb69-329"><a href="#cb69-329" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb69-332"><a href="#cb69-332" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb69-333"><a href="#cb69-333" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb69-334"><a href="#cb69-334" aria-hidden="true" tabindex="-1"></a>f <span class="ot">&lt;-</span> <span class="st">"https://raw.githubusercontent.com/difiore/ada-datasets/main/zombies.csv"</span></span>
-<span id="cb69-335"><a href="#cb69-335" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(f, <span class="at">col_names =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb69-336"><a href="#cb69-336" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb69-337"><a href="#cb69-337" aria-hidden="true" tabindex="-1"></a><span class="co"># Standard OLS linear regression model with our zombie apocalypse survivor dataset</span></span>
-<span id="cb69-338"><a href="#cb69-338" aria-hidden="true" tabindex="-1"></a>m <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="at">data =</span> d, height <span class="sc">~</span> weight)</span>
-<span id="cb69-339"><a href="#cb69-339" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(m)</span>
-<span id="cb69-340"><a href="#cb69-340" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb69-341"><a href="#cb69-341" aria-hidden="true" tabindex="-1"></a><span class="co"># Compare to...</span></span>
-<span id="cb69-342"><a href="#cb69-342" aria-hidden="true" tabindex="-1"></a><span class="co"># Likelihood based linear regression with `mle2()`... now we have our own likelihood function that has three instead of two parameters: b0, b1, and sigma, or the standard deviation in (presumably normally distributed!) residuals...</span></span>
-<span id="cb69-343"><a href="#cb69-343" aria-hidden="true" tabindex="-1"></a>simple_nll <span class="ot">&lt;-</span> <span class="cf">function</span>(b0, b1, sigma, <span class="at">verbose =</span> <span class="cn">TRUE</span>) {</span>
-<span id="cb69-344"><a href="#cb69-344" aria-hidden="true" tabindex="-1"></a>  <span class="co"># here, we say how our expectation for how our response variable, y, is calculated based on two parameters</span></span>
-<span id="cb69-345"><a href="#cb69-345" aria-hidden="true" tabindex="-1"></a>  y <span class="ot">&lt;-</span> b0 <span class="sc">+</span> b1 <span class="sc">*</span> d<span class="sc">$</span>weight </span>
-<span id="cb69-346"><a href="#cb69-346" aria-hidden="true" tabindex="-1"></a>  N <span class="ot">&lt;-</span> <span class="fu">nrow</span>(d)</span>
-<span id="cb69-347"><a href="#cb69-347" aria-hidden="true" tabindex="-1"></a>  <span class="co"># decomposition of log density function into R terms...</span></span>
-<span id="cb69-348"><a href="#cb69-348" aria-hidden="true" tabindex="-1"></a>  ll <span class="ot">&lt;-</span> <span class="sc">-</span><span class="dv">1</span> <span class="sc">*</span> N<span class="sc">*</span><span class="fu">log</span>(<span class="fu">sqrt</span>(<span class="dv">2</span><span class="sc">*</span>pi)) <span class="sc">-</span> N<span class="sc">*</span><span class="fu">log</span>(sigma) <span class="sc">-</span> <span class="fl">0.5</span><span class="sc">*</span><span class="fu">sum</span>((d<span class="sc">$</span>height <span class="sc">-</span> y)<span class="sc">^</span><span class="dv">2</span><span class="sc">/</span>sigma<span class="sc">^</span><span class="dv">2</span>)</span>
-<span id="cb69-349"><a href="#cb69-349" aria-hidden="true" tabindex="-1"></a>  nll <span class="ot">&lt;-</span> <span class="sc">-</span><span class="dv">1</span> <span class="sc">*</span> ll</span>
-<span id="cb69-350"><a href="#cb69-350" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(nll)</span>
-<span id="cb69-351"><a href="#cb69-351" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb69-352"><a href="#cb69-352" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb69-353"><a href="#cb69-353" aria-hidden="true" tabindex="-1"></a>mle_norm <span class="ot">&lt;-</span> <span class="fu">mle2</span>(</span>
-<span id="cb69-354"><a href="#cb69-354" aria-hidden="true" tabindex="-1"></a>  <span class="at">minuslogl =</span> simple_nll, <span class="co"># our likelihood function</span></span>
-<span id="cb69-355"><a href="#cb69-355" aria-hidden="true" tabindex="-1"></a>  <span class="at">start  =</span> <span class="fu">list</span>(<span class="at">b0=</span><span class="dv">10</span>, <span class="at">b1=</span><span class="dv">0</span>, <span class="at">sigma=</span><span class="dv">1</span>), </span>
-<span id="cb69-356"><a href="#cb69-356" aria-hidden="true" tabindex="-1"></a>  <span class="at">method =</span> <span class="st">"Nelder-Mead"</span> <span class="co"># implements the Nelder-Mead algorithm for likelihood maximization</span></span>
-<span id="cb69-357"><a href="#cb69-357" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb69-358"><a href="#cb69-358" aria-hidden="true" tabindex="-1"></a>mle_norm</span>
-<span id="cb69-359"><a href="#cb69-359" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mle_norm)</span>
-<span id="cb69-360"><a href="#cb69-360" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb69-361"><a href="#cb69-361" aria-hidden="true" tabindex="-1"></a><span class="co"># Compare to...</span></span>
-<span id="cb69-362"><a href="#cb69-362" aria-hidden="true" tabindex="-1"></a><span class="co"># Likelihood based linear regression with `maxLik()`</span></span>
-<span id="cb69-363"><a href="#cb69-363" aria-hidden="true" tabindex="-1"></a>loglik <span class="ot">&lt;-</span> <span class="cf">function</span>(parameters) {</span>
-<span id="cb69-364"><a href="#cb69-364" aria-hidden="true" tabindex="-1"></a>  b0 <span class="ot">&lt;-</span> parameters[<span class="dv">1</span>]</span>
-<span id="cb69-365"><a href="#cb69-365" aria-hidden="true" tabindex="-1"></a>  b1 <span class="ot">&lt;-</span> parameters[<span class="dv">2</span>]</span>
-<span id="cb69-366"><a href="#cb69-366" aria-hidden="true" tabindex="-1"></a>  sigma <span class="ot">&lt;-</span> parameters[<span class="dv">3</span>]</span>
-<span id="cb69-367"><a href="#cb69-367" aria-hidden="true" tabindex="-1"></a>  N <span class="ot">&lt;-</span> <span class="fu">nrow</span>(d)</span>
-<span id="cb69-368"><a href="#cb69-368" aria-hidden="true" tabindex="-1"></a>  <span class="co"># here, we say how our expectation for how our response variable, y, is calculated based on parameters</span></span>
-<span id="cb69-369"><a href="#cb69-369" aria-hidden="true" tabindex="-1"></a>  y <span class="ot">&lt;-</span> b0 <span class="sc">+</span> b1 <span class="sc">*</span> d<span class="sc">$</span>weight <span class="co"># estimating mean height as a function of weight</span></span>
-<span id="cb69-370"><a href="#cb69-370" aria-hidden="true" tabindex="-1"></a>  <span class="co"># then use this mu in a similar fashion as previously</span></span>
-<span id="cb69-371"><a href="#cb69-371" aria-hidden="true" tabindex="-1"></a>  ll <span class="ot">&lt;-</span> <span class="sc">-</span><span class="dv">1</span> <span class="sc">*</span> N<span class="sc">*</span><span class="fu">log</span>(<span class="fu">sqrt</span>(<span class="dv">2</span><span class="sc">*</span>pi)) <span class="sc">-</span> N<span class="sc">*</span><span class="fu">log</span>(sigma) <span class="sc">-</span> <span class="fl">0.5</span><span class="sc">*</span><span class="fu">sum</span>((d<span class="sc">$</span>height <span class="sc">-</span> y)<span class="sc">^</span><span class="dv">2</span><span class="sc">/</span>sigma<span class="sc">^</span><span class="dv">2</span>)</span>
-<span id="cb69-372"><a href="#cb69-372" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(ll)</span>
-<span id="cb69-373"><a href="#cb69-373" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb69-374"><a href="#cb69-374" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb69-375"><a href="#cb69-375" aria-hidden="true" tabindex="-1"></a>mle_norm <span class="ot">&lt;-</span> <span class="fu">maxLik</span>(loglik,</span>
-<span id="cb69-376"><a href="#cb69-376" aria-hidden="true" tabindex="-1"></a>                   <span class="at">start=</span><span class="fu">c</span>(<span class="at">beta0=</span><span class="dv">0</span>, <span class="at">beta1=</span><span class="dv">0</span>, <span class="at">sigma=</span><span class="dv">1</span>),</span>
-<span id="cb69-377"><a href="#cb69-377" aria-hidden="true" tabindex="-1"></a>                   <span class="at">method =</span> <span class="st">"NM"</span>) <span class="co"># implements the Nelder-Mead algorithm for likelihood maximization</span></span>
-<span id="cb69-378"><a href="#cb69-378" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mle_norm)</span>
-<span id="cb69-379"><a href="#cb69-379" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb69-380"><a href="#cb69-380" aria-hidden="true" tabindex="-1"></a><span class="co"># results of both of these should be similar!</span></span>
-<span id="cb69-381"><a href="#cb69-381" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<div class="sourceCode" id="cb271" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb271-1"><a href="#cb271-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># Maximum Likelihood Estimation {#maximum-likelihood .unnumbered}</span></span>
+<span id="cb271-2"><a href="#cb271-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb271-3"><a href="#cb271-3" aria-hidden="true" tabindex="-1"></a><span class="fu">## Objectives {.unnumbered}</span></span>
+<span id="cb271-4"><a href="#cb271-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb271-5"><a href="#cb271-5" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; This module provides a simple introduction to Maximum Likelihood Estimation.</span></span>
+<span id="cb271-6"><a href="#cb271-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb271-7"><a href="#cb271-7" aria-hidden="true" tabindex="-1"></a>**Maximum Likelihood Estimation** (MLE) is a method for estimating population parameters (such as the mean and variance for a normal distribution, the rate parameter (lambda) for a Poisson distribution, the regression coefficients for a linear model) from sample data such that the combined probability (likelihood) of obtaining the observed data is maximized. Here, we first explore the calculation of likelihood values generally and then use MLE to estimate the best parameters for defining from what particular normal distribution a set of data is most likely drawn.</span>
+<span id="cb271-8"><a href="#cb271-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb271-9"><a href="#cb271-9" aria-hidden="true" tabindex="-1"></a><span class="fu">## Preliminaries {.unnumbered}</span></span>
+<span id="cb271-10"><a href="#cb271-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb271-11"><a href="#cb271-11" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Install and load these packages in ***R***: <span class="co">[</span><span class="ot">{bbmle}</span><span class="co">](https://cran.r-project.org/web/packages/devtools/bblme.pdf)</span> and <span class="co">[</span><span class="ot">{maxLik}</span><span class="co">](https://cran.r-project.org/web/packages/roxygen2/maxLik.pdf)</span></span>
+<span id="cb271-12"><a href="#cb271-12" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Load {tidyverse} and {mosaic}</span>
+<span id="cb271-13"><a href="#cb271-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb271-16"><a href="#cb271-16" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb271-17"><a href="#cb271-17" aria-hidden="true" tabindex="-1"></a><span class="co">#| include: false</span></span>
+<span id="cb271-18"><a href="#cb271-18" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(bbmle)</span>
+<span id="cb271-19"><a href="#cb271-19" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(maxLik)</span>
+<span id="cb271-20"><a href="#cb271-20" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb271-21"><a href="#cb271-21" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(mosaic)</span>
+<span id="cb271-22"><a href="#cb271-22" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb271-23"><a href="#cb271-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb271-24"><a href="#cb271-24" aria-hidden="true" tabindex="-1"></a><span class="fu">## Probability Density Functions and Likelihoods</span></span>
+<span id="cb271-25"><a href="#cb271-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb271-26"><a href="#cb271-26" aria-hidden="true" tabindex="-1"></a>A **Probability Density Function** (PDF) is a function describing the density of a continuous random variable (a probability mass function, or PMF, is an analogous function for discrete random variables). The function's value can be calculated at any given point in the sample space (i.e., the range of possible values that the random variable might take) and provides the **relative likelihood** of obtaining that value on a draw from the given distribution.</span>
+<span id="cb271-27"><a href="#cb271-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb271-28"><a href="#cb271-28" aria-hidden="true" tabindex="-1"></a>The PDF for a normal distribution defined by the parameters $\mu$ and $\sigma$ is...</span>
+<span id="cb271-29"><a href="#cb271-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb271-30"><a href="#cb271-30" aria-hidden="true" tabindex="-1"></a>$$f(x | \mu, \sigma) = \frac{1}{\sqrt{2\pi\sigma^2}}e^\frac{-(x-\mu)^2}{2\sigma^2}$$</span>
+<span id="cb271-31"><a href="#cb271-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb271-32"><a href="#cb271-32" aria-hidden="true" tabindex="-1"></a>Where:</span>
+<span id="cb271-33"><a href="#cb271-33" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>$\mu$ is the mean (or expected value) of the distribution</span>
+<span id="cb271-34"><a href="#cb271-34" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>$\sigma^2$ is the variance of the distribution. </span>
+<span id="cb271-35"><a href="#cb271-35" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>$\sigma$ the standard deviation. </span>
+<span id="cb271-36"><a href="#cb271-36" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>$e$ is the base of the natural logarithm (approximately 2.71828)</span>
+<span id="cb271-37"><a href="#cb271-37" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>$\pi$ is a mathematical constant (approximately 3.14159) </span>
+<span id="cb271-38"><a href="#cb271-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb271-39"><a href="#cb271-39" aria-hidden="true" tabindex="-1"></a>Solving this function for any value of $x$ yields the relative likelihood ($L$) of drawing that value from the distribution.</span>
+<span id="cb271-40"><a href="#cb271-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb271-41"><a href="#cb271-41" aria-hidden="true" tabindex="-1"></a><span class="fu">## Calculating Likelihoods</span></span>
+<span id="cb271-42"><a href="#cb271-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb271-43"><a href="#cb271-43" aria-hidden="true" tabindex="-1"></a>As an example, we can calculate the relative likelihood of drawing the number 45.6 out of a normal distribution with a mean ($\mu$) of 50 and a standard deviation ($\sigma$) of 10...</span>
+<span id="cb271-44"><a href="#cb271-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb271-47"><a href="#cb271-47" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb271-48"><a href="#cb271-48" aria-hidden="true" tabindex="-1"></a>val <span class="ot">&lt;-</span> <span class="fl">45.6</span></span>
+<span id="cb271-49"><a href="#cb271-49" aria-hidden="true" tabindex="-1"></a>mean <span class="ot">&lt;-</span> <span class="dv">50</span></span>
+<span id="cb271-50"><a href="#cb271-50" aria-hidden="true" tabindex="-1"></a>sd <span class="ot">&lt;-</span> <span class="dv">10</span></span>
+<span id="cb271-51"><a href="#cb271-51" aria-hidden="true" tabindex="-1"></a>(l <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">/</span><span class="fu">sqrt</span>(<span class="dv">2</span> <span class="sc">*</span> pi <span class="sc">*</span> sd<span class="sc">^</span><span class="dv">2</span>) <span class="sc">*</span> <span class="fu">exp</span>((<span class="sc">-</span>(val <span class="sc">-</span> mean)<span class="sc">^</span><span class="dv">2</span>)<span class="sc">/</span>(<span class="dv">2</span> <span class="sc">*</span> sd<span class="sc">^</span><span class="dv">2</span>)))</span>
+<span id="cb271-52"><a href="#cb271-52" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb271-53"><a href="#cb271-53" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb271-54"><a href="#cb271-54" aria-hidden="true" tabindex="-1"></a>The <span class="in">`dnorm()`</span> function returns this relative likelihood directly...</span>
+<span id="cb271-55"><a href="#cb271-55" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb271-58"><a href="#cb271-58" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb271-59"><a href="#cb271-59" aria-hidden="true" tabindex="-1"></a>(l <span class="ot">&lt;-</span> <span class="fu">dnorm</span>(val, mean, sd))</span>
+<span id="cb271-60"><a href="#cb271-60" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb271-61"><a href="#cb271-61" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb271-62"><a href="#cb271-62" aria-hidden="true" tabindex="-1"></a>To further explore calculating likelihoods, let's create and plot a sample of 100 random variables from a normal distribution with a $\mu$ of 50 and a $\sigma$ of 10:</span>
+<span id="cb271-63"><a href="#cb271-63" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb271-66"><a href="#cb271-66" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb271-67"><a href="#cb271-67" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">0</span>) <span class="co"># for reproducibility in rnorm</span></span>
+<span id="cb271-68"><a href="#cb271-68" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">val =</span> <span class="fu">rnorm</span>(<span class="dv">100</span>, <span class="at">mean =</span> <span class="dv">50</span>, <span class="at">sd =</span> <span class="dv">10</span>))</span>
+<span id="cb271-69"><a href="#cb271-69" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(d) <span class="sc">+</span></span>
+<span id="cb271-70"><a href="#cb271-70" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="fu">aes</span>(<span class="at">x =</span> val, <span class="at">y =</span> <span class="fu">after_stat</span>(density)))</span>
+<span id="cb271-71"><a href="#cb271-71" aria-hidden="true" tabindex="-1"></a>p</span>
+<span id="cb271-72"><a href="#cb271-72" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb271-73"><a href="#cb271-73" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb271-74"><a href="#cb271-74" aria-hidden="true" tabindex="-1"></a>The mean and standard deviation of this sample are pretty are close to the parameters that we pass to the <span class="in">`rnorm()`</span> function, even though (given the limited size of our sample) the distribution is not smooth...</span>
+<span id="cb271-75"><a href="#cb271-75" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb271-78"><a href="#cb271-78" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb271-79"><a href="#cb271-79" aria-hidden="true" tabindex="-1"></a>(mean <span class="ot">&lt;-</span> <span class="fu">mean</span>(d<span class="sc">$</span>val))</span>
+<span id="cb271-80"><a href="#cb271-80" aria-hidden="true" tabindex="-1"></a>(sd <span class="ot">&lt;-</span> <span class="fu">sd</span>(d<span class="sc">$</span>val))</span>
+<span id="cb271-81"><a href="#cb271-81" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb271-82"><a href="#cb271-82" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb271-83"><a href="#cb271-83" aria-hidden="true" tabindex="-1"></a>Now, on top of the histogram of our sample data, let's plot two different normal distributions, one with the distribution our sample was drawn from ($\mu$ = 50 and $\sigma$ = 10, in red) and another with a different $\mu$ (65) and $\sigma$ (20).</span>
+<span id="cb271-84"><a href="#cb271-84" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb271-87"><a href="#cb271-87" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb271-88"><a href="#cb271-88" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> p <span class="sc">+</span></span>
+<span id="cb271-89"><a href="#cb271-89" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_function</span>(<span class="at">fun =</span> <span class="cf">function</span>(x) <span class="fu">dnorm</span>(x, <span class="at">mean =</span> <span class="dv">50</span>, <span class="at">sd =</span> <span class="dv">10</span>), <span class="at">color =</span> <span class="st">"red"</span>, <span class="at">linewidth =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb271-90"><a href="#cb271-90" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_function</span>(<span class="at">fun =</span> <span class="cf">function</span>(x) <span class="fu">dnorm</span>(x, <span class="at">mean =</span> <span class="dv">65</span>, <span class="at">sd =</span> <span class="dv">20</span>), <span class="at">color =</span> <span class="st">"blue"</span>, <span class="at">linewidth =</span> <span class="dv">1</span>)</span>
+<span id="cb271-91"><a href="#cb271-91" aria-hidden="true" tabindex="-1"></a>p</span>
+<span id="cb271-92"><a href="#cb271-92" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb271-93"><a href="#cb271-93" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb271-94"><a href="#cb271-94" aria-hidden="true" tabindex="-1"></a>Based on the figure, it should be pretty clear that our observed sample (our set of 100 random draws) is **more likely** to have been drawn from the former distribution than the latter.</span>
+<span id="cb271-95"><a href="#cb271-95" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb271-96"><a href="#cb271-96" aria-hidden="true" tabindex="-1"></a><span class="fu">### CHALLENGE {.unnumbered}</span></span>
+<span id="cb271-97"><a href="#cb271-97" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb271-98"><a href="#cb271-98" aria-hidden="true" tabindex="-1"></a>What is the relative likelihood of seeing a value of 41 on a random draw from a normal distribution with $\mu$ = 50 and $\sigma$ = 10?</span>
+<span id="cb271-99"><a href="#cb271-99" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb271-102"><a href="#cb271-102" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb271-103"><a href="#cb271-103" aria-hidden="true" tabindex="-1"></a>val <span class="ot">&lt;-</span> <span class="dv">41</span></span>
+<span id="cb271-104"><a href="#cb271-104" aria-hidden="true" tabindex="-1"></a>mean <span class="ot">&lt;-</span> <span class="dv">50</span></span>
+<span id="cb271-105"><a href="#cb271-105" aria-hidden="true" tabindex="-1"></a>sd <span class="ot">&lt;-</span> <span class="dv">10</span></span>
+<span id="cb271-106"><a href="#cb271-106" aria-hidden="true" tabindex="-1"></a><span class="co"># or</span></span>
+<span id="cb271-107"><a href="#cb271-107" aria-hidden="true" tabindex="-1"></a>(l1 <span class="ot">&lt;-</span> <span class="fu">dnorm</span>(val, mean, sd))</span>
+<span id="cb271-108"><a href="#cb271-108" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb271-109"><a href="#cb271-109" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb271-110"><a href="#cb271-110" aria-hidden="true" tabindex="-1"></a><span class="fu">### CHALLENGE {.unnumbered}</span></span>
+<span id="cb271-111"><a href="#cb271-111" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb271-112"><a href="#cb271-112" aria-hidden="true" tabindex="-1"></a>What is the relative likelihood of seeing a value of 41 on a random draw from a normal distribution with $\mu$ = 65 and $\sigma$ = 20?</span>
+<span id="cb271-113"><a href="#cb271-113" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb271-116"><a href="#cb271-116" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb271-117"><a href="#cb271-117" aria-hidden="true" tabindex="-1"></a>val <span class="ot">&lt;-</span> <span class="dv">41</span></span>
+<span id="cb271-118"><a href="#cb271-118" aria-hidden="true" tabindex="-1"></a>mean <span class="ot">&lt;-</span> <span class="dv">65</span></span>
+<span id="cb271-119"><a href="#cb271-119" aria-hidden="true" tabindex="-1"></a>sd <span class="ot">&lt;-</span> <span class="dv">10</span></span>
+<span id="cb271-120"><a href="#cb271-120" aria-hidden="true" tabindex="-1"></a>(l2 <span class="ot">&lt;-</span> <span class="fu">dnorm</span>(val, mean, sd))</span>
+<span id="cb271-121"><a href="#cb271-121" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb271-122"><a href="#cb271-122" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb271-123"><a href="#cb271-123" aria-hidden="true" tabindex="-1"></a>Note the difference in these two likelihoods, **l1** and **l2**... there is a much higher likelhood of an observation of 41 coming from the first of the two normal distributions we considered. In this case, the **likelihood ratio** is **l1/l2**.</span>
+<span id="cb271-124"><a href="#cb271-124" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb271-127"><a href="#cb271-127" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb271-128"><a href="#cb271-128" aria-hidden="true" tabindex="-1"></a>l1<span class="sc">/</span>l2</span>
+<span id="cb271-129"><a href="#cb271-129" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb271-130"><a href="#cb271-130" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb271-131"><a href="#cb271-131" aria-hidden="true" tabindex="-1"></a>We can also calculate the relative likelihood of drawing a particular set of observations from a given distribution as the product of the likelihoods of each observation as the probability of *n* independent events is simply the product ($∏$) of their independent probabilities. An easy way to calculate the product of a set of numbers is by taking the natural log of each number, summing those values, and then exponentiating the sum. For this reason, likelihood calculations are often operationalized in terms of *log likelihoods*.</span>
+<span id="cb271-132"><a href="#cb271-132" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb271-133"><a href="#cb271-133" aria-hidden="true" tabindex="-1"></a>For example, the following operations are equivalent...</span>
+<span id="cb271-134"><a href="#cb271-134" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb271-137"><a href="#cb271-137" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb271-138"><a href="#cb271-138" aria-hidden="true" tabindex="-1"></a><span class="dv">5</span> <span class="sc">*</span> <span class="dv">8</span> <span class="sc">*</span> <span class="dv">9</span> <span class="sc">*</span> <span class="dv">4</span></span>
+<span id="cb271-139"><a href="#cb271-139" aria-hidden="true" tabindex="-1"></a><span class="fu">exp</span>(<span class="fu">log</span>(<span class="dv">5</span>) <span class="sc">+</span> <span class="fu">log</span>(<span class="dv">8</span>) <span class="sc">+</span> <span class="fu">log</span>(<span class="dv">9</span>) <span class="sc">+</span> <span class="fu">log</span>(<span class="dv">4</span>))</span>
+<span id="cb271-140"><a href="#cb271-140" aria-hidden="true" tabindex="-1"></a><span class="fu">exp</span>(<span class="fu">sum</span>(<span class="fu">log</span>(<span class="fu">c</span>(<span class="dv">5</span>, <span class="dv">8</span>, <span class="dv">9</span>, <span class="dv">4</span>))))</span>
+<span id="cb271-141"><a href="#cb271-141" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb271-142"><a href="#cb271-142" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb271-143"><a href="#cb271-143" aria-hidden="true" tabindex="-1"></a><span class="fu">### CHALLENGE {.unnumbered}</span></span>
+<span id="cb271-144"><a href="#cb271-144" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb271-145"><a href="#cb271-145" aria-hidden="true" tabindex="-1"></a>What is the relative likelihood of drawing the set of three numbers 41, 70, and 10 from a normal distribution with $\mu$ = 50 and $\sigma$ = 10?</span>
+<span id="cb271-146"><a href="#cb271-146" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb271-149"><a href="#cb271-149" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb271-150"><a href="#cb271-150" aria-hidden="true" tabindex="-1"></a>val <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">41</span>, <span class="dv">70</span>, <span class="dv">10</span>)</span>
+<span id="cb271-151"><a href="#cb271-151" aria-hidden="true" tabindex="-1"></a>mean <span class="ot">&lt;-</span> <span class="dv">65</span></span>
+<span id="cb271-152"><a href="#cb271-152" aria-hidden="true" tabindex="-1"></a>sd <span class="ot">&lt;-</span> <span class="dv">10</span></span>
+<span id="cb271-153"><a href="#cb271-153" aria-hidden="true" tabindex="-1"></a>(l <span class="ot">&lt;-</span> <span class="fu">dnorm</span>(val, mean, sd)) <span class="co"># vector of likelihoods of each value</span></span>
+<span id="cb271-154"><a href="#cb271-154" aria-hidden="true" tabindex="-1"></a>(l[<span class="dv">1</span>] <span class="sc">*</span> l[<span class="dv">2</span>] <span class="sc">*</span> l[<span class="dv">3</span>]) <span class="co"># product of likelihoods</span></span>
+<span id="cb271-155"><a href="#cb271-155" aria-hidden="true" tabindex="-1"></a>(ll <span class="ot">&lt;-</span> <span class="fu">log</span>(l)) <span class="co"># log likelihoods of each value</span></span>
+<span id="cb271-156"><a href="#cb271-156" aria-hidden="true" tabindex="-1"></a>(ll <span class="ot">&lt;-</span> <span class="fu">sum</span>(ll)) <span class="co"># summed log likelihood</span></span>
+<span id="cb271-157"><a href="#cb271-157" aria-hidden="true" tabindex="-1"></a>(l <span class="ot">&lt;-</span> <span class="fu">exp</span>(ll)) <span class="co"># convert back to likelihood</span></span>
+<span id="cb271-158"><a href="#cb271-158" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb271-159"><a href="#cb271-159" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb271-160"><a href="#cb271-160" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; NOTE: Likelihoods are always going to be zero or greater, but log likelihoods can be negative. A less negative log likelihood is nonetheless more likely than a more negative one.</span></span>
+<span id="cb271-161"><a href="#cb271-161" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb271-162"><a href="#cb271-162" aria-hidden="true" tabindex="-1"></a><span class="fu">### CHALLENGE {.unnumbered}</span></span>
+<span id="cb271-163"><a href="#cb271-163" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb271-164"><a href="#cb271-164" aria-hidden="true" tabindex="-1"></a>What are the log likelihood and likelihood of drawing the sample, *d*, we constructed above from a normal distribution with $\mu$ = 50 and $\sigma$ = 10? How do these compare to the log likelihood and likelihood of that same sample being drawn from a normal distribution with $\mu$ = 65 and $\sigma$ = 20?</span>
+<span id="cb271-165"><a href="#cb271-165" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb271-168"><a href="#cb271-168" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb271-169"><a href="#cb271-169" aria-hidden="true" tabindex="-1"></a>val <span class="ot">&lt;-</span> d<span class="sc">$</span>val</span>
+<span id="cb271-170"><a href="#cb271-170" aria-hidden="true" tabindex="-1"></a>mean <span class="ot">&lt;-</span> <span class="dv">50</span></span>
+<span id="cb271-171"><a href="#cb271-171" aria-hidden="true" tabindex="-1"></a>sd <span class="ot">&lt;-</span> <span class="dv">10</span></span>
+<span id="cb271-172"><a href="#cb271-172" aria-hidden="true" tabindex="-1"></a>l <span class="ot">&lt;-</span> <span class="fu">dnorm</span>(val, mean, sd)</span>
+<span id="cb271-173"><a href="#cb271-173" aria-hidden="true" tabindex="-1"></a>ll <span class="ot">&lt;-</span> <span class="fu">log</span>(l)</span>
+<span id="cb271-174"><a href="#cb271-174" aria-hidden="true" tabindex="-1"></a>ll <span class="ot">&lt;-</span> <span class="fu">sum</span>(ll)</span>
+<span id="cb271-175"><a href="#cb271-175" aria-hidden="true" tabindex="-1"></a>(l <span class="ot">&lt;-</span> <span class="fu">exp</span>(ll)) <span class="co"># a very tiny number!</span></span>
+<span id="cb271-176"><a href="#cb271-176" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb271-177"><a href="#cb271-177" aria-hidden="true" tabindex="-1"></a>mean <span class="ot">&lt;-</span> <span class="dv">65</span></span>
+<span id="cb271-178"><a href="#cb271-178" aria-hidden="true" tabindex="-1"></a>sd <span class="ot">&lt;-</span> <span class="dv">20</span></span>
+<span id="cb271-179"><a href="#cb271-179" aria-hidden="true" tabindex="-1"></a>l <span class="ot">&lt;-</span> <span class="fu">dnorm</span>(val, mean, sd)</span>
+<span id="cb271-180"><a href="#cb271-180" aria-hidden="true" tabindex="-1"></a>ll <span class="ot">&lt;-</span> <span class="fu">log</span>(l)</span>
+<span id="cb271-181"><a href="#cb271-181" aria-hidden="true" tabindex="-1"></a>ll <span class="ot">&lt;-</span> <span class="fu">sum</span>(ll)</span>
+<span id="cb271-182"><a href="#cb271-182" aria-hidden="true" tabindex="-1"></a>(l <span class="ot">&lt;-</span> <span class="fu">exp</span>(ll)) <span class="co"># an even tinier number</span></span>
+<span id="cb271-183"><a href="#cb271-183" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb271-184"><a href="#cb271-184" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb271-185"><a href="#cb271-185" aria-hidden="true" tabindex="-1"></a>The log likelihood and likelihood are both HIGHER (more likely to have been drawn) from the first distribution.</span>
+<span id="cb271-186"><a href="#cb271-186" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb271-187"><a href="#cb271-187" aria-hidden="true" tabindex="-1"></a><span class="fu">## Maximum Likelihood Estimation</span></span>
+<span id="cb271-188"><a href="#cb271-188" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb271-189"><a href="#cb271-189" aria-hidden="true" tabindex="-1"></a>Now that we have an understanding of how likelihood calculations are done, we can consider the process of **maximum likelihood estimation** (MLE). MLE allows us to estimate what values of population parameters (e.g., $\mu$ and $\sigma$) are most likely *given* a dataset and a probability distribution function for the process generating the data (e.g., a Gaussian process).</span>
+<span id="cb271-190"><a href="#cb271-190" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb271-191"><a href="#cb271-191" aria-hidden="true" tabindex="-1"></a>First, let's create a function for calculating the **negative** log likelihood for a set of data under a particular normal distribution. To convert the log likelihood to a negative, we simply multiply it negative 1. The reason we do this is because most optimization algorithms function by searching for parameter values that yield the minimum negative log likelihood rather than the maximum likelihood directly.</span>
+<span id="cb271-192"><a href="#cb271-192" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb271-195"><a href="#cb271-195" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb271-196"><a href="#cb271-196" aria-hidden="true" tabindex="-1"></a>verbose_nll <span class="ot">&lt;-</span> <span class="cf">function</span>(val, mu, sigma, <span class="at">verbose =</span> <span class="cn">FALSE</span>) {</span>
+<span id="cb271-197"><a href="#cb271-197" aria-hidden="true" tabindex="-1"></a>  l <span class="ot">&lt;-</span> <span class="dv">0</span> <span class="co"># set initial likelihood to 0 to define variable</span></span>
+<span id="cb271-198"><a href="#cb271-198" aria-hidden="true" tabindex="-1"></a>  ll <span class="ot">&lt;-</span> <span class="dv">0</span> <span class="co"># set initial log likelihood to 0 to define variable</span></span>
+<span id="cb271-199"><a href="#cb271-199" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(val)){</span>
+<span id="cb271-200"><a href="#cb271-200" aria-hidden="true" tabindex="-1"></a>    l[[i]] <span class="ot">=</span> <span class="fu">dnorm</span>(val[[i]], <span class="at">mean =</span> mu, <span class="at">sd =</span> sigma) <span class="co"># likelihoods</span></span>
+<span id="cb271-201"><a href="#cb271-201" aria-hidden="true" tabindex="-1"></a>    ll[[i]] <span class="ot">&lt;-</span> <span class="fu">log</span>(l[[i]]) <span class="co"># log likelihoods</span></span>
+<span id="cb271-202"><a href="#cb271-202" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (verbose <span class="sc">==</span> <span class="cn">TRUE</span>) {</span>
+<span id="cb271-203"><a href="#cb271-203" aria-hidden="true" tabindex="-1"></a>      <span class="fu">message</span>(<span class="fu">paste0</span>(<span class="st">"x="</span>, <span class="fu">round</span>(val[[i]], <span class="dv">4</span>),</span>
+<span id="cb271-204"><a href="#cb271-204" aria-hidden="true" tabindex="-1"></a>                     <span class="st">" mu="</span>, mu,</span>
+<span id="cb271-205"><a href="#cb271-205" aria-hidden="true" tabindex="-1"></a>                     <span class="st">" sigma="</span>, sigma,</span>
+<span id="cb271-206"><a href="#cb271-206" aria-hidden="true" tabindex="-1"></a>                     <span class="st">" L="</span>, <span class="fu">round</span>(l[[i]], <span class="dv">4</span>),</span>
+<span id="cb271-207"><a href="#cb271-207" aria-hidden="true" tabindex="-1"></a>                     <span class="st">" logL="</span>, <span class="fu">round</span>(ll[[i]],<span class="dv">4</span>)))</span>
+<span id="cb271-208"><a href="#cb271-208" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb271-209"><a href="#cb271-209" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb271-210"><a href="#cb271-210" aria-hidden="true" tabindex="-1"></a>  nll <span class="ot">&lt;-</span> <span class="sc">-</span><span class="dv">1</span> <span class="sc">*</span> <span class="fu">sum</span>(ll)</span>
+<span id="cb271-211"><a href="#cb271-211" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(nll)</span>
+<span id="cb271-212"><a href="#cb271-212" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb271-213"><a href="#cb271-213" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb271-214"><a href="#cb271-214" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb271-215"><a href="#cb271-215" aria-hidden="true" tabindex="-1"></a>Testing our function...</span>
+<span id="cb271-216"><a href="#cb271-216" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb271-219"><a href="#cb271-219" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb271-220"><a href="#cb271-220" aria-hidden="true" tabindex="-1"></a><span class="co"># if we include verbose = TRUE as an argument to `verbose_nll`, the function will print each likelihood and log likelihood value before returning the summed negative log likelihood</span></span>
+<span id="cb271-221"><a href="#cb271-221" aria-hidden="true" tabindex="-1"></a>val <span class="ot">&lt;-</span> d<span class="sc">$</span>val</span>
+<span id="cb271-222"><a href="#cb271-222" aria-hidden="true" tabindex="-1"></a>mean <span class="ot">&lt;-</span> <span class="dv">50</span></span>
+<span id="cb271-223"><a href="#cb271-223" aria-hidden="true" tabindex="-1"></a>sd <span class="ot">&lt;-</span> <span class="dv">10</span></span>
+<span id="cb271-224"><a href="#cb271-224" aria-hidden="true" tabindex="-1"></a><span class="fu">verbose_nll</span>(val, mean, sd, <span class="at">verbose =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb271-225"><a href="#cb271-225" aria-hidden="true" tabindex="-1"></a>mean <span class="ot">&lt;-</span> <span class="dv">65</span></span>
+<span id="cb271-226"><a href="#cb271-226" aria-hidden="true" tabindex="-1"></a>sd <span class="ot">&lt;-</span> <span class="dv">20</span></span>
+<span id="cb271-227"><a href="#cb271-227" aria-hidden="true" tabindex="-1"></a><span class="fu">verbose_nll</span>(val, mean, sd, <span class="at">verbose =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb271-228"><a href="#cb271-228" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb271-229"><a href="#cb271-229" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb271-230"><a href="#cb271-230" aria-hidden="true" tabindex="-1"></a>... we see that **negative log likelihood** of our data under the first distribution is smaller than under the second, indicating that it is more likely that are data are drawn from the first distribution.</span>
+<span id="cb271-231"><a href="#cb271-231" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb271-232"><a href="#cb271-232" aria-hidden="true" tabindex="-1"></a>To use maximum likelihood estimation, we need to create a simpler version of this function that does not have the data as argument, but rather only involves the parameter we want to estimate. The function below does this. Note that unlike the function above, this version does not use a loop and has the vector variable *val* included as the first argument to the <span class="in">`dnorm()`</span> function. We also include the argument <span class="in">`log = TRUE`</span> within the <span class="in">`dnorm()`</span> function to calculate the log likelihood directly, instead of including that as an extra step.</span>
+<span id="cb271-233"><a href="#cb271-233" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb271-236"><a href="#cb271-236" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb271-237"><a href="#cb271-237" aria-hidden="true" tabindex="-1"></a>simple_nll <span class="ot">&lt;-</span> <span class="cf">function</span>(mu, sigma, <span class="at">verbose =</span> <span class="cn">TRUE</span>) {</span>
+<span id="cb271-238"><a href="#cb271-238" aria-hidden="true" tabindex="-1"></a>  ll <span class="ot">=</span> <span class="fu">sum</span>(<span class="fu">dnorm</span>(val, <span class="at">mean =</span> mu, <span class="at">sd =</span> sigma, <span class="at">log =</span> <span class="cn">TRUE</span>))</span>
+<span id="cb271-239"><a href="#cb271-239" aria-hidden="true" tabindex="-1"></a>  nll <span class="ot">&lt;-</span> <span class="sc">-</span><span class="dv">1</span> <span class="sc">*</span> ll</span>
+<span id="cb271-240"><a href="#cb271-240" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(nll)</span>
+<span id="cb271-241"><a href="#cb271-241" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb271-242"><a href="#cb271-242" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb271-243"><a href="#cb271-243" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb271-244"><a href="#cb271-244" aria-hidden="true" tabindex="-1"></a>Testing our function, we should get the same results as above...</span>
+<span id="cb271-245"><a href="#cb271-245" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb271-248"><a href="#cb271-248" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb271-249"><a href="#cb271-249" aria-hidden="true" tabindex="-1"></a>val <span class="ot">&lt;-</span> d<span class="sc">$</span>val</span>
+<span id="cb271-250"><a href="#cb271-250" aria-hidden="true" tabindex="-1"></a>mean <span class="ot">&lt;-</span> <span class="dv">50</span></span>
+<span id="cb271-251"><a href="#cb271-251" aria-hidden="true" tabindex="-1"></a>sd <span class="ot">&lt;-</span> <span class="dv">10</span></span>
+<span id="cb271-252"><a href="#cb271-252" aria-hidden="true" tabindex="-1"></a><span class="fu">simple_nll</span>(mean, sd)</span>
+<span id="cb271-253"><a href="#cb271-253" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb271-254"><a href="#cb271-254" aria-hidden="true" tabindex="-1"></a>val <span class="ot">&lt;-</span> d<span class="sc">$</span>val</span>
+<span id="cb271-255"><a href="#cb271-255" aria-hidden="true" tabindex="-1"></a>mean <span class="ot">&lt;-</span> <span class="dv">65</span></span>
+<span id="cb271-256"><a href="#cb271-256" aria-hidden="true" tabindex="-1"></a>sd <span class="ot">&lt;-</span> <span class="dv">20</span></span>
+<span id="cb271-257"><a href="#cb271-257" aria-hidden="true" tabindex="-1"></a><span class="fu">simple_nll</span>(mean, sd)</span>
+<span id="cb271-258"><a href="#cb271-258" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb271-259"><a href="#cb271-259" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb271-260"><a href="#cb271-260" aria-hidden="true" tabindex="-1"></a>So far, we have just used this function to calculate the (negative) log likelihood of our data being generated by a Gaussian (normal) process with specific $\mu$ and $\sigma$ parameters... but what we really want to do is estimate values for $\mu$ and $\sigma$ that have highest likelihood for generating our data. To do this, we will use the <span class="in">`mle2()`</span> function from the {bbmle} package. This function takes the following arguments...</span>
+<span id="cb271-261"><a href="#cb271-261" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb271-262"><a href="#cb271-262" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**minuslogl**, which is a user-defined function for generating negative log likelihoods... this is what we created above</span>
+<span id="cb271-263"><a href="#cb271-263" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**start**, which is a list of initial values for the parameters we want to estimate</span>
+<span id="cb271-264"><a href="#cb271-264" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**method**, which is the particular algorithm used for optimization of the parameter estimates (<span class="in">`mle2()`</span> and the <span class="in">`optim()`</span> function, which it calls, are highly customizable)</span>
+<span id="cb271-265"><a href="#cb271-265" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb271-266"><a href="#cb271-266" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; NOTE: Be aware that to run the function below, we need to have the variable **val**, a vector of values, specified outside of the function. We previously set **val** to **d**, our random sample of 100 draws from a normal distribution with $\mu$=50 and $\sigma$=10... feel free to play around with alternatives and see how well the MLE process estimates these parameters.</span></span>
+<span id="cb271-267"><a href="#cb271-267" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb271-270"><a href="#cb271-270" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb271-271"><a href="#cb271-271" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(bbmle)</span>
+<span id="cb271-272"><a href="#cb271-272" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb271-273"><a href="#cb271-273" aria-hidden="true" tabindex="-1"></a>mle_norm <span class="ot">&lt;-</span> <span class="fu">mle2</span>(</span>
+<span id="cb271-274"><a href="#cb271-274" aria-hidden="true" tabindex="-1"></a>  <span class="at">minuslogl =</span> simple_nll,</span>
+<span id="cb271-275"><a href="#cb271-275" aria-hidden="true" tabindex="-1"></a>  <span class="at">start  =</span> <span class="fu">list</span>(<span class="at">mu =</span> <span class="dv">0</span>, <span class="at">sigma =</span> <span class="dv">1</span>),</span>
+<span id="cb271-276"><a href="#cb271-276" aria-hidden="true" tabindex="-1"></a>  <span class="at">method =</span> <span class="st">"SANN"</span> <span class="co"># simulated annealing method of optimization, one of several options</span></span>
+<span id="cb271-277"><a href="#cb271-277" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb271-278"><a href="#cb271-278" aria-hidden="true" tabindex="-1"></a><span class="co"># note that we may sometimes see a warning about NaNs being produced... this is okay!</span></span>
+<span id="cb271-279"><a href="#cb271-279" aria-hidden="true" tabindex="-1"></a>mle_norm</span>
+<span id="cb271-280"><a href="#cb271-280" aria-hidden="true" tabindex="-1"></a><span class="co"># note the estimates for `mu` and `sigma` are very close to the population level parameters of the normal distribution that our vector `val` was drawn from</span></span>
+<span id="cb271-281"><a href="#cb271-281" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb271-282"><a href="#cb271-282" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb271-283"><a href="#cb271-283" aria-hidden="true" tabindex="-1"></a>An alternative for MLE is the <span class="in">`maxLik()`</span> function from the {maxLik} package. To use function, we again first define our own log likelihood function, but this time we do not want a **negative** log likelihood, so we do not multiply it by minus 1 (i.e., the first argument `maxLik()` expects is a log likelihood function, not a **negative** log likelihood function). Our function should also have only one argument... a **vector** of parameter values... rather than separate arguments for each parameter.</span>
+<span id="cb271-284"><a href="#cb271-284" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb271-287"><a href="#cb271-287" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb271-288"><a href="#cb271-288" aria-hidden="true" tabindex="-1"></a>simple_ll <span class="ot">&lt;-</span> <span class="cf">function</span>(parameters) {</span>
+<span id="cb271-289"><a href="#cb271-289" aria-hidden="true" tabindex="-1"></a>  <span class="co"># `parameters` is a vector of parameter values</span></span>
+<span id="cb271-290"><a href="#cb271-290" aria-hidden="true" tabindex="-1"></a>  mu <span class="ot">&lt;-</span> parameters[<span class="dv">1</span>]</span>
+<span id="cb271-291"><a href="#cb271-291" aria-hidden="true" tabindex="-1"></a>  sigma <span class="ot">&lt;-</span> parameters[<span class="dv">2</span>]</span>
+<span id="cb271-292"><a href="#cb271-292" aria-hidden="true" tabindex="-1"></a>  ll <span class="ot">=</span> <span class="fu">sum</span>(<span class="fu">dnorm</span>(val, <span class="at">mean =</span> mu, <span class="at">sd =</span> sigma, <span class="at">log =</span> <span class="cn">TRUE</span>))</span>
+<span id="cb271-293"><a href="#cb271-293" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(ll)</span>
+<span id="cb271-294"><a href="#cb271-294" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb271-295"><a href="#cb271-295" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb271-296"><a href="#cb271-296" aria-hidden="true" tabindex="-1"></a><span class="co"># test...</span></span>
+<span id="cb271-297"><a href="#cb271-297" aria-hidden="true" tabindex="-1"></a><span class="fu">simple_ll</span>(<span class="fu">c</span>(<span class="dv">50</span>, <span class="dv">10</span>)) <span class="co"># this should be very close to the log likelihood returned above</span></span>
+<span id="cb271-298"><a href="#cb271-298" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb271-299"><a href="#cb271-299" aria-hidden="true" tabindex="-1"></a><span class="co"># an alternative function</span></span>
+<span id="cb271-300"><a href="#cb271-300" aria-hidden="true" tabindex="-1"></a>simple_ll <span class="ot">&lt;-</span> <span class="cf">function</span>(parameters) {</span>
+<span id="cb271-301"><a href="#cb271-301" aria-hidden="true" tabindex="-1"></a>  mu <span class="ot">&lt;-</span> parameters[<span class="dv">1</span>]</span>
+<span id="cb271-302"><a href="#cb271-302" aria-hidden="true" tabindex="-1"></a>  sigma <span class="ot">&lt;-</span> parameters[<span class="dv">2</span>]</span>
+<span id="cb271-303"><a href="#cb271-303" aria-hidden="true" tabindex="-1"></a>  N <span class="ot">&lt;-</span> <span class="fu">length</span>(val)</span>
+<span id="cb271-304"><a href="#cb271-304" aria-hidden="true" tabindex="-1"></a>  ll <span class="ot">&lt;-</span> <span class="sc">-</span><span class="dv">1</span> <span class="sc">*</span> N <span class="sc">*</span> <span class="fu">log</span>(<span class="fu">sqrt</span>(<span class="dv">2</span><span class="sc">*</span>pi)) <span class="sc">-</span> N<span class="sc">*</span><span class="fu">log</span>(sigma) <span class="sc">-</span> <span class="fl">0.5</span><span class="sc">*</span><span class="fu">sum</span>((val <span class="sc">-</span> mu)<span class="sc">^</span><span class="dv">2</span><span class="sc">/</span>sigma<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb271-305"><a href="#cb271-305" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(ll)</span>
+<span id="cb271-306"><a href="#cb271-306" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb271-307"><a href="#cb271-307" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb271-308"><a href="#cb271-308" aria-hidden="true" tabindex="-1"></a><span class="co"># test...</span></span>
+<span id="cb271-309"><a href="#cb271-309" aria-hidden="true" tabindex="-1"></a><span class="fu">simple_ll</span>(<span class="fu">c</span>(<span class="dv">50</span>, <span class="dv">10</span>))</span>
+<span id="cb271-310"><a href="#cb271-310" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb271-311"><a href="#cb271-311" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb271-312"><a href="#cb271-312" aria-hidden="true" tabindex="-1"></a>As for <span class="in">`mle2()`</span>, for <span class="in">`maxLik()`</span> we need to specify several arguments:</span>
+<span id="cb271-313"><a href="#cb271-313" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb271-314"><a href="#cb271-314" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**logLik**, which is our user-defined function for generating log likelihoods (**not** negative log likelihoods)</span>
+<span id="cb271-315"><a href="#cb271-315" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**start**, which is a named vector of initial values for the parameters we want estimate</span>
+<span id="cb271-316"><a href="#cb271-316" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**method**, which is the particular algorithm used for optimization of the parameter estimates</span>
+<span id="cb271-317"><a href="#cb271-317" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb271-320"><a href="#cb271-320" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb271-321"><a href="#cb271-321" aria-hidden="true" tabindex="-1"></a>mle_norm <span class="ot">&lt;-</span> <span class="fu">maxLik</span>(<span class="at">logLik =</span> simple_ll, <span class="at">start=</span><span class="fu">c</span>(<span class="at">mu=</span><span class="dv">0</span>, <span class="at">sigma=</span><span class="dv">1</span>), <span class="at">method =</span> <span class="st">"NM"</span>)</span>
+<span id="cb271-322"><a href="#cb271-322" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mle_norm)</span>
+<span id="cb271-323"><a href="#cb271-323" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb271-324"><a href="#cb271-324" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb271-325"><a href="#cb271-325" aria-hidden="true" tabindex="-1"></a>The results should be very comparable to those generated using <span class="in">`mle2()`</span>.</span>
+<span id="cb271-326"><a href="#cb271-326" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb271-327"><a href="#cb271-327" aria-hidden="true" tabindex="-1"></a><span class="fu">## MLE for Simple Linear Regression</span></span>
+<span id="cb271-328"><a href="#cb271-328" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb271-329"><a href="#cb271-329" aria-hidden="true" tabindex="-1"></a>Now let's work through an example of using MLE for simple linear regression. Load in our zombie apocalypse survivors dataset...</span>
+<span id="cb271-330"><a href="#cb271-330" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb271-333"><a href="#cb271-333" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb271-334"><a href="#cb271-334" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb271-335"><a href="#cb271-335" aria-hidden="true" tabindex="-1"></a>f <span class="ot">&lt;-</span> <span class="st">"https://raw.githubusercontent.com/difiore/ada-datasets/main/zombies.csv"</span></span>
+<span id="cb271-336"><a href="#cb271-336" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(f, <span class="at">col_names =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb271-337"><a href="#cb271-337" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb271-338"><a href="#cb271-338" aria-hidden="true" tabindex="-1"></a><span class="co"># Standard OLS linear regression model with our zombie apocalypse survivor dataset</span></span>
+<span id="cb271-339"><a href="#cb271-339" aria-hidden="true" tabindex="-1"></a>m <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="at">data =</span> d, height <span class="sc">~</span> weight)</span>
+<span id="cb271-340"><a href="#cb271-340" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(m)</span>
+<span id="cb271-341"><a href="#cb271-341" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb271-342"><a href="#cb271-342" aria-hidden="true" tabindex="-1"></a><span class="co"># Compare to...</span></span>
+<span id="cb271-343"><a href="#cb271-343" aria-hidden="true" tabindex="-1"></a><span class="co"># Likelihood based linear regression with `mle2()`... now we have our own likelihood function that has three instead of two parameters: b0, b1, and sigma, or the standard deviation in (presumably normally distributed!) residuals...</span></span>
+<span id="cb271-344"><a href="#cb271-344" aria-hidden="true" tabindex="-1"></a>simple_nll <span class="ot">&lt;-</span> <span class="cf">function</span>(b0, b1, sigma, <span class="at">verbose =</span> <span class="cn">TRUE</span>) {</span>
+<span id="cb271-345"><a href="#cb271-345" aria-hidden="true" tabindex="-1"></a>  <span class="co"># here, we say how our expectation for how our response variable, y, is calculated based on two parameters</span></span>
+<span id="cb271-346"><a href="#cb271-346" aria-hidden="true" tabindex="-1"></a>  y <span class="ot">&lt;-</span> b0 <span class="sc">+</span> b1 <span class="sc">*</span> d<span class="sc">$</span>weight </span>
+<span id="cb271-347"><a href="#cb271-347" aria-hidden="true" tabindex="-1"></a>  N <span class="ot">&lt;-</span> <span class="fu">nrow</span>(d)</span>
+<span id="cb271-348"><a href="#cb271-348" aria-hidden="true" tabindex="-1"></a>  <span class="co"># decomposition of log density function into R terms...</span></span>
+<span id="cb271-349"><a href="#cb271-349" aria-hidden="true" tabindex="-1"></a>  ll <span class="ot">&lt;-</span> <span class="sc">-</span><span class="dv">1</span> <span class="sc">*</span> N<span class="sc">*</span><span class="fu">log</span>(<span class="fu">sqrt</span>(<span class="dv">2</span><span class="sc">*</span>pi)) <span class="sc">-</span> N<span class="sc">*</span><span class="fu">log</span>(sigma) <span class="sc">-</span> <span class="fl">0.5</span><span class="sc">*</span><span class="fu">sum</span>((d<span class="sc">$</span>height <span class="sc">-</span> y)<span class="sc">^</span><span class="dv">2</span><span class="sc">/</span>sigma<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb271-350"><a href="#cb271-350" aria-hidden="true" tabindex="-1"></a>  nll <span class="ot">&lt;-</span> <span class="sc">-</span><span class="dv">1</span> <span class="sc">*</span> ll</span>
+<span id="cb271-351"><a href="#cb271-351" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(nll)</span>
+<span id="cb271-352"><a href="#cb271-352" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb271-353"><a href="#cb271-353" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb271-354"><a href="#cb271-354" aria-hidden="true" tabindex="-1"></a>mle_norm <span class="ot">&lt;-</span> <span class="fu">mle2</span>(</span>
+<span id="cb271-355"><a href="#cb271-355" aria-hidden="true" tabindex="-1"></a>  <span class="at">minuslogl =</span> simple_nll, <span class="co"># our likelihood function</span></span>
+<span id="cb271-356"><a href="#cb271-356" aria-hidden="true" tabindex="-1"></a>  <span class="at">start  =</span> <span class="fu">list</span>(<span class="at">b0=</span><span class="dv">10</span>, <span class="at">b1=</span><span class="dv">0</span>, <span class="at">sigma=</span><span class="dv">1</span>), </span>
+<span id="cb271-357"><a href="#cb271-357" aria-hidden="true" tabindex="-1"></a>  <span class="at">method =</span> <span class="st">"Nelder-Mead"</span> <span class="co"># implements the Nelder-Mead algorithm for likelihood maximization</span></span>
+<span id="cb271-358"><a href="#cb271-358" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb271-359"><a href="#cb271-359" aria-hidden="true" tabindex="-1"></a>mle_norm</span>
+<span id="cb271-360"><a href="#cb271-360" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mle_norm)</span>
+<span id="cb271-361"><a href="#cb271-361" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb271-362"><a href="#cb271-362" aria-hidden="true" tabindex="-1"></a><span class="co"># Compare to...</span></span>
+<span id="cb271-363"><a href="#cb271-363" aria-hidden="true" tabindex="-1"></a><span class="co"># Likelihood based linear regression with `maxLik()`</span></span>
+<span id="cb271-364"><a href="#cb271-364" aria-hidden="true" tabindex="-1"></a>loglik <span class="ot">&lt;-</span> <span class="cf">function</span>(parameters) {</span>
+<span id="cb271-365"><a href="#cb271-365" aria-hidden="true" tabindex="-1"></a>  b0 <span class="ot">&lt;-</span> parameters[<span class="dv">1</span>]</span>
+<span id="cb271-366"><a href="#cb271-366" aria-hidden="true" tabindex="-1"></a>  b1 <span class="ot">&lt;-</span> parameters[<span class="dv">2</span>]</span>
+<span id="cb271-367"><a href="#cb271-367" aria-hidden="true" tabindex="-1"></a>  sigma <span class="ot">&lt;-</span> parameters[<span class="dv">3</span>]</span>
+<span id="cb271-368"><a href="#cb271-368" aria-hidden="true" tabindex="-1"></a>  N <span class="ot">&lt;-</span> <span class="fu">nrow</span>(d)</span>
+<span id="cb271-369"><a href="#cb271-369" aria-hidden="true" tabindex="-1"></a>  <span class="co"># here, we say how our expectation for how our response variable, y, is calculated based on parameters</span></span>
+<span id="cb271-370"><a href="#cb271-370" aria-hidden="true" tabindex="-1"></a>  y <span class="ot">&lt;-</span> b0 <span class="sc">+</span> b1 <span class="sc">*</span> d<span class="sc">$</span>weight <span class="co"># estimating mean height as a function of weight</span></span>
+<span id="cb271-371"><a href="#cb271-371" aria-hidden="true" tabindex="-1"></a>  <span class="co"># then use this mu in a similar fashion as previously</span></span>
+<span id="cb271-372"><a href="#cb271-372" aria-hidden="true" tabindex="-1"></a>  ll <span class="ot">&lt;-</span> <span class="sc">-</span><span class="dv">1</span> <span class="sc">*</span> N<span class="sc">*</span><span class="fu">log</span>(<span class="fu">sqrt</span>(<span class="dv">2</span><span class="sc">*</span>pi)) <span class="sc">-</span> N<span class="sc">*</span><span class="fu">log</span>(sigma) <span class="sc">-</span> <span class="fl">0.5</span><span class="sc">*</span><span class="fu">sum</span>((d<span class="sc">$</span>height <span class="sc">-</span> y)<span class="sc">^</span><span class="dv">2</span><span class="sc">/</span>sigma<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb271-373"><a href="#cb271-373" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(ll)</span>
+<span id="cb271-374"><a href="#cb271-374" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb271-375"><a href="#cb271-375" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb271-376"><a href="#cb271-376" aria-hidden="true" tabindex="-1"></a>mle_norm <span class="ot">&lt;-</span> <span class="fu">maxLik</span>(loglik,</span>
+<span id="cb271-377"><a href="#cb271-377" aria-hidden="true" tabindex="-1"></a>                   <span class="at">start=</span><span class="fu">c</span>(<span class="at">beta0=</span><span class="dv">0</span>, <span class="at">beta1=</span><span class="dv">0</span>, <span class="at">sigma=</span><span class="dv">1</span>),</span>
+<span id="cb271-378"><a href="#cb271-378" aria-hidden="true" tabindex="-1"></a>                   <span class="at">method =</span> <span class="st">"NM"</span>) <span class="co"># implements the Nelder-Mead algorithm for likelihood maximization</span></span>
+<span id="cb271-379"><a href="#cb271-379" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mle_norm)</span>
+<span id="cb271-380"><a href="#cb271-380" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb271-381"><a href="#cb271-381" aria-hidden="true" tabindex="-1"></a><span class="co"># results of both of these should be similar!</span></span>
+<span id="cb271-382"><a href="#cb271-382" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 </code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->

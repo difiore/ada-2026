@@ -56,6 +56,7 @@ The `dnorm()` function returns this relative likelihood directly...
 To further explore calculating likelihoods, let's create and plot a sample of 100 random variables from a normal distribution with a $\mu$ of 50 and a $\sigma$ of 10:
 
 ```{r}
+set.seed(0) # for reproducibility in rnorm
 d <- tibble(val = rnorm(100, mean = 50, sd = 10))
 p <- ggplot(d) +
   geom_histogram(aes(x = val, y = after_stat(density)))
@@ -192,10 +193,10 @@ Testing our function...
 val <- d$val
 mean <- 50
 sd <- 10
-verbose_nll(val, mean, sd)
+verbose_nll(val, mean, sd, verbose = TRUE)
 mean <- 65
 sd <- 20
-verbose_nll(val, mean, sd)
+verbose_nll(val, mean, sd, verbose = TRUE)
 ```
 
 ... we see that **negative log likelihood** of our data under the first distribution is smaller than under the second, indicating that it is more likely that are data are drawn from the first distribution.
@@ -233,7 +234,7 @@ So far, we have just used this function to calculate the (negative) log likeliho
 > NOTE: Be aware that to run the function below, we need to have the variable **val**, a vector of values, specified outside of the function. We previously set **val** to **d**, our random sample of 100 draws from a normal distribution with $\mu$=50 and $\sigma$=10... feel free to play around with alternatives and see how well the MLE process estimates these parameters.
 
 ```{r}
-val <- rnorm(1000, mean = 50, sd = 10)
+library(bbmle)
 
 mle_norm <- mle2(
   minuslogl = simple_nll,
@@ -245,7 +246,7 @@ mle_norm
 # note the estimates for `mu` and `sigma` are very close to the population level parameters of the normal distribution that our vector `val` was drawn from
 ```
 
-An alternative for MLE is the `maxLik()` function from the {maxLik} package. To use function, we again first define our own log likelihood function, but this time we do not want an negative log likelihood, so we do not multiply it by minus 1. This is because the first argument to `maxLik()` is a log likelihood function, not a **negative** log likelihood function. Our function should also have only one argument... a **vector** of parameter values... rather than separate arguments for each parameter.
+An alternative for MLE is the `maxLik()` function from the {maxLik} package. To use function, we again first define our own log likelihood function, but this time we do not want a **negative** log likelihood, so we do not multiply it by minus 1 (i.e., the first argument `maxLik()` expects is a log likelihood function, not a **negative** log likelihood function). Our function should also have only one argument... a **vector** of parameter values... rather than separate arguments for each parameter.
 
 ```{r}
 simple_ll <- function(parameters) {
