@@ -37,7 +37,7 @@
         - Classes and attributes of objects
         - Scripting and sourcing scripts
 
-#### Suggested Readings {.unnumbered}
+#### Required Readings {.unnumbered}
 
 - *Introduction to Data Science*
     - Chapter 1 - Introduction
@@ -78,7 +78,7 @@
     - Reproducible research using **Quarto** or **RMarkdown** documents and notebooks
     - Programming conventions and style
 
-#### Suggested Readings {.unnumbered}
+#### Required Readings {.unnumbered}
 
 - *Introduction to Data Science*
     - Chapter 39 - ***Git*** and ***GitHub***
@@ -119,7 +119,7 @@
         - From other online resources - {curl}
         - From databases - {RMySQL}, {RSQLite}, {RPostgreSQL} and others
 
-#### Suggested Readings {.unnumbered}
+#### Required Readings {.unnumbered}
 
 - *The Book of R*
     - Chapter 3 - Matrices and Arrays
@@ -151,7 +151,7 @@
     - Tidying and reshaping data with {tidyr}
     - Simple plotting (boxplots, histograms, scatterplots) with {base} ***R***, {ggplot2}, and others
 
-#### Suggested Readings {.unnumbered}
+#### Required Readings {.unnumbered}
 
 - *Introduction to Data Science*
     - Chapter 5 - The {tidyverse}
@@ -188,7 +188,7 @@
         - `for()` loops
         - `while()` loops
 
-#### Suggested Readings {.unnumbered}
+#### Required Readings {.unnumbered}
 
 - *Introduction to Data Science*
     - Chapter 4 - Programming Basics
@@ -218,7 +218,7 @@
 - Describing central tendency, spread, and skew
 - Standard errors and quantiles
 
-#### Suggested Readings {.unnumbered}
+#### Required Readings {.unnumbered}
 
 - *Modern Data Science with R*
     - Chapter 7 - Statistical Foundations
@@ -261,7 +261,7 @@
         - Normal
 - Q-Q plots
 
-#### Suggested Readings {.unnumbered}
+#### Required Readings {.unnumbered}
 
 - *Introduction to Data Science*
     - Chapter 14 - Probability
@@ -283,7 +283,7 @@
     - CIs based on bootstrapping
     - CIs for proportions
 
-#### Suggested Readings {.unnumbered}
+#### Required Readings {.unnumbered}
 
 - *Introduction to Data Science*
     - Chapter 16 - Statistical Inference
@@ -314,7 +314,7 @@
 - Type I and Type II error
 - Statistical power, effect sizes
 
-#### Suggested Readings {.unnumbered}
+#### Required Readings {.unnumbered}
 
 - *The Book of R*
     - Chapter 18 - Hypothesis Testing
@@ -353,7 +353,7 @@
     - Model I versus Model II regression
     - The `lm()` function
 
-#### Suggested Readings {.unnumbered}
+#### Required Readings {.unnumbered}
 
 - *The Book of R*
     - Chapter 20 - Simple Linear Regression
@@ -388,7 +388,7 @@
 - Partitioning of variance in linear models
 - Data transformations
 
-#### Suggested Readings {.unnumbered}
+#### Required Readings {.unnumbered}
 
 - *Statistical Inference via Data Science*
     - Chapter 10 - Inference for Regression
@@ -422,7 +422,7 @@
     - Interactions between predictors
     - Interaction plots to visualize changes across groups
 
-#### Suggested Readings {.unnumbered}
+#### Required Readings {.unnumbered}
 
 - *The Book of R*
     - Chapter 19 - Analysis of Variance
@@ -452,7 +452,7 @@
     - {MASS} `stepwise()`
     - {AICcmodavg}
 
-#### Suggested Readings {.unnumbered}
+#### Required Readings {.unnumbered}
 
 - *The Book of R*
     - Chapter 22 - Linear Model Selection and Diagnostics
@@ -483,7 +483,7 @@
     - Combining fixed and random factors
 - Assessing model fit for GLMs and mixed models
 
-#### Suggested Readings {.unnumbered}
+#### Required Readings {.unnumbered}
 
 - *R in Action*
     - Chapter 13 - Generalized Linear Models

@@ -9,7 +9,7 @@
 
 ### Preliminaries {.unnumbered}
 
-- Set up a new ***GitHub*** repo in your ***GitHub*** workspace named "exercise-11" and clone that down to your computer as a new ***RStudio*** project. The instructions outlined as **Method 1** in [**Module 6**](#module-06) will be helpful.
+- Set up a new ***GitHub*** repo in your ***GitHub*** workspace named "exercise-10" and clone that down to your computer as a new ***RStudio*** project. The instructions outlined as **Method 1** in [**Module 6**](#module-06) will be helpful.
 
 - Using the {tidyverse} `read_csv()` function, load the "AVONETdataset1.csv" dataset from [this URL](https://github.com/difiore/ada-datasets/blob/main/AVONETdataset1.csv) as a "tibble" named **d**. As discussed in class, this is a recently published dataset that compiles morphological measurements and information on various ecological variables and geographic range data for more than 11,000 species of birds.
 

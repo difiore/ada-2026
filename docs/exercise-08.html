@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Applied Data Analysis 2026 - Exercise 05</title>
+<title>Applied Data Analysis 2026 - Exercise 08</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -64,8 +64,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./exercise-06.html" rel="next">
-<link href="./exercise-04-solution.html" rel="prev">
+<link href="./data-analysis-replication-assignment.html" rel="next">
+<link href="./exercise-07.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -145,7 +145,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./exercise-01.html">Exercises</a></li><li class="breadcrumb-item"><a href="./exercise-05.html">Exercise 05</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./exercise-01.html">Exercises</a></li><li class="breadcrumb-item"><a href="./exercise-08.html">Exercise 08</a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -428,7 +428,7 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./exercise-05.html" class="sidebar-item-text sidebar-link active">
+  <a href="./exercise-05.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Exercise 05</span></a>
   </div>
 </li>
@@ -452,7 +452,7 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./exercise-08.html" class="sidebar-item-text sidebar-link">
+  <a href="./exercise-08.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Exercise 08</span></a>
   </div>
 </li>
@@ -502,14 +502,11 @@ window.Quarto = {
     <h2 id="toc-title">Table of Contents</h2>
    
   <ul>
-  <li><a href="#generate-sampling-distributions-and-cis" id="toc-generate-sampling-distributions-and-cis" class="nav-link active" data-scroll-target="#generate-sampling-distributions-and-cis">Generate Sampling Distributions and CIs</a>
+  <li><a href="#practice-simple-linear-regression" id="toc-practice-simple-linear-regression" class="nav-link active" data-scroll-target="#practice-simple-linear-regression">Practice Simple Linear Regression</a>
   <ul class="collapse">
   <li><a href="#learning-objectives" id="toc-learning-objectives" class="nav-link" data-scroll-target="#learning-objectives">Learning Objectives</a>
   <ul class="collapse">
   <li><a href="#preliminaries" id="toc-preliminaries" class="nav-link" data-scroll-target="#preliminaries">Preliminaries</a></li>
-  </ul></li>
-  <li><a href="#challenge-1" id="toc-challenge-1" class="nav-link" data-scroll-target="#challenge-1">Challenge 1</a>
-  <ul class="collapse">
   <li><a href="#step-1" id="toc-step-1" class="nav-link" data-scroll-target="#step-1">Step 1</a></li>
   <li><a href="#step-2" id="toc-step-2" class="nav-link" data-scroll-target="#step-2">Step 2</a></li>
   <li><a href="#step-3" id="toc-step-3" class="nav-link" data-scroll-target="#step-3">Step 3</a></li>
@@ -518,21 +515,6 @@ window.Quarto = {
   <li><a href="#step-6" id="toc-step-6" class="nav-link" data-scroll-target="#step-6">Step 6</a></li>
   <li><a href="#step-7" id="toc-step-7" class="nav-link" data-scroll-target="#step-7">Step 7</a></li>
   <li><a href="#step-8" id="toc-step-8" class="nav-link" data-scroll-target="#step-8">Step 8</a></li>
-  <li><a href="#step-9" id="toc-step-9" class="nav-link" data-scroll-target="#step-9">Step 9</a></li>
-  <li><a href="#step-10" id="toc-step-10" class="nav-link" data-scroll-target="#step-10">Step 10</a></li>
-  </ul></li>
-  <li><a href="#challenge-2" id="toc-challenge-2" class="nav-link" data-scroll-target="#challenge-2">Challenge 2</a>
-  <ul class="collapse">
-  <li><a href="#step-1-1" id="toc-step-1-1" class="nav-link" data-scroll-target="#step-1-1">Step 1</a></li>
-  <li><a href="#step-2-1" id="toc-step-2-1" class="nav-link" data-scroll-target="#step-2-1">Step 2</a></li>
-  <li><a href="#step-3-1" id="toc-step-3-1" class="nav-link" data-scroll-target="#step-3-1">Step 3</a></li>
-  <li><a href="#step-4-1" id="toc-step-4-1" class="nav-link" data-scroll-target="#step-4-1">Step 4</a></li>
-  <li><a href="#step-5-1" id="toc-step-5-1" class="nav-link" data-scroll-target="#step-5-1">Step 5</a></li>
-  <li><a href="#step-6-1" id="toc-step-6-1" class="nav-link" data-scroll-target="#step-6-1">Step 6</a></li>
-  <li><a href="#step-7-1" id="toc-step-7-1" class="nav-link" data-scroll-target="#step-7-1">Step 7</a></li>
-  <li><a href="#step-8-1" id="toc-step-8-1" class="nav-link" data-scroll-target="#step-8-1">Step 8</a></li>
-  <li><a href="#step-9-1" id="toc-step-9-1" class="nav-link" data-scroll-target="#step-9-1">Step 9</a></li>
-  <li><a href="#step-10-1" id="toc-step-10-1" class="nav-link" data-scroll-target="#step-10-1">Step 10</a></li>
   </ul></li>
   </ul></li>
   </ul>
@@ -541,9 +523,9 @@ window.Quarto = {
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./exercise-01.html">Exercises</a></li><li class="breadcrumb-item"><a href="./exercise-05.html">Exercise 05</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./exercise-01.html">Exercises</a></li><li class="breadcrumb-item"><a href="./exercise-08.html">Exercise 08</a></li></ol></nav>
 <div class="quarto-title">
-<div class="quarto-title-block"><div><h1 class="title">Exercise 05</h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Code</button></div></div>
+<div class="quarto-title-block"><div><h1 class="title">Exercise 08</h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Code</button></div></div>
 </div>
 
 
@@ -560,170 +542,84 @@ window.Quarto = {
 </header>
 
 
-<section id="generate-sampling-distributions-and-cis" class="level1 unnumbered">
-<h1 class="unnumbered">Generate Sampling Distributions and CIs</h1>
+<section id="practice-simple-linear-regression" class="level1 unnumbered">
+<h1 class="unnumbered">Practice Simple Linear Regression</h1>
 <section id="learning-objectives" class="level2 unnumbered">
 <h2 class="unnumbered anchored" data-anchor-id="learning-objectives">Learning Objectives</h2>
 <ul>
-<li>Generating sampling distributions by simulation</li>
-<li>Calculating standard errors</li>
-<li>Plotting with {ggplot2}</li>
-<li>Examining the distributions of variables</li>
-<li>Bootstrapping to derive a CI</li>
+<li>Explore a published comparative dataset on primate group size, brain size, and life history variables</li>
+<li>Conduct simple linear regression analyses with this dataset where you:
+<ul>
+<li>Generate regression coefficients by hand</li>
+<li>Use existing <strong><em>R</em></strong> functions and “formula notation” to generate regression coefficients for simple regression models</li>
+<li>Calculate theory-based standard error estimates and p values for the regression coefficients by hand and also extract these from model summaries</li>
+<li>Generate theory-based confidence intervals for the regression coefficients by hand and also extract these from model summaries</li>
+<li>Generate confidence intervals for regression coefficients and p values for regression coefficients using permutation/bootstrapping methods</li>
+</ul></li>
 </ul>
+<blockquote class="blockquote">
+<p><strong>Data source</strong>:</p>
+<p>Street SE, Navarrete AF, Reader SM, and Laland KN. (2017). Coevolution of cultural intelligence, extended life history, sociality, and brain size in primates. <em>Proceedings of the National Academy of Sciences</em> 114: 7908–7914.</p>
+</blockquote>
 <section id="preliminaries" class="level3 unnumbered">
 <h3 class="unnumbered anchored" data-anchor-id="preliminaries">Preliminaries</h3>
 <ul>
-<li>Set up a new <strong><em>GitHub</em></strong> repo in your <strong><em>GitHub</em></strong> workspace named “exercise-05” and clone that down to your computer as a new <strong><em>RStudio</em></strong> project. The instructions outlined as <strong>Method 1</strong> in <a href="06-module.html"><strong>Module 6</strong></a> will be helpful.</li>
+<li>Set up a new <strong><em>GitHub</em></strong> repo in your <strong><em>GitHub</em></strong> workspace named “exercise-08” and clone that down to your computer as a new <strong><em>RStudio</em></strong> project. The instructions outlined as <strong>Method 1</strong> in <a href="06-module.html"><strong>Module 6</strong></a> will be helpful.</li>
 </ul>
 </section>
-</section>
-<section id="challenge-1" class="level2 unnumbered">
-<h2 class="unnumbered anchored" data-anchor-id="challenge-1">Challenge 1</h2>
 <section id="step-1" class="level3 unnumbered">
 <h3 class="unnumbered anchored" data-anchor-id="step-1">Step 1</h3>
 <ul>
-<li>Using the {tidyverse} <code>read_csv()</code> function, load the “IMDB-movies.csv” dataset from <a href="https://raw.githubusercontent.com/difiore/ada-datasets/main/IMDB-movies.csv">this URL</a> as a “tibble” named <strong>d</strong></li>
+<li>Using the {tidyverse} <code>read_csv()</code> function, load the “Street_et_al_2017.csv” dataset from <a href="https://raw.githubusercontent.com/difiore/ada-datasets/main/Street_et_al_2017.csv">this URL</a> as a “tibble” named <strong>d</strong>.</li>
+<li>Do a quick exploratory data analysis where you generate the five-number summary (median, minimum and maximum and 1st and 3rd quartile values), plus mean and standard deviation, for each quantitative variable.</li>
 </ul>
+<blockquote class="blockquote">
+<p><strong>HINT</strong>: The <code>skim()</code> function from the package {skimr} makes this very easy!</p>
+</blockquote>
 </section>
 <section id="step-2" class="level3 unnumbered">
 <h3 class="unnumbered anchored" data-anchor-id="step-2">Step 2</h3>
 <ul>
-<li>Use a one-line statement to filter the dataset to include just movies from 1920 to 1979 and movies that are between 1 and 3 hours long (<strong>runtimeMinutes</strong> &gt;= 60 and <strong>runtimeMinutes</strong> &lt;= 180), and add a new column that codes the <strong>startYear</strong> into a new variable, <strong>decade</strong> (“20s”, “30s”, …“70s”). If you do this correctly, there should be 5651 movies remaining in the dataset.</li>
+<li>From this dataset, plot brain size (<strong>ECV</strong>) as a function of social group size (<strong>Group_size</strong>), longevity (<strong>Longevity</strong>), juvenile period length (<strong>Weaning</strong>), and reproductive lifespan (<strong>Repro_lifespan</strong>).</li>
 </ul>
-<blockquote class="blockquote">
-<p><strong>HINT:</strong> Use {dplyr} functions and the pipe operator!</p>
-</blockquote>
 </section>
 <section id="step-3" class="level3 unnumbered">
 <h3 class="unnumbered anchored" data-anchor-id="step-3">Step 3</h3>
 <ul>
-<li>Use {ggplot2} (which is part of {tidyverse}) to plot histograms of the distribution of <strong>runtimeMinutes</strong> for each decade.</li>
+<li>Derive by hand the ordinary least squares regression coefficients <span class="math inline">\(\beta1\)</span> and <span class="math inline">\(\beta0\)</span> for ECV as a function of social group size.</li>
 </ul>
 <blockquote class="blockquote">
-<p><strong>HINT:</strong> Try using <code>facet_wrap()</code> to do this!</p>
+<p><strong>HINT</strong>: You will need to remove rows from your dataset where one of these variables is missing.</p>
 </blockquote>
 </section>
 <section id="step-4" class="level3 unnumbered">
 <h3 class="unnumbered anchored" data-anchor-id="step-4">Step 4</h3>
 <ul>
-<li>Use a one-line statement to calculate the population mean and population standard deviation in <strong>runtimeMinutes</strong> for each decade and save the results in a new dataframe called <strong>results</strong>.</li>
+<li>Confirm that you get the same results using the <code>lm()</code> function.</li>
 </ul>
 </section>
 <section id="step-5" class="level3 unnumbered">
 <h3 class="unnumbered anchored" data-anchor-id="step-5">Step 5</h3>
 <ul>
-<li>Draw a single sample of 100 movies, without replacement, from each decade and calculate the single sample mean and single sample standard deviation in <strong>runtimeMinutes</strong> for each decades. Recall that your single sample mean for each decade is an <em>estimate</em> of the population mean for each decade.</li>
+<li>Repeat the analysis above for three different major radiations of primates - “catarrhines”, “platyrrhines”, and “strepsirhines”) separately. These are stored in the variable <strong>Taxonomic_group</strong>. Do your regression coefficients differ among groups? How might you determine this?</li>
 </ul>
-<blockquote class="blockquote">
-<p><strong>HINT</strong>: The {dplyr} functions, <code>sample_n()</code> (which is being deprecated) and its replacement, <code>slice_sample()</code>, lets you randomly sample rows from tabular data the same way that <code>sample()</code> lets you sample items from a vector.</p>
-</blockquote>
 </section>
 <section id="step-6" class="level3 unnumbered">
 <h3 class="unnumbered anchored" data-anchor-id="step-6">Step 6</h3>
 <ul>
-<li>Calculate for each decade the standard error around your estimate of the population mean <strong>runtimeMinutes</strong> based on the standard deviation and sample size (n=100 movies) of your single sample.</li>
+<li>For your first regression of ECV on social group size, calculate the standard error for the slope coefficient, the 95% CI, and the <em>p</em> value associated with this coefficient by hand. Also extract this same information from the results of running the <code>lm()</code> function.</li>
 </ul>
 </section>
 <section id="step-7" class="level3 unnumbered">
 <h3 class="unnumbered anchored" data-anchor-id="step-7">Step 7</h3>
 <ul>
-<li>Compare these estimates to the actual population mean <strong>runtimeMinutes</strong> for each decade and to the expected SE in the population mean for samples of size 100 based on the known population standard deviation for each decade.</li>
+<li>Use a permutation approach with 1000 permutations to generate a null sampling distribution for the <strong>slope coefficient</strong>. What is it that you need to permute? What is the p value associated with your original slope coefficient? You can use either the quantile method (i.e., using quantiles from the actual permutation-based null sampling distribution) or a theory-based method (i.e., using the standard deviation of the permutation-based null sampling distribution as the estimate of the standard error, along with a normal or t distribution), or both, to calculate this p value.</li>
 </ul>
 </section>
 <section id="step-8" class="level3 unnumbered">
 <h3 class="unnumbered anchored" data-anchor-id="step-8">Step 8</h3>
 <ul>
-<li>Generate a <em>sampling distribution</em> of mean <strong>runtimeMinutes</strong> for each decade by [a] drawing 1000 random samples of 100 movies from each decade, without replacement, and, for each sample, [b] calculating the mean <strong>runtimeMinutes</strong> and the standard deviation in <strong>runtimeMinutes</strong> for each decade. Use either a standard <code>for( ){ }</code> loop, the <code>do(reps) *</code> formulation from {mosaic}, the <code>rerun()</code> function from {purrr}, or the <code>rep_sample_n()</code> workflow from {infer} to generate your these sampling distributions (see <a href="16-module.html"><strong>Module 16</strong></a>).</li>
-</ul>
-</section>
-<section id="step-9" class="level3 unnumbered">
-<h3 class="unnumbered anchored" data-anchor-id="step-9">Step 9</h3>
-<ul>
-<li>Then, calculate the <strong>mean</strong> and the <strong>standard deviation</strong> of the sampling distribution of sample means for each decade (the former should be a very good estimate of the population mean, while the latter is another estimate of the standard error in our estimate of the population mean for a particular sample size) and plot a histogram of the sampling distribution for each decade. What shape does it have?</li>
-</ul>
-</section>
-<section id="step-10" class="level3 unnumbered">
-<h3 class="unnumbered anchored" data-anchor-id="step-10">Step 10</h3>
-<ul>
-<li>Finally, compare the standard error in <strong>runtimeMinutes</strong> for samples of size 100 from each decade [1] as estimated from your <strong>first</strong> sample of 100 movies, [2] as calculated from the known <em>population</em> standard deviations for each decade, and [3] as estimated from the sampling distribution of sample means for each decade.</li>
-</ul>
-</section>
-</section>
-<section id="challenge-2" class="level2 unnumbered">
-<h2 class="unnumbered anchored" data-anchor-id="challenge-2">Challenge 2</h2>
-<p><img src="img/pvz-hand.png" align="right" width="100px"></p>
-<section id="step-1-1" class="level3 unnumbered">
-<h3 class="unnumbered anchored" data-anchor-id="step-1-1">Step 1</h3>
-<ul>
-<li>Using the {tidyverse} <code>read_csv()</code> function, load the “zombies.csv” dataset from <a href="https://raw.githubusercontent.com/difiore/ada-datasets/main/zombies.csv">this URL</a> as a “tibble” named <strong>z</strong>. This dataset includes the first and last name and gender of the <strong>entire</strong> population of 1000 people who have survived the zombie apocalypse and are now ekeing out an existence somewhere on the Gulf Coast, along with several other variables (height, weight, age, number of years of education, number of zombies they have killed, and college major). <a href="http://www.thebestschools.org/magazine/best-majors-surviving-zombie-apocalypse/">See here for info on important post-zombie apocalypse majors!</a></li>
-</ul>
-</section>
-<section id="step-2-1" class="level3 unnumbered">
-<h3 class="unnumbered anchored" data-anchor-id="step-2-1">Step 2</h3>
-<ul>
-<li>Calculate the <em>population</em> mean and standard deviation for each quantitative random variable in the dataset (height, weight, age, number of zombies killed, and years of education).</li>
-</ul>
-<blockquote class="blockquote">
-<p><strong>NOTE:</strong> You will <strong>not</strong> want to use the built in <code>var()</code> and <code>sd()</code> commands as those are for <em>samples</em>.</p>
-</blockquote>
-</section>
-<section id="step-3-1" class="level3 unnumbered">
-<h3 class="unnumbered anchored" data-anchor-id="step-3-1">Step 3</h3>
-<ul>
-<li>Use {ggplot} and make boxplots of each of these variables by gender.</li>
-</ul>
-</section>
-<section id="step-4-1" class="level3 unnumbered">
-<h3 class="unnumbered anchored" data-anchor-id="step-4-1">Step 4</h3>
-<ul>
-<li>Use {ggplot} and make scatterplots of height and weight in relation to age (i.e., use age as the <span class="math inline">\(x\)</span> variable), using different colored points for males versus females. Do these variables seem to be related? In what way?</li>
-</ul>
-</section>
-<section id="step-5-1" class="level3 unnumbered">
-<h3 class="unnumbered anchored" data-anchor-id="step-5-1">Step 5</h3>
-<ul>
-<li>Using histograms and Q-Q plots, check whether each of the quantitative variables seem to be drawn from a normal distribution. Which seem to be and which do not?</li>
-</ul>
-<blockquote class="blockquote">
-<p><strong>HINT:</strong> Not all are drawn from a normal distribution! For those that are not, can you determine what common distribution they are drawn from?</p>
-</blockquote>
-</section>
-<section id="step-6-1" class="level3 unnumbered">
-<h3 class="unnumbered anchored" data-anchor-id="step-6-1">Step 6</h3>
-<ul>
-<li>Now use the <code>sample_n()</code> or <code>slice_sample()</code> function from {dplyr} to sample ONE subset of 50 zombie apocalypse survivors (without replacement) from this population and calculate the mean and sample standard deviation for each variable. Also estimate the standard error for each variable based on this one sample and use that to construct a theoretical 95% confidence interval for each mean. You can use either the standard normal <em>or</em> a Student’s t distribution to derive the critical values needed to calculate the lower and upper limits of the CI.</li>
-</ul>
-</section>
-<section id="step-7-1" class="level3 unnumbered">
-<h3 class="unnumbered anchored" data-anchor-id="step-7-1">Step 7</h3>
-<ul>
-<li>Then draw another 199 random samples of 50 zombie apocalypse survivors out of the population and calculate the mean for each of the these samples. Together with the first sample you drew out, you now have a set of 200 means for each variable (each of which is based on 50 observations), which constitutes a sampling distribution for each variable. What are the means and standard deviations of the <strong>sampling distribution</strong> for each variable? How do the standard deviations of the sampling distribution for each variable compare to the standard errors estimated from your first sample of size 50?</li>
-</ul>
-</section>
-<section id="step-8-1" class="level3 unnumbered">
-<h3 class="unnumbered anchored" data-anchor-id="step-8-1">Step 8</h3>
-<ul>
-<li>Plot the sampling distributions for each variable mean. What do they look like? Are they normally distributed? What about for those variables that you concluded were not originally drawn from a normal distribution?</li>
-</ul>
-</section>
-<section id="step-9-1" class="level3 unnumbered">
-<h3 class="unnumbered anchored" data-anchor-id="step-9-1">Step 9</h3>
-<ul>
-<li>Construct a 95% confidence interval for each mean <strong>directly from the sampling distribution</strong> of sample means using the central 95% that distribution (i.e., by setting the lower and upper CI bounds to 2.5% and 97.5% of the way through that distribution).</li>
-</ul>
-<blockquote class="blockquote">
-<p><strong>HINT</strong>: You will want to use the <code>quantile()</code> function for this!</p>
-</blockquote>
-<p>How do the various 95% CIs you estimated compare to one another (i.e., the CI based on one sample and the corresponding sample standard deviation versus the CI based on simulation where you created a sampling distribution across 200 samples)?</p>
-<blockquote class="blockquote">
-<p><strong>NOTE:</strong> Remember, too, that the standard deviation of the sampling distribution is the standard error. You <em>could</em> use this value to derive yet another estimate for the 95% CI as the shape of the sampling distribution should be normal.</p>
-</blockquote>
-</section>
-<section id="step-10-1" class="level3 unnumbered">
-<h3 class="unnumbered anchored" data-anchor-id="step-10-1">Step 10</h3>
-<ul>
-<li>Finally, use bootstrapping to generate a 95% confidence interval for each variable mean <strong>by resampling 1000 samples, with replacement, from your original sample</strong> (i.e., by setting the lower and upper CI bounds to 2.5% and 97.5% of the way through the sampling distribution generated by bootstrapping). How does this compare to the CIs generated in Step 9?</li>
+<li>Use bootstrapping to generate a 95% CI for your estimate of the slope coefficient using both the quantile method and the theory-based method (i.e., using the standard deviation of the bootstrapped sampling distribution as an estimate of the standard error). Do these CIs suggest that your slope coefficient is different from zero?</li>
 </ul>
 
 
@@ -1174,130 +1070,75 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./exercise-04-solution.html" class="pagination-link  aria-label=" exercise="" 04="" solution"="">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Exercise 04 Solution</span>
+      <a href="./exercise-07.html" class="pagination-link  aria-label=" exercise="" 07"="">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Exercise 07</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./exercise-06.html" class="pagination-link" aria-label="Exercise 06">
-        <span class="nav-page-text">Exercise 06</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./data-analysis-replication-assignment.html" class="pagination-link" aria-label="Data Analysis Replication">
+        <span class="nav-page-text">Data Analysis Replication</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
-<div class="sourceCode" id="cb1" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># Exercise 05 {.unnumbered}</span></span>
+<div class="sourceCode" id="cb1" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># Exercise 08 {.unnumbered}</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu"># Generate Sampling Distributions and CIs {.unnumbered}</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu"># Practice Simple Linear Regression {.unnumbered}</span></span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">## Learning Objectives {.unnumbered}</span></span>
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Generating sampling distributions by simulation</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Calculating standard errors</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Plotting with {ggplot2}</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Examining the distributions of variables</span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Bootstrapping to derive a CI</span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="fu">### Preliminaries {.unnumbered}</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Explore a published comparative dataset on primate group size, brain size, and life history variables</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Conduct simple linear regression analyses with this dataset where you:</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>Generate regression coefficients by hand</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>Use existing ***R*** functions and "formula notation" to generate regression coefficients for simple regression models</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>Calculate theory-based standard error estimates and p values for the regression coefficients by hand and also extract these from model summaries</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>Generate theory-based confidence intervals for the regression coefficients by hand and also extract these from model summaries</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>Generate confidence intervals for regression coefficients and p values for regression coefficients using permutation/bootstrapping methods</span>
 <span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Set up a new ***GitHub*** repo in your ***GitHub*** workspace named "exercise-05" and clone that down to your computer as a new ***RStudio*** project. The instructions outlined as **Method 1** in [**Module 6**](#module-06) will be helpful.</span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="fu">## Challenge 1 {.unnumbered}</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; **Data source**:</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="at">&gt;</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; Street SE, Navarrete AF, Reader SM, and Laland KN. (2017). Coevolution of cultural intelligence, extended life history, sociality, and brain size in primates. *Proceedings of the National Academy of Sciences* 114: 7908–7914.</span></span>
 <span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="fu">### Step 1 {.unnumbered}</span></span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Using the {tidyverse} <span class="in">`read_csv()`</span> function, load the "IMDB-movies.csv" dataset from <span class="co">[</span><span class="ot">this URL</span><span class="co">](https://raw.githubusercontent.com/difiore/ada-datasets/main/IMDB-movies.csv)</span> as a "tibble" named **d**</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="fu">### Preliminaries {.unnumbered}</span></span>
 <span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="fu">### Step 2 {.unnumbered}</span></span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Use a one-line statement to filter the dataset to include just movies from 1920 to 1979 and movies that are between 1 and 3 hours long (**runtimeMinutes** &gt;= 60 and **runtimeMinutes** &lt;= 180), and add a new column that codes the **startYear** into a new variable, **decade** ("20s", "30s", ..."70s"). If you do this correctly, there should be 5651 movies remaining in the dataset.</span>
-<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; **HINT:** Use {dplyr} functions and the pipe operator!</span></span>
-<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a><span class="fu">### Step 3 {.unnumbered}</span></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Set up a new ***GitHub*** repo in your ***GitHub*** workspace named "exercise-08" and clone that down to your computer as a new ***RStudio*** project. The instructions outlined as **Method 1** in [**Module 6**](#module-06) will be helpful.</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a><span class="fu">### Step 1 {.unnumbered}</span></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Using the {tidyverse} <span class="in">`read_csv()`</span> function, load the "Street_et_al_2017.csv" dataset from <span class="co">[</span><span class="ot">this URL</span><span class="co">](https://raw.githubusercontent.com/difiore/ada-datasets/main/Street_et_al_2017.csv)</span> as a "tibble" named **d**.</span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Do a quick exploratory data analysis where you generate the five-number summary (median, minimum and maximum and 1st and 3rd quartile values), plus mean and standard deviation, for each quantitative variable.</span>
 <span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Use {ggplot2} (which is part of {tidyverse}) to plot histograms of the distribution of **runtimeMinutes** for each decade.</span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; **HINT**: The </span><span class="in">`skim()`</span><span class="at"> function from the package {skimr} makes this very easy!</span></span>
 <span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; **HINT:** Try using </span><span class="in">`facet_wrap()`</span><span class="at"> to do this!</span></span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a><span class="fu">### Step 2 {.unnumbered}</span></span>
 <span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a><span class="fu">### Step 4 {.unnumbered}</span></span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>From this dataset, plot brain size (**ECV**) as a function of social group size (**Group_size**), longevity (**Longevity**), juvenile period length (**Weaning**), and reproductive lifespan (**Repro_lifespan**).</span>
 <span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Use a one-line statement to calculate the population mean and population standard deviation in **runtimeMinutes** for each decade and save the results in a new dataframe called **results**.</span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a><span class="fu">### Step 3 {.unnumbered}</span></span>
 <span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a><span class="fu">### Step 5 {.unnumbered}</span></span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Derive by hand the ordinary least squares regression coefficients $\beta1$ and $\beta0$ for ECV as a function of social group size.</span>
 <span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Draw a single sample of 100 movies, without replacement, from each decade and calculate the single sample mean and single sample standard deviation in **runtimeMinutes** for each decades. Recall that your single sample mean for each decade is an *estimate* of the population mean for each decade.</span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; **HINT**: You will need to remove rows from your dataset where one of these variables is missing.</span></span>
 <span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; **HINT**: The {dplyr} functions, </span><span class="in">`sample_n()`</span><span class="at"> (which is being deprecated) and its replacement, </span><span class="in">`slice_sample()`</span><span class="at">, lets you randomly sample rows from tabular data the same way that </span><span class="in">`sample()`</span><span class="at"> lets you sample items from a vector.</span></span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a><span class="fu">### Step 4 {.unnumbered}</span></span>
 <span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a><span class="fu">### Step 6 {.unnumbered}</span></span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Confirm that you get the same results using the <span class="in">`lm()`</span> function.</span>
 <span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Calculate for each decade the standard error around your estimate of the population mean **runtimeMinutes** based on the standard deviation and sample size (n=100 movies) of your single sample.</span>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a><span class="fu">### Step 5 {.unnumbered}</span></span>
 <span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a><span class="fu">### Step 7 {.unnumbered}</span></span>
+<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Repeat the analysis above for three different major radiations of primates - "catarrhines", "platyrrhines", and "strepsirhines") separately. These are stored in the variable **Taxonomic_group**. Do your regression coefficients differ among groups? How might you determine this?</span>
 <span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Compare these estimates to the actual population mean **runtimeMinutes** for each decade and to the expected SE in the population mean for samples of size 100 based on the known population standard deviation for each decade.</span>
+<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a><span class="fu">### Step 6 {.unnumbered}</span></span>
 <span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a><span class="fu">### Step 8 {.unnumbered}</span></span>
+<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>For your first regression of ECV on social group size, calculate the standard error for the slope coefficient, the 95% CI, and the *p* value associated with this coefficient by hand. Also extract this same information from the results of running the <span class="in">`lm()`</span> function.</span>
 <span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Generate a *sampling distribution* of mean **runtimeMinutes** for each decade by [a] drawing 1000 random samples of 100 movies from each decade, without replacement, and, for each sample, [b] calculating the mean **runtimeMinutes** and the standard deviation in **runtimeMinutes** for each decade. Use either a standard `for( ){ }` loop, the `do(reps) *` formulation from {mosaic}, the `rerun()` function from {purrr}, or the `rep_sample_n()` workflow from {infer} to generate your these sampling distributions (see [**Module 16**](#module-16)).</span>
+<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a><span class="fu">### Step 7 {.unnumbered}</span></span>
 <span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a><span class="fu">### Step 9 {.unnumbered}</span></span>
+<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Use a permutation approach with 1000 permutations to generate a null sampling distribution for the **slope coefficient**. What is it that you need to permute? What is the p value associated with your original slope coefficient? You can use either the quantile method (i.e., using quantiles from the actual permutation-based null sampling distribution) or a theory-based method (i.e., using the standard deviation of the permutation-based null sampling distribution as the estimate of the standard error, along with a normal or t distribution), or both, to calculate this p value.</span>
 <span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-57"><a href="#cb1-57" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Then, calculate the **mean** and the **standard deviation** of the sampling distribution of sample means for each decade (the former should be a very good estimate of the population mean, while the latter is another estimate of the standard error in our estimate of the population mean for a particular sample size) and plot a histogram of the sampling distribution for each decade. What shape does it have?</span>
+<span id="cb1-57"><a href="#cb1-57" aria-hidden="true" tabindex="-1"></a><span class="fu">### Step 8 {.unnumbered}</span></span>
 <span id="cb1-58"><a href="#cb1-58" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-59"><a href="#cb1-59" aria-hidden="true" tabindex="-1"></a><span class="fu">### Step 10 {.unnumbered}</span></span>
-<span id="cb1-60"><a href="#cb1-60" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-61"><a href="#cb1-61" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Finally, compare the standard error in **runtimeMinutes** for samples of size 100 from each decade [1] as estimated from your **first** sample of 100 movies, <span class="co">[</span><span class="ot">2</span><span class="co">]</span> as calculated from the known *population* standard deviations for each decade, and <span class="co">[</span><span class="ot">3</span><span class="co">]</span> as estimated from the sampling distribution of sample means for each decade.</span>
-<span id="cb1-62"><a href="#cb1-62" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-63"><a href="#cb1-63" aria-hidden="true" tabindex="-1"></a><span class="fu">## Challenge 2 {.unnumbered}</span></span>
-<span id="cb1-64"><a href="#cb1-64" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-65"><a href="#cb1-65" aria-hidden="true" tabindex="-1"></a>&lt;img src="img/pvz-hand.png" align="right" width="100px"/&gt;</span>
-<span id="cb1-66"><a href="#cb1-66" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-67"><a href="#cb1-67" aria-hidden="true" tabindex="-1"></a><span class="fu">### Step 1 {.unnumbered}</span></span>
-<span id="cb1-68"><a href="#cb1-68" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-69"><a href="#cb1-69" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Using the {tidyverse} <span class="in">`read_csv()`</span> function, load the "zombies.csv" dataset from <span class="co">[</span><span class="ot">this URL</span><span class="co">](https://raw.githubusercontent.com/difiore/ada-datasets/main/zombies.csv)</span> as a "tibble" named **z**. This dataset includes the first and last name and gender of the **entire** population of 1000 people who have survived the zombie apocalypse and are now ekeing out an existence somewhere on the Gulf Coast, along with several other variables (height, weight, age, number of years of education, number of zombies they have killed, and college major). <span class="co">[</span><span class="ot">See here for info on important post-zombie apocalypse majors!</span><span class="co">](http://www.thebestschools.org/magazine/best-majors-surviving-zombie-apocalypse/)</span></span>
-<span id="cb1-70"><a href="#cb1-70" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-71"><a href="#cb1-71" aria-hidden="true" tabindex="-1"></a><span class="fu">### Step 2 {.unnumbered}</span></span>
-<span id="cb1-72"><a href="#cb1-72" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-73"><a href="#cb1-73" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Calculate the *population* mean and standard deviation for each quantitative random variable in the dataset (height, weight, age, number of zombies killed, and years of education).</span>
-<span id="cb1-74"><a href="#cb1-74" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-75"><a href="#cb1-75" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; **NOTE:** You will **not** want to use the built in </span><span class="in">`var()`</span><span class="at"> and </span><span class="in">`sd()`</span><span class="at"> commands as those are for *samples*.</span></span>
-<span id="cb1-76"><a href="#cb1-76" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-77"><a href="#cb1-77" aria-hidden="true" tabindex="-1"></a><span class="fu">### Step 3 {.unnumbered}</span></span>
-<span id="cb1-78"><a href="#cb1-78" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-79"><a href="#cb1-79" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Use {ggplot} and make boxplots of each of these variables by gender.</span>
-<span id="cb1-80"><a href="#cb1-80" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-81"><a href="#cb1-81" aria-hidden="true" tabindex="-1"></a><span class="fu">### Step 4 {.unnumbered}</span></span>
-<span id="cb1-82"><a href="#cb1-82" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-83"><a href="#cb1-83" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Use {ggplot} and make scatterplots of height and weight in relation to age (i.e., use age as the $x$ variable), using different colored points for males versus females. Do these variables seem to be related? In what way?</span>
-<span id="cb1-84"><a href="#cb1-84" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-85"><a href="#cb1-85" aria-hidden="true" tabindex="-1"></a><span class="fu">### Step 5 {.unnumbered}</span></span>
-<span id="cb1-86"><a href="#cb1-86" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-87"><a href="#cb1-87" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Using histograms and Q-Q plots, check whether each of the quantitative variables seem to be drawn from a normal distribution. Which seem to be and which do not?</span>
-<span id="cb1-88"><a href="#cb1-88" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-89"><a href="#cb1-89" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; **HINT:** Not all are drawn from a normal distribution! For those that are not, can you determine what common distribution they are drawn from?</span></span>
-<span id="cb1-90"><a href="#cb1-90" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-91"><a href="#cb1-91" aria-hidden="true" tabindex="-1"></a><span class="fu">### Step 6 {.unnumbered}</span></span>
-<span id="cb1-92"><a href="#cb1-92" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-93"><a href="#cb1-93" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Now use the <span class="in">`sample_n()`</span> or <span class="in">`slice_sample()`</span> function from {dplyr} to sample ONE subset of 50 zombie apocalypse survivors (without replacement) from this population and calculate the mean and sample standard deviation for each variable. Also estimate the standard error for each variable based on this one sample and use that to construct a theoretical 95% confidence interval for each mean. You can use either the standard normal *or* a Student's t distribution to derive the critical values needed to calculate the lower and upper limits of the CI.</span>
-<span id="cb1-94"><a href="#cb1-94" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-95"><a href="#cb1-95" aria-hidden="true" tabindex="-1"></a><span class="fu">### Step 7 {.unnumbered}</span></span>
-<span id="cb1-96"><a href="#cb1-96" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-97"><a href="#cb1-97" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Then draw another 199 random samples of 50 zombie apocalypse survivors out of the population and calculate the mean for each of the these samples. Together with the first sample you drew out, you now have a set of 200 means for each variable (each of which is based on 50 observations), which constitutes a sampling distribution for each variable. What are the means and standard deviations of the **sampling distribution** for each variable? How do the standard deviations of the sampling distribution for each variable compare to the standard errors estimated from your first sample of size 50?</span>
-<span id="cb1-98"><a href="#cb1-98" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-99"><a href="#cb1-99" aria-hidden="true" tabindex="-1"></a><span class="fu">### Step 8 {.unnumbered}</span></span>
-<span id="cb1-100"><a href="#cb1-100" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-101"><a href="#cb1-101" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Plot the sampling distributions for each variable mean. What do they look like? Are they normally distributed? What about for those variables that you concluded were not originally drawn from a normal distribution?</span>
-<span id="cb1-102"><a href="#cb1-102" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-103"><a href="#cb1-103" aria-hidden="true" tabindex="-1"></a><span class="fu">### Step 9 {.unnumbered}</span></span>
-<span id="cb1-104"><a href="#cb1-104" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Construct a 95% confidence interval for each mean **directly from the sampling distribution** of sample means using the central 95% that distribution (i.e., by setting the lower and upper CI bounds to 2.5% and 97.5% of the way through that distribution).</span>
-<span id="cb1-105"><a href="#cb1-105" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-106"><a href="#cb1-106" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; **HINT**: You will want to use the </span><span class="in">`quantile()`</span><span class="at"> function for this!</span></span>
-<span id="cb1-107"><a href="#cb1-107" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-108"><a href="#cb1-108" aria-hidden="true" tabindex="-1"></a>How do the various 95% CIs you estimated compare to one another (i.e., the CI based on one sample and the corresponding sample standard deviation versus the CI based on simulation where you created a sampling distribution across 200 samples)?</span>
-<span id="cb1-109"><a href="#cb1-109" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-110"><a href="#cb1-110" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; **NOTE:** Remember, too, that the standard deviation of the sampling distribution is the standard error. You *could* use this value to derive yet another estimate for the 95% CI as the shape of the sampling distribution should be normal.</span></span>
-<span id="cb1-111"><a href="#cb1-111" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-112"><a href="#cb1-112" aria-hidden="true" tabindex="-1"></a><span class="fu">### Step 10 {.unnumbered}</span></span>
-<span id="cb1-113"><a href="#cb1-113" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-114"><a href="#cb1-114" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Finally, use bootstrapping to generate a 95% confidence interval for each variable mean **by resampling 1000 samples, with replacement, from your original sample** (i.e., by setting the lower and upper CI bounds to 2.5% and 97.5% of the way through the sampling distribution generated by bootstrapping). How does this compare to the CIs generated in Step 9?</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-59"><a href="#cb1-59" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Use bootstrapping to generate a 95% CI for your estimate of the slope coefficient using both the quantile method and the theory-based method (i.e., using the standard deviation of the bootstrapped sampling distribution as an estimate of the standard error). Do these CIs suggest that your slope coefficient is different from zero?</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 

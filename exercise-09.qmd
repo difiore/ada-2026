@@ -10,7 +10,7 @@
 
 ### Preliminaries {.unnumbered}
 
-- Set up a new ***GitHub*** repo in your ***GitHub*** workspace named "exercise-10" and clone that down to your computer as a new ***RStudio*** project. The instructions outlined as **Method 1** in [**Module 6**](#module-06) will be helpful.
+- Set up a new ***GitHub*** repo in your ***GitHub*** workspace named "exercise-9" and clone that down to your computer as a new ***RStudio*** project. The instructions outlined as **Method 1** in [**Module 6**](#module-06) will be helpful.
 
 ### Step 1 {.unnumbered}
 
