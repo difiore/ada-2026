@@ -13,6 +13,7 @@
 
 ```{r}
 #| include: false
+#| message: false
 library(bbmle)
 library(maxLik)
 library(tidyverse)
@@ -189,7 +190,7 @@ verbose_nll <- function(val, mu, sigma, verbose = FALSE) {
 Testing our function...
 
 ```{r}
-# if we include verbose = TRUE as an argument to `verbose_nll`, the function will print each likelihood and log likelihood value before returning the summed negative log likelihood
+# if we include verbose = TRUE as an argument to `verbose_nll()`, the function will print each likelihood and log likelihood value before returning the summed negative log likelihood
 val <- d$val
 mean <- 50
 sd <- 10
@@ -204,7 +205,7 @@ verbose_nll(val, mean, sd, verbose = TRUE)
 To use maximum likelihood estimation, we need to create a simpler version of this function that does not have the data as argument, but rather only involves the parameter we want to estimate. The function below does this. Note that unlike the function above, this version does not use a loop and has the vector variable *val* included as the first argument to the `dnorm()` function. We also include the argument `log = TRUE` within the `dnorm()` function to calculate the log likelihood directly, instead of including that as an extra step.
 
 ```{r}
-simple_nll <- function(mu, sigma, verbose = TRUE) {
+simple_nll <- function(mu, sigma) {
   ll = sum(dnorm(val, mean = mu, sd = sigma, log = TRUE))
   nll <- -1 * ll
   return(nll)
@@ -280,6 +281,7 @@ As for `mle2()`, for `maxLik()` we need to specify several arguments:
 - **method**, which is the particular algorithm used for optimization of the parameter estimates
 
 ```{r}
+#| warning: false
 mle_norm <- maxLik(logLik = simple_ll, start=c(mu=0, sigma=1), method = "NM")
 summary(mle_norm)
 ```
@@ -291,7 +293,6 @@ The results should be very comparable to those generated using `mle2()`.
 Now let's work through an example of using MLE for simple linear regression. Load in our zombie apocalypse survivors dataset...
 
 ```{r}
-library(tidyverse)
 f <- "https://raw.githubusercontent.com/difiore/ada-datasets/main/zombies.csv"
 d <- read_csv(f, col_names = TRUE)
 
@@ -312,9 +313,11 @@ simple_nll <- function(b0, b1, sigma, verbose = TRUE) {
 }
 
 mle_norm <- mle2(
-  minuslogl = simple_nll, # our likelihood function
+  minuslogl = simple_nll,
+  # `simple_nll()` is our likelihood function
   start  = list(b0=10, b1=0, sigma=1), 
-  method = "Nelder-Mead" # implements the Nelder-Mead algorithm for likelihood maximization
+  method = "Nelder-Mead"
+  # implements the Nelder-Mead algorithm for likelihood maximization
 )
 mle_norm
 summary(mle_norm)
@@ -327,7 +330,8 @@ loglik <- function(parameters) {
   sigma <- parameters[3]
   N <- nrow(d)
   # here, we say how our expectation for how our response variable, y, is calculated based on parameters
-  y <- b0 + b1 * d$weight # estimating mean height as a function of weight
+  y <- b0 + b1 * d$weight
+  # estimating mean height as a function of weight
   # then use this mu in a similar fashion as previously
   ll <- -1 * N*log(sqrt(2*pi)) - N*log(sigma) - 0.5*sum((d$height - y)^2/sigma^2)
   return(ll)
@@ -335,8 +339,17 @@ loglik <- function(parameters) {
 
 mle_norm <- maxLik(loglik,
                    start=c(beta0=0, beta1=0, sigma=1),
-                   method = "NM") # implements the Nelder-Mead algorithm for likelihood maximization
+                   method = "NM")
+                   # implements the Nelder-Mead algorithm for likelihood maximization
 summary(mle_norm)
 
 # results of both of these should be similar!
+```
+
+```{r}
+#| include: false
+detach(package:mosaic)
+detach(package:tidyverse)
+detach(package:maxLik)
+detach(package:bbmle)
 ```
