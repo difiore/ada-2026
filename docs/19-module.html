@@ -375,6 +375,18 @@ window.Quarto = {
  <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Model Selection in Regression</span></span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./23-module.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Generalized Linear Models</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./24-module.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Mixed Effects or Multilevel Modeling</span></span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -390,6 +402,18 @@ window.Quarto = {
   <div class="sidebar-item-container"> 
   <a href="./99-maximum_likelihood.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Maximum Likelihood Estimation</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./99-r-packages.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Building Custom <strong><em>R</em></strong> Packages</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./99-using-packages.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Working with and Managing Packages</span></a>
   </div>
 </li>
       </ul>
@@ -469,6 +493,18 @@ window.Quarto = {
  <span class="menu-text">Exercise 08</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./exercise-09.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Exercise 09</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./exercise-10.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Exercise 10</span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -484,6 +520,12 @@ window.Quarto = {
   <div class="sidebar-item-container"> 
   <a href="./data-analysis-replication-assignment.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Data Analysis Replication</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./collaborative-data-science-assignment.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Collaborative Data Science Project</span></a>
   </div>
 </li>
       </ul>
@@ -519,7 +561,7 @@ window.Quarto = {
   <li><a href="#preliminaries" id="toc-preliminaries" class="nav-link" data-scroll-target="#preliminaries"><span class="header-section-number">19.2</span> Preliminaries</a></li>
   <li><a href="#analysis-of-variance-tables" id="toc-analysis-of-variance-tables" class="nav-link" data-scroll-target="#analysis-of-variance-tables"><span class="header-section-number">19.3</span> Analysis of Variance Tables</a></li>
   <li><a href="#standard-errors-of-coefficients" id="toc-standard-errors-of-coefficients" class="nav-link" data-scroll-target="#standard-errors-of-coefficients"><span class="header-section-number">19.4</span> Standard Errors of Coefficients</a></li>
-  <li><a href="#model-checking" id="toc-model-checking" class="nav-link" data-scroll-target="#model-checking"><span class="header-section-number">19.5</span> Model Checking</a>
+  <li><a href="#checking-model-assumptions" id="toc-checking-model-assumptions" class="nav-link" data-scroll-target="#checking-model-assumptions"><span class="header-section-number">19.5</span> Checking Model Assumptions</a>
   <ul class="collapse">
   <li><a href="#challenge" id="toc-challenge" class="nav-link" data-scroll-target="#challenge">CHALLENGE</a></li>
   <li><a href="#challenge-1" id="toc-challenge-1" class="nav-link" data-scroll-target="#challenge-1">CHALLENGE</a></li>
@@ -854,8 +896,8 @@ window.Quarto = {
 </div>
 </div>
 </section>
-<section id="model-checking" class="level2" data-number="19.5">
-<h2 data-number="19.5" class="anchored" data-anchor-id="model-checking"><span class="header-section-number">19.5</span> Model Checking</h2>
+<section id="checking-model-assumptions" class="level2" data-number="19.5">
+<h2 data-number="19.5" class="anchored" data-anchor-id="checking-model-assumptions"><span class="header-section-number">19.5</span> Checking Model Assumptions</h2>
 <p>So far, we’ve derived a bunch of summary statistics describing our model and we have looked at parametric ways of testing whether those summary statistics are significantly different from zero. That is…</p>
 <ul>
 <li>We have seen whether our overall regression model explains a significant portion of the variance in <strong>y</strong> by means of the <strong>F ratio</strong> <strong>test</strong>.</li>
@@ -2060,7 +2102,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb91-245"><a href="#cb91-245" aria-hidden="true" tabindex="-1"></a>coefficients</span>
 <span id="cb91-246"><a href="#cb91-246" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb91-247"><a href="#cb91-247" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb91-248"><a href="#cb91-248" aria-hidden="true" tabindex="-1"></a><span class="fu">## Model Checking</span></span>
+<span id="cb91-248"><a href="#cb91-248" aria-hidden="true" tabindex="-1"></a><span class="fu">## Checking Model Assumptions</span></span>
 <span id="cb91-249"><a href="#cb91-249" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb91-250"><a href="#cb91-250" aria-hidden="true" tabindex="-1"></a>So far, we've derived a bunch of summary statistics describing our model and we have looked at parametric ways of testing whether those summary statistics are significantly different from zero. That is...</span>
 <span id="cb91-251"><a href="#cb91-251" aria-hidden="true" tabindex="-1"></a></span>

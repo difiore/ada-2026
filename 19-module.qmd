@@ -213,7 +213,7 @@ coefficients <- coefficients |>
 coefficients
 ```
 
-## Model Checking
+## Checking Model Assumptions
 
 So far, we've derived a bunch of summary statistics describing our model and we have looked at parametric ways of testing whether those summary statistics are significantly different from zero. That is...
 

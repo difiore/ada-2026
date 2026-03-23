@@ -1,17 +1,15 @@
 library(tidyverse)
 library(manipulate)
-
 f <- "https://raw.githubusercontent.com/difiore/ada-datasets/main/zombies.csv"
-
 d <- read_csv(f, col_names = TRUE)
 names(d)
+head(d)
 
 cov <- sum(((d$height-mean(d$height)) * (d$weight-mean(d$weight)))/(nrow(d)-1))
 cov(d$height,d$weight)
 cor <- cov/(sd(d$height)*sd(d$weight))
 
 plot(d$weight, d$height)
-
 
 temp <- d |> mutate(
   centered_height = height - mean(height),
@@ -33,7 +31,6 @@ m <- lm(height ~ weight, data = d)
 summary(m)
 
 beta1 <- cov(d$height, d$weight) / var(d$weight)
-
 beta0 <- mean(d$height) - beta1 * mean(d$weight)
 
 
@@ -41,18 +38,58 @@ f <- "https://raw.githubusercontent.com/difiore/ada-datasets/main/comparative_pr
 
 d <- read_csv(f, col_names = TRUE)
 names(d)
+
+
 ggplot(data = d,
-        aes(x=log(Body_mass_male_mean), y = log(Combined_testis_mass))
-       ) +
+        aes(x=log(Body_mass_male_mean), y = log(Combined_testis_mass))) +
   geom_point(na.rm = TRUE)
 
+temp <- d |> filter(!is.na(Combined_testis_mass))
+
+beta1 <- cov(log(temp$Body_mass_male_mean), log(temp$Combined_testis_mass))/var(log(temp$Body_mass_male_mean))
+
+
 m <- lm(log(Combined_testis_mass) ~ log(Body_mass_male_mean), data = d)
+
 summary(m)
+
 names(m)
+m$coefficients
+broom::tidy(m)
+
+
 
 library(lmodel2)
+
+m <- lm(log(Combined_testis_mass) ~ log(Body_mass_male_mean), data = d)
+
 m2 <- lmodel2(log(Combined_testis_mass) ~ log(Body_mass_male_mean), data = d, range.y =" relative", range.x = "relative", nperm = 1000)
+
+summary(m)
 m2
+
+
+f <- "https://raw.githubusercontent.com/difiore/ada-datasets/main/Street_et_al_2017.csv"
+d <- read_csv(f, col_names = TRUE)
+ggplot(data = d, aes(x=log(Body_mass), y = log(ECV))) +
+  geom_point(na.rm = TRUE)
+
+temp <- d |> filter(!is.na(Body_mass) & !is.na(ECV))
+
+beta1 <- cov(log(temp$Body_mass), log(temp$ECV))/var(log(temp$Body_mass))
+m <- lm(log(ECV) ~ log(Body_mass), temp)
+summary(m)
+m <- lm(log(ECV) ~ log(Body_mass), d)
+summary(m)
+
+# Analysis of Variance table
+anova(m)
+
+m$model
+SSR <- sum((m$fitted.values - mean(m$model$`log(ECV)`)) ^ 2)
+MSR <- SSR/1
+SSE <- sum((m$model$`log(ECV)` - m$fitted.values) ^ 2)
+MSE <- SSE/180
 
 # Maximum Likelihood
 

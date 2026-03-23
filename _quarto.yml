@@ -51,16 +51,16 @@ book:
       - 20-module.qmd
       - 21-module.qmd
       - 22-module.qmd
-      # - 23-module.qmd
-      # - 24-module.qmd
+      - 23-module.qmd
+      - 24-module.qmd
     - part: "Part III - Miscellany"
       chapters:
       - 99-maximum_likelihood.qmd
       # - 99-python-from-R.qmd
       # - 99-geospatial-data.qmd
-      # - 99-r-packages.qmd
+      - 99-r-packages.qmd
       # - 99-shiny.qmd
-      # - 99-using-packages.qmd
+      - 99-using-packages.qmd
     - part: "Exercises"
       chapters:
       - exercise-01.qmd
@@ -76,9 +76,9 @@ book:
       - exercise-07.qmd
       - exercise-08.qmd
       # - exercise-08-solution.qmd
-      # - exercise-09.qmd
+      - exercise-09.qmd
       # - exercise-09-solution.qmd
-      # - exercise-10.qmd
+      - exercise-10.qmd
       # - exercise-10-solution.qmd
       # - exercise-11.qmd
       # - exercise-11-solution.qmd
@@ -86,7 +86,7 @@ book:
       chapters:
       - data-analysis-replication-assignment.qmd
       # - data-analysis-replication-assignment-template.qmd
-      # - collaborative-data-science-assignment.qmd
+      - collaborative-data-science-assignment.qmd
       # - creative-dataviz-assignment.qmd
     - part: "References"
       chapters:
