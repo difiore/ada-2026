@@ -19,9 +19,9 @@ d <- read_csv(f, col_names = TRUE)
 - From this dataset, plot lifespan (scored as **MaxLongevity_m** in the dataset) versus female body mass (scored as **Body_mass_female_mean**). Is the relationship linear? If not, how might you transform one or both variable to more closely approximate a linear relationship?
 
 ```{r}
-p1 <- ggplot(data = d, aes(x=Body_mass_female_mean, y=MaxLongevity_m)) + geom_point()
-p2 <- ggplot(data = d, aes(x=log(Body_mass_female_mean), y=MaxLongevity_m)) + geom_point()
-p3 <- ggplot(data = d, aes(x=log(Body_mass_female_mean), y=log(MaxLongevity_m))) + geom_point()
+p1 <- ggplot(data = d, aes(x=Body_mass_female_mean, y=MaxLongevity_m)) + geom_point(na.rm = TRUE)
+p2 <- ggplot(data = d, aes(x=log(Body_mass_female_mean), y=MaxLongevity_m)) + geom_point(na.rm = TRUE)
+p3 <- ggplot(data = d, aes(x=log(Body_mass_female_mean), y=log(MaxLongevity_m))) + geom_point(na.rm = TRUE)
 plot_grid(p1, p2, p3, nrow = 1)
 ```
 
@@ -45,9 +45,9 @@ m3 <- lm(log(MaxLongevity_m) ~ log(Body_mass_female_mean), data = d)
 - Generate residuals for all three linear models, plot them by hand in relation to the corresponding explanatory variable, and make histograms of the residuals. Do they appear to be normally distributed?
 
 ```{r}
-p1 <- ggplot(data = NULL, aes(x=m1$model$Body_mass_female_mean, y=m1$residuals)) + geom_point()
-p2 <- ggplot(data = NULL, aes(x=m2$model$`log(Body_mass_female_mean)`, y=m2$residuals)) + geom_point()
-p3 <- ggplot(data = NULL, aes(x=m3$model$`log(Body_mass_female_mean)`, y=m3$residuals)) + geom_point()
+p1 <- ggplot(data = NULL, aes(x=m1$model$Body_mass_female_mean, y=m1$residuals)) + geom_point(na.rm = TRUE)
+p2 <- ggplot(data = NULL, aes(x=m2$model$`log(Body_mass_female_mean)`, y=m2$residuals)) + geom_point(na.rm = TRUE)
+p3 <- ggplot(data = NULL, aes(x=m3$model$`log(Body_mass_female_mean)`, y=m3$residuals)) + geom_point(na.rm = TRUE)
 p4 <- histogram(m1$residuals, nint = 20)
 p5 <- histogram(m2$residuals, nint = 20)
 p6 <- histogram(m3$residuals, nint = 20)
