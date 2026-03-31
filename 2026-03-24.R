@@ -322,7 +322,7 @@ d <- d |> mutate(
 
 p1 <- ggplot(data = d |> drop_na(Primary.Lifestyle), aes(x=Primary.Lifestyle, y=`Hand-Wing.Index`)) +
   geom_boxplot() +
-  #geom_jitter(alpha = 0.05) +
+  # geom_jitter(alpha = 0.05) +
   theme(
     axis.text.x = element_text(angle = 45, hjust=1))
 
@@ -351,14 +351,32 @@ pass <- d |> filter(Order1 == "Passeriformes") |>
   drop_na(Primary.Lifestyle, Trophic.Level) |>
   mutate(Primary.Lifestyle = as.factor(Primary.Lifestyle),
          Trophic.Level = as.factor(Trophic.Level))
+
+
 glimpse(pass)
+
 m <- aov(relBeak ~ Primary.Lifestyle, data = pass)
 summary(m)
 m <- aov(relBeak ~ Trophic.Level, data = pass)
 summary(m)
+
+
 m <- aov(relBeak ~ Primary.Lifestyle + Trophic.Level, data = pass)
+
+
+
+
+
+
 summary(m)
-m <- aov(relBeak ~ Primary.Lifestyle + Trophic.Level + Primary.Lifestyle:Trophic.Level, data = pass)
+
+
+
+
+
+m <- aov(relBeak ~ Primary.Lifestyle + Trophic.Level, data = pass)
+
+
 summary(m)
 
 interaction.plot(
@@ -394,6 +412,8 @@ f <- "https://raw.githubusercontent.com/difiore/ada-datasets/main/zombies.csv"
 z <- read_csv(f, col_names = TRUE)
 m <- lm(height ~ weight + age, data = z)
 summary(m)
+
+
 plot(m$model$weight, residuals(m))
 plot(m$model$age, residuals(m))
 plot(fitted(m), residuals(m))
@@ -401,8 +421,23 @@ plot(fitted(m), residuals(m))
 F <- (summary(m)$r.squared*(nrow(z)-2-1))/((1-summary(m)$r.squared) * 2)
 
 p <- pf(F, df1 = 2, df2 = 997, lower.tail = FALSE)
+
+
 m <- lm(height ~ weight + age + gender , data = z)
+
+plot(m$model$weight, residuals(m))
+plot(m$model$age, residuals(m))
+boxplot(m$residual ~m$model$gender)
+plot(fitted(m), residuals(m))
+
+
+
+
+
 summary(m)
+
+
+
 library(car)
 vif(m)
 
