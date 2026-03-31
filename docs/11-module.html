@@ -442,6 +442,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./exercise-05-solution.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Exercise 05 Solution</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./exercise-06.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Exercise 06</span></a>
   </div>
@@ -616,34 +622,34 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>##       name     house   code
-## 1      Ned     Stark 205153
-## 2    Sansa     Stark 105250
-## 3   Cersei Lannister 637610
-## 4   Tyrion Lannister 389796
-## 5      Jon     Stark 801878
-## 6 Daenerys Targaryen 326196</code></pre>
+## 1      Ned     Stark 749827
+## 2    Sansa     Stark 739374
+## 3   Cersei Lannister 651842
+## 4   Tyrion Lannister 992545
+## 5      Jon     Stark 583602
+## 6 Daenerys Targaryen 381483</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">add_prefix</span>(my_data, <span class="at">prefix =</span> <span class="st">"House "</span>, <span class="at">variable =</span> <span class="st">"house"</span>)</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>##       name           house   code
-## 1      Ned     House Stark 205153
-## 2    Sansa     House Stark 105250
-## 3   Cersei House Lannister 637610
-## 4   Tyrion House Lannister 389796
-## 5      Jon     House Stark 801878
-## 6 Daenerys House Targaryen 326196</code></pre>
+## 1      Ned     House Stark 749827
+## 2    Sansa     House Stark 739374
+## 3   Cersei House Lannister 651842
+## 4   Tyrion House Lannister 992545
+## 5      Jon     House Stark 583602
+## 6 Daenerys House Targaryen 381483</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">add_prefix</span>(my_data, <span class="at">prefix =</span> <span class="st">"00001-"</span>, <span class="at">variable =</span> <span class="st">"code"</span>)</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>##       name     house         code
-## 1      Ned     Stark 00001-205153
-## 2    Sansa     Stark 00001-105250
-## 3   Cersei Lannister 00001-637610
-## 4   Tyrion Lannister 00001-389796
-## 5      Jon     Stark 00001-801878
-## 6 Daenerys Targaryen 00001-326196</code></pre>
+## 1      Ned     Stark 00001-749827
+## 2    Sansa     Stark 00001-739374
+## 3   Cersei Lannister 00001-651842
+## 4   Tyrion Lannister 00001-992545
+## 5      Jon     Stark 00001-583602
+## 6 Daenerys Targaryen 00001-381483</code></pre>
 </div>
 </div>
 <blockquote class="blockquote">
@@ -653,23 +659,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(<span class="fu">add_prefix</span>(<span class="at">df =</span> my_data, <span class="at">variable =</span> <span class="st">"house"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>##       name     house   code
-## 1      Ned     Stark 205153
-## 2    Sansa     Stark 105250
-## 3   Cersei Lannister 637610
-## 4   Tyrion Lannister 389796
-## 5      Jon     Stark 801878
-## 6 Daenerys Targaryen 326196</code></pre>
+## 1      Ned     Stark 749827
+## 2    Sansa     Stark 739374
+## 3   Cersei Lannister 651842
+## 4   Tyrion Lannister 992545
+## 5      Jon     Stark 583602
+## 6 Daenerys Targaryen 381483</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># versus...</span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(<span class="fu">add_prefix</span>(<span class="at">variable =</span> <span class="st">"house"</span>, <span class="at">df =</span> my_data))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>##       name     house   code
-## 1      Ned     Stark 205153
-## 2    Sansa     Stark 105250
-## 3   Cersei Lannister 637610
-## 4   Tyrion Lannister 389796
-## 5      Jon     Stark 801878
-## 6 Daenerys Targaryen 326196</code></pre>
+## 1      Ned     Stark 749827
+## 2    Sansa     Stark 739374
+## 3   Cersei Lannister 651842
+## 4   Tyrion Lannister 992545
+## 5      Jon     Stark 583602
+## 6 Daenerys Targaryen 381483</code></pre>
 </div>
 </div>
 <p>Note that in the example above, because the argument name <code>prefix</code> was excluded, the default value was used.</p>
@@ -678,34 +684,34 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(<span class="fu">add_prefix</span>(my_data, <span class="st">"00001-"</span>, <span class="st">"code"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>##       name     house         code
-## 1      Ned     Stark 00001-205153
-## 2    Sansa     Stark 00001-105250
-## 3   Cersei Lannister 00001-637610
-## 4   Tyrion Lannister 00001-389796
-## 5      Jon     Stark 00001-801878
-## 6 Daenerys Targaryen 00001-326196</code></pre>
+## 1      Ned     Stark 00001-749827
+## 2    Sansa     Stark 00001-739374
+## 3   Cersei Lannister 00001-651842
+## 4   Tyrion Lannister 00001-992545
+## 5      Jon     Stark 00001-583602
+## 6 Daenerys Targaryen 00001-381483</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># versus...</span></span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(<span class="fu">add_prefix</span>(my_data, <span class="st">"House "</span>, <span class="st">"house"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>##       name           house   code
-## 1      Ned     House Stark 205153
-## 2    Sansa     House Stark 105250
-## 3   Cersei House Lannister 637610
-## 4   Tyrion House Lannister 389796
-## 5      Jon     House Stark 801878
-## 6 Daenerys House Targaryen 326196</code></pre>
+## 1      Ned     House Stark 749827
+## 2    Sansa     House Stark 739374
+## 3   Cersei House Lannister 651842
+## 4   Tyrion House Lannister 992545
+## 5      Jon     House Stark 583602
+## 6 Daenerys House Targaryen 381483</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># versus...</span></span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(<span class="fu">add_prefix</span>(my_data, <span class="st">""</span>, <span class="st">"house"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>##       name     house   code
-## 1      Ned     Stark 205153
-## 2    Sansa     Stark 105250
-## 3   Cersei Lannister 637610
-## 4   Tyrion Lannister 389796
-## 5      Jon     Stark 801878
-## 6 Daenerys Targaryen 326196</code></pre>
+## 1      Ned     Stark 749827
+## 2    Sansa     Stark 739374
+## 3   Cersei Lannister 651842
+## 4   Tyrion Lannister 992545
+## 5      Jon     Stark 583602
+## 6 Daenerys Targaryen 381483</code></pre>
 </div>
 </div>
 <p>If we try to run the line below, however, it throws an error because too few (unnamed) arguments are passed to the function for it to be able to disambiguate them:</p>
@@ -977,35 +983,35 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell-output cell-output-stdout">
 <details><summary>Show Output</summary>
 <pre class="details" data-summary="Show Output"><code>##   name house   code
-## 1  Ned Stark 205153
+## 1  Ned Stark 749827
 ##    name house   code
-## 2 Sansa Stark 105250
+## 2 Sansa Stark 739374
 ##     name     house   code
-## 3 Cersei Lannister 637610
+## 3 Cersei Lannister 651842
 ##     name     house   code
-## 4 Tyrion Lannister 389796
+## 4 Tyrion Lannister 992545
 ##   name house   code
-## 5  Jon Stark 801878
+## 5  Jon Stark 583602
 ##       name     house   code
-## 6 Daenerys Targaryen 326196
+## 6 Daenerys Targaryen 381483
 ##   name house   code
-## 7 Aria Stark 943035
+## 7 Aria Stark 718817
 ##      name house   code
-## 8 Brienne Tarth 169022
+## 8 Brienne Tarth 757070
 ##     name house   code
-## 9 Rickon Stark 892543
+## 9 Rickon Stark 195490
 ##      name house   code
-## 10 Edmure Tully 155497
+## 10 Edmure Tully 365338
 ##     name   house   code
-## 11 Petyr Baelish 712886
+## 11 Petyr Baelish 775590
 ##     name     house   code
-## 12 Jamie Lannister 925108
+## 12 Jamie Lannister 940365
 ##      name     house   code
-## 13 Robert Baratheon 801624
+## 13 Robert Baratheon 663055
 ##       name     house   code
-## 14 Stannis Baratheon 338755
+## 14 Stannis Baratheon 832802
 ##     name   house   code
-## 15 Theon Greyjoy 162635</code></pre>
+## 15 Theon Greyjoy 565195</code></pre>
 </details>
 </div>
 </div>
@@ -1022,21 +1028,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </details>
 <div class="cell-output cell-output-stdout">
 <details><summary>Show Output</summary>
-<pre class="details" data-summary="Show Output"><code>## [1] "351502"
-## [1] "052501"
-## [1] "016736"
-## [1] "697983"
-## [1] "878108"
-## [1] "691623"
-## [1] "530349"
-## [1] "220961"
-## [1] "345298"
-## [1] "794551"
-## [1] "688217"
-## [1] "801529"
-## [1] "426108"
-## [1] "557833"
-## [1] "536261"</code></pre>
+<pre class="details" data-summary="Show Output"><code>## [1] "728947"
+## [1] "473937"
+## [1] "248156"
+## [1] "545299"
+## [1] "206385"
+## [1] "384183"
+## [1] "718817"
+## [1] "070757"
+## [1] "094591"
+## [1] "833563"
+## [1] "095577"
+## [1] "563049"
+## [1] "550366"
+## [1] "208238"
+## [1] "591565"</code></pre>
 </details>
 </div>
 </div>
