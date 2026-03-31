@@ -1,6 +1,8 @@
 rm(list = ls())
 library(tidyverse)
 library(broom)
+library(cowplot)
+library(mosaic)
 
 f <- "https://raw.githubusercontent.com/difiore/ada-datasets/refs/heads/main/BovetAndRaymondData.csv"
 d <- read_csv(f, col_names = TRUE)
@@ -18,8 +20,6 @@ ggplot(data = d, aes(x = Century, y = `Corrected WHR`)) +
 # Fit the original model...
 m <- lm(`Corrected WHR` ~ Century, data = d)
 summary(m) # WHR ratio of female subjects in classical artwork has decreased
-
-
 
 # ... and extract the observed coefficient
 observed_coef <- tidy(m) |>
@@ -130,22 +130,62 @@ hist(boot_coefs, breaks = 30, main = "Bootstrap Sampling Distribution",
 abline(v = observed_coef, col = "firebrick", lwd = 2)
 abline(v = ci, col = "steelblue", lwd = 2, lty = 2)
 
+rm(list = ls())
+library(tidyverse)
+library(broom)
+library(cowplot)
+library(mosaic)
+library(ggExtra)
 
 f <- "https://raw.githubusercontent.com/difiore/ada-datasets/main/KamilarAndCooperData.csv"
 d <- read_csv(f, col_names = TRUE)
 
-p1 <- ggplot(data = d, aes(x=Body_mass_female_mean, y=MaxLongevity_m)) + geom_point(na.rm = TRUE)
-p2 <- ggplot(data = d, aes(x=log(Body_mass_female_mean), y=MaxLongevity_m)) + geom_point(na.rm = TRUE)
-p3 <- ggplot(data = d, aes(x=log(Body_mass_female_mean), y=log(MaxLongevity_m))) + geom_point(na.rm = TRUE)
+
+
+p1 <- ggplot(data = d,
+             aes(x = Body_mass_female_mean,
+                 y = MaxLongevity_m)) +
+      geom_point(na.rm = TRUE)
+p1
+
+p2 <- ggplot(data = d,
+             aes(x = log(Body_mass_female_mean),
+                 y = MaxLongevity_m)) +
+      geom_point(na.rm = TRUE)
+p2
+
+p3 <- ggplot(data = d,
+             aes(x = log(Body_mass_female_mean),
+                 y = log(MaxLongevity_m))) +
+      geom_point(na.rm = TRUE)
+p3
+p3
 plot_grid(p1, p2, p3, nrow = 1)
+
+
+# Add marginal density plots to each
+p1m <- ggMarginal(p1, type = "densigram")
+p2m <- ggMarginal(p2, type = "densigram")
+p3m <- ggMarginal(p3, type = "densigram")
+
+plot_grid(p1m, p2m, p3m, nrow = 1)
 
 m1 <- lm(MaxLongevity_m ~ Body_mass_female_mean, data = d)
 m2 <- lm(MaxLongevity_m ~ log(Body_mass_female_mean), data = d)
 m3 <- lm(log(MaxLongevity_m) ~ log(Body_mass_female_mean), data = d)
 
-p1 <- ggplot(data = NULL, aes(x=m1$model$Body_mass_female_mean, y=m1$residuals)) + geom_point(na.rm = TRUE)
-p2 <- ggplot(data = NULL, aes(x=m2$model$`log(Body_mass_female_mean)`, y=m2$residuals)) + geom_point(na.rm = TRUE)
-p3 <- ggplot(data = NULL, aes(x=m3$model$`log(Body_mass_female_mean)`, y=m3$residuals)) + geom_point(na.rm = TRUE)
+p1 <- ggplot(data = NULL,
+             aes(x = m1$model$Body_mass_female_mean,
+                 y = m1$residuals)) +
+      geom_point(na.rm = TRUE)
+p2 <- ggplot(data = NULL,
+             aes(x = m2$model$`log(Body_mass_female_mean)`,
+                 y = m2$residuals)) +
+      geom_point(na.rm = TRUE)
+p3 <- ggplot(data = NULL,
+             aes(x = m3$model$`log(Body_mass_female_mean)`,
+                 y = m3$residuals)) +
+      geom_point(na.rm = TRUE)
 p4 <- histogram(m1$residuals, nint = 20)
 p5 <- histogram(m2$residuals, nint = 20)
 p6 <- histogram(m3$residuals, nint = 20)
@@ -160,7 +200,215 @@ p2 <- ggpubr::ggqqplot(m2$residuals)
 p3 <- ggpubr::ggqqplot(m3$residuals)
 plot_grid(p1, p2, p3, nrow = 1)
 
-
 shapiro.test(m1$residuals)
 shapiro.test(m2$residuals)
 shapiro.test(m3$residuals)
+
+f <- "https://raw.githubusercontent.com/difiore/ada-datasets/main/AVONETdataset1.csv"
+d <- read_csv(f, col_names = TRUE)
+keep <- c("Species1", "Family1", "Order1", "Beak.Length_Culmen", "Beak.Width", "Beak.Depth", "Tarsus.Length", "Wing.Length", "Tail.Length", "Mass", "Habitat", "Migration", "Trophic.Level", "Trophic.Niche", "Primary.Lifestyle", "Min.Latitude", "Max.Latitude", "Centroid.Latitude", "Range.Size")
+d <- d |> select(all_of(keep))
+glimpse(d)
+
+p1 <- ggplot(data = d |> drop_na(Trophic.Level),
+             aes(x = Trophic.Level, y = log(Mass))) +
+  geom_boxplot() +
+  geom_jitter(alpha = 0.1)
+
+# nice visualization
+density_p1 <- ggplot(data = d |> drop_na(Trophic.Level),
+                     aes(x = log(Mass), fill = Trophic.Level)) +
+  geom_density(alpha = 0.5) +
+  coord_flip() +  # align with boxplot y-axis
+  theme_void()    # clean up axes so it looks like a margin plot
+
+plot_grid(p1, density_p1, nrow = 1, rel_widths = c(1, 1))
+
+p2 <- ggplot(data = d |> drop_na(Migration),
+             aes(x = as.factor(Migration), y = log(Mass))) +
+  geom_boxplot() +
+  geom_jitter(alpha = 0.1)
+p2
+
+m1 <- lm(log(Mass) ~ Trophic.Level, data = d)
+m2 <- lm(log(Mass) ~ as.factor(Migration), data = d)
+summary(m1)
+
+
+(pairwise.t.test(log(d$Mass), d$Trophic.Level,
+                 p.adj = "bonferroni"))
+
+plotDist("f", df1 = 3, df2 = 11000)
+
+m1aov <- aov(log(Mass) ~ Trophic.Level, data = d)
+(posthoc <- TukeyHSD(m1aov, which = "Trophic.Level",
+                       conf.level = 0.95))
+
+
+observed.F <- aov(log(Mass) ~ Trophic.Level, data = d) |>
+  broom::tidy() |>
+  filter(term == "Trophic.Level")
+
+observed.F
+
+# ANOVA by permutation
+nperm <- 1000
+permuted.F <- vector(length = nperm)
+
+for (i in 1:nperm){
+  d_perm <- d
+  d_perm$Trophic.Level <- sample(d$Trophic.Level) # shuffle predictor
+  permuted.F[[i]] <- aov(log(Mass) ~ Trophic.Level, data = d_perm) |>
+    tidy() |>
+    filter(term == "Trophic.Level") |>
+    pull(statistic)
+}
+
+histogram(permuted.F)
+
+p.value <- mean(permuted.F > observed.F$statistic)
+p.value
+
+# ANOVA by permutation using {infer}
+library(infer)
+d <- d |> mutate(logMass = log(Mass)) # data wrangling to be able to use `specify()`
+
+permuted.F <- d |>
+  specify(logMass ~ Trophic.Level) |>
+  hypothesize(null = "independence") |>
+  generate(reps = 1000, type = "permute") |>
+  calculate(stat = "F")
+
+visualize(permuted.F) +
+  shade_p_value(obs_stat = 	observed.F$statistic,
+                direction = "greater")
+
+p.value <- permuted.F |>
+  get_p_value(obs_stat = observed.F$statistic,
+              direction = "greater")
+
+p.value
+
+original.F$p.value
+
+# how does R values parametric p value??
+pf(observed.F$statistic, df1 = 3, df2 = 11000, lower.tail = FALSE) # not a two-tailed test...
+
+
+
+f <- "https://raw.githubusercontent.com/difiore/ada-datasets/main/AVONETdataset1.csv"
+d <- read_csv(f, col_names = TRUE)
+keep <- c("Species1", "Family1", "Order1", "Beak.Length_Culmen", "Beak.Width", "Beak.Depth", "Tarsus.Length", "Wing.Length", "Hand-Wing.Index", "Tail.Length", "Mass", "Habitat", "Migration", "Trophic.Level", "Trophic.Niche", "Primary.Lifestyle", "Min.Latitude", "Max.Latitude", "Centroid.Latitude", "Range.Size")
+d <- d |> select(all_of(keep))
+glimpse(d)
+
+d <- d |> mutate(
+  logMass = log(Mass),
+  logRS = log(Range.Size),
+  logBeak = log(Beak.Length_Culmen),
+  logTarsus = log(Tarsus.Length),
+  Migration = as.factor(Migration))
+
+relBeak <- lm(logBeak ~ logMass, data = d)
+relTarsus <- lm(logTarsus ~ logMass, data = d)
+d <- d |> mutate(
+  relBeak = relBeak$residuals,
+  relTarsus = relTarsus$residuals)
+
+d <- d |> mutate(
+  Primary.Lifestyle = factor(Primary.Lifestyle,
+                             levels = c("Aerial", "Aquatic", "Insessorial", "Terrestrial", "Generalist"))
+)
+
+p1 <- ggplot(data = d |> drop_na(Primary.Lifestyle), aes(x=Primary.Lifestyle, y=`Hand-Wing.Index`)) +
+  geom_boxplot() +
+  #geom_jitter(alpha = 0.05) +
+  theme(
+    axis.text.x = element_text(angle = 45, hjust=1))
+
+p2 <- ggplot(data = d |> drop_na(Primary.Lifestyle), aes(x=Primary.Lifestyle, y=relTarsus)) +
+  geom_boxplot() +
+  #geom_jitter(alpha = 0.05) +
+  theme(
+    axis.text.x = element_text(angle = 45, hjust=1))
+
+d <- d |> mutate(
+  Trophic.Niche = factor(Trophic.Niche,
+                         levels = c("Nectarivore", "Herbivore aquatic", "Frugivore", "Granivore", "Herbivore terrestrial", "Aquatic predator", "Invertivore", "Vertivore", "Scavenger", "Omnivore"))
+)
+
+p3 <- ggplot(data = d |> drop_na(Trophic.Niche), aes(x=Trophic.Niche, y=relBeak)) +
+  geom_boxplot() +
+  # geom_jitter(alpha = 0.05) +
+  theme(
+    axis.text.x = element_text(angle = 45, hjust=1))
+
+plot_grid(p1, p2, p3, nrow = 1)
+
+# Note using tropic level not trophic niche now...
+
+pass <- d |> filter(Order1 == "Passeriformes") |>
+  drop_na(Primary.Lifestyle, Trophic.Level) |>
+  mutate(Primary.Lifestyle = as.factor(Primary.Lifestyle),
+         Trophic.Level = as.factor(Trophic.Level))
+glimpse(pass)
+m <- aov(relBeak ~ Primary.Lifestyle, data = pass)
+summary(m)
+m <- aov(relBeak ~ Trophic.Level, data = pass)
+summary(m)
+m <- aov(relBeak ~ Primary.Lifestyle + Trophic.Level, data = pass)
+summary(m)
+m <- aov(relBeak ~ Primary.Lifestyle + Trophic.Level + Primary.Lifestyle:Trophic.Level, data = pass)
+summary(m)
+
+interaction.plot(
+  x.factor = pass$Primary.Lifestyle,
+  xlab = "Primary Lifestyle",
+  trace.factor = pass$Trophic.Level,
+  trace.label = "Trophic Level",
+  response = pass$relBeak,
+  fun = base::mean, # make sure we use {base} version
+  ylab = "Mean Relative Beak Length"
+)
+
+interaction.plot(
+  x.factor = pass$Trophic.Level,
+  xlab = "Trophic Level",
+  trace.factor = pass$Primary.Lifestyle,
+  trace.label = "Primary Lifestyle",
+  response = pass$relBeak,
+  fun = base::mean, # make sure we use {base} version
+  ylab = "Mean Relative Beak Length"
+)
+
+library(sjPlot)
+# Plot marginal means
+plot_model(m, type = "emm", terms = c("Primary.Lifestyle", "Trophic.Level"))
+
+# or, alternatively
+library(emmeans)
+# Plot marginal means
+emmip(m, Trophic.Level ~ Primary.Lifestyle, CIs = TRUE)
+
+f <- "https://raw.githubusercontent.com/difiore/ada-datasets/main/zombies.csv"
+z <- read_csv(f, col_names = TRUE)
+m <- lm(height ~ weight + age, data = z)
+summary(m)
+plot(m$model$weight, residuals(m))
+plot(m$model$age, residuals(m))
+plot(fitted(m), residuals(m))
+
+F <- (summary(m)$r.squared*(nrow(z)-2-1))/((1-summary(m)$r.squared) * 2)
+
+p <- pf(F, df1 = 2, df2 = 997, lower.tail = FALSE)
+m <- lm(height ~ weight + age + gender , data = z)
+summary(m)
+library(car)
+vif(m)
+
+library(jtools)
+effect_plot(m, pred = weight,
+            interval = TRUE, int.type = "confidence", int.width = 0.95,
+            plot.points = TRUE)
+
+plot_summs(m)

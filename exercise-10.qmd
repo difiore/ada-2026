@@ -85,7 +85,7 @@
 
 ### Step 7 {.unnumbered}
 
-- Use the `interaction.plot()` function to visualize the interaction between **Primary.Lifestyle** and **Trophic.Level** (see [**Module 20**](#module-20)).
+- Use the `interaction.plot()` and either the `plot_model()` or `emmip()` function to visualize the interaction between **Primary.Lifestyle** and **Trophic.Level**, based on both [1] the raw dataset and [2] your model that includes an interaction term (see [**Module 20**](#module-20)).
 
 ### Step 8 {.unnumbered}
 

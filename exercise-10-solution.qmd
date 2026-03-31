@@ -174,21 +174,17 @@ d <- d |> mutate(
 ```{r}
 d <- d |> mutate(
   Primary.Lifestyle = factor(Primary.Lifestyle,
-                             levels = c("Aerial", "Aquatic", "Insessorial",
-                                        "Terrestrial", "Generalist"))
+                             levels = c("Aerial", "Aquatic", "Insessorial", "Terrestrial", "Generalist"))
 )
 p1 <- ggplot(data = d |> drop_na(Primary.Lifestyle), aes(x=Primary.Lifestyle, y=relTarsus)) +
   geom_boxplot() +
-  #geom_jitter(alpha = 0.05) +
+  # geom_jitter(alpha = 0.05) +
   theme(
     axis.text.x = element_text(angle = 45, hjust=1))
 
 d <- d |> mutate(
   Trophic.Niche = factor(Trophic.Niche,
-                         levels = c("Nectarivore", "Herbivore aquatic", "Frugivore",
-                                    "Granivore", "Herbivore terrestrial",
-                                    "Aquatic predator", "Invertivore", "Vertivore",
-                                    "Scavenger", "Omnivore"))
+                         levels = c("Nectarivore", "Herbivore aquatic", "Frugivore", "Granivore", "Herbivore terrestrial", "Aquatic predator", "Invertivore", "Vertivore", "Scavenger", "Omnivore"))
 )
 p2 <- ggplot(data = d |> drop_na(Trophic.Niche), aes(x=Trophic.Niche, y=relBeak)) +
   geom_boxplot() +
