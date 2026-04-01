@@ -185,6 +185,12 @@
 - **{bbmle}:** @R-bbmle
 - **{maxLik}:** @R-maxLik
 
+### Bayesian Inference {.unnumbered}
+- **{tidyverse}**: @R-tidyverse, @tidyverse2019
+- **{brms}**: @R-brms, @brms2017, @brms2018, @brms2021
+- **{bayesplot}:** @R-bayesplot, @bayesplot2019
+- **{tidybayes}:** @R-tidybayes
+
 ### Using ***Python*** from ***R*** {.unnumbered}
 
 - **{tidyverse}**: @R-tidyverse, @tidyverse2019
@@ -235,11 +241,13 @@
 ## Complete List {.unnumbered}
 
 - **{AICcmodavg}**: @R-AICcmodavg
+- **{bayesplot}**: @R-bayesplot, @bayesplot2019
 - **{BBmisc}**: @R-BBmisc
 - **{bbmle}**: @R-bbmle
 - **{blastula}**: @R-blastula
 - **{boot}**: @R-boot, @boot1997
 - **{broom}**: @R-broom
+- **{brms}**: @R-brms, @brms2017, @brms2018, @brms2021
 - **{car}**: @R-car, @car2019
 - **{coin}**: @R-coin, @coin2006, @coin2008
 - **{collape}**: @R-collapse
@@ -315,6 +323,7 @@
 - **{summarytools}**: @R-summarytools
 - **{tibble}**: @R-tibble
 - **{tictoc}**: @R-tictoc
+- **{tidybayes}**: @R-tidybayes
 - **{tidyr}**: @R-tidyr
 - **{tidyverse}**: @R-tidyverse, @tidyverse2019
 - **{usethis}**: @R-usethis

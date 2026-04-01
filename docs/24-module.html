@@ -64,7 +64,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./99-maximum_likelihood.html" rel="next">
+<link href="./99-maximum_likelihood-estimation.html" rel="next">
 <link href="./23-module.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -400,14 +400,26 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./99-maximum_likelihood.html" class="sidebar-item-text sidebar-link">
+  <a href="./99-maximum_likelihood-estimation.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Maximum Likelihood Estimation</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./99-bayesian-estimation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Bayesian Inference</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./99-r-packages.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Building Custom <strong><em>R</em></strong> Packages</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./99-shiny.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Building Interactive Web Apps</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -882,15 +894,15 @@ window.Quarto = {
 </div>
 <div class="cell-output cell-output-stderr">
 <pre><code>## 
-## 11 message(s): boundary (singular) fit: see help('isSingular')</code></pre>
+## 8 message(s): boundary (singular) fit: see help('isSingular')</code></pre>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>##                        2.5 %    97.5 %
-## .sig01              3.348503  42.92749
-## .sigma             24.066032  33.90891
-## (Intercept)       101.420907 164.05635
-## reproconditionPOP   7.944427  31.51212
-## parityP            70.448858 148.59764</code></pre>
+## .sig01              5.424747  44.41227
+## .sigma             24.366593  33.73843
+## (Intercept)       102.668630 160.89818
+## reproconditionPOP   6.244786  32.71310
+## parityP            66.955019 148.37777</code></pre>
 </div>
 </div>
 <blockquote class="blockquote">
@@ -1331,16 +1343,16 @@ window.Quarto = {
 <div class="sourceCode cell-code" id="cb60"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a><span class="fu">confint</span>(m, <span class="at">level =</span> <span class="fl">0.95</span>, <span class="at">method =</span> <span class="st">"boot"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>##                           2.5 %      97.5 %
-## .sig01             0.000000e+00  21.1084170
-## .sig02             1.655824e-04  16.9865255
+## .sig01             0.000000e+00  18.3266052
+## .sig02             1.259620e-04  19.1359527
 ## .sig03            -1.000000e+00   1.0000000
-## .sig04             0.000000e+00  44.8738072
-## .sig05             2.210885e-04  44.8727892
-## .sig06            -1.000000e+00  -0.5062716
-## .sigma             2.346661e+01  32.8953819
-## (Intercept)        1.000395e+02 162.5287703
-## reproconditionPOP  7.288335e+00  33.5934316
-## parityP            7.675837e+01 146.1801776</code></pre>
+## .sig04             0.000000e+00  39.8212395
+## .sig05             9.917572e-05  39.8214038
+## .sig06            -1.000000e+00   0.1154166
+## .sigma             2.373015e+01  32.9265990
+## (Intercept)        9.705453e+01 164.1449672
+## reproconditionPOP  7.647941e+00  32.8091269
+## parityP            7.655121e+01 145.5514695</code></pre>
 </div>
 </div>
 <p>Finally, effects plots of how the expected amount of grooming received varies with the fixed effects (<strong>reprocondition</strong> and <strong>parity</strong>) under our new random slope model is the same as that under the random intercept model.</p>
@@ -2346,7 +2358,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./99-maximum_likelihood.html" class="pagination-link" aria-label="Maximum Likelihood Estimation">
+      <a href="./99-maximum_likelihood-estimation.html" class="pagination-link" aria-label="Maximum Likelihood Estimation">
         <span class="nav-page-text">Maximum Likelihood Estimation</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>

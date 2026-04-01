@@ -400,14 +400,26 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./99-maximum_likelihood.html" class="sidebar-item-text sidebar-link">
+  <a href="./99-maximum_likelihood-estimation.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Maximum Likelihood Estimation</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./99-bayesian-estimation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Bayesian Inference</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./99-r-packages.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Building Custom <strong><em>R</em></strong> Packages</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./99-shiny.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Building Interactive Web Apps</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -746,8 +758,8 @@ window.Quarto = {
 <p>We can then test the overall significance of our regression model by evaluating our F ratio test statistic against an <span class="math inline">\(F\)</span> distribution, taking into account the number of degrees of freedom in each. The <span class="math inline">\(F\)</span> distribution is a continuous probability distribution, defined for <span class="math inline">\(x≥0\)</span> and governed by two parameters, <span class="math inline">\(df1\)</span> and <span class="math inline">\(df2\)</span>. The critical value for the <span class="math inline">\(F\)</span> statistic above which we would reject the idea that the variance in our two sources is comparable is given by <code>qf(p, df1, df2)</code>, where <strong>p</strong> is 1-<span class="math inline">\(\alpha\)</span> and <strong>df1</strong> and <strong>df2</strong> are the degrees of freedom in the sources being compared (regression versus error).</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plotDist</span>(<span class="st">"f"</span>, <span class="at">df1 =</span> <span class="dv">1</span>, <span class="at">df2 =</span> <span class="dv">10</span>, <span class="at">col =</span> <span class="st">"green"</span>, <span class="at">lty =</span> <span class="dv">3</span>, <span class="at">lwd =</span> <span class="dv">2</span>, <span class="at">main =</span> <span class="st">"Some Example F Distributions"</span>,</span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">sub =</span> <span class="st">"red vertical line shows critical value\</span></span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="st">n            for df1=1, df2=998"</span>,</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">sub =</span> <span class="st">"red vertical line shows critical value</span><span class="sc">\n</span></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="st">            for df1=1, df2=998"</span>,</span>
 <span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">ylab =</span> <span class="st">"f(x)"</span>, <span class="at">xlab =</span> <span class="st">"x"</span>, <span class="at">xlim =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">5</span>), <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="fl">1.5</span>), <span class="at">key =</span> <span class="fu">list</span>(<span class="at">space =</span> <span class="st">"right"</span>,</span>
 <span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>        <span class="at">text =</span> <span class="fu">list</span>(<span class="fu">c</span>(<span class="st">"df1=1, df2=1"</span>, <span class="st">"df1=2, df2=2"</span>, <span class="st">"df1=4, df2=4"</span>, <span class="st">"df1=8, df2=100"</span>,</span>
 <span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>            <span class="st">"df1=1, df2=998"</span>)), <span class="at">lines =</span> <span class="fu">list</span>(<span class="at">col =</span> <span class="fu">c</span>(<span class="st">"green"</span>, <span class="st">"blue"</span>, <span class="st">"red"</span>, <span class="st">"purple"</span>,</span>

@@ -64,7 +64,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./99-r-packages.html" rel="next">
+<link href="./99-bayesian-estimation.html" rel="next">
 <link href="./24-module.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -145,7 +145,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./99-maximum_likelihood.html">Part III - Miscellany</a></li><li class="breadcrumb-item"><a href="./99-maximum_likelihood.html">Maximum Likelihood Estimation</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./99-maximum_likelihood-estimation.html">Part III - Miscellany</a></li><li class="breadcrumb-item"><a href="./99-maximum_likelihood-estimation.html">Maximum Likelihood Estimation</a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -400,14 +400,26 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./99-maximum_likelihood.html" class="sidebar-item-text sidebar-link active">
+  <a href="./99-maximum_likelihood-estimation.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Maximum Likelihood Estimation</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./99-bayesian-estimation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Bayesian Inference</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./99-r-packages.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Building Custom <strong><em>R</em></strong> Packages</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./99-shiny.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Building Interactive Web Apps</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -593,9 +605,9 @@ window.Quarto = {
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./99-maximum_likelihood.html">Part III - Miscellany</a></li><li class="breadcrumb-item"><a href="./99-maximum_likelihood.html">Maximum Likelihood Estimation</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./99-maximum_likelihood-estimation.html">Part III - Miscellany</a></li><li class="breadcrumb-item"><a href="./99-maximum_likelihood-estimation.html">Maximum Likelihood Estimation</a></li></ol></nav>
 <div class="quarto-title">
-<div class="quarto-title-block"><div><h1 class="title"><span id="maximum-likelihood" class="quarto-section-identifier">Maximum Likelihood Estimation</span></h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Code</button></div></div>
+<div class="quarto-title-block"><div><h1 class="title"><span id="maximum-likelihood-estimation" class="quarto-section-identifier">Maximum Likelihood Estimation</span></h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Code</button></div></div>
 </div>
 
 
@@ -615,14 +627,14 @@ window.Quarto = {
 <section id="objectives" class="level2 unnumbered">
 <h2 class="unnumbered anchored" data-anchor-id="objectives">Objectives</h2>
 <blockquote class="blockquote">
-<p>This module provides a simple introduction to Maximum Likelihood Estimation.</p>
+<p>This module provides a simple introduction to Maximum Likelihood Estimation and its application in regression analysis.</p>
 </blockquote>
 <p><strong>Maximum Likelihood Estimation</strong> (MLE) is a method for estimating population parameters (such as the mean and variance for a normal distribution, the rate parameter (lambda) for a Poisson distribution, the regression coefficients for a linear model) from sample data such that the combined probability (likelihood) of obtaining the observed data is maximized. Here, we first explore the calculation of likelihood values generally and then use MLE to estimate the best parameters for defining from what particular normal distribution a set of data is most likely drawn.</p>
 </section>
 <section id="preliminaries" class="level2 unnumbered">
 <h2 class="unnumbered anchored" data-anchor-id="preliminaries">Preliminaries</h2>
 <ul>
-<li>Install and load these packages in <strong><em>R</em></strong>: <a href="https://cran.r-project.org/web/packages/devtools/bblme.pdf">{bbmle}</a> and <a href="https://cran.r-project.org/web/packages/roxygen2/maxLik.pdf">{maxLik}</a></li>
+<li>Install and load these packages in <strong><em>R</em></strong>: <a href="https://cran.r-project.org/web/packages/bbmle/bbmle.pdf">{bbmle}</a> and <a href="https://cran.r-project.org/web/packages/maxLik/maxLik.pdf">{maxLik}</a></li>
 <li>Load {tidyverse} and {mosaic}</li>
 </ul>
 </section>
@@ -665,7 +677,7 @@ window.Quarto = {
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="99-maximum_likelihood_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
+<p><img src="99-maximum_likelihood-estimation_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -693,7 +705,7 @@ window.Quarto = {
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="99-maximum_likelihood_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
+<p><img src="99-maximum_likelihood-estimation_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -2142,22 +2154,22 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./99-r-packages.html" class="pagination-link" aria-label="Building Custom ***R*** Packages">
-        <span class="nav-page-text">Building Custom <strong><em>R</em></strong> Packages</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./99-bayesian-estimation.html" class="pagination-link" aria-label="Bayesian Inference">
+        <span class="nav-page-text">Bayesian Inference</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
-<div class="sourceCode" id="cb269" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb269-1"><a href="#cb269-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># Maximum Likelihood Estimation {#maximum-likelihood .unnumbered}</span></span>
+<div class="sourceCode" id="cb269" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb269-1"><a href="#cb269-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># Maximum Likelihood Estimation {#maximum-likelihood-estimation .unnumbered}</span></span>
 <span id="cb269-2"><a href="#cb269-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb269-3"><a href="#cb269-3" aria-hidden="true" tabindex="-1"></a><span class="fu">## Objectives {.unnumbered}</span></span>
 <span id="cb269-4"><a href="#cb269-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb269-5"><a href="#cb269-5" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; This module provides a simple introduction to Maximum Likelihood Estimation.</span></span>
+<span id="cb269-5"><a href="#cb269-5" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; This module provides a simple introduction to Maximum Likelihood Estimation and its application in regression analysis.</span></span>
 <span id="cb269-6"><a href="#cb269-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb269-7"><a href="#cb269-7" aria-hidden="true" tabindex="-1"></a>**Maximum Likelihood Estimation** (MLE) is a method for estimating population parameters (such as the mean and variance for a normal distribution, the rate parameter (lambda) for a Poisson distribution, the regression coefficients for a linear model) from sample data such that the combined probability (likelihood) of obtaining the observed data is maximized. Here, we first explore the calculation of likelihood values generally and then use MLE to estimate the best parameters for defining from what particular normal distribution a set of data is most likely drawn.</span>
 <span id="cb269-8"><a href="#cb269-8" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb269-9"><a href="#cb269-9" aria-hidden="true" tabindex="-1"></a><span class="fu">## Preliminaries {.unnumbered}</span></span>
 <span id="cb269-10"><a href="#cb269-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb269-11"><a href="#cb269-11" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Install and load these packages in ***R***: <span class="co">[</span><span class="ot">{bbmle}</span><span class="co">](https://cran.r-project.org/web/packages/devtools/bblme.pdf)</span> and <span class="co">[</span><span class="ot">{maxLik}</span><span class="co">](https://cran.r-project.org/web/packages/roxygen2/maxLik.pdf)</span></span>
+<span id="cb269-11"><a href="#cb269-11" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Install and load these packages in ***R***: <span class="co">[</span><span class="ot">{bbmle}</span><span class="co">](https://cran.r-project.org/web/packages/bbmle/bbmle.pdf)</span> and <span class="co">[</span><span class="ot">{maxLik}</span><span class="co">](https://cran.r-project.org/web/packages/maxLik/maxLik.pdf)</span></span>
 <span id="cb269-12"><a href="#cb269-12" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Load {tidyverse} and {mosaic}</span>
 <span id="cb269-13"><a href="#cb269-13" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb269-16"><a href="#cb269-16" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
