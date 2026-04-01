@@ -59,7 +59,7 @@ $$P(\theta | \mathbf{x}) \propto P(\mathbf{x} | \theta) \cdot P(\theta)$$
 
 $$\underbrace{\text{posterior}}_{\text{what we want}} \propto \underbrace{\text{likelihood}}_{\text{from data}} \times \underbrace{\text{prior}}_{\text{prior belief}}$$
 
-> **NOTE:*** The key conceptual shift here is that whereas MLE gives us a *point estimate* for the the single most likely parameter value for each parameter, Bayesian inference gives us a *distribution*, i.e., a full description of our uncertainty about the parameters, updated by the data.
+> **NOTE:** The key conceptual shift here is that whereas MLE gives us a *point estimate* for the the single most likely parameter value for each parameter, Bayesian inference gives us a *distribution*, i.e., a full description of our uncertainty about the parameters, updated by the data.
 
 ## Priors: Encoding Prior Belief
 
@@ -76,6 +76,7 @@ The **prior distribution** $P(\theta)$ is what distinguishes Bayesian from frequ
 We can visualize how different priors affect our beliefs about a particular parameter, such as a mean, $\mu$:
 
 ```{r}
+#| fig-height: 3
 prior_df <- tibble(
   x = seq(0, 100, length.out = 500),
   flat               = dunif(x, 0, 100),
@@ -101,14 +102,15 @@ A useful technique before fitting any Bayesian model is **prior predictive simul
 
 The `{brms}` package makes this easy with the `sample_prior = "only"` argument. Here, we are effectively simulating data sets and regression lines for height ~ weight from a model where...
 
-β1 ~ Normal(0, 1)
-β0 ~ Normal(65, 10)
-σ ~ Exponential(0.1)
+- β1 ~ Normal(0, 1)
+- β0 ~ Normal(65, 10)
+- σ ~ Exponential(0.1)
 
 These priors imply that...
+
 - slopes could be fairly high (>1 inch per unit weight)
 - the intercept is centered around 65 inches
-- standard deviation of the residuals is typically around ~0.1 (but with a long tail)
+- the standard deviation of the residuals is typically around ~0.1 (but with a long tail)
 
 ... i.e., that, before seeing data, we are imagining that "Heights are around 65 inches, with some variability, and weight might have a moderate effect on height."
 
@@ -118,6 +120,7 @@ These priors imply that...
 #| message: false
 #| warning: false
 #| cache: true
+#| output: false
 f <- "https://raw.githubusercontent.com/difiore/ada-datasets/main/zombies.csv"
 zombies <- read_csv(f, col_names = TRUE)
 
@@ -138,7 +141,12 @@ prior_only_model <- brm(
   seed    = 1,
   refresh = 0
 )
+```
 
+### Visualize Prior Predictive Checks
+
+```{r}
+#| fig-height: 3
 pp_check(prior_only_model, ndraws = 100) +
   labs(title = "Prior Predictive Check",
        subtitle = "Do our priors alone imply plausible distributions of height values?") +
@@ -160,6 +168,7 @@ The simulated data from our priors should overlap reasonably with the range of o
 We can also plot prior predictive regression lines based only on our priors and the range of our observed predictor (weight) values...
 
 ```{r}
+#| fig-height: 3
 # Create a grid of weight values
 weight_seq <- seq(min(zombies$weight), max(zombies$weight), length.out = 100)
 
@@ -209,6 +218,7 @@ summary(m_ols)
 #| message: false
 #| warning: false
 #| cache: true
+#| output: false
 m_bayes <- brm(
   formula = height ~ weight,
   data    = zombies,
@@ -259,13 +269,14 @@ Before interpreting any posterior summaries, we must verify that our MCMC chains
 A **trace plot** shows the sampled parameter value at each iteration, plotted separately for each chain. Well-mixed, converged chains should look like "fuzzy caterpillars": stationary noise around a stable mean, with all chains thoroughly overlapping one another. Visible trends, slow drift, or chains stuck at different values are all warning signs.
 
 ```{r}
+#| fig-height: 4
 mcmc_trace(m_bayes, pars = c("b_Intercept", "b_weight", "sigma")) +
   labs(title = "Trace Plots",
        subtitle = "Should look like overlapping fuzzy caterpillars!") +
   theme_minimal()
 ```
 
-### $\hat{R}$: The Gelman-Rubin Convergence Diagnostic
+### The Gelman-Rubin Convergence Diagnostic ($\hat{R}$)
 
 $\hat{R}$ (pronounced "R-hat") compares the variance *within* each chain to the variance *between* chains. If all chains have converged to the same posterior, within-chain and between-chain variance should be roughly equal, yielding $\hat{R} \approx 1.0$. Divergence between these indicates the chains are not yet exploring the same distribution.
 
@@ -279,6 +290,7 @@ $\hat{R}$ (pronounced "R-hat") compares the variance *within* each chain to the 
 $\hat{R}$ values are reported directly in the `summary()` output above. We can also visualize them:
 
 ```{r}
+#| fig-height: 3
 # Extract the Stan fit
 stanfit <- m_bayes$fit
 
@@ -304,6 +316,7 @@ Because consecutive MCMC samples are *autocorrelated*, i.e., each draw is statis
 Both should exceed 1,000 for trustworthy summaries. Stan's HMC sampler typically achieves high ESS per iteration due to its low autocorrelation.
 
 ```{r}
+#| fig-height: 3
 mcmc_neff(neff_ratio(m_bayes)) +
   yaxis_text(hjust = 1) +
   labs(title = "Effective Sample Size Ratio (higher is better; > 0.1 is acceptable)") +
@@ -315,6 +328,7 @@ mcmc_neff(neff_ratio(m_bayes)) +
 Autocorrelation plots show how correlated each sample is with samples $k$ steps earlier (the *lag*). Ideal chains show autocorrelation dropping to near zero by lag 5–10. High autocorrelation at long lags indicates slow mixing and inflated ESS estimates.
 
 ```{r}
+#| fig-height: 4
 mcmc_acf(m_bayes, pars = c("b_Intercept", "b_weight", "sigma")) +
   labs(title = "MCMC Autocorrelation (should drop quickly to zero)") +
   theme_minimal()
@@ -325,6 +339,7 @@ mcmc_acf(m_bayes, pars = c("b_Intercept", "b_weight", "sigma")) +
 Overlaying the posterior density from each chain is another way to assess convergence. If all chains have explored the same posterior, their density estimates should nearly coincide.
 
 ```{r}
+#| fig-height: 3
 mcmc_dens_overlay(m_bayes, pars = c("b_Intercept", "b_weight", "sigma")) +
   labs(title = "Posterior Densities by Chain (should overlap closely)") +
   theme_minimal()
@@ -335,6 +350,7 @@ mcmc_dens_overlay(m_bayes, pars = c("b_Intercept", "b_weight", "sigma")) +
 The pairs plot visualizes joint posterior distributions for pairs of parameters. It is particularly useful for detecting **parameter correlations**, which slow mixing and can indicate that a model would benefit from reparameterization (e.g., centering predictors).
 
 ```{r}
+#| fig-height: 4
 pairs(m_bayes, variable = c("b_Intercept", "b_weight"))
 ```
 
@@ -349,6 +365,7 @@ Refit the model above using only `iter = 200` and `warmup = 100` with a single c
 A **posterior predictive check (PPC)** asks: if we simulate new datasets by drawing parameters from the posterior and then simulating observations from the likelihood, do the resulting datasets resemble the data we actually observed? This is another key model evaluation tool. It tests whether the assumed data-generating process (Gaussian likelihood, linear predictor) is consistent with the observed data.
 
 ```{r}
+#| fig-height: 3
 pp_check(m_bayes, ndraws = 100) +
   labs(title = "Posterior Predictive Check",
        subtitle = "Simulated datasets (light lines) vs. observed data (dark line)") +
@@ -358,6 +375,7 @@ pp_check(m_bayes, ndraws = 100) +
 We can also examine the posterior predictive distribution of specific test statistics, such as the mean and standard deviation:
 
 ```{r}
+#| fig-height: 3
 pp_check(m_bayes, type = "stat_2d", stat = c("mean", "sd")) +
   labs(title = "Posterior Predictive: Mean vs. SD",
        subtitle = "Dot = observed statistic; cloud = posterior predictive distribution") +
@@ -373,6 +391,7 @@ One of the major advantages of Bayesian inference is that the posterior is a ful
 ### Visualizing Marginal Posteriors
 
 ```{r}
+#| fig-height: 3
 # Extract posterior draws as a tidy data frame
 posterior_df <- as_draws_df(m_bayes)
 
@@ -409,6 +428,7 @@ These are statements about the **probability that the parameter takes a particul
 `{tidybayes}` provides elegant tools for visualizing posterior predictions with uncertainty:
 
 ```{r}
+#| fig-height: 3
 zombies |>
   add_epred_draws(m_bayes, ndraws = 100) |>   # expected (mean) predictions
   ggplot(aes(x = weight, y = height)) +
@@ -457,7 +477,7 @@ A common source of confusion is the interpretation of these two types of interva
 | **Intuitive reading** | *Cannot* say "95% probability the true value is in here" | *Can* say "95% probability the true value is in here" |
 | **Depends on** | The sampling distribution of the estimator | The posterior distribution of the parameter |
 
-The Bayesian credible interval has the interpretation that most people *intuitively* want from a confidence interval — but which the confidence interval formally does not provide.
+The Bayesian credible interval has the interpretation that most people *intuitively* want from a confidence interval but which the confidence interval does not formally provide.
 
 ## CHALLENGE {.unnumbered}
 
