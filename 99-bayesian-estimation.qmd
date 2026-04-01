@@ -18,7 +18,7 @@ By the end of this module, you should be able to:
 - Install and load these packages in ***R***: [{brms}](https://cran.r-project.org/web/packages/brms/brms.pdf), [{bayesplot}](https://cran.r-project.org/web/packages/bayesplot/bayesplot.pdf), [{tidybayes}](https://cran.r-project.org/web/packages/tidybayes/tidybayes.pdf)
 - Load {tidyverse}
 
-`{brms}` uses [Stan](https://mc-stan.org/) as its computational backend, which must be installed separately once using the `{cmdstanr}` package:
+`{brms}` uses [**Stan**](https://mc-stan.org/) as its computational backend, which must be installed separately once using the `{cmdstanr}` package:
 
 ```{r}
 #| eval: false
@@ -146,7 +146,8 @@ prior_only_model <- brm(
 ### Visualize Prior Predictive Checks
 
 ```{r}
-#| fig-height: 3
+#| fig-height: 4
+#| message: false
 pp_check(prior_only_model, ndraws = 100) +
   labs(title = "Prior Predictive Check",
        subtitle = "Do our priors alone imply plausible distributions of height values?") +
@@ -238,7 +239,7 @@ m_bayes <- brm(
 
 Again, note that `{brms}` compiles a model to C++ the first time it is run, which can take 30–60 seconds. Subsequent runs with the same model structure are faster.
 
-You can inspect the Stan code that `{brms}` generated, which is a useful window into how the formula interface maps onto a full probabilistic model in the **Stan** language:
+You can inspect the **Stan** code that `{brms}` generated, which is a useful window into how the formula interface maps onto a full probabilistic model in the **Stan** language:
 
 ```{r}
 stancode(m_bayes)
@@ -278,7 +279,7 @@ mcmc_trace(m_bayes, pars = c("b_Intercept", "b_weight", "sigma")) +
 
 ### The Gelman-Rubin Convergence Diagnostic ($\hat{R}$)
 
-$\hat{R}$ (pronounced "R-hat") compares the variance *within* each chain to the variance *between* chains. If all chains have converged to the same posterior, within-chain and between-chain variance should be roughly equal, yielding $\hat{R} \approx 1.0$. Divergence between these indicates the chains are not yet exploring the same distribution.
+$\hat{R}$ (or "R-hat") compares the variance *within* each chain to the variance *between* chains. If all chains have converged to the same posterior, within-chain and between-chain variance should be roughly equal, yielding $\hat{R} \approx 1.0$. Divergence between these indicates the chains are not yet exploring the same distribution.
 
 **Interpretation:**
 
@@ -375,7 +376,8 @@ pp_check(m_bayes, ndraws = 100) +
 We can also examine the posterior predictive distribution of specific test statistics, such as the mean and standard deviation:
 
 ```{r}
-#| fig-height: 3
+#| fig-height: 4
+#| message: false
 pp_check(m_bayes, type = "stat_2d", stat = c("mean", "sd")) +
   labs(title = "Posterior Predictive: Mean vs. SD",
        subtitle = "Dot = observed statistic; cloud = posterior predictive distribution") +
@@ -392,6 +394,8 @@ One of the major advantages of Bayesian inference is that the posterior is a ful
 
 ```{r}
 #| fig-height: 3
+#| message: false
+#| warning: false
 # Extract posterior draws as a tidy data frame
 posterior_df <- as_draws_df(m_bayes)
 
