@@ -6,7 +6,11 @@
 
 ## Preliminaries
 
-- Install these packages in ***R***: [{permuco}](https://cran.r-project.org/web/packages/permuco/permuco.pdf), [{dunn.test}](https://cran.r-project.org/web/packages/dunn.test/dunn.test.pdf), [{conover.test}](https://cran.r-project.org/web/packages/conover.test/conover.test.pdf)
+- Install these packages in ***R***:
+[{dunn.test}](https://cran.r-project.org/web/packages/dunn.test/dunn.test.pdf), [{conover.test}](https://cran.r-project.org/web/packages/conover.test/conover.test.pdf),
+[{datawizard}](https://cran.r-project.org/web/packages/datawizard/datawizard.pdf),
+[{sjPlot}](https://cran.r-project.org/web/packages/sjPlot/sjPlot.pdf),
+[{emmeans}](https://cran.r-project.org/web/packages/emmeans/emmeans.pdf), and [{permuco}](https://cran.r-project.org/web/packages/permuco/permuco.pdf)
 - Install and load this package in ***R***:
 [{effectsize}](https://cran.r-project.org/web/packages/effectsize/effectsize.pdf)
 - Load {tidyverse}, {broom}, and {infer}
@@ -232,7 +236,7 @@ visualize(permuted.F) +
 )
 ```
 
-Note that, for these data, the p value estimated through simulated based inference is very similar to that calculated paramterically based on mathematical theory. This is not always the case!
+Note that, for these data, the p value estimated through simulation-based inference is very similar to that calculated parameterically based on mathematical theory. This is not always the case!
 
 ```{r}
 original.F$p.value
@@ -273,10 +277,8 @@ Load in the "gibbon-femurs.csv" dataset, which contains the lengths, in centimet
 f <- "https://raw.githubusercontent.com/difiore/ada-datasets/main/gibbon-femurs.csv"
 d <- read_csv(f, col_names=TRUE)
 d$age <- factor(d$age, levels = c("inf", "juv", "subadult", "adult"))
-# converts age to a factor and order the age levels so that
-# they are in ascending chronological order
-# several ANOVA functions require that categorical variables
-# are represented as factors rather than strings
+# converts age to a factor and order the age levels so that they are in ascending chronological order
+# several ANOVA functions require that categorical variables are represented as factors rather than as strings
 d$sex <- factor(d$sex, levels = c("female", "male"))
 # convert sex to a factor
 head(d)
@@ -380,9 +382,12 @@ d <- d |>
     age == "subadult" ~ "S",
     age == "juv" ~ "J",
     age == "inf" ~ "I"
-  ))
-m <- aov(femur_length ~ age, data = d)
-posthoc <- TukeyHSD(m,
+  )) |>
+  # and coerce age back to being a factor
+  mutate(age = factor(age, level = c("I", "J", "S", "A")))
+
+m.aov <- aov(femur_length ~ age, data = d)
+posthoc <- TukeyHSD(m.aov,
                     which = "age",
                     ordered = TRUE,
                     conf.level = 0.95)
@@ -412,14 +417,13 @@ d <- mutate(d, femur_rank = row(data.frame(d$femur_length)))
 For a post-hoc test of which groups are different following a Kruskall-Wallis test, we can use either a pairwise Mann-Whitney U test, a Dunn test, or a Conover-Iman test. The latter two tests are implemented using `dunn.test()` from the {dunn.test} package or `conover.test()` from the {conover.test} package, which both allow us to show the calculated Krusal-Wallis test statistic as well.
 
 ```{r}
+#| message: false
 # pairwise Mann-Whitney U test
-# the arguments are a vector of data, a vector with the grouping
-# factor, and the multiple test correction method...
+# the arguments are a vector of data, a vector with the grouping factor, and the multiple test correction method...
 pairwise.wilcox.test(d$femur_length, d$age,
   p.adjust.method="bonferroni")
 
-# `dunn.test()` and `conover.test()` include another argument, `kw=`
-# which is whether or not to output KW results
+# `dunn.test()` and `conover.test()` include another argument, `kw=`, which is whether or not to output KW results
 library(dunn.test)
 dunn.test(d$femur_length, g=d$age, method="bonferroni", kw=TRUE)
 detach(package:dunn.test)
@@ -442,15 +446,23 @@ effectsize(m.aov)
 # we can hand-calculate this same value from the ANOVA table as 6152/(6152 + 1452)
 ```
 
-Here, 81% of the variance in **femur length** is accounted for by variance in **age**.
+Here, 81% of the variance in **femur length** is accounted for by variance in the grouping variable **age**.
 
 Applied to a linear model object, the `effectsize()` function refits the model and returns **standardized** coefficients rather than unstandardized ones. This is equivalent to running the original linear model after standardizing all of the variables so that they are represented on the same scale, which is typically done via a $Z$ transformation (i.e., by subtracting its mean from each variable observation and divide by its standard deviation): $z_i = \frac{x_i - \mu_x}{SD_x}$
 
 ```{r}
+m <- lm(femur_length ~ age, data = d)
 effectsize(m)
 ```
 
-> **NOTE**: The {datawizard} package provides the function `standardize()`, which will take a model and refit it using standardized parameters and return a refitted model object. The {parameters} package function `standardize_parameters()` will also return standardized coefficients when passed a model object. These two function are designed to replace the `effectsize()` function from the {effectsize} package.
+> **NOTE**: The {datawizard} package provides the function `standardize()`, which will also take a model and refit it using standardized parameters and return a refitted model object.
+
+```{r}
+#| message: false
+library(datawizard)
+standardize(m)
+detach(package:datawizard)
+```
 
 ## Multiple Factor ANOVA
 
@@ -491,16 +503,26 @@ summary(aov(data = d, femur_length ~ sex))
 However, if we do a Two-Way ANOVA and consider the factors together, we see that there is still a main effect of **age** when taking **sex** into account **and** there is a main effect of **sex** when we take **age** into account.
 
 ```{r}
-m.aov <- summary(aov(data = d, femur_length ~ age + sex))
+m.aov <- aov(data = d, femur_length ~ age + sex)
 m.aov
+summary(m.aov)
 ```
 
-To examine whether there is an interaction effect, we would modify our model formula a bit using the colon operator (`:`) to specify a particular interaction term...
+When we run `effectsize()` on a model object resulting from a multiple factor ANOVA, the function, by default, returns partial $\eta^2$ values, which is the proportion of the variance in the response variable that is accounted by each categorical predictor *when controlling for the other predictors*.
+
+```{r}
+effectsize(m.aov)
+# or effectsize(m.aov, partial = TRUE)
+```
+
+### Interaction Terms
+
+To examine whether there is an interaction effect between our multiple categorical predicto variables, we would modify our model formula a bit using the colon operator (`:`) to specify a particular interaction term...
 
 ```{r}
 m.aov <- aov(data = d, femur_length ~ age + sex + age:sex)
 # the colon (:) operator includes specific interaction terms
-summary(m)
+summary(m.aov)
 ```
 
 We could also use the asterisk (`*`) operator, which expands to include all interactions among terms, including 3-way, 4-way, etc., interactions.
@@ -509,17 +531,21 @@ We could also use the asterisk (`*`) operator, which expands to include all inte
 m.aov <- aov(data = d, femur_length ~ age * sex)
 # asterisk (*) operator includes all interaction terms
 summary(m.aov)
-m <- lm(data = d, femur_length ~ age * sex)
 # or using the lm() function...
+m <- lm(data = d, femur_length ~ age * sex)
 summary(m)
 ```
 
-We can use the function `interaction.plot()` to visualize interactions among categorical variables.
+Note that when we run `summary()` on the results of the `lm()` function (as opposed to running it on the results of the `aov()` function), we are estimating eight $\beta$ coefficients (equivalent to the number of groups we have). Here, $\beta_0$, the intercept, is the mean femur length for the base level (in this case, "adult females"). Then we have coefficients showing how the different factor combination groups would differ from that base level (e.g., adult males have mean femur lengths 1.716 greater than adult females, etc).
+
+### Visualizing Interactions
+
+We can use the function `interaction.plot()` to visualize interactions among categorical variables in our raw data...
 
 ```{r}
-#| fig-width: 4
+#| fig-height: 4
 interaction.plot(
-  x.factor = d$age,
+  x.factor = factor(d$age, level = c("I", "J", "S", "A")),
   xlab = "Age",
   trace.factor = d$sex,
   trace.label = "Sex",
@@ -529,29 +555,48 @@ interaction.plot(
 )
 ```
 
-Here, it looks like there is indeed a significant main effect of each term as well as an interaction between our two categorical variables. We will return to comparing models to one another (e.g., our model with and without interactions) and to post-hoc tests of what group mean differences are significant when we get into model selection in another few lectures.
+Here, it appears like there is indeed a significant main effect of each term (within several the adult and subadult categories, mean femur length differs for males and females), as well as an interaction between our two categorical variables (the same does not appear to be true for infants and juveniles).
 
-When we do `summary()` of the results of the `lm()` function, we are estimating eight $\beta$ coefficients (equivalent to the number of groups we have). $\beta_0$, the intercept, is the mean femur length for the base level (in this case, "adult females"). Then we have coefficients showing how the different factor combination groups would differ from that base level (e.g., adult males have mean femur lengths 1.716 greater than adult females, etc).
+We can also use either the {sjPlot} or {emmeans} packages to look at differences in **Mean Femur Length** predicted by our multiple ANOVA model. These plot the estimated marginal means, or the average predicted scores scores for each independent variable at a given level of the other independent variable...
+
+```{r}
+#| message: false
+#| fig-height: 4
+library(sjPlot)
+plot_model(m.aov,
+           type = "emm",
+           terms = c("age", "sex")
+)
+detach(package:sjPlot)
+library(emmeans)
+emmip(m.aov,
+  sex ~ age,
+  CIs = TRUE
+)
+detach(package:emmeans)
+```
+
+Note that these plots show the model-predicted mean value for the response variable **femur length** for each combination of the two categorical predictors (**age** and **sex**).
+
+- Differences between points at a given **age** indicate an effect of **sex** within that particular **age** category.
+- Non-parallel lines in the interaction plot (like we have here) indicate an interaction between predictors. If one **sex** has a very different pattern across **age** than the other, then that is evidence that the interaction term is meaningful (and, in this case, would suggest that developmental trajectories differ by **sex**). Parallel lines would suggest no interaction (and, thus, that developmental trajectories are similar in the two sexes).
+- Crossing lines in a marginal means plot would indicate a strong interaction among predictor terms, e.g., where the ranking of **femur length** by **sex** actually reverses with **age** class.
+
+We will return to comparing alternative ANOVA models to one another (e.g., our model with and without interaction terms) and to post-hoc tests of which group mean differences are significant when we get into model selection in [**Module 22**](#module-22).
 
 The {permuco} package also lets us run multiple factor ANOVA using permutation/randomization to estimate p values.
 
 ```{r}
+#| message: false
 library(permuco)
 m.aovperm <- aovperm(data = d, femur_length ~ age + sex + age:sex)
 summary(m.aovperm)
 detach(package:permuco)
 ```
 
-When we run `effectsize()` on a model object resulting from a multiple factor ANOVA, the function by default returns partial $\eta^2$ values, which is the proportion of the variance in the response variable that is accounted by each predictor *when controlling for the other predictors*.
-
-```{r}
-effectsize(m.aov)
-# or effectsize(m.aov, partial = TRUE)
-```
-
 ## Type I, II, and III ANOVA
 
-It is important to recognize that the ORDER in which our factors are entered into a linear model using categorical predictors can result in different values for the entries in our ANOVA table, while the estimation of our regression coefficients is identical regardless. Take a look at this example, where the variables **age** and **sex** are entered into our ANOVA formula in different orders:
+It is important to recognize that the **order** in which our factors are entered into a linear model using multiple categorical predictors can result in different values for the entries in our ANOVA table, while the estimation of our regression coefficients is identical regardless. Take a look at this example, where the variables **age** and **sex** are entered into our ANOVA formula in different orders:
 
 ```{r}
 m1 <- aov(data = d, femur_length ~ age + sex)
@@ -634,6 +679,7 @@ where:
 We then compare the value of the $\chi^2$ statistic to the Chi-Square distribution with $k-1$ degrees of freedom. The Chi-Square distribution, like the $F$ distribution, is a continuous probability distribution, defined for $x≥0$. It is governed by a single parameter, $df$.
 
 ```{r}
+#| fig-height: 4
 par(mfrow=c(1,1))
 curve(dchisq(x,df=1), col="green", lty=3, lwd=2, xlim=c(0,20),
   main = "Some Example Chi-Square Distributions",

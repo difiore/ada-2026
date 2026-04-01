@@ -133,10 +133,13 @@
 - **{broom}**: @R-broom
 - **{coin}**: @R-coin, @coin2006, @coin2008
 - **{infer}**: @R-infer
-- **{permuco}**: @R-permuco
 - **{dunn.test}**: @R-dunn.test
 - **{conover.test}**: @R-conover.test
 - **{effectsize}**: @R-effectsize, @effectsize2020
+- **{datawizard}**: @R-datawizard, @datawizard2022
+- **{sjPlot}**: @R-sjPlot
+- **{emmeans}**, @R-emmeans
+- **{permuco}**: @R-permuco
 
 ### Module 21 {.unnumbered}
 
@@ -170,7 +173,7 @@
 - **{redres}**: @R-redres
 - **{effects}**: @R-effects, @effects2009
 - **{cowplot}**: @R-cowplot
-- **{sjPlots}**: @R-sjPlot
+- **{sjPlot}**: @R-sjPlot
 - **{MuMIn}**: @R-MuMIn
 - **{mixedup}**: @R-mixedup
 - **{glmmML}**: @R-glmmML
@@ -246,6 +249,7 @@
 - **{curl}**: @R-curl
 - **{data.table}**: @R-data.table
 - **{dataMaid}**: @R-dataMaid, @dataMaid2019
+- **{datawizard}**: @R-datawizard, @datawizard2022
 - **{devtools}**: @R-devtools
 - **{dplyr}**: @R-dplyr
 - **{DT}**: @R-DT
@@ -254,6 +258,7 @@
 - **{easypackages}**: @R-easypackages
 - **{effects}**: @R-effects, @effects2009
 - **{effectsize}**: @R-effectsize, @effectsize2020
+- **{emmeans}**: @R-emmeans
 - **{emo}**: @R-emo
 - **{forcats}**: @R-forcats
 - **{gdata}**: @R-gdata

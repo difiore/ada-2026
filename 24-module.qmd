@@ -8,11 +8,9 @@
 
 - Install and load these packages in ***R***: [{lme4}](https://cran.r-project.org/web/packages/lme4/lme4.pdf),
 [{redres}](https://cran.r-project.org/web/packages/redres/redres.pdf),
-[{glmmTMB}](https://cran.r-project.org/web/packages/glmmTMB/glmmTMB.pdf), 
-[{sjPlot}](https://cran.r-project.org/web/packages/sjPlot/sjPlot.pdf),
-and
+[{glmmTMB}](https://cran.r-project.org/web/packages/glmmTMB/glmmTMB.pdf), and
 [{mixedup}](https://github.com/m-clark/mixedup/)
-- Load {tidyverse} and {effects}
+- Load {tidyverse}, {effects}, and {sjPlot}
 - Be sure you have the packages {car}, {cowplot}, {lmtest}, and {MASS} installed
 
 ```{r}
