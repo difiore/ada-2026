@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Applied Data Analysis 2026 - Exercise 03</title>
+<title>Applied Data Analysis 2026 - Exercise 11</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -64,8 +64,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./exercise-03-solution.html" rel="next">
-<link href="./exercise-02.html" rel="prev">
+<link href="./data-analysis-replication-assignment.html" rel="next">
+<link href="./exercise-10.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -103,35 +103,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   }
 }</script>
 
-  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
 
 <link rel="stylesheet" href="css/style.css">
 </head>
@@ -145,7 +116,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./exercise-01.html">Exercises</a></li><li class="breadcrumb-item"><a href="./exercise-03.html">Exercise 03</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./exercise-01.html">Exercises</a></li><li class="breadcrumb-item"><a href="./exercise-11.html">Exercise 11</a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -453,7 +424,7 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./exercise-03.html" class="sidebar-item-text sidebar-link active">
+  <a href="./exercise-03.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Exercise 03</span></a>
   </div>
 </li>
@@ -537,7 +508,7 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./exercise-11.html" class="sidebar-item-text sidebar-link">
+  <a href="./exercise-11.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Exercise 11</span></a>
   </div>
 </li>
@@ -593,9 +564,10 @@ window.Quarto = {
     <h2 id="toc-title">Table of Contents</h2>
    
   <ul>
-  <li><a href="#explore-and-wrangle-data" id="toc-explore-and-wrangle-data" class="nav-link active" data-scroll-target="#explore-and-wrangle-data">Explore and Wrangle Data</a>
+  <li><a href="#practice-model-selection" id="toc-practice-model-selection" class="nav-link active" data-scroll-target="#practice-model-selection">Practice Model Selection</a>
   <ul class="collapse">
   <li><a href="#learning-objectives" id="toc-learning-objectives" class="nav-link" data-scroll-target="#learning-objectives">Learning Objectives</a></li>
+  <li><a href="#challenge" id="toc-challenge" class="nav-link" data-scroll-target="#challenge">Challenge</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -603,9 +575,9 @@ window.Quarto = {
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./exercise-01.html">Exercises</a></li><li class="breadcrumb-item"><a href="./exercise-03.html">Exercise 03</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./exercise-01.html">Exercises</a></li><li class="breadcrumb-item"><a href="./exercise-11.html">Exercise 11</a></li></ol></nav>
 <div class="quarto-title">
-<div class="quarto-title-block"><div><h1 class="title">Exercise 03</h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Code</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Show All Code</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Hide All Code</a></li><li><hr class="dropdown-divider"></li><li><a id="quarto-view-source" class="dropdown-item" href="javascript:void(0)" role="button">View Source</a></li></ul></div></div>
+<div class="quarto-title-block"><div><h1 class="title">Exercise 11</h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Code</button></div></div>
 </div>
 
 
@@ -622,94 +594,88 @@ window.Quarto = {
 </header>
 
 
-<section id="explore-and-wrangle-data" class="level1 unnumbered">
-<h1 class="unnumbered">Explore and Wrangle Data</h1>
+<section id="practice-model-selection" class="level1 unnumbered">
+<h1 class="unnumbered">Practice Model Selection</h1>
 <section id="learning-objectives" class="level2 unnumbered">
 <h2 class="unnumbered anchored" data-anchor-id="learning-objectives">Learning Objectives</h2>
 <ul>
-<li>Integrating an <strong><em>RStudio</em></strong> project, a local <strong><em>git</em></strong> repository, and a <strong>GitHub</strong> remote repository</li>
-<li>Performing basic exploratory data analyses and visualization</li>
-<li>Using {dplyr} and the pipe operator (<code>|&gt;</code> or <code>%&gt;%</code>) for data wrangling</li>
+<li>Run exploratory multivariate regression to evaluate different models</li>
 </ul>
 <section id="preliminaries" class="level4 unnumbered">
 <h4 class="unnumbered anchored" data-anchor-id="preliminaries">Preliminaries</h4>
 <ul>
-<li><p>Set up a new <strong><em>GitHub</em></strong> repo in your <strong><em>GitHub</em></strong> workspace called “exercise-03” and clone that down your computer as a new <strong><em>RStudio</em></strong> project. The instructions outlined as <strong>Method 1</strong> in <a href="06-module.html"><strong>Module 6</strong></a> will be helpful.</p></li>
-<li><p>Load the “data-wrangling.csv” dataset from <a href="https://raw.githubusercontent.com/difiore/ada-datasets/main/data-wrangling.csv"><strong>this URL</strong></a> as a tabular data structure named <strong>d</strong> and look at the variables it contains, which are a subset of those in the Kamilar and Cooper dataset on primate ecology, behavior, and life history that we have used previously.</p></li>
+<li>Set up a new <strong><em>GitHub</em></strong> repo in your <strong><em>GitHub</em></strong> workspace named “exercise-11” and clone that down to your computer as a new <strong><em>RStudio</em></strong> project. The instructions outlined as <strong>Method 1</strong> in <a href="06-module.html"><strong>Module 6</strong></a> will be helpful.</li>
+<li>Using the {tidyverse} <code>read_tsv()</code> function, load the “Mammal_lifehistories_v2.txt” dataset from <a href="https://raw.githubusercontent.com/difiore/ada-datasets/main/Mammal_lifehistories_v2.txt">this URL</a> as a “tibble” named <strong>d</strong>. As discussed in class, this is data set that compiles life history and other variables for over 1400 species of placental mammals from 17 different Orders.</li>
 </ul>
 <blockquote class="blockquote">
-<p><strong>HINT:</strong> You can use the <code>names()</code> function to see a list of variable names in the dataset</p>
+<p><strong>Data source</strong>:</p>
+<p>Ernest SKM. (2003). Life history characteristics of placental nonvolant mammals. <em>Ecology</em> 84: 3402–3402.</p>
 </blockquote>
+<ul>
+<li>Do a bit of exploratory data analysis with this dataset, e.g., using the {skimr} package. Which of the variables are categorical and which are numeric?</li>
+</ul>
 </section>
+</section>
+<section id="challenge" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="challenge">Challenge</h2>
 <section id="step-1" class="level4 unnumbered">
 <h4 class="unnumbered anchored" data-anchor-id="step-1">Step 1</h4>
-<p>Create a new <strong>Quarto</strong> document called “EDA-challenge.qmd” within the project and use it to complete the following challenges. Be sure to include both descriptive text about what you are doing and code blocks – i.e., follow a “literate programming” approach to be sure that a reader understands what you are doing. For the plots, feel free to use either {base} <strong><em>R</em></strong> graphics or {ggplot2}, as you prefer. You should use descriptive text to answer the specific questions asked below.</p>
-<ol type="1">
-<li><p>Create a new variable named <strong>BSD</strong> (body size dimorphism) which is the ratio of average male to female body mass.</p></li>
-<li><p>Create a new variable named <strong>sex_ratio</strong>, which is the ratio of the number of adult females to adult males in a typical group.</p></li>
-<li><p>Create a new variable named <strong>DI</strong> (for “defensibility index”), which is the ratio of day range length to the diameter of the home range.</p></li>
-</ol>
-<blockquote class="blockquote">
-<p><strong>HINT:</strong> You will need to calculate the latter for each species from the size of its home range! For the purposes of this assignment, presume that the home range is a circle and use the formula for the area of a circle: <span class="math inline">\(AREA = \pi \times r^2\)</span>. The variable <em>pi</em> (note, without parentheses!) will return the value of <span class="math inline">\(\pi\)</span> as a constant built-in to <strong><em>R</em></strong>, and the function <code>sqrt()</code> can be used to calculate the square root (<span class="math inline">\(\sqrt{}\)</span>)</p>
-</blockquote>
-<ol start="4" type="1">
-<li><p>Plot the relationship between day range length (y axis) and time spent moving (x axis), for these primate species <em>overall</em> and <em>by family</em> (i.e., a different plot for each family, e.g., by using faceting: <code>+ facet_wrap()</code>). Do species that spend more time moving travel farther overall? How about within any particular primate family? Should you transform either of these variables? Why or why not?</p></li>
-<li><p>Plot the relationship between day range length (y axis) and group size (x axis), <em>overall</em> and <em>by family</em>. Do species that live in larger groups travel farther, overall, in a day? How about within any particular primate family? Should you transform either of these variables?</p></li>
-<li><p>Plot the relationship between canine size dimorphism (y axis) and body size dimorphism (x axis) <em>overall</em> and <em>by family</em>. Do taxa with greater size dimorphism also show greater canine dimorphism?</p></li>
-<li><p>Create a new variable named <strong>diet_strategy</strong> that is “frugivore” if fruits make up &gt;50% of the diet, “folivore” if leaves make up &gt;50% of the diet, and “omnivore” if diet data are available but neither of these is true (i.e., these values are not <code>NA</code>). Then, create boxplots of group size for species with different dietary strategies, omitting the category <code>NA</code> from your plot. Do frugivores live in larger groups than folivores?</p></li>
-</ol>
-<blockquote class="blockquote">
-<p><strong>HINT:</strong> To create this new variable, try combining <code>mutate()</code> with <code>ifelse()</code> or <code>case_when()</code> statements… check out the notes on “Conditional Expressions” in <a href="11-module.html"><strong>Module 11</strong></a>. Take a peak at the code snippets below if you get stuck!</p>
-</blockquote>
-<div class="cell" data-layout-align="center">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mutate</span>(d, <span class="at">diet_strategy =</span> <span class="fu">ifelse</span>(Fruit <span class="sc">&gt;=</span> <span class="dv">50</span>, <span class="st">"frugivore"</span>, <span class="fu">ifelse</span>(Leaves <span class="sc">&gt;=</span> <span class="dv">50</span>, <span class="st">"folivore"</span>,</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ifelse</span>(Fruit <span class="sc">&lt;</span> <span class="dv">50</span> <span class="sc">&amp;</span> Leaves <span class="sc">&lt;</span> <span class="dv">50</span>, <span class="st">"omnivore"</span>, <span class="cn">NA</span>))))</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">mutate</span>(d, <span class="at">diet_strategy =</span> <span class="fu">case_when</span>(Fruit <span class="sc">&gt;=</span> <span class="dv">50</span> <span class="sc">~</span> <span class="st">"frugivore"</span>, Leaves <span class="sc">&gt;=</span> <span class="dv">50</span> <span class="sc">~</span> <span class="st">"folivore"</span>,</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    Fruit <span class="sc">&lt;</span> <span class="dv">50</span> <span class="sc">&amp;</span> Leaves <span class="sc">&lt;</span> <span class="dv">50</span> <span class="sc">~</span> <span class="st">"omnivore"</span>, <span class="cn">TRUE</span> <span class="sc">~</span> <span class="cn">NA</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-</div>
-<ol start="8" type="1">
-<li><strong>In one line of code</strong>, using {dplyr} verbs and the forward pipe (<code>|&gt;</code> or <code>%&gt;%</code>) operator, do the following:</li>
-</ol>
 <ul>
-<li>Add a variable, <strong>Binomial</strong> to the data frame <strong>d</strong>, which is a concatenation of the <strong>Genus</strong> and <strong>Species</strong> variables…</li>
-<li>Trim the data frame to only include the variables <strong>Binomial</strong>, <strong>Family</strong>, <strong>Brain_size_species_mean</strong>, and <strong>Body_mass_male_mean</strong>…</li>
-<li>Group these variables by <strong>Family</strong>…</li>
-<li>Calculate the average value for <strong>Brain_Size_Species_Mean</strong> and <strong>Body_mass_male_mean</strong> per <strong>Family</strong> (remember, you may need to specify <code>na.rm = TRUE</code>)…</li>
-<li>Arrange by <em>increasing</em> average brain size…</li>
-<li>And <em>print</em> the output to the console</li>
+<li>Replace all values of -999 (the authors’ code for missing data) with <code>NA</code>.</li>
 </ul>
+<blockquote class="blockquote">
+<p><strong>HINT:</strong> This is easy to do in base {R}, but you can also check out the <code>replace_with_na_all()</code> function from the {naniar} package.</p>
+</blockquote>
 </section>
 <section id="step-2" class="level4 unnumbered">
 <h4 class="unnumbered anchored" data-anchor-id="step-2">Step 2</h4>
 <ul>
-<li>Render your work to HTML or (if you feel ambitious!) as a PDF. 😃</li>
+<li>Drop the variables <strong>litter size</strong> and <strong>refs</strong>.</li>
+<li>Rename the variable <strong>max. life(mo)</strong> to <strong>maxlife(mo)</strong>.</li>
+<li>Rename the variable <strong>wean mass(g)</strong> to <strong>weanmass(g)</strong>.</li>
 </ul>
 </section>
 <section id="step-3" class="level4 unnumbered">
 <h4 class="unnumbered anchored" data-anchor-id="step-3">Step 3</h4>
 <ul>
-<li>Commit your changes locally and push your repo, including your “.qmd” file and rendered results, up to <strong><em>GitHub</em></strong>.</li>
+<li>Log transform all of the other numeric variables.</li>
 </ul>
+<blockquote class="blockquote">
+<p><strong>HINT:</strong> There are lots of ways to do this… look into <code>mutate(across(where(), .funs))</code> for an efficient motif.</p>
+</blockquote>
 </section>
 <section id="step-4" class="level4 unnumbered">
 <h4 class="unnumbered anchored" data-anchor-id="step-4">Step 4</h4>
 <ul>
-<li>Submit the URL for your repo in <strong>Canvas</strong></li>
+<li>Regress the (now log transformed) <em>age</em> [<strong>gestation(mo)</strong>, <strong>weaning(mo)</strong>, <strong>AFR(mo)</strong> (i.e., age at first reproduction), and <strong>maxlife(mo)</strong> (i.e., maximum lifespan)] and <em>mass</em> [<strong>newborn(g)</strong> and <strong>weanmass(g)</strong>] variables on (now log transformed) overall body <strong>mass(g)</strong> and add the residuals to the dataframe as new variables [<strong>relGest</strong>, <strong>relWean</strong>, <strong>relAFR</strong>, <strong>relLife</strong>, <strong>relNewbornMass</strong>, and <strong>relWeaningMass</strong>].</li>
 </ul>
+<blockquote class="blockquote">
+<p><strong>HINT:</strong> Use “na.action=na.exclude” in your<code>lm()</code> calls. With this argument set, the residuals will be padded to the correct length by inserting NAs for cases with missing data. To access these correctly, however, where the length of the vector of residuals is equal in length to the length of your original vector (i.e., where missing residuals are padded out as NAs) you will need to call the <code>resid(m)</code> function on the model object (assuming the model is named <strong>m</strong>) rather than by calling <code>m$residuals</code>. The former function returns a vector of residuals with “NA” for cases where the value of one of the formula variables is missing, while the latter returns a vector with the NAs dropped, which may be shorter than the length of the original data frame!</p>
+</blockquote>
 </section>
-<section id="optional-next-steps" class="level4 unnumbered">
-<h4 class="unnumbered anchored" data-anchor-id="optional-next-steps">Optional Next Steps?</h4>
-<p>Load in a dataset of your own and write <strong><em>R</em></strong> code to do the following:</p>
+<section id="step-5" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="step-5">Step 5</h4>
 <ul>
-<li>Create and print a vector of the variable names in your dataset</li>
-<li>Count the total number of rows (observations) in your dataset</li>
-<li>For each <em>numeric</em> variable, calculate the number of observations, the mean and standard deviation, and the five-number summary</li>
-<li>Make box-and-whiskers plots for each numerical variable</li>
-<li>For each <em>categorical variable</em>, generate a table of counts/proportions of alternative variable values</li>
+<li>Plot residuals of max lifespan (<strong>relLife</strong>) in relation to <strong>Order</strong>. Which mammalian orders have the highest residual lifespan?</li>
+<li>Plot residuals of newborn mass (<strong>relNewbornMass</strong>) in relation to <strong>Order</strong>. Which mammalian orders have the have highest residual newborn mass?</li>
+<li>Plot residuals of weaning mass (<strong>relWeaningMass</strong>) in relation to <strong>Order</strong>. Which mammalian orders have the have highest residual weaning mass?</li>
+</ul>
+<blockquote class="blockquote">
+<p><strong>NOTE:</strong> There will be lots of missing data for the latter two variables!</p>
+</blockquote>
+</section>
+<section id="step-6" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="step-6">Step 6</h4>
+<ul>
+<li>Run models and a model selection process to evaluate what (now log transformed) variables best predict each of the two response variables, <strong>maxlife(mo)</strong> and <strong>AFR(mo)</strong>, from the set of the following predictors: <strong>gestation(mo)</strong>, <strong>newborn(g)</strong>, <strong>weaning(mo)</strong>, <strong>weanmass(g)</strong>, <strong>litters/year</strong>, and overall body <strong>mass(g)</strong>.</li>
+</ul>
+<blockquote class="blockquote">
+<p><strong>HINT:</strong> Before running models, winnow your dataset to drop rows that are missing the respective response variable or any of the predictors, e.g., by using <code>drop_na()</code>.</p>
+</blockquote>
+<ul>
+<li>For each of the two response variables, indicate what is the best model overall based on AICc and how many models have a delta AICc of 4 or less?</li>
+<li>What variables, if any, appear in all of this set of “top” models?</li>
+<li>Calculate and plot the model-averaged coefficients and their CIs across this set of top models.</li>
 </ul>
 
 
@@ -1160,109 +1126,77 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./exercise-02.html" class="pagination-link  aria-label=" exercise="" 02"="">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Exercise 02</span>
+      <a href="./exercise-10.html" class="pagination-link  aria-label=" exercise="" 10"="">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Exercise 10</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./exercise-03-solution.html" class="pagination-link" aria-label="Exercise 03 Solution">
-        <span class="nav-page-text">Exercise 03 Solution</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./data-analysis-replication-assignment.html" class="pagination-link" aria-label="Data Analysis Replication">
+        <span class="nav-page-text">Data Analysis Replication</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
-<div class="sourceCode" id="cb2" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># Exercise 03 {.unnumbered}</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu"># Explore and Wrangle Data {.unnumbered}</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="fu">## Learning Objectives {.unnumbered}</span></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Integrating an ***RStudio*** project, a local ***git*** repository, and a **GitHub** remote repository</span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Performing basic exploratory data analyses and visualization</span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Using {dplyr} and the pipe operator (<span class="in">`|&gt;`</span> or <span class="in">`%&gt;%`</span>) for data wrangling</span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Preliminaries {.unnumbered}</span></span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Set up a new ***GitHub*** repo in your ***GitHub*** workspace called "exercise-03" and clone that down your computer as a new ***RStudio*** project. The instructions outlined as **Method 1** in [**Module 6**](#module-06) will be helpful.</span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Load the "data-wrangling.csv" dataset from <span class="co">[</span><span class="ot">**this URL**</span><span class="co">](https://raw.githubusercontent.com/difiore/ada-datasets/main/data-wrangling.csv)</span> as a tabular data structure named **d** and look at the variables it contains, which are a subset of those in the Kamilar and Cooper dataset on primate ecology, behavior, and life history that we have used previously.</span>
-<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; **HINT:** You can use the </span><span class="in">`names()`</span><span class="at"> function to see a list of variable names in the dataset</span></span>
-<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Step 1 {.unnumbered}</span></span>
-<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>Create a new **Quarto** document called "EDA-challenge.qmd" within the project and use it to complete the following challenges. Be sure to include both descriptive text about what you are doing and code blocks -- i.e., follow a "literate programming" approach to be sure that a reader understands what you are doing. For the plots, feel free to use either {base} ***R*** graphics or {ggplot2}, as you prefer. You should use descriptive text to answer the specific questions asked below.</span>
-<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>Create a new variable named **BSD** (body size dimorphism) which is the ratio of average male to female body mass.</span>
-<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>Create a new variable named **sex_ratio**, which is the ratio of the number of adult females to adult males in a typical group.</span>
-<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>Create a new variable named **DI** (for "defensibility index"), which is the ratio of day range length to the diameter of the home range.</span>
-<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; **HINT:** You will need to calculate the latter for each species from the size of its home range! For the purposes of this assignment, presume that the home range is a circle and use the formula for the area of a circle: $AREA = \pi \times r^2$. The variable *pi* (note, without parentheses!) will return the value of $\pi$ as a constant built-in to ***R***, and the function </span><span class="in">`sqrt()`</span><span class="at"> can be used to calculate the square root ($\sqrt{}$)</span></span>
-<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a><span class="ss">4. </span>Plot the relationship between day range length (y axis) and time spent moving (x axis), for these primate species *overall* and *by family* (i.e., a different plot for each family, e.g., by using faceting: <span class="in">`+ facet_wrap()`</span>). Do species that spend more time moving travel farther overall? How about within any particular primate family? Should you transform either of these variables? Why or why not?</span>
-<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a><span class="ss">5. </span>Plot the relationship between day range length (y axis) and group size (x axis), *overall* and *by family*. Do species that live in larger groups travel farther, overall, in a day? How about within any particular primate family? Should you transform either of these variables?</span>
-<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a><span class="ss">6. </span>Plot the relationship between canine size dimorphism (y axis) and body size dimorphism (x axis) *overall* and *by family*. Do taxa with greater size dimorphism also show greater canine dimorphism?</span>
-<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a><span class="ss">7. </span>Create a new variable named **diet_strategy** that is "frugivore" if fruits make up &gt;50% of the diet, "folivore" if leaves make up &gt;50% of the diet, and "omnivore" if diet data are available but neither of these is true (i.e., these values are not <span class="in">`NA`</span>). Then, create boxplots of group size for species with different dietary strategies, omitting the category <span class="in">`NA`</span> from your plot. Do frugivores live in larger groups than folivores?</span>
-<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; **HINT:** To create this new variable, try combining `mutate()` with `ifelse()` or `case_when()` statements... check out the notes on "Conditional Expressions" in [**Module 11**](#module-11). Take a peak at the code snippets below if you get stuck!</span></span>
-<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a><span class="in">```{r eval=FALSE}</span></span>
-<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a><span class="in">#| code-fold: true</span></span>
-<span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a><span class="in">mutate(d, "diet_strategy" = ifelse(</span></span>
-<span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a><span class="in">  Fruit &gt;= 50,</span></span>
-<span id="cb2-45"><a href="#cb2-45" aria-hidden="true" tabindex="-1"></a><span class="in">  "frugivore",</span></span>
-<span id="cb2-46"><a href="#cb2-46" aria-hidden="true" tabindex="-1"></a><span class="in">  ifelse(</span></span>
-<span id="cb2-47"><a href="#cb2-47" aria-hidden="true" tabindex="-1"></a><span class="in">    Leaves &gt;= 50,</span></span>
-<span id="cb2-48"><a href="#cb2-48" aria-hidden="true" tabindex="-1"></a><span class="in">    "folivore",</span></span>
-<span id="cb2-49"><a href="#cb2-49" aria-hidden="true" tabindex="-1"></a><span class="in">    ifelse(Fruit &lt; 50 &amp; Leaves &lt; 50, "omnivore", NA)</span></span>
-<span id="cb2-50"><a href="#cb2-50" aria-hidden="true" tabindex="-1"></a><span class="in">  )</span></span>
-<span id="cb2-51"><a href="#cb2-51" aria-hidden="true" tabindex="-1"></a><span class="in">))</span></span>
-<span id="cb2-52"><a href="#cb2-52" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-53"><a href="#cb2-53" aria-hidden="true" tabindex="-1"></a><span class="in">mutate(</span></span>
-<span id="cb2-54"><a href="#cb2-54" aria-hidden="true" tabindex="-1"></a><span class="in">  d,</span></span>
-<span id="cb2-55"><a href="#cb2-55" aria-hidden="true" tabindex="-1"></a><span class="in">  "diet_strategy" = case_when(</span></span>
-<span id="cb2-56"><a href="#cb2-56" aria-hidden="true" tabindex="-1"></a><span class="in">    Fruit &gt;= 50 ~ "frugivore",</span></span>
-<span id="cb2-57"><a href="#cb2-57" aria-hidden="true" tabindex="-1"></a><span class="in">    Leaves &gt;= 50 ~ "folivore",</span></span>
-<span id="cb2-58"><a href="#cb2-58" aria-hidden="true" tabindex="-1"></a><span class="in">    Fruit &lt; 50 &amp; Leaves &lt; 50 ~ "omnivore",</span></span>
-<span id="cb2-59"><a href="#cb2-59" aria-hidden="true" tabindex="-1"></a><span class="in">    TRUE ~ NA</span></span>
-<span id="cb2-60"><a href="#cb2-60" aria-hidden="true" tabindex="-1"></a><span class="in">  )</span></span>
-<span id="cb2-61"><a href="#cb2-61" aria-hidden="true" tabindex="-1"></a><span class="in">)</span></span>
-<span id="cb2-62"><a href="#cb2-62" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb2-63"><a href="#cb2-63" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-64"><a href="#cb2-64" aria-hidden="true" tabindex="-1"></a><span class="ss">8. </span>**In one line of code**, using {dplyr} verbs and the forward pipe (<span class="in">`|&gt;`</span> or <span class="in">`%&gt;%`</span>) operator, do the following:</span>
-<span id="cb2-65"><a href="#cb2-65" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-66"><a href="#cb2-66" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Add a variable, **Binomial** to the data frame **d**, which is a concatenation of the **Genus** and **Species** variables...</span>
-<span id="cb2-67"><a href="#cb2-67" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Trim the data frame to only include the variables **Binomial**, **Family**, **Brain_size_species_mean**, and **Body_mass_male_mean**...</span>
-<span id="cb2-68"><a href="#cb2-68" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Group these variables by **Family**...</span>
-<span id="cb2-69"><a href="#cb2-69" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Calculate the average value for **Brain_Size_Species_Mean** and **Body_mass_male_mean** per **Family** (remember, you may need to specify <span class="in">`na.rm = TRUE`</span>)...</span>
-<span id="cb2-70"><a href="#cb2-70" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Arrange by *increasing* average brain size...</span>
-<span id="cb2-71"><a href="#cb2-71" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>And *print* the output to the console</span>
-<span id="cb2-72"><a href="#cb2-72" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-73"><a href="#cb2-73" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Step 2 {.unnumbered}</span></span>
-<span id="cb2-74"><a href="#cb2-74" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-75"><a href="#cb2-75" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Render your work to HTML or (if you feel ambitious!) as a PDF. <span class="in">`r emo::ji("smiley")`</span></span>
-<span id="cb2-76"><a href="#cb2-76" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-77"><a href="#cb2-77" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Step 3 {.unnumbered}</span></span>
-<span id="cb2-78"><a href="#cb2-78" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-79"><a href="#cb2-79" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Commit your changes locally and push your repo, including your ".qmd" file and rendered results, up to ***GitHub***.</span>
-<span id="cb2-80"><a href="#cb2-80" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-81"><a href="#cb2-81" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Step 4 {.unnumbered}</span></span>
-<span id="cb2-82"><a href="#cb2-82" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-83"><a href="#cb2-83" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Submit the URL for your repo in **Canvas**</span>
-<span id="cb2-84"><a href="#cb2-84" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-85"><a href="#cb2-85" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Optional Next Steps? {.unnumbered}</span></span>
-<span id="cb2-86"><a href="#cb2-86" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-87"><a href="#cb2-87" aria-hidden="true" tabindex="-1"></a>Load in a dataset of your own and write ***R*** code to do the following:</span>
-<span id="cb2-88"><a href="#cb2-88" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-89"><a href="#cb2-89" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Create and print a vector of the variable names in your dataset</span>
-<span id="cb2-90"><a href="#cb2-90" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Count the total number of rows (observations) in your dataset</span>
-<span id="cb2-91"><a href="#cb2-91" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>For each *numeric* variable, calculate the number of observations, the mean and standard deviation, and the five-number summary</span>
-<span id="cb2-92"><a href="#cb2-92" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Make box-and-whiskers plots for each numerical variable</span>
-<span id="cb2-93"><a href="#cb2-93" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>For each *categorical variable*, generate a table of counts/proportions of alternative variable values</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb1" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># Exercise 11 {.unnumbered}</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu"># Practice Model Selection {.unnumbered}</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">## Learning Objectives {.unnumbered}</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Run exploratory multivariate regression to evaluate different models</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Preliminaries {.unnumbered}</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Set up a new ***GitHub*** repo in your ***GitHub*** workspace named "exercise-11" and clone that down to your computer as a new ***RStudio*** project. The instructions outlined as **Method 1** in [**Module 6**](#module-06) will be helpful.</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Using the {tidyverse} <span class="in">`read_tsv()`</span> function, load the "Mammal_lifehistories_v2.txt" dataset from <span class="co">[</span><span class="ot">this URL</span><span class="co">](https://raw.githubusercontent.com/difiore/ada-datasets/main/Mammal_lifehistories_v2.txt)</span> as a "tibble" named **d**. As discussed in class, this is data set that compiles life history and other variables for over 1400 species of placental mammals from 17 different Orders.</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; **Data source**:</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="at">&gt;</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; Ernest SKM. (2003). Life history characteristics of placental nonvolant mammals. *Ecology* 84: 3402–3402.</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Do a bit of exploratory data analysis with this dataset, e.g., using the {skimr} package. Which of the variables are categorical and which are numeric?</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="fu">## Challenge {.unnumbered}</span></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Step 1 {.unnumbered}</span></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Replace all values of -999 (the authors' code for missing data) with <span class="in">`NA`</span>.</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; **HINT:** This is easy to do in base {R}, but you can also check out the </span><span class="in">`replace_with_na_all()`</span><span class="at"> function from the {naniar} package.</span></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Step 2 {.unnumbered}</span></span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Drop the variables **litter size** and **refs**.</span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Rename the variable **max. life(mo)** to **maxlife(mo)**.</span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Rename the variable **wean mass(g)** to **weanmass(g)**.</span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Step 3 {.unnumbered}</span></span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Log transform all of the other numeric variables.</span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; **HINT:** There are lots of ways to do this... look into </span><span class="in">`mutate(across(where(), .funs))`</span><span class="at"> for an efficient motif.</span></span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Step 4 {.unnumbered}</span></span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Regress the (now log transformed) *age* [**gestation(mo)**, **weaning(mo)**, **AFR(mo)** (i.e., age at first reproduction), and **maxlife(mo)** (i.e., maximum lifespan)] and *mass* [**newborn(g)** and **weanmass(g)**] variables on (now log transformed) overall body **mass(g)** and add the residuals to the dataframe as new variables [**relGest**, **relWean**, **relAFR**, **relLife**, **relNewbornMass**, and **relWeaningMass**].</span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; **HINT:** Use "na.action=na.exclude" in your`lm()` calls. With this argument set, the residuals will be padded to the correct length by inserting NAs for cases with missing data. To access these correctly, however, where the length of the vector of residuals is equal in length to the length of your original vector (i.e., where missing residuals are padded out as NAs) you will need to call the `resid(m)` function on the model object (assuming the model is named **m**) rather than by calling </span><span class="in">`m$residuals`</span><span class="at">. The former function returns a vector of residuals with "NA" for cases where the value of one of the formula variables is missing, while the latter returns a vector with the NAs dropped, which may be shorter than the length of the original data frame!</span></span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Step 5 {.unnumbered}</span></span>
+<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Plot residuals of max lifespan (**relLife**) in relation to **Order**. Which mammalian orders have the highest residual lifespan?</span>
+<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Plot residuals of newborn mass (**relNewbornMass**) in relation to **Order**. Which mammalian orders have the have highest residual newborn mass?</span>
+<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Plot residuals of weaning mass (**relWeaningMass**) in relation to **Order**. Which mammalian orders have the have highest residual weaning mass?</span>
+<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; **NOTE:** There will be lots of missing data for the latter two variables!</span></span>
+<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Step 6 {.unnumbered}</span></span>
+<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Run models and a model selection process to evaluate what (now log transformed) variables best predict each of the two response variables, **maxlife(mo)** and **AFR(mo)**, from the set of the following predictors: **gestation(mo)**, **newborn(g)**, **weaning(mo)**, **weanmass(g)**, **litters/year**, and overall body **mass(g)**.</span>
+<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-57"><a href="#cb1-57" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; **HINT:** Before running models, winnow your dataset to drop rows that are missing the respective response variable or any of the predictors, e.g., by using </span><span class="in">`drop_na()`</span><span class="at">.</span></span>
+<span id="cb1-58"><a href="#cb1-58" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-59"><a href="#cb1-59" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>For each of the two response variables, indicate what is the best model overall based on AICc and how many models have a delta AICc of 4 or less?</span>
+<span id="cb1-60"><a href="#cb1-60" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>What variables, if any, appear in all of this set of "top" models?</span>
+<span id="cb1-61"><a href="#cb1-61" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Calculate and plot the model-averaged coefficients and their CIs across this set of top models.</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 
