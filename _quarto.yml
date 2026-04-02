@@ -56,7 +56,7 @@ book:
     - part: "Part III - Miscellany"
       chapters:
       - 99-maximum_likelihood-estimation.qmd
-      - 99-bayesian-estimation.qmd
+      - 99-bayesian-inference.qmd
       # - 99-python-from-R.qmd
       # - 99-geospatial-data.qmd
       - 99-r-packages.qmd

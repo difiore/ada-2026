@@ -39,31 +39,30 @@ acc <- d |>
 m <- lm(log(Range.Size) ~ log(Mass) + Primary.Lifestyle, data = acc)
 summary(m)
 
+unique(acc$Primary.Lifestyle)
+
+
 m <- lm(height ~ weight + age + gender, data = z)
 ci <- predict(m, newdata = data.frame(age = 29, gender = "Male", weight = 160), interval = "confidence", level = 0.95)
 pi <- predict(m, newdata = data.frame(age = 29, gender = "Male", weight = 160), interval = "prediction", level = 0.95)
 
 effect_plot(m, pred = weight,
-            # interval = TRUE,
-            # int.type = "confidence",
-            # int.width = 0.95,
             plot.points = TRUE)
 
 effect_plot(m, pred = age,
-            # interval = TRUE,
-            # int.type = "confidence",
-            # int.width = 0.95,
             plot.points = TRUE)
 
 effect_plot(m, pred = gender,
-            # interval = TRUE,
-            # int.type = "confidence",
-            # int.width = 0.95,
             plot.points = TRUE,
             jitter = 0.1)
 
 plot_summs(m)
+
+
 plot_summs(m, plot.distributions = TRUE, rescale.distributions = TRUE)
+
+
+
 
 plot_model(m, type = "pred", show.data = TRUE, terms = "weight")
 plot_model(m, type = "pred", show.data = TRUE, terms = "age")
@@ -89,21 +88,26 @@ d <- d |> mutate(
   relBeak = relBeak$residuals,
   relTarsus = relTarsus$residuals)
 
-m1 <- lm(data = d, logBeak ~ logRS * Migration) # most complex (full) model
-m2 <- lm(data = d, logBeak ~ logRS + Migration) # model without interaction term
-m3 <- lm(data = d, logBeak ~ logRS) # model with one predictor
-m4 <- lm(data = d, logBeak ~ Migration) # model with one predictor
-m5 <- lm(data = d, logBeak ~ 1) # intercept only model
+m1 <- lm(data = d, logBeak ~ logRS * Migration)
+m2 <- lm(data = d, logBeak ~ logRS + Migration)
+m3 <- lm(data = d, logBeak ~ logRS)
+m4 <- lm(data = d, logBeak ~ Migration)
+m5 <- lm(data = d, logBeak ~ 1)
+anova(m2, m1, test = "F")
+anova(m4, m2, test = "F")
 
 vars <- c("logBeak", "logRS", "Migration")
 d_clean <- d |>
-  select(all_of(vars)) |>
+  dplyr::select(all_of(vars)) |>
   drop_na()
 
-m2 <- lm(data = d_clean, logBeak ~ logRS + Migration) # model without interaction term
-m3 <- lm(data = d_clean, logBeak ~ logRS)
 
-anova(m3, m2, test = "F")
+
+
+m2 <- lm(data = d_clean, logBeak ~ logRS + Migration) # model without interaction term
+m4 <- lm(data = d_clean, logBeak ~ Migration)
+
+anova(m4, m2, test = "F")
 
 vars <- c("relBeak", "logRS", "Migration", "Trophic.Level", "relTarsus", "Primary.Lifestyle")
 d_new <- d |>

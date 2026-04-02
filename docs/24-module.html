@@ -406,7 +406,7 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./99-bayesian-estimation.html" class="sidebar-item-text sidebar-link">
+  <a href="./99-bayesian-inference.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Bayesian Inference</span></a>
   </div>
 </li>
@@ -900,15 +900,15 @@ window.Quarto = {
 </div>
 <div class="cell-output cell-output-stderr">
 <pre><code>## 
-## 11 message(s): boundary (singular) fit: see help('isSingular')</code></pre>
+## 6 message(s): boundary (singular) fit: see help('isSingular')</code></pre>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>##                        2.5 %    97.5 %
-## .sig01              2.210116  41.92501
-## .sigma             24.678180  33.75818
-## (Intercept)       101.770959 164.73396
-## reproconditionPOP   9.342553  30.89178
-## parityP            64.989509 153.46316</code></pre>
+## .sig01              5.065631  41.08061
+## .sigma             24.335857  33.94032
+## (Intercept)       101.078616 162.67292
+## reproconditionPOP   6.938437  33.30421
+## parityP            66.446694 149.34291</code></pre>
 </div>
 </div>
 <blockquote class="blockquote">
@@ -1349,16 +1349,16 @@ window.Quarto = {
 <div class="sourceCode cell-code" id="cb60"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a><span class="fu">confint</span>(m, <span class="at">level =</span> <span class="fl">0.95</span>, <span class="at">method =</span> <span class="st">"boot"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>##                           2.5 %      97.5 %
-## .sig01             0.000000e+00  19.7958682
-## .sig02             1.307693e-04  17.3754766
+## .sig01             0.000000e+00  20.6400250
+## .sig02             8.459072e-05  18.3344891
 ## .sig03            -1.000000e+00   1.0000000
-## .sig04             0.000000e+00  41.0738114
-## .sig05             1.633638e-04  41.0728840
-## .sig06            -1.000000e+00  -0.2727393
-## .sigma             2.375722e+01  33.1000975
-## (Intercept)        1.013956e+02 167.1984020
-## reproconditionPOP  7.577831e+00  32.2869430
-## parityP            7.563366e+01 140.9355210</code></pre>
+## .sig04             0.000000e+00  42.3629964
+## .sig05             1.297298e-04  42.3627731
+## .sig06            -1.000000e+00  -0.4287716
+## .sigma             2.334538e+01  32.9276364
+## (Intercept)        9.907396e+01 164.4753457
+## reproconditionPOP  7.461167e+00  32.7067178
+## parityP            7.340311e+01 146.7469875</code></pre>
 </div>
 </div>
 <p>Finally, effects plots of how the expected amount of grooming received varies with the fixed effects (<strong>reprocondition</strong> and <strong>parity</strong>) under our new random slope model is the same as that under the random intercept model.</p>
