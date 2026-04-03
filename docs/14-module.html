@@ -674,7 +674,7 @@ window.Quarto = {
 <div class="cell-output cell-output-stdout">
 <pre><code>## [1] 24.50788</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>(se <span class="ot">&lt;-</span> sigma<span class="sc">/</span><span class="fu">sqrt</span>(<span class="fu">length</span>(s)))  <span class="co"># if population standard deviation is known</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>(se <span class="ot">&lt;-</span> sigma <span class="sc">/</span> <span class="fu">sqrt</span>(<span class="fu">length</span>(s))) <span class="co"># if population standard deviation is known</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>## [1] 1.581139</code></pre>
 </div>
@@ -682,7 +682,7 @@ window.Quarto = {
 <div class="cell-output cell-output-stdout">
 <pre><code>## [1] 10.35182</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>(se <span class="ot">&lt;-</span> <span class="fu">sd</span>(s)<span class="sc">/</span><span class="fu">sqrt</span>(<span class="fu">length</span>(s)))  <span class="co"># if population standard deviation is unknown</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>(se <span class="ot">&lt;-</span> <span class="fu">sd</span>(s) <span class="sc">/</span> <span class="fu">sqrt</span>(<span class="fu">length</span>(s))) <span class="co"># if population standard deviation is unknown</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>## [1] 1.636766</code></pre>
 </div>
@@ -697,32 +697,30 @@ window.Quarto = {
 <p>Recall that when we give the <code>qnorm()</code> function a particular percentile value as an argument, it returns a number, <span class="math inline">\(X\)</span>, below which that proportion of the cumulative probability distribution falls, and when we are considering a standard normal distribution, <span class="math inline">\(X\)</span> is in units of standard deviations. Thus, <code>qnorm(0.025, mean=0, sd=1)</code> tells us the number of standard deviations (roughly -1.96) away from a mean (of 0) that corresponds to up to 2.5% of the cumulative probability distribution for a standard normal curve. Similarly, <code>qnorm(0.975, mean=0, sd=1)</code> tells us the number of standard deviations (roughly +1.96) away from the mean up to which 97.5% of the standard normal distribution falls. 95% of the standard normal distribution falls between these two values. Thus, to calculate the CI for our sampling distribution, we can do the following:</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>percent_ci <span class="ot">&lt;-</span> <span class="dv">95</span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>alpha <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="sc">-</span> percent_ci<span class="sc">/</span><span class="dv">100</span>  <span class="co"># alpha = 0.05</span></span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>lower <span class="ot">&lt;-</span> m <span class="sc">+</span> <span class="fu">qnorm</span>(alpha<span class="sc">/</span><span class="dv">2</span>) <span class="sc">*</span> se</span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="co"># where qnorm(alpha /2) is the 2.5% quantile of the standard normal</span></span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="co"># distribution</span></span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>upper <span class="ot">&lt;-</span> m <span class="sc">+</span> <span class="fu">qnorm</span>(<span class="dv">1</span> <span class="sc">-</span> alpha<span class="sc">/</span><span class="dv">2</span>) <span class="sc">*</span> se</span>
-<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="co"># where qnorm(1 - alpha / 2) is the 97.5% quantile of the standard normal</span></span>
-<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a><span class="co"># distribution</span></span>
-<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>(ci <span class="ot">&lt;-</span> <span class="fu">c</span>(lower, upper))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>alpha <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="sc">-</span> percent_ci <span class="sc">/</span> <span class="dv">100</span> <span class="co"># alpha = 0.05</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>lower <span class="ot">&lt;-</span> m <span class="sc">+</span> <span class="fu">qnorm</span>(alpha <span class="sc">/</span> <span class="dv">2</span>) <span class="sc">*</span> se</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="co"># where qnorm(alpha /2) is the 2.5% quantile of the standard normal distribution</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>upper <span class="ot">&lt;-</span> m <span class="sc">+</span> <span class="fu">qnorm</span>(<span class="dv">1</span> <span class="sc">-</span> alpha <span class="sc">/</span> <span class="dv">2</span>) <span class="sc">*</span> se</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="co"># where qnorm(1 - alpha / 2) is the 97.5% quantile of the standard normal distribution</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>(ci <span class="ot">&lt;-</span> <span class="fu">c</span>(lower, upper))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>## [1] 21.29988 27.71589</code></pre>
 </div>
 </div>
 <p>An easier way to do this is simply as follows:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>(ci <span class="ot">&lt;-</span> m <span class="sc">+</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>, <span class="dv">1</span>) <span class="sc">*</span> <span class="fu">qnorm</span>(<span class="dv">1</span> <span class="sc">-</span> alpha<span class="sc">/</span><span class="dv">2</span>) <span class="sc">*</span> se)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>(ci <span class="ot">&lt;-</span> m <span class="sc">+</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>, <span class="dv">1</span>) <span class="sc">*</span> <span class="fu">qnorm</span>(<span class="dv">1</span> <span class="sc">-</span> alpha <span class="sc">/</span> <span class="dv">2</span>) <span class="sc">*</span> se)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>## [1] 21.29988 27.71589</code></pre>
 </div>
 </div>
 <p>because these ways of calculating the lower CI bound are equivalent:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>(lower <span class="ot">&lt;-</span> m <span class="sc">+</span> <span class="dv">1</span> <span class="sc">*</span> <span class="fu">qnorm</span>(alpha<span class="sc">/</span><span class="dv">2</span>) <span class="sc">*</span> se)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>(lower <span class="ot">&lt;-</span> m <span class="sc">+</span> <span class="dv">1</span> <span class="sc">*</span> <span class="fu">qnorm</span>(alpha <span class="sc">/</span> <span class="dv">2</span>) <span class="sc">*</span> se)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>## [1] 21.29988</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>(lower <span class="ot">&lt;-</span> m <span class="sc">+</span> <span class="sc">-</span><span class="dv">1</span> <span class="sc">*</span> <span class="fu">qnorm</span>(<span class="dv">1</span> <span class="sc">-</span> alpha<span class="sc">/</span><span class="dv">2</span>) <span class="sc">*</span> se)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>(lower <span class="ot">&lt;-</span> m <span class="sc">+</span> <span class="sc">-</span><span class="dv">1</span> <span class="sc">*</span> <span class="fu">qnorm</span>(<span class="dv">1</span> <span class="sc">-</span> alpha <span class="sc">/</span> <span class="dv">2</span>) <span class="sc">*</span> se)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>## [1] 21.29988</code></pre>
 </div>
@@ -730,12 +728,12 @@ window.Quarto = {
 <p>We could also do this…</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># get the value associated with the alpha / 2 lower tail</span></span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>(lower <span class="ot">&lt;-</span> m <span class="sc">+</span> <span class="fu">qnorm</span>(alpha<span class="sc">/</span><span class="dv">2</span>) <span class="sc">*</span> se)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>(lower <span class="ot">&lt;-</span> m <span class="sc">+</span> <span class="fu">qnorm</span>(alpha <span class="sc">/</span> <span class="dv">2</span>) <span class="sc">*</span> se)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>## [1] 21.29988</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># get the value associated with the alpha / 2 upper tail</span></span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>(upper <span class="ot">&lt;-</span> m <span class="sc">+</span> <span class="fu">qnorm</span>(alpha<span class="sc">/</span><span class="dv">2</span>, <span class="at">lower.tail =</span> <span class="cn">FALSE</span>) <span class="sc">*</span> se)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>(upper <span class="ot">&lt;-</span> m <span class="sc">+</span> <span class="fu">qnorm</span>(alpha <span class="sc">/</span> <span class="dv">2</span>, <span class="at">lower.tail =</span> <span class="cn">FALSE</span>) <span class="sc">*</span> se)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>## [1] 27.71589</code></pre>
 </div>
@@ -743,9 +741,9 @@ window.Quarto = {
 <p>And we can also make our own generic <code>CI()</code> function based on assuming that our the sampling distribution for our estimate of the mean is normal:</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>CI <span class="ot">&lt;-</span> <span class="cf">function</span>(x, <span class="at">level =</span> <span class="fl">0.95</span>) {</span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>    alpha <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="sc">-</span> level</span>
-<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>    ci <span class="ot">&lt;-</span> <span class="fu">mean</span>(x) <span class="sc">+</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>, <span class="dv">1</span>) <span class="sc">*</span> <span class="fu">qnorm</span>(<span class="dv">1</span> <span class="sc">-</span> (alpha<span class="sc">/</span><span class="dv">2</span>)) <span class="sc">*</span> <span class="fu">sqrt</span>(<span class="fu">var</span>(x)<span class="sc">/</span><span class="fu">length</span>(x))</span>
-<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(ci)</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>  alpha <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="sc">-</span> level</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>  ci <span class="ot">&lt;-</span> <span class="fu">mean</span>(x) <span class="sc">+</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>, <span class="dv">1</span>) <span class="sc">*</span> <span class="fu">qnorm</span>(<span class="dv">1</span> <span class="sc">-</span> (alpha <span class="sc">/</span> <span class="dv">2</span>)) <span class="sc">*</span> <span class="fu">sqrt</span>(<span class="fu">var</span>(x) <span class="sc">/</span> <span class="fu">length</span>(x))</span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(ci)</span>
 <span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>}</span>
 <span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a><span class="fu">CI</span>(s)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -755,33 +753,73 @@ window.Quarto = {
 </div>
 <p>Finally, we could also characterize the central CI% of the sampling distribution directly by calling the <code>qnorm()</code> function on a non-standardized normal distribution. This is less common, though, because it is less easily applied to distributions other than the normal family (e.g., to the <span class="math inline">\(t\)</span> distribution).</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>(lower <span class="ot">&lt;-</span> <span class="fu">qnorm</span>(alpha<span class="sc">/</span><span class="dv">2</span>, m, se))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>(lower <span class="ot">&lt;-</span> <span class="fu">qnorm</span>(alpha <span class="sc">/</span> <span class="dv">2</span>, m, se))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>## [1] 21.29988</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>(upper <span class="ot">&lt;-</span> <span class="fu">qnorm</span>(<span class="dv">1</span> <span class="sc">-</span> alpha<span class="sc">/</span><span class="dv">2</span>, m, se))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>(upper <span class="ot">&lt;-</span> <span class="fu">qnorm</span>(<span class="dv">1</span> <span class="sc">-</span> alpha <span class="sc">/</span> <span class="dv">2</span>, m, se))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>## [1] 27.71589</code></pre>
 </div>
 </div>
 <p>The following code will let us interactively visualize CIs around an estimate of a mean with a normal sampling distribution.</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">manipulate</span>(<span class="fu">ggplot</span>(<span class="at">data =</span> <span class="fu">data.frame</span>(<span class="at">x =</span> <span class="fu">c</span>(sampling_dist_mean <span class="sc">-</span> <span class="dv">4</span> <span class="sc">*</span> sampling_dist_sd,</span>
-<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>    sampling_dist_mean <span class="sc">+</span> <span class="dv">4</span> <span class="sc">*</span> sampling_dist_sd)), <span class="fu">aes</span>(x)) <span class="sc">+</span> <span class="fu">stat_function</span>(<span class="at">fun =</span> dnorm,</span>
-<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">args =</span> <span class="fu">list</span>(<span class="at">mean =</span> sampling_dist_mean, <span class="at">sd =</span> sampling_dist_sd), <span class="at">n =</span> <span class="dv">1000</span>) <span class="sc">+</span> <span class="fu">xlab</span>(<span class="st">"Sampling Distribution Mean"</span>) <span class="sc">+</span></span>
-<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ylab</span>(<span class="st">""</span>) <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Exploring Confidence Intervals"</span>, <span class="at">subtitle =</span> <span class="fu">paste0</span>(<span class="st">"Sampling Distribution SD (= SE): "</span>,</span>
-<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>    sampling_dist_sd, <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>, <span class="fu">round</span>(percent_CI, <span class="dv">2</span>), <span class="st">"% CI: "</span>, <span class="fu">round</span>(sampling_dist_mean <span class="sc">-</span></span>
-<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a>        <span class="fu">qnorm</span>((<span class="dv">1</span> <span class="sc">-</span> percent_CI<span class="sc">/</span><span class="dv">100</span>)<span class="sc">/</span><span class="dv">2</span>) <span class="sc">*</span> sampling_dist_sd, <span class="dv">2</span>), <span class="st">" to "</span>, <span class="fu">round</span>(sampling_dist_mean <span class="sc">+</span></span>
-<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a>        <span class="fu">qnorm</span>((<span class="dv">1</span> <span class="sc">-</span> percent_CI<span class="sc">/</span><span class="dv">100</span>)<span class="sc">/</span><span class="dv">2</span>) <span class="sc">*</span> sampling_dist_sd, <span class="dv">2</span>))) <span class="sc">+</span> <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> sampling_dist_mean <span class="sc">-</span></span>
-<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">qnorm</span>((<span class="dv">1</span> <span class="sc">-</span> percent_CI<span class="sc">/</span><span class="dv">100</span>)<span class="sc">/</span><span class="dv">2</span>) <span class="sc">*</span> sampling_dist_sd, <span class="at">color =</span> <span class="st">"blue"</span>, <span class="at">linetype =</span> <span class="st">"dashed"</span>) <span class="sc">+</span></span>
-<span id="cb29-9"><a href="#cb29-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> sampling_dist_mean <span class="sc">+</span> <span class="fu">qnorm</span>((<span class="dv">1</span> <span class="sc">-</span> percent_CI<span class="sc">/</span><span class="dv">100</span>)<span class="sc">/</span><span class="dv">2</span>) <span class="sc">*</span></span>
-<span id="cb29-10"><a href="#cb29-10" aria-hidden="true" tabindex="-1"></a>        sampling_dist_sd, <span class="at">color =</span> <span class="st">"blue"</span>, <span class="at">linetype =</span> <span class="st">"dashed"</span>) <span class="sc">+</span> <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> sampling_dist_mean,</span>
-<span id="cb29-11"><a href="#cb29-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">"black"</span>, <span class="at">linetype =</span> <span class="st">"solid"</span>) <span class="sc">+</span> <span class="fu">stat_function</span>(<span class="at">fun =</span> dnorm, <span class="at">xlim =</span> <span class="fu">c</span>(sampling_dist_mean <span class="sc">-</span></span>
-<span id="cb29-12"><a href="#cb29-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">qnorm</span>((<span class="dv">1</span> <span class="sc">-</span> percent_CI<span class="sc">/</span><span class="dv">100</span>)<span class="sc">/</span><span class="dv">2</span>) <span class="sc">*</span> sampling_dist_sd, sampling_dist_mean <span class="sc">+</span> <span class="fu">qnorm</span>((<span class="dv">1</span> <span class="sc">-</span></span>
-<span id="cb29-13"><a href="#cb29-13" aria-hidden="true" tabindex="-1"></a>    percent_CI<span class="sc">/</span><span class="dv">100</span>)<span class="sc">/</span><span class="dv">2</span>) <span class="sc">*</span> sampling_dist_sd), <span class="at">args =</span> <span class="fu">list</span>(<span class="at">mean =</span> sampling_dist_mean,</span>
-<span id="cb29-14"><a href="#cb29-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">sd =</span> sampling_dist_sd), <span class="at">n =</span> <span class="dv">1000</span>, <span class="at">geom =</span> <span class="st">"area"</span>, <span class="at">fill =</span> <span class="st">"red"</span>, <span class="at">alpha =</span> <span class="fl">0.5</span>, <span class="at">color =</span> <span class="st">"red"</span>),</span>
-<span id="cb29-15"><a href="#cb29-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">sampling_dist_mean =</span> <span class="fu">slider</span>(<span class="sc">-</span><span class="dv">100</span>, <span class="dv">100</span>, <span class="at">initial =</span> <span class="dv">0</span>, <span class="at">step =</span> <span class="dv">10</span>), <span class="at">sampling_dist_sd =</span> <span class="fu">slider</span>(<span class="dv">0</span>,</span>
-<span id="cb29-16"><a href="#cb29-16" aria-hidden="true" tabindex="-1"></a>        <span class="dv">100</span>, <span class="at">initial =</span> <span class="dv">1</span>, <span class="at">step =</span> <span class="dv">1</span>), <span class="at">percent_CI =</span> <span class="fu">slider</span>(<span class="dv">0</span>, <span class="dv">99</span>, <span class="at">initial =</span> <span class="dv">95</span>, <span class="at">step =</span> <span class="dv">1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">manipulate</span>(</span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(</span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> <span class="fu">data.frame</span>(</span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>      <span class="at">x =</span> <span class="fu">c</span>(</span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>        sampling_dist_mean <span class="sc">-</span> <span class="dv">4</span> <span class="sc">*</span> sampling_dist_sd,</span>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a>        sampling_dist_mean <span class="sc">+</span> <span class="dv">4</span> <span class="sc">*</span> sampling_dist_sd</span>
+<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a>      )</span>
+<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb29-9"><a href="#cb29-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(x)</span>
+<span id="cb29-10"><a href="#cb29-10" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb29-11"><a href="#cb29-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">stat_function</span>(</span>
+<span id="cb29-12"><a href="#cb29-12" aria-hidden="true" tabindex="-1"></a>      <span class="at">fun =</span> dnorm,</span>
+<span id="cb29-13"><a href="#cb29-13" aria-hidden="true" tabindex="-1"></a>      <span class="at">args =</span> <span class="fu">list</span>(<span class="at">mean =</span> sampling_dist_mean, <span class="at">sd =</span> sampling_dist_sd),</span>
+<span id="cb29-14"><a href="#cb29-14" aria-hidden="true" tabindex="-1"></a>      <span class="at">n =</span> <span class="dv">1000</span></span>
+<span id="cb29-15"><a href="#cb29-15" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">+</span></span>
+<span id="cb29-16"><a href="#cb29-16" aria-hidden="true" tabindex="-1"></a>    <span class="fu">xlab</span>(<span class="st">"Sampling Distribution Mean"</span>) <span class="sc">+</span></span>
+<span id="cb29-17"><a href="#cb29-17" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ylab</span>(<span class="st">""</span>) <span class="sc">+</span></span>
+<span id="cb29-18"><a href="#cb29-18" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(</span>
+<span id="cb29-19"><a href="#cb29-19" aria-hidden="true" tabindex="-1"></a>      <span class="at">title =</span> <span class="st">"Exploring Confidence Intervals"</span>,</span>
+<span id="cb29-20"><a href="#cb29-20" aria-hidden="true" tabindex="-1"></a>      <span class="at">subtitle =</span> <span class="fu">paste0</span>(</span>
+<span id="cb29-21"><a href="#cb29-21" aria-hidden="true" tabindex="-1"></a>        <span class="st">"Sampling Distribution SD (= SE): "</span>,</span>
+<span id="cb29-22"><a href="#cb29-22" aria-hidden="true" tabindex="-1"></a>        sampling_dist_sd, <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>, <span class="fu">round</span>(percent_CI, <span class="dv">2</span>), <span class="st">"% CI: "</span>,</span>
+<span id="cb29-23"><a href="#cb29-23" aria-hidden="true" tabindex="-1"></a>        <span class="fu">round</span>(sampling_dist_mean <span class="sc">-</span></span>
+<span id="cb29-24"><a href="#cb29-24" aria-hidden="true" tabindex="-1"></a>          <span class="fu">qnorm</span>((<span class="dv">1</span> <span class="sc">-</span> percent_CI <span class="sc">/</span> <span class="dv">100</span>) <span class="sc">/</span> <span class="dv">2</span>) <span class="sc">*</span> sampling_dist_sd, <span class="dv">2</span>),</span>
+<span id="cb29-25"><a href="#cb29-25" aria-hidden="true" tabindex="-1"></a>        <span class="st">" to "</span>,</span>
+<span id="cb29-26"><a href="#cb29-26" aria-hidden="true" tabindex="-1"></a>        <span class="fu">round</span>(sampling_dist_mean <span class="sc">+</span></span>
+<span id="cb29-27"><a href="#cb29-27" aria-hidden="true" tabindex="-1"></a>          <span class="fu">qnorm</span>((<span class="dv">1</span> <span class="sc">-</span> percent_CI <span class="sc">/</span> <span class="dv">100</span>) <span class="sc">/</span> <span class="dv">2</span>) <span class="sc">*</span> sampling_dist_sd, <span class="dv">2</span>)</span>
+<span id="cb29-28"><a href="#cb29-28" aria-hidden="true" tabindex="-1"></a>      )</span>
+<span id="cb29-29"><a href="#cb29-29" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">+</span></span>
+<span id="cb29-30"><a href="#cb29-30" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_vline</span>(</span>
+<span id="cb29-31"><a href="#cb29-31" aria-hidden="true" tabindex="-1"></a>      <span class="at">xintercept =</span> sampling_dist_mean <span class="sc">-</span></span>
+<span id="cb29-32"><a href="#cb29-32" aria-hidden="true" tabindex="-1"></a>        <span class="fu">qnorm</span>((<span class="dv">1</span> <span class="sc">-</span> percent_CI <span class="sc">/</span> <span class="dv">100</span>) <span class="sc">/</span> <span class="dv">2</span>) <span class="sc">*</span> sampling_dist_sd,</span>
+<span id="cb29-33"><a href="#cb29-33" aria-hidden="true" tabindex="-1"></a>      <span class="at">color =</span> <span class="st">"blue"</span>, <span class="at">linetype =</span> <span class="st">"dashed"</span></span>
+<span id="cb29-34"><a href="#cb29-34" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">+</span></span>
+<span id="cb29-35"><a href="#cb29-35" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_vline</span>(</span>
+<span id="cb29-36"><a href="#cb29-36" aria-hidden="true" tabindex="-1"></a>      <span class="at">xintercept =</span> sampling_dist_mean <span class="sc">+</span></span>
+<span id="cb29-37"><a href="#cb29-37" aria-hidden="true" tabindex="-1"></a>        <span class="fu">qnorm</span>((<span class="dv">1</span> <span class="sc">-</span> percent_CI <span class="sc">/</span> <span class="dv">100</span>) <span class="sc">/</span> <span class="dv">2</span>) <span class="sc">*</span> sampling_dist_sd,</span>
+<span id="cb29-38"><a href="#cb29-38" aria-hidden="true" tabindex="-1"></a>      <span class="at">color =</span> <span class="st">"blue"</span>, <span class="at">linetype =</span> <span class="st">"dashed"</span></span>
+<span id="cb29-39"><a href="#cb29-39" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">+</span></span>
+<span id="cb29-40"><a href="#cb29-40" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_vline</span>(</span>
+<span id="cb29-41"><a href="#cb29-41" aria-hidden="true" tabindex="-1"></a>      <span class="at">xintercept =</span> sampling_dist_mean,</span>
+<span id="cb29-42"><a href="#cb29-42" aria-hidden="true" tabindex="-1"></a>      <span class="at">color =</span> <span class="st">"black"</span>, <span class="at">linetype =</span> <span class="st">"solid"</span></span>
+<span id="cb29-43"><a href="#cb29-43" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">+</span></span>
+<span id="cb29-44"><a href="#cb29-44" aria-hidden="true" tabindex="-1"></a>    <span class="fu">stat_function</span>(</span>
+<span id="cb29-45"><a href="#cb29-45" aria-hidden="true" tabindex="-1"></a>      <span class="at">fun =</span> dnorm,</span>
+<span id="cb29-46"><a href="#cb29-46" aria-hidden="true" tabindex="-1"></a>      <span class="at">xlim =</span> <span class="fu">c</span>(</span>
+<span id="cb29-47"><a href="#cb29-47" aria-hidden="true" tabindex="-1"></a>        sampling_dist_mean <span class="sc">-</span> <span class="fu">qnorm</span>((<span class="dv">1</span> <span class="sc">-</span> percent_CI <span class="sc">/</span> <span class="dv">100</span>) <span class="sc">/</span> <span class="dv">2</span>) <span class="sc">*</span> sampling_dist_sd,</span>
+<span id="cb29-48"><a href="#cb29-48" aria-hidden="true" tabindex="-1"></a>        sampling_dist_mean <span class="sc">+</span> <span class="fu">qnorm</span>((<span class="dv">1</span> <span class="sc">-</span> percent_CI <span class="sc">/</span> <span class="dv">100</span>) <span class="sc">/</span> <span class="dv">2</span>) <span class="sc">*</span> sampling_dist_sd</span>
+<span id="cb29-49"><a href="#cb29-49" aria-hidden="true" tabindex="-1"></a>      ),</span>
+<span id="cb29-50"><a href="#cb29-50" aria-hidden="true" tabindex="-1"></a>      <span class="at">args =</span> <span class="fu">list</span>(<span class="at">mean =</span> sampling_dist_mean, <span class="at">sd =</span> sampling_dist_sd),</span>
+<span id="cb29-51"><a href="#cb29-51" aria-hidden="true" tabindex="-1"></a>      <span class="at">n =</span> <span class="dv">1000</span>, <span class="at">geom =</span> <span class="st">"area"</span>, <span class="at">fill =</span> <span class="st">"red"</span>, <span class="at">alpha =</span> <span class="fl">0.5</span>, <span class="at">color =</span> <span class="st">"red"</span></span>
+<span id="cb29-52"><a href="#cb29-52" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb29-53"><a href="#cb29-53" aria-hidden="true" tabindex="-1"></a>  <span class="at">sampling_dist_mean =</span> <span class="fu">slider</span>(<span class="sc">-</span><span class="dv">100</span>, <span class="dv">100</span>, <span class="at">initial =</span> <span class="dv">0</span>, <span class="at">step =</span> <span class="dv">10</span>),</span>
+<span id="cb29-54"><a href="#cb29-54" aria-hidden="true" tabindex="-1"></a>  <span class="at">sampling_dist_sd =</span> <span class="fu">slider</span>(<span class="dv">0</span>, <span class="dv">100</span>, <span class="at">initial =</span> <span class="dv">1</span>, <span class="at">step =</span> <span class="dv">1</span>),</span>
+<span id="cb29-55"><a href="#cb29-55" aria-hidden="true" tabindex="-1"></a>  <span class="at">percent_CI =</span> <span class="fu">slider</span>(<span class="dv">0</span>, <span class="dv">99</span>, <span class="at">initial =</span> <span class="dv">95</span>, <span class="at">step =</span> <span class="dv">1</span>)</span>
+<span id="cb29-56"><a href="#cb29-56" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="interpretation-of-cis" class="level3 unnumbered">
@@ -805,28 +843,41 @@ window.Quarto = {
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>lambda <span class="ot">&lt;-</span> <span class="dv">14</span></span>
 <span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">10</span></span>
-<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>(se <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(lambda<span class="sc">/</span>n))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>(se <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(lambda <span class="sc">/</span> n))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>## [1] 1.183216</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="co"># the estimated SE, here, based on an estimate of the population variance if</span></span>
-<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="co"># available</span></span>
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="co"># the estimated SE, here, based on an estimate of the population variance</span></span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="co"># if available</span></span>
 <span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">3</span>))</span>
-<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(<span class="fu">rpois</span>(<span class="dv">10000</span>, <span class="at">lambda =</span> lambda), <span class="at">probability =</span> <span class="cn">TRUE</span>, <span class="at">xlab =</span> <span class="st">"X"</span>, <span class="at">main =</span> <span class="st">"Original Distribution"</span>)</span>
-<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">vector</span>(<span class="at">length =</span> <span class="dv">1000</span>)  <span class="co"># dummy variable to hold sample means</span></span>
-<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">1000</span>) {</span>
-<span id="cb32-7"><a href="#cb32-7" aria-hidden="true" tabindex="-1"></a>    x[[i]] <span class="ot">&lt;-</span> <span class="fu">mean</span>(<span class="fu">rpois</span>(<span class="at">n =</span> n, <span class="at">lambda =</span> lambda))</span>
-<span id="cb32-8"><a href="#cb32-8" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb32-9"><a href="#cb32-9" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(x, <span class="at">breaks =</span> <span class="fu">seq</span>(<span class="at">from =</span> <span class="fu">min</span>(x), <span class="at">to =</span> <span class="fu">max</span>(x), <span class="at">length.out =</span> <span class="dv">20</span>), <span class="at">probability =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb32-10"><a href="#cb32-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">xlab =</span> <span class="st">"Mean x"</span>, <span class="at">main =</span> <span class="st">"Sampling Distribution"</span>)</span>
-<span id="cb32-11"><a href="#cb32-11" aria-hidden="true" tabindex="-1"></a>(se <span class="ot">&lt;-</span> <span class="fu">sd</span>(x))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(</span>
+<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rpois</span>(<span class="dv">10000</span>, <span class="at">lambda =</span> lambda),</span>
+<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">probability =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb32-7"><a href="#cb32-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">xlab =</span> <span class="st">"X"</span>,</span>
+<span id="cb32-8"><a href="#cb32-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">main =</span> <span class="st">"Original Distribution"</span></span>
+<span id="cb32-9"><a href="#cb32-9" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb32-10"><a href="#cb32-10" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">vector</span>(<span class="at">length =</span> <span class="dv">1000</span>) <span class="co"># dummy variable to hold sample means</span></span>
+<span id="cb32-11"><a href="#cb32-11" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">1000</span>) {</span>
+<span id="cb32-12"><a href="#cb32-12" aria-hidden="true" tabindex="-1"></a>  x[[i]] <span class="ot">&lt;-</span> <span class="fu">mean</span>(<span class="fu">rpois</span>(<span class="at">n =</span> n, <span class="at">lambda =</span> lambda))</span>
+<span id="cb32-13"><a href="#cb32-13" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb32-14"><a href="#cb32-14" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(</span>
+<span id="cb32-15"><a href="#cb32-15" aria-hidden="true" tabindex="-1"></a>  x,</span>
+<span id="cb32-16"><a href="#cb32-16" aria-hidden="true" tabindex="-1"></a>  <span class="at">breaks =</span> <span class="fu">seq</span>(</span>
+<span id="cb32-17"><a href="#cb32-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">from =</span> <span class="fu">min</span>(x),</span>
+<span id="cb32-18"><a href="#cb32-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">to =</span> <span class="fu">max</span>(x),</span>
+<span id="cb32-19"><a href="#cb32-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">length.out =</span> <span class="dv">20</span></span>
+<span id="cb32-20"><a href="#cb32-20" aria-hidden="true" tabindex="-1"></a>  ),</span>
+<span id="cb32-21"><a href="#cb32-21" aria-hidden="true" tabindex="-1"></a>  <span class="at">probability =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb32-22"><a href="#cb32-22" aria-hidden="true" tabindex="-1"></a>  <span class="at">xlab =</span> <span class="st">"Mean x"</span>,</span>
+<span id="cb32-23"><a href="#cb32-23" aria-hidden="true" tabindex="-1"></a>  <span class="at">main =</span> <span class="st">"Sampling Distribution"</span></span>
+<span id="cb32-24"><a href="#cb32-24" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb32-25"><a href="#cb32-25" aria-hidden="true" tabindex="-1"></a>(se <span class="ot">&lt;-</span> <span class="fu">sd</span>(x))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>## [1] 1.160762</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="co"># the estimated SE, here based on the standard deviation of the actual sampling</span></span>
-<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="co"># distribution</span></span>
-<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a><span class="fu">qqnorm</span>(x)</span>
-<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a><span class="fu">qqline</span>(x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="co"># the estimated SE, here based on the standard deviation of the actual sampling distribution</span></span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="fu">qqnorm</span>(x)</span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a><span class="fu">qqline</span>(x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -839,28 +890,40 @@ window.Quarto = {
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>lambda <span class="ot">&lt;-</span> <span class="dv">14</span></span>
 <span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">1000</span></span>
-<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>(se <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(lambda<span class="sc">/</span>n))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>(se <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(lambda <span class="sc">/</span> n))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>## [1] 0.1183216</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="co"># the estimated SE, here, based on an estimate of the population variance if</span></span>
-<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a><span class="co"># available</span></span>
-<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">3</span>))</span>
-<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(<span class="fu">rpois</span>(<span class="dv">10000</span>, <span class="at">lambda =</span> lambda), <span class="at">probability =</span> <span class="cn">TRUE</span>, <span class="at">xlab =</span> <span class="st">"x"</span>, <span class="at">main =</span> <span class="st">"Original Distribution"</span>)</span>
-<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">vector</span>(<span class="at">length =</span> <span class="dv">1000</span>)</span>
-<span id="cb37-6"><a href="#cb37-6" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">1000</span>) {</span>
-<span id="cb37-7"><a href="#cb37-7" aria-hidden="true" tabindex="-1"></a>    x[[i]] <span class="ot">&lt;-</span> <span class="fu">mean</span>(<span class="fu">rpois</span>(<span class="at">n =</span> n, <span class="at">lambda =</span> lambda))</span>
-<span id="cb37-8"><a href="#cb37-8" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb37-9"><a href="#cb37-9" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(x, <span class="at">breaks =</span> <span class="fu">seq</span>(<span class="at">from =</span> <span class="fu">min</span>(x), <span class="at">to =</span> <span class="fu">max</span>(x), <span class="at">length.out =</span> <span class="dv">20</span>), <span class="at">probability =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb37-10"><a href="#cb37-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">xlab =</span> <span class="st">"Mean X"</span>, <span class="at">main =</span> <span class="st">"Sampling Distribution"</span>)</span>
-<span id="cb37-11"><a href="#cb37-11" aria-hidden="true" tabindex="-1"></a>(se <span class="ot">&lt;-</span> <span class="fu">sd</span>(x))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="co"># the estimated SE, here, based on an estimate of the population variance if available</span></span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">3</span>))</span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(</span>
+<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rpois</span>(<span class="dv">10000</span>, <span class="at">lambda =</span> lambda),</span>
+<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">probability =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb37-6"><a href="#cb37-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">xlab =</span> <span class="st">"x"</span>,</span>
+<span id="cb37-7"><a href="#cb37-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">main =</span> <span class="st">"Original Distribution"</span></span>
+<span id="cb37-8"><a href="#cb37-8" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb37-9"><a href="#cb37-9" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">vector</span>(<span class="at">length =</span> <span class="dv">1000</span>)</span>
+<span id="cb37-10"><a href="#cb37-10" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">1000</span>) {</span>
+<span id="cb37-11"><a href="#cb37-11" aria-hidden="true" tabindex="-1"></a>  x[[i]] <span class="ot">&lt;-</span> <span class="fu">mean</span>(<span class="fu">rpois</span>(<span class="at">n =</span> n, <span class="at">lambda =</span> lambda))</span>
+<span id="cb37-12"><a href="#cb37-12" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb37-13"><a href="#cb37-13" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(</span>
+<span id="cb37-14"><a href="#cb37-14" aria-hidden="true" tabindex="-1"></a>  x,</span>
+<span id="cb37-15"><a href="#cb37-15" aria-hidden="true" tabindex="-1"></a>  <span class="at">breaks =</span> <span class="fu">seq</span>(</span>
+<span id="cb37-16"><a href="#cb37-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">from =</span> <span class="fu">min</span>(x),</span>
+<span id="cb37-17"><a href="#cb37-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">to =</span> <span class="fu">max</span>(x),</span>
+<span id="cb37-18"><a href="#cb37-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">length.out =</span> <span class="dv">20</span></span>
+<span id="cb37-19"><a href="#cb37-19" aria-hidden="true" tabindex="-1"></a>  ),</span>
+<span id="cb37-20"><a href="#cb37-20" aria-hidden="true" tabindex="-1"></a>  <span class="at">probability =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb37-21"><a href="#cb37-21" aria-hidden="true" tabindex="-1"></a>  <span class="at">xlab =</span> <span class="st">"Mean X"</span>,</span>
+<span id="cb37-22"><a href="#cb37-22" aria-hidden="true" tabindex="-1"></a>  <span class="at">main =</span> <span class="st">"Sampling Distribution"</span></span>
+<span id="cb37-23"><a href="#cb37-23" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb37-24"><a href="#cb37-24" aria-hidden="true" tabindex="-1"></a>(se <span class="ot">&lt;-</span> <span class="fu">sd</span>(x))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>## [1] 0.1179025</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="co"># the estimated SE, here based on the standard deviation of the actual sampling</span></span>
-<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a><span class="co"># distribution</span></span>
-<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a><span class="fu">qqnorm</span>(x)</span>
-<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a><span class="fu">qqline</span>(x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="co"># the estimated SE, here based on the standard deviation of the actual sampling distribution</span></span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a><span class="fu">qqnorm</span>(x)</span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a><span class="fu">qqline</span>(x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -873,12 +936,18 @@ window.Quarto = {
 <p>We can convert the sampling distribution to a standard normal by subtracting off the mean of the distribution and dividing by the standard deviation and then plotting a histogram of those values along with a normal curve.</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>))</span>
-<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(x, <span class="at">breaks =</span> <span class="fu">seq</span>(<span class="at">from =</span> <span class="fu">floor</span>(<span class="fu">min</span>(x)), <span class="at">to =</span> <span class="fu">ceiling</span>(<span class="fu">max</span>(x)), <span class="at">length.out =</span> <span class="dv">20</span>),</span>
-<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">probability =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a>z <span class="ot">&lt;-</span> (x <span class="sc">-</span> <span class="fu">mean</span>(x))<span class="sc">/</span><span class="fu">sd</span>(x)  <span class="co"># converts the vector of means to z scores</span></span>
-<span id="cb40-5"><a href="#cb40-5" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(z, <span class="at">breaks =</span> <span class="fu">seq</span>(<span class="at">from =</span> <span class="fu">min</span>(z), <span class="at">to =</span> <span class="fu">max</span>(z), <span class="at">length.out =</span> <span class="dv">20</span>), <span class="at">probability =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb40-6"><a href="#cb40-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="fl">0.5</span>))  <span class="co"># plots the histogram of z scores</span></span>
-<span id="cb40-7"><a href="#cb40-7" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">dnorm</span>(x, <span class="dv">0</span>, <span class="dv">1</span>), <span class="sc">-</span><span class="dv">4</span>, <span class="dv">4</span>, <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="fl">0.5</span>), <span class="at">xlab =</span> <span class="st">"Z"</span>, <span class="at">ylab =</span> <span class="st">"Density"</span>, <span class="at">add =</span> <span class="cn">TRUE</span>)  <span class="co"># plots a standard normal curve</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(</span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>  x,</span>
+<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">breaks =</span> <span class="fu">seq</span>(</span>
+<span id="cb40-5"><a href="#cb40-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">from =</span> <span class="fu">floor</span>(<span class="fu">min</span>(x)),</span>
+<span id="cb40-6"><a href="#cb40-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">to =</span> <span class="fu">ceiling</span>(<span class="fu">max</span>(x)),</span>
+<span id="cb40-7"><a href="#cb40-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">length.out =</span> <span class="dv">20</span></span>
+<span id="cb40-8"><a href="#cb40-8" aria-hidden="true" tabindex="-1"></a>  ),</span>
+<span id="cb40-9"><a href="#cb40-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">probability =</span> <span class="cn">TRUE</span></span>
+<span id="cb40-10"><a href="#cb40-10" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb40-11"><a href="#cb40-11" aria-hidden="true" tabindex="-1"></a>z <span class="ot">&lt;-</span> (x <span class="sc">-</span> <span class="fu">mean</span>(x)) <span class="sc">/</span> <span class="fu">sd</span>(x) <span class="co"># converts the vector of means to z scores</span></span>
+<span id="cb40-12"><a href="#cb40-12" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(z, <span class="at">breaks =</span> <span class="fu">seq</span>(<span class="at">from =</span> <span class="fu">min</span>(z), <span class="at">to =</span> <span class="fu">max</span>(z), <span class="at">length.out =</span> <span class="dv">20</span>), <span class="at">probability =</span> <span class="cn">TRUE</span>, <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="fl">0.5</span>)) <span class="co"># plots the histogram of z scores</span></span>
+<span id="cb40-13"><a href="#cb40-13" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">dnorm</span>(x, <span class="dv">0</span>, <span class="dv">1</span>), <span class="sc">-</span><span class="dv">4</span>, <span class="dv">4</span>, <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>, .<span class="dv">5</span>), <span class="at">xlab =</span> <span class="st">"Z"</span>, <span class="at">ylab =</span> <span class="st">"Density"</span>, <span class="at">add =</span> <span class="cn">TRUE</span>) <span class="co"># plots a standard normal curve</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -893,18 +962,32 @@ window.Quarto = {
 <div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>lambda <span class="ot">&lt;-</span> <span class="dv">14</span></span>
 <span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">1000</span></span>
 <span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">3</span>))</span>
-<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(<span class="fu">rpois</span>(<span class="dv">10000</span>, <span class="at">lambda =</span> lambda), <span class="at">probability =</span> <span class="cn">TRUE</span>, <span class="at">xlab =</span> <span class="st">"X"</span>, <span class="at">main =</span> <span class="st">"Original Distribution"</span>)</span>
-<span id="cb41-5"><a href="#cb41-5" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">vector</span>(<span class="at">length =</span> <span class="dv">1000</span>)</span>
-<span id="cb41-6"><a href="#cb41-6" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">1000</span>) {</span>
-<span id="cb41-7"><a href="#cb41-7" aria-hidden="true" tabindex="-1"></a>    x[[i]] <span class="ot">&lt;-</span> <span class="fu">sum</span>(<span class="fu">rpois</span>(<span class="at">n =</span> n, <span class="at">lambda =</span> lambda))</span>
-<span id="cb41-8"><a href="#cb41-8" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb41-9"><a href="#cb41-9" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(x, <span class="at">breaks =</span> <span class="fu">seq</span>(<span class="at">from =</span> <span class="fu">min</span>(x), <span class="at">to =</span> <span class="fu">max</span>(x), <span class="at">length.out =</span> <span class="dv">20</span>), <span class="at">probability =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb41-10"><a href="#cb41-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">xlab =</span> <span class="st">"Sum X"</span>, <span class="at">main =</span> <span class="st">"Sampling Distribution"</span>)</span>
-<span id="cb41-11"><a href="#cb41-11" aria-hidden="true" tabindex="-1"></a><span class="co"># convert the sampling distribution to standard normal</span></span>
-<span id="cb41-12"><a href="#cb41-12" aria-hidden="true" tabindex="-1"></a>z <span class="ot">&lt;-</span> (x <span class="sc">-</span> <span class="fu">mean</span>(x))<span class="sc">/</span><span class="fu">sd</span>(x)</span>
-<span id="cb41-13"><a href="#cb41-13" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(z, <span class="at">breaks =</span> <span class="fu">seq</span>(<span class="at">from =</span> <span class="sc">-</span><span class="dv">4</span>, <span class="at">to =</span> <span class="dv">4</span>, <span class="at">length.out =</span> <span class="dv">20</span>), <span class="at">probability =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb41-14"><a href="#cb41-14" aria-hidden="true" tabindex="-1"></a><span class="co"># plots a standard normal curve</span></span>
-<span id="cb41-15"><a href="#cb41-15" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">dnorm</span>(x, <span class="dv">0</span>, <span class="dv">1</span>), <span class="sc">-</span><span class="dv">4</span>, <span class="dv">4</span>, <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="fl">0.5</span>), <span class="at">xlab =</span> <span class="st">"Z"</span>, <span class="at">ylab =</span> <span class="st">"Density"</span>, <span class="at">add =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(</span>
+<span id="cb41-5"><a href="#cb41-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rpois</span>(<span class="dv">10000</span>, <span class="at">lambda =</span> lambda),</span>
+<span id="cb41-6"><a href="#cb41-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">probability =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb41-7"><a href="#cb41-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">xlab =</span> <span class="st">"X"</span>,</span>
+<span id="cb41-8"><a href="#cb41-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">main =</span> <span class="st">"Original Distribution"</span></span>
+<span id="cb41-9"><a href="#cb41-9" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb41-10"><a href="#cb41-10" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">vector</span>(<span class="at">length =</span> <span class="dv">1000</span>)</span>
+<span id="cb41-11"><a href="#cb41-11" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">1000</span>) {</span>
+<span id="cb41-12"><a href="#cb41-12" aria-hidden="true" tabindex="-1"></a>  x[[i]] <span class="ot">&lt;-</span> <span class="fu">sum</span>(<span class="fu">rpois</span>(<span class="at">n =</span> n, <span class="at">lambda =</span> lambda))</span>
+<span id="cb41-13"><a href="#cb41-13" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb41-14"><a href="#cb41-14" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(</span>
+<span id="cb41-15"><a href="#cb41-15" aria-hidden="true" tabindex="-1"></a>  x,</span>
+<span id="cb41-16"><a href="#cb41-16" aria-hidden="true" tabindex="-1"></a>  <span class="at">breaks =</span> <span class="fu">seq</span>(</span>
+<span id="cb41-17"><a href="#cb41-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">from =</span> <span class="fu">min</span>(x),</span>
+<span id="cb41-18"><a href="#cb41-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">to =</span> <span class="fu">max</span>(x),</span>
+<span id="cb41-19"><a href="#cb41-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">length.out =</span> <span class="dv">20</span></span>
+<span id="cb41-20"><a href="#cb41-20" aria-hidden="true" tabindex="-1"></a>  ),</span>
+<span id="cb41-21"><a href="#cb41-21" aria-hidden="true" tabindex="-1"></a>  <span class="at">probability =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb41-22"><a href="#cb41-22" aria-hidden="true" tabindex="-1"></a>  <span class="at">xlab =</span> <span class="st">"Sum X"</span>,</span>
+<span id="cb41-23"><a href="#cb41-23" aria-hidden="true" tabindex="-1"></a>  <span class="at">main =</span> <span class="st">"Sampling Distribution"</span></span>
+<span id="cb41-24"><a href="#cb41-24" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb41-25"><a href="#cb41-25" aria-hidden="true" tabindex="-1"></a><span class="co"># convert the sampling distribution to standard normal</span></span>
+<span id="cb41-26"><a href="#cb41-26" aria-hidden="true" tabindex="-1"></a>z <span class="ot">&lt;-</span> (x <span class="sc">-</span> <span class="fu">mean</span>(x)) <span class="sc">/</span> <span class="fu">sd</span>(x)</span>
+<span id="cb41-27"><a href="#cb41-27" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(z, <span class="at">breaks =</span> <span class="fu">seq</span>(<span class="at">from =</span> <span class="sc">-</span><span class="dv">4</span>, <span class="at">to =</span> <span class="dv">4</span>, <span class="at">length.out =</span> <span class="dv">20</span>), <span class="at">probability =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb41-28"><a href="#cb41-28" aria-hidden="true" tabindex="-1"></a><span class="co"># plots a standard normal curve</span></span>
+<span id="cb41-29"><a href="#cb41-29" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">dnorm</span>(x, <span class="dv">0</span>, <span class="dv">1</span>), <span class="sc">-</span><span class="dv">4</span>, <span class="dv">4</span>, <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="fl">0.5</span>), <span class="at">xlab =</span> <span class="st">"Z"</span>, <span class="at">ylab =</span> <span class="st">"Density"</span>, <span class="at">add =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -920,19 +1003,28 @@ window.Quarto = {
 <span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>beta <span class="ot">&lt;-</span> <span class="fl">2.9</span></span>
 <span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">1000</span></span>
 <span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">3</span>))</span>
-<span id="cb42-5"><a href="#cb42-5" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(<span class="fu">rbeta</span>(<span class="dv">10000</span>, <span class="at">shape1 =</span> alpha, <span class="at">shape2 =</span> beta), <span class="at">probability =</span> <span class="cn">TRUE</span>, <span class="at">xlab =</span> <span class="st">"X"</span>,</span>
-<span id="cb42-6"><a href="#cb42-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">main =</span> <span class="st">"Original Distribution"</span>)</span>
-<span id="cb42-7"><a href="#cb42-7" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">vector</span>(<span class="at">length =</span> <span class="dv">1000</span>)</span>
-<span id="cb42-8"><a href="#cb42-8" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">1000</span>) {</span>
-<span id="cb42-9"><a href="#cb42-9" aria-hidden="true" tabindex="-1"></a>    x[[i]] <span class="ot">&lt;-</span> <span class="fu">mean</span>(<span class="fu">rbeta</span>(<span class="at">n =</span> n, <span class="at">shape1 =</span> alpha, <span class="at">shape2 =</span> beta))</span>
-<span id="cb42-10"><a href="#cb42-10" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb42-11"><a href="#cb42-11" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(x, <span class="at">breaks =</span> <span class="fu">seq</span>(<span class="fu">min</span>(x), <span class="fu">max</span>(x), <span class="at">length.out =</span> <span class="dv">20</span>), <span class="at">probability =</span> <span class="cn">TRUE</span>, <span class="at">xlab =</span> <span class="st">"Mean X"</span>,</span>
-<span id="cb42-12"><a href="#cb42-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">main =</span> <span class="st">"Sampling Distribution"</span>)</span>
-<span id="cb42-13"><a href="#cb42-13" aria-hidden="true" tabindex="-1"></a><span class="co"># convert the sampling distribution to standard normal</span></span>
-<span id="cb42-14"><a href="#cb42-14" aria-hidden="true" tabindex="-1"></a>z <span class="ot">&lt;-</span> (x <span class="sc">-</span> <span class="fu">mean</span>(x))<span class="sc">/</span><span class="fu">sd</span>(x)</span>
-<span id="cb42-15"><a href="#cb42-15" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(z, <span class="at">breaks =</span> <span class="fu">seq</span>(<span class="at">from =</span> <span class="sc">-</span><span class="dv">4</span>, <span class="at">to =</span> <span class="dv">4</span>, <span class="at">length.out =</span> <span class="dv">20</span>), <span class="at">probability =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb42-16"><a href="#cb42-16" aria-hidden="true" tabindex="-1"></a><span class="co"># plots a standard normal curve</span></span>
-<span id="cb42-17"><a href="#cb42-17" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">dnorm</span>(x, <span class="dv">0</span>, <span class="dv">1</span>), <span class="sc">-</span><span class="dv">4</span>, <span class="dv">4</span>, <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="fl">0.5</span>), <span class="at">xlab =</span> <span class="st">"Z"</span>, <span class="at">ylab =</span> <span class="st">"Density"</span>, <span class="at">add =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb42-5"><a href="#cb42-5" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(</span>
+<span id="cb42-6"><a href="#cb42-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rbeta</span>(<span class="dv">10000</span>, <span class="at">shape1 =</span> alpha, <span class="at">shape2 =</span> beta),</span>
+<span id="cb42-7"><a href="#cb42-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">probability =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb42-8"><a href="#cb42-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">xlab =</span> <span class="st">"X"</span>,</span>
+<span id="cb42-9"><a href="#cb42-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">main =</span> <span class="st">"Original Distribution"</span></span>
+<span id="cb42-10"><a href="#cb42-10" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb42-11"><a href="#cb42-11" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">vector</span>(<span class="at">length =</span> <span class="dv">1000</span>)</span>
+<span id="cb42-12"><a href="#cb42-12" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">1000</span>) {</span>
+<span id="cb42-13"><a href="#cb42-13" aria-hidden="true" tabindex="-1"></a>  x[[i]] <span class="ot">&lt;-</span> <span class="fu">mean</span>(<span class="fu">rbeta</span>(<span class="at">n =</span> n, <span class="at">shape1 =</span> alpha, <span class="at">shape2 =</span> beta))</span>
+<span id="cb42-14"><a href="#cb42-14" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb42-15"><a href="#cb42-15" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(</span>
+<span id="cb42-16"><a href="#cb42-16" aria-hidden="true" tabindex="-1"></a>  x,</span>
+<span id="cb42-17"><a href="#cb42-17" aria-hidden="true" tabindex="-1"></a>  <span class="at">breaks =</span> <span class="fu">seq</span>(<span class="fu">min</span>(x), <span class="fu">max</span>(x), <span class="at">length.out =</span> <span class="dv">20</span>),</span>
+<span id="cb42-18"><a href="#cb42-18" aria-hidden="true" tabindex="-1"></a>  <span class="at">probability =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb42-19"><a href="#cb42-19" aria-hidden="true" tabindex="-1"></a>  <span class="at">xlab =</span> <span class="st">"Mean X"</span>,</span>
+<span id="cb42-20"><a href="#cb42-20" aria-hidden="true" tabindex="-1"></a>  <span class="at">main =</span> <span class="st">"Sampling Distribution"</span></span>
+<span id="cb42-21"><a href="#cb42-21" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb42-22"><a href="#cb42-22" aria-hidden="true" tabindex="-1"></a><span class="co"># convert the sampling distribution to standard normal</span></span>
+<span id="cb42-23"><a href="#cb42-23" aria-hidden="true" tabindex="-1"></a>z <span class="ot">&lt;-</span> (x <span class="sc">-</span> <span class="fu">mean</span>(x)) <span class="sc">/</span> <span class="fu">sd</span>(x)</span>
+<span id="cb42-24"><a href="#cb42-24" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(z, <span class="at">breaks =</span> <span class="fu">seq</span>(<span class="at">from =</span> <span class="sc">-</span><span class="dv">4</span>, <span class="at">to =</span> <span class="dv">4</span>, <span class="at">length.out =</span> <span class="dv">20</span>), <span class="at">probability =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb42-25"><a href="#cb42-25" aria-hidden="true" tabindex="-1"></a><span class="co"># plots a standard normal curve</span></span>
+<span id="cb42-26"><a href="#cb42-26" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">dnorm</span>(x, <span class="dv">0</span>, <span class="dv">1</span>), <span class="sc">-</span><span class="dv">4</span>, <span class="dv">4</span>, <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="fl">0.5</span>), <span class="at">xlab =</span> <span class="st">"Z"</span>, <span class="at">ylab =</span> <span class="st">"Density"</span>, <span class="at">add =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -968,7 +1060,7 @@ window.Quarto = {
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">1000</span></span>
 <span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">856</span></span>
-<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a>p_hat <span class="ot">&lt;-</span> x<span class="sc">/</span>n  <span class="co"># our estimate of pi</span></span>
+<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a>p_hat <span class="ot">&lt;-</span> x <span class="sc">/</span> n <span class="co"># our estimate of pi</span></span>
 <span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a>p_hat</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>## [1] 0.856</code></pre>
@@ -984,7 +1076,7 @@ window.Quarto = {
 <div class="cell-output cell-output-stdout">
 <pre><code>## [1] 144</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a>se <span class="ot">&lt;-</span> <span class="fu">sqrt</span>((p_hat) <span class="sc">*</span> (<span class="dv">1</span> <span class="sc">-</span> p_hat)<span class="sc">/</span>n)  <span class="co"># estimated SE for proportion data</span></span>
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a>se <span class="ot">&lt;-</span> <span class="fu">sqrt</span>((p_hat) <span class="sc">*</span> (<span class="dv">1</span> <span class="sc">-</span> p_hat) <span class="sc">/</span> n) <span class="co"># estimated SE for proportion data</span></span>
 <span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a>se</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>## [1] 0.01110243</code></pre>
@@ -993,11 +1085,17 @@ window.Quarto = {
 <p>So, what is the 95% CI around our estimate of the proportion of people who already know how they will vote?</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>))</span>
-<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">dnorm</span>(x, <span class="at">mean =</span> p_hat, <span class="at">sd =</span> se), p_hat <span class="sc">-</span> <span class="dv">4</span> <span class="sc">*</span> se, p_hat <span class="sc">+</span> <span class="dv">4</span> <span class="sc">*</span> se, <span class="at">xlab =</span> <span class="st">""</span>,</span>
-<span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">ylab =</span> <span class="st">"Density"</span>, <span class="at">main =</span> <span class="st">"95% Confidence Interval around</span><span class="sc">\n</span><span class="st">Expected Proportion of Decided Voters "</span>)</span>
-<span id="cb51-4"><a href="#cb51-4" aria-hidden="true" tabindex="-1"></a>upper <span class="ot">&lt;-</span> p_hat <span class="sc">+</span> <span class="fu">qnorm</span>(<span class="fl">0.975</span>) <span class="sc">*</span> se</span>
-<span id="cb51-5"><a href="#cb51-5" aria-hidden="true" tabindex="-1"></a>lower <span class="ot">&lt;-</span> p_hat <span class="sc">-</span> <span class="fu">qnorm</span>(<span class="fl">0.975</span>) <span class="sc">*</span> se</span>
-<span id="cb51-6"><a href="#cb51-6" aria-hidden="true" tabindex="-1"></a>(ci <span class="ot">&lt;-</span> <span class="fu">c</span>(lower, upper))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(</span>
+<span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">dnorm</span>(x, <span class="at">mean =</span> p_hat, <span class="at">sd =</span> se),</span>
+<span id="cb51-4"><a href="#cb51-4" aria-hidden="true" tabindex="-1"></a>  p_hat <span class="sc">-</span> <span class="dv">4</span> <span class="sc">*</span> se,</span>
+<span id="cb51-5"><a href="#cb51-5" aria-hidden="true" tabindex="-1"></a>  p_hat <span class="sc">+</span> <span class="dv">4</span> <span class="sc">*</span> se,</span>
+<span id="cb51-6"><a href="#cb51-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">xlab =</span> <span class="st">""</span>,</span>
+<span id="cb51-7"><a href="#cb51-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">ylab =</span> <span class="st">"Density"</span>,</span>
+<span id="cb51-8"><a href="#cb51-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">main =</span> <span class="st">"95% Confidence Interval around</span><span class="sc">\n</span><span class="st">Expected Proportion of Decided Voters "</span></span>
+<span id="cb51-9"><a href="#cb51-9" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb51-10"><a href="#cb51-10" aria-hidden="true" tabindex="-1"></a>upper <span class="ot">&lt;-</span> p_hat <span class="sc">+</span> <span class="fu">qnorm</span>(<span class="fl">0.975</span>) <span class="sc">*</span> se</span>
+<span id="cb51-11"><a href="#cb51-11" aria-hidden="true" tabindex="-1"></a>lower <span class="ot">&lt;-</span> p_hat <span class="sc">-</span> <span class="fu">qnorm</span>(<span class="fl">0.975</span>) <span class="sc">*</span> se</span>
+<span id="cb51-12"><a href="#cb51-12" aria-hidden="true" tabindex="-1"></a>(ci <span class="ot">&lt;-</span> <span class="fu">c</span>(lower, upper))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>## [1] 0.8342396 0.8777604</code></pre>
 </div>
@@ -1006,12 +1104,24 @@ window.Quarto = {
 <div class="cell-output cell-output-stdout">
 <pre><code>## [1] 0.8342396 0.8777604</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="fu">polygon</span>(<span class="fu">cbind</span>(<span class="fu">c</span>(ci[<span class="dv">1</span>], <span class="fu">seq</span>(<span class="at">from =</span> ci[<span class="dv">1</span>], <span class="at">to =</span> ci[<span class="dv">2</span>], <span class="at">length.out =</span> <span class="dv">1000</span>), ci[<span class="dv">2</span>]),</span>
-<span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">c</span>(<span class="dv">0</span>, <span class="fu">dnorm</span>(<span class="fu">seq</span>(<span class="at">from =</span> ci[<span class="dv">1</span>], <span class="at">to =</span> ci[<span class="dv">2</span>], <span class="at">length.out =</span> <span class="dv">1000</span>), <span class="at">mean =</span> p_hat, <span class="at">sd =</span> se),</span>
-<span id="cb55-3"><a href="#cb55-3" aria-hidden="true" tabindex="-1"></a>        <span class="dv">0</span>)), <span class="at">border =</span> <span class="st">"black"</span>, <span class="at">col =</span> <span class="st">"gray"</span>)</span>
-<span id="cb55-4"><a href="#cb55-4" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v =</span> ci)</span>
-<span id="cb55-5"><a href="#cb55-5" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v =</span> p_hat)</span>
-<span id="cb55-6"><a href="#cb55-6" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h =</span> <span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="fu">polygon</span>(<span class="fu">cbind</span>(<span class="fu">c</span>(</span>
+<span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a>  ci[<span class="dv">1</span>], <span class="fu">seq</span>(</span>
+<span id="cb55-3"><a href="#cb55-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">from =</span> ci[<span class="dv">1</span>],</span>
+<span id="cb55-4"><a href="#cb55-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">to =</span> ci[<span class="dv">2</span>],</span>
+<span id="cb55-5"><a href="#cb55-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">length.out =</span> <span class="dv">1000</span></span>
+<span id="cb55-6"><a href="#cb55-6" aria-hidden="true" tabindex="-1"></a>  ), ci[<span class="dv">2</span>]</span>
+<span id="cb55-7"><a href="#cb55-7" aria-hidden="true" tabindex="-1"></a>), <span class="fu">c</span>(<span class="dv">0</span>, <span class="fu">dnorm</span>(</span>
+<span id="cb55-8"><a href="#cb55-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">seq</span>(</span>
+<span id="cb55-9"><a href="#cb55-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">from =</span> ci[<span class="dv">1</span>],</span>
+<span id="cb55-10"><a href="#cb55-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">to =</span> ci[<span class="dv">2</span>],</span>
+<span id="cb55-11"><a href="#cb55-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">length.out =</span> <span class="dv">1000</span></span>
+<span id="cb55-12"><a href="#cb55-12" aria-hidden="true" tabindex="-1"></a>  ),</span>
+<span id="cb55-13"><a href="#cb55-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">mean =</span> p_hat,</span>
+<span id="cb55-14"><a href="#cb55-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">sd =</span> se</span>
+<span id="cb55-15"><a href="#cb55-15" aria-hidden="true" tabindex="-1"></a>), <span class="dv">0</span>)), <span class="at">border =</span> <span class="st">"black"</span>, <span class="at">col =</span> <span class="st">"gray"</span>)</span>
+<span id="cb55-16"><a href="#cb55-16" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v =</span> ci)</span>
+<span id="cb55-17"><a href="#cb55-17" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v =</span> p_hat)</span>
+<span id="cb55-18"><a href="#cb55-18" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h =</span> <span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -1044,12 +1154,29 @@ window.Quarto = {
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb56"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a>mu <span class="ot">&lt;-</span> <span class="dv">0</span></span>
 <span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a>sigma <span class="ot">&lt;-</span> <span class="dv">1</span></span>
-<span id="cb56-3"><a href="#cb56-3" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">dnorm</span>(x, mu, <span class="dv">1</span>), mu <span class="sc">-</span> <span class="dv">4</span> <span class="sc">*</span> sigma, mu <span class="sc">+</span> <span class="dv">4</span> <span class="sc">*</span> sigma, <span class="at">main =</span> <span class="st">"Normal Distribution (red) and</span><span class="sc">\n</span><span class="st">Student's t Distributions (blue)"</span>,</span>
-<span id="cb56-4"><a href="#cb56-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">xlab =</span> <span class="st">"x"</span>, <span class="at">ylab =</span> <span class="st">"f(x)"</span>, <span class="at">col =</span> <span class="st">"red"</span>, <span class="at">lwd =</span> <span class="dv">3</span>)</span>
-<span id="cb56-5"><a href="#cb56-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">10</span>, <span class="dv">20</span>, <span class="dv">100</span>)) {</span>
-<span id="cb56-6"><a href="#cb56-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">curve</span>(<span class="fu">dt</span>(x, <span class="at">df =</span> i), mu <span class="sc">-</span> <span class="dv">4</span> <span class="sc">*</span> sigma, mu <span class="sc">+</span> <span class="dv">4</span> <span class="sc">*</span> sigma, <span class="at">main =</span> <span class="st">"T Curve"</span>, <span class="at">xlab =</span> <span class="st">"x"</span>,</span>
-<span id="cb56-7"><a href="#cb56-7" aria-hidden="true" tabindex="-1"></a>        <span class="at">ylab =</span> <span class="st">"f(x)"</span>, <span class="at">add =</span> <span class="cn">TRUE</span>, <span class="at">col =</span> <span class="st">"blue"</span>, <span class="at">lty =</span> <span class="dv">5</span>)</span>
-<span id="cb56-8"><a href="#cb56-8" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb56-3"><a href="#cb56-3" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(</span>
+<span id="cb56-4"><a href="#cb56-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">dnorm</span>(x, mu, <span class="dv">1</span>),</span>
+<span id="cb56-5"><a href="#cb56-5" aria-hidden="true" tabindex="-1"></a>  mu <span class="sc">-</span> <span class="dv">4</span> <span class="sc">*</span> sigma,</span>
+<span id="cb56-6"><a href="#cb56-6" aria-hidden="true" tabindex="-1"></a>  mu <span class="sc">+</span> <span class="dv">4</span> <span class="sc">*</span> sigma,</span>
+<span id="cb56-7"><a href="#cb56-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">main =</span> <span class="st">"Normal Distribution (red)\ and</span><span class="sc">\n</span><span class="st">Student's t Distributions (blue)"</span>,</span>
+<span id="cb56-8"><a href="#cb56-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">xlab =</span> <span class="st">"x"</span>,</span>
+<span id="cb56-9"><a href="#cb56-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">ylab =</span> <span class="st">"f(x)"</span>,</span>
+<span id="cb56-10"><a href="#cb56-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">col =</span> <span class="st">"red"</span>,</span>
+<span id="cb56-11"><a href="#cb56-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">lwd =</span> <span class="dv">3</span></span>
+<span id="cb56-12"><a href="#cb56-12" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb56-13"><a href="#cb56-13" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">10</span>, <span class="dv">20</span>, <span class="dv">100</span>)) {</span>
+<span id="cb56-14"><a href="#cb56-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">curve</span>(</span>
+<span id="cb56-15"><a href="#cb56-15" aria-hidden="true" tabindex="-1"></a>    <span class="fu">dt</span>(x, <span class="at">df =</span> i),</span>
+<span id="cb56-16"><a href="#cb56-16" aria-hidden="true" tabindex="-1"></a>    mu <span class="sc">-</span> <span class="dv">4</span> <span class="sc">*</span> sigma,</span>
+<span id="cb56-17"><a href="#cb56-17" aria-hidden="true" tabindex="-1"></a>    mu <span class="sc">+</span> <span class="dv">4</span> <span class="sc">*</span> sigma,</span>
+<span id="cb56-18"><a href="#cb56-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">main =</span> <span class="st">"T Curve"</span>,</span>
+<span id="cb56-19"><a href="#cb56-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">xlab =</span> <span class="st">"x"</span>,</span>
+<span id="cb56-20"><a href="#cb56-20" aria-hidden="true" tabindex="-1"></a>    <span class="at">ylab =</span> <span class="st">"f(x)"</span>,</span>
+<span id="cb56-21"><a href="#cb56-21" aria-hidden="true" tabindex="-1"></a>    <span class="at">add =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb56-22"><a href="#cb56-22" aria-hidden="true" tabindex="-1"></a>    <span class="at">col =</span> <span class="st">"blue"</span>,</span>
+<span id="cb56-23"><a href="#cb56-23" aria-hidden="true" tabindex="-1"></a>    <span class="at">lty =</span> <span class="dv">5</span></span>
+<span id="cb56-24"><a href="#cb56-24" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb56-25"><a href="#cb56-25" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -1062,11 +1189,11 @@ window.Quarto = {
 <p>The fatter tails of the <span class="math inline">\(t\)</span> distibution at small sample sizes lead naturally to more extreme quantile values given a specific probability than we would see for the normal distribution. If we define a CI based on quantiles of the <span class="math inline">\(t\)</span> distribution, then, they will be correspondingly slightly <strong>wider</strong> than those based on the normal distribution for small values of <span class="math inline">\(df\)</span>.</p>
 <p>We can see this in an example, where we draw samples from a population of values defined by a normal distribution with a particular mean and standard deviation. Recall that above we estimated the 95% CI for such a sample drawn from a normal distribution as follows:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="fl">1e+05</span></span>
+<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">100000</span></span>
 <span id="cb57-2"><a href="#cb57-2" aria-hidden="true" tabindex="-1"></a>mu <span class="ot">&lt;-</span> <span class="fl">3.5</span></span>
 <span id="cb57-3"><a href="#cb57-3" aria-hidden="true" tabindex="-1"></a>sigma <span class="ot">&lt;-</span> <span class="dv">4</span></span>
 <span id="cb57-4"><a href="#cb57-4" aria-hidden="true" tabindex="-1"></a>alpha <span class="ot">&lt;-</span> <span class="fl">0.05</span></span>
-<span id="cb57-5"><a href="#cb57-5" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(n, mu, sigma)  <span class="co"># x is our large population</span></span>
+<span id="cb57-5"><a href="#cb57-5" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(n, mu, sigma) <span class="co"># x is our large population</span></span>
 <span id="cb57-6"><a href="#cb57-6" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
@@ -1076,7 +1203,7 @@ window.Quarto = {
 </div>
 </div>
 <div class="sourceCode cell-code" id="cb58"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a>sample_size <span class="ot">&lt;-</span> <span class="dv">30</span></span>
-<span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a>s <span class="ot">&lt;-</span> <span class="fu">sample</span>(x, <span class="at">size =</span> sample_size, <span class="at">replace =</span> <span class="cn">FALSE</span>)  <span class="co"># s is a sample from that population</span></span>
+<span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a>s <span class="ot">&lt;-</span> <span class="fu">sample</span>(x, <span class="at">size =</span> sample_size, <span class="at">replace =</span> <span class="cn">FALSE</span>) <span class="co"># s is a sample from that population</span></span>
 <span id="cb58-3"><a href="#cb58-3" aria-hidden="true" tabindex="-1"></a>(m <span class="ot">&lt;-</span> <span class="fu">mean</span>(s))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>## [1] 2.921573</code></pre>
@@ -1085,11 +1212,11 @@ window.Quarto = {
 <div class="cell-output cell-output-stdout">
 <pre><code>## [1] 4.198638</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb62"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a>(se <span class="ot">&lt;-</span> <span class="fu">sd</span>(s)<span class="sc">/</span><span class="fu">sqrt</span>(<span class="fu">length</span>(s)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb62"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a>(se <span class="ot">&lt;-</span> <span class="fu">sd</span>(s) <span class="sc">/</span> <span class="fu">sqrt</span>(<span class="fu">length</span>(s)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>## [1] 0.7665629</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb64"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a>ci_normal <span class="ot">&lt;-</span> m <span class="sc">+</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>, <span class="dv">1</span>) <span class="sc">*</span> <span class="fu">qnorm</span>(<span class="dv">1</span> <span class="sc">-</span> <span class="fl">0.05</span><span class="sc">/</span><span class="dv">2</span>) <span class="sc">*</span> se</span>
+<div class="sourceCode cell-code" id="cb64"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a>ci_normal <span class="ot">&lt;-</span> m <span class="sc">+</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>, <span class="dv">1</span>) <span class="sc">*</span> <span class="fu">qnorm</span>(<span class="dv">1</span> <span class="sc">-</span> <span class="fl">0.05</span> <span class="sc">/</span> <span class="dv">2</span>) <span class="sc">*</span> se</span>
 <span id="cb64-2"><a href="#cb64-2" aria-hidden="true" tabindex="-1"></a><span class="co"># (1-alpha)/2 each in the upper and lower tails of the distribution</span></span>
 <span id="cb64-3"><a href="#cb64-3" aria-hidden="true" tabindex="-1"></a>ci_normal</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -1098,7 +1225,7 @@ window.Quarto = {
 </div>
 <p>Now, let’s look at the CIs calculated based using the <span class="math inline">\(t\)</span> distribution for the same sample size. For sample size 30, the difference in the CIs is negligible.</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb66"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a>ci_t <span class="ot">&lt;-</span> m <span class="sc">+</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>, <span class="dv">1</span>) <span class="sc">*</span> <span class="fu">qt</span>(<span class="dv">1</span> <span class="sc">-</span> <span class="fl">0.05</span><span class="sc">/</span><span class="dv">2</span>, <span class="at">df =</span> sample_size <span class="sc">-</span> <span class="dv">1</span>) <span class="sc">*</span> se</span>
+<div class="sourceCode cell-code" id="cb66"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a>ci_t <span class="ot">&lt;-</span> m <span class="sc">+</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>, <span class="dv">1</span>) <span class="sc">*</span> <span class="fu">qt</span>(<span class="dv">1</span> <span class="sc">-</span> <span class="fl">0.05</span> <span class="sc">/</span> <span class="dv">2</span>, <span class="at">df =</span> sample_size <span class="sc">-</span> <span class="dv">1</span>) <span class="sc">*</span> se</span>
 <span id="cb66-2"><a href="#cb66-2" aria-hidden="true" tabindex="-1"></a><span class="co"># (1-alpha)/2 each in the upper and lower tails of the distribution</span></span>
 <span id="cb66-3"><a href="#cb66-3" aria-hidden="true" tabindex="-1"></a>ci_t</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -1117,17 +1244,17 @@ window.Quarto = {
 <div class="cell-output cell-output-stdout">
 <pre><code>## [1] 2.599329</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb72"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb72-1"><a href="#cb72-1" aria-hidden="true" tabindex="-1"></a>(se <span class="ot">&lt;-</span> <span class="fu">sd</span>(small_s)<span class="sc">/</span><span class="fu">sqrt</span>(<span class="fu">length</span>(small_s)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb72"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb72-1"><a href="#cb72-1" aria-hidden="true" tabindex="-1"></a>(se <span class="ot">&lt;-</span> <span class="fu">sd</span>(small_s) <span class="sc">/</span> <span class="fu">sqrt</span>(<span class="fu">length</span>(small_s)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>## [1] 1.162455</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb74"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb74-1"><a href="#cb74-1" aria-hidden="true" tabindex="-1"></a>ci_normal <span class="ot">&lt;-</span> m <span class="sc">+</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>, <span class="dv">1</span>) <span class="sc">*</span> <span class="fu">qnorm</span>(<span class="dv">1</span> <span class="sc">-</span> <span class="fl">0.05</span><span class="sc">/</span><span class="dv">2</span>) <span class="sc">*</span> se</span>
+<div class="sourceCode cell-code" id="cb74"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb74-1"><a href="#cb74-1" aria-hidden="true" tabindex="-1"></a>ci_normal <span class="ot">&lt;-</span> m <span class="sc">+</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>, <span class="dv">1</span>) <span class="sc">*</span> <span class="fu">qnorm</span>(<span class="dv">1</span> <span class="sc">-</span> <span class="fl">0.05</span> <span class="sc">/</span> <span class="dv">2</span>) <span class="sc">*</span> se</span>
 <span id="cb74-2"><a href="#cb74-2" aria-hidden="true" tabindex="-1"></a><span class="co"># (1-alpha)/2 each in the upper and lower tails of the distribution</span></span>
 <span id="cb74-3"><a href="#cb74-3" aria-hidden="true" tabindex="-1"></a>ci_normal</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>## [1] 3.028738 7.585479</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb76"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb76-1"><a href="#cb76-1" aria-hidden="true" tabindex="-1"></a>ci_t <span class="ot">&lt;-</span> m <span class="sc">+</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>, <span class="dv">1</span>) <span class="sc">*</span> <span class="fu">qt</span>(<span class="dv">1</span> <span class="sc">-</span> <span class="fl">0.05</span><span class="sc">/</span><span class="dv">2</span>, <span class="at">df =</span> sample_size <span class="sc">-</span> <span class="dv">1</span>) <span class="sc">*</span> se</span>
+<div class="sourceCode cell-code" id="cb76"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb76-1"><a href="#cb76-1" aria-hidden="true" tabindex="-1"></a>ci_t <span class="ot">&lt;-</span> m <span class="sc">+</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>, <span class="dv">1</span>) <span class="sc">*</span> <span class="fu">qt</span>(<span class="dv">1</span> <span class="sc">-</span> <span class="fl">0.05</span> <span class="sc">/</span> <span class="dv">2</span>, <span class="at">df =</span> sample_size <span class="sc">-</span> <span class="dv">1</span>) <span class="sc">*</span> se</span>
 <span id="cb76-2"><a href="#cb76-2" aria-hidden="true" tabindex="-1"></a><span class="co"># (1-alpha)/2 each in the upper and lower tails of the distribution</span></span>
 <span id="cb76-3"><a href="#cb76-3" aria-hidden="true" tabindex="-1"></a>ci_t</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -1146,56 +1273,78 @@ window.Quarto = {
 </blockquote>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb78"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb78-1"><a href="#cb78-1" aria-hidden="true" tabindex="-1"></a>n_boot <span class="ot">&lt;-</span> <span class="dv">10000</span></span>
-<span id="cb78-2"><a href="#cb78-2" aria-hidden="true" tabindex="-1"></a>boot <span class="ot">&lt;-</span> <span class="fu">vector</span>(<span class="at">length =</span> n_boot)  <span class="co"># set up a dummy variable to hold our simulations</span></span>
+<span id="cb78-2"><a href="#cb78-2" aria-hidden="true" tabindex="-1"></a>boot <span class="ot">&lt;-</span> <span class="fu">vector</span>(<span class="at">length =</span> n_boot) <span class="co"># set up a dummy variable to hold our simulations</span></span>
 <span id="cb78-3"><a href="#cb78-3" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="fu">length</span>(s)</span>
-<span id="cb78-4"><a href="#cb78-4" aria-hidden="true" tabindex="-1"></a><span class="co"># the size of each bootstrap sample should equivalent to the size our original</span></span>
-<span id="cb78-5"><a href="#cb78-5" aria-hidden="true" tabindex="-1"></a><span class="co"># sample</span></span>
-<span id="cb78-6"><a href="#cb78-6" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>n_boot) {</span>
-<span id="cb78-7"><a href="#cb78-7" aria-hidden="true" tabindex="-1"></a>    boot[[i]] <span class="ot">&lt;-</span> <span class="fu">mean</span>(<span class="fu">sample</span>(s, n, <span class="at">replace =</span> <span class="cn">TRUE</span>))</span>
-<span id="cb78-8"><a href="#cb78-8" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb78-4"><a href="#cb78-4" aria-hidden="true" tabindex="-1"></a><span class="co"># the size of each bootstrap sample should equivalent to the size our original sample</span></span>
+<span id="cb78-5"><a href="#cb78-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>n_boot) {</span>
+<span id="cb78-6"><a href="#cb78-6" aria-hidden="true" tabindex="-1"></a>  boot[[i]] <span class="ot">&lt;-</span> <span class="fu">mean</span>(<span class="fu">sample</span>(s, n, <span class="at">replace =</span> <span class="cn">TRUE</span>))</span>
+<span id="cb78-7"><a href="#cb78-7" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>The following code visualizes the bootstrap sampling distribution we have just generated and also compares the various methods we have explored for calculating CIs.</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb79"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb79-1"><a href="#cb79-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(boot, <span class="at">breaks =</span> <span class="dv">25</span>, <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1600</span>), <span class="at">xlab =</span> <span class="st">"Mean"</span>, <span class="at">main =</span> <span class="st">"Bootstrap Sampling Distribution"</span>)</span>
-<span id="cb79-2"><a href="#cb79-2" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v =</span> <span class="fu">mean</span>(boot), <span class="at">col =</span> <span class="st">"blue"</span>, <span class="at">lwd =</span> <span class="dv">3</span>)  <span class="co"># mean of our simulated samples</span></span>
-<span id="cb79-3"><a href="#cb79-3" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(<span class="at">x =</span> <span class="fu">mean</span>(boot) <span class="sc">+</span> <span class="fl">0.2</span>, <span class="at">y =</span> <span class="dv">700</span>, <span class="st">"mean of bootstrap distribution "</span>, <span class="at">col =</span> <span class="st">"blue"</span>,</span>
-<span id="cb79-4"><a href="#cb79-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">srt =</span> <span class="dv">90</span>, <span class="at">pos =</span> <span class="dv">3</span>)</span>
-<span id="cb79-5"><a href="#cb79-5" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v =</span> <span class="fu">mean</span>(s), <span class="at">col =</span> <span class="st">"black"</span>, <span class="at">lwd =</span> <span class="dv">3</span>, <span class="at">lty =</span> <span class="dv">2</span>)</span>
-<span id="cb79-6"><a href="#cb79-6" aria-hidden="true" tabindex="-1"></a><span class="co"># mean of our original vector of samples, s</span></span>
-<span id="cb79-7"><a href="#cb79-7" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(<span class="at">x =</span> <span class="fu">mean</span>(s) <span class="sc">-</span> <span class="fl">0.125</span>, <span class="at">y =</span> <span class="dv">700</span>, <span class="st">"mean of original sample"</span>, <span class="at">col =</span> <span class="st">"black"</span>, <span class="at">srt =</span> <span class="dv">90</span>,</span>
-<span id="cb79-8"><a href="#cb79-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">pos =</span> <span class="dv">3</span>)</span>
-<span id="cb79-9"><a href="#cb79-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb79-10"><a href="#cb79-10" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v =</span> <span class="fu">quantile</span>(boot, <span class="fl">0.025</span>), <span class="at">col =</span> <span class="st">"blue"</span>)</span>
-<span id="cb79-11"><a href="#cb79-11" aria-hidden="true" tabindex="-1"></a><span class="co"># lower ci bound inferred by bootstrapping</span></span>
-<span id="cb79-12"><a href="#cb79-12" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v =</span> <span class="fu">quantile</span>(boot, <span class="fl">0.975</span>), <span class="at">col =</span> <span class="st">"blue"</span>)</span>
-<span id="cb79-13"><a href="#cb79-13" aria-hidden="true" tabindex="-1"></a><span class="co"># upper ci bound inferred by bootstrapping</span></span>
-<span id="cb79-14"><a href="#cb79-14" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(<span class="at">x =</span> <span class="fu">quantile</span>(boot, <span class="fl">0.025</span>) <span class="sc">+</span> <span class="fl">0.25</span>, <span class="at">y =</span> <span class="dv">700</span>, <span class="st">"lower CI - bootstrap"</span>, <span class="at">col =</span> <span class="st">"blue"</span>,</span>
-<span id="cb79-15"><a href="#cb79-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">srt =</span> <span class="dv">90</span>, <span class="at">pos =</span> <span class="dv">3</span>)</span>
-<span id="cb79-16"><a href="#cb79-16" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(<span class="at">x =</span> <span class="fu">quantile</span>(boot, <span class="fl">0.975</span>) <span class="sc">-</span> <span class="fl">0.125</span>, <span class="at">y =</span> <span class="dv">700</span>, <span class="st">"upper CI - bootstrap"</span>, <span class="at">col =</span> <span class="st">"blue"</span>,</span>
-<span id="cb79-17"><a href="#cb79-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">srt =</span> <span class="dv">90</span>, <span class="at">pos =</span> <span class="dv">3</span>)</span>
+<div class="sourceCode cell-code" id="cb79"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb79-1"><a href="#cb79-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(boot,</span>
+<span id="cb79-2"><a href="#cb79-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">breaks =</span> <span class="dv">25</span>,</span>
+<span id="cb79-3"><a href="#cb79-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1600</span>),</span>
+<span id="cb79-4"><a href="#cb79-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">xlab =</span> <span class="st">"Mean"</span>,</span>
+<span id="cb79-5"><a href="#cb79-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">main =</span> <span class="st">"Bootstrap Sampling Distribution"</span></span>
+<span id="cb79-6"><a href="#cb79-6" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb79-7"><a href="#cb79-7" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v =</span> <span class="fu">mean</span>(boot), <span class="at">col =</span> <span class="st">"blue"</span>, <span class="at">lwd =</span> <span class="dv">3</span>) <span class="co"># mean of our simulated samples</span></span>
+<span id="cb79-8"><a href="#cb79-8" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(</span>
+<span id="cb79-9"><a href="#cb79-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">x =</span> <span class="fu">mean</span>(boot) <span class="sc">+</span> <span class="fl">0.2</span>, <span class="at">y =</span> <span class="dv">700</span>, <span class="st">"mean of bootstrap distribution "</span>,</span>
+<span id="cb79-10"><a href="#cb79-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">col =</span> <span class="st">"blue"</span>, <span class="at">srt =</span> <span class="dv">90</span>, <span class="at">pos =</span> <span class="dv">3</span></span>
+<span id="cb79-11"><a href="#cb79-11" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb79-12"><a href="#cb79-12" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v =</span> <span class="fu">mean</span>(s), <span class="at">col =</span> <span class="st">"black"</span>, <span class="at">lwd =</span> <span class="dv">3</span>, <span class="at">lty =</span> <span class="dv">2</span>)</span>
+<span id="cb79-13"><a href="#cb79-13" aria-hidden="true" tabindex="-1"></a><span class="co"># mean of our original vector of samples, s</span></span>
+<span id="cb79-14"><a href="#cb79-14" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(</span>
+<span id="cb79-15"><a href="#cb79-15" aria-hidden="true" tabindex="-1"></a>  <span class="at">x =</span> <span class="fu">mean</span>(s) <span class="sc">-</span> <span class="fl">0.125</span>, <span class="at">y =</span> <span class="dv">700</span>, <span class="st">"mean of original sample"</span>,</span>
+<span id="cb79-16"><a href="#cb79-16" aria-hidden="true" tabindex="-1"></a>  <span class="at">col =</span> <span class="st">"black"</span>, <span class="at">srt =</span> <span class="dv">90</span>, <span class="at">pos =</span> <span class="dv">3</span></span>
+<span id="cb79-17"><a href="#cb79-17" aria-hidden="true" tabindex="-1"></a>)</span>
 <span id="cb79-18"><a href="#cb79-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb79-19"><a href="#cb79-19" aria-hidden="true" tabindex="-1"></a>ci_normal <span class="ot">&lt;-</span> <span class="fu">mean</span>(s) <span class="sc">+</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>, <span class="dv">1</span>) <span class="sc">*</span> <span class="fu">qnorm</span>(<span class="dv">1</span> <span class="sc">-</span> <span class="fl">0.05</span><span class="sc">/</span><span class="dv">2</span>) <span class="sc">*</span> sciplot<span class="sc">::</span><span class="fu">se</span>(s)</span>
-<span id="cb79-20"><a href="#cb79-20" aria-hidden="true" tabindex="-1"></a>ci_t <span class="ot">&lt;-</span> <span class="fu">mean</span>(s) <span class="sc">+</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>, <span class="dv">1</span>) <span class="sc">*</span> <span class="fu">qt</span>(<span class="dv">1</span> <span class="sc">-</span> <span class="fl">0.05</span><span class="sc">/</span><span class="dv">2</span>, <span class="at">df =</span> <span class="fu">length</span>(s) <span class="sc">-</span> <span class="dv">1</span>) <span class="sc">*</span> sciplot<span class="sc">::</span><span class="fu">se</span>(s)</span>
-<span id="cb79-21"><a href="#cb79-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb79-22"><a href="#cb79-22" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v =</span> ci_normal[<span class="dv">1</span>], <span class="at">col =</span> <span class="st">"red"</span>)</span>
-<span id="cb79-23"><a href="#cb79-23" aria-hidden="true" tabindex="-1"></a><span class="co"># calculated lower ci bound based on the se of our vector and assuming that our</span></span>
-<span id="cb79-24"><a href="#cb79-24" aria-hidden="true" tabindex="-1"></a><span class="co"># observations are drawn from a normal distribution</span></span>
-<span id="cb79-25"><a href="#cb79-25" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v =</span> ci_normal[<span class="dv">2</span>], <span class="at">col =</span> <span class="st">"red"</span>)</span>
-<span id="cb79-26"><a href="#cb79-26" aria-hidden="true" tabindex="-1"></a><span class="co"># calculated upper ci bound based on the se of our vector and assuming that our</span></span>
-<span id="cb79-27"><a href="#cb79-27" aria-hidden="true" tabindex="-1"></a><span class="co"># observations are drawn from a normal distribution</span></span>
-<span id="cb79-28"><a href="#cb79-28" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(<span class="at">x =</span> ci_normal[<span class="dv">1</span>] <span class="sc">-</span> <span class="fl">0.12</span>, <span class="at">y =</span> <span class="dv">700</span>, <span class="st">"lower CI - normal"</span>, <span class="at">col =</span> <span class="st">"red"</span>, <span class="at">srt =</span> <span class="dv">90</span>,</span>
-<span id="cb79-29"><a href="#cb79-29" aria-hidden="true" tabindex="-1"></a>    <span class="at">pos =</span> <span class="dv">3</span>)</span>
-<span id="cb79-30"><a href="#cb79-30" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(<span class="at">x =</span> ci_normal[<span class="dv">2</span>] <span class="sc">+</span> <span class="fl">0.245</span>, <span class="at">y =</span> <span class="dv">700</span>, <span class="st">"upper CI - normal"</span>, <span class="at">col =</span> <span class="st">"red"</span>, <span class="at">srt =</span> <span class="dv">90</span>,</span>
-<span id="cb79-31"><a href="#cb79-31" aria-hidden="true" tabindex="-1"></a>    <span class="at">pos =</span> <span class="dv">3</span>)</span>
-<span id="cb79-32"><a href="#cb79-32" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb79-33"><a href="#cb79-33" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v =</span> ci_t[<span class="dv">1</span>], <span class="at">col =</span> <span class="st">"green"</span>)</span>
-<span id="cb79-34"><a href="#cb79-34" aria-hidden="true" tabindex="-1"></a><span class="co"># calculated lower ci bound based on the se of our vector and assuming that our</span></span>
-<span id="cb79-35"><a href="#cb79-35" aria-hidden="true" tabindex="-1"></a><span class="co"># observations are drawn from a t distribution</span></span>
-<span id="cb79-36"><a href="#cb79-36" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v =</span> ci_t[<span class="dv">2</span>], <span class="at">col =</span> <span class="st">"green"</span>)</span>
-<span id="cb79-37"><a href="#cb79-37" aria-hidden="true" tabindex="-1"></a><span class="co"># calculated upper ci bound based on the se of our vector and assuming that our</span></span>
-<span id="cb79-38"><a href="#cb79-38" aria-hidden="true" tabindex="-1"></a><span class="co"># observations are drawn from a t distribution</span></span>
-<span id="cb79-39"><a href="#cb79-39" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(<span class="at">x =</span> ci_t[<span class="dv">1</span>] <span class="sc">-</span> <span class="fl">0.15</span>, <span class="at">y =</span> <span class="dv">700</span>, <span class="st">"lower CI - t"</span>, <span class="at">col =</span> <span class="st">"green"</span>, <span class="at">srt =</span> <span class="dv">90</span>, <span class="at">pos =</span> <span class="dv">3</span>)</span>
-<span id="cb79-40"><a href="#cb79-40" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(<span class="at">x =</span> ci_t[<span class="dv">2</span>] <span class="sc">+</span> <span class="fl">0.275</span>, <span class="at">y =</span> <span class="dv">700</span>, <span class="st">"upper CI - t"</span>, <span class="at">col =</span> <span class="st">"green"</span>, <span class="at">srt =</span> <span class="dv">90</span>, <span class="at">pos =</span> <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb79-19"><a href="#cb79-19" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v =</span> <span class="fu">quantile</span>(boot, <span class="fl">0.025</span>), <span class="at">col =</span> <span class="st">"blue"</span>)</span>
+<span id="cb79-20"><a href="#cb79-20" aria-hidden="true" tabindex="-1"></a><span class="co"># lower ci bound inferred by bootstrapping</span></span>
+<span id="cb79-21"><a href="#cb79-21" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v =</span> <span class="fu">quantile</span>(boot, <span class="fl">0.975</span>), <span class="at">col =</span> <span class="st">"blue"</span>)</span>
+<span id="cb79-22"><a href="#cb79-22" aria-hidden="true" tabindex="-1"></a><span class="co"># upper ci bound inferred by bootstrapping</span></span>
+<span id="cb79-23"><a href="#cb79-23" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(</span>
+<span id="cb79-24"><a href="#cb79-24" aria-hidden="true" tabindex="-1"></a>  <span class="at">x =</span> <span class="fu">quantile</span>(boot, <span class="fl">0.025</span>) <span class="sc">+</span> <span class="fl">0.25</span>, <span class="at">y =</span> <span class="dv">700</span>, <span class="st">"lower CI - bootstrap"</span>,</span>
+<span id="cb79-25"><a href="#cb79-25" aria-hidden="true" tabindex="-1"></a>  <span class="at">col =</span> <span class="st">"blue"</span>, <span class="at">srt =</span> <span class="dv">90</span>, <span class="at">pos =</span> <span class="dv">3</span></span>
+<span id="cb79-26"><a href="#cb79-26" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb79-27"><a href="#cb79-27" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(</span>
+<span id="cb79-28"><a href="#cb79-28" aria-hidden="true" tabindex="-1"></a>  <span class="at">x =</span> <span class="fu">quantile</span>(boot, <span class="fl">0.975</span>) <span class="sc">-</span> <span class="fl">0.125</span>, <span class="at">y =</span> <span class="dv">700</span>, <span class="st">"upper CI - bootstrap"</span>,</span>
+<span id="cb79-29"><a href="#cb79-29" aria-hidden="true" tabindex="-1"></a>  <span class="at">col =</span> <span class="st">"blue"</span>, <span class="at">srt =</span> <span class="dv">90</span>, <span class="at">pos =</span> <span class="dv">3</span></span>
+<span id="cb79-30"><a href="#cb79-30" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb79-31"><a href="#cb79-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb79-32"><a href="#cb79-32" aria-hidden="true" tabindex="-1"></a>ci_normal <span class="ot">&lt;-</span> <span class="fu">mean</span>(s) <span class="sc">+</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>, <span class="dv">1</span>) <span class="sc">*</span> <span class="fu">qnorm</span>(<span class="dv">1</span> <span class="sc">-</span> <span class="fl">0.05</span> <span class="sc">/</span> <span class="dv">2</span>) <span class="sc">*</span> sciplot<span class="sc">::</span><span class="fu">se</span>(s)</span>
+<span id="cb79-33"><a href="#cb79-33" aria-hidden="true" tabindex="-1"></a>ci_t <span class="ot">&lt;-</span> <span class="fu">mean</span>(s) <span class="sc">+</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>, <span class="dv">1</span>) <span class="sc">*</span> <span class="fu">qt</span>(<span class="dv">1</span> <span class="sc">-</span> <span class="fl">0.05</span> <span class="sc">/</span> <span class="dv">2</span>, <span class="at">df =</span> <span class="fu">length</span>(s) <span class="sc">-</span> <span class="dv">1</span>) <span class="sc">*</span> sciplot<span class="sc">::</span><span class="fu">se</span>(s)</span>
+<span id="cb79-34"><a href="#cb79-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb79-35"><a href="#cb79-35" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v =</span> ci_normal[<span class="dv">1</span>], <span class="at">col =</span> <span class="st">"red"</span>)</span>
+<span id="cb79-36"><a href="#cb79-36" aria-hidden="true" tabindex="-1"></a><span class="co"># calculated lower ci bound based on the se of our vector and</span></span>
+<span id="cb79-37"><a href="#cb79-37" aria-hidden="true" tabindex="-1"></a><span class="co"># assuming that our observations are drawn from a normal distribution</span></span>
+<span id="cb79-38"><a href="#cb79-38" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v =</span> ci_normal[<span class="dv">2</span>], <span class="at">col =</span> <span class="st">"red"</span>)</span>
+<span id="cb79-39"><a href="#cb79-39" aria-hidden="true" tabindex="-1"></a><span class="co"># calculated upper ci bound based on the se of our vector and</span></span>
+<span id="cb79-40"><a href="#cb79-40" aria-hidden="true" tabindex="-1"></a><span class="co"># assuming that our observations are drawn from a normal distribution</span></span>
+<span id="cb79-41"><a href="#cb79-41" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(</span>
+<span id="cb79-42"><a href="#cb79-42" aria-hidden="true" tabindex="-1"></a>  <span class="at">x =</span> ci_normal[<span class="dv">1</span>] <span class="sc">-</span> <span class="fl">0.12</span>, <span class="at">y =</span> <span class="dv">700</span>, <span class="st">"lower CI - normal"</span>,</span>
+<span id="cb79-43"><a href="#cb79-43" aria-hidden="true" tabindex="-1"></a>  <span class="at">col =</span> <span class="st">"red"</span>, <span class="at">srt =</span> <span class="dv">90</span>, <span class="at">pos =</span> <span class="dv">3</span></span>
+<span id="cb79-44"><a href="#cb79-44" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb79-45"><a href="#cb79-45" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(</span>
+<span id="cb79-46"><a href="#cb79-46" aria-hidden="true" tabindex="-1"></a>  <span class="at">x =</span> ci_normal[<span class="dv">2</span>] <span class="sc">+</span> <span class="fl">0.245</span>, <span class="at">y =</span> <span class="dv">700</span>, <span class="st">"upper CI - normal"</span>,</span>
+<span id="cb79-47"><a href="#cb79-47" aria-hidden="true" tabindex="-1"></a>  <span class="at">col =</span> <span class="st">"red"</span>, <span class="at">srt =</span> <span class="dv">90</span>, <span class="at">pos =</span> <span class="dv">3</span></span>
+<span id="cb79-48"><a href="#cb79-48" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb79-49"><a href="#cb79-49" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb79-50"><a href="#cb79-50" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v =</span> ci_t[<span class="dv">1</span>], <span class="at">col =</span> <span class="st">"green"</span>)</span>
+<span id="cb79-51"><a href="#cb79-51" aria-hidden="true" tabindex="-1"></a><span class="co"># calculated lower ci bound based on the se of our vector and</span></span>
+<span id="cb79-52"><a href="#cb79-52" aria-hidden="true" tabindex="-1"></a><span class="co"># assuming that our observations are drawn from a t distribution</span></span>
+<span id="cb79-53"><a href="#cb79-53" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v =</span> ci_t[<span class="dv">2</span>], <span class="at">col =</span> <span class="st">"green"</span>)</span>
+<span id="cb79-54"><a href="#cb79-54" aria-hidden="true" tabindex="-1"></a><span class="co"># calculated upper ci bound based on the se of our vector and</span></span>
+<span id="cb79-55"><a href="#cb79-55" aria-hidden="true" tabindex="-1"></a><span class="co"># assuming that our observations are drawn from a t distribution</span></span>
+<span id="cb79-56"><a href="#cb79-56" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(</span>
+<span id="cb79-57"><a href="#cb79-57" aria-hidden="true" tabindex="-1"></a>  <span class="at">x =</span> ci_t[<span class="dv">1</span>] <span class="sc">-</span> <span class="fl">0.15</span>, <span class="at">y =</span> <span class="dv">700</span>, <span class="st">"lower CI - t"</span>, <span class="at">col =</span> <span class="st">"green"</span>,</span>
+<span id="cb79-58"><a href="#cb79-58" aria-hidden="true" tabindex="-1"></a>  <span class="at">srt =</span> <span class="dv">90</span>, <span class="at">pos =</span> <span class="dv">3</span></span>
+<span id="cb79-59"><a href="#cb79-59" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb79-60"><a href="#cb79-60" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(</span>
+<span id="cb79-61"><a href="#cb79-61" aria-hidden="true" tabindex="-1"></a>  <span class="at">x =</span> ci_t[<span class="dv">2</span>] <span class="sc">+</span> <span class="fl">0.275</span>, <span class="at">y =</span> <span class="dv">700</span>, <span class="st">"upper CI - t"</span>, <span class="at">col =</span> <span class="st">"green"</span>,</span>
+<span id="cb79-62"><a href="#cb79-62" aria-hidden="true" tabindex="-1"></a>  <span class="at">srt =</span> <span class="dv">90</span>, <span class="at">pos =</span> <span class="dv">3</span></span>
+<span id="cb79-63"><a href="#cb79-63" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -1214,8 +1363,13 @@ window.Quarto = {
 <h4 class="unnumbered anchored" data-anchor-id="using-the-mosaic-package">Using the {mosaic} Package</h4>
 <p>We are already familiar with the <code>do(reps) *</code> formulation from the {mosaic} package…</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb80"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb80-1"><a href="#cb80-1" aria-hidden="true" tabindex="-1"></a>boot <span class="ot">&lt;-</span> <span class="fu">do</span>(n_boot) <span class="sc">*</span> <span class="fu">mean</span>(<span class="sc">~</span><span class="fu">sample</span>(s, <span class="fu">length</span>(s), <span class="at">replace =</span> <span class="cn">TRUE</span>))</span>
-<span id="cb80-2"><a href="#cb80-2" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(boot<span class="sc">$</span>mean, <span class="at">breaks =</span> <span class="dv">25</span>, <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1600</span>), <span class="at">xlab =</span> <span class="st">"Mean"</span>, <span class="at">main =</span> <span class="st">"Bootstrap Sampling Distribution</span><span class="sc">\n</span><span class="st">from do(reps) *"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb80"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb80-1"><a href="#cb80-1" aria-hidden="true" tabindex="-1"></a>boot <span class="ot">&lt;-</span> <span class="fu">do</span>(n_boot) <span class="sc">*</span> <span class="fu">mean</span>(<span class="sc">~</span> <span class="fu">sample</span>(s, <span class="fu">length</span>(s), <span class="at">replace =</span> <span class="cn">TRUE</span>))</span>
+<span id="cb80-2"><a href="#cb80-2" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(boot<span class="sc">$</span>mean,</span>
+<span id="cb80-3"><a href="#cb80-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">breaks =</span> <span class="dv">25</span>,</span>
+<span id="cb80-4"><a href="#cb80-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1600</span>),</span>
+<span id="cb80-5"><a href="#cb80-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">xlab =</span> <span class="st">"Mean"</span>,</span>
+<span id="cb80-6"><a href="#cb80-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">main =</span> <span class="st">"Bootstrap Sampling Distribution</span><span class="sc">\n</span><span class="st">from do(reps) *"</span></span>
+<span id="cb80-7"><a href="#cb80-7" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -1231,10 +1385,15 @@ window.Quarto = {
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb81"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb81-1"><a href="#cb81-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(infer)</span>
 <span id="cb81-2"><a href="#cb81-2" aria-hidden="true" tabindex="-1"></a>boot <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(s) <span class="sc">|&gt;</span></span>
-<span id="cb81-3"><a href="#cb81-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">rep_sample_n</span>(<span class="at">size =</span> <span class="fu">length</span>(s), <span class="at">replace =</span> <span class="cn">TRUE</span>, <span class="at">reps =</span> n_boot) <span class="sc">|&gt;</span></span>
-<span id="cb81-4"><a href="#cb81-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">group_by</span>(replicate) <span class="sc">|&gt;</span></span>
-<span id="cb81-5"><a href="#cb81-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">summarize</span>(<span class="at">mean =</span> <span class="fu">mean</span>(s))</span>
-<span id="cb81-6"><a href="#cb81-6" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(boot<span class="sc">$</span>mean, <span class="at">breaks =</span> <span class="dv">25</span>, <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1500</span>), <span class="at">xlab =</span> <span class="st">"Mean"</span>, <span class="at">main =</span> <span class="st">"Bootstrap Sampling Distribution</span><span class="sc">\n</span><span class="st">from rep_sample_n()"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb81-3"><a href="#cb81-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rep_sample_n</span>(<span class="at">size =</span> <span class="fu">length</span>(s), <span class="at">replace =</span> <span class="cn">TRUE</span>, <span class="at">reps =</span> n_boot) <span class="sc">|&gt;</span></span>
+<span id="cb81-4"><a href="#cb81-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(replicate) <span class="sc">|&gt;</span></span>
+<span id="cb81-5"><a href="#cb81-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">mean =</span> <span class="fu">mean</span>(s))</span>
+<span id="cb81-6"><a href="#cb81-6" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(boot<span class="sc">$</span>mean,</span>
+<span id="cb81-7"><a href="#cb81-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">breaks =</span> <span class="dv">25</span>,</span>
+<span id="cb81-8"><a href="#cb81-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1500</span>),</span>
+<span id="cb81-9"><a href="#cb81-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">xlab =</span> <span class="st">"Mean"</span>,</span>
+<span id="cb81-10"><a href="#cb81-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">main =</span> <span class="st">"Bootstrap Sampling Distribution</span><span class="sc">\n</span><span class="st">from rep_sample_n()"</span></span>
+<span id="cb81-11"><a href="#cb81-11" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -1250,44 +1409,58 @@ window.Quarto = {
 <p>For this approach, we define a custom function that we will use to generate the statistic we are interested in that we will then calculate for each bootstrapped sample:</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb82"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb82-1"><a href="#cb82-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(boot)</span>
-<span id="cb82-2"><a href="#cb82-2" aria-hidden="true" tabindex="-1"></a><span class="co"># here, the `stat()` function we define calculates the mean value of a</span></span>
-<span id="cb82-3"><a href="#cb82-3" aria-hidden="true" tabindex="-1"></a><span class="co"># bootstrap sample taken with replacement from a vector of interest passed into</span></span>
-<span id="cb82-4"><a href="#cb82-4" aria-hidden="true" tabindex="-1"></a><span class="co"># `data` the function we write for `statistic=` has two arguments, a data set</span></span>
-<span id="cb82-5"><a href="#cb82-5" aria-hidden="true" tabindex="-1"></a><span class="co"># and a set of indices, generated at random by the `boot()` function, to sample</span></span>
-<span id="cb82-6"><a href="#cb82-6" aria-hidden="true" tabindex="-1"></a><span class="co"># from the dataset this corresponds to the default argument `stype='i'` in the</span></span>
-<span id="cb82-7"><a href="#cb82-7" aria-hidden="true" tabindex="-1"></a><span class="co"># `boot()` call</span></span>
+<span id="cb82-2"><a href="#cb82-2" aria-hidden="true" tabindex="-1"></a><span class="co"># here, the `stat()` function we define calculates the mean value of a bootstrap sample</span></span>
+<span id="cb82-3"><a href="#cb82-3" aria-hidden="true" tabindex="-1"></a><span class="co">#   taken with replacement from a vector of interest passed into `data`</span></span>
+<span id="cb82-4"><a href="#cb82-4" aria-hidden="true" tabindex="-1"></a><span class="co"># the function we write for `statistic=` has two arguments, a data set and a</span></span>
+<span id="cb82-5"><a href="#cb82-5" aria-hidden="true" tabindex="-1"></a><span class="co">#   set of indices, generated at random by the `boot()` function, to sample</span></span>
+<span id="cb82-6"><a href="#cb82-6" aria-hidden="true" tabindex="-1"></a><span class="co">#   from the dataset</span></span>
+<span id="cb82-7"><a href="#cb82-7" aria-hidden="true" tabindex="-1"></a><span class="co"># this corresponds to the default argument `stype="i"` in the `boot()` call</span></span>
 <span id="cb82-8"><a href="#cb82-8" aria-hidden="true" tabindex="-1"></a>stat <span class="ot">&lt;-</span> <span class="cf">function</span>(data, indices) {</span>
-<span id="cb82-9"><a href="#cb82-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(<span class="fu">mean</span>(data[indices]))</span>
+<span id="cb82-9"><a href="#cb82-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(<span class="fu">mean</span>(data[indices]))</span>
 <span id="cb82-10"><a href="#cb82-10" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Then, we run the <code>boot()</code> function passing in the data to be resampled from (“data=”), the statistic we want to calculate (“statistic=”), and the number of bootstrap replicates (or “resamples”) we want using the argument “R=”.</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb83"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb83-1"><a href="#cb83-1" aria-hidden="true" tabindex="-1"></a>boot <span class="ot">&lt;-</span> <span class="fu">boot</span>(<span class="at">data =</span> s, <span class="at">statistic =</span> stat, <span class="at">R =</span> n_boot)  <span class="co"># stype='i' by default</span></span>
+<div class="sourceCode cell-code" id="cb83"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb83-1"><a href="#cb83-1" aria-hidden="true" tabindex="-1"></a>boot <span class="ot">&lt;-</span> <span class="fu">boot</span>(<span class="at">data =</span> s, <span class="at">statistic =</span> stat, <span class="at">R =</span> n_boot) <span class="co"># stype="i" by default</span></span>
 <span id="cb83-2"><a href="#cb83-2" aria-hidden="true" tabindex="-1"></a><span class="co"># the object returned includes a table, `t`, of `stat`s results from each</span></span>
-<span id="cb83-3"><a href="#cb83-3" aria-hidden="true" tabindex="-1"></a><span class="co"># bootstrap</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb83-3"><a href="#cb83-3" aria-hidden="true" tabindex="-1"></a><span class="co">#   bootstrap</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Again, it is interesting to plot the bootstrap sampling distibution and compare methods for calculating CIs.</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb84"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb84-1"><a href="#cb84-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualizing the results and comparing methods for calculating CIs</span></span>
-<span id="cb84-2"><a href="#cb84-2" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(boot<span class="sc">$</span>t, <span class="at">breaks =</span> <span class="dv">25</span>, <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1500</span>), <span class="at">xlab =</span> <span class="st">"Mean"</span>, <span class="at">main =</span> <span class="st">"Bootstrap Sampling Distribution</span><span class="sc">\n</span><span class="st">from boot()"</span>)</span>
-<span id="cb84-3"><a href="#cb84-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb84-4"><a href="#cb84-4" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v =</span> <span class="fu">mean</span>(boot<span class="sc">$</span>t), <span class="at">col =</span> <span class="st">"blue"</span>, <span class="at">lwd =</span> <span class="dv">3</span>)  <span class="co"># mean of our simulated samples</span></span>
-<span id="cb84-5"><a href="#cb84-5" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(<span class="at">x =</span> <span class="fu">mean</span>(boot<span class="sc">$</span>t) <span class="sc">+</span> <span class="fl">0.2</span>, <span class="at">y =</span> <span class="dv">700</span>, <span class="st">"mean of bootstrap distribution "</span>, <span class="at">col =</span> <span class="st">"blue"</span>,</span>
-<span id="cb84-6"><a href="#cb84-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">srt =</span> <span class="dv">90</span>, <span class="at">pos =</span> <span class="dv">3</span>)</span>
-<span id="cb84-7"><a href="#cb84-7" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v =</span> <span class="fu">mean</span>(s), <span class="at">col =</span> <span class="st">"black"</span>, <span class="at">lwd =</span> <span class="dv">3</span>, <span class="at">lty =</span> <span class="dv">2</span>)</span>
-<span id="cb84-8"><a href="#cb84-8" aria-hidden="true" tabindex="-1"></a><span class="co"># mean of our original vector of samples, s</span></span>
-<span id="cb84-9"><a href="#cb84-9" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(<span class="at">x =</span> <span class="fu">mean</span>(s) <span class="sc">-</span> <span class="fl">0.125</span>, <span class="at">y =</span> <span class="dv">700</span>, <span class="st">"mean of original sample"</span>, <span class="at">col =</span> <span class="st">"black"</span>, <span class="at">srt =</span> <span class="dv">90</span>,</span>
-<span id="cb84-10"><a href="#cb84-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">pos =</span> <span class="dv">3</span>)</span>
-<span id="cb84-11"><a href="#cb84-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb84-12"><a href="#cb84-12" aria-hidden="true" tabindex="-1"></a><span class="co"># calculate and plot bootstrap CIs</span></span>
-<span id="cb84-13"><a href="#cb84-13" aria-hidden="true" tabindex="-1"></a>lower_boot <span class="ot">&lt;-</span> <span class="fu">quantile</span>(boot<span class="sc">$</span>t, <span class="fl">0.025</span>)</span>
-<span id="cb84-14"><a href="#cb84-14" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v =</span> lower_boot, <span class="at">col =</span> <span class="st">"blue"</span>)</span>
-<span id="cb84-15"><a href="#cb84-15" aria-hidden="true" tabindex="-1"></a>upper_boot <span class="ot">&lt;-</span> <span class="fu">quantile</span>(boot<span class="sc">$</span>t, <span class="fl">0.975</span>)</span>
-<span id="cb84-16"><a href="#cb84-16" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v =</span> upper_boot, <span class="at">col =</span> <span class="st">"blue"</span>)</span>
-<span id="cb84-17"><a href="#cb84-17" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(<span class="at">x =</span> lower_boot <span class="sc">+</span> <span class="fl">0.25</span>, <span class="at">y =</span> <span class="dv">700</span>, <span class="st">"lower CI - bootstrap"</span>, <span class="at">col =</span> <span class="st">"blue"</span>, <span class="at">srt =</span> <span class="dv">90</span>,</span>
-<span id="cb84-18"><a href="#cb84-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">pos =</span> <span class="dv">3</span>)</span>
-<span id="cb84-19"><a href="#cb84-19" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(<span class="at">x =</span> upper_boot <span class="sc">-</span> <span class="fl">0.125</span>, <span class="at">y =</span> <span class="dv">700</span>, <span class="st">"upper CI - bootstrap"</span>, <span class="at">col =</span> <span class="st">"blue"</span>, <span class="at">srt =</span> <span class="dv">90</span>,</span>
-<span id="cb84-20"><a href="#cb84-20" aria-hidden="true" tabindex="-1"></a>    <span class="at">pos =</span> <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb84-2"><a href="#cb84-2" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb84-3"><a href="#cb84-3" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(boot<span class="sc">$</span>t,</span>
+<span id="cb84-4"><a href="#cb84-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">breaks =</span> <span class="dv">25</span>,</span>
+<span id="cb84-5"><a href="#cb84-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1500</span>),</span>
+<span id="cb84-6"><a href="#cb84-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">xlab =</span> <span class="st">"Mean"</span>,</span>
+<span id="cb84-7"><a href="#cb84-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">main =</span> <span class="st">"Bootstrap Sampling Distribution</span><span class="sc">\n</span><span class="st">from boot()"</span></span>
+<span id="cb84-8"><a href="#cb84-8" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb84-9"><a href="#cb84-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb84-10"><a href="#cb84-10" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v =</span> <span class="fu">mean</span>(boot<span class="sc">$</span>t), <span class="at">col =</span> <span class="st">"blue"</span>, <span class="at">lwd =</span> <span class="dv">3</span>) <span class="co"># mean of our simulated samples</span></span>
+<span id="cb84-11"><a href="#cb84-11" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(</span>
+<span id="cb84-12"><a href="#cb84-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">x =</span> <span class="fu">mean</span>(boot<span class="sc">$</span>t) <span class="sc">+</span> <span class="fl">0.2</span>, <span class="at">y =</span> <span class="dv">700</span>, <span class="st">"mean of bootstrap distribution "</span>,</span>
+<span id="cb84-13"><a href="#cb84-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">col =</span> <span class="st">"blue"</span>, <span class="at">srt =</span> <span class="dv">90</span>, <span class="at">pos =</span> <span class="dv">3</span></span>
+<span id="cb84-14"><a href="#cb84-14" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb84-15"><a href="#cb84-15" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v =</span> <span class="fu">mean</span>(s), <span class="at">col =</span> <span class="st">"black"</span>, <span class="at">lwd =</span> <span class="dv">3</span>, <span class="at">lty =</span> <span class="dv">2</span>)</span>
+<span id="cb84-16"><a href="#cb84-16" aria-hidden="true" tabindex="-1"></a><span class="co"># mean of our original vector of samples, s</span></span>
+<span id="cb84-17"><a href="#cb84-17" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(</span>
+<span id="cb84-18"><a href="#cb84-18" aria-hidden="true" tabindex="-1"></a>  <span class="at">x =</span> <span class="fu">mean</span>(s) <span class="sc">-</span> <span class="fl">0.125</span>, <span class="at">y =</span> <span class="dv">700</span>, <span class="st">"mean of original sample"</span>,</span>
+<span id="cb84-19"><a href="#cb84-19" aria-hidden="true" tabindex="-1"></a>  <span class="at">col =</span> <span class="st">"black"</span>, <span class="at">srt =</span> <span class="dv">90</span>, <span class="at">pos =</span> <span class="dv">3</span></span>
+<span id="cb84-20"><a href="#cb84-20" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb84-21"><a href="#cb84-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb84-22"><a href="#cb84-22" aria-hidden="true" tabindex="-1"></a><span class="co"># calculate and plot bootstrap CIs</span></span>
+<span id="cb84-23"><a href="#cb84-23" aria-hidden="true" tabindex="-1"></a>lower_boot <span class="ot">&lt;-</span> <span class="fu">quantile</span>(boot<span class="sc">$</span>t, <span class="fl">0.025</span>)</span>
+<span id="cb84-24"><a href="#cb84-24" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v =</span> lower_boot, <span class="at">col =</span> <span class="st">"blue"</span>)</span>
+<span id="cb84-25"><a href="#cb84-25" aria-hidden="true" tabindex="-1"></a>upper_boot <span class="ot">&lt;-</span> <span class="fu">quantile</span>(boot<span class="sc">$</span>t, <span class="fl">0.975</span>)</span>
+<span id="cb84-26"><a href="#cb84-26" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v =</span> upper_boot, <span class="at">col =</span> <span class="st">"blue"</span>)</span>
+<span id="cb84-27"><a href="#cb84-27" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(</span>
+<span id="cb84-28"><a href="#cb84-28" aria-hidden="true" tabindex="-1"></a>  <span class="at">x =</span> lower_boot <span class="sc">+</span> <span class="fl">0.25</span>, <span class="at">y =</span> <span class="dv">700</span>, <span class="st">"lower CI - bootstrap"</span>,</span>
+<span id="cb84-29"><a href="#cb84-29" aria-hidden="true" tabindex="-1"></a>  <span class="at">col =</span> <span class="st">"blue"</span>, <span class="at">srt =</span> <span class="dv">90</span>, <span class="at">pos =</span> <span class="dv">3</span></span>
+<span id="cb84-30"><a href="#cb84-30" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb84-31"><a href="#cb84-31" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(</span>
+<span id="cb84-32"><a href="#cb84-32" aria-hidden="true" tabindex="-1"></a>  <span class="at">x =</span> upper_boot <span class="sc">-</span> <span class="fl">0.125</span>, <span class="at">y =</span> <span class="dv">700</span>, <span class="st">"upper CI - bootstrap"</span>,</span>
+<span id="cb84-33"><a href="#cb84-33" aria-hidden="true" tabindex="-1"></a>  <span class="at">col =</span> <span class="st">"blue"</span>, <span class="at">srt =</span> <span class="dv">90</span>, <span class="at">pos =</span> <span class="dv">3</span></span>
+<span id="cb84-34"><a href="#cb84-34" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -1298,16 +1471,21 @@ window.Quarto = {
 </div>
 <p>We can also use the <code>boot.ci()</code> function from the {boot} package to calculate CIs for using various methods, although the available methods do not include exactly the one we most want, i.e., the quantile method. Instead, all the options for <code>boot.ci()</code> generate equi-tailed CIs based on presumed theoretical shapes for the sampling distribution. The “basic” and “percent” intervals are the closest to the empirical quantile method.</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb85"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb85-1"><a href="#cb85-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(boot<span class="sc">$</span>t, <span class="at">breaks =</span> <span class="dv">25</span>, <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1500</span>), <span class="at">xlab =</span> <span class="st">"Mean"</span>, <span class="at">main =</span> <span class="st">"Bootstrap Sampling Distribution</span><span class="sc">\n</span><span class="st">from boot()"</span>)</span>
-<span id="cb85-2"><a href="#cb85-2" aria-hidden="true" tabindex="-1"></a>ci <span class="ot">&lt;-</span> <span class="fu">boot.ci</span>(boot)</span>
-<span id="cb85-3"><a href="#cb85-3" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v =</span> ci<span class="sc">$</span>basic[<span class="dv">4</span>], <span class="at">col =</span> <span class="st">"green"</span>, <span class="at">lwd =</span> <span class="dv">2</span>)</span>
-<span id="cb85-4"><a href="#cb85-4" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v =</span> ci<span class="sc">$</span>basic[<span class="dv">5</span>], <span class="at">col =</span> <span class="st">"green"</span>, <span class="at">lwd =</span> <span class="dv">2</span>)</span>
-<span id="cb85-5"><a href="#cb85-5" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v =</span> ci<span class="sc">$</span>percent[<span class="dv">4</span>], <span class="at">col =</span> <span class="st">"red"</span>, <span class="at">lwd =</span> <span class="dv">2</span>)</span>
-<span id="cb85-6"><a href="#cb85-6" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v =</span> ci<span class="sc">$</span>percent[<span class="dv">5</span>], <span class="at">col =</span> <span class="st">"red"</span>, <span class="at">lwd =</span> <span class="dv">2</span>)</span>
-<span id="cb85-7"><a href="#cb85-7" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v =</span> ci<span class="sc">$</span>bca[<span class="dv">4</span>], <span class="at">col =</span> <span class="st">"purple"</span>, <span class="at">lwd =</span> <span class="dv">2</span>)</span>
-<span id="cb85-8"><a href="#cb85-8" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v =</span> ci<span class="sc">$</span>bca[<span class="dv">5</span>], <span class="at">col =</span> <span class="st">"purple"</span>, <span class="at">lwd =</span> <span class="dv">2</span>)</span>
-<span id="cb85-9"><a href="#cb85-9" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v =</span> ci<span class="sc">$</span>normal[<span class="dv">2</span>], <span class="at">col =</span> <span class="st">"black"</span>, <span class="at">lwd =</span> <span class="dv">2</span>)</span>
-<span id="cb85-10"><a href="#cb85-10" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v =</span> ci<span class="sc">$</span>normal[<span class="dv">3</span>], <span class="at">col =</span> <span class="st">"black"</span>, <span class="at">lwd =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb85"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb85-1"><a href="#cb85-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(boot<span class="sc">$</span>t,</span>
+<span id="cb85-2"><a href="#cb85-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">breaks =</span> <span class="dv">25</span>,</span>
+<span id="cb85-3"><a href="#cb85-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1500</span>),</span>
+<span id="cb85-4"><a href="#cb85-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">xlab =</span> <span class="st">"Mean"</span>,</span>
+<span id="cb85-5"><a href="#cb85-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">main =</span> <span class="st">"Bootstrap Sampling Distribution</span><span class="sc">\n</span><span class="st">from boot()"</span></span>
+<span id="cb85-6"><a href="#cb85-6" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb85-7"><a href="#cb85-7" aria-hidden="true" tabindex="-1"></a>ci <span class="ot">&lt;-</span> <span class="fu">boot.ci</span>(boot)</span>
+<span id="cb85-8"><a href="#cb85-8" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v =</span> ci<span class="sc">$</span>basic[<span class="dv">4</span>], <span class="at">col =</span> <span class="st">"green"</span>, <span class="at">lwd =</span> <span class="dv">2</span>)</span>
+<span id="cb85-9"><a href="#cb85-9" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v =</span> ci<span class="sc">$</span>basic[<span class="dv">5</span>], <span class="at">col =</span> <span class="st">"green"</span>, <span class="at">lwd =</span> <span class="dv">2</span>)</span>
+<span id="cb85-10"><a href="#cb85-10" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v =</span> ci<span class="sc">$</span>percent[<span class="dv">4</span>], <span class="at">col =</span> <span class="st">"red"</span>, <span class="at">lwd =</span> <span class="dv">2</span>)</span>
+<span id="cb85-11"><a href="#cb85-11" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v =</span> ci<span class="sc">$</span>percent[<span class="dv">5</span>], <span class="at">col =</span> <span class="st">"red"</span>, <span class="at">lwd =</span> <span class="dv">2</span>)</span>
+<span id="cb85-12"><a href="#cb85-12" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v =</span> ci<span class="sc">$</span>bca[<span class="dv">4</span>], <span class="at">col =</span> <span class="st">"purple"</span>, <span class="at">lwd =</span> <span class="dv">2</span>)</span>
+<span id="cb85-13"><a href="#cb85-13" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v =</span> ci<span class="sc">$</span>bca[<span class="dv">5</span>], <span class="at">col =</span> <span class="st">"purple"</span>, <span class="at">lwd =</span> <span class="dv">2</span>)</span>
+<span id="cb85-14"><a href="#cb85-14" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v =</span> ci<span class="sc">$</span>normal[<span class="dv">2</span>], <span class="at">col =</span> <span class="st">"black"</span>, <span class="at">lwd =</span> <span class="dv">2</span>)</span>
+<span id="cb85-15"><a href="#cb85-15" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v =</span> ci<span class="sc">$</span>normal[<span class="dv">3</span>], <span class="at">col =</span> <span class="st">"black"</span>, <span class="at">lwd =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">

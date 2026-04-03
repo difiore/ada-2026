@@ -19,6 +19,7 @@ As much as possible, your scripts, programs, and functions should be written in 
 
 - Even though the syntax is valid, avoid using `=` for assignment, except when assigning values to named arguments in a function:
 
+    - `x <- 100` not `x = 100`
     - `rnorm(n=1000, mean=50, sd=10)`
 
 - Even though the syntax is valid, do not abbreviate `TRUE` and `FALSE` to `T` and `F`
@@ -59,8 +60,8 @@ As much as possible, your scripts, programs, and functions should be written in 
 
 - For support files that contain a single function, name the file to match the name of the function defined in the file:
 
-    - "prettyPrint.R" for a file that contains the function `prettyPrint()`
-    - "rescale_image.R" for a file that contains the function `rescale_image()`
+    - "prettyPrint.R" for a file that contains only the function `prettyPrint()`
+    - "rescale_image.R" for a file that contains only the function `rescale_image()`
 
 ## Code Formatting Conventions {.unnumbered}
 
@@ -80,7 +81,7 @@ g <- 9.80665 # units are m/s^2
 ```{r}
 x <- 3
 
-# Now add 2 to x...
+# now add 2 to x...
 x <- x + 2
 ```
 

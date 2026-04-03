@@ -100,16 +100,18 @@ knitr:
     message: true
     comment: "##"
     prompt: false
-    tidy: true
-    tidy.opts:
-      width.cutoff: 80
+    tidy: styler # changed from 'true'
+    # tidy.opts: # commented out to change to 'styler'
+    #  width.cutoff: 80
     fig.align: "center"
     R.options:
       width: 80
 
 format:
   html:
+    code-overflow: wrap # added
     css: css/style.css
+    # tidy: true
     grid:
       sidebar-width: 350px
     toc: true

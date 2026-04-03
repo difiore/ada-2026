@@ -128,7 +128,7 @@ knitr::include_graphics("img/R-cmd-windows.png")
 
 ... and then practice interacting with the software via the command line and console window.
 
-> **NOTE:** To run ***R*** like this from a command prompt, you may need to add the path to the program's executable file to your system's PATH environmental variable. To do this, you need to know the path to the location where ***R*** was installed. On MacOS, this path is usually... "/usr/local/bin/R", which typically is a symbolic link that points to the actual ***R*** framework, located within your system's `/Library/Frameworks/` directory. On Windows, the path to the ***R*** executable is typically "C:\\Program Files\\R\\R-x.x.x", where "x.x.x" is the version number, e.g., "4.5.2".
+> **NOTE:** To run ***R*** like this from a command prompt, you may need to add the path to the program's executable file to your system's PATH environmental variable. To do this, you need to know the path to the location where ***R*** was installed. On MacOS, this path is usually "/usr/local/bin/R", which typically is a symbolic link that points to the actual ***R*** framework, located within your system's `/Library/Frameworks/` directory. On Windows, the path to the ***R*** executable is typically "C:\\Program Files\\R\\R-x.x.x", where "x.x.x" is the version number, e.g., "4.5.2".
 
 > When you install ***R*** on MacOS, "/usr/local/bin" is generally already part of the system path, so you likely will not need to make any additional changes to the PATH variable, but this is not the case for Windows. To add ***R*** to the system PATH on Windows:
 

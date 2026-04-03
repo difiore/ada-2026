@@ -672,10 +672,10 @@ window.Quarto = {
 ## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>z<span class="sc">$</span>gender <span class="ot">&lt;-</span> <span class="fu">factor</span>(z<span class="sc">$</span>gender)</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>m1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="at">data =</span> z, height <span class="sc">~</span> age <span class="sc">*</span> gender)  <span class="co"># full model</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>m2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="at">data =</span> z, height <span class="sc">~</span> age <span class="sc">+</span> gender)  <span class="co"># model without interaction</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>m3 <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="at">data =</span> z, height <span class="sc">~</span> age)  <span class="co"># model with one predictor</span></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>m4 <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="at">data =</span> z, height <span class="sc">~</span> <span class="dv">1</span>)  <span class="co"># intercept only model</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>m1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="at">data =</span> z, height <span class="sc">~</span> age <span class="sc">*</span> gender) <span class="co"># full model</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>m2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="at">data =</span> z, height <span class="sc">~</span> age <span class="sc">+</span> gender) <span class="co"># model without interaction</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>m3 <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="at">data =</span> z, height <span class="sc">~</span> age) <span class="co"># model with one predictor</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>m4 <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="at">data =</span> z, height <span class="sc">~</span> <span class="dv">1</span>) <span class="co"># intercept only model</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Once we have fitted the full and three nested models, we can carry out partial F tests to compare particular models using the <code>anova()</code> function, with the nested (reduced) and full model as arguments. The reduced model is included as the first argument and the full model is included as the second argument.</p>
 <div class="cell" data-layout-align="center">
@@ -691,13 +691,12 @@ window.Quarto = {
 ## ---
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># compares the reduced model without interactions (m2) to the full model with</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="co"># interactions (m1)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># compares the reduced model without interactions (m2) to the full model with interactions (m1)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>We can also calculate the F statistic by hand and compare it to the <span class="math inline">\(F\)</span> distribution.</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>(f <span class="ot">&lt;-</span> ((<span class="fu">summary</span>(m1)<span class="sc">$</span>r.squared <span class="sc">-</span> <span class="fu">summary</span>(m2)<span class="sc">$</span>r.squared) <span class="sc">*</span> (<span class="fu">nrow</span>(z) <span class="sc">-</span> <span class="dv">3</span> <span class="sc">-</span> <span class="dv">1</span>))<span class="sc">/</span>((<span class="dv">1</span> <span class="sc">-</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">summary</span>(m1)<span class="sc">$</span>r.squared) <span class="sc">*</span> (<span class="dv">3</span> <span class="sc">-</span> <span class="dv">2</span>)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>(f <span class="ot">&lt;-</span> ((<span class="fu">summary</span>(m1)<span class="sc">$</span>r.squared <span class="sc">-</span> <span class="fu">summary</span>(m2)<span class="sc">$</span>r.squared) <span class="sc">*</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  (<span class="fu">nrow</span>(z) <span class="sc">-</span> <span class="dv">3</span> <span class="sc">-</span> <span class="dv">1</span>)) <span class="sc">/</span> ((<span class="dv">1</span> <span class="sc">-</span> <span class="fu">summary</span>(m1)<span class="sc">$</span>r.squared) <span class="sc">*</span> (<span class="dv">3</span> <span class="sc">-</span> <span class="dv">2</span>)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>## [1] 6.552973</code></pre>
 </div>
@@ -719,8 +718,8 @@ window.Quarto = {
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># compares the age only model (m3) to the age + gender model (m2)</span></span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>(f <span class="ot">&lt;-</span> ((<span class="fu">summary</span>(m2)<span class="sc">$</span>r.squared <span class="sc">-</span> <span class="fu">summary</span>(m3)<span class="sc">$</span>r.squared) <span class="sc">*</span> (<span class="fu">nrow</span>(z) <span class="sc">-</span> <span class="dv">2</span> <span class="sc">-</span> <span class="dv">1</span>))<span class="sc">/</span>((<span class="dv">1</span> <span class="sc">-</span></span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">summary</span>(m2)<span class="sc">$</span>r.squared) <span class="sc">*</span> (<span class="dv">2</span> <span class="sc">-</span> <span class="dv">1</span>)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>(f <span class="ot">&lt;-</span> ((<span class="fu">summary</span>(m2)<span class="sc">$</span>r.squared <span class="sc">-</span> <span class="fu">summary</span>(m3)<span class="sc">$</span>r.squared) <span class="sc">*</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  (<span class="fu">nrow</span>(z) <span class="sc">-</span> <span class="dv">2</span> <span class="sc">-</span> <span class="dv">1</span>)) <span class="sc">/</span> ((<span class="dv">1</span> <span class="sc">-</span> <span class="fu">summary</span>(m2)<span class="sc">$</span>r.squared) <span class="sc">*</span> (<span class="dv">2</span> <span class="sc">-</span> <span class="dv">1</span>)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>## [1] 591.147</code></pre>
 </div>
@@ -816,11 +815,9 @@ window.Quarto = {
 ## ---
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># note: here, weight has already been added to m1, so having including it on</span></span>
-<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="co"># the RHS of the .~. operator is not essential... I've just kept it there for</span></span>
-<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a><span class="co"># ease in copying and pasting in successive `add1()` steps</span></span>
-<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>m2 <span class="ot">&lt;-</span> <span class="fu">update</span>(m1, <span class="at">formula =</span> . <span class="sc">~</span> . <span class="sc">+</span> age)</span>
-<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(m2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># note: here, weight has already been added to m1, so having including it on the RHS of the .~. operator is not essential... I've just kept it there for ease in copying and pasting in successive `add1()` steps</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>m2 <span class="ot">&lt;-</span> <span class="fu">update</span>(m1, <span class="at">formula =</span> . <span class="sc">~</span> . <span class="sc">+</span> age)</span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(m2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>## 
 ## Call:
@@ -884,8 +881,9 @@ window.Quarto = {
 <h2 data-number="22.5" class="anchored" data-anchor-id="backward-selection"><span class="header-section-number">22.5</span> Backward Selection</h2>
 <p>Opposite to forward selection, backward selection starts with the fullest model you want to consider and systematically drops terms that do not contribute to the explanatory value of the model. The <strong><em>R</em></strong> functions for this process are <code>drop1()</code> to inspect the partial F test results and <code>update()</code> to update the model.</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>m0 <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="at">data =</span> z, height <span class="sc">~</span> age <span class="sc">+</span> weight <span class="sc">+</span> zombies_killed <span class="sc">+</span> years_of_education)</span>
-<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(m0)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>m0 <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="at">data =</span> z, height <span class="sc">~</span> age <span class="sc">+</span> weight <span class="sc">+</span> zombies_killed <span class="sc">+</span></span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>  years_of_education)</span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(m0)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>## 
 ## Call:
@@ -1116,8 +1114,8 @@ window.Quarto = {
 </div>
 <div class="sourceCode cell-code" id="cb54"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ... or start with minimal model</span></span>
 <span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a>m <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="at">data =</span> z, height <span class="sc">~</span> <span class="dv">1</span>)</span>
-<span id="cb54-3"><a href="#cb54-3" aria-hidden="true" tabindex="-1"></a>(s <span class="ot">&lt;-</span> <span class="fu">stepAIC</span>(m, <span class="at">scope =</span> . <span class="sc">~</span> . <span class="sc">+</span> age <span class="sc">+</span> weight <span class="sc">+</span> zombies_killed <span class="sc">+</span> years_of_education,</span>
-<span id="cb54-4"><a href="#cb54-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">direction =</span> <span class="st">"both"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb54-3"><a href="#cb54-3" aria-hidden="true" tabindex="-1"></a>(s <span class="ot">&lt;-</span> <span class="fu">stepAIC</span>(m, <span class="at">scope =</span> . <span class="sc">~</span> . <span class="sc">+</span> age <span class="sc">+</span> weight <span class="sc">+</span> zombies_killed <span class="sc">+</span></span>
+<span id="cb54-4"><a href="#cb54-4" aria-hidden="true" tabindex="-1"></a>  years_of_education, <span class="at">direction =</span> <span class="st">"both"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>## Start:  AIC=2922.93
 ## height ~ 1
@@ -1209,7 +1207,11 @@ window.Quarto = {
 <p>We start by defining a “global.model”…</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb63"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb63-1"><a href="#cb63-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(MuMIn)</span>
-<span id="cb63-2"><a href="#cb63-2" aria-hidden="true" tabindex="-1"></a>m <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="at">data =</span> z, height <span class="sc">~</span> age <span class="sc">+</span> weight <span class="sc">+</span> zombies_killed <span class="sc">+</span> years_of_education, <span class="at">na.action =</span> <span class="st">"na.fail"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb63-2"><a href="#cb63-2" aria-hidden="true" tabindex="-1"></a>m <span class="ot">&lt;-</span> <span class="fu">lm</span>(</span>
+<span id="cb63-3"><a href="#cb63-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> z,</span>
+<span id="cb63-4"><a href="#cb63-4" aria-hidden="true" tabindex="-1"></a>  height <span class="sc">~</span> age <span class="sc">+</span> weight <span class="sc">+</span> zombies_killed <span class="sc">+</span> years_of_education,</span>
+<span id="cb63-5"><a href="#cb63-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">na.action =</span> <span class="st">"na.fail"</span></span>
+<span id="cb63-6"><a href="#cb63-6" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <blockquote class="blockquote">
 <p><strong>NOTE:</strong> Here, we need to change the “na.action” argument from the default of “na.omit” to “na.fail” to prevent <code>dredge()</code> from trying to fit submodels with different data sets than the global model if there are missing values.</p>
@@ -1416,7 +1418,7 @@ window.Quarto = {
 ## attr(,"rank")
 ## function (x) 
 ## do.call("rank", list(x))
-## &lt;environment: 0x11110cdd0&gt;
+## &lt;environment: 0x13b64d740&gt;
 ## attr(,"call")
 ## AICc(x)
 ## attr(,"class")
@@ -1453,7 +1455,9 @@ window.Quarto = {
 <h3 data-number="22.6.1" class="anchored" data-anchor-id="averaging-coefficients-across-sets-of-models"><span class="header-section-number">22.6.1</span> Averaging Coefficients across Sets of Models</h3>
 <p>The code below averages beta coefficients for the set of models with <strong>Delta AICc</strong> &lt; 4. Here, we also need to set the argument <code>fit=TRUE</code> because <code>dredge()</code> does not actually store the model results. The <code>model.avg()</code> function returns a “summary.averaging” object.</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb72"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb72-1"><a href="#cb72-1" aria-hidden="true" tabindex="-1"></a>(mods.avg <span class="ot">&lt;-</span> <span class="fu">summary</span>(<span class="fu">model.avg</span>(mods, <span class="at">subset =</span> delta <span class="sc">&lt;</span> <span class="dv">4</span>, <span class="at">fit =</span> <span class="cn">TRUE</span>)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb72"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb72-1"><a href="#cb72-1" aria-hidden="true" tabindex="-1"></a>(mods.avg <span class="ot">&lt;-</span> <span class="fu">summary</span>(<span class="fu">model.avg</span>(mods,</span>
+<span id="cb72-2"><a href="#cb72-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">subset =</span> delta <span class="sc">&lt;</span> <span class="dv">4</span>, <span class="at">fit =</span> <span class="cn">TRUE</span></span>
+<span id="cb72-3"><a href="#cb72-3" aria-hidden="true" tabindex="-1"></a>)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>## 
 ## Call:

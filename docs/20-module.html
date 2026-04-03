@@ -672,8 +672,8 @@ window.Quarto = {
 ## ℹ Use `spec()` to retrieve the full column specification for this data.
 ## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>z<span class="sc">$</span>gender <span class="ot">&lt;-</span> <span class="fu">factor</span>(z<span class="sc">$</span>gender)  <span class="co"># can also use `as.factor()`</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>z<span class="sc">$</span>major <span class="ot">&lt;-</span> <span class="fu">factor</span>(z<span class="sc">$</span>major)  <span class="co"># can also use `as.factor()`</span></span>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>z<span class="sc">$</span>gender <span class="ot">&lt;-</span> <span class="fu">factor</span>(z<span class="sc">$</span>gender) <span class="co"># can also use `as.factor()`</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>z<span class="sc">$</span>major <span class="ot">&lt;-</span> <span class="fu">factor</span>(z<span class="sc">$</span>major) <span class="co"># can also use `as.factor()`</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(z<span class="sc">$</span>gender)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -696,7 +696,8 @@ window.Quarto = {
 </div>
 </div>
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># or, with {ggplot}</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> z, <span class="fu">aes</span>(<span class="at">x =</span> gender, <span class="at">y =</span> height)) <span class="sc">+</span> <span class="fu">geom_boxplot</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> z, <span class="fu">aes</span>(<span class="at">x =</span> gender, <span class="at">y =</span> height)) <span class="sc">+</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -832,17 +833,46 @@ window.Quarto = {
 <p>We can then also do some cool batch recoding using the <code>%in%</code> operator and the <code>mutate()</code> function from {dplyr}…</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>z <span class="ot">&lt;-</span> z <span class="sc">|&gt;</span></span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">occupation =</span> <span class="fu">case_when</span>(major <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"agricultural sciences"</span>, <span class="st">"animal husbandry"</span>,</span>
-<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>        <span class="st">"applied sciences"</span>, <span class="st">"biology"</span>, <span class="st">"botany"</span>, <span class="st">"energy studies"</span>, <span class="st">"environmental science"</span>,</span>
-<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>        <span class="st">"epidemiology"</span>, <span class="st">"medicine/nursing"</span>, <span class="st">"pharmacology"</span>) <span class="sc">~</span> <span class="st">"natural science"</span>,</span>
-<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>        major <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"business administration"</span>, <span class="st">"city planning"</span>, <span class="st">"economics"</span>, <span class="st">"human services"</span>,</span>
-<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>            <span class="st">"logistics"</span>, <span class="st">"military strategy"</span>) <span class="sc">~</span> <span class="st">"logistics"</span>, major <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"architecture"</span>,</span>
-<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>            <span class="st">"integrated water resources management"</span>, <span class="st">"mechanical engineering"</span>) <span class="sc">~</span></span>
-<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>            <span class="st">"engineering"</span>, major <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"communication"</span>, <span class="st">"criminal justice administration"</span>,</span>
-<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a>            <span class="st">"culinary services"</span>, <span class="st">"education"</span>, <span class="st">"philosophy"</span>, <span class="st">"physical education"</span>,</span>
-<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a>            <span class="st">"psychology"</span>) <span class="sc">~</span> <span class="st">"other"</span>))</span>
-<span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a>z<span class="sc">$</span>occupation <span class="ot">&lt;-</span> <span class="fu">factor</span>(z<span class="sc">$</span>occupation)  <span class="co"># can also use `as.factor()`</span></span>
-<span id="cb22-12"><a href="#cb22-12" aria-hidden="true" tabindex="-1"></a><span class="fu">levels</span>(z<span class="sc">$</span>occupation)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">occupation =</span> <span class="fu">case_when</span>(</span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>      major <span class="sc">%in%</span> <span class="fu">c</span>(</span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>        <span class="st">"agricultural sciences"</span>,</span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>        <span class="st">"animal husbandry"</span>,</span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>        <span class="st">"applied sciences"</span>,</span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>        <span class="st">"biology"</span>,</span>
+<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a>        <span class="st">"botany"</span>,</span>
+<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a>        <span class="st">"energy studies"</span>,</span>
+<span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a>        <span class="st">"environmental science"</span>,</span>
+<span id="cb22-12"><a href="#cb22-12" aria-hidden="true" tabindex="-1"></a>        <span class="st">"epidemiology"</span>,</span>
+<span id="cb22-13"><a href="#cb22-13" aria-hidden="true" tabindex="-1"></a>        <span class="st">"medicine/nursing"</span>,</span>
+<span id="cb22-14"><a href="#cb22-14" aria-hidden="true" tabindex="-1"></a>        <span class="st">"pharmacology"</span></span>
+<span id="cb22-15"><a href="#cb22-15" aria-hidden="true" tabindex="-1"></a>      ) <span class="sc">~</span> <span class="st">"natural science"</span>,</span>
+<span id="cb22-16"><a href="#cb22-16" aria-hidden="true" tabindex="-1"></a>      major <span class="sc">%in%</span> <span class="fu">c</span>(</span>
+<span id="cb22-17"><a href="#cb22-17" aria-hidden="true" tabindex="-1"></a>        <span class="st">"business administration"</span>,</span>
+<span id="cb22-18"><a href="#cb22-18" aria-hidden="true" tabindex="-1"></a>        <span class="st">"city planning"</span>,</span>
+<span id="cb22-19"><a href="#cb22-19" aria-hidden="true" tabindex="-1"></a>        <span class="st">"economics"</span>,</span>
+<span id="cb22-20"><a href="#cb22-20" aria-hidden="true" tabindex="-1"></a>        <span class="st">"human services"</span>,</span>
+<span id="cb22-21"><a href="#cb22-21" aria-hidden="true" tabindex="-1"></a>        <span class="st">"logistics"</span>,</span>
+<span id="cb22-22"><a href="#cb22-22" aria-hidden="true" tabindex="-1"></a>        <span class="st">"military strategy"</span></span>
+<span id="cb22-23"><a href="#cb22-23" aria-hidden="true" tabindex="-1"></a>      ) <span class="sc">~</span> <span class="st">"logistics"</span>,</span>
+<span id="cb22-24"><a href="#cb22-24" aria-hidden="true" tabindex="-1"></a>      major <span class="sc">%in%</span> <span class="fu">c</span>(</span>
+<span id="cb22-25"><a href="#cb22-25" aria-hidden="true" tabindex="-1"></a>        <span class="st">"architecture"</span>,</span>
+<span id="cb22-26"><a href="#cb22-26" aria-hidden="true" tabindex="-1"></a>        <span class="st">"integrated water resources management"</span>,</span>
+<span id="cb22-27"><a href="#cb22-27" aria-hidden="true" tabindex="-1"></a>        <span class="st">"mechanical engineering"</span></span>
+<span id="cb22-28"><a href="#cb22-28" aria-hidden="true" tabindex="-1"></a>      ) <span class="sc">~</span> <span class="st">"engineering"</span>,</span>
+<span id="cb22-29"><a href="#cb22-29" aria-hidden="true" tabindex="-1"></a>      major <span class="sc">%in%</span> <span class="fu">c</span>(</span>
+<span id="cb22-30"><a href="#cb22-30" aria-hidden="true" tabindex="-1"></a>        <span class="st">"communication"</span>,</span>
+<span id="cb22-31"><a href="#cb22-31" aria-hidden="true" tabindex="-1"></a>        <span class="st">"criminal justice administration"</span>,</span>
+<span id="cb22-32"><a href="#cb22-32" aria-hidden="true" tabindex="-1"></a>        <span class="st">"culinary services"</span>,</span>
+<span id="cb22-33"><a href="#cb22-33" aria-hidden="true" tabindex="-1"></a>        <span class="st">"education"</span>,</span>
+<span id="cb22-34"><a href="#cb22-34" aria-hidden="true" tabindex="-1"></a>        <span class="st">"philosophy"</span>,</span>
+<span id="cb22-35"><a href="#cb22-35" aria-hidden="true" tabindex="-1"></a>        <span class="st">"physical education"</span>,</span>
+<span id="cb22-36"><a href="#cb22-36" aria-hidden="true" tabindex="-1"></a>        <span class="st">"psychology"</span></span>
+<span id="cb22-37"><a href="#cb22-37" aria-hidden="true" tabindex="-1"></a>      ) <span class="sc">~</span> <span class="st">"other"</span></span>
+<span id="cb22-38"><a href="#cb22-38" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb22-39"><a href="#cb22-39" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb22-40"><a href="#cb22-40" aria-hidden="true" tabindex="-1"></a>z<span class="sc">$</span>occupation <span class="ot">&lt;-</span> <span class="fu">factor</span>(z<span class="sc">$</span>occupation) <span class="co"># can also use `as.factor()`</span></span>
+<span id="cb22-41"><a href="#cb22-41" aria-hidden="true" tabindex="-1"></a><span class="fu">levels</span>(z<span class="sc">$</span>occupation)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>## [1] "engineering"     "logistics"       "natural science" "other"</code></pre>
 </div>
@@ -886,7 +916,7 @@ window.Quarto = {
 ## Multiple R-squared:  0.004209,   Adjusted R-squared:  0.00121 
 ## F-statistic: 1.403 on 3 and 996 DF,  p-value: 0.2403</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="sc">-</span> <span class="fu">pf</span>(<span class="at">q =</span> <span class="fl">0.489</span>, <span class="at">df1 =</span> <span class="dv">3</span>, <span class="at">df2 =</span> <span class="dv">996</span>)  <span class="co"># F test</span></span>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="sc">-</span> <span class="fu">pf</span>(<span class="at">q =</span> <span class="fl">0.489</span>, <span class="at">df1 =</span> <span class="dv">3</span>, <span class="at">df2 =</span> <span class="dv">996</span>) <span class="co"># F test</span></span>
 <span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>p</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>## [1] 0.6899872</code></pre>
@@ -906,7 +936,7 @@ window.Quarto = {
 ## occupation    3   12.9   4.285   1.403   0.24
 ## Residuals   996 3041.1   3.053</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tidy</span>(m.aov)  <span class="co"># a neater table</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tidy</span>(m.aov) <span class="co"># a neater table</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>## # A tibble: 2 × 6
 ##   term          df  sumsq meansq statistic p.value
@@ -938,7 +968,7 @@ window.Quarto = {
 ## Multiple R-squared:  0.004209,   Adjusted R-squared:  0.00121 
 ## F-statistic: 1.403 on 3 and 996 DF,  p-value: 0.2403</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tidy</span>(m.lm)  <span class="co"># a neater table</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tidy</span>(m.lm) <span class="co"># a neater table</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>## # A tibble: 4 × 5
 ##   term                  estimate std.error statistic   p.value
@@ -949,7 +979,7 @@ window.Quarto = {
 ## 4 occupationother         0.104     0.135      0.772 4.40e-  1</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">2</span>))</span>
-<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(m.lm)  <span class="co"># plot(m.aov) is equivalent</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(m.lm) <span class="co"># plot(m.aov) is equivalent</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -986,8 +1016,8 @@ window.Quarto = {
 <p>One easy way to do this is with the {infer} package. Using {infer}, we can easily permute, a large number of times, the association between our response variable the categorical explanatory variable and, each time, then calculate the associated F statistic. This generates a permutation-based null distribution of F statistics to which we can compare the F statistic generated from our original data. The permutation-based p value is then the proportion of F statistic values generated by simulation that are equal to or greater than our observed F statistic value.</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>original.F <span class="ot">&lt;-</span> <span class="fu">aov</span>(<span class="at">data =</span> z, zombies_killed <span class="sc">~</span> occupation) <span class="sc">|&gt;</span></span>
-<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">tidy</span>() <span class="sc">|&gt;</span></span>
-<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(term <span class="sc">==</span> <span class="st">"occupation"</span>)</span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tidy</span>() <span class="sc">|&gt;</span></span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(term <span class="sc">==</span> <span class="st">"occupation"</span>)</span>
 <span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a><span class="co"># show aov results for F statistic and p value for omnibus F test</span></span>
 <span id="cb40-5"><a href="#cb40-5" aria-hidden="true" tabindex="-1"></a>original.F</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -997,18 +1027,18 @@ window.Quarto = {
 ## 1 occupation     3  12.9   4.28      1.40   0.240</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>permuted.F <span class="ot">&lt;-</span> z <span class="sc">|&gt;</span></span>
-<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># specify model</span></span>
-<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a><span class="fu">specify</span>(zombies_killed <span class="sc">~</span> occupation) <span class="sc">|&gt;</span></span>
-<span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a>    <span class="co"># null hypothesis of independence</span></span>
-<span id="cb42-5"><a href="#cb42-5" aria-hidden="true" tabindex="-1"></a><span class="fu">hypothesize</span>(<span class="at">null =</span> <span class="st">"independence"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb42-6"><a href="#cb42-6" aria-hidden="true" tabindex="-1"></a>    <span class="co"># generate permutations</span></span>
-<span id="cb42-7"><a href="#cb42-7" aria-hidden="true" tabindex="-1"></a><span class="fu">generate</span>(<span class="at">reps =</span> <span class="dv">1000</span>, <span class="at">type =</span> <span class="st">"permute"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb42-8"><a href="#cb42-8" aria-hidden="true" tabindex="-1"></a>    <span class="co"># calculate the F statistic for the AOV</span></span>
-<span id="cb42-9"><a href="#cb42-9" aria-hidden="true" tabindex="-1"></a><span class="fu">calculate</span>(<span class="at">stat =</span> <span class="st">"F"</span>)</span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># specify model</span></span>
+<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">specify</span>(zombies_killed <span class="sc">~</span> occupation) <span class="sc">|&gt;</span></span>
+<span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a>  <span class="co"># null hypothesis of independence</span></span>
+<span id="cb42-5"><a href="#cb42-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">hypothesize</span>(<span class="at">null =</span> <span class="st">"independence"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb42-6"><a href="#cb42-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># generate permutations</span></span>
+<span id="cb42-7"><a href="#cb42-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">generate</span>(<span class="at">reps =</span> <span class="dv">1000</span>, <span class="at">type =</span> <span class="st">"permute"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb42-8"><a href="#cb42-8" aria-hidden="true" tabindex="-1"></a>  <span class="co"># calculate the F statistic for the AOV</span></span>
+<span id="cb42-9"><a href="#cb42-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">calculate</span>(<span class="at">stat =</span> <span class="st">"F"</span>)</span>
 <span id="cb42-10"><a href="#cb42-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb42-11"><a href="#cb42-11" aria-hidden="true" tabindex="-1"></a><span class="co"># plot our F statistic on the distribution of F statistic values generated by</span></span>
-<span id="cb42-12"><a href="#cb42-12" aria-hidden="true" tabindex="-1"></a><span class="co"># permutation</span></span>
-<span id="cb42-13"><a href="#cb42-13" aria-hidden="true" tabindex="-1"></a><span class="fu">visualize</span>(permuted.F) <span class="sc">+</span> <span class="fu">shade_p_value</span>(<span class="at">obs_stat =</span> original.F<span class="sc">$</span>statistic, <span class="at">direction =</span> <span class="st">"greater"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb42-11"><a href="#cb42-11" aria-hidden="true" tabindex="-1"></a><span class="co"># plot our F statistic on the distribution of F statistic values generated by permutation</span></span>
+<span id="cb42-12"><a href="#cb42-12" aria-hidden="true" tabindex="-1"></a><span class="fu">visualize</span>(permuted.F) <span class="sc">+</span></span>
+<span id="cb42-13"><a href="#cb42-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">shade_p_value</span>(<span class="at">obs_stat =</span> original.F<span class="sc">$</span>statistic, <span class="at">direction =</span> <span class="st">"greater"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -1016,13 +1046,15 @@ window.Quarto = {
 </figure>
 </div>
 </div>
-<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>(p.value <span class="ot">&lt;-</span> permuted.F <span class="sc">|&gt;</span></span>
-<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">get_p_value</span>(<span class="at">obs_stat =</span> original.F<span class="sc">$</span>statistic, <span class="at">direction =</span> <span class="st">"greater"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>(</span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>  p.value <span class="ot">&lt;-</span> permuted.F <span class="sc">|&gt;</span></span>
+<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">get_p_value</span>(<span class="at">obs_stat =</span> original.F<span class="sc">$</span>statistic, <span class="at">direction =</span> <span class="st">"greater"</span>)</span>
+<span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>## # A tibble: 1 × 1
 ##   p_value
 ##     &lt;dbl&gt;
-## 1   0.241</code></pre>
+## 1   0.267</code></pre>
 </div>
 </div>
 <p>Note that, for these data, the p value estimated through simulation-based inference is very similar to that calculated parameterically based on mathematical theory. This is not always the case!</p>
@@ -1036,7 +1068,7 @@ window.Quarto = {
 <pre><code>## # A tibble: 1 × 1
 ##   p_value
 ##     &lt;dbl&gt;
-## 1   0.241</code></pre>
+## 1   0.267</code></pre>
 </div>
 </div>
 <p>Alternatively, the {permuco} package introduces the <code>aovperm()</code> and <code>lmperm()</code> functions as analogs for <code>aov()</code> and <code>lm()</code> for analysis of variance and simple linear regression, where p values are calculated by permutation.</p>
@@ -1048,7 +1080,7 @@ window.Quarto = {
 <pre><code>## Anova Table
 ## Resampling test using freedman_lane to handle nuisance variables and 5000 permutations.
 ##                 SS  df     F parametric P(&gt;F) resampled P(&gt;F)
-## occupation   12.85   3 1.403           0.2403          0.2312
+## occupation   12.85   3 1.403           0.2403          0.2432
 ## Residuals  3041.08 996</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(m.aovperm)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1071,9 +1103,9 @@ window.Quarto = {
 ## occupationother        0.10424    0.13496  0.7724           4.401e-01
 ##                       resampled Pr(&lt;t) resampled Pr(&gt;t) resampled Pr(&gt;|t|)
 ## (Intercept)                                                               
-## occupationengineering           0.9776           0.0226             0.0384
-## occupationlogistics             0.7248           0.2754             0.5558
-## occupationother                 0.7850           0.2152             0.4322</code></pre>
+## occupationengineering           0.9814           0.0188             0.0350
+## occupationlogistics             0.7210           0.2792             0.5496
+## occupationother                 0.7756           0.2246             0.4360</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb54"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="fu">detach</span>(package<span class="sc">:</span>permuco)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -1089,7 +1121,7 @@ window.Quarto = {
 ## 
 ## data:  zombies_killed by
 ##   occupation (natural science, engineering, logistics, other)
-## chi-squared = 4.2048, p-value = 0.2384</code></pre>
+## chi-squared = 4.2048, p-value = 0.2339</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb57"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="fu">detach</span>(package<span class="sc">:</span>coin)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -1110,12 +1142,11 @@ window.Quarto = {
 ## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb60"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a>d<span class="sc">$</span>age <span class="ot">&lt;-</span> <span class="fu">factor</span>(d<span class="sc">$</span>age, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"inf"</span>, <span class="st">"juv"</span>, <span class="st">"subadult"</span>, <span class="st">"adult"</span>))</span>
-<span id="cb60-2"><a href="#cb60-2" aria-hidden="true" tabindex="-1"></a><span class="co"># converts age to a factor and order the age levels so that they are in</span></span>
-<span id="cb60-3"><a href="#cb60-3" aria-hidden="true" tabindex="-1"></a><span class="co"># ascending chronological order several ANOVA functions require that</span></span>
-<span id="cb60-4"><a href="#cb60-4" aria-hidden="true" tabindex="-1"></a><span class="co"># categorical variables are represented as factors rather than as strings</span></span>
-<span id="cb60-5"><a href="#cb60-5" aria-hidden="true" tabindex="-1"></a>d<span class="sc">$</span>sex <span class="ot">&lt;-</span> <span class="fu">factor</span>(d<span class="sc">$</span>sex, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"female"</span>, <span class="st">"male"</span>))</span>
-<span id="cb60-6"><a href="#cb60-6" aria-hidden="true" tabindex="-1"></a><span class="co"># convert sex to a factor</span></span>
-<span id="cb60-7"><a href="#cb60-7" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(d)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb60-2"><a href="#cb60-2" aria-hidden="true" tabindex="-1"></a><span class="co"># converts age to a factor and order the age levels so that they are in ascending chronological order</span></span>
+<span id="cb60-3"><a href="#cb60-3" aria-hidden="true" tabindex="-1"></a><span class="co"># several ANOVA functions require that categorical variables are represented as factors rather than as strings</span></span>
+<span id="cb60-4"><a href="#cb60-4" aria-hidden="true" tabindex="-1"></a>d<span class="sc">$</span>sex <span class="ot">&lt;-</span> <span class="fu">factor</span>(d<span class="sc">$</span>sex, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"female"</span>, <span class="st">"male"</span>))</span>
+<span id="cb60-5"><a href="#cb60-5" aria-hidden="true" tabindex="-1"></a><span class="co"># convert sex to a factor</span></span>
+<span id="cb60-6"><a href="#cb60-6" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(d)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>## # A tibble: 6 × 4
 ##      id age   sex    femur_length
@@ -1152,15 +1183,18 @@ window.Quarto = {
 <div class="cell" data-layout-align="center">
 <details class="code-fold">
 <summary>Show Code</summary>
-<div class="sourceCode cell-code" id="cb64"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="at">data =</span> d, femur_length <span class="sc">~</span> age)  <span class="co"># boxplot with medians</span></span>
+<div class="sourceCode cell-code" id="cb64"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="at">data =</span> d, femur_length <span class="sc">~</span> age) <span class="co"># boxplot with medians</span></span>
 <span id="cb64-2"><a href="#cb64-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb64-3"><a href="#cb64-3" aria-hidden="true" tabindex="-1"></a><span class="co"># calculate average and SD by group</span></span>
 <span id="cb64-4"><a href="#cb64-4" aria-hidden="true" tabindex="-1"></a>stats <span class="ot">&lt;-</span> d <span class="sc">|&gt;</span></span>
-<span id="cb64-5"><a href="#cb64-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">group_by</span>(age) <span class="sc">|&gt;</span></span>
-<span id="cb64-6"><a href="#cb64-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">summarize</span>(<span class="st">`</span><span class="at">mean(femur_length)</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">mean</span>(femur_length), <span class="st">`</span><span class="at">sd(femur_length)</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">sd</span>(femur_length))</span>
-<span id="cb64-7"><a href="#cb64-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb64-8"><a href="#cb64-8" aria-hidden="true" tabindex="-1"></a><span class="co"># add means to plot</span></span>
-<span id="cb64-9"><a href="#cb64-9" aria-hidden="true" tabindex="-1"></a><span class="fu">points</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>, stats<span class="sc">$</span><span class="st">`</span><span class="at">mean(femur_length)</span><span class="st">`</span>, <span class="at">pch =</span> <span class="dv">4</span>, <span class="at">cex =</span> <span class="fl">1.5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb64-5"><a href="#cb64-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(age) <span class="sc">|&gt;</span></span>
+<span id="cb64-6"><a href="#cb64-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
+<span id="cb64-7"><a href="#cb64-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">"mean(femur_length)"</span> <span class="ot">=</span> <span class="fu">mean</span>(femur_length),</span>
+<span id="cb64-8"><a href="#cb64-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">"sd(femur_length)"</span> <span class="ot">=</span> <span class="fu">sd</span>(femur_length)</span>
+<span id="cb64-9"><a href="#cb64-9" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb64-10"><a href="#cb64-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-11"><a href="#cb64-11" aria-hidden="true" tabindex="-1"></a><span class="co"># add means to plot</span></span>
+<span id="cb64-12"><a href="#cb64-12" aria-hidden="true" tabindex="-1"></a><span class="fu">points</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>, stats<span class="sc">$</span><span class="st">`</span><span class="at">mean(femur_length)</span><span class="st">`</span>, <span class="at">pch =</span> <span class="dv">4</span>, <span class="at">cex =</span> <span class="fl">1.5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
@@ -1175,7 +1209,7 @@ window.Quarto = {
 <span id="cb65-2"><a href="#cb65-2" aria-hidden="true" tabindex="-1"></a>means.centered <span class="ot">&lt;-</span> d<span class="sc">$</span>femur_length <span class="sc">-</span> stats[<span class="fu">as.numeric</span>(d<span class="sc">$</span>age), <span class="dv">2</span>]</span>
 <span id="cb65-3"><a href="#cb65-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb65-4"><a href="#cb65-4" aria-hidden="true" tabindex="-1"></a><span class="co"># graphical test for normality of group-centered means</span></span>
-<span id="cb65-5"><a href="#cb65-5" aria-hidden="true" tabindex="-1"></a><span class="fu">qqnorm</span>(means.centered<span class="sc">$</span><span class="st">`</span><span class="at">mean(femur_length)</span><span class="st">`</span>)  <span class="co"># looks good!</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb65-5"><a href="#cb65-5" aria-hidden="true" tabindex="-1"></a><span class="fu">qqnorm</span>(means.centered<span class="sc">$</span><span class="st">`</span><span class="at">mean(femur_length)</span><span class="st">`</span>) <span class="co"># looks good!</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
@@ -1188,8 +1222,11 @@ window.Quarto = {
 <summary>Show Code</summary>
 <div class="sourceCode cell-code" id="cb66"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a><span class="co"># now do graphical test within each group</span></span>
 <span id="cb66-2"><a href="#cb66-2" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>))</span>
-<span id="cb66-3"><a href="#cb66-3" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(d<span class="sc">$</span>femur_length[d<span class="sc">$</span>age <span class="sc">==</span> <span class="st">"inf"</span>], <span class="at">main =</span> <span class="st">"Infant"</span>, <span class="at">xlab =</span> <span class="st">"Femur Length (cm)"</span>)</span>
-<span id="cb66-4"><a href="#cb66-4" aria-hidden="true" tabindex="-1"></a><span class="fu">qqnorm</span>(d<span class="sc">$</span>femur_length[d<span class="sc">$</span>age <span class="sc">==</span> <span class="st">"inf"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb66-3"><a href="#cb66-3" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(d<span class="sc">$</span>femur_length[d<span class="sc">$</span>age <span class="sc">==</span> <span class="st">"inf"</span>],</span>
+<span id="cb66-4"><a href="#cb66-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">main =</span> <span class="st">"Infant"</span>,</span>
+<span id="cb66-5"><a href="#cb66-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">xlab =</span> <span class="st">"Femur Length (cm)"</span></span>
+<span id="cb66-6"><a href="#cb66-6" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb66-7"><a href="#cb66-7" aria-hidden="true" tabindex="-1"></a><span class="fu">qqnorm</span>(d<span class="sc">$</span>femur_length[d<span class="sc">$</span>age <span class="sc">==</span> <span class="st">"inf"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
@@ -1200,8 +1237,11 @@ window.Quarto = {
 </div>
 <details class="code-fold">
 <summary>Show Code</summary>
-<div class="sourceCode cell-code" id="cb67"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb67-1"><a href="#cb67-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(d<span class="sc">$</span>femur_length[d<span class="sc">$</span>age <span class="sc">==</span> <span class="st">"juv"</span>], <span class="at">main =</span> <span class="st">"Juvenile"</span>, <span class="at">xlab =</span> <span class="st">"Femur Length (cm)"</span>)</span>
-<span id="cb67-2"><a href="#cb67-2" aria-hidden="true" tabindex="-1"></a><span class="fu">qqnorm</span>(d<span class="sc">$</span>femur_length[d<span class="sc">$</span>age <span class="sc">==</span> <span class="st">"juv"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb67"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb67-1"><a href="#cb67-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(d<span class="sc">$</span>femur_length[d<span class="sc">$</span>age <span class="sc">==</span> <span class="st">"juv"</span>],</span>
+<span id="cb67-2"><a href="#cb67-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">main =</span> <span class="st">"Juvenile"</span>,</span>
+<span id="cb67-3"><a href="#cb67-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">xlab =</span> <span class="st">"Femur Length (cm)"</span></span>
+<span id="cb67-4"><a href="#cb67-4" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb67-5"><a href="#cb67-5" aria-hidden="true" tabindex="-1"></a><span class="fu">qqnorm</span>(d<span class="sc">$</span>femur_length[d<span class="sc">$</span>age <span class="sc">==</span> <span class="st">"juv"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
@@ -1212,8 +1252,11 @@ window.Quarto = {
 </div>
 <details class="code-fold">
 <summary>Show Code</summary>
-<div class="sourceCode cell-code" id="cb68"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(d<span class="sc">$</span>femur_length[d<span class="sc">$</span>age <span class="sc">==</span> <span class="st">"subadult"</span>], <span class="at">main =</span> <span class="st">"Subadult"</span>, <span class="at">xlab =</span> <span class="st">"Femur Length (cm)"</span>)</span>
-<span id="cb68-2"><a href="#cb68-2" aria-hidden="true" tabindex="-1"></a><span class="fu">qqnorm</span>(d<span class="sc">$</span>femur_length[d<span class="sc">$</span>age <span class="sc">==</span> <span class="st">"subadult"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb68"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(d<span class="sc">$</span>femur_length[d<span class="sc">$</span>age <span class="sc">==</span> <span class="st">"subadult"</span>],</span>
+<span id="cb68-2"><a href="#cb68-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">main =</span> <span class="st">"Subadult"</span>,</span>
+<span id="cb68-3"><a href="#cb68-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">xlab =</span> <span class="st">"Femur Length (cm)"</span></span>
+<span id="cb68-4"><a href="#cb68-4" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb68-5"><a href="#cb68-5" aria-hidden="true" tabindex="-1"></a><span class="fu">qqnorm</span>(d<span class="sc">$</span>femur_length[d<span class="sc">$</span>age <span class="sc">==</span> <span class="st">"subadult"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
@@ -1224,8 +1267,11 @@ window.Quarto = {
 </div>
 <details class="code-fold">
 <summary>Show Code</summary>
-<div class="sourceCode cell-code" id="cb69"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb69-1"><a href="#cb69-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(d<span class="sc">$</span>femur_length[d<span class="sc">$</span>age <span class="sc">==</span> <span class="st">"adult"</span>], <span class="at">main =</span> <span class="st">"Adult"</span>, <span class="at">xlab =</span> <span class="st">"Femur Length (cm)"</span>)</span>
-<span id="cb69-2"><a href="#cb69-2" aria-hidden="true" tabindex="-1"></a><span class="fu">qqnorm</span>(d<span class="sc">$</span>femur_length[d<span class="sc">$</span>age <span class="sc">==</span> <span class="st">"adult"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb69"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb69-1"><a href="#cb69-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(d<span class="sc">$</span>femur_length[d<span class="sc">$</span>age <span class="sc">==</span> <span class="st">"adult"</span>],</span>
+<span id="cb69-2"><a href="#cb69-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">main =</span> <span class="st">"Adult"</span>,</span>
+<span id="cb69-3"><a href="#cb69-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">xlab =</span> <span class="st">"Femur Length (cm)"</span></span>
+<span id="cb69-4"><a href="#cb69-4" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb69-5"><a href="#cb69-5" aria-hidden="true" tabindex="-1"></a><span class="fu">qqnorm</span>(d<span class="sc">$</span>femur_length[d<span class="sc">$</span>age <span class="sc">==</span> <span class="st">"adult"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
@@ -1240,7 +1286,7 @@ window.Quarto = {
 <details class="code-fold">
 <summary>Show Code</summary>
 <div class="sourceCode cell-code" id="cb70"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb70-1"><a href="#cb70-1" aria-hidden="true" tabindex="-1"></a><span class="co"># check that variances are roughly equal (ratio of max/min is &lt;2)</span></span>
-<span id="cb70-2"><a href="#cb70-2" aria-hidden="true" tabindex="-1"></a><span class="fu">max</span>(stats<span class="sc">$</span><span class="st">`</span><span class="at">sd(femur_length)</span><span class="st">`</span>)<span class="sc">/</span><span class="fu">min</span>(stats<span class="sc">$</span><span class="st">`</span><span class="at">sd(femur_length)</span><span class="st">`</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb70-2"><a href="#cb70-2" aria-hidden="true" tabindex="-1"></a><span class="fu">max</span>(stats<span class="sc">$</span><span class="st">`</span><span class="at">sd(femur_length)</span><span class="st">`</span>) <span class="sc">/</span> <span class="fu">min</span>(stats<span class="sc">$</span><span class="st">`</span><span class="at">sd(femur_length)</span><span class="st">`</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <details><summary>Show Output</summary>
@@ -1251,7 +1297,10 @@ window.Quarto = {
 <p>All this checking done, we can again plot our data by group and then run our linear or ANOVA model…</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb72"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb72-1"><a href="#cb72-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>))</span>
-<span id="cb72-2"><a href="#cb72-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="at">data =</span> d, femur_length <span class="sc">~</span> age, <span class="at">xlab =</span> <span class="st">"Age"</span>, <span class="at">ylab =</span> <span class="st">"Femur Length (cm)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb72-2"><a href="#cb72-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(</span>
+<span id="cb72-3"><a href="#cb72-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> d, femur_length <span class="sc">~</span> age,</span>
+<span id="cb72-4"><a href="#cb72-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">xlab =</span> <span class="st">"Age"</span>, <span class="at">ylab =</span> <span class="st">"Femur Length (cm)"</span></span>
+<span id="cb72-5"><a href="#cb72-5" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -1283,7 +1332,7 @@ window.Quarto = {
 ## Multiple R-squared:  0.809,  Adjusted R-squared:  0.8079 
 ## F-statistic: 735.8 on 3 and 521 DF,  p-value: &lt; 2.2e-16</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb75"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb75-1"><a href="#cb75-1" aria-hidden="true" tabindex="-1"></a>m.aov <span class="ot">&lt;-</span> <span class="fu">aov</span>(<span class="at">data =</span> d, femur_length <span class="sc">~</span> age)  <span class="co"># femur length related to age</span></span>
+<div class="sourceCode cell-code" id="cb75"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb75-1"><a href="#cb75-1" aria-hidden="true" tabindex="-1"></a>m.aov <span class="ot">&lt;-</span> <span class="fu">aov</span>(<span class="at">data =</span> d, femur_length <span class="sc">~</span> age) <span class="co"># femur length related to age</span></span>
 <span id="cb75-2"><a href="#cb75-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(m.aov)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>##              Df Sum Sq Mean Sq F value Pr(&gt;F)    
@@ -1325,14 +1374,22 @@ window.Quarto = {
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb79"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb79-1"><a href="#cb79-1" aria-hidden="true" tabindex="-1"></a><span class="co"># renaming age categories so we get nice axis labels on plot...</span></span>
 <span id="cb79-2"><a href="#cb79-2" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> d <span class="sc">|&gt;</span></span>
-<span id="cb79-3"><a href="#cb79-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">age =</span> <span class="fu">case_when</span>(age <span class="sc">==</span> <span class="st">"adult"</span> <span class="sc">~</span> <span class="st">"A"</span>, age <span class="sc">==</span> <span class="st">"subadult"</span> <span class="sc">~</span> <span class="st">"S"</span>, age <span class="sc">==</span></span>
-<span id="cb79-4"><a href="#cb79-4" aria-hidden="true" tabindex="-1"></a>        <span class="st">"juv"</span> <span class="sc">~</span> <span class="st">"J"</span>, age <span class="sc">==</span> <span class="st">"inf"</span> <span class="sc">~</span> <span class="st">"I"</span>)) <span class="sc">|&gt;</span></span>
-<span id="cb79-5"><a href="#cb79-5" aria-hidden="true" tabindex="-1"></a>    <span class="co"># and coerce age back to being a factor</span></span>
-<span id="cb79-6"><a href="#cb79-6" aria-hidden="true" tabindex="-1"></a><span class="fu">mutate</span>(<span class="at">age =</span> <span class="fu">factor</span>(age, <span class="at">level =</span> <span class="fu">c</span>(<span class="st">"I"</span>, <span class="st">"J"</span>, <span class="st">"S"</span>, <span class="st">"A"</span>)))</span>
-<span id="cb79-7"><a href="#cb79-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb79-8"><a href="#cb79-8" aria-hidden="true" tabindex="-1"></a>m.aov <span class="ot">&lt;-</span> <span class="fu">aov</span>(femur_length <span class="sc">~</span> age, <span class="at">data =</span> d)</span>
-<span id="cb79-9"><a href="#cb79-9" aria-hidden="true" tabindex="-1"></a>posthoc <span class="ot">&lt;-</span> <span class="fu">TukeyHSD</span>(m.aov, <span class="at">which =</span> <span class="st">"age"</span>, <span class="at">ordered =</span> <span class="cn">TRUE</span>, <span class="at">conf.level =</span> <span class="fl">0.95</span>)</span>
-<span id="cb79-10"><a href="#cb79-10" aria-hidden="true" tabindex="-1"></a>posthoc  <span class="co"># all age-sex classes differ</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb79-3"><a href="#cb79-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">age =</span> <span class="fu">case_when</span>(</span>
+<span id="cb79-4"><a href="#cb79-4" aria-hidden="true" tabindex="-1"></a>    age <span class="sc">==</span> <span class="st">"adult"</span> <span class="sc">~</span> <span class="st">"A"</span>,</span>
+<span id="cb79-5"><a href="#cb79-5" aria-hidden="true" tabindex="-1"></a>    age <span class="sc">==</span> <span class="st">"subadult"</span> <span class="sc">~</span> <span class="st">"S"</span>,</span>
+<span id="cb79-6"><a href="#cb79-6" aria-hidden="true" tabindex="-1"></a>    age <span class="sc">==</span> <span class="st">"juv"</span> <span class="sc">~</span> <span class="st">"J"</span>,</span>
+<span id="cb79-7"><a href="#cb79-7" aria-hidden="true" tabindex="-1"></a>    age <span class="sc">==</span> <span class="st">"inf"</span> <span class="sc">~</span> <span class="st">"I"</span></span>
+<span id="cb79-8"><a href="#cb79-8" aria-hidden="true" tabindex="-1"></a>  )) <span class="sc">|&gt;</span></span>
+<span id="cb79-9"><a href="#cb79-9" aria-hidden="true" tabindex="-1"></a>  <span class="co"># and coerce age back to being a factor</span></span>
+<span id="cb79-10"><a href="#cb79-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">age =</span> <span class="fu">factor</span>(age, <span class="at">level =</span> <span class="fu">c</span>(<span class="st">"I"</span>, <span class="st">"J"</span>, <span class="st">"S"</span>, <span class="st">"A"</span>)))</span>
+<span id="cb79-11"><a href="#cb79-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb79-12"><a href="#cb79-12" aria-hidden="true" tabindex="-1"></a>m.aov <span class="ot">&lt;-</span> <span class="fu">aov</span>(femur_length <span class="sc">~</span> age, <span class="at">data =</span> d)</span>
+<span id="cb79-13"><a href="#cb79-13" aria-hidden="true" tabindex="-1"></a>posthoc <span class="ot">&lt;-</span> <span class="fu">TukeyHSD</span>(m.aov,</span>
+<span id="cb79-14"><a href="#cb79-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">which =</span> <span class="st">"age"</span>,</span>
+<span id="cb79-15"><a href="#cb79-15" aria-hidden="true" tabindex="-1"></a>  <span class="at">ordered =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb79-16"><a href="#cb79-16" aria-hidden="true" tabindex="-1"></a>  <span class="at">conf.level =</span> <span class="fl">0.95</span></span>
+<span id="cb79-17"><a href="#cb79-17" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb79-18"><a href="#cb79-18" aria-hidden="true" tabindex="-1"></a>posthoc <span class="co"># all age-sex classes differ</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>##   Tukey multiple comparisons of means
 ##     95% family-wise confidence level
@@ -1352,7 +1409,7 @@ window.Quarto = {
 </div>
 <p>We can get a visual summary of difference in means between each group and their confidence intervals by passing the Tukey test output to a <code>plot()</code> function. Confidence intervals that cross the vertical line indicate pairs of groups where the difference in mean is not significant, according to the threshold we set.</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb81"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb81-1"><a href="#cb81-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(posthoc, <span class="at">xlim =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">2</span>, <span class="dv">12</span>))  <span class="co"># xlim set to show zero</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb81"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb81-1"><a href="#cb81-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(posthoc, <span class="at">xlim =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">2</span>, <span class="dv">12</span>)) <span class="co"># xlim set to show zero</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -1374,8 +1431,8 @@ window.Quarto = {
 ## data:  femur_length by age
 ## Kruskal-Wallis chi-squared = 407.13, df = 3, p-value &lt; 2.2e-16</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb84"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb84-1"><a href="#cb84-1" aria-hidden="true" tabindex="-1"></a><span class="co"># to show that this is the same as the test using ranks...  use {dplyr} to sort</span></span>
-<span id="cb84-2"><a href="#cb84-2" aria-hidden="true" tabindex="-1"></a><span class="co"># by femur.length...</span></span>
+<div class="sourceCode cell-code" id="cb84"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb84-1"><a href="#cb84-1" aria-hidden="true" tabindex="-1"></a><span class="co"># to show that this is the same as the test using ranks...</span></span>
+<span id="cb84-2"><a href="#cb84-2" aria-hidden="true" tabindex="-1"></a><span class="co"># use {dplyr} to sort by femur.length...</span></span>
 <span id="cb84-3"><a href="#cb84-3" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> <span class="fu">arrange</span>(d, femur_length)</span>
 <span id="cb84-4"><a href="#cb84-4" aria-hidden="true" tabindex="-1"></a><span class="co"># then use {dplyr} to add new variable of rank femur_length</span></span>
 <span id="cb84-5"><a href="#cb84-5" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> <span class="fu">mutate</span>(d, <span class="at">femur_rank =</span> <span class="fu">row</span>(<span class="fu">data.frame</span>(d<span class="sc">$</span>femur_length)))</span>
@@ -1390,9 +1447,11 @@ window.Quarto = {
 </div>
 <p>For a post-hoc test of which groups are different following a Kruskall-Wallis test, we can use either a pairwise Mann-Whitney U test, a Dunn test, or a Conover-Iman test. The latter two tests are implemented using <code>dunn.test()</code> from the {dunn.test} package or <code>conover.test()</code> from the {conover.test} package, which both allow us to show the calculated Krusal-Wallis test statistic as well.</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb86"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb86-1"><a href="#cb86-1" aria-hidden="true" tabindex="-1"></a><span class="co"># pairwise Mann-Whitney U test the arguments are a vector of data, a vector</span></span>
-<span id="cb86-2"><a href="#cb86-2" aria-hidden="true" tabindex="-1"></a><span class="co"># with the grouping factor, and the multiple test correction method...</span></span>
-<span id="cb86-3"><a href="#cb86-3" aria-hidden="true" tabindex="-1"></a><span class="fu">pairwise.wilcox.test</span>(d<span class="sc">$</span>femur_length, d<span class="sc">$</span>age, <span class="at">p.adjust.method =</span> <span class="st">"bonferroni"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb86"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb86-1"><a href="#cb86-1" aria-hidden="true" tabindex="-1"></a><span class="co"># pairwise Mann-Whitney U test</span></span>
+<span id="cb86-2"><a href="#cb86-2" aria-hidden="true" tabindex="-1"></a><span class="co"># the arguments are a vector of data, a vector with the grouping factor, and the multiple test correction method...</span></span>
+<span id="cb86-3"><a href="#cb86-3" aria-hidden="true" tabindex="-1"></a><span class="fu">pairwise.wilcox.test</span>(d<span class="sc">$</span>femur_length, d<span class="sc">$</span>age,</span>
+<span id="cb86-4"><a href="#cb86-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">p.adjust.method =</span> <span class="st">"bonferroni"</span></span>
+<span id="cb86-5"><a href="#cb86-5" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>## 
 ##  Pairwise comparisons using Wilcoxon rank sum test with continuity correction 
@@ -1406,14 +1465,13 @@ window.Quarto = {
 ## 
 ## P value adjustment method: bonferroni</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb88"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb88-1"><a href="#cb88-1" aria-hidden="true" tabindex="-1"></a><span class="co"># `dunn.test()` and `conover.test()` include another argument, `kw=`, which is</span></span>
-<span id="cb88-2"><a href="#cb88-2" aria-hidden="true" tabindex="-1"></a><span class="co"># whether or not to output KW results</span></span>
-<span id="cb88-3"><a href="#cb88-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dunn.test)</span>
-<span id="cb88-4"><a href="#cb88-4" aria-hidden="true" tabindex="-1"></a><span class="fu">dunn.test</span>(d<span class="sc">$</span>femur_length, <span class="at">g =</span> d<span class="sc">$</span>age, <span class="at">method =</span> <span class="st">"bonferroni"</span>, <span class="at">kw =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb88-5"><a href="#cb88-5" aria-hidden="true" tabindex="-1"></a><span class="fu">detach</span>(package<span class="sc">:</span>dunn.test)</span>
-<span id="cb88-6"><a href="#cb88-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(conover.test)</span>
-<span id="cb88-7"><a href="#cb88-7" aria-hidden="true" tabindex="-1"></a><span class="fu">conover.test</span>(d<span class="sc">$</span>femur_length, <span class="at">g =</span> d<span class="sc">$</span>age, <span class="at">method =</span> <span class="st">"bonferroni"</span>, <span class="at">kw =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb88-8"><a href="#cb88-8" aria-hidden="true" tabindex="-1"></a><span class="fu">detach</span>(package<span class="sc">:</span>conover.test)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb88"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb88-1"><a href="#cb88-1" aria-hidden="true" tabindex="-1"></a><span class="co"># `dunn.test()` and `conover.test()` include another argument, `kw=`, which is whether or not to output KW results</span></span>
+<span id="cb88-2"><a href="#cb88-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dunn.test)</span>
+<span id="cb88-3"><a href="#cb88-3" aria-hidden="true" tabindex="-1"></a><span class="fu">dunn.test</span>(d<span class="sc">$</span>femur_length, <span class="at">g =</span> d<span class="sc">$</span>age, <span class="at">method =</span> <span class="st">"bonferroni"</span>, <span class="at">kw =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb88-4"><a href="#cb88-4" aria-hidden="true" tabindex="-1"></a><span class="fu">detach</span>(package<span class="sc">:</span>dunn.test)</span>
+<span id="cb88-5"><a href="#cb88-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(conover.test)</span>
+<span id="cb88-6"><a href="#cb88-6" aria-hidden="true" tabindex="-1"></a><span class="fu">conover.test</span>(d<span class="sc">$</span>femur_length, <span class="at">g =</span> d<span class="sc">$</span>age, <span class="at">method =</span> <span class="st">"bonferroni"</span>, <span class="at">kw =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb88-7"><a href="#cb88-7" aria-hidden="true" tabindex="-1"></a><span class="fu">detach</span>(package<span class="sc">:</span>conover.test)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <section id="effect-sizes" class="level3" data-number="20.7.1">
 <h3 data-number="20.7.1" class="anchored" data-anchor-id="effect-sizes"><span class="header-section-number">20.7.1</span> Effect Sizes</h3>
@@ -1435,8 +1493,8 @@ window.Quarto = {
 ## 
 ## - One-sided CIs: upper bound fixed at [1.00].</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb92"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb92-1"><a href="#cb92-1" aria-hidden="true" tabindex="-1"></a><span class="co"># or `eta_squared(m.aov)` we can hand-calculate this same value from the ANOVA</span></span>
-<span id="cb92-2"><a href="#cb92-2" aria-hidden="true" tabindex="-1"></a><span class="co"># table as 6152/(6152 + 1452)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb92"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb92-1"><a href="#cb92-1" aria-hidden="true" tabindex="-1"></a><span class="co"># or `eta_squared(m.aov)`</span></span>
+<span id="cb92-2"><a href="#cb92-2" aria-hidden="true" tabindex="-1"></a><span class="co"># we can hand-calculate this same value from the ANOVA table as 6152/(6152 + 1452)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Here, 81% of the variance in <strong>femur length</strong> is accounted for by variance in the grouping variable <strong>age</strong>.</p>
 <p>Applied to a linear model object, the <code>effectsize()</code> function refits the model and returns <strong>standardized</strong> coefficients rather than unstandardized ones. This is equivalent to running the original linear model after standardizing all of the variables so that they are represented on the same scale, which is typically done via a <span class="math inline">\(Z\)</span> transformation (i.e., by subtracting its mean from each variable observation and divide by its standard deviation): <span class="math inline">\(z_i = \frac{x_i - \mu_x}{SD_x}\)</span></p>
@@ -1479,22 +1537,30 @@ window.Quarto = {
 <p>Model description and testing for multiple-factor ANOVA is a simple extension of the formula notation which we’ve used for single factors. First, though, let’s quickly check that our groups have similar variance.</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb98"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb98-1"><a href="#cb98-1" aria-hidden="true" tabindex="-1"></a>stats <span class="ot">&lt;-</span> d <span class="sc">|&gt;</span></span>
-<span id="cb98-2"><a href="#cb98-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">group_by</span>(age, sex) <span class="sc">|&gt;</span></span>
-<span id="cb98-3"><a href="#cb98-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">summarize</span>(<span class="st">`</span><span class="at">mean(femur_length)</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">mean</span>(femur_length), <span class="st">`</span><span class="at">sd(femur_length)</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">sd</span>(femur_length))</span>
-<span id="cb98-4"><a href="#cb98-4" aria-hidden="true" tabindex="-1"></a><span class="co"># first we calculate averages by combination of factors</span></span>
-<span id="cb98-5"><a href="#cb98-5" aria-hidden="true" tabindex="-1"></a><span class="fu">max</span>(stats<span class="sc">$</span><span class="st">`</span><span class="at">sd(femur_length)</span><span class="st">`</span>)<span class="sc">/</span><span class="fu">min</span>(stats<span class="sc">$</span><span class="st">`</span><span class="at">sd(femur_length)</span><span class="st">`</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb98-2"><a href="#cb98-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(age, sex) <span class="sc">|&gt;</span></span>
+<span id="cb98-3"><a href="#cb98-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
+<span id="cb98-4"><a href="#cb98-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">"mean(femur_length)"</span> <span class="ot">=</span> <span class="fu">mean</span>(femur_length),</span>
+<span id="cb98-5"><a href="#cb98-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">"sd(femur_length)"</span> <span class="ot">=</span> <span class="fu">sd</span>(femur_length)</span>
+<span id="cb98-6"><a href="#cb98-6" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb98-7"><a href="#cb98-7" aria-hidden="true" tabindex="-1"></a><span class="co"># first we calculate averages by combination of factors</span></span>
+<span id="cb98-8"><a href="#cb98-8" aria-hidden="true" tabindex="-1"></a><span class="fu">max</span>(stats<span class="sc">$</span><span class="st">`</span><span class="at">sd(femur_length)</span><span class="st">`</span>) <span class="sc">/</span> <span class="fu">min</span>(stats<span class="sc">$</span><span class="st">`</span><span class="at">sd(femur_length)</span><span class="st">`</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>## [1] 1.882171</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb100"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb100-1"><a href="#cb100-1" aria-hidden="true" tabindex="-1"></a><span class="co"># check that variances in each group are roughly equal (ratio of max/min is &lt;2)</span></span>
-<span id="cb100-2"><a href="#cb100-2" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> d, <span class="fu">aes</span>(<span class="at">y =</span> femur_length, <span class="at">x =</span> sex)) <span class="sc">+</span> <span class="fu">geom_boxplot</span>() <span class="sc">+</span> <span class="fu">facet_wrap</span>(<span class="sc">~</span>age,</span>
-<span id="cb100-3"><a href="#cb100-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">ncol =</span> <span class="dv">4</span>) <span class="sc">+</span> <span class="fu">xlab</span>(<span class="st">"Sex"</span>) <span class="sc">+</span> <span class="fu">ylab</span>(<span class="st">"Femur Length (cm)"</span>)</span>
-<span id="cb100-4"><a href="#cb100-4" aria-hidden="true" tabindex="-1"></a><span class="co"># and let's plot what the data look like p &lt;- p + geom_point() # uncommenting</span></span>
-<span id="cb100-5"><a href="#cb100-5" aria-hidden="true" tabindex="-1"></a><span class="co"># this shows all points</span></span>
-<span id="cb100-6"><a href="#cb100-6" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> p <span class="sc">+</span> <span class="fu">stat_summary</span>(<span class="at">data =</span> d, <span class="fu">aes</span>(<span class="at">y =</span> femur_length, <span class="at">x =</span> sex), <span class="at">fun =</span> base<span class="sc">::</span>mean,</span>
-<span id="cb100-7"><a href="#cb100-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">"darkgreen"</span>, <span class="at">geom =</span> <span class="st">"point"</span>, <span class="at">shape =</span> <span class="dv">8</span>, <span class="at">size =</span> <span class="dv">6</span>)</span>
-<span id="cb100-8"><a href="#cb100-8" aria-hidden="true" tabindex="-1"></a><span class="co"># make sure we use {base} version of mean</span></span>
-<span id="cb100-9"><a href="#cb100-9" aria-hidden="true" tabindex="-1"></a>p</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb100-2"><a href="#cb100-2" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> d, <span class="fu">aes</span>(<span class="at">y =</span> femur_length, <span class="at">x =</span> sex)) <span class="sc">+</span></span>
+<span id="cb100-3"><a href="#cb100-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
+<span id="cb100-4"><a href="#cb100-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>age, <span class="at">ncol =</span> <span class="dv">4</span>) <span class="sc">+</span></span>
+<span id="cb100-5"><a href="#cb100-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Sex"</span>) <span class="sc">+</span></span>
+<span id="cb100-6"><a href="#cb100-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"Femur Length (cm)"</span>)</span>
+<span id="cb100-7"><a href="#cb100-7" aria-hidden="true" tabindex="-1"></a><span class="co"># and let's plot what the data look like</span></span>
+<span id="cb100-8"><a href="#cb100-8" aria-hidden="true" tabindex="-1"></a><span class="co"># p &lt;- p + geom_point() # uncommenting this shows all points</span></span>
+<span id="cb100-9"><a href="#cb100-9" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> p <span class="sc">+</span> <span class="fu">stat_summary</span>(</span>
+<span id="cb100-10"><a href="#cb100-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> d, <span class="fu">aes</span>(<span class="at">y =</span> femur_length, <span class="at">x =</span> sex),</span>
+<span id="cb100-11"><a href="#cb100-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">fun =</span> base<span class="sc">::</span>mean, <span class="at">color =</span> <span class="st">"darkgreen"</span>, <span class="at">geom =</span> <span class="st">"point"</span>, <span class="at">shape =</span> <span class="dv">8</span>, <span class="at">size =</span> <span class="dv">6</span></span>
+<span id="cb100-12"><a href="#cb100-12" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb100-13"><a href="#cb100-13" aria-hidden="true" tabindex="-1"></a><span class="co"># make sure we use {base} version of mean</span></span>
+<span id="cb100-14"><a href="#cb100-14" aria-hidden="true" tabindex="-1"></a>p</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -1628,9 +1694,15 @@ window.Quarto = {
 <h3 data-number="20.8.2" class="anchored" data-anchor-id="visualizing-interactions"><span class="header-section-number">20.8.2</span> Visualizing Interactions</h3>
 <p>We can use the function <code>interaction.plot()</code> to visualize interactions among categorical variables in our raw data…</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb118"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb118-1"><a href="#cb118-1" aria-hidden="true" tabindex="-1"></a><span class="fu">interaction.plot</span>(<span class="at">x.factor =</span> <span class="fu">factor</span>(d<span class="sc">$</span>age, <span class="at">level =</span> <span class="fu">c</span>(<span class="st">"I"</span>, <span class="st">"J"</span>, <span class="st">"S"</span>, <span class="st">"A"</span>)), <span class="at">xlab =</span> <span class="st">"Age"</span>,</span>
-<span id="cb118-2"><a href="#cb118-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">trace.factor =</span> d<span class="sc">$</span>sex, <span class="at">trace.label =</span> <span class="st">"Sex"</span>, <span class="at">response =</span> d<span class="sc">$</span>femur_length, <span class="at">fun =</span> base<span class="sc">::</span>mean,</span>
-<span id="cb118-3"><a href="#cb118-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">ylab =</span> <span class="st">"Mean Femur Length"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb118"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb118-1"><a href="#cb118-1" aria-hidden="true" tabindex="-1"></a><span class="fu">interaction.plot</span>(</span>
+<span id="cb118-2"><a href="#cb118-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">x.factor =</span> <span class="fu">factor</span>(d<span class="sc">$</span>age, <span class="at">level =</span> <span class="fu">c</span>(<span class="st">"I"</span>, <span class="st">"J"</span>, <span class="st">"S"</span>, <span class="st">"A"</span>)),</span>
+<span id="cb118-3"><a href="#cb118-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">xlab =</span> <span class="st">"Age"</span>,</span>
+<span id="cb118-4"><a href="#cb118-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">trace.factor =</span> d<span class="sc">$</span>sex,</span>
+<span id="cb118-5"><a href="#cb118-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">trace.label =</span> <span class="st">"Sex"</span>,</span>
+<span id="cb118-6"><a href="#cb118-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">response =</span> d<span class="sc">$</span>femur_length,</span>
+<span id="cb118-7"><a href="#cb118-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">fun =</span> base<span class="sc">::</span>mean,</span>
+<span id="cb118-8"><a href="#cb118-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">ylab =</span> <span class="st">"Mean Femur Length"</span></span>
+<span id="cb118-9"><a href="#cb118-9" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -1643,7 +1715,10 @@ window.Quarto = {
 <p>We can also use either the {sjPlot} or {emmeans} packages to look at differences in <strong>Mean Femur Length</strong> predicted by our multiple ANOVA model. These plot the estimated marginal means, or the average predicted scores scores for each independent variable at a given level of the other independent variable…</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb119"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb119-1"><a href="#cb119-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sjPlot)</span>
-<span id="cb119-2"><a href="#cb119-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_model</span>(m.aov, <span class="at">type =</span> <span class="st">"emm"</span>, <span class="at">terms =</span> <span class="fu">c</span>(<span class="st">"age"</span>, <span class="st">"sex"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb119-2"><a href="#cb119-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_model</span>(m.aov,</span>
+<span id="cb119-3"><a href="#cb119-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">type =</span> <span class="st">"emm"</span>,</span>
+<span id="cb119-4"><a href="#cb119-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">terms =</span> <span class="fu">c</span>(<span class="st">"age"</span>, <span class="st">"sex"</span>)</span>
+<span id="cb119-5"><a href="#cb119-5" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -1653,7 +1728,10 @@ window.Quarto = {
 </div>
 <div class="sourceCode cell-code" id="cb120"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb120-1"><a href="#cb120-1" aria-hidden="true" tabindex="-1"></a><span class="fu">detach</span>(package<span class="sc">:</span>sjPlot)</span>
 <span id="cb120-2"><a href="#cb120-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(emmeans)</span>
-<span id="cb120-3"><a href="#cb120-3" aria-hidden="true" tabindex="-1"></a><span class="fu">emmip</span>(m.aov, sex <span class="sc">~</span> age, <span class="at">CIs =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb120-3"><a href="#cb120-3" aria-hidden="true" tabindex="-1"></a><span class="fu">emmip</span>(m.aov,</span>
+<span id="cb120-4"><a href="#cb120-4" aria-hidden="true" tabindex="-1"></a>  sex <span class="sc">~</span> age,</span>
+<span id="cb120-5"><a href="#cb120-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">CIs =</span> <span class="cn">TRUE</span></span>
+<span id="cb120-6"><a href="#cb120-6" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -1929,24 +2007,35 @@ window.Quarto = {
 <p>We then compare the value of the <span class="math inline">\(\chi^2\)</span> statistic to the Chi-Square distribution with <span class="math inline">\(k-1\)</span> degrees of freedom. The Chi-Square distribution, like the <span class="math inline">\(F\)</span> distribution, is a continuous probability distribution, defined for <span class="math inline">\(x≥0\)</span>. It is governed by a single parameter, <span class="math inline">\(df\)</span>.</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb157"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb157-1"><a href="#cb157-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>))</span>
-<span id="cb157-2"><a href="#cb157-2" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">dchisq</span>(x, <span class="at">df =</span> <span class="dv">1</span>), <span class="at">col =</span> <span class="st">"green"</span>, <span class="at">lty =</span> <span class="dv">3</span>, <span class="at">lwd =</span> <span class="dv">2</span>, <span class="at">xlim =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">20</span>), <span class="at">main =</span> <span class="st">"Some Example Chi-Square Distributions"</span>,</span>
-<span id="cb157-3"><a href="#cb157-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">sub =</span> <span class="st">"(vertical line shows critical value for df=3)"</span>, <span class="at">ylab =</span> <span class="st">"f(x)"</span>, <span class="at">xlab =</span> <span class="st">"x"</span>)</span>
-<span id="cb157-4"><a href="#cb157-4" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">dchisq</span>(x, <span class="at">df =</span> <span class="dv">3</span>), <span class="at">col =</span> <span class="st">"blue"</span>, <span class="at">lty =</span> <span class="dv">3</span>, <span class="at">lwd =</span> <span class="dv">2</span>, <span class="at">add =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb157-5"><a href="#cb157-5" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">dchisq</span>(x, <span class="at">df =</span> <span class="dv">5</span>), <span class="at">col =</span> <span class="st">"red"</span>, <span class="at">lty =</span> <span class="dv">3</span>, <span class="at">lwd =</span> <span class="dv">2</span>, <span class="at">add =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb157-6"><a href="#cb157-6" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">dchisq</span>(x, <span class="at">df =</span> <span class="dv">10</span>), <span class="at">col =</span> <span class="st">"purple"</span>, <span class="at">lty =</span> <span class="dv">3</span>, <span class="at">lwd =</span> <span class="dv">2</span>, <span class="at">add =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb157-7"><a href="#cb157-7" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">"right"</span>, <span class="fu">c</span>(<span class="st">"df=1"</span>, <span class="st">"df=3"</span>, <span class="st">"df=5"</span>, <span class="st">"df=10"</span>), <span class="at">lty =</span> <span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">3</span>, <span class="dv">3</span>, <span class="dv">3</span>), <span class="at">lwd =</span> <span class="dv">2</span>,</span>
-<span id="cb157-8"><a href="#cb157-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">col =</span> <span class="fu">c</span>(<span class="st">"green"</span>, <span class="st">"blue"</span>, <span class="st">"red"</span>, <span class="st">"purple"</span>, <span class="st">"black"</span>), <span class="at">bty =</span> <span class="st">"n"</span>, <span class="at">cex =</span> <span class="fl">0.75</span>)</span>
-<span id="cb157-9"><a href="#cb157-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb157-10"><a href="#cb157-10" aria-hidden="true" tabindex="-1"></a>crit <span class="ot">&lt;-</span> <span class="fu">qchisq</span>(<span class="at">p =</span> <span class="fl">0.95</span>, <span class="at">df =</span> <span class="dv">3</span>)</span>
-<span id="cb157-11"><a href="#cb157-11" aria-hidden="true" tabindex="-1"></a>crit</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb157-2"><a href="#cb157-2" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">dchisq</span>(x, <span class="at">df =</span> <span class="dv">1</span>),</span>
+<span id="cb157-3"><a href="#cb157-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">col =</span> <span class="st">"green"</span>, <span class="at">lty =</span> <span class="dv">3</span>, <span class="at">lwd =</span> <span class="dv">2</span>, <span class="at">xlim =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">20</span>),</span>
+<span id="cb157-4"><a href="#cb157-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">main =</span> <span class="st">"Some Example Chi-Square Distributions"</span>,</span>
+<span id="cb157-5"><a href="#cb157-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">sub =</span> <span class="st">"(vertical line shows critical value for df=3)"</span>,</span>
+<span id="cb157-6"><a href="#cb157-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">ylab =</span> <span class="st">"f(x)"</span>, <span class="at">xlab =</span> <span class="st">"x"</span></span>
+<span id="cb157-7"><a href="#cb157-7" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb157-8"><a href="#cb157-8" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">dchisq</span>(x, <span class="at">df =</span> <span class="dv">3</span>), <span class="at">col =</span> <span class="st">"blue"</span>, <span class="at">lty =</span> <span class="dv">3</span>, <span class="at">lwd =</span> <span class="dv">2</span>, <span class="at">add =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb157-9"><a href="#cb157-9" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">dchisq</span>(x, <span class="at">df =</span> <span class="dv">5</span>), <span class="at">col =</span> <span class="st">"red"</span>, <span class="at">lty =</span> <span class="dv">3</span>, <span class="at">lwd =</span> <span class="dv">2</span>, <span class="at">add =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb157-10"><a href="#cb157-10" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">dchisq</span>(x, <span class="at">df =</span> <span class="dv">10</span>), <span class="at">col =</span> <span class="st">"purple"</span>, <span class="at">lty =</span> <span class="dv">3</span>, <span class="at">lwd =</span> <span class="dv">2</span>, <span class="at">add =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb157-11"><a href="#cb157-11" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">"right"</span>, <span class="fu">c</span>(<span class="st">"df=1"</span>, <span class="st">"df=3"</span>, <span class="st">"df=5"</span>, <span class="st">"df=10"</span>),</span>
+<span id="cb157-12"><a href="#cb157-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">lty =</span> <span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">3</span>, <span class="dv">3</span>, <span class="dv">3</span>), <span class="at">lwd =</span> <span class="dv">2</span>,</span>
+<span id="cb157-13"><a href="#cb157-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">col =</span> <span class="fu">c</span>(<span class="st">"green"</span>, <span class="st">"blue"</span>, <span class="st">"red"</span>, <span class="st">"purple"</span>, <span class="st">"black"</span>),</span>
+<span id="cb157-14"><a href="#cb157-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">bty =</span> <span class="st">"n"</span>, <span class="at">cex =</span> .<span class="dv">75</span></span>
+<span id="cb157-15"><a href="#cb157-15" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb157-16"><a href="#cb157-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb157-17"><a href="#cb157-17" aria-hidden="true" tabindex="-1"></a>crit <span class="ot">&lt;-</span> <span class="fu">qchisq</span>(<span class="at">p =</span> <span class="fl">0.95</span>, <span class="at">df =</span> <span class="dv">3</span>)</span>
+<span id="cb157-18"><a href="#cb157-18" aria-hidden="true" tabindex="-1"></a>crit</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>## [1] 7.814728</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb159"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb159-1"><a href="#cb159-1" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v =</span> crit)</span>
 <span id="cb159-2"><a href="#cb159-2" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h =</span> <span class="dv">0</span>)</span>
-<span id="cb159-3"><a href="#cb159-3" aria-hidden="true" tabindex="-1"></a><span class="fu">polygon</span>(<span class="fu">cbind</span>(<span class="fu">c</span>(crit, <span class="fu">seq</span>(<span class="at">from =</span> crit, <span class="at">to =</span> <span class="dv">20</span>, <span class="at">length.out =</span> <span class="dv">1000</span>), <span class="dv">8</span>), <span class="fu">c</span>(<span class="dv">0</span>, <span class="fu">dchisq</span>(<span class="fu">seq</span>(<span class="at">from =</span> crit,</span>
-<span id="cb159-4"><a href="#cb159-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">to =</span> <span class="dv">20</span>, <span class="at">length.out =</span> <span class="dv">1000</span>), <span class="at">df =</span> <span class="dv">3</span>), <span class="dv">0</span>)), <span class="at">border =</span> <span class="st">"black"</span>, <span class="at">col =</span> <span class="fu">rgb</span>(<span class="dv">0</span>, <span class="dv">0</span>,</span>
-<span id="cb159-5"><a href="#cb159-5" aria-hidden="true" tabindex="-1"></a>    <span class="dv">1</span>, <span class="fl">0.5</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb159-3"><a href="#cb159-3" aria-hidden="true" tabindex="-1"></a><span class="fu">polygon</span>(</span>
+<span id="cb159-4"><a href="#cb159-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cbind</span>(</span>
+<span id="cb159-5"><a href="#cb159-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">c</span>(crit, <span class="fu">seq</span>(<span class="at">from =</span> crit, <span class="at">to =</span> <span class="dv">20</span>, <span class="at">length.out =</span> <span class="dv">1000</span>), <span class="dv">8</span>),</span>
+<span id="cb159-6"><a href="#cb159-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">c</span>(<span class="dv">0</span>, <span class="fu">dchisq</span>(<span class="fu">seq</span>(<span class="at">from =</span> crit, <span class="at">to =</span> <span class="dv">20</span>, <span class="at">length.out =</span> <span class="dv">1000</span>), <span class="at">df =</span> <span class="dv">3</span>), <span class="dv">0</span>)</span>
+<span id="cb159-7"><a href="#cb159-7" aria-hidden="true" tabindex="-1"></a>  ),</span>
+<span id="cb159-8"><a href="#cb159-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">border =</span> <span class="st">"black"</span>, <span class="at">col =</span> <span class="fu">rgb</span>(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="fl">0.5</span>)</span>
+<span id="cb159-9"><a href="#cb159-9" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -1983,9 +2072,13 @@ window.Quarto = {
 <details class="code-fold">
 <summary>Show Code</summary>
 <div class="sourceCode cell-code" id="cb164"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb164-1"><a href="#cb164-1" aria-hidden="true" tabindex="-1"></a><span class="co"># equal expectation for each of 4 categories</span></span>
-<span id="cb164-2"><a href="#cb164-2" aria-hidden="true" tabindex="-1"></a>occupation.matrix <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="fu">cbind</span>(obs.table, exp.table, (obs.table <span class="sc">-</span> exp.table)<span class="sc">^</span><span class="dv">2</span><span class="sc">/</span>exp.table))</span>
-<span id="cb164-3"><a href="#cb164-3" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(occupation.matrix) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Oi"</span>, <span class="st">"Ei"</span>, <span class="st">"(Oi-Ei)^2/Ei"</span>)</span>
-<span id="cb164-4"><a href="#cb164-4" aria-hidden="true" tabindex="-1"></a>occupation.matrix</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb164-2"><a href="#cb164-2" aria-hidden="true" tabindex="-1"></a>occupation.matrix <span class="ot">&lt;-</span></span>
+<span id="cb164-3"><a href="#cb164-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">data.frame</span>(<span class="fu">cbind</span>(</span>
+<span id="cb164-4"><a href="#cb164-4" aria-hidden="true" tabindex="-1"></a>    obs.table, exp.table,</span>
+<span id="cb164-5"><a href="#cb164-5" aria-hidden="true" tabindex="-1"></a>    (obs.table <span class="sc">-</span> exp.table)<span class="sc">^</span><span class="dv">2</span> <span class="sc">/</span> exp.table</span>
+<span id="cb164-6"><a href="#cb164-6" aria-hidden="true" tabindex="-1"></a>  ))</span>
+<span id="cb164-7"><a href="#cb164-7" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(occupation.matrix) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Oi"</span>, <span class="st">"Ei"</span>, <span class="st">"(Oi-Ei)^2/Ei"</span>)</span>
+<span id="cb164-8"><a href="#cb164-8" aria-hidden="true" tabindex="-1"></a>occupation.matrix</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <details><summary>Show Output</summary>
@@ -2048,7 +2141,7 @@ window.Quarto = {
 <p>The above was a <strong>Chi-Square goodness of fit</strong> test for one categorical variable… what about if we have two categorical variables and we are curious if there is an association among them? Then we do a <strong>Chi-Square test of independence</strong>. In this case, our Chi-Square statistic would be the sum of <span class="math inline">\(\frac{(O-E)^2}{E}\)</span> across all cells in our table, and our degrees of freedom is (number of rows - 1) <span class="math inline">\(\times\)</span> (number of columns - 1). Let’s suppose we want to see if there is a relationship among zombie apocalypse survivors between gender and occupation.</p>
 <p>First, we determine our table of observed proportions:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb177"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb177-1"><a href="#cb177-1" aria-hidden="true" tabindex="-1"></a>(<span class="at">obs.table =</span> <span class="fu">table</span>(z<span class="sc">$</span>gender, z<span class="sc">$</span>occupation))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb177"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb177-1"><a href="#cb177-1" aria-hidden="true" tabindex="-1"></a>(obs.table <span class="ot">&lt;-</span> <span class="fu">table</span>(z<span class="sc">$</span>gender, z<span class="sc">$</span>occupation))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>##         
 ##          natural science engineering logistics other
@@ -2058,7 +2151,10 @@ window.Quarto = {
 </div>
 <p>We can view our data graphically using the <code>mosaic plot()</code> function.</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb179"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb179-1"><a href="#cb179-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mosaicplot</span>(<span class="fu">t</span>(obs.table), <span class="at">main =</span> <span class="st">"Contingency Table"</span>, <span class="at">col =</span> <span class="fu">c</span>(<span class="st">"darkseagreen"</span>, <span class="st">"gray"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb179"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb179-1"><a href="#cb179-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mosaicplot</span>(<span class="fu">t</span>(obs.table),</span>
+<span id="cb179-2"><a href="#cb179-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">main =</span> <span class="st">"Contingency Table"</span>,</span>
+<span id="cb179-3"><a href="#cb179-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">col =</span> <span class="fu">c</span>(<span class="st">"darkseagreen"</span>, <span class="st">"gray"</span>)</span>
+<span id="cb179-4"><a href="#cb179-4" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -2070,26 +2166,30 @@ window.Quarto = {
 </div>
 <p>Then, we determine our table of expected proportions:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb181"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb181-1"><a href="#cb181-1" aria-hidden="true" tabindex="-1"></a>(r <span class="ot">&lt;-</span> <span class="fu">rowSums</span>(obs.table))  <span class="co"># row margins</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb181"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb181-1"><a href="#cb181-1" aria-hidden="true" tabindex="-1"></a>(r <span class="ot">&lt;-</span> <span class="fu">rowSums</span>(obs.table)) <span class="co"># row margins</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>##   Male Female 
 ##    506    494</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb183"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb183-1"><a href="#cb183-1" aria-hidden="true" tabindex="-1"></a>(c <span class="ot">&lt;-</span> <span class="fu">colSums</span>(obs.table))  <span class="co"># column margins</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb183"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb183-1"><a href="#cb183-1" aria-hidden="true" tabindex="-1"></a>(c <span class="ot">&lt;-</span> <span class="fu">colSums</span>(obs.table)) <span class="co"># column margins</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>## natural science     engineering       logistics           other 
 ##             390              98             218             294</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb185"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb185-1"><a href="#cb185-1" aria-hidden="true" tabindex="-1"></a>(nr <span class="ot">&lt;-</span> <span class="fu">nrow</span>(obs.table))  <span class="co"># row dimensions</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb185"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb185-1"><a href="#cb185-1" aria-hidden="true" tabindex="-1"></a>(nr <span class="ot">&lt;-</span> <span class="fu">nrow</span>(obs.table)) <span class="co"># row dimensions</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>## [1] 2</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb187"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb187-1"><a href="#cb187-1" aria-hidden="true" tabindex="-1"></a>(nc <span class="ot">&lt;-</span> <span class="fu">ncol</span>(obs.table))  <span class="co"># column dimensions</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb187"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb187-1"><a href="#cb187-1" aria-hidden="true" tabindex="-1"></a>(nc <span class="ot">&lt;-</span> <span class="fu">ncol</span>(obs.table)) <span class="co"># column dimensions</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>## [1] 4</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb189"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb189-1"><a href="#cb189-1" aria-hidden="true" tabindex="-1"></a>(exp.table <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">rep</span>(c, <span class="at">each =</span> nr) <span class="sc">*</span> r<span class="sc">/</span><span class="fu">sum</span>(obs.table), <span class="at">nrow =</span> nr, <span class="at">ncol =</span> nc,</span>
-<span id="cb189-2"><a href="#cb189-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">dimnames =</span> <span class="fu">dimnames</span>(obs.table), <span class="at">byrow =</span> <span class="cn">FALSE</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb189"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb189-1"><a href="#cb189-1" aria-hidden="true" tabindex="-1"></a>(exp.table <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">rep</span>(c, <span class="at">each =</span> nr) <span class="sc">*</span> r <span class="sc">/</span> <span class="fu">sum</span>(obs.table),</span>
+<span id="cb189-2"><a href="#cb189-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">nrow =</span> nr,</span>
+<span id="cb189-3"><a href="#cb189-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">ncol =</span> nc,</span>
+<span id="cb189-4"><a href="#cb189-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">dimnames =</span> <span class="fu">dimnames</span>(obs.table),</span>
+<span id="cb189-5"><a href="#cb189-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">byrow =</span> <span class="cn">FALSE</span></span>
+<span id="cb189-6"><a href="#cb189-6" aria-hidden="true" tabindex="-1"></a>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>##         
 ##          natural science engineering logistics   other
@@ -2097,7 +2197,7 @@ window.Quarto = {
 ##   Female          192.66      48.412   107.692 145.236</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb191"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb191-1"><a href="#cb191-1" aria-hidden="true" tabindex="-1"></a><span class="co"># calculates the product of c*r and divides by total</span></span>
-<span id="cb191-2"><a href="#cb191-2" aria-hidden="true" tabindex="-1"></a>(X2 <span class="ot">&lt;-</span> <span class="fu">sum</span>((obs.table <span class="sc">-</span> exp.table)<span class="sc">^</span><span class="dv">2</span><span class="sc">/</span>exp.table))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb191-2"><a href="#cb191-2" aria-hidden="true" tabindex="-1"></a>(X2 <span class="ot">&lt;-</span> <span class="fu">sum</span>((obs.table <span class="sc">-</span> exp.table)<span class="sc">^</span><span class="dv">2</span> <span class="sc">/</span> exp.table))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>## [1] 0.07076686</code></pre>
 </div>

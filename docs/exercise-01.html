@@ -710,7 +710,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>For ease, then set up a variable to hold your app password…</li>
 </ul>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>pwd_gmail <span class="ot">&lt;-</span> <span class="st">""</span>  <span class="co"># enter your app password between the quotation marks</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>pwd_gmail <span class="ot">&lt;-</span> <span class="st">""</span> <span class="co"># enter your app password between the quotation marks</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="sending-an-email-version-1-using-the-emayili-package" class="level2 unnumbered">
@@ -767,8 +767,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><strong>NOTE:</strong> <code>from=</code> should typically be the email address you are sending the from, although many SMTP transactions will accept alternatives, such as just a name. You can also use a vector of email addresses for the <code>to=</code> argument to send a message to more than one recipient. The <code>from</code> and <code>to</code> arguments are required… <code>subject</code> and <code>text</code> are optional.</p>
 </blockquote>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>message_gmail <span class="ot">&lt;-</span> <span class="fu">envelope</span>(<span class="at">from =</span> <span class="st">"anthony.difiore@utexas.edu"</span>, <span class="at">to =</span> <span class="st">"anthony.difiore@gmail.com"</span>,</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">subject =</span> <span class="st">"Sending a message using {emayili}"</span>, <span class="at">text =</span> <span class="st">"Hello! This is a plain text message sent to my personal Gmail account from my UT Gmail account."</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>message_gmail <span class="ot">&lt;-</span> <span class="fu">envelope</span>(</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">from =</span> <span class="st">"anthony.difiore@utexas.edu"</span>,</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">to =</span> <span class="st">"anthony.difiore@gmail.com"</span>,</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">subject =</span> <span class="st">"Sending a message using {emayili}"</span>,</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">text =</span> <span class="st">"Hello! This is a plain text message sent to my personal Gmail account from my UT Gmail account."</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <blockquote class="blockquote">
 <p><strong>NOTE:</strong> <strong><em>R</em></strong> essentially ignores all the whitespace (spaces and tab characters) and also allows you to have code continue from one line to the next. It is even pretty forgiving about where you put carriage returns, although it is good form to place them following a comma or before/after a parenthesis or brace.</p>
@@ -776,18 +780,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Using {tidyverse} syntax, we can set up the same email as follows using the “pipe” operator (<code>%&gt;%</code>):</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>message_gmail <span class="ot">&lt;-</span> <span class="fu">envelope</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">from</span>(<span class="st">"anthony.difiore@utexas.edu"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">to</span>(<span class="st">"anthony.difiore@gmail.com"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">subject</span>(<span class="st">"Sending a message using {emayili}"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">text</span>(<span class="st">"Hello! This is a plain text message sent to my personal Gmail account from my UT Gmail account."</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">from</span>(<span class="st">"anthony.difiore@utexas.edu"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">to</span>(<span class="st">"anthony.difiore@gmail.com"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">subject</span>(<span class="st">"Sending a message using {emayili}"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">text</span>(<span class="st">"Hello! This is a plain text message sent to my personal Gmail account from my UT Gmail account."</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>As of <strong><em>R</em></strong> version 4.1, we can alternatively use <strong><em>R</em></strong>’s “native” pipe operator, <code>|&gt;</code>:</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>message_gmail <span class="ot">&lt;-</span> <span class="fu">envelope</span>() <span class="sc">|&gt;</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">from</span>(<span class="st">"anthony.difiore@utexas.edu"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">to</span>(<span class="st">"anthony.difiore@gmail.com"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">subject</span>(<span class="st">"Sending a message using {emayili}"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">text</span>(<span class="st">"Hello! This is a plain text message sent to my personal Gmail account from my UT Gmail account."</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">from</span>(<span class="st">"anthony.difiore@utexas.edu"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">to</span>(<span class="st">"anthony.difiore@gmail.com"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">subject</span>(<span class="st">"Sending a message using {emayili}"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">text</span>(<span class="st">"Hello! This is a plain text message sent to my personal Gmail account from my UT Gmail account."</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>The difference here is that we are first creating an empty “message” object and then “piping” that object using <code>%&gt;%</code> or <code>|&gt;</code> into different helper functions (<code>from()</code>, <code>to()</code>, etc.) to create the details of the message.</p>
 </section>
@@ -801,12 +805,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><strong>NOTE:</strong> In the function below, <code>max_times=</code> sets the number of attempts the function will make to send the message. The default (if the argument is omitted) is 5, but I have set it to 1 to exit quickly if the server is not contacted. For <code>username=</code> enter your login ID for the service you are sending from, and for <code>password=</code> either use the variable you set up above to hold the “app password” for your Google account, or enter your password directly here, in quotation marks it, in lieu of the variable <code>gmail_pwd</code></p>
 </blockquote>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>smtp_gmail <span class="ot">&lt;-</span> <span class="fu">server</span>(<span class="at">host =</span> <span class="st">"smtp.gmail.com"</span>, <span class="at">port =</span> <span class="dv">465</span>, <span class="at">max_times =</span> <span class="dv">1</span>, <span class="at">username =</span> <span class="st">"anthony.difiore@utexas.edu"</span>,</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">password =</span> pwd_gmail)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>smtp_gmail <span class="ot">&lt;-</span> <span class="fu">server</span>(</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">host =</span> <span class="st">"smtp.gmail.com"</span>,</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">port =</span> <span class="dv">465</span>,</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">max_times =</span> <span class="dv">1</span>,</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">username =</span> <span class="st">"anthony.difiore@utexas.edu"</span>,</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">password =</span> pwd_gmail</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Alternatively, you can use the <code>gmail()</code> function to create a <strong>Gmail</strong> server object more easily…</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>smtp_gmail <span class="ot">&lt;-</span> <span class="fu">gmail</span>(<span class="at">username =</span> <span class="st">"anthony.difiore@utexas.edu"</span>, <span class="at">password =</span> pwd_gmail)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>smtp_gmail <span class="ot">&lt;-</span> <span class="fu">gmail</span>(</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">username =</span> <span class="st">"anthony.difiore@utexas.edu"</span>,</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">password =</span> pwd_gmail</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="step-5" class="level4 unnumbered">
@@ -856,10 +868,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul></li>
 </ul>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">send.mail</span>(<span class="at">from =</span> <span class="st">"anthony.difiore@utexas.edu"</span>, <span class="at">to =</span> <span class="st">"anthony.difiore@gmail.com"</span>,</span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">subject =</span> <span class="st">"Sending a message using {mailR}"</span>, <span class="at">body =</span> <span class="st">"Hello! This is a plain text message sent from a Gmail account."</span>,</span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">smtp =</span> <span class="fu">list</span>(<span class="at">host.name =</span> <span class="st">"smtp.gmail.com"</span>, <span class="at">port =</span> <span class="dv">587</span>, <span class="at">user.name =</span> <span class="st">"anthony.difiore@utexas.edu"</span>,</span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>        <span class="at">passwd =</span> pwd_gmail, <span class="at">ssl =</span> <span class="cn">TRUE</span>), <span class="at">authenticate =</span> <span class="cn">TRUE</span>, <span class="at">send =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">send.mail</span>(</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">from =</span> <span class="st">"anthony.difiore@utexas.edu"</span>,</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">to =</span> <span class="st">"anthony.difiore@gmail.com"</span>,</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">subject =</span> <span class="st">"Sending a message using {mailR}"</span>,</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">body =</span> <span class="st">"Hello! This is a plain text message sent from a Gmail account."</span>,</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">smtp =</span> <span class="fu">list</span>(</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">host.name =</span> <span class="st">"smtp.gmail.com"</span>,</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">port =</span> <span class="dv">587</span>,</span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">user.name =</span> <span class="st">"anthony.difiore@utexas.edu"</span>,</span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">passwd =</span> pwd_gmail,</span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">ssl =</span> <span class="cn">TRUE</span></span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>  ),</span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">authenticate =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">send =</span> <span class="cn">TRUE</span></span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 </section>
@@ -893,20 +916,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>This function takes several intuitive arguments that we can assign values to directly within the function.</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Compose the message</span></span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>message <span class="ot">&lt;-</span> <span class="fu">compose_email</span>(<span class="at">body =</span> <span class="st">"Hello! This is a simple HTML message."</span>)</span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Preview the message.  This will open the HTML message in a browser window or</span></span>
-<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="co"># in the RStudio Viewer tab</span></span>
-<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>message</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>message <span class="ot">&lt;-</span> <span class="fu">compose_email</span>(</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">body =</span> <span class="st">"Hello! This is a simple HTML message."</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Preview the message.</span></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a><span class="co"># This will open the HTML message in a browser window or in the RStudio Viewer tab</span></span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>message</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>We can add some formatting to our email by using the <code>md()</code> function and markdown syntax. Here, we pipe (<code>%&gt;%</code> or <code>|&gt;</code>) the <code>body</code> argument to the <code>md()</code> function to convert it to markdown.</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Compose the message</span></span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>message <span class="ot">&lt;-</span> <span class="fu">compose_email</span>(<span class="at">body =</span> <span class="st">"# Hello!</span><span class="sc">\n</span><span class="st">This is a simple **HTML** message with some *markdown* syntax."</span> <span class="sc">|&gt;</span></span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">md</span>())</span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Preview the message</span></span>
-<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>message</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>message <span class="ot">&lt;-</span> <span class="fu">compose_email</span>(</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">body =</span> <span class="st">"# Hello!</span><span class="sc">\n</span><span class="st">This is a simple **HTML** message with some *markdown* syntax."</span> <span class="sc">|&gt;</span> <span class="fu">md</span>()</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Preview the message</span></span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>message</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>We can also spice up our email with an image from a local file. Here, I use an image stored in a folder called “img” inside the my current working directory.</p>
 <div class="cell" data-layout-align="center">
@@ -914,14 +940,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>text <span class="ot">&lt;-</span> <span class="st">"# Hello!</span><span class="sc">\n</span><span class="st">This is a simple **HTML** message with some *markdown* syntax... and a cool picture!"</span></span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Create image as html</span></span>
-<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>image <span class="ot">&lt;-</span> <span class="fu">add_image</span>(<span class="at">file =</span> <span class="st">"img/batnet.jpg"</span>, <span class="at">width =</span> <span class="dv">300</span>, <span class="at">align =</span> <span class="st">"center"</span>)</span>
-<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Compose the message</span></span>
-<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>message <span class="ot">&lt;-</span> <span class="fu">compose_email</span>(<span class="at">body =</span> <span class="fu">c</span>(text, image) <span class="sc">|&gt;</span></span>
-<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">md</span>())</span>
-<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Preview the message</span></span>
-<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a>message</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>image <span class="ot">&lt;-</span> <span class="fu">add_image</span>(</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">file =</span> <span class="st">"img/batnet.jpg"</span>,</span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">width =</span> <span class="dv">300</span>, <span class="at">align =</span> <span class="st">"center"</span></span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Compose the message</span></span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>message <span class="ot">&lt;-</span> <span class="fu">compose_email</span>(</span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">body =</span> <span class="fu">c</span>(text, image) <span class="sc">|&gt;</span> <span class="fu">md</span>()</span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Preview the message</span></span>
+<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a>message</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="step-4-1" class="level4 unnumbered">
@@ -935,8 +965,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </blockquote>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># credentials file for a Gmail account</span></span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="fu">create_smtp_creds_file</span>(<span class="at">file =</span> <span class="st">"my_gmail_creds.txt"</span>, <span class="at">user =</span> <span class="st">"anthony.difiore@utexas.edu"</span>,</span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">provider =</span> <span class="st">"gmail"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="fu">create_smtp_creds_file</span>(</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">file =</span> <span class="st">"my_gmail_creds.txt"</span>,</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">user =</span> <span class="st">"anthony.difiore@utexas.edu"</span>,</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">provider =</span> <span class="st">"gmail"</span></span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <blockquote class="blockquote">
 <p><strong>NOTE</strong>: If you omit the <code>provider=</code> argument, you should then pass the <code>host=</code>, <code>port=</code>, and <code>use_ssl=</code> arguments yourself to the <code>create_smtp_creds_file()</code> function. The <code>use_ssl=</code> argument allows the use of STARTTLS, which initiates secured (encrypted) TLS or SSL connection, which many email servers require.</p>
@@ -949,8 +982,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># send using Google's servers...</span></span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="fu">smtp_send</span>(<span class="at">email =</span> message, <span class="at">from =</span> <span class="st">"anthony.difiore@utexas.edu"</span>, <span class="at">to =</span> <span class="st">"anthony.difiore@gmail.com"</span>,</span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">subject =</span> <span class="st">"Sending a message using {blastula} and a credentials file"</span>, <span class="at">credentials =</span> <span class="fu">creds_file</span>(<span class="at">file =</span> <span class="st">"my_gmail_creds.txt"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="fu">smtp_send</span>(</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">email =</span> message,</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">from =</span> <span class="st">"anthony.difiore@utexas.edu"</span>,</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">to =</span> <span class="st">"anthony.difiore@gmail.com"</span>,</span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">subject =</span> <span class="st">"Sending a message using {blastula} and a credentials file"</span>,</span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">credentials =</span> <span class="fu">creds_file</span>(<span class="at">file =</span> <span class="st">"my_gmail_creds.txt"</span>)</span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="step-6" class="level4 unnumbered">
@@ -961,10 +999,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>The following will prompt us for our password to send the message:</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># send using Google's servers...</span></span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>message <span class="sc">|&gt;</span></span>
-<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">smtp_send</span>(<span class="at">from =</span> <span class="st">"anthony.difiore@utexas.edu"</span>, <span class="at">to =</span> <span class="st">"anthony.difiore@gmail.com"</span>,</span>
-<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>        <span class="at">subject =</span> <span class="st">"Sending a message using {blastula} and entering credentials manually"</span>,</span>
-<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>        <span class="at">credentials =</span> <span class="fu">creds</span>(<span class="at">user =</span> <span class="st">"anthony.difiore@utexas.edu"</span>, <span class="at">provider =</span> <span class="st">"gmail"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>message <span class="sc">|&gt;</span> <span class="fu">smtp_send</span>(</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">from =</span> <span class="st">"anthony.difiore@utexas.edu"</span>,</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">to =</span> <span class="st">"anthony.difiore@gmail.com"</span>,</span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">subject =</span> <span class="st">"Sending a message using {blastula} and entering credentials manually"</span>,</span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">credentials =</span> <span class="fu">creds</span>(</span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">user =</span> <span class="st">"anthony.difiore@utexas.edu"</span>,</span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">provider =</span> <span class="st">"gmail"</span></span>
+<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 </section>
@@ -974,12 +1017,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"sendmailR"</span>)</span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sendmailR)</span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="fu">sendmail</span>(<span class="at">from =</span> <span class="st">"anthony.difiore@utexas.edu"</span>, <span class="at">to =</span> <span class="st">"anthony.difiore@gmail.com"</span>, <span class="at">subject =</span> <span class="st">"Sending a message using {sendmailR}"</span>,</span>
-<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">msg =</span> <span class="st">"Hello! This is a plain text message sent to my personal Gmail account from my UT Gmail account."</span>,</span>
-<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">engine =</span> <span class="st">"curl"</span>, <span class="at">engineopts =</span> <span class="fu">list</span>(<span class="at">username =</span> <span class="st">"anthony.difiore@utexas.edu"</span>, <span class="at">password =</span> pwd_gmail),</span>
-<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">control =</span> <span class="fu">list</span>(<span class="at">smtpServer =</span> <span class="st">"smtp://smtp.gmail.com"</span>, <span class="at">smtpPortSMTP =</span> <span class="dv">587</span>))</span>
-<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a><span class="co"># can also include the port as part of the smtpServer argument...  e.g.,</span></span>
-<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a><span class="co"># `control = list(smtpServer='smtp://smtp.gmail.com:587')`</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="fu">sendmail</span>(</span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">from =</span> <span class="st">"anthony.difiore@utexas.edu"</span>,</span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">to =</span> <span class="st">"anthony.difiore@gmail.com"</span>,</span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">subject =</span> <span class="st">"Sending a message using {sendmailR}"</span>,</span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">msg =</span> <span class="st">"Hello! This is a plain text message sent to my personal Gmail account from my UT Gmail account."</span>,</span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">engine =</span> <span class="st">"curl"</span>,</span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">engineopts =</span> <span class="fu">list</span>(<span class="at">username =</span> <span class="st">"anthony.difiore@utexas.edu"</span>, <span class="at">password =</span> pwd_gmail),</span>
+<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">control =</span> <span class="fu">list</span>(<span class="at">smtpServer =</span> <span class="st">"smtp://smtp.gmail.com"</span>, <span class="at">smtpPortSMTP =</span> <span class="dv">587</span>)</span>
+<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a><span class="co"># can also include the port as part of the smtpServer argument...</span></span>
+<span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a><span class="co"># e.g., `control = list(smtpServer="smtp://smtp.gmail.com:587")`</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <section id="next-steps-1" class="level4 unnumbered">
 <h4 class="unnumbered anchored" data-anchor-id="next-steps-1">Next Steps?</h4>
@@ -996,9 +1044,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># create a Gmail key with a user-specified name, stored with the `id=` argument</span></span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="fu">create_smtp_creds_key</span>(<span class="at">id =</span> <span class="st">"my_gmail_key"</span>, <span class="at">user =</span> <span class="st">"anthony.difiore@utexas.edu"</span>, <span class="at">provider =</span> <span class="st">"gmail"</span>,</span>
-<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">overwrite =</span> <span class="cn">TRUE</span>  <span class="co"># this argument is only needed if you have an existing key</span></span>
-<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="fu">create_smtp_creds_key</span>(</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">id =</span> <span class="st">"my_gmail_key"</span>,</span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">user =</span> <span class="st">"anthony.difiore@utexas.edu"</span>,</span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">provider =</span> <span class="st">"gmail"</span>,</span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">overwrite =</span> <span class="cn">TRUE</span> <span class="co"># this argument is only needed if you have an existing key</span></span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># View all keys</span></span>
@@ -1007,9 +1058,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># send a message with credentials from a keychain using Google's servers...</span></span>
 <span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>message <span class="sc">|&gt;</span></span>
-<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">smtp_send</span>(<span class="at">from =</span> <span class="st">"anthony.difiore@utexas.edu"</span>, <span class="at">to =</span> <span class="st">"anthony.difiore@gmail.com"</span>,</span>
-<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>        <span class="at">subject =</span> <span class="st">"Sending a message using {blastula} and credentials from a keychain"</span>,</span>
-<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>        <span class="at">credentials =</span> <span class="fu">creds_key</span>(<span class="at">id =</span> <span class="st">"my_gmail_key"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">smtp_send</span>(</span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">from =</span> <span class="st">"anthony.difiore@utexas.edu"</span>,</span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">to =</span> <span class="st">"anthony.difiore@gmail.com"</span>,</span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">subject =</span> <span class="st">"Sending a message using {blastula} and credentials from a keychain"</span>,</span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">credentials =</span> <span class="fu">creds_key</span>(<span class="at">id =</span> <span class="st">"my_gmail_key"</span>)</span>
+<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 </section>
@@ -1054,7 +1108,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>And save the key!</li>
 </ul>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>key <span class="ot">&lt;-</span> <span class="st">""</span>  <span class="co"># enter your Textbelt API key between the quotation marks</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>key <span class="ot">&lt;-</span> <span class="st">""</span> <span class="co"># enter your Textbelt API key between the quotation marks</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>To send messages, we will use the {httr} package, which includes functions for working with URLs and sending HTTP requests over the web.</p>
 <ul>
@@ -1073,59 +1127,75 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co"># simple message</span></span>
 <span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>send_textbelt_sms <span class="ot">&lt;-</span> <span class="cf">function</span>(phone, message, <span class="at">api_key =</span> key, <span class="at">verbose =</span> <span class="cn">FALSE</span>) {</span>
-<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>    url <span class="ot">&lt;-</span> <span class="st">"https://textbelt.com/text"</span></span>
-<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>    res <span class="ot">&lt;-</span> <span class="fu">POST</span>(url, <span class="at">body =</span> <span class="fu">list</span>(<span class="at">phone =</span> phone, <span class="at">message =</span> message, <span class="at">key =</span> api_key),</span>
-<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a>        <span class="at">encode =</span> <span class="st">"form"</span>)</span>
-<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (verbose) {</span>
-<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a>        <span class="fu">print</span>(res)</span>
-<span id="cb31-8"><a href="#cb31-8" aria-hidden="true" tabindex="-1"></a>    }</span>
-<span id="cb31-9"><a href="#cb31-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">stop_for_status</span>(res)</span>
-<span id="cb31-10"><a href="#cb31-10" aria-hidden="true" tabindex="-1"></a>    result <span class="ot">&lt;-</span> <span class="fu">content</span>(res, <span class="st">"parsed"</span>)</span>
-<span id="cb31-11"><a href="#cb31-11" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Print delivery status</span></span>
-<span id="cb31-12"><a href="#cb31-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (result<span class="sc">$</span>success) {</span>
-<span id="cb31-13"><a href="#cb31-13" aria-hidden="true" tabindex="-1"></a>        <span class="fu">cat</span>(<span class="st">"✅ SMS sent successfully!</span><span class="sc">\n</span><span class="st">"</span>)</span>
-<span id="cb31-14"><a href="#cb31-14" aria-hidden="true" tabindex="-1"></a>    } <span class="cf">else</span> {</span>
-<span id="cb31-15"><a href="#cb31-15" aria-hidden="true" tabindex="-1"></a>        <span class="fu">cat</span>(<span class="st">"❌ SMS failed: "</span>, result<span class="sc">$</span>error, <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span>
-<span id="cb31-16"><a href="#cb31-16" aria-hidden="true" tabindex="-1"></a>    }</span>
-<span id="cb31-17"><a href="#cb31-17" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(result)</span>
-<span id="cb31-18"><a href="#cb31-18" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>  url <span class="ot">&lt;-</span> <span class="st">"https://textbelt.com/text"</span></span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>  res <span class="ot">&lt;-</span> <span class="fu">POST</span>(</span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a>    url,</span>
+<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">body =</span> <span class="fu">list</span>(</span>
+<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a>      <span class="at">phone =</span> phone,</span>
+<span id="cb31-8"><a href="#cb31-8" aria-hidden="true" tabindex="-1"></a>      <span class="at">message =</span> message,</span>
+<span id="cb31-9"><a href="#cb31-9" aria-hidden="true" tabindex="-1"></a>      <span class="at">key =</span> api_key</span>
+<span id="cb31-10"><a href="#cb31-10" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb31-11"><a href="#cb31-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">encode =</span> <span class="st">"form"</span></span>
+<span id="cb31-12"><a href="#cb31-12" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb31-13"><a href="#cb31-13" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (verbose) {</span>
+<span id="cb31-14"><a href="#cb31-14" aria-hidden="true" tabindex="-1"></a>    <span class="fu">print</span>(res)</span>
+<span id="cb31-15"><a href="#cb31-15" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb31-16"><a href="#cb31-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stop_for_status</span>(res)</span>
+<span id="cb31-17"><a href="#cb31-17" aria-hidden="true" tabindex="-1"></a>  result <span class="ot">&lt;-</span> <span class="fu">content</span>(res, <span class="st">"parsed"</span>)</span>
+<span id="cb31-18"><a href="#cb31-18" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Print delivery status</span></span>
+<span id="cb31-19"><a href="#cb31-19" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (result<span class="sc">$</span>success) {</span>
+<span id="cb31-20"><a href="#cb31-20" aria-hidden="true" tabindex="-1"></a>    <span class="fu">cat</span>(<span class="st">"✅ SMS sent successfully!</span><span class="sc">\n</span><span class="st">"</span>)</span>
+<span id="cb31-21"><a href="#cb31-21" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
+<span id="cb31-22"><a href="#cb31-22" aria-hidden="true" tabindex="-1"></a>    <span class="fu">cat</span>(<span class="st">"❌ SMS failed: "</span>, result<span class="sc">$</span>error, <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span>
+<span id="cb31-23"><a href="#cb31-23" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb31-24"><a href="#cb31-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(result)</span>
+<span id="cb31-25"><a href="#cb31-25" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>We can also create a version of this function that does the same thing, but also sends a follow–up request to query more information about whether the text was successfully delivered to the recipient.</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>send_textbelt_sms_log <span class="ot">&lt;-</span> <span class="cf">function</span>(phone, message, <span class="at">api_key =</span> key, <span class="at">verbose =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">check_status =</span> <span class="cn">TRUE</span>, <span class="at">poll_interval =</span> <span class="dv">5</span>, <span class="at">max_checks =</span> <span class="dv">6</span>) {</span>
-<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Step 1: Send SMS</span></span>
-<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>    url <span class="ot">&lt;-</span> <span class="st">"https://textbelt.com/text"</span></span>
-<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a>    res <span class="ot">&lt;-</span> <span class="fu">POST</span>(url, <span class="at">body =</span> <span class="fu">list</span>(<span class="at">phone =</span> phone, <span class="at">message =</span> message, <span class="at">key =</span> api_key),</span>
-<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a>        <span class="at">encode =</span> <span class="st">"form"</span>)</span>
-<span id="cb32-7"><a href="#cb32-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (verbose) {</span>
-<span id="cb32-8"><a href="#cb32-8" aria-hidden="true" tabindex="-1"></a>        <span class="fu">print</span>(res)</span>
-<span id="cb32-9"><a href="#cb32-9" aria-hidden="true" tabindex="-1"></a>    }</span>
-<span id="cb32-10"><a href="#cb32-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">stop_for_status</span>(res)</span>
-<span id="cb32-11"><a href="#cb32-11" aria-hidden="true" tabindex="-1"></a>    result <span class="ot">&lt;-</span> <span class="fu">content</span>(res, <span class="st">"parsed"</span>)</span>
-<span id="cb32-12"><a href="#cb32-12" aria-hidden="true" tabindex="-1"></a>    log <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="at">initial_response =</span> result, <span class="at">status_checks =</span> <span class="fu">list</span>())</span>
-<span id="cb32-13"><a href="#cb32-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (<span class="sc">!</span>result<span class="sc">$</span>success) {</span>
-<span id="cb32-14"><a href="#cb32-14" aria-hidden="true" tabindex="-1"></a>        <span class="fu">cat</span>(<span class="st">"❌ SMS failed: "</span>, result<span class="sc">$</span>error, <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span>
-<span id="cb32-15"><a href="#cb32-15" aria-hidden="true" tabindex="-1"></a>        <span class="fu">return</span>(log)</span>
-<span id="cb32-16"><a href="#cb32-16" aria-hidden="true" tabindex="-1"></a>    }</span>
-<span id="cb32-17"><a href="#cb32-17" aria-hidden="true" tabindex="-1"></a>    <span class="fu">cat</span>(<span class="st">"✅ SMS sent successfully!</span><span class="sc">\n</span><span class="st">"</span>)</span>
-<span id="cb32-18"><a href="#cb32-18" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Step 2: Poll for delivery status (paid keys only)</span></span>
-<span id="cb32-19"><a href="#cb32-19" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (check_status <span class="sc">&amp;&amp;</span> <span class="sc">!</span><span class="fu">is.null</span>(result<span class="sc">$</span>textId)) {</span>
-<span id="cb32-20"><a href="#cb32-20" aria-hidden="true" tabindex="-1"></a>        status_url <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">"https://textbelt.com/status/"</span>, result<span class="sc">$</span>textId)</span>
-<span id="cb32-21"><a href="#cb32-21" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>max_checks) {</span>
-<span id="cb32-22"><a href="#cb32-22" aria-hidden="true" tabindex="-1"></a>            <span class="fu">Sys.sleep</span>(poll_interval)</span>
-<span id="cb32-23"><a href="#cb32-23" aria-hidden="true" tabindex="-1"></a>            status_res <span class="ot">&lt;-</span> <span class="fu">GET</span>(status_url)</span>
-<span id="cb32-24"><a href="#cb32-24" aria-hidden="true" tabindex="-1"></a>            status <span class="ot">&lt;-</span> <span class="fu">content</span>(status_res, <span class="st">"parsed"</span>)</span>
-<span id="cb32-25"><a href="#cb32-25" aria-hidden="true" tabindex="-1"></a>            log<span class="sc">$</span>status_checks[[i]] <span class="ot">&lt;-</span> status</span>
-<span id="cb32-26"><a href="#cb32-26" aria-hidden="true" tabindex="-1"></a>            <span class="fu">cat</span>(<span class="fu">sprintf</span>(<span class="st">"Status check %d: %s</span><span class="sc">\n</span><span class="st">"</span>, i, status<span class="sc">$</span>status))</span>
-<span id="cb32-27"><a href="#cb32-27" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> (status<span class="sc">$</span>status <span class="sc">==</span> <span class="st">"DELIVERED"</span>) {</span>
-<span id="cb32-28"><a href="#cb32-28" aria-hidden="true" tabindex="-1"></a>                <span class="fu">cat</span>(<span class="st">"✅ Message delivered!</span><span class="sc">\n</span><span class="st">"</span>)</span>
-<span id="cb32-29"><a href="#cb32-29" aria-hidden="true" tabindex="-1"></a>                <span class="cf">break</span></span>
-<span id="cb32-30"><a href="#cb32-30" aria-hidden="true" tabindex="-1"></a>            }</span>
-<span id="cb32-31"><a href="#cb32-31" aria-hidden="true" tabindex="-1"></a>        }</span>
-<span id="cb32-32"><a href="#cb32-32" aria-hidden="true" tabindex="-1"></a>    }</span>
-<span id="cb32-33"><a href="#cb32-33" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(log)</span>
-<span id="cb32-34"><a href="#cb32-34" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>send_textbelt_sms_log <span class="ot">&lt;-</span> <span class="cf">function</span>(phone, message, <span class="at">api_key =</span> key, <span class="at">verbose =</span> <span class="cn">FALSE</span>, <span class="at">check_status =</span> <span class="cn">TRUE</span>, <span class="at">poll_interval =</span> <span class="dv">5</span>, <span class="at">max_checks =</span> <span class="dv">6</span>) {</span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Step 1: Send SMS</span></span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>  url <span class="ot">&lt;-</span> <span class="st">"https://textbelt.com/text"</span></span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>  res <span class="ot">&lt;-</span> <span class="fu">POST</span>(</span>
+<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a>    url,</span>
+<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">body =</span> <span class="fu">list</span>(</span>
+<span id="cb32-7"><a href="#cb32-7" aria-hidden="true" tabindex="-1"></a>      <span class="at">phone =</span> phone,</span>
+<span id="cb32-8"><a href="#cb32-8" aria-hidden="true" tabindex="-1"></a>      <span class="at">message =</span> message,</span>
+<span id="cb32-9"><a href="#cb32-9" aria-hidden="true" tabindex="-1"></a>      <span class="at">key =</span> api_key</span>
+<span id="cb32-10"><a href="#cb32-10" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb32-11"><a href="#cb32-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">encode =</span> <span class="st">"form"</span></span>
+<span id="cb32-12"><a href="#cb32-12" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb32-13"><a href="#cb32-13" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (verbose) {</span>
+<span id="cb32-14"><a href="#cb32-14" aria-hidden="true" tabindex="-1"></a>    <span class="fu">print</span>(res)</span>
+<span id="cb32-15"><a href="#cb32-15" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb32-16"><a href="#cb32-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stop_for_status</span>(res)</span>
+<span id="cb32-17"><a href="#cb32-17" aria-hidden="true" tabindex="-1"></a>  result <span class="ot">&lt;-</span> <span class="fu">content</span>(res, <span class="st">"parsed"</span>)</span>
+<span id="cb32-18"><a href="#cb32-18" aria-hidden="true" tabindex="-1"></a>  log <span class="ot">&lt;-</span> <span class="fu">list</span>(</span>
+<span id="cb32-19"><a href="#cb32-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">initial_response =</span> result,</span>
+<span id="cb32-20"><a href="#cb32-20" aria-hidden="true" tabindex="-1"></a>    <span class="at">status_checks =</span> <span class="fu">list</span>()</span>
+<span id="cb32-21"><a href="#cb32-21" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb32-22"><a href="#cb32-22" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="sc">!</span>result<span class="sc">$</span>success) {</span>
+<span id="cb32-23"><a href="#cb32-23" aria-hidden="true" tabindex="-1"></a>    <span class="fu">cat</span>(<span class="st">"❌ SMS failed: "</span>, result<span class="sc">$</span>error, <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span>
+<span id="cb32-24"><a href="#cb32-24" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(log)</span>
+<span id="cb32-25"><a href="#cb32-25" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb32-26"><a href="#cb32-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cat</span>(<span class="st">"✅ SMS sent successfully!</span><span class="sc">\n</span><span class="st">"</span>)</span>
+<span id="cb32-27"><a href="#cb32-27" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Step 2: Poll for delivery status (paid keys only)</span></span>
+<span id="cb32-28"><a href="#cb32-28" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (check_status <span class="sc">&amp;&amp;</span> <span class="sc">!</span><span class="fu">is.null</span>(result<span class="sc">$</span>textId)) {</span>
+<span id="cb32-29"><a href="#cb32-29" aria-hidden="true" tabindex="-1"></a>    status_url <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">"https://textbelt.com/status/"</span>, result<span class="sc">$</span>textId)</span>
+<span id="cb32-30"><a href="#cb32-30" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>max_checks) {</span>
+<span id="cb32-31"><a href="#cb32-31" aria-hidden="true" tabindex="-1"></a>      <span class="fu">Sys.sleep</span>(poll_interval)</span>
+<span id="cb32-32"><a href="#cb32-32" aria-hidden="true" tabindex="-1"></a>      status_res <span class="ot">&lt;-</span> <span class="fu">GET</span>(status_url)</span>
+<span id="cb32-33"><a href="#cb32-33" aria-hidden="true" tabindex="-1"></a>      status <span class="ot">&lt;-</span> <span class="fu">content</span>(status_res, <span class="st">"parsed"</span>)</span>
+<span id="cb32-34"><a href="#cb32-34" aria-hidden="true" tabindex="-1"></a>      log<span class="sc">$</span>status_checks[[i]] <span class="ot">&lt;-</span> status</span>
+<span id="cb32-35"><a href="#cb32-35" aria-hidden="true" tabindex="-1"></a>      <span class="fu">cat</span>(<span class="fu">sprintf</span>(<span class="st">"Status check %d: %s</span><span class="sc">\n</span><span class="st">"</span>, i, status<span class="sc">$</span>status))</span>
+<span id="cb32-36"><a href="#cb32-36" aria-hidden="true" tabindex="-1"></a>      <span class="cf">if</span> (status<span class="sc">$</span>status <span class="sc">==</span> <span class="st">"DELIVERED"</span>) {</span>
+<span id="cb32-37"><a href="#cb32-37" aria-hidden="true" tabindex="-1"></a>        <span class="fu">cat</span>(<span class="st">"✅ Message delivered!</span><span class="sc">\n</span><span class="st">"</span>)</span>
+<span id="cb32-38"><a href="#cb32-38" aria-hidden="true" tabindex="-1"></a>        <span class="cf">break</span></span>
+<span id="cb32-39"><a href="#cb32-39" aria-hidden="true" tabindex="-1"></a>      }</span>
+<span id="cb32-40"><a href="#cb32-40" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb32-41"><a href="#cb32-41" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb32-42"><a href="#cb32-42" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(log)</span>
+<span id="cb32-43"><a href="#cb32-43" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Example usage:</p>
 <div class="cell" data-layout-align="center">
@@ -1133,14 +1203,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>message <span class="ot">&lt;-</span> <span class="st">"This is a test of SMS from R using Textbelt"</span></span>
 <span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>status <span class="ot">&lt;-</span> <span class="fu">send_textbelt_sms</span>(phone, message, key)</span>
-<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a>status<span class="sc">$</span>success  <span class="co"># returns whether text was sent successfully</span></span>
-<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a>status<span class="sc">$</span>textID  <span class="co"># returns textID</span></span>
-<span id="cb33-7"><a href="#cb33-7" aria-hidden="true" tabindex="-1"></a>status<span class="sc">$</span>quotaRemaining  <span class="co"># returns number of texts remaining</span></span>
+<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a>status<span class="sc">$</span>success <span class="co"># returns whether text was sent successfully</span></span>
+<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a>status<span class="sc">$</span>textID <span class="co"># returns textID</span></span>
+<span id="cb33-7"><a href="#cb33-7" aria-hidden="true" tabindex="-1"></a>status<span class="sc">$</span>quotaRemaining <span class="co"># returns number of texts remaining</span></span>
 <span id="cb33-8"><a href="#cb33-8" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb33-9"><a href="#cb33-9" aria-hidden="true" tabindex="-1"></a>status <span class="ot">&lt;-</span> <span class="fu">send_textbelt_sms_log</span>(phone, message, key)</span>
-<span id="cb33-10"><a href="#cb33-10" aria-hidden="true" tabindex="-1"></a>status<span class="sc">$</span>initial_response<span class="sc">$</span>success  <span class="co"># returns textID</span></span>
-<span id="cb33-11"><a href="#cb33-11" aria-hidden="true" tabindex="-1"></a>status<span class="sc">$</span>initial_response<span class="sc">$</span>textId  <span class="co"># returns textID</span></span>
-<span id="cb33-12"><a href="#cb33-12" aria-hidden="true" tabindex="-1"></a>status<span class="sc">$</span>initial_response<span class="sc">$</span>quotaRemaining  <span class="co"># returns quota remaining</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb33-10"><a href="#cb33-10" aria-hidden="true" tabindex="-1"></a>status<span class="sc">$</span>initial_response<span class="sc">$</span>success <span class="co"># returns textID</span></span>
+<span id="cb33-11"><a href="#cb33-11" aria-hidden="true" tabindex="-1"></a>status<span class="sc">$</span>initial_response<span class="sc">$</span>textId <span class="co"># returns textID</span></span>
+<span id="cb33-12"><a href="#cb33-12" aria-hidden="true" tabindex="-1"></a>status<span class="sc">$</span>initial_response<span class="sc">$</span>quotaRemaining <span class="co"># returns quota remaining</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="sending-text-via-curl" class="level3">

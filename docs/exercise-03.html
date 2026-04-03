@@ -664,11 +664,25 @@ window.Quarto = {
 <div class="cell" data-layout-align="center">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mutate</span>(d, <span class="at">diet_strategy =</span> <span class="fu">ifelse</span>(Fruit <span class="sc">&gt;=</span> <span class="dv">50</span>, <span class="st">"frugivore"</span>, <span class="fu">ifelse</span>(Leaves <span class="sc">&gt;=</span> <span class="dv">50</span>, <span class="st">"folivore"</span>,</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ifelse</span>(Fruit <span class="sc">&lt;</span> <span class="dv">50</span> <span class="sc">&amp;</span> Leaves <span class="sc">&lt;</span> <span class="dv">50</span>, <span class="st">"omnivore"</span>, <span class="cn">NA</span>))))</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">mutate</span>(d, <span class="at">diet_strategy =</span> <span class="fu">case_when</span>(Fruit <span class="sc">&gt;=</span> <span class="dv">50</span> <span class="sc">~</span> <span class="st">"frugivore"</span>, Leaves <span class="sc">&gt;=</span> <span class="dv">50</span> <span class="sc">~</span> <span class="st">"folivore"</span>,</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    Fruit <span class="sc">&lt;</span> <span class="dv">50</span> <span class="sc">&amp;</span> Leaves <span class="sc">&lt;</span> <span class="dv">50</span> <span class="sc">~</span> <span class="st">"omnivore"</span>, <span class="cn">TRUE</span> <span class="sc">~</span> <span class="cn">NA</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mutate</span>(d, <span class="st">"diet_strategy"</span> <span class="ot">=</span> <span class="fu">ifelse</span>(</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  Fruit <span class="sc">&gt;=</span> <span class="dv">50</span>,</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="st">"frugivore"</span>,</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ifelse</span>(</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    Leaves <span class="sc">&gt;=</span> <span class="dv">50</span>,</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">"folivore"</span>,</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ifelse</span>(Fruit <span class="sc">&lt;</span> <span class="dv">50</span> <span class="sc">&amp;</span> Leaves <span class="sc">&lt;</span> <span class="dv">50</span>, <span class="st">"omnivore"</span>, <span class="cn">NA</span>)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>))</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="fu">mutate</span>(</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>  d,</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>  <span class="st">"diet_strategy"</span> <span class="ot">=</span> <span class="fu">case_when</span>(</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>    Fruit <span class="sc">&gt;=</span> <span class="dv">50</span> <span class="sc">~</span> <span class="st">"frugivore"</span>,</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>    Leaves <span class="sc">&gt;=</span> <span class="dv">50</span> <span class="sc">~</span> <span class="st">"folivore"</span>,</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>    Fruit <span class="sc">&lt;</span> <span class="dv">50</span> <span class="sc">&amp;</span> Leaves <span class="sc">&lt;</span> <span class="dv">50</span> <span class="sc">~</span> <span class="st">"omnivore"</span>,</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>    <span class="cn">TRUE</span> <span class="sc">~</span> <span class="cn">NA</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <ol start="8" type="1">

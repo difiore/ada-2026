@@ -440,7 +440,7 @@ We can also use the {magrittr} pipe's curly brace (`{}`) syntax to wrap the RHS 
 d %>% {plot(log(.$Brain_Size_Species_Mean), log(.$Body_mass_female_mean))}
 ```
 
-> **NOTE:** As mentioned above, ***R*** recently introduced a "native" pipe operator (`|>`) into its {base} syntax. It behaves very similarly to the {dplyr}/{magrittr} forward pipe, **but it does not support dot syntax** the same way. It also requires an explicit function call on the RHS, which means that it is necessary to append `()` to the end of the function name, rather than just using the name. The first version of the line below using `%>%` could be used to take the log of all **Brain_Size_Female_Mean** values in **d**, while the second version using `|>` needs to have `()` appended to the functions calls to work properly.
+> **NOTE:** As mentioned above, newer versions of ***R*** incorporate a "native" pipe operator (`|>`) into its {base} syntax. This operator behaves very similarly to the {dplyr}/{magrittr} forward pipe, **but it does not support dot syntax** the same way. It also requires an explicit function call on the RHS, which means that it is necessary to append `()` to the end of the function name, rather than just using the name. The first version of the line below using `%>%` could be used to take the log of all **Brain_Size_Female_Mean** values in **d**, while the second version using `|>` needs to have `()` appended to the functions calls to work properly.
 
 ```{r}
 d %>% select(Brain_Size_Female_Mean) %>% log %>% head
@@ -486,6 +486,6 @@ detach(package:tidyverse)
 ## Concept Review {.unnumbered}
 
 - Using {dplyr}: `select()`, `filter()`, `arrange()`, `rename()`, `mutate()`, `summarise()`, `group_by()`
-- Chaining and piping with `%>%`  or `|>` and other pipe operators
+- Chaining and piping with `|>` or `%>%` and other pipe operators
 - Joining tables: `inner_join()`, `left_join()`, `right_join()`, `full_join()`
 - Using the {tidylog} package

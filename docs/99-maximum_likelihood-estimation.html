@@ -659,7 +659,7 @@ window.Quarto = {
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>val <span class="ot">&lt;-</span> <span class="fl">45.6</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>mean <span class="ot">&lt;-</span> <span class="dv">50</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>sd <span class="ot">&lt;-</span> <span class="dv">10</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>(l <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">/</span><span class="fu">sqrt</span>(<span class="dv">2</span> <span class="sc">*</span> pi <span class="sc">*</span> sd<span class="sc">^</span><span class="dv">2</span>) <span class="sc">*</span> <span class="fu">exp</span>((<span class="sc">-</span>(val <span class="sc">-</span> mean)<span class="sc">^</span><span class="dv">2</span>)<span class="sc">/</span>(<span class="dv">2</span> <span class="sc">*</span> sd<span class="sc">^</span><span class="dv">2</span>)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>(l <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="sc">/</span> <span class="fu">sqrt</span>(<span class="dv">2</span> <span class="sc">*</span> pi <span class="sc">*</span> sd<span class="sc">^</span><span class="dv">2</span>) <span class="sc">*</span> <span class="fu">exp</span>((<span class="sc">-</span>(val <span class="sc">-</span> mean)<span class="sc">^</span><span class="dv">2</span>) <span class="sc">/</span> (<span class="dv">2</span> <span class="sc">*</span> sd<span class="sc">^</span><span class="dv">2</span>)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>## [1] 0.03621349</code></pre>
 </div>
@@ -673,10 +673,11 @@ window.Quarto = {
 </div>
 <p>To further explore calculating likelihoods, let’s create and plot a sample of 100 random variables from a normal distribution with a <span class="math inline">\(\mu\)</span> of 50 and a <span class="math inline">\(\sigma\)</span> of 10:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">0</span>)  <span class="co"># for reproducibility in rnorm</span></span>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">0</span>) <span class="co"># for reproducibility in rnorm</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">val =</span> <span class="fu">rnorm</span>(<span class="dv">100</span>, <span class="at">mean =</span> <span class="dv">50</span>, <span class="at">sd =</span> <span class="dv">10</span>))</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(d) <span class="sc">+</span> <span class="fu">geom_histogram</span>(<span class="fu">aes</span>(<span class="at">x =</span> val, <span class="at">y =</span> <span class="fu">after_stat</span>(density)))</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>p</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(d) <span class="sc">+</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="fu">aes</span>(<span class="at">x =</span> val, <span class="at">y =</span> <span class="fu">after_stat</span>(density)))</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>p</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>## `stat_bin()` using `bins = 30`. Pick better value `binwidth`.</code></pre>
 </div>
@@ -701,9 +702,9 @@ window.Quarto = {
 </div>
 <p>Now, on top of the histogram of our sample data, let’s plot two different normal distributions, one with the distribution our sample was drawn from (<span class="math inline">\(\mu\)</span> = 50 and <span class="math inline">\(\sigma\)</span> = 10, in red) and another with a different <span class="math inline">\(\mu\)</span> (65) and <span class="math inline">\(\sigma\)</span> (20).</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> p <span class="sc">+</span> <span class="fu">stat_function</span>(<span class="at">fun =</span> <span class="cf">function</span>(x) <span class="fu">dnorm</span>(x, <span class="at">mean =</span> <span class="dv">50</span>, <span class="at">sd =</span> <span class="dv">10</span>), <span class="at">color =</span> <span class="st">"red"</span>,</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">linewidth =</span> <span class="dv">1</span>) <span class="sc">+</span> <span class="fu">stat_function</span>(<span class="at">fun =</span> <span class="cf">function</span>(x) <span class="fu">dnorm</span>(x, <span class="at">mean =</span> <span class="dv">65</span>, <span class="at">sd =</span> <span class="dv">20</span>),</span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">"blue"</span>, <span class="at">linewidth =</span> <span class="dv">1</span>)</span>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> p <span class="sc">+</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_function</span>(<span class="at">fun =</span> <span class="cf">function</span>(x) <span class="fu">dnorm</span>(x, <span class="at">mean =</span> <span class="dv">50</span>, <span class="at">sd =</span> <span class="dv">10</span>), <span class="at">color =</span> <span class="st">"red"</span>, <span class="at">linewidth =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_function</span>(<span class="at">fun =</span> <span class="cf">function</span>(x) <span class="fu">dnorm</span>(x, <span class="at">mean =</span> <span class="dv">65</span>, <span class="at">sd =</span> <span class="dv">20</span>), <span class="at">color =</span> <span class="st">"blue"</span>, <span class="at">linewidth =</span> <span class="dv">1</span>)</span>
 <span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>p</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>## `stat_bin()` using `bins = 30`. Pick better value `binwidth`.</code></pre>
@@ -745,7 +746,7 @@ window.Quarto = {
 </div>
 <p>Note the difference in these two likelihoods, <strong>l1</strong> and <strong>l2</strong>… there is a much higher likelhood of an observation of 41 coming from the first of the two normal distributions we considered. In this case, the <strong>likelihood ratio</strong> is <strong>l1/l2</strong>.</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>l1<span class="sc">/</span>l2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>l1 <span class="sc">/</span> l2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>## [1] 11.88171</code></pre>
 </div>
@@ -774,23 +775,23 @@ window.Quarto = {
 <div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>val <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">41</span>, <span class="dv">70</span>, <span class="dv">10</span>)</span>
 <span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>mean <span class="ot">&lt;-</span> <span class="dv">65</span></span>
 <span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>sd <span class="ot">&lt;-</span> <span class="dv">10</span></span>
-<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>(l <span class="ot">&lt;-</span> <span class="fu">dnorm</span>(val, mean, sd))  <span class="co"># vector of likelihoods of each value</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>(l <span class="ot">&lt;-</span> <span class="fu">dnorm</span>(val, mean, sd)) <span class="co"># vector of likelihoods of each value</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>## [1] 2.239453e-03 3.520653e-02 1.076976e-08</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>(l[<span class="dv">1</span>] <span class="sc">*</span> l[<span class="dv">2</span>] <span class="sc">*</span> l[<span class="dv">3</span>])  <span class="co"># product of likelihoods</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>(l[<span class="dv">1</span>] <span class="sc">*</span> l[<span class="dv">2</span>] <span class="sc">*</span> l[<span class="dv">3</span>]) <span class="co"># product of likelihoods</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>## [1] 8.491242e-13</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>(ll <span class="ot">&lt;-</span> <span class="fu">log</span>(l))  <span class="co"># log likelihoods of each value</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>(ll <span class="ot">&lt;-</span> <span class="fu">log</span>(l)) <span class="co"># log likelihoods of each value</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>## [1]  -6.101524  -3.346524 -18.346524</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>(ll <span class="ot">&lt;-</span> <span class="fu">sum</span>(ll))  <span class="co"># summed log likelihood</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>(ll <span class="ot">&lt;-</span> <span class="fu">sum</span>(ll)) <span class="co"># summed log likelihood</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>## [1] -27.79457</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>(l <span class="ot">&lt;-</span> <span class="fu">exp</span>(ll))  <span class="co"># convert back to likelihood</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>(l <span class="ot">&lt;-</span> <span class="fu">exp</span>(ll)) <span class="co"># convert back to likelihood</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>## [1] 8.491242e-13</code></pre>
 </div>
@@ -809,7 +810,7 @@ window.Quarto = {
 <span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a>l <span class="ot">&lt;-</span> <span class="fu">dnorm</span>(val, mean, sd)</span>
 <span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a>ll <span class="ot">&lt;-</span> <span class="fu">log</span>(l)</span>
 <span id="cb35-6"><a href="#cb35-6" aria-hidden="true" tabindex="-1"></a>ll <span class="ot">&lt;-</span> <span class="fu">sum</span>(ll)</span>
-<span id="cb35-7"><a href="#cb35-7" aria-hidden="true" tabindex="-1"></a>(l <span class="ot">&lt;-</span> <span class="fu">exp</span>(ll))  <span class="co"># a very tiny number!</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb35-7"><a href="#cb35-7" aria-hidden="true" tabindex="-1"></a>(l <span class="ot">&lt;-</span> <span class="fu">exp</span>(ll)) <span class="co"># a very tiny number!</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>## [1] 2.146356e-157</code></pre>
 </div>
@@ -818,7 +819,7 @@ window.Quarto = {
 <span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>l <span class="ot">&lt;-</span> <span class="fu">dnorm</span>(val, mean, sd)</span>
 <span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a>ll <span class="ot">&lt;-</span> <span class="fu">log</span>(l)</span>
 <span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a>ll <span class="ot">&lt;-</span> <span class="fu">sum</span>(ll)</span>
-<span id="cb37-6"><a href="#cb37-6" aria-hidden="true" tabindex="-1"></a>(l <span class="ot">&lt;-</span> <span class="fu">exp</span>(ll))  <span class="co"># an even tinier number</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb37-6"><a href="#cb37-6" aria-hidden="true" tabindex="-1"></a>(l <span class="ot">&lt;-</span> <span class="fu">exp</span>(ll)) <span class="co"># an even tinier number</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>## [1] 8.970731e-187</code></pre>
 </div>
@@ -832,29 +833,32 @@ window.Quarto = {
 <p>First, let’s create a function for calculating the <strong>negative</strong> log likelihood for a set of data under a particular normal distribution. To convert the log likelihood to a negative, we simply multiply it negative 1. The reason we do this is because most optimization algorithms function by searching for parameter values that yield the minimum negative log likelihood rather than the maximum likelihood directly.</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>verbose_nll <span class="ot">&lt;-</span> <span class="cf">function</span>(val, mu, sigma, <span class="at">verbose =</span> <span class="cn">FALSE</span>) {</span>
-<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>    l <span class="ot">&lt;-</span> <span class="dv">0</span>  <span class="co"># set initial likelihood to 0 to define variable</span></span>
-<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>    ll <span class="ot">&lt;-</span> <span class="dv">0</span>  <span class="co"># set initial log likelihood to 0 to define variable</span></span>
-<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(val)) {</span>
-<span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a>        l[[i]] <span class="ot">=</span> <span class="fu">dnorm</span>(val[[i]], <span class="at">mean =</span> mu, <span class="at">sd =</span> sigma)  <span class="co"># likelihoods</span></span>
-<span id="cb39-6"><a href="#cb39-6" aria-hidden="true" tabindex="-1"></a>        ll[[i]] <span class="ot">&lt;-</span> <span class="fu">log</span>(l[[i]])  <span class="co"># log likelihoods</span></span>
-<span id="cb39-7"><a href="#cb39-7" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> (verbose <span class="sc">==</span> <span class="cn">TRUE</span>) {</span>
-<span id="cb39-8"><a href="#cb39-8" aria-hidden="true" tabindex="-1"></a>            <span class="fu">message</span>(<span class="fu">paste0</span>(<span class="st">"x="</span>, <span class="fu">round</span>(val[[i]], <span class="dv">4</span>), <span class="st">" mu="</span>, mu, <span class="st">" sigma="</span>, sigma,</span>
-<span id="cb39-9"><a href="#cb39-9" aria-hidden="true" tabindex="-1"></a>                <span class="st">" L="</span>, <span class="fu">round</span>(l[[i]], <span class="dv">4</span>), <span class="st">" logL="</span>, <span class="fu">round</span>(ll[[i]], <span class="dv">4</span>)))</span>
-<span id="cb39-10"><a href="#cb39-10" aria-hidden="true" tabindex="-1"></a>        }</span>
-<span id="cb39-11"><a href="#cb39-11" aria-hidden="true" tabindex="-1"></a>    }</span>
-<span id="cb39-12"><a href="#cb39-12" aria-hidden="true" tabindex="-1"></a>    nll <span class="ot">&lt;-</span> <span class="sc">-</span><span class="dv">1</span> <span class="sc">*</span> <span class="fu">sum</span>(ll)</span>
-<span id="cb39-13"><a href="#cb39-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(nll)</span>
-<span id="cb39-14"><a href="#cb39-14" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>  l <span class="ot">&lt;-</span> <span class="dv">0</span> <span class="co"># set initial likelihood to 0 to define variable</span></span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>  ll <span class="ot">&lt;-</span> <span class="dv">0</span> <span class="co"># set initial log likelihood to 0 to define variable</span></span>
+<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(val)) {</span>
+<span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a>    l[[i]] <span class="ot">&lt;-</span> <span class="fu">dnorm</span>(val[[i]], <span class="at">mean =</span> mu, <span class="at">sd =</span> sigma) <span class="co"># likelihoods</span></span>
+<span id="cb39-6"><a href="#cb39-6" aria-hidden="true" tabindex="-1"></a>    ll[[i]] <span class="ot">&lt;-</span> <span class="fu">log</span>(l[[i]]) <span class="co"># log likelihoods</span></span>
+<span id="cb39-7"><a href="#cb39-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (verbose <span class="sc">==</span> <span class="cn">TRUE</span>) {</span>
+<span id="cb39-8"><a href="#cb39-8" aria-hidden="true" tabindex="-1"></a>      <span class="fu">message</span>(<span class="fu">paste0</span>(</span>
+<span id="cb39-9"><a href="#cb39-9" aria-hidden="true" tabindex="-1"></a>        <span class="st">"x="</span>, <span class="fu">round</span>(val[[i]], <span class="dv">4</span>),</span>
+<span id="cb39-10"><a href="#cb39-10" aria-hidden="true" tabindex="-1"></a>        <span class="st">" mu="</span>, mu,</span>
+<span id="cb39-11"><a href="#cb39-11" aria-hidden="true" tabindex="-1"></a>        <span class="st">" sigma="</span>, sigma,</span>
+<span id="cb39-12"><a href="#cb39-12" aria-hidden="true" tabindex="-1"></a>        <span class="st">" L="</span>, <span class="fu">round</span>(l[[i]], <span class="dv">4</span>),</span>
+<span id="cb39-13"><a href="#cb39-13" aria-hidden="true" tabindex="-1"></a>        <span class="st">" logL="</span>, <span class="fu">round</span>(ll[[i]], <span class="dv">4</span>)</span>
+<span id="cb39-14"><a href="#cb39-14" aria-hidden="true" tabindex="-1"></a>      ))</span>
+<span id="cb39-15"><a href="#cb39-15" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb39-16"><a href="#cb39-16" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb39-17"><a href="#cb39-17" aria-hidden="true" tabindex="-1"></a>  nll <span class="ot">&lt;-</span> <span class="sc">-</span><span class="dv">1</span> <span class="sc">*</span> <span class="fu">sum</span>(ll)</span>
+<span id="cb39-18"><a href="#cb39-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(nll)</span>
+<span id="cb39-19"><a href="#cb39-19" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Testing our function…</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="co"># if we include verbose = TRUE as an argument to `verbose_nll()`, the function</span></span>
-<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a><span class="co"># will print each likelihood and log likelihood value before returning the</span></span>
-<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a><span class="co"># summed negative log likelihood</span></span>
-<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a>val <span class="ot">&lt;-</span> d<span class="sc">$</span>val</span>
-<span id="cb40-5"><a href="#cb40-5" aria-hidden="true" tabindex="-1"></a>mean <span class="ot">&lt;-</span> <span class="dv">50</span></span>
-<span id="cb40-6"><a href="#cb40-6" aria-hidden="true" tabindex="-1"></a>sd <span class="ot">&lt;-</span> <span class="dv">10</span></span>
-<span id="cb40-7"><a href="#cb40-7" aria-hidden="true" tabindex="-1"></a><span class="fu">verbose_nll</span>(val, mean, sd, <span class="at">verbose =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="co"># if we include verbose = TRUE as an argument to `verbose_nll()`, the function will print each likelihood and log likelihood value before returning the summed negative log likelihood</span></span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>val <span class="ot">&lt;-</span> d<span class="sc">$</span>val</span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>mean <span class="ot">&lt;-</span> <span class="dv">50</span></span>
+<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a>sd <span class="ot">&lt;-</span> <span class="dv">10</span></span>
+<span id="cb40-5"><a href="#cb40-5" aria-hidden="true" tabindex="-1"></a><span class="fu">verbose_nll</span>(val, mean, sd, <span class="at">verbose =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>## x=62.6295 mu=50 sigma=10 L=0.018 logL=-4.0191</code></pre>
 </div>
@@ -1469,9 +1473,9 @@ window.Quarto = {
 <p>To use maximum likelihood estimation, we need to create a simpler version of this function that does not have the data as argument, but rather only involves the parameter we want to estimate. The function below does this. Note that unlike the function above, this version does not use a loop and has the vector variable <em>val</em> included as the first argument to the <code>dnorm()</code> function. We also include the argument <code>log = TRUE</code> within the <code>dnorm()</code> function to calculate the log likelihood directly, instead of including that as an extra step.</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb244"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb244-1"><a href="#cb244-1" aria-hidden="true" tabindex="-1"></a>simple_nll <span class="ot">&lt;-</span> <span class="cf">function</span>(mu, sigma) {</span>
-<span id="cb244-2"><a href="#cb244-2" aria-hidden="true" tabindex="-1"></a>    ll <span class="ot">=</span> <span class="fu">sum</span>(<span class="fu">dnorm</span>(val, <span class="at">mean =</span> mu, <span class="at">sd =</span> sigma, <span class="at">log =</span> <span class="cn">TRUE</span>))</span>
-<span id="cb244-3"><a href="#cb244-3" aria-hidden="true" tabindex="-1"></a>    nll <span class="ot">&lt;-</span> <span class="sc">-</span><span class="dv">1</span> <span class="sc">*</span> ll</span>
-<span id="cb244-4"><a href="#cb244-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(nll)</span>
+<span id="cb244-2"><a href="#cb244-2" aria-hidden="true" tabindex="-1"></a>  ll <span class="ot">&lt;-</span> <span class="fu">sum</span>(<span class="fu">dnorm</span>(val, <span class="at">mean =</span> mu, <span class="at">sd =</span> sigma, <span class="at">log =</span> <span class="cn">TRUE</span>))</span>
+<span id="cb244-3"><a href="#cb244-3" aria-hidden="true" tabindex="-1"></a>  nll <span class="ot">&lt;-</span> <span class="sc">-</span><span class="dv">1</span> <span class="sc">*</span> ll</span>
+<span id="cb244-4"><a href="#cb244-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(nll)</span>
 <span id="cb244-5"><a href="#cb244-5" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Testing our function, we should get the same results as above…</p>
@@ -1503,11 +1507,13 @@ window.Quarto = {
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb249"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb249-1"><a href="#cb249-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(bbmle)</span>
 <span id="cb249-2"><a href="#cb249-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb249-3"><a href="#cb249-3" aria-hidden="true" tabindex="-1"></a>mle_norm <span class="ot">&lt;-</span> <span class="fu">mle2</span>(<span class="at">minuslogl =</span> simple_nll, <span class="at">start =</span> <span class="fu">list</span>(<span class="at">mu =</span> <span class="dv">0</span>, <span class="at">sigma =</span> <span class="dv">1</span>), <span class="at">method =</span> <span class="st">"SANN"</span>  <span class="co"># simulated annealing method of optimization, one of several options</span></span>
-<span id="cb249-4"><a href="#cb249-4" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb249-5"><a href="#cb249-5" aria-hidden="true" tabindex="-1"></a><span class="co"># note that we may sometimes see a warning about NaNs being produced... this is</span></span>
-<span id="cb249-6"><a href="#cb249-6" aria-hidden="true" tabindex="-1"></a><span class="co"># okay!</span></span>
-<span id="cb249-7"><a href="#cb249-7" aria-hidden="true" tabindex="-1"></a>mle_norm</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb249-3"><a href="#cb249-3" aria-hidden="true" tabindex="-1"></a>mle_norm <span class="ot">&lt;-</span> <span class="fu">mle2</span>(</span>
+<span id="cb249-4"><a href="#cb249-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">minuslogl =</span> simple_nll,</span>
+<span id="cb249-5"><a href="#cb249-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">start =</span> <span class="fu">list</span>(<span class="at">mu =</span> <span class="dv">0</span>, <span class="at">sigma =</span> <span class="dv">1</span>),</span>
+<span id="cb249-6"><a href="#cb249-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">method =</span> <span class="st">"SANN"</span> <span class="co"># simulated annealing method of optimization, one of several options</span></span>
+<span id="cb249-7"><a href="#cb249-7" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb249-8"><a href="#cb249-8" aria-hidden="true" tabindex="-1"></a><span class="co"># note that we may sometimes see a warning about NaNs being produced... this is okay!</span></span>
+<span id="cb249-9"><a href="#cb249-9" aria-hidden="true" tabindex="-1"></a>mle_norm</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>## 
 ## Call:
@@ -1520,32 +1526,30 @@ window.Quarto = {
 ## 
 ## Log-likelihood: -359.17</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb251"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb251-1"><a href="#cb251-1" aria-hidden="true" tabindex="-1"></a><span class="co"># note the estimates for `mu` and `sigma` are very close to the population</span></span>
-<span id="cb251-2"><a href="#cb251-2" aria-hidden="true" tabindex="-1"></a><span class="co"># level parameters of the normal distribution that our vector `val` was drawn</span></span>
-<span id="cb251-3"><a href="#cb251-3" aria-hidden="true" tabindex="-1"></a><span class="co"># from</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb251"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb251-1"><a href="#cb251-1" aria-hidden="true" tabindex="-1"></a><span class="co"># note the estimates for `mu` and `sigma` are very close to the population level parameters of the normal distribution that our vector `val` was drawn from</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>An alternative for MLE is the <code>maxLik()</code> function from the {maxLik} package. To use function, we again first define our own log likelihood function, but this time we do not want a <strong>negative</strong> log likelihood, so we do not multiply it by minus 1 (i.e., the first argument <code>maxLik()</code> expects is a log likelihood function, not a <strong>negative</strong> log likelihood function). Our function should also have only one argument… a <strong>vector</strong> of parameter values… rather than separate arguments for each parameter.</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb252"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb252-1"><a href="#cb252-1" aria-hidden="true" tabindex="-1"></a>simple_ll <span class="ot">&lt;-</span> <span class="cf">function</span>(parameters) {</span>
-<span id="cb252-2"><a href="#cb252-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># `parameters` is a vector of parameter values</span></span>
-<span id="cb252-3"><a href="#cb252-3" aria-hidden="true" tabindex="-1"></a>    mu <span class="ot">&lt;-</span> parameters[<span class="dv">1</span>]</span>
-<span id="cb252-4"><a href="#cb252-4" aria-hidden="true" tabindex="-1"></a>    sigma <span class="ot">&lt;-</span> parameters[<span class="dv">2</span>]</span>
-<span id="cb252-5"><a href="#cb252-5" aria-hidden="true" tabindex="-1"></a>    ll <span class="ot">=</span> <span class="fu">sum</span>(<span class="fu">dnorm</span>(val, <span class="at">mean =</span> mu, <span class="at">sd =</span> sigma, <span class="at">log =</span> <span class="cn">TRUE</span>))</span>
-<span id="cb252-6"><a href="#cb252-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(ll)</span>
+<span id="cb252-2"><a href="#cb252-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># `parameters` is a vector of parameter values</span></span>
+<span id="cb252-3"><a href="#cb252-3" aria-hidden="true" tabindex="-1"></a>  mu <span class="ot">&lt;-</span> parameters[<span class="dv">1</span>]</span>
+<span id="cb252-4"><a href="#cb252-4" aria-hidden="true" tabindex="-1"></a>  sigma <span class="ot">&lt;-</span> parameters[<span class="dv">2</span>]</span>
+<span id="cb252-5"><a href="#cb252-5" aria-hidden="true" tabindex="-1"></a>  ll <span class="ot">&lt;-</span> <span class="fu">sum</span>(<span class="fu">dnorm</span>(val, <span class="at">mean =</span> mu, <span class="at">sd =</span> sigma, <span class="at">log =</span> <span class="cn">TRUE</span>))</span>
+<span id="cb252-6"><a href="#cb252-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(ll)</span>
 <span id="cb252-7"><a href="#cb252-7" aria-hidden="true" tabindex="-1"></a>}</span>
 <span id="cb252-8"><a href="#cb252-8" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb252-9"><a href="#cb252-9" aria-hidden="true" tabindex="-1"></a><span class="co"># test...</span></span>
-<span id="cb252-10"><a href="#cb252-10" aria-hidden="true" tabindex="-1"></a><span class="fu">simple_ll</span>(<span class="fu">c</span>(<span class="dv">50</span>, <span class="dv">10</span>))  <span class="co"># this should be very close to the log likelihood returned above</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb252-10"><a href="#cb252-10" aria-hidden="true" tabindex="-1"></a><span class="fu">simple_ll</span>(<span class="fu">c</span>(<span class="dv">50</span>, <span class="dv">10</span>)) <span class="co"># this should be very close to the log likelihood returned above</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>## [1] -360.7421</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb254"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb254-1"><a href="#cb254-1" aria-hidden="true" tabindex="-1"></a><span class="co"># an alternative function</span></span>
 <span id="cb254-2"><a href="#cb254-2" aria-hidden="true" tabindex="-1"></a>simple_ll <span class="ot">&lt;-</span> <span class="cf">function</span>(parameters) {</span>
-<span id="cb254-3"><a href="#cb254-3" aria-hidden="true" tabindex="-1"></a>    mu <span class="ot">&lt;-</span> parameters[<span class="dv">1</span>]</span>
-<span id="cb254-4"><a href="#cb254-4" aria-hidden="true" tabindex="-1"></a>    sigma <span class="ot">&lt;-</span> parameters[<span class="dv">2</span>]</span>
-<span id="cb254-5"><a href="#cb254-5" aria-hidden="true" tabindex="-1"></a>    N <span class="ot">&lt;-</span> <span class="fu">length</span>(val)</span>
-<span id="cb254-6"><a href="#cb254-6" aria-hidden="true" tabindex="-1"></a>    ll <span class="ot">&lt;-</span> <span class="sc">-</span><span class="dv">1</span> <span class="sc">*</span> N <span class="sc">*</span> <span class="fu">log</span>(<span class="fu">sqrt</span>(<span class="dv">2</span> <span class="sc">*</span> pi)) <span class="sc">-</span> N <span class="sc">*</span> <span class="fu">log</span>(sigma) <span class="sc">-</span> <span class="fl">0.5</span> <span class="sc">*</span> <span class="fu">sum</span>((val <span class="sc">-</span> mu)<span class="sc">^</span><span class="dv">2</span><span class="sc">/</span>sigma<span class="sc">^</span><span class="dv">2</span>)</span>
-<span id="cb254-7"><a href="#cb254-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(ll)</span>
+<span id="cb254-3"><a href="#cb254-3" aria-hidden="true" tabindex="-1"></a>  mu <span class="ot">&lt;-</span> parameters[<span class="dv">1</span>]</span>
+<span id="cb254-4"><a href="#cb254-4" aria-hidden="true" tabindex="-1"></a>  sigma <span class="ot">&lt;-</span> parameters[<span class="dv">2</span>]</span>
+<span id="cb254-5"><a href="#cb254-5" aria-hidden="true" tabindex="-1"></a>  N <span class="ot">&lt;-</span> <span class="fu">length</span>(val)</span>
+<span id="cb254-6"><a href="#cb254-6" aria-hidden="true" tabindex="-1"></a>  ll <span class="ot">&lt;-</span> <span class="sc">-</span><span class="dv">1</span> <span class="sc">*</span> N <span class="sc">*</span> <span class="fu">log</span>(<span class="fu">sqrt</span>(<span class="dv">2</span> <span class="sc">*</span> pi)) <span class="sc">-</span> N <span class="sc">*</span> <span class="fu">log</span>(sigma) <span class="sc">-</span> <span class="fl">0.5</span> <span class="sc">*</span> <span class="fu">sum</span>((val <span class="sc">-</span> mu)<span class="sc">^</span><span class="dv">2</span> <span class="sc">/</span> sigma<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb254-7"><a href="#cb254-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(ll)</span>
 <span id="cb254-8"><a href="#cb254-8" aria-hidden="true" tabindex="-1"></a>}</span>
 <span id="cb254-9"><a href="#cb254-9" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb254-10"><a href="#cb254-10" aria-hidden="true" tabindex="-1"></a><span class="co"># test...</span></span>
@@ -1624,10 +1628,10 @@ window.Quarto = {
 <span id="cb262-2"><a href="#cb262-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Likelihood based linear regression with `mle2()`... now we have our own likelihood function that has three instead of two parameters: b0, b1, and sigma, or the standard deviation in (presumably normally distributed!) residuals...</span></span>
 <span id="cb262-3"><a href="#cb262-3" aria-hidden="true" tabindex="-1"></a>simple_nll <span class="ot">&lt;-</span> <span class="cf">function</span>(b0, b1, sigma, <span class="at">verbose =</span> <span class="cn">TRUE</span>) {</span>
 <span id="cb262-4"><a href="#cb262-4" aria-hidden="true" tabindex="-1"></a>  <span class="co"># here, we say how our expectation for how our response variable, y, is calculated based on two parameters</span></span>
-<span id="cb262-5"><a href="#cb262-5" aria-hidden="true" tabindex="-1"></a>  y <span class="ot">&lt;-</span> b0 <span class="sc">+</span> b1 <span class="sc">*</span> d<span class="sc">$</span>weight </span>
+<span id="cb262-5"><a href="#cb262-5" aria-hidden="true" tabindex="-1"></a>  y <span class="ot">&lt;-</span> b0 <span class="sc">+</span> b1 <span class="sc">*</span> d<span class="sc">$</span>weight</span>
 <span id="cb262-6"><a href="#cb262-6" aria-hidden="true" tabindex="-1"></a>  N <span class="ot">&lt;-</span> <span class="fu">nrow</span>(d)</span>
 <span id="cb262-7"><a href="#cb262-7" aria-hidden="true" tabindex="-1"></a>  <span class="co"># decomposition of log density function into R terms...</span></span>
-<span id="cb262-8"><a href="#cb262-8" aria-hidden="true" tabindex="-1"></a>  ll <span class="ot">&lt;-</span> <span class="sc">-</span><span class="dv">1</span> <span class="sc">*</span> N<span class="sc">*</span><span class="fu">log</span>(<span class="fu">sqrt</span>(<span class="dv">2</span><span class="sc">*</span>pi)) <span class="sc">-</span> N<span class="sc">*</span><span class="fu">log</span>(sigma) <span class="sc">-</span> <span class="fl">0.5</span><span class="sc">*</span><span class="fu">sum</span>((d<span class="sc">$</span>height <span class="sc">-</span> y)<span class="sc">^</span><span class="dv">2</span><span class="sc">/</span>sigma<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb262-8"><a href="#cb262-8" aria-hidden="true" tabindex="-1"></a>  ll <span class="ot">&lt;-</span> <span class="sc">-</span><span class="dv">1</span> <span class="sc">*</span> N <span class="sc">*</span> <span class="fu">log</span>(<span class="fu">sqrt</span>(<span class="dv">2</span> <span class="sc">*</span> pi)) <span class="sc">-</span> N <span class="sc">*</span> <span class="fu">log</span>(sigma) <span class="sc">-</span> <span class="fl">0.5</span> <span class="sc">*</span> <span class="fu">sum</span>((d<span class="sc">$</span>height <span class="sc">-</span> y)<span class="sc">^</span><span class="dv">2</span> <span class="sc">/</span> sigma<span class="sc">^</span><span class="dv">2</span>)</span>
 <span id="cb262-9"><a href="#cb262-9" aria-hidden="true" tabindex="-1"></a>  nll <span class="ot">&lt;-</span> <span class="sc">-</span><span class="dv">1</span> <span class="sc">*</span> ll</span>
 <span id="cb262-10"><a href="#cb262-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(nll)</span>
 <span id="cb262-11"><a href="#cb262-11" aria-hidden="true" tabindex="-1"></a>}</span>
@@ -1635,7 +1639,7 @@ window.Quarto = {
 <span id="cb262-13"><a href="#cb262-13" aria-hidden="true" tabindex="-1"></a>mle_norm <span class="ot">&lt;-</span> <span class="fu">mle2</span>(</span>
 <span id="cb262-14"><a href="#cb262-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">minuslogl =</span> simple_nll,</span>
 <span id="cb262-15"><a href="#cb262-15" aria-hidden="true" tabindex="-1"></a>  <span class="co"># `simple_nll()` is our likelihood function</span></span>
-<span id="cb262-16"><a href="#cb262-16" aria-hidden="true" tabindex="-1"></a>  <span class="at">start  =</span> <span class="fu">list</span>(<span class="at">b0=</span><span class="dv">10</span>, <span class="at">b1=</span><span class="dv">0</span>, <span class="at">sigma=</span><span class="dv">1</span>), </span>
+<span id="cb262-16"><a href="#cb262-16" aria-hidden="true" tabindex="-1"></a>  <span class="at">start =</span> <span class="fu">list</span>(<span class="at">b0 =</span> <span class="dv">10</span>, <span class="at">b1 =</span> <span class="dv">0</span>, <span class="at">sigma =</span> <span class="dv">1</span>),</span>
 <span id="cb262-17"><a href="#cb262-17" aria-hidden="true" tabindex="-1"></a>  <span class="at">method =</span> <span class="st">"Nelder-Mead"</span></span>
 <span id="cb262-18"><a href="#cb262-18" aria-hidden="true" tabindex="-1"></a>  <span class="co"># implements the Nelder-Mead algorithm for likelihood maximization</span></span>
 <span id="cb262-19"><a href="#cb262-19" aria-hidden="true" tabindex="-1"></a>)</span>
@@ -1681,15 +1685,16 @@ window.Quarto = {
 <span id="cb266-9"><a href="#cb266-9" aria-hidden="true" tabindex="-1"></a>  y <span class="ot">&lt;-</span> b0 <span class="sc">+</span> b1 <span class="sc">*</span> d<span class="sc">$</span>weight</span>
 <span id="cb266-10"><a href="#cb266-10" aria-hidden="true" tabindex="-1"></a>  <span class="co"># estimating mean height as a function of weight</span></span>
 <span id="cb266-11"><a href="#cb266-11" aria-hidden="true" tabindex="-1"></a>  <span class="co"># then use this mu in a similar fashion as previously</span></span>
-<span id="cb266-12"><a href="#cb266-12" aria-hidden="true" tabindex="-1"></a>  ll <span class="ot">&lt;-</span> <span class="sc">-</span><span class="dv">1</span> <span class="sc">*</span> N<span class="sc">*</span><span class="fu">log</span>(<span class="fu">sqrt</span>(<span class="dv">2</span><span class="sc">*</span>pi)) <span class="sc">-</span> N<span class="sc">*</span><span class="fu">log</span>(sigma) <span class="sc">-</span> <span class="fl">0.5</span><span class="sc">*</span><span class="fu">sum</span>((d<span class="sc">$</span>height <span class="sc">-</span> y)<span class="sc">^</span><span class="dv">2</span><span class="sc">/</span>sigma<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb266-12"><a href="#cb266-12" aria-hidden="true" tabindex="-1"></a>  ll <span class="ot">&lt;-</span> <span class="sc">-</span><span class="dv">1</span> <span class="sc">*</span> N <span class="sc">*</span> <span class="fu">log</span>(<span class="fu">sqrt</span>(<span class="dv">2</span> <span class="sc">*</span> pi)) <span class="sc">-</span> N <span class="sc">*</span> <span class="fu">log</span>(sigma) <span class="sc">-</span> <span class="fl">0.5</span> <span class="sc">*</span> <span class="fu">sum</span>((d<span class="sc">$</span>height <span class="sc">-</span> y)<span class="sc">^</span><span class="dv">2</span> <span class="sc">/</span> sigma<span class="sc">^</span><span class="dv">2</span>)</span>
 <span id="cb266-13"><a href="#cb266-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(ll)</span>
 <span id="cb266-14"><a href="#cb266-14" aria-hidden="true" tabindex="-1"></a>}</span>
 <span id="cb266-15"><a href="#cb266-15" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb266-16"><a href="#cb266-16" aria-hidden="true" tabindex="-1"></a>mle_norm <span class="ot">&lt;-</span> <span class="fu">maxLik</span>(loglik,</span>
-<span id="cb266-17"><a href="#cb266-17" aria-hidden="true" tabindex="-1"></a>                   <span class="at">start=</span><span class="fu">c</span>(<span class="at">beta0=</span><span class="dv">0</span>, <span class="at">beta1=</span><span class="dv">0</span>, <span class="at">sigma=</span><span class="dv">1</span>),</span>
-<span id="cb266-18"><a href="#cb266-18" aria-hidden="true" tabindex="-1"></a>                   <span class="at">method =</span> <span class="st">"NM"</span>)</span>
-<span id="cb266-19"><a href="#cb266-19" aria-hidden="true" tabindex="-1"></a>                   <span class="co"># implements the Nelder-Mead algorithm for likelihood maximization</span></span>
-<span id="cb266-20"><a href="#cb266-20" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mle_norm)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb266-17"><a href="#cb266-17" aria-hidden="true" tabindex="-1"></a>  <span class="at">start =</span> <span class="fu">c</span>(<span class="at">beta0 =</span> <span class="dv">0</span>, <span class="at">beta1 =</span> <span class="dv">0</span>, <span class="at">sigma =</span> <span class="dv">1</span>),</span>
+<span id="cb266-18"><a href="#cb266-18" aria-hidden="true" tabindex="-1"></a>  <span class="at">method =</span> <span class="st">"NM"</span></span>
+<span id="cb266-19"><a href="#cb266-19" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb266-20"><a href="#cb266-20" aria-hidden="true" tabindex="-1"></a><span class="co"># implements the Nelder-Mead algorithm for likelihood maximization</span></span>
+<span id="cb266-21"><a href="#cb266-21" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mle_norm)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>## --------------------------------------------
 ## Maximum Likelihood estimation

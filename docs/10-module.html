@@ -630,7 +630,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>f <span class="ot">&lt;-</span> <span class="st">"https://raw.githubusercontent.com/difiore/ada-datasets/main/KamilarAndCooperData.csv"</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(f, <span class="at">col_names =</span> <span class="cn">TRUE</span>)  <span class="co"># creates a 'tibble'</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(f, <span class="at">col_names =</span> <span class="cn">TRUE</span>) <span class="co"># creates a "tibble"</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(d)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>## # A tibble: 6 × 45
@@ -813,7 +813,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>The <code>rename()</code> function allows us to change the names of particular columns in a data frame:</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># renaming columns...</span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>s <span class="ot">&lt;-</span> <span class="fu">rename</span>(d, <span class="at">Female_Mass =</span> Body_mass_female_mean)</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>s <span class="ot">&lt;-</span> <span class="fu">rename</span>(d, <span class="st">"Female_Mass"</span> <span class="ot">=</span> Body_mass_female_mean)</span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(s<span class="sc">$</span>Female_Mass)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>## [1] 3180   84 5520 4240 4550 5350</code></pre>
@@ -840,8 +840,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># and adding new columns...</span></span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>s <span class="ot">&lt;-</span> <span class="fu">mutate</span>(d, <span class="at">Binomial =</span> <span class="fu">paste</span>(Genus, Species, <span class="at">sep =</span> <span class="st">" "</span>))</span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(s<span class="sc">$</span>Binomial)  <span class="co"># or head(s[['Binomial']])</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>s <span class="ot">&lt;-</span> <span class="fu">mutate</span>(d, <span class="st">"Binomial"</span> <span class="ot">=</span> <span class="fu">paste</span>(Genus, Species, <span class="at">sep =</span> <span class="st">" "</span>))</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(s<span class="sc">$</span>Binomial) <span class="co"># or head(s[["Binomial"]])</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>## [1] "Allenopithecus nigroviridis" "Allocebus trichotis"        
 ## [3] "Alouatta belzebul"           "Alouatta caraya"            
@@ -869,9 +869,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># the n() function returns the number of rows in the data frame</span></span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>s <span class="ot">&lt;-</span> <span class="fu">summarize</span>(d, <span class="at">n_cases =</span> <span class="fu">n</span>(), <span class="at">avgF =</span> <span class="fu">mean</span>(Body_mass_female_mean, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">avgM =</span> <span class="fu">mean</span>(Body_mass_male_mean, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>s</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>s <span class="ot">&lt;-</span> <span class="fu">summarize</span>(</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  d,</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">n_cases =</span> <span class="fu">n</span>(),</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">avgF =</span> <span class="fu">mean</span>(Body_mass_female_mean, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">avgM =</span> <span class="fu">mean</span>(Body_mass_male_mean, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>s</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>## # A tibble: 1 × 3
 ##   n_cases  avgF  avgM
@@ -883,9 +887,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>by_family <span class="ot">&lt;-</span> <span class="fu">group_by</span>(d, Family)</span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="co"># here, n() returns the number of rows in the group being considered</span></span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>s <span class="ot">&lt;-</span> <span class="fu">summarise</span>(by_family, <span class="at">n_cases =</span> <span class="fu">n</span>(), <span class="at">avgF =</span> <span class="fu">mean</span>(Body_mass_female_mean, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">avgM =</span> <span class="fu">mean</span>(Body_mass_male_mean, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span>
-<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>s</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>s <span class="ot">&lt;-</span> <span class="fu">summarise</span>(</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>  by_family,</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">n_cases =</span> <span class="fu">n</span>(),</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">avgF =</span> <span class="fu">mean</span>(Body_mass_female_mean, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">avgM =</span> <span class="fu">mean</span>(Body_mass_male_mean, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>s</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>## # A tibble: 14 × 4
 ##    Family          n_cases   avgF   avgM
@@ -928,9 +936,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </blockquote>
 <p>The process works by matching observations in two different tables by a common key variable and then selecting additional variables of interest to pull from each of the tables. A simple example is the following… suppose we have two tables, one that contains average brain sizes for particular species of primates and one that contains individual body sizes for some of the same species, plus others. In the latter table, too, we may have data from multiple individuals of the same species represented.</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>table1 <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">Taxon =</span> <span class="fu">c</span>(<span class="st">"Gorilla"</span>, <span class="st">"Human"</span>, <span class="st">"Chimpanzee"</span>, <span class="st">"Orangutan"</span>, <span class="st">"Baboon"</span>),</span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">Avg_Brain_Size =</span> <span class="fu">c</span>(<span class="dv">470</span>, <span class="dv">1100</span>, <span class="dv">350</span>, <span class="dv">340</span>, <span class="dv">140</span>))</span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>table1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>table1 <span class="ot">&lt;-</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tibble</span>(</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">Taxon =</span> <span class="fu">c</span>(<span class="st">"Gorilla"</span>, <span class="st">"Human"</span>, <span class="st">"Chimpanzee"</span>, <span class="st">"Orangutan"</span>, <span class="st">"Baboon"</span>),</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">Avg_Brain_Size =</span> <span class="fu">c</span>(<span class="dv">470</span>, <span class="dv">1100</span>, <span class="dv">350</span>, <span class="dv">340</span>, <span class="dv">140</span>)</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>table1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>## # A tibble: 5 × 2
 ##   Taxon      Avg_Brain_Size
@@ -941,10 +952,24 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 ## 4 Orangutan             340
 ## 5 Baboon                140</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>table2 <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">Taxon =</span> <span class="fu">c</span>(<span class="st">"Gorilla"</span>, <span class="st">"Gorilla"</span>, <span class="st">"Gorilla"</span>, <span class="st">"Human"</span>, <span class="st">"Human"</span>, <span class="st">"Chimpanzee"</span>,</span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Orangutan"</span>, <span class="st">"Orangutan"</span>, <span class="st">"Macaque"</span>, <span class="st">"Macaque"</span>, <span class="st">"Macaque"</span>), <span class="at">Body_Weight =</span> <span class="fu">c</span>(<span class="dv">80</span>,</span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>    <span class="dv">81</span>, <span class="dv">77</span>, <span class="dv">48</span>, <span class="dv">49</span>, <span class="dv">38</span>, <span class="dv">37</span>, <span class="dv">36</span>, <span class="dv">6</span>, <span class="dv">7</span>, <span class="dv">6</span>))</span>
-<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>table2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>table2 <span class="ot">&lt;-</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tibble</span>(</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">Taxon =</span> <span class="fu">c</span>(</span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Gorilla"</span>,</span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Gorilla"</span>,</span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Gorilla"</span>,</span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Human"</span>,</span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Human"</span>,</span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Chimpanzee"</span>,</span>
+<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Orangutan"</span>,</span>
+<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Orangutan"</span>,</span>
+<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Macaque"</span>,</span>
+<span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Macaque"</span>,</span>
+<span id="cb21-14"><a href="#cb21-14" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Macaque"</span></span>
+<span id="cb21-15"><a href="#cb21-15" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb21-16"><a href="#cb21-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">Body_Weight =</span> <span class="fu">c</span>(<span class="dv">80</span>, <span class="dv">81</span>, <span class="dv">77</span>, <span class="dv">48</span>, <span class="dv">49</span>, <span class="dv">38</span>, <span class="dv">37</span>, <span class="dv">36</span>, <span class="dv">6</span>, <span class="dv">7</span>, <span class="dv">6</span>)</span>
+<span id="cb21-17"><a href="#cb21-17" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb21-18"><a href="#cb21-18" aria-hidden="true" tabindex="-1"></a>table2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>## # A tibble: 11 × 2
 ##    Taxon      Body_Weight
@@ -1129,8 +1154,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="co"># this...</span></span>
 <span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>d <span class="sc">%&gt;%</span></span>
-<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">select</span>(Scientific_Name, Body_mass_female_mean) <span class="sc">|&gt;</span></span>
-<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">head</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Scientific_Name, Body_mass_female_mean) <span class="sc">|&gt;</span></span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>## # A tibble: 6 × 2
 ##   Scientific_Name             Body_mass_female_mean
@@ -1173,12 +1198,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <details class="code-fold">
 <summary>Show Code</summary>
 <div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>s <span class="ot">&lt;-</span> <span class="fu">mutate</span>(d, <span class="at">Binomial =</span> <span class="fu">paste</span>(Genus, Species, <span class="at">sep =</span> <span class="st">" "</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">select</span>(Binomial, Family, Body_mass_female_mean, Body_mass_male_mean, Mass_Dimorphism) <span class="sc">%&gt;%</span></span>
-<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">group_by</span>(Family) <span class="sc">|&gt;</span></span>
-<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">summarise</span>(<span class="at">avgF =</span> <span class="fu">mean</span>(Body_mass_female_mean, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">avgM =</span> <span class="fu">mean</span>(Body_mass_male_mean,</span>
-<span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a>        <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">avgBMD =</span> <span class="fu">mean</span>(Mass_Dimorphism, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb39-6"><a href="#cb39-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">arrange</span>(<span class="fu">desc</span>(avgBMD))</span>
-<span id="cb39-7"><a href="#cb39-7" aria-hidden="true" tabindex="-1"></a>s</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(</span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>    Binomial,</span>
+<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a>    Family,</span>
+<span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a>    Body_mass_female_mean,</span>
+<span id="cb39-6"><a href="#cb39-6" aria-hidden="true" tabindex="-1"></a>    Body_mass_male_mean,</span>
+<span id="cb39-7"><a href="#cb39-7" aria-hidden="true" tabindex="-1"></a>    Mass_Dimorphism</span>
+<span id="cb39-8"><a href="#cb39-8" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb39-9"><a href="#cb39-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Family) <span class="sc">|&gt;</span></span>
+<span id="cb39-10"><a href="#cb39-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb39-11"><a href="#cb39-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">avgF =</span> <span class="fu">mean</span>(Body_mass_female_mean, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb39-12"><a href="#cb39-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">avgM =</span> <span class="fu">mean</span>(Body_mass_male_mean, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb39-13"><a href="#cb39-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">avgBMD =</span> <span class="fu">mean</span>(Mass_Dimorphism, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb39-14"><a href="#cb39-14" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb39-15"><a href="#cb39-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(avgBMD))</span>
+<span id="cb39-16"><a href="#cb39-16" aria-hidden="true" tabindex="-1"></a>s</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <details><summary>Show Output</summary>
@@ -1207,9 +1241,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>The “tee” pipe (<code>%T&gt;%</code>) operator allows you to pipe the outcome of a process into a new expression (just like the forward pipe operator does) <em>and</em> to simultaneously return the original value instead of the forward-piped result to an intermediate expression. This is useful, for example, for printing out or plotting intermediate results. In the example below, we filter our data frame for just observations of the genus <em>Alouatta</em>, print those to the screen as an intermediate side effect, and pass the filtered data to the <code>summarise()</code> function.</li>
 </ul>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>s <span class="ot">&lt;-</span> <span class="fu">filter</span>(d, Genus <span class="sc">==</span> <span class="st">"Alouatta"</span>) <span class="sc">%T&gt;%</span></span>
-<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">print</span>() <span class="sc">|&gt;</span></span>
-<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">summarise</span>(<span class="at">avgF =</span> <span class="fu">mean</span>(Body_mass_female_mean, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>s <span class="ot">&lt;-</span> <span class="fu">filter</span>(d, Genus <span class="sc">==</span> <span class="st">"Alouatta"</span>) <span class="sc">%T&gt;%</span> <span class="fu">print</span>() <span class="sc">|&gt;</span></span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">avgF =</span> <span class="fu">mean</span>(Body_mass_female_mean, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>## # A tibble: 6 × 45
 ##   Scientific_Name    Superfamily Family   Genus   Species Brain_Size_Species_M…¹
@@ -1241,9 +1274,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>s <span class="ot">&lt;-</span> <span class="fu">filter</span>(d, Genus <span class="sc">==</span> <span class="st">"Alouatta"</span>)</span>
-<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>s <span class="sc">%&lt;&gt;%</span></span>
-<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">select</span>(Genus, Species)</span>
-<span id="cb45-4"><a href="#cb45-4" aria-hidden="true" tabindex="-1"></a>s</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>s <span class="sc">%&lt;&gt;%</span> <span class="fu">select</span>(Genus, Species)</span>
+<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a>s</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>## # A tibble: 6 × 2
 ##   Genus    Species  
@@ -1260,9 +1292,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Finally, the “exposition” pipe (<code>%$%</code>) operator exposes the names <em>within</em> the object on the left-hand side of the pipe to the right-hand side expression.</li>
 </ul>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a>s <span class="ot">&lt;-</span> <span class="fu">filter</span>(d, Genus <span class="sc">==</span> <span class="st">"Alouatta"</span>) <span class="sc">%$%</span></span>
-<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">paste0</span>(Genus, <span class="st">" "</span>, Species)</span>
-<span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a>s</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a>s <span class="ot">&lt;-</span> <span class="fu">filter</span>(d, Genus <span class="sc">==</span> <span class="st">"Alouatta"</span>) <span class="sc">%$%</span> <span class="fu">paste0</span>(Genus, <span class="st">" "</span>, Species)</span>
+<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a>s</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>## [1] "Alouatta belzebul"  "Alouatta caraya"    "Alouatta guariba"  
 ## [4] "Alouatta palliata"  "Alouatta pigra"     "Alouatta seniculus"</code></pre>
@@ -1275,16 +1306,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Normally, when we use the forward pipe operator, the LHS of the operator is passed to the <em>first argument</em> of the function on the RHS. Thus, the following are all equivalent:</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a>s <span class="ot">&lt;-</span> <span class="fu">filter</span>(d, Genus <span class="sc">==</span> <span class="st">"Alouatta"</span>)</span>
-<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a>s <span class="ot">&lt;-</span> d <span class="sc">%&gt;%</span></span>
-<span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(Genus <span class="sc">==</span> <span class="st">"Alouatta"</span>)</span>
-<span id="cb49-4"><a href="#cb49-4" aria-hidden="true" tabindex="-1"></a>d <span class="sc">%&gt;%</span></span>
-<span id="cb49-5"><a href="#cb49-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(Genus <span class="sc">==</span> <span class="st">"Alouatta"</span>) <span class="ot">-&gt;</span> s</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a>s <span class="ot">&lt;-</span> d <span class="sc">%&gt;%</span> <span class="fu">filter</span>(Genus <span class="sc">==</span> <span class="st">"Alouatta"</span>)</span>
+<span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a>d <span class="sc">%&gt;%</span> <span class="fu">filter</span>(Genus <span class="sc">==</span> <span class="st">"Alouatta"</span>) <span class="ot">-&gt;</span> s</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>The behavior of the forward pipe operator means we can use it do something like the following, where <strong>d</strong> is implicitly piped into the <code>data</code> argument for <code>ggplot()</code></p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a>d <span class="sc">%&gt;%</span></span>
-<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">log</span>(Body_mass_female_mean), <span class="at">y =</span> <span class="fu">log</span>(Brain_Size_Species_Mean))) <span class="sc">+</span></span>
-<span id="cb50-3"><a href="#cb50-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a>d <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">log</span>(Body_mass_female_mean), <span class="at">y =</span> <span class="fu">log</span>(Brain_Size_Species_Mean))) <span class="sc">+</span></span>
+<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -1297,8 +1325,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><code>y %&gt;% function(x, .)</code> is equivalent to <code>function(x, y)</code></p>
 <p>… which means we can do something like this to pipe <strong>d</strong> into a function such as <code>lm()</code> (“linear model”), where the data frame that the function is run on is not the first argument:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a>d <span class="sc">%&gt;%</span></span>
-<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">lm</span>(<span class="fu">log</span>(Body_mass_female_mean) <span class="sc">~</span> <span class="fu">log</span>(Brain_Size_Species_Mean), <span class="at">data =</span> .)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a>d <span class="sc">%&gt;%</span> <span class="fu">lm</span>(<span class="fu">log</span>(Body_mass_female_mean) <span class="sc">~</span> <span class="fu">log</span>(Brain_Size_Species_Mean), <span class="at">data =</span> .)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>## 
 ## Call:
@@ -1313,9 +1340,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>We can also use the {magrittr} pipe’s curly brace (<code>{}</code>) syntax to wrap the RHS of a statement and pass the LHS into several places:</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb53"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a>d <span class="sc">%&gt;%</span></span>
-<span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a>    {</span>
-<span id="cb53-3"><a href="#cb53-3" aria-hidden="true" tabindex="-1"></a>        <span class="fu">plot</span>(<span class="fu">log</span>(.<span class="sc">$</span>Brain_Size_Species_Mean), <span class="fu">log</span>(.<span class="sc">$</span>Body_mass_female_mean))</span>
-<span id="cb53-4"><a href="#cb53-4" aria-hidden="true" tabindex="-1"></a>    }</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a>  {</span>
+<span id="cb53-3"><a href="#cb53-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">plot</span>(<span class="fu">log</span>(.<span class="sc">$</span>Brain_Size_Species_Mean), <span class="fu">log</span>(.<span class="sc">$</span>Body_mass_female_mean))</span>
+<span id="cb53-4"><a href="#cb53-4" aria-hidden="true" tabindex="-1"></a>  }</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -1325,13 +1352,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <blockquote class="blockquote">
-<p><strong>NOTE:</strong> As mentioned above, <strong><em>R</em></strong> recently introduced a “native” pipe operator (<code>|&gt;</code>) into its {base} syntax. It behaves very similarly to the {dplyr}/{magrittr} forward pipe, <strong>but it does not support dot syntax</strong> the same way. It also requires an explicit function call on the RHS, which means that it is necessary to append <code>()</code> to the end of the function name, rather than just using the name. The first version of the line below using <code>%&gt;%</code> could be used to take the log of all <strong>Brain_Size_Female_Mean</strong> values in <strong>d</strong>, while the second version using <code>|&gt;</code> needs to have <code>()</code> appended to the functions calls to work properly.</p>
+<p><strong>NOTE:</strong> As mentioned above, newer versions of <strong><em>R</em></strong> incorporate a “native” pipe operator (<code>|&gt;</code>) into its {base} syntax. This operator behaves very similarly to the {dplyr}/{magrittr} forward pipe, <strong>but it does not support dot syntax</strong> the same way. It also requires an explicit function call on the RHS, which means that it is necessary to append <code>()</code> to the end of the function name, rather than just using the name. The first version of the line below using <code>%&gt;%</code> could be used to take the log of all <strong>Brain_Size_Female_Mean</strong> values in <strong>d</strong>, while the second version using <code>|&gt;</code> needs to have <code>()</code> appended to the functions calls to work properly.</p>
 </blockquote>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb54"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a>d <span class="sc">%&gt;%</span></span>
-<span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">select</span>(Brain_Size_Female_Mean) <span class="sc">%&gt;%</span></span>
-<span id="cb54-3"><a href="#cb54-3" aria-hidden="true" tabindex="-1"></a>    log <span class="sc">%&gt;%</span></span>
-<span id="cb54-4"><a href="#cb54-4" aria-hidden="true" tabindex="-1"></a>    head</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Brain_Size_Female_Mean) <span class="sc">%&gt;%</span></span>
+<span id="cb54-3"><a href="#cb54-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">log</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb54-4"><a href="#cb54-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>## # A tibble: 6 × 1
 ##   Brain_Size_Female_Mean
@@ -1344,9 +1371,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 ## 6                   3.87</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb56"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a>d <span class="sc">|&gt;</span></span>
-<span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">select</span>(Brain_Size_Female_Mean) <span class="sc">|&gt;</span></span>
-<span id="cb56-3"><a href="#cb56-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">log</span>() <span class="sc">|&gt;</span></span>
-<span id="cb56-4"><a href="#cb56-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">head</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Brain_Size_Female_Mean) <span class="sc">|&gt;</span></span>
+<span id="cb56-3"><a href="#cb56-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">log</span>() <span class="sc">|&gt;</span></span>
+<span id="cb56-4"><a href="#cb56-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>## # A tibble: 6 × 1
 ##   Brain_Size_Female_Mean
@@ -1435,7 +1462,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 class="unnumbered anchored" data-anchor-id="concept-review">Concept Review</h2>
 <ul>
 <li>Using {dplyr}: <code>select()</code>, <code>filter()</code>, <code>arrange()</code>, <code>rename()</code>, <code>mutate()</code>, <code>summarise()</code>, <code>group_by()</code></li>
-<li>Chaining and piping with <code>%&gt;%</code> or <code>|&gt;</code> and other pipe operators</li>
+<li>Chaining and piping with <code>|&gt;</code> or <code>%&gt;%</code> and other pipe operators</li>
 <li>Joining tables: <code>inner_join()</code>, <code>left_join()</code>, <code>right_join()</code>, <code>full_join()</code></li>
 <li>Using the {tidylog} package</li>
 </ul>
@@ -2338,7 +2365,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb71-506"><a href="#cb71-506" aria-hidden="true" tabindex="-1"></a>d <span class="sc">%&gt;%</span> {<span class="fu">plot</span>(<span class="fu">log</span>(.<span class="sc">$</span>Brain_Size_Species_Mean), <span class="fu">log</span>(.<span class="sc">$</span>Body_mass_female_mean))}</span>
 <span id="cb71-507"><a href="#cb71-507" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb71-508"><a href="#cb71-508" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb71-509"><a href="#cb71-509" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; **NOTE:** As mentioned above, ***R*** recently introduced a "native" pipe operator (`|&gt;`) into its {base} syntax. It behaves very similarly to the {dplyr}/{magrittr} forward pipe, **but it does not support dot syntax** the same way. It also requires an explicit function call on the RHS, which means that it is necessary to append `()` to the end of the function name, rather than just using the name. The first version of the line below using `%&gt;%` could be used to take the log of all **Brain_Size_Female_Mean** values in **d**, while the second version using </span><span class="in">`|&gt;`</span><span class="at"> needs to have </span><span class="in">`()`</span><span class="at"> appended to the functions calls to work properly.</span></span>
+<span id="cb71-509"><a href="#cb71-509" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; **NOTE:** As mentioned above, newer versions of ***R*** incorporate a "native" pipe operator (`|&gt;`) into its {base} syntax. This operator behaves very similarly to the {dplyr}/{magrittr} forward pipe, **but it does not support dot syntax** the same way. It also requires an explicit function call on the RHS, which means that it is necessary to append `()` to the end of the function name, rather than just using the name. The first version of the line below using `%&gt;%` could be used to take the log of all **Brain_Size_Female_Mean** values in **d**, while the second version using </span><span class="in">`|&gt;`</span><span class="at"> needs to have </span><span class="in">`()`</span><span class="at"> appended to the functions calls to work properly.</span></span>
 <span id="cb71-510"><a href="#cb71-510" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb71-513"><a href="#cb71-513" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
 <span id="cb71-514"><a href="#cb71-514" aria-hidden="true" tabindex="-1"></a>d <span class="sc">%&gt;%</span> <span class="fu">select</span>(Brain_Size_Female_Mean) <span class="sc">%&gt;%</span> log <span class="sc">%&gt;%</span> head</span>
@@ -2384,7 +2411,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb71-562"><a href="#cb71-562" aria-hidden="true" tabindex="-1"></a><span class="fu">## Concept Review {.unnumbered}</span></span>
 <span id="cb71-563"><a href="#cb71-563" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb71-564"><a href="#cb71-564" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Using {dplyr}: <span class="in">`select()`</span>, <span class="in">`filter()`</span>, <span class="in">`arrange()`</span>, <span class="in">`rename()`</span>, <span class="in">`mutate()`</span>, <span class="in">`summarise()`</span>, <span class="in">`group_by()`</span></span>
-<span id="cb71-565"><a href="#cb71-565" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Chaining and piping with <span class="in">`%&gt;%`</span>  or <span class="in">`|&gt;`</span> and other pipe operators</span>
+<span id="cb71-565"><a href="#cb71-565" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Chaining and piping with <span class="in">`|&gt;`</span> or <span class="in">`%&gt;%`</span> and other pipe operators</span>
 <span id="cb71-566"><a href="#cb71-566" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Joining tables: <span class="in">`inner_join()`</span>, <span class="in">`left_join()`</span>, <span class="in">`right_join()`</span>, <span class="in">`full_join()`</span></span>
 <span id="cb71-567"><a href="#cb71-567" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Using the {tidylog} package</span>
 </code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>

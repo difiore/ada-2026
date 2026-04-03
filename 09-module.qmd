@@ -347,6 +347,7 @@ The `barplot()` function is also useful taking a quick look at crude data, with 
 #| code-fold: true
 #| code-summary: "Show Code"
 #| attr.output: '.details summary="Show Output"'
+#| fig-height: 4
 par(mfrow = c(1, 2))
 d$log_population <- log(d$population)
 d$log_area <- log(d$area)
@@ -363,13 +364,12 @@ boxplot(d$log_area, ylab = "log(Area)")
 
 ### Plotting with {ggplot2} {.unnumbered}
 
-As an alternative for plotting, we can use the "grammar of graphics" {ggplot2} package:
+As an alternative for plotting, we can use the "grammar of graphics" {ggplot2} package. In the code below, we first use `tidyr::pivot_longer()` to convert our data from wide to long format... this is so we can then use `facet.grid()`.
 
 ```{r}
 #| message: false
-# first, we use `tidyr::pivot_longer()` to convert our data from wide to long format
-# this is so we can use `facet.grid()`
-
+#| warning: false
+#| fig-height: 4
 # uncomment this to look at a different set of variables
 # d_long <- pivot_longer(d, c("log_population","log_area"),
 # names_to="Variable", values_to="Value")
@@ -522,6 +522,9 @@ t
 Doing the same thing with {dplyr} verbs (see [**Module 10**](#module-10)) provides nicer output...
 
 ```{r}
+#| code-fold: true
+#| code-summary: "Show Code"
+#| attr.output: '.details summary="Show Output"'
 t <-
   group_by(d, govt_form) |>
   summarize(count = n()) |>
@@ -550,6 +553,8 @@ f <- "https://raw.githubusercontent.com/difiore/ada-datasets/main/KamilarAndCoop
 d <- read_csv(f, col_names = TRUE)
 head(d)
 ```
+
+We can also do quick summaries of and visualizations of data distributions for multiple variables at the same time using the {skimr} and {kableExtra} packages.
 
 ```{r}
 #| message: false
@@ -580,12 +585,12 @@ detach(package:kableExtra)
 detach(package:skimr)
 ```
 
-We can also make boxplots summarizing a numerical variable in relation to another categorical variable.
+As another type of exporatory data visualization involving multiple variables, it is often useful to make boxplots summarizing a numerical variable in relation to a categorical variable.
 
 Plotting using {base} graphics... the `~` operator can be read as "by".
 
 ```{r}
-boxplot(log(d$Body_mass_female_mean)~d$Family)
+boxplot(log(d$Body_mass_female_mean) ~ d$Family)
 ```
 
 Alternatively, plotting using {ggplot2}...
@@ -632,7 +637,7 @@ p <- p + theme(legend.position="bottom", legend.title=element_blank())
 p
 ```
 
-We can use the cool package {ggExtra} to add marginal univariate plots to our bivariate scatterplots, too.
+We can use the cool package {ggExtra} to add marginal univariate plots to our bivariate scatterplots, too!
 
 ```{r}
 library(ggExtra)
@@ -643,7 +648,8 @@ detach(package:ggExtra)
 Using {ggplot2}, we can also easily set up a grid for "faceting"" by a grouping variable...
 
 ```{r}
-p <- p + facet_wrap(~ Family, ncol=4) # wrap data "by" family into 4 columns
+p <- p +
+  facet_wrap(~ Family, ncol=4) # wrap data "by" family into 4 columns
 p <- p + theme(legend.position="none")
 p
 ```
@@ -873,6 +879,7 @@ detach(package:tidyverse)
 
 - Summary statistics: `summary()`, `skim()`
 - Basic plotting: `boxplot()`, `barplot()`, `histogram()`
-- Plotting with {ggplot2}: `ggplot(data = , mapping = aes()) + geom() + theme() + ...`
+- Plotting with {ggplot2}:
+  - `ggplot(data = , mapping = aes()) + geom() + theme() + ...`
 - Summarizing by groups: `aggregrate()`
 - Arranging plots with {patchwork}, {cowplot}, and {gridExtra}

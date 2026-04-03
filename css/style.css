@@ -8,8 +8,9 @@ p code {
 }
 
 pre {
-  word-break: normal;
-  word-wrap: normal;
+  white-space: pre-wrap !important;
+  word-break: normal !important;
+  word-wrap: break-word !important;
 }
 
 plot {
@@ -20,14 +21,30 @@ pre code {
   white-space: pre-wrap;
 }
 
-.sourceCode .cell-code {
+/* Outer wrapper gets the border and background */
+.cell-code,
+div.sourceCode {
     background-color: #eeeeee;
-    border: 3px solid #C8E1FF;
+    border: 1px solid #C8E1FF;
     border-radius: 4px;
     font-size: 105%;
     line-height: 1.2;
-    overflow: auto;
     padding: 8px;
+}
+
+/* Inner pre/code just handles wrapping — no border */
+.cell-code pre,
+.cell-code pre code,
+div.sourceCode pre,
+div.sourceCode pre code {
+    overflow: visible !important;
+    white-space: pre-wrap !important;
+    word-wrap: break-word !important;
+    word-break: normal !important;
+    background-color: transparent;
+    border: none !important;
+    padding: 0;
+    margin: 0;
 }
 
 .cell-output summary {
@@ -38,8 +55,10 @@ pre code {
   background-color: #C8E1FF;
   border-radius: 4px;
   line-height: 1.2;
-  overflow: auto;
+  overflow: visible;            /* CHANGED from 'auto' */
   padding: 8px;
+  white-space: pre-wrap;        /* ADDED */
+  word-wrap: break-word;        /* ADDED */
 }
 
 .sidebar-logo {

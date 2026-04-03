@@ -229,5 +229,5 @@ These are available in print or electronic format directly from the publishers -
 #### Machine Learning/Deep Learning {.unnumbered}
 
 -   Boehmke, B. & Greenwall. B. (2020). *Hands-On Machine Learning with R.* Chapman & Hall/CRC.
--   Chollet, F., Kalinowski, T., *& Allaire, J.J. (2022). *Deep Learning with R* (2nd Edition). Manning Publications Co.
+-   Chollet, F., Kalinowski, T., & Allaire, J.J. (2022). *Deep Learning with R* (2nd Edition). Manning Publications Co.
 -   Rhys, H.I. (2020). *Machine Learning with R, tidyverse, and mlr.* Manning Publications Co.

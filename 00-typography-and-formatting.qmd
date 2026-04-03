@@ -70,7 +70,7 @@ print(x)
 - Argument values or values to be replaced are written in lowercase text between \<angle brackets\>, where that entire text, brackets included, should be replaced with the text being asked for:
 
     - `setwd("<your working directory>")`
-    - "<your file name>.csv"
+    - "\<your file name\>.csv"
 
 - Constants are written in italics:
 
@@ -120,4 +120,4 @@ print(x)
 - Full URLs/links are written in `inline code` and may include hyperlinks:
 
     - [`https://cran.r-project.org/`](https://cran.r-project.org/)
-    - [`https://difiore.github.io/ada-2024/`](https://difiore.github.io/ada-2026/)
+    - [`https://difiore.github.io/ada-2026/`](https://difiore.github.io/ada-2026/)

@@ -652,11 +652,20 @@ detach(package:data.table)
 
 ## Concept Review {.unnumbered}
 
-- Creating matrices and arrays: `matrix(data=, nrow=, ncol=, byrow=)`, `array(data=, dim=)`, `rbind()`, `cbind()`
+- Creating matrices and arrays:
+  - `matrix(data=, nrow=, ncol=, byrow=)`
+  - `array(data=, dim=)`, `rbind()`, `cbind()`
 - Creating lists: `list()`
 - Creating data frames: `data.frame()`
-- Subsetting: single bracket (`[ ]`), double bracket (`[[ ]]`), and `$` notation
+- Subsetting:
+  - single bracket (`[ ]`) notation
+  - double bracket (`[[ ]]`) notation
+  - `$` notation
 - Variable coercion: `as.numeric()`, `as.character()`, `as.data.frame()`
-- Reading .csv data: `read.csv(file=, header=, stringsAsFactors=)`
-- Filtering rows of a data frame using {base} ***R***: `df[df$<variable name> == "<criterion>", ]`, `df[df[["<variable name>"]] == "<criterion>", ]`
-- Selecting/excluding columns of a data frame: `df[ , c("<variable name 1>", "<variable name 2>",...)]`,`df[ , c(<column index 1>, <column index 2>,...)]`
+- Reading ".csv" data: `read.csv(file=, header=, stringsAsFactors=)`
+- Filtering rows of a data frame using {base} ***R***:
+  - `df[df$<variable name> == "<criterion>", ]`
+  - `df[df[["<variable name>"]] == "<criterion>", ]`
+- Selecting/excluding columns of a data frame using {base} ***R***:
+  - `df[ , c("<variable name 1>", "<variable name 2>",...)]`
+  - `df[ , c(<column index 1>, <column index 2>,...)]`

@@ -626,48 +626,49 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Functions that we define ourselves can have <em>multiple arguments</em>, and each argument can have a <em>default value</em>. Arguments are separated by commas and default values are specified in the list of arguments. For example, suppose we wanted to make a function that added a user-specified <code>prefix</code> to every entry in a particular named variable in a data frame, we could write the following:</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>add_prefix <span class="ot">&lt;-</span> <span class="cf">function</span>(df, <span class="at">prefix =</span> <span class="st">""</span>, variable) {</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    df[[variable]] <span class="ot">&lt;-</span> <span class="fu">paste0</span>(prefix, df[[variable]])</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(df)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  df[[variable]] <span class="ot">&lt;-</span> <span class="fu">paste0</span>(prefix, df[[variable]])</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(df)</span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>}</span>
 <span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>my_data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">name =</span> <span class="fu">c</span>(<span class="st">"Ned"</span>, <span class="st">"Sansa"</span>, <span class="st">"Cersei"</span>, <span class="st">"Tyrion"</span>, <span class="st">"Jon"</span>, <span class="st">"Daenerys"</span>,</span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Aria"</span>, <span class="st">"Brienne"</span>, <span class="st">"Rickon"</span>, <span class="st">"Edmure"</span>, <span class="st">"Petyr"</span>, <span class="st">"Jamie"</span>, <span class="st">"Robert"</span>, <span class="st">"Stannis"</span>,</span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Theon"</span>), <span class="at">house =</span> <span class="fu">c</span>(<span class="st">"Stark"</span>, <span class="st">"Stark"</span>, <span class="st">"Lannister"</span>, <span class="st">"Lannister"</span>, <span class="st">"Stark"</span>, <span class="st">"Targaryen"</span>,</span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Stark"</span>, <span class="st">"Tarth"</span>, <span class="st">"Stark"</span>, <span class="st">"Tully"</span>, <span class="st">"Baelish"</span>, <span class="st">"Lannister"</span>, <span class="st">"Baratheon"</span>, <span class="st">"Baratheon"</span>,</span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Greyjoy"</span>), <span class="at">code =</span> <span class="fu">sample</span>(<span class="fl">1e+05</span><span class="sc">:</span><span class="dv">999999</span>, <span class="dv">15</span>, <span class="at">replace =</span> <span class="cn">FALSE</span>))</span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">add_prefix</span>(my_data, <span class="at">variable =</span> <span class="st">"house"</span>)  <span class="co"># uses default prefix</span></span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>my_data <span class="ot">&lt;-</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">data.frame</span>(</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">"name"</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="st">"Ned"</span>, <span class="st">"Sansa"</span>, <span class="st">"Cersei"</span>, <span class="st">"Tyrion"</span>, <span class="st">"Jon"</span>, <span class="st">"Daenerys"</span>, <span class="st">"Aria"</span>, <span class="st">"Brienne"</span>, <span class="st">"Rickon"</span>, <span class="st">"Edmure"</span>, <span class="st">"Petyr"</span>, <span class="st">"Jamie"</span>, <span class="st">"Robert"</span>, <span class="st">"Stannis"</span>, <span class="st">"Theon"</span>),</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">"house"</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="st">"Stark"</span>, <span class="st">"Stark"</span>, <span class="st">"Lannister"</span>, <span class="st">"Lannister"</span>, <span class="st">"Stark"</span>, <span class="st">"Targaryen"</span>, <span class="st">"Stark"</span>, <span class="st">"Tarth"</span>, <span class="st">"Stark"</span>, <span class="st">"Tully"</span>, <span class="st">"Baelish"</span>, <span class="st">"Lannister"</span>, <span class="st">"Baratheon"</span>, <span class="st">"Baratheon"</span>, <span class="st">"Greyjoy"</span>),</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>    <span class="st">"code"</span> <span class="ot">=</span> <span class="fu">sample</span>(<span class="dv">100000</span><span class="sc">:</span><span class="dv">999999</span>, <span class="dv">15</span>, <span class="at">replace =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">add_prefix</span>(my_data, <span class="at">variable =</span> <span class="st">"house"</span>) <span class="co"># uses default prefix</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>##       name     house   code
-## 1      Ned     Stark 233251
-## 2    Sansa     Stark 696730
-## 3   Cersei Lannister 100670
-## 4   Tyrion Lannister 893937
-## 5      Jon     Stark 993473
-## 6 Daenerys Targaryen 436327</code></pre>
+## 1      Ned     Stark 683559
+## 2    Sansa     Stark 596766
+## 3   Cersei Lannister 803009
+## 4   Tyrion Lannister 169887
+## 5      Jon     Stark 555216
+## 6 Daenerys Targaryen 384386</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">add_prefix</span>(my_data, <span class="at">prefix =</span> <span class="st">"House "</span>, <span class="at">variable =</span> <span class="st">"house"</span>)</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>##       name           house   code
-## 1      Ned     House Stark 233251
-## 2    Sansa     House Stark 696730
-## 3   Cersei House Lannister 100670
-## 4   Tyrion House Lannister 893937
-## 5      Jon     House Stark 993473
-## 6 Daenerys House Targaryen 436327</code></pre>
+## 1      Ned     House Stark 683559
+## 2    Sansa     House Stark 596766
+## 3   Cersei House Lannister 803009
+## 4   Tyrion House Lannister 169887
+## 5      Jon     House Stark 555216
+## 6 Daenerys House Targaryen 384386</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">add_prefix</span>(my_data, <span class="at">prefix =</span> <span class="st">"00001-"</span>, <span class="at">variable =</span> <span class="st">"code"</span>)</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>##       name     house         code
-## 1      Ned     Stark 00001-233251
-## 2    Sansa     Stark 00001-696730
-## 3   Cersei Lannister 00001-100670
-## 4   Tyrion Lannister 00001-893937
-## 5      Jon     Stark 00001-993473
-## 6 Daenerys Targaryen 00001-436327</code></pre>
+## 1      Ned     Stark 00001-683559
+## 2    Sansa     Stark 00001-596766
+## 3   Cersei Lannister 00001-803009
+## 4   Tyrion Lannister 00001-169887
+## 5      Jon     Stark 00001-555216
+## 6 Daenerys Targaryen 00001-384386</code></pre>
 </div>
 </div>
 <blockquote class="blockquote">
@@ -677,23 +678,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(<span class="fu">add_prefix</span>(<span class="at">df =</span> my_data, <span class="at">variable =</span> <span class="st">"house"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>##       name     house   code
-## 1      Ned     Stark 233251
-## 2    Sansa     Stark 696730
-## 3   Cersei Lannister 100670
-## 4   Tyrion Lannister 893937
-## 5      Jon     Stark 993473
-## 6 Daenerys Targaryen 436327</code></pre>
+## 1      Ned     Stark 683559
+## 2    Sansa     Stark 596766
+## 3   Cersei Lannister 803009
+## 4   Tyrion Lannister 169887
+## 5      Jon     Stark 555216
+## 6 Daenerys Targaryen 384386</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># versus...</span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(<span class="fu">add_prefix</span>(<span class="at">variable =</span> <span class="st">"house"</span>, <span class="at">df =</span> my_data))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>##       name     house   code
-## 1      Ned     Stark 233251
-## 2    Sansa     Stark 696730
-## 3   Cersei Lannister 100670
-## 4   Tyrion Lannister 893937
-## 5      Jon     Stark 993473
-## 6 Daenerys Targaryen 436327</code></pre>
+## 1      Ned     Stark 683559
+## 2    Sansa     Stark 596766
+## 3   Cersei Lannister 803009
+## 4   Tyrion Lannister 169887
+## 5      Jon     Stark 555216
+## 6 Daenerys Targaryen 384386</code></pre>
 </div>
 </div>
 <p>Note that in the example above, because the argument name <code>prefix</code> was excluded, the default value was used.</p>
@@ -702,34 +703,34 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(<span class="fu">add_prefix</span>(my_data, <span class="st">"00001-"</span>, <span class="st">"code"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>##       name     house         code
-## 1      Ned     Stark 00001-233251
-## 2    Sansa     Stark 00001-696730
-## 3   Cersei Lannister 00001-100670
-## 4   Tyrion Lannister 00001-893937
-## 5      Jon     Stark 00001-993473
-## 6 Daenerys Targaryen 00001-436327</code></pre>
+## 1      Ned     Stark 00001-683559
+## 2    Sansa     Stark 00001-596766
+## 3   Cersei Lannister 00001-803009
+## 4   Tyrion Lannister 00001-169887
+## 5      Jon     Stark 00001-555216
+## 6 Daenerys Targaryen 00001-384386</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># versus...</span></span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(<span class="fu">add_prefix</span>(my_data, <span class="st">"House "</span>, <span class="st">"house"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>##       name           house   code
-## 1      Ned     House Stark 233251
-## 2    Sansa     House Stark 696730
-## 3   Cersei House Lannister 100670
-## 4   Tyrion House Lannister 893937
-## 5      Jon     House Stark 993473
-## 6 Daenerys House Targaryen 436327</code></pre>
+## 1      Ned     House Stark 683559
+## 2    Sansa     House Stark 596766
+## 3   Cersei House Lannister 803009
+## 4   Tyrion House Lannister 169887
+## 5      Jon     House Stark 555216
+## 6 Daenerys House Targaryen 384386</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># versus...</span></span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(<span class="fu">add_prefix</span>(my_data, <span class="st">""</span>, <span class="st">"house"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>##       name     house   code
-## 1      Ned     Stark 233251
-## 2    Sansa     Stark 696730
-## 3   Cersei Lannister 100670
-## 4   Tyrion Lannister 893937
-## 5      Jon     Stark 993473
-## 6 Daenerys Targaryen 436327</code></pre>
+## 1      Ned     Stark 683559
+## 2    Sansa     Stark 596766
+## 3   Cersei Lannister 803009
+## 4   Tyrion Lannister 169887
+## 5      Jon     Stark 555216
+## 6 Daenerys Targaryen 384386</code></pre>
 </div>
 </div>
 <p>If we try to run the line below, however, it throws an error because too few (unnamed) arguments are passed to the function for it to be able to disambiguate them:</p>
@@ -751,9 +752,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>i <span class="ot">&lt;-</span> <span class="cn">TRUE</span></span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (i <span class="sc">==</span> <span class="cn">TRUE</span>) {</span>
-<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">print</span>(<span class="st">"Yes"</span>)</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">"Yes"</span>)</span>
 <span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span> {</span>
-<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">print</span>(<span class="st">"No"</span>)</span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">"No"</span>)</span>
 <span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>## [1] "Yes"</code></pre>
@@ -761,9 +762,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>i <span class="ot">&lt;-</span> <span class="cn">FALSE</span></span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (i <span class="sc">==</span> <span class="cn">TRUE</span>) {</span>
-<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">print</span>(<span class="st">"Yes"</span>)</span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">"Yes"</span>)</span>
 <span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span> {</span>
-<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">print</span>(<span class="st">"No"</span>)</span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">"No"</span>)</span>
 <span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>## [1] "No"</code></pre>
@@ -793,8 +794,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>The function <code>case_when()</code> is the equivalent of mixing several “if… else…” statements.</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>i <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span></span>
-<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>output <span class="ot">&lt;-</span> <span class="fu">case_when</span>(i <span class="sc">&lt;=</span> <span class="dv">3</span> <span class="sc">~</span> <span class="st">"small"</span>, i <span class="sc">&lt;=</span> <span class="dv">7</span> <span class="sc">~</span> <span class="st">"medium"</span>, i <span class="sc">&lt;=</span> <span class="dv">10</span> <span class="sc">~</span> <span class="st">"large"</span>)</span>
-<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>output</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>output <span class="ot">&lt;-</span> <span class="fu">case_when</span>(</span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>  i <span class="sc">&lt;=</span> <span class="dv">3</span> <span class="sc">~</span> <span class="st">"small"</span>,</span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>  i <span class="sc">&lt;=</span> <span class="dv">7</span> <span class="sc">~</span> <span class="st">"medium"</span>,</span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>  i <span class="sc">&lt;=</span> <span class="dv">10</span> <span class="sc">~</span> <span class="st">"large"</span></span>
+<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a>output</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>##  [1] "small"  "small"  "small"  "medium" "medium" "medium" "medium" "large" 
 ##  [9] "large"  "large"</code></pre>
@@ -838,38 +843,38 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Examples:</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>i <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">9</span>, <span class="dv">10</span>, <span class="dv">11</span>)</span>
-<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="sc">!</span><span class="fu">any</span>(i <span class="sc">&lt;=</span> <span class="dv">10</span>)  <span class="co"># logical NOT</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="sc">!</span><span class="fu">any</span>(i <span class="sc">&lt;=</span> <span class="dv">10</span>) <span class="co"># logical NOT</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>## [1] FALSE</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="sc">!</span><span class="fu">all</span>(i <span class="sc">&lt;=</span> <span class="dv">10</span>)  <span class="co"># logical NOT</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="sc">!</span><span class="fu">all</span>(i <span class="sc">&lt;=</span> <span class="dv">10</span>) <span class="co"># logical NOT</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>## [1] TRUE</code></pre>
 </div>
 </div>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>i <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">20</span></span>
-<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>i <span class="sc">&lt;</span> <span class="dv">12</span> <span class="sc">&amp;</span> (i<span class="sc">%%</span><span class="dv">3</span>) <span class="sc">==</span> <span class="dv">0</span>  <span class="co"># element-wise logical AND</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>i <span class="sc">&lt;</span> <span class="dv">12</span> <span class="sc">&amp;</span> (i <span class="sc">%%</span> <span class="dv">3</span>) <span class="sc">==</span> <span class="dv">0</span> <span class="co"># element-wise logical AND</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>##  [1] FALSE FALSE  TRUE FALSE FALSE  TRUE FALSE FALSE  TRUE FALSE FALSE FALSE
 ## [13] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE</code></pre>
 </div>
 </div>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>i[<span class="dv">1</span>] <span class="sc">&lt;</span> <span class="dv">12</span> <span class="sc">&amp;&amp;</span> (i[<span class="dv">1</span>]<span class="sc">%%</span><span class="dv">3</span>) <span class="sc">==</span> <span class="dv">0</span>  <span class="co"># logical AND</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>i[<span class="dv">1</span>] <span class="sc">&lt;</span> <span class="dv">12</span> <span class="sc">&amp;&amp;</span> (i[<span class="dv">1</span>] <span class="sc">%%</span> <span class="dv">3</span>) <span class="sc">==</span> <span class="dv">0</span> <span class="co"># logical AND</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>## [1] FALSE</code></pre>
 </div>
 </div>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>i <span class="sc">&gt;</span> <span class="dv">10</span> <span class="sc">|</span> (i<span class="sc">%%</span><span class="dv">2</span>) <span class="sc">==</span> <span class="dv">0</span>  <span class="co"># element-wise logical OR</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>i <span class="sc">&gt;</span> <span class="dv">10</span> <span class="sc">|</span> (i <span class="sc">%%</span> <span class="dv">2</span>) <span class="sc">==</span> <span class="dv">0</span> <span class="co"># element-wise logical OR</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>##  [1] FALSE  TRUE FALSE  TRUE FALSE  TRUE FALSE  TRUE FALSE  TRUE  TRUE  TRUE
 ## [13]  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE</code></pre>
 </div>
 </div>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>i[<span class="dv">1</span>] <span class="sc">&gt;</span> <span class="dv">10</span> <span class="sc">||</span> (i[<span class="dv">1</span>]<span class="sc">%%</span><span class="dv">2</span>) <span class="sc">==</span> <span class="dv">0</span>  <span class="co"># logical OR</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>i[<span class="dv">1</span>] <span class="sc">&gt;</span> <span class="dv">10</span> <span class="sc">||</span> (i[<span class="dv">1</span>] <span class="sc">%%</span> <span class="dv">2</span>) <span class="sc">==</span> <span class="dv">0</span> <span class="co"># logical OR</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>## [1] FALSE</code></pre>
 </div>
@@ -877,7 +882,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"There"</span>, <span class="st">"is"</span>, <span class="st">"grandeur"</span>, <span class="st">"in"</span>, <span class="st">"this"</span>, <span class="st">"view"</span>, <span class="st">"of"</span>, <span class="st">"life"</span>)</span>
 <span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a>b <span class="ot">&lt;-</span> <span class="st">"grandeur"</span></span>
-<span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a>b <span class="sc">%in%</span> a  <span class="co"># membership</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a>b <span class="sc">%in%</span> a <span class="co"># membership</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>## [1] TRUE</code></pre>
 </div>
@@ -889,7 +894,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sjmisc)</span>
-<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a>b <span class="sc">%nin%</span> a  <span class="co"># not membership</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a>b <span class="sc">%nin%</span> a <span class="co"># not membership</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>## [1]  TRUE FALSE</code></pre>
 </div>
@@ -907,10 +912,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>The following examples print out each element in a vector, <strong>v</strong>:</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb56"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a>v <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="at">from =</span> <span class="dv">100</span>, <span class="at">to =</span> <span class="dv">120</span>, <span class="at">by =</span> <span class="dv">2</span>)</span>
-<span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(v)) {</span>
-<span id="cb56-3"><a href="#cb56-3" aria-hidden="true" tabindex="-1"></a>    <span class="co"># here, we are looping over the indices of v</span></span>
-<span id="cb56-4"><a href="#cb56-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">print</span>(v[i])</span>
-<span id="cb56-5"><a href="#cb56-5" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(v)) { <span class="co"># here, we are looping over the indices of v</span></span>
+<span id="cb56-3"><a href="#cb56-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(v[i])</span>
+<span id="cb56-4"><a href="#cb56-4" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>## [1] 100
 ## [1] 102
@@ -924,10 +928,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 ## [1] 118
 ## [1] 120</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="fu">seq_along</span>(v)) {</span>
-<span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># seq_along() also loops over the indices of v</span></span>
-<span id="cb58-3"><a href="#cb58-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">print</span>(v[i])</span>
-<span id="cb58-4"><a href="#cb58-4" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="fu">seq_along</span>(v)) { <span class="co"># seq_along() also loops over the indices of v</span></span>
+<span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(v[i])</span>
+<span id="cb58-3"><a href="#cb58-3" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>## [1] 100
 ## [1] 102
@@ -941,10 +944,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 ## [1] 118
 ## [1] 120</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> v) {</span>
-<span id="cb60-2"><a href="#cb60-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># here we loop over the elements of v</span></span>
-<span id="cb60-3"><a href="#cb60-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">print</span>(i)</span>
-<span id="cb60-4"><a href="#cb60-4" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> v) { <span class="co"># here we loop over the elements of v</span></span>
+<span id="cb60-2"><a href="#cb60-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(i)</span>
+<span id="cb60-3"><a href="#cb60-3" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>## [1] 100
 ## [1] 102
@@ -962,13 +964,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>It is good form and improves efficiency if we allocate memory to whatever output we may want to generate inside of a loop beforehand. For example, if we want to use a loop to calculate the <code>median()</code> across all Platyrrhine primate genera for the female brain size, female body size, and canine dimorphism variables in the Kamilar and Cooper dataset we have used previously, we could do the following:</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb62"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a>f <span class="ot">&lt;-</span> <span class="st">"https://raw.githubusercontent.com/difiore/ada-datasets/main/KamilarAndCooperData.csv"</span></span>
-<span id="cb62-2"><a href="#cb62-2" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(f, <span class="at">col_names =</span> <span class="cn">TRUE</span>)  <span class="co"># creates a 'tibble'</span></span>
+<span id="cb62-2"><a href="#cb62-2" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(f, <span class="at">col_names =</span> <span class="cn">TRUE</span>) <span class="co"># creates a "tibble"</span></span>
 <span id="cb62-3"><a href="#cb62-3" aria-hidden="true" tabindex="-1"></a>s <span class="ot">&lt;-</span> <span class="fu">filter</span>(d, Family <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Atelidae"</span>, <span class="st">"Pitheciidae"</span>, <span class="st">"Cebidae"</span>)) <span class="sc">|&gt;</span></span>
-<span id="cb62-4"><a href="#cb62-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">select</span>(Brain_Size_Female_Mean, Body_mass_female_mean, Canine_Dimorphism)</span>
+<span id="cb62-4"><a href="#cb62-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Brain_Size_Female_Mean, Body_mass_female_mean, Canine_Dimorphism)</span>
 <span id="cb62-5"><a href="#cb62-5" aria-hidden="true" tabindex="-1"></a><span class="co"># good practice</span></span>
 <span id="cb62-6"><a href="#cb62-6" aria-hidden="true" tabindex="-1"></a>output <span class="ot">&lt;-</span> <span class="fu">vector</span>(<span class="st">"double"</span>, <span class="fu">ncol</span>(s))</span>
 <span id="cb62-7"><a href="#cb62-7" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="fu">seq_along</span>(s)) {</span>
-<span id="cb62-8"><a href="#cb62-8" aria-hidden="true" tabindex="-1"></a>    output[[i]] <span class="ot">&lt;-</span> <span class="fu">median</span>(s[[i]], <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb62-8"><a href="#cb62-8" aria-hidden="true" tabindex="-1"></a>  output[[i]] <span class="ot">&lt;-</span> <span class="fu">median</span>(s[[i]], <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
 <span id="cb62-9"><a href="#cb62-9" aria-hidden="true" tabindex="-1"></a>}</span>
 <span id="cb62-10"><a href="#cb62-10" aria-hidden="true" tabindex="-1"></a>output</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -980,7 +982,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="sourceCode cell-code" id="cb64"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a><span class="co"># not so good practice</span></span>
 <span id="cb64-2"><a href="#cb64-2" aria-hidden="true" tabindex="-1"></a>output <span class="ot">&lt;-</span> <span class="fu">vector</span>()</span>
 <span id="cb64-3"><a href="#cb64-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="fu">seq_along</span>(s)) {</span>
-<span id="cb64-4"><a href="#cb64-4" aria-hidden="true" tabindex="-1"></a>    output <span class="ot">&lt;-</span> <span class="fu">c</span>(output, <span class="fu">median</span>(s[[i]], <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span>
+<span id="cb64-4"><a href="#cb64-4" aria-hidden="true" tabindex="-1"></a>  output <span class="ot">&lt;-</span> <span class="fu">c</span>(output, <span class="fu">median</span>(s[[i]], <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span>
 <span id="cb64-5"><a href="#cb64-5" aria-hidden="true" tabindex="-1"></a>}</span>
 <span id="cb64-6"><a href="#cb64-6" aria-hidden="true" tabindex="-1"></a>output</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -995,41 +997,41 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <details class="code-fold">
 <summary>Show Code</summary>
 <div class="sourceCode cell-code" id="cb66"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(my_data)) {</span>
-<span id="cb66-2"><a href="#cb66-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">print</span>(my_data[i, ])</span>
+<span id="cb66-2"><a href="#cb66-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(my_data[i, ])</span>
 <span id="cb66-3"><a href="#cb66-3" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <details><summary>Show Output</summary>
 <pre class="details" data-summary="Show Output"><code>##   name house   code
-## 1  Ned Stark 233251
+## 1  Ned Stark 683559
 ##    name house   code
-## 2 Sansa Stark 696730
+## 2 Sansa Stark 596766
 ##     name     house   code
-## 3 Cersei Lannister 100670
+## 3 Cersei Lannister 803009
 ##     name     house   code
-## 4 Tyrion Lannister 893937
+## 4 Tyrion Lannister 169887
 ##   name house   code
-## 5  Jon Stark 993473
+## 5  Jon Stark 555216
 ##       name     house   code
-## 6 Daenerys Targaryen 436327
+## 6 Daenerys Targaryen 384386
 ##   name house   code
-## 7 Aria Stark 791745
+## 7 Aria Stark 273068
 ##      name house   code
-## 8 Brienne Tarth 962723
+## 8 Brienne Tarth 415878
 ##     name house   code
-## 9 Rickon Stark 314684
+## 9 Rickon Stark 602453
 ##      name house   code
-## 10 Edmure Tully 534941
+## 10 Edmure Tully 639331
 ##     name   house   code
-## 11 Petyr Baelish 338562
+## 11 Petyr Baelish 125366
 ##     name     house   code
-## 12 Jamie Lannister 954630
+## 12 Jamie Lannister 568733
 ##      name     house   code
-## 13 Robert Baratheon 216022
+## 13 Robert Baratheon 901215
 ##       name     house   code
-## 14 Stannis Baratheon 190479
+## 14 Stannis Baratheon 507873
 ##     name   house   code
-## 15 Theon Greyjoy 835849</code></pre>
+## 15 Theon Greyjoy 904844</code></pre>
 </details>
 </div>
 </div>
@@ -1041,26 +1043,26 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <details class="code-fold">
 <summary>Show Code</summary>
 <div class="sourceCode cell-code" id="cb68"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> my_data<span class="sc">$</span>code) {</span>
-<span id="cb68-2"><a href="#cb68-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">print</span>(stringi<span class="sc">::</span><span class="fu">stri_reverse</span>(i))</span>
+<span id="cb68-2"><a href="#cb68-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(stringi<span class="sc">::</span><span class="fu">stri_reverse</span>(i))</span>
 <span id="cb68-3"><a href="#cb68-3" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <details><summary>Show Output</summary>
-<pre class="details" data-summary="Show Output"><code>## [1] "152332"
-## [1] "037696"
-## [1] "076001"
-## [1] "739398"
-## [1] "374399"
-## [1] "723634"
-## [1] "547197"
-## [1] "327269"
-## [1] "486413"
-## [1] "149435"
-## [1] "265833"
-## [1] "036459"
-## [1] "220612"
-## [1] "974091"
-## [1] "948538"</code></pre>
+<pre class="details" data-summary="Show Output"><code>## [1] "955386"
+## [1] "667695"
+## [1] "900308"
+## [1] "788961"
+## [1] "612555"
+## [1] "683483"
+## [1] "860372"
+## [1] "878514"
+## [1] "354206"
+## [1] "133936"
+## [1] "663521"
+## [1] "337865"
+## [1] "512109"
+## [1] "378705"
+## [1] "448409"</code></pre>
 </details>
 </div>
 </div>
@@ -1077,8 +1079,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="sourceCode cell-code" id="cb71"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb71-1"><a href="#cb71-1" aria-hidden="true" tabindex="-1"></a>v <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="at">from =</span> <span class="dv">100</span>, <span class="at">to =</span> <span class="dv">120</span>, <span class="at">by =</span> <span class="dv">2</span>)</span>
 <span id="cb71-2"><a href="#cb71-2" aria-hidden="true" tabindex="-1"></a>i <span class="ot">&lt;-</span> <span class="dv">1</span></span>
 <span id="cb71-3"><a href="#cb71-3" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span> (i <span class="sc">&lt;=</span> <span class="fu">length</span>(v)) {</span>
-<span id="cb71-4"><a href="#cb71-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">print</span>(v[i])</span>
-<span id="cb71-5"><a href="#cb71-5" aria-hidden="true" tabindex="-1"></a>    i <span class="ot">&lt;-</span> i <span class="sc">+</span> <span class="dv">1</span></span>
+<span id="cb71-4"><a href="#cb71-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(v[i])</span>
+<span id="cb71-5"><a href="#cb71-5" aria-hidden="true" tabindex="-1"></a>  i <span class="ot">&lt;-</span> i <span class="sc">+</span> <span class="dv">1</span></span>
 <span id="cb71-6"><a href="#cb71-6" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>## [1] 100
@@ -1103,13 +1105,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>The following examples replicate what we did with <code>for()</code> loops above. Here, <strong>s</strong> is a data frame, and the function <code>median()</code> is being applied to each element, i.e., each variable, in that data frame:</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb73"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb73-1"><a href="#cb73-1" aria-hidden="true" tabindex="-1"></a>output <span class="ot">&lt;-</span> <span class="fu">sapply</span>(s, <span class="at">FUN =</span> median, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb73-2"><a href="#cb73-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Here we are passing on an extra argument to the `median()`function, i.e.,</span></span>
-<span id="cb73-3"><a href="#cb73-3" aria-hidden="true" tabindex="-1"></a><span class="co"># `na.rm=TRUE`. This is an example of 'dot-dot-dot' (`...`) being an extra</span></span>
-<span id="cb73-4"><a href="#cb73-4" aria-hidden="true" tabindex="-1"></a><span class="co"># argument of the `sapply()` function where those arguments are 'passed</span></span>
-<span id="cb73-5"><a href="#cb73-5" aria-hidden="true" tabindex="-1"></a><span class="co"># through' as arguments of the `FUN=` function. Basically, this means that we</span></span>
-<span id="cb73-6"><a href="#cb73-6" aria-hidden="true" tabindex="-1"></a><span class="co"># can pass on an arbitrary set and number of arguments into `sapply()` which,</span></span>
-<span id="cb73-7"><a href="#cb73-7" aria-hidden="true" tabindex="-1"></a><span class="co"># in this case, are then being used in the `median()` function.</span></span>
-<span id="cb73-8"><a href="#cb73-8" aria-hidden="true" tabindex="-1"></a>output</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb73-2"><a href="#cb73-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Here we are passing on an extra argument to the `median()`function, i.e., `na.rm=TRUE`. This is an example of "dot-dot-dot" (`...`) being an extra argument of the `sapply()` function where those arguments are "passed through" as arguments of the `FUN=` function. Basically, this means that we can pass on an arbitrary set and number of arguments into `sapply()` which, in this case, are then being used in the `median()` function.</span></span>
+<span id="cb73-3"><a href="#cb73-3" aria-hidden="true" tabindex="-1"></a>output</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>## Brain_Size_Female_Mean  Body_mass_female_mean      Canine_Dimorphism 
 ##                29.0500              1030.0000                 1.2955</code></pre>
@@ -1138,14 +1135,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>The <code>map()</code> family of functions from the {purrr} package (which is part of the {tidyverse} set of packages) works very similarly to the <code>apply()</code> functions:</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb81"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb81-1"><a href="#cb81-1" aria-hidden="true" tabindex="-1"></a>output <span class="ot">&lt;-</span> <span class="fu">map_dbl</span>(s, <span class="at">.f =</span> median, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb81-2"><a href="#cb81-2" aria-hidden="true" tabindex="-1"></a><span class="co"># note the argument `.f=` instead of `FUN=` `map_dbl()` returns an atomic</span></span>
-<span id="cb81-3"><a href="#cb81-3" aria-hidden="true" tabindex="-1"></a><span class="co"># vector of type 'double'</span></span>
+<span id="cb81-2"><a href="#cb81-2" aria-hidden="true" tabindex="-1"></a><span class="co"># note the argument `.f=` instead of `FUN=`</span></span>
+<span id="cb81-3"><a href="#cb81-3" aria-hidden="true" tabindex="-1"></a><span class="co"># `map_dbl()` returns an atomic vector of type "double"</span></span>
 <span id="cb81-4"><a href="#cb81-4" aria-hidden="true" tabindex="-1"></a>output</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>## Brain_Size_Female_Mean  Body_mass_female_mean      Canine_Dimorphism 
 ##                29.0500              1030.0000                 1.2955</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb83"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb83-1"><a href="#cb83-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(output)  <span class="co"># returns a vector, like `sapply()`</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb83"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb83-1"><a href="#cb83-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(output) <span class="co"># returns a vector, like `sapply()`</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>## [1] "numeric"</code></pre>
 </div>
@@ -1162,13 +1159,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 ## $Canine_Dimorphism
 ## [1] 1.2955</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb87"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb87-1"><a href="#cb87-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(output)  <span class="co"># returns a list, like `lapply()`</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb87"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb87-1"><a href="#cb87-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(output) <span class="co"># returns a list, like `lapply()`</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>## [1] "list"</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb89"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb89-1"><a href="#cb89-1" aria-hidden="true" tabindex="-1"></a><span class="co"># `map_dfr()` returns a data frame</span></span>
 <span id="cb89-2"><a href="#cb89-2" aria-hidden="true" tabindex="-1"></a>output <span class="ot">&lt;-</span> <span class="fu">map_dfr</span>(s, <span class="at">.f =</span> median, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb89-3"><a href="#cb89-3" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(output)  <span class="co"># returns a data frame, unlike any of the `apply()` functions</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb89-3"><a href="#cb89-3" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(output) <span class="co"># returns a data frame, unlike any of the `apply()` functions</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>## [1] "tbl_df"     "tbl"        "data.frame"</code></pre>
 </div>

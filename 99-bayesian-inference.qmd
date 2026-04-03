@@ -119,7 +119,6 @@ These priors imply that...
 ```{r}
 #| message: false
 #| warning: false
-#| cache: true
 #| output: false
 f <- "https://raw.githubusercontent.com/difiore/ada-datasets/main/zombies.csv"
 zombies <- read_csv(f, col_names = TRUE)
@@ -218,7 +217,6 @@ summary(m_ols)
 ```{r}
 #| message: false
 #| warning: false
-#| cache: true
 #| output: false
 m_bayes <- brm(
   formula = height ~ weight,
