@@ -238,7 +238,7 @@ The best model overall is `AFR(mo) ~ gestation(mo) + litters/year + mass(g) + we
 
 - What variables, if any, appear in all of this set of “top” models?
 
-Here, only three variables - **gestation(mo)**, **litters/year**, and **weaning(mo)** - appear in all of the models with delta AICc of ≤ 4. The variables **mass(g)** and **newborn(g)** each appears in 4 of the top 6 models, while the variable **weanmass(g)** appears in 3.
+Here, only three variables -- **gestation(mo)**, **litters/year**, and **weaning(mo)** -- appear in all of the models with delta AICc of ≤ 4. The variables **mass(g)** and **newborn(g)** each appears in 4 of the top 6 models, while the variable **weanmass(g)** appears in 3.
 
 - Calculate and plot the model-averaged coefficients and their CIs across this set of top models.
 

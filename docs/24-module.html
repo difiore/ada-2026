@@ -937,15 +937,15 @@ window.Quarto = {
 </div>
 <div class="cell-output cell-output-stderr">
 <pre><code>## 
-## 6 message(s): boundary (singular) fit: see help('isSingular')</code></pre>
+## 10 message(s): boundary (singular) fit: see help('isSingular')</code></pre>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>##                        2.5 %    97.5 %
-## .sig01              3.609100  43.18333
-## .sigma             24.754451  33.60419
-## (Intercept)       101.600571 161.26729
-## reproconditionPOP   8.823321  32.25894
-## parityP            68.422115 148.87003</code></pre>
+## .sig01              3.407901  43.43706
+## .sigma             24.846671  33.63598
+## (Intercept)       102.240695 161.89346
+## reproconditionPOP   8.257573  32.59226
+## parityP            66.169361 155.91109</code></pre>
 </div>
 </div>
 <blockquote class="blockquote">
@@ -1431,16 +1431,16 @@ window.Quarto = {
 <div class="sourceCode cell-code" id="cb60"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a><span class="fu">confint</span>(m, <span class="at">level =</span> <span class="fl">0.95</span>, <span class="at">method =</span> <span class="st">"boot"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>##                           2.5 %      97.5 %
-## .sig01             0.000000e+00  20.1151896
-## .sig02             1.314265e-04  18.1093960
+## .sig01             0.000000e+00  19.6687259
+## .sig02             1.595908e-04  17.6986795
 ## .sig03            -1.000000e+00   1.0000000
-## .sig04             0.000000e+00  45.0662534
-## .sig05             1.383079e-04  44.5075556
-## .sig06            -1.000000e+00  -0.3130975
-## .sigma             2.392427e+01  32.8408617
-## (Intercept)        1.038351e+02 164.9453431
-## reproconditionPOP  6.132946e+00  32.6602270
-## parityP            7.606237e+01 141.3899178</code></pre>
+## .sig04             0.000000e+00  41.6604092
+## .sig05             1.692273e-04  42.5750409
+## .sig06            -1.000000e+00  -0.4696887
+## .sigma             2.373400e+01  32.4976982
+## (Intercept)        1.000263e+02 166.5523886
+## reproconditionPOP  8.146108e+00  33.2132353
+## parityP            7.621623e+01 145.7230050</code></pre>
 </div>
 </div>
 <p>Finally, effects plots of how the expected amount of grooming received varies with the fixed effects (<strong>reprocondition</strong> and <strong>parity</strong>) under our new random slope model is the same as that under the random intercept model.</p>
