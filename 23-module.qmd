@@ -56,25 +56,27 @@ Model fitting and parameter estimation in GLM is commonly done using a maximum l
 
 The measure of discrepancy used in a GLM to assess the goodness of fit of the model to the data is called the **deviance**, which we can think of as analogous to the variance in a general linear model. Deviance is defined as **2** $\times$ (the log-likelihood of a "fully saturated" model minus the log-likelihood of the proposed model). The former is a model that fits the data perfectly. Its likelihood is 1 and its log-likelihood is thus 0, so deviance functionally can be calculated as **-2** $\times$ log-likelihood of the proposed model. Because the saturated model does not depend on any estimated parameters and has a likelihood of 1, *minimizing the deviance* for a particular model is the same as *maximizing the likelihood*. [For the ML process of parameter estimation, it is actually mathematically easier to maximize the log-likelihood, **ln(L)**, than it is to maximize the likelihood, **L**, so computationally that is what is usually done.] In generalized linear regression, the sum of squared "deviance residuals" of all the data points is analogous to the sum of squares of the residuals in a standard linear regression (i.e., this is what variation in the expectation of the response that the model does not explain).
 
-The `glm()` function in ***R*** can be used for many types of generalized linear modeling, using a similar formula notation to that we've used before, with an additional argument, `family=`, to specify the kind of error structure we expect in the response variable ("gaussian", "poisson", "binomial", etc.): `glm(y ~ x, family = "gaussian")`
+The `glm()` function in ***R*** can be used for many types of generalized linear modeling, using a similar formula notation to that we've used before, with an additional argument, `family=`, to specify the kind of error structure we expect in the response variable ("gaussian", "poisson", "binomial", etc.): `glm(y ~ x, family = "gaussian")`.
 
 ```{r}
-#| code-fold: true
+#| message: false
 f <- "https://raw.githubusercontent.com/difiore/ada-datasets/main/zombies.csv"
 z <- read_csv(f, col_names = TRUE)
-lm <- lm(data = z, height ~ weight + age)
-summary(lm)
 glm <- glm(data = z, height ~ weight + age, family = "gaussian")
 summary(glm)
+```
+
+> **NOTE:** This `glm()` with `family="gaussian"` is equivalent to running a standard `lm()`...
+
+```{r}
+lm <- lm(data = z, height ~ weight + age)
+summary(lm)
 ```
 
 As with previous models, our explanatory variable, $X$, can be continuous (leading to a regression analysis) or categorical (leading to an ANOVA-like procedure called an *analysis of deviance*) or both.
 
 ```{r}
-#| code-fold: true
 z$gender <- factor(z$gender)
-lm <- lm(data = z, height ~ weight + gender)
-summary(lm)
 glm <- glm(data = z, height ~ weight + gender, family = "gaussian")
 summary(glm)
 ```
@@ -106,11 +108,16 @@ Suppose we are interested in how a students' GRE scores, grade point averages (G
 Load in the "graddata.csv" dataset, which comes from [this website](https://stats.idre.ucla.edu/other/dae/), and then explore it using `head()`, `summary()`, `plot()`, `pairs()`, and `table()`.
 
 ```{r}
-#| code-fold: true
+#| message: false
 f <- "https://raw.githubusercontent.com/difiore/ada-datasets/main/graddata.csv"
 # or f <- "https://stats.idre.ucla.edu/stat/data/binary.csv"
 d <- read_csv(f, col_names = TRUE)
-d$rank <- factor(d$rank)
+d$rank <- factor(d$rank, levels = c(1, 2, 3, 4))
+```
+
+```{r}
+#| code-fold: true
+#| message: false
 head(d)
 summary(d)
 # first, some exploratory visualization
@@ -153,6 +160,7 @@ Using the `predict()` function, we can plot our data and fit the change in the a
 
 ```{r}
 #| fig-height: 4
+#| message: false
 x <- seq(from = 200, to = 800, by = 1)
 log_odds <- predict(glm, newdata=data.frame(gre=x))
 # this function will predict the log(odds)...
@@ -191,8 +199,9 @@ By exponentiating the regression coefficient, $\beta_1$, we can get the actual o
 
 ```{r}
 (odds_change <- exp(glm$coefficients[2]))
-# a 1 unit increase in gre results in a 0.36% increase in the odds of admission
 ```
+
+Here, a 1 unit increase in gre results in a 0.36% increase in the odds of admission.
 
 As in simple (general) linear regression, the key null hypothesis, $H_0$, of relevance when fitting a simple logistic regression model is that our regression coefficient, $\beta$, is zero, i.e. that there is no relationship between the binary response variable and the predictor variable.
 
@@ -228,8 +237,10 @@ Alternatively, we can use the `confint.default()` function, which returns a CI b
 
 # which is equivalent to how we have calculated CIs previously
 
-results$lower <- results$estimate - qnorm(1 - alpha / 2) * results$std.error
-results$upper <- results$estimate + qnorm(1 - alpha / 2) * results$std.error
+results$lower <- results$estimate -
+  qnorm(1 - alpha / 2) * results$std.error
+results$upper <- results$estimate +
+  qnorm(1 - alpha / 2) * results$std.error
 (CI <- results |> select(c("term", "lower", "upper")))
 ```
 
@@ -285,6 +296,7 @@ p
 The `predict()` function can also be used to get confidence intervals around our estimate of the log(odds of admission) (if the `type=` argument is unspecified or set to "link"), or around the estimate of the probability of admission (if the `type=` argument is set to "response"), by using the argument `se.fit=TRUE`.
 
 ```{r}
+#| message: false
 alpha <- 0.05
 y <- predict(glm, newdata = data.frame(gpa = x), type = "response", se.fit = TRUE)
 res <- tibble(
@@ -293,29 +305,33 @@ res <- tibble(
   se = y$se.fit
 )
 
-res$lower <- res$pr_admit - qnorm(1 - alpha / 2) * res$se
-res$upper <- res$pr_admit + qnorm(1 - alpha / 2) * res$se
+res$lower <- res$pr_admit -
+  qnorm(1 - alpha / 2) * res$se
+res$upper <- res$pr_admit +
+  qnorm(1 - alpha / 2) * res$se
 head(res)
 
-# plot... note we start with model b/c we are hand-plotting the SE ribbon
+# plot...
+# note we start by plotting the model data (res) b/c we are hand-plotting the SE ribbon
 p <- ggplot(data = res, aes(x = gpa, y = pr_admit)) +
   geom_line() +
   geom_ribbon(aes(ymin = lower, ymax = upper), alpha = 0.2) +
-  # and add in points
+  # and then we add in points
   geom_point(data = d, aes(x = gpa, y = admit), alpha = 0.5) +
   xlab("GPA") +
   ylab("Pr(admit)") +
   ggtitle("Pr(admit) versus GPA")
 p
 
-# or, alternatively
-# note we start with raw data
+# or, alternatively...
+# note here we start with plotting the raw data
 p <- ggplot(data = d, aes(x = gpa, y = admit)) +
   geom_point(alpha = 0.5) +
   xlab("GPA") +
   ylab("Pr(admit)") +
   ggtitle("Pr(admit) versus GPA") +
-  geom_smooth(method = "glm", method.args = list(family = binomial)) # and add in smoothed line via gml
+  # and then add in the fitted line via glm
+  geom_smooth(method = "glm", method.args = list(family = binomial)) 
 p
 ```
 
@@ -325,7 +341,7 @@ To evaluate the significance of an **overall model** in a logistic regression, w
 
 For example, to test the null hypothesis that $\beta_1$ = 0 for a simple logistic regression model with a single predictor, we would compare the log-likelihood of the full model to that of the reduced, intercept-only model. This is called a **likelihood ratio test**. Likelihood ratio tests are very similar to partial F tests in that they compare the full model with a nested, reduced model where the explanatory variables of interest are omitted. However, instead of using a test statistic based on a ratio of *variances* explained by the two models and interpreting that by comparison to an $F$ distribution, we create a test statistic that is a ratio of the *log-likelihoods* of the two models and interpret that statistic by comparison to a $\chi^2$ distribution with a given number of degrees of freedom. Still, the underlying idea is conceptually the same.
 
-A likelihood ratio test comparing a proposed and reduced model can be performed using the `anova()` function where we specify the `test=` argument to be either `LRT` or `Chisq` (these are equivalent).
+A likelihood ratio test comparing a proposed model and a nested, reduced model can be performed using the `anova()` function where we specify the `test=` argument to be either `LRT` or `Chisq` (these are equivalent).
 
 Recall that when we used the `anova()` function to run F ratio tests to compare the proportion of **variance** explained by two general linear models, we specified that `test="F" and generated an F statistic which was considered relative to an F distribution to calculate a p value.
 
@@ -358,6 +374,7 @@ We can get the deviance associated with a given glm model object by accessing it
 (D_reduced <- reduced$deviance)
 # or...
 (D_reduced <- deviance(reduced))
+
 # deviance of proposed model with intercept and one predictor
 (D_proposed <- proposed$deviance)
 # or...
@@ -367,20 +384,22 @@ We can get the deviance associated with a given glm model object by accessing it
 The $\chi^2$ statistic is then just the difference of the deviances...
 
 ```{r}
-(chisq <- D_reduced - D_proposed)
+(x2 <- D_reduced - D_proposed)
 # this is a measure of how much the fit improves by adding in the predictor
-(p <- 1 - pchisq(chisq, df = 1))
-# df = difference in number of parameters in the proposed versus reduced model
+(p <- 1 - pchisq(x2, df = 1))
+# or
+(p <- pchisq(x2, df = 1, lower.tail = FALSE))
+# df = difference in number of parameters in the proposed versus reduced models
 ```
 
 The `$null.deviance` slot of a model object returns, for any model, the deviance associated with an intercept only null model.
 
 ```{r}
 (x2 <- reduced$null.deviance - reduced$deviance)
-# this is essentially 0 because here the `reduced` model *is* the intercept only model!
-(p <- 1 - pchisq(q = 0, df = 0))
+# this is essentially 0 because here the `reduced` model is the intercept only model!
+(p <- pchisq(q = 0, df = 0, lower.tail = FALSE))
 (x2 <- proposed$null.deviance - proposed$deviance)
-(p <- 1 - pchisq(q = x2, df = 1))
+(p <- pchisq(q = x2, df = 1, lower.tail = FALSE))
 # df = difference in number of parameters in the proposed versus reduced model
 ```
 
@@ -436,7 +455,7 @@ coeff_CI <- exp(log_coeff_CI)
 - Is the model including all three predictors better than models that include just two predictors?
 
 ```{r}
-# Compare 2 versus 3 factor models
+# compare each 2 predictor model to 3 predictor model
 glmGG <- glm(data = d, formula = admit ~ gpa + gre, family = binomial)
 glmGR <- glm(data = d, formula = admit ~ gpa + rank, family = binomial)
 glmRG <- glm(data = d, formula = admit ~ gre + rank, family = binomial)
@@ -445,24 +464,27 @@ lrtest(glmGR, glmGGR) # or anova(glmGR, glmGGR, test="Chisq")
 lrtest(glmRG, glmGGR)# or anova(glmRG, glmGGR, test="Chisq")
 ```
 
-> The 3-factor model is indeed better and any of the 2-factor models!
+> The 3-predictor model is indeed better and any of the 2-predictor models!
 
 - Compare a model that includes the three predictors with no interactions to one that includes the three predictors and all possible interactions.
 
 ```{r}
-# Compare model with and model without interactions
-glmNO <- glm(data = d, admit ~ rank + gpa + gre, family = "binomial")
-glmALL <- glm(data = d, admit ~ rank * gpa * gre, family = "binomial")
-lrtest(glmNO, glmALL) # or anova(glmNO,glmALL, test="Chisq")
+# compare model with and model without interactions
+glmGGR_no <- glm(data = d, admit ~ rank + gpa + gre, family = "binomial")
+glmGGR_all <- glm(data = d, admit ~ rank * gpa * gre, family = "binomial")
+lrtest(glmGGR_no, glmGGR_all)
+# or anova(glmGGR_no, glmGGR_all, test="Chisq")
 ```
 
-> Adding interaction terms to the 3-factor model does not significantly decrease the deviance!
+> Adding interaction terms to the 3-predictor model does not significantly decrease the deviance!
 
 ### Log-Linear or Poisson Regression {.unnumbered}
 
 Sometimes, we want to model a response variable that is in the form of count data (e.g., species richness on an island in terms of distance from the mainland, number of plants of a particular species found in a sampling plot in relation to altitude). Many discrete response variables have counts as possible outcomes. Binomial counts are the number of successes $x$ in a fixed number of trials, $n$. Poisson counts are the number occurrences of some event in a certain interval of time (or space). While binomial counts only take values between 0 and n, Poisson counts have no upper bound. We are going to focus on Poisson counts here.
 
 As we have discussed before, for Poisson-distributed variables, the mean and the variance are equal and represented by a single parameter ($\lambda$), and therefore linear models based on normal distributions may not be appropriate. We have seen that sometimes we can simply transform a response variable with some kind of power transformation to make it appear more normally distributed, but an alternative is to use a GLM with a Poisson error term and use a *log* transformation as the link function, resulting in in a **log-linear** model. Thus, when we do Poisson regression, our regression model tries to predict the natural log of the expected value of $Y$, i.e., $\lambda_i$.
+
+> **NOTE:** Remember, the ***R*** function `log()`, by default, refers to the natural log.
 
 The link function is thus...
 
@@ -472,18 +494,19 @@ $$g=log(\mu_i)$$
 
 $$\lambda_i = e^{\lambda_i}$$
 
-Our regression model formulation is the same as in logistic regression, above, except we use `family="Poisson"`, e.g, `glm(y ~ x, family = "poisson")`
+Our regression model formulation is the same as in logistic regression, above, except we use `family="Poisson"`, i.e, `glm(y ~ x, family = "poisson")`
 
 ### EXAMPLE: {.unnumbered}
 
 Researchers studied the reproductive success of a set of male woolly monkeys over a period of 8 years. The age of each monkey at the beginning of the study and the number of successful matings they had during the 8 years were recorded, and they were also scored into ranks of "high", "medium", and "low". We assume the number of matings follows a Poisson distribution, and we are interested in exploring whether mating success depends on the age of the monkey in question.
 
 ```{r}
+#| message: false
 f <- "https://raw.githubusercontent.com/difiore/ada-datasets/main/woollydata.csv"
 d <- read_csv(f, col_names = TRUE)
 head(d)
 d$name <- factor(d$name)
-d$rank <- factor(d$rank)
+d$rank <- factor(d$rank, levels = c("low", "medium", "high"))
 summary(d)
 # first, some exploratory visualization
 (p <- ggplot(data = d, aes(x = age, y = success)) + geom_point()
@@ -493,11 +516,15 @@ table(d$rank, d$success)
 # glm of success ~ age
 glm <- glm(data=d, success ~ age, family="poisson")
 summary(glm)
-# we can generate a nice summary table of results with `tidy()` and by setting "conf.int = TRUE" we use an ML approach to estimate the CI
-(results <- tidy(glm, conf.int = TRUE, conf.level = 0.95))
 ```
 
 In the `summary()`, note that the residual deviance is slighly higher than the residual degrees of freedom, which suggests that our data are slightly overdispersed (i.e., there is some extra, unexplained variation in the response, where the variance is greater than the mean). If this were dramatic, we might use "quasipoisson" for the family instead, but we will stick with "poisson".
+
+We can generate a nice summary table of results with `tidy()`, and by setting `conf.int = TRUE` we use an ML approach to estimate the CI.
+
+```{r}
+(results <- tidy(glm, conf.int = TRUE, conf.level = 0.95))
+```
 
 Now, let's fit a "line" of best fit through our data, along with 95% CI around this "line". We want to plot the relationship between **success**, rather than **log(success)**, and **age**, so this relationship will not actually be linear but log-linear.
 
@@ -524,17 +551,16 @@ proposed <- glm(data = d, success ~ age, family = "poisson")
 reduced <- glm(data = d, success ~ 1, family = "poisson")
 # using the `lrtest()` function
 lrtest(reduced, proposed)
-# or, using the `anova()` function
+# or, by using the `anova()` function
 anova(reduced, proposed, test="Chisq")
 # or, based on the deviance difference between the reduced and proposed models
 (x2 <- reduced$deviance - proposed$deviance)
 (p <- 1 - pchisq(x2, df = 1))
-# or, based on hand calculating model deviances using the `logLik()` function,
-# which returns the log-likelihood of a model
+# or, calculating the model deviances by hand using the `logLik()` function (which returns the log-likelihood of the model) and then taking the difference in deviance
 (D_reduced = -2 * logLik(reduced))
 (D_proposed = -2 * logLik(proposed))
 (x2 <- D_reduced - D_proposed)
-(p <- 1 - pchisq(x2, df = 1))
+(p <- pchisq(x2, df = 1, lower.tail = FALSE))
 # df = difference in # of parameters in the proposed versus reduced model
 ```
 
@@ -585,9 +611,16 @@ tidy(glm3, conf.int = TRUE, conf.level = 0.95)
 ```
 
 ```{r}
+#| message: false
+library(sjPlot)
 library(effects)
+plot_model(glm3, type = "eff", term = "age") +
+  geom_point(data = d, aes(x = age, y = success))
+plot_model(glm3, type = "eff", term = "rank")
 plot(predictorEffects(glm3, partial.residuals = TRUE))
 plot(allEffects(glm3, partial.residuals = TRUE))
+detach(package:sjPlot)
+detach(package:effects)
 ```
 
 ```{r include=FALSE}
