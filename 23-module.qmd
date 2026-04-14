@@ -91,7 +91,7 @@ As alluded to above, when we have a binary response variable (i.e., a categorica
 
 When we do our regression, we actually use as our response variable the natural log of the **odds** between our two possible outcomes, i.e., the ratio of the probabilities that $y_i$ = 1 versus that $y_i$ = 0 for a given $x_i$, a ratio which we call the *logit*:
 
-$$g = logit(\pi_i) = \ln[\frac{\pi_i}{(1-\pi_i)}] = \beta_0 + \beta_1x_i$$
+$$g_i = logit(\pi_i) = \ln[\frac{\pi_i}{(1-\pi_i)}] = \beta_0 + \beta_1x_i$$
 
 where $\pi_i$ = the probability that $y_i$ equals 1 for a given value of $x_i$ and $(1-\pi)$ = the probability that $y_i$ equals 0.
 
@@ -99,7 +99,7 @@ The *logit* transformation, then, is the link function connecting $Y$ to our pre
 
 We can convert back from the *natural log of the odds* to an actual odds using the inverse of the *logit*, which is called the *expit*:
 
-$$expit(g) = \frac{e^{g_i}}{1+e^{g_i}} = \frac{1}{1+e^{-g_i}}=p_i$$
+$$expit(g_i) = \frac{e^{g_i}}{1+e^{g_i}} = \frac{1}{1+e^{-g_i}}=\pi_i$$
 
 ### EXAMPLE: {.unnumbered}
 
@@ -482,17 +482,19 @@ lrtest(glmGGR_no, glmGGR_all)
 
 Sometimes, we want to model a response variable that is in the form of count data (e.g., species richness on an island in terms of distance from the mainland, number of plants of a particular species found in a sampling plot in relation to altitude). Many discrete response variables have counts as possible outcomes. Binomial counts are the number of successes $x$ in a fixed number of trials, $n$. Poisson counts are the number occurrences of some event in a certain interval of time (or space). While binomial counts only take values between 0 and n, Poisson counts have no upper bound. We are going to focus on Poisson counts here.
 
-As we have discussed before, for Poisson-distributed variables, the mean and the variance are equal and represented by a single parameter ($\lambda$), and therefore linear models based on normal distributions may not be appropriate. We have seen that sometimes we can simply transform a response variable with some kind of power transformation to make it appear more normally distributed, but an alternative is to use a GLM with a Poisson error term and use a *log* transformation as the link function, resulting in in a **log-linear** model. Thus, when we do Poisson regression, our regression model tries to predict the natural log of the expected value of $Y$, i.e., $\lambda_i$.
+As we have discussed before, for Poisson-distributed variables, the mean and the variance are equal and represented by a single parameter ($\lambda$), which is the expectation for both the mean ($\mu_i$) and the variance. Since the variance is proportional to the mean (and Poisson residuals are not homoskedastistic), using standard linear models based on normal distributions may not be appropriate.
+
+We have seen that sometimes we can simply transform a response variable with some kind of power transformation to make it appear more normally distributed, but an alternative is to use a GLM with a Poisson error term and use a *log* transformation as the link function, resulting in in a **log-linear** model. Thus, when we do Poisson regression, our regression model tries to predict the natural log of the expected value of $Y$, i.e., $\mu_i$ (or $\lambda_i$).
 
 > **NOTE:** Remember, the ***R*** function `log()`, by default, refers to the natural log.
 
 The link function is thus...
 
-$$g=log(\mu_i)$$
+$$g_i=\ln(\mu_i) = \beta_0 + \beta_1x_i$$
 
 ... and the inverse link function is...
 
-$$\lambda_i = e^{\lambda_i}$$
+$$e^{g_i} = \mu_i\ (i.e.,\ \lambda_i)$$
 
 Our regression model formulation is the same as in logistic regression, above, except we use `family="Poisson"`, i.e, `glm(y ~ x, family = "poisson")`
 

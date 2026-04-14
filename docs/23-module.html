@@ -795,11 +795,11 @@ window.Quarto = {
 <h3 class="unnumbered anchored" data-anchor-id="logistic-regression">Logistic Regression</h3>
 <p>As alluded to above, when we have a binary response variable (i.e., a categorical variable with two levels, 0 or 1), we actually are interested in modeling <span class="math inline">\(\pi_i\)</span>, which is the <em>probability that</em> <span class="math inline">\(Y\)</span> equals 1 for a given value of <span class="math inline">\(X\)</span> (<span class="math inline">\(x_i\)</span>), rather than <span class="math inline">\(\mu_i\)</span>, the <em>mean value of</em> <span class="math inline">\(Y\)</span> for a given <span class="math inline">\(X\)</span>, which is what we typically model with general linear regression. The usual model we fit to such data is the logistic regression model, which is a nonlinear model with a sigmoidal shape. The errors or residuals from such a model are not normally distributed but rather have a binomial distribution.</p>
 <p>When we do our regression, we actually use as our response variable the natural log of the <strong>odds</strong> between our two possible outcomes, i.e., the ratio of the probabilities that <span class="math inline">\(y_i\)</span> = 1 versus that <span class="math inline">\(y_i\)</span> = 0 for a given <span class="math inline">\(x_i\)</span>, a ratio which we call the <em>logit</em>:</p>
-<p><span class="math display">\[g = logit(\pi_i) = \ln[\frac{\pi_i}{(1-\pi_i)}] = \beta_0 + \beta_1x_i\]</span></p>
+<p><span class="math display">\[g_i = logit(\pi_i) = \ln[\frac{\pi_i}{(1-\pi_i)}] = \beta_0 + \beta_1x_i\]</span></p>
 <p>where <span class="math inline">\(\pi_i\)</span> = the probability that <span class="math inline">\(y_i\)</span> equals 1 for a given value of <span class="math inline">\(x_i\)</span> and <span class="math inline">\((1-\pi)\)</span> = the probability that <span class="math inline">\(y_i\)</span> equals 0.</p>
 <p>The <em>logit</em> transformation, then, is the link function connecting <span class="math inline">\(Y\)</span> to our predictors. The logit is useful as it converts probabilities, which lie in the range 0 to 1, into the scale of the whole real number line.</p>
 <p>We can convert back from the <em>natural log of the odds</em> to an actual odds using the inverse of the <em>logit</em>, which is called the <em>expit</em>:</p>
-<p><span class="math display">\[expit(g) = \frac{e^{g_i}}{1+e^{g_i}} = \frac{1}{1+e^{-g_i}}=p_i\]</span></p>
+<p><span class="math display">\[expit(g_i) = \frac{e^{g_i}}{1+e^{g_i}} = \frac{1}{1+e^{-g_i}}=\pi_i\]</span></p>
 </section>
 <section id="example" class="level3 unnumbered">
 <h3 class="unnumbered anchored" data-anchor-id="example">EXAMPLE:</h3>
@@ -1543,14 +1543,15 @@ window.Quarto = {
 <section id="log-linear-or-poisson-regression" class="level3 unnumbered">
 <h3 class="unnumbered anchored" data-anchor-id="log-linear-or-poisson-regression">Log-Linear or Poisson Regression</h3>
 <p>Sometimes, we want to model a response variable that is in the form of count data (e.g., species richness on an island in terms of distance from the mainland, number of plants of a particular species found in a sampling plot in relation to altitude). Many discrete response variables have counts as possible outcomes. Binomial counts are the number of successes <span class="math inline">\(x\)</span> in a fixed number of trials, <span class="math inline">\(n\)</span>. Poisson counts are the number occurrences of some event in a certain interval of time (or space). While binomial counts only take values between 0 and n, Poisson counts have no upper bound. We are going to focus on Poisson counts here.</p>
-<p>As we have discussed before, for Poisson-distributed variables, the mean and the variance are equal and represented by a single parameter (<span class="math inline">\(\lambda\)</span>), and therefore linear models based on normal distributions may not be appropriate. We have seen that sometimes we can simply transform a response variable with some kind of power transformation to make it appear more normally distributed, but an alternative is to use a GLM with a Poisson error term and use a <em>log</em> transformation as the link function, resulting in in a <strong>log-linear</strong> model. Thus, when we do Poisson regression, our regression model tries to predict the natural log of the expected value of <span class="math inline">\(Y\)</span>, i.e., <span class="math inline">\(\lambda_i\)</span>.</p>
+<p>As we have discussed before, for Poisson-distributed variables, the mean and the variance are equal and represented by a single parameter (<span class="math inline">\(\lambda\)</span>), which is the expectation for both the mean (<span class="math inline">\(\mu_i\)</span>) and the variance. Since the variance is proportional to the mean (and Poisson residuals are not homoskedastistic), using standard linear models based on normal distributions may not be appropriate.</p>
+<p>We have seen that sometimes we can simply transform a response variable with some kind of power transformation to make it appear more normally distributed, but an alternative is to use a GLM with a Poisson error term and use a <em>log</em> transformation as the link function, resulting in in a <strong>log-linear</strong> model. Thus, when we do Poisson regression, our regression model tries to predict the natural log of the expected value of <span class="math inline">\(Y\)</span>, i.e., <span class="math inline">\(\mu_i\)</span> (or <span class="math inline">\(\lambda_i\)</span>).</p>
 <blockquote class="blockquote">
 <p><strong>NOTE:</strong> Remember, the <strong><em>R</em></strong> function <code>log()</code>, by default, refers to the natural log.</p>
 </blockquote>
 <p>The link function is thus…</p>
-<p><span class="math display">\[g=log(\mu_i)\]</span></p>
+<p><span class="math display">\[g_i=\ln(\mu_i) = \beta_0 + \beta_1x_i\]</span></p>
 <p>… and the inverse link function is…</p>
-<p><span class="math display">\[\lambda_i = e^{\lambda_i}\]</span></p>
+<p><span class="math display">\[e^{g_i} = \mu_i\ (i.e.,\ \lambda_i)\]</span></p>
 <p>Our regression model formulation is the same as in logistic regression, above, except we use <code>family="Poisson"</code>, i.e, <code>glm(y ~ x, family = "poisson")</code></p>
 </section>
 <section id="example-1" class="level3 unnumbered">
@@ -2509,7 +2510,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb153-99"><a href="#cb153-99" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb153-100"><a href="#cb153-100" aria-hidden="true" tabindex="-1"></a>When we do our regression, we actually use as our response variable the natural log of the **odds** between our two possible outcomes, i.e., the ratio of the probabilities that $y_i$ = 1 versus that $y_i$ = 0 for a given $x_i$, a ratio which we call the *logit*:</span>
 <span id="cb153-101"><a href="#cb153-101" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb153-102"><a href="#cb153-102" aria-hidden="true" tabindex="-1"></a>$$g = logit(\pi_i) = \ln<span class="co">[</span><span class="ot">\frac{\pi_i}{(1-\pi_i)}</span><span class="co">]</span> = \beta_0 + \beta_1x_i$$</span>
+<span id="cb153-102"><a href="#cb153-102" aria-hidden="true" tabindex="-1"></a>$$g_i = logit(\pi_i) = \ln<span class="co">[</span><span class="ot">\frac{\pi_i}{(1-\pi_i)}</span><span class="co">]</span> = \beta_0 + \beta_1x_i$$</span>
 <span id="cb153-103"><a href="#cb153-103" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb153-104"><a href="#cb153-104" aria-hidden="true" tabindex="-1"></a>where $\pi_i$ = the probability that $y_i$ equals 1 for a given value of $x_i$ and $(1-\pi)$ = the probability that $y_i$ equals 0.</span>
 <span id="cb153-105"><a href="#cb153-105" aria-hidden="true" tabindex="-1"></a></span>
@@ -2517,7 +2518,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb153-107"><a href="#cb153-107" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb153-108"><a href="#cb153-108" aria-hidden="true" tabindex="-1"></a>We can convert back from the *natural log of the odds* to an actual odds using the inverse of the *logit*, which is called the *expit*:</span>
 <span id="cb153-109"><a href="#cb153-109" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb153-110"><a href="#cb153-110" aria-hidden="true" tabindex="-1"></a>$$expit(g) = \frac{e^{g_i}}{1+e^{g_i}} = \frac{1}{1+e^{-g_i}}=p_i$$</span>
+<span id="cb153-110"><a href="#cb153-110" aria-hidden="true" tabindex="-1"></a>$$expit(g_i) = \frac{e^{g_i}}{1+e^{g_i}} = \frac{1}{1+e^{-g_i}}=\pi_i$$</span>
 <span id="cb153-111"><a href="#cb153-111" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb153-112"><a href="#cb153-112" aria-hidden="true" tabindex="-1"></a><span class="fu">### EXAMPLE: {.unnumbered}</span></span>
 <span id="cb153-113"><a href="#cb153-113" aria-hidden="true" tabindex="-1"></a></span>
@@ -2900,169 +2901,171 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb153-530"><a href="#cb153-530" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb153-531"><a href="#cb153-531" aria-hidden="true" tabindex="-1"></a>Sometimes, we want to model a response variable that is in the form of count data (e.g., species richness on an island in terms of distance from the mainland, number of plants of a particular species found in a sampling plot in relation to altitude). Many discrete response variables have counts as possible outcomes. Binomial counts are the number of successes $x$ in a fixed number of trials, $n$. Poisson counts are the number occurrences of some event in a certain interval of time (or space). While binomial counts only take values between 0 and n, Poisson counts have no upper bound. We are going to focus on Poisson counts here.</span>
 <span id="cb153-532"><a href="#cb153-532" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb153-533"><a href="#cb153-533" aria-hidden="true" tabindex="-1"></a>As we have discussed before, for Poisson-distributed variables, the mean and the variance are equal and represented by a single parameter ($\lambda$), and therefore linear models based on normal distributions may not be appropriate. We have seen that sometimes we can simply transform a response variable with some kind of power transformation to make it appear more normally distributed, but an alternative is to use a GLM with a Poisson error term and use a *log* transformation as the link function, resulting in in a **log-linear** model. Thus, when we do Poisson regression, our regression model tries to predict the natural log of the expected value of $Y$, i.e., $\lambda_i$.</span>
+<span id="cb153-533"><a href="#cb153-533" aria-hidden="true" tabindex="-1"></a>As we have discussed before, for Poisson-distributed variables, the mean and the variance are equal and represented by a single parameter ($\lambda$), which is the expectation for both the mean ($\mu_i$) and the variance. Since the variance is proportional to the mean (and Poisson residuals are not homoskedastistic), using standard linear models based on normal distributions may not be appropriate.</span>
 <span id="cb153-534"><a href="#cb153-534" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb153-535"><a href="#cb153-535" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; **NOTE:** Remember, the ***R*** function </span><span class="in">`log()`</span><span class="at">, by default, refers to the natural log.</span></span>
+<span id="cb153-535"><a href="#cb153-535" aria-hidden="true" tabindex="-1"></a>We have seen that sometimes we can simply transform a response variable with some kind of power transformation to make it appear more normally distributed, but an alternative is to use a GLM with a Poisson error term and use a *log* transformation as the link function, resulting in in a **log-linear** model. Thus, when we do Poisson regression, our regression model tries to predict the natural log of the expected value of $Y$, i.e., $\mu_i$ (or $\lambda_i$).</span>
 <span id="cb153-536"><a href="#cb153-536" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb153-537"><a href="#cb153-537" aria-hidden="true" tabindex="-1"></a>The link function is thus...</span>
+<span id="cb153-537"><a href="#cb153-537" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; **NOTE:** Remember, the ***R*** function </span><span class="in">`log()`</span><span class="at">, by default, refers to the natural log.</span></span>
 <span id="cb153-538"><a href="#cb153-538" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb153-539"><a href="#cb153-539" aria-hidden="true" tabindex="-1"></a>$$g=log(\mu_i)$$</span>
+<span id="cb153-539"><a href="#cb153-539" aria-hidden="true" tabindex="-1"></a>The link function is thus...</span>
 <span id="cb153-540"><a href="#cb153-540" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb153-541"><a href="#cb153-541" aria-hidden="true" tabindex="-1"></a>... and the inverse link function is...</span>
+<span id="cb153-541"><a href="#cb153-541" aria-hidden="true" tabindex="-1"></a>$$g_i=\ln(\mu_i) = \beta_0 + \beta_1x_i$$</span>
 <span id="cb153-542"><a href="#cb153-542" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb153-543"><a href="#cb153-543" aria-hidden="true" tabindex="-1"></a>$$\lambda_i = e^{\lambda_i}$$</span>
+<span id="cb153-543"><a href="#cb153-543" aria-hidden="true" tabindex="-1"></a>... and the inverse link function is...</span>
 <span id="cb153-544"><a href="#cb153-544" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb153-545"><a href="#cb153-545" aria-hidden="true" tabindex="-1"></a>Our regression model formulation is the same as in logistic regression, above, except we use <span class="in">`family="Poisson"`</span>, i.e, <span class="in">`glm(y ~ x, family = "poisson")`</span></span>
+<span id="cb153-545"><a href="#cb153-545" aria-hidden="true" tabindex="-1"></a>$$e^{g_i} = \mu_i\ (i.e.,\ \lambda_i)$$</span>
 <span id="cb153-546"><a href="#cb153-546" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb153-547"><a href="#cb153-547" aria-hidden="true" tabindex="-1"></a><span class="fu">### EXAMPLE: {.unnumbered}</span></span>
+<span id="cb153-547"><a href="#cb153-547" aria-hidden="true" tabindex="-1"></a>Our regression model formulation is the same as in logistic regression, above, except we use <span class="in">`family="Poisson"`</span>, i.e, <span class="in">`glm(y ~ x, family = "poisson")`</span></span>
 <span id="cb153-548"><a href="#cb153-548" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb153-549"><a href="#cb153-549" aria-hidden="true" tabindex="-1"></a>Researchers studied the reproductive success of a set of male woolly monkeys over a period of 8 years. The age of each monkey at the beginning of the study and the number of successful matings they had during the 8 years were recorded, and they were also scored into ranks of "high", "medium", and "low". We assume the number of matings follows a Poisson distribution, and we are interested in exploring whether mating success depends on the age of the monkey in question.</span>
+<span id="cb153-549"><a href="#cb153-549" aria-hidden="true" tabindex="-1"></a><span class="fu">### EXAMPLE: {.unnumbered}</span></span>
 <span id="cb153-550"><a href="#cb153-550" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb153-553"><a href="#cb153-553" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb153-554"><a href="#cb153-554" aria-hidden="true" tabindex="-1"></a><span class="co">#| message: false</span></span>
-<span id="cb153-555"><a href="#cb153-555" aria-hidden="true" tabindex="-1"></a>f <span class="ot">&lt;-</span> <span class="st">"https://raw.githubusercontent.com/difiore/ada-datasets/main/woollydata.csv"</span></span>
-<span id="cb153-556"><a href="#cb153-556" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(f, <span class="at">col_names =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb153-557"><a href="#cb153-557" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(d)</span>
-<span id="cb153-558"><a href="#cb153-558" aria-hidden="true" tabindex="-1"></a>d<span class="sc">$</span>name <span class="ot">&lt;-</span> <span class="fu">factor</span>(d<span class="sc">$</span>name)</span>
-<span id="cb153-559"><a href="#cb153-559" aria-hidden="true" tabindex="-1"></a>d<span class="sc">$</span>rank <span class="ot">&lt;-</span> <span class="fu">factor</span>(d<span class="sc">$</span>rank, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"low"</span>, <span class="st">"medium"</span>, <span class="st">"high"</span>))</span>
-<span id="cb153-560"><a href="#cb153-560" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(d)</span>
-<span id="cb153-561"><a href="#cb153-561" aria-hidden="true" tabindex="-1"></a><span class="co"># first, some exploratory visualization</span></span>
-<span id="cb153-562"><a href="#cb153-562" aria-hidden="true" tabindex="-1"></a>(p <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> d, <span class="fu">aes</span>(<span class="at">x =</span> age, <span class="at">y =</span> success)) <span class="sc">+</span> <span class="fu">geom_point</span>()</span>
-<span id="cb153-563"><a href="#cb153-563" aria-hidden="true" tabindex="-1"></a>  <span class="sc">+</span> <span class="fu">xlab</span>(<span class="st">"Age"</span>) <span class="sc">+</span> <span class="fu">ylab</span>(<span class="st">"Mating Success"</span>))</span>
-<span id="cb153-564"><a href="#cb153-564" aria-hidden="true" tabindex="-1"></a><span class="fu">pairs</span>(d)</span>
-<span id="cb153-565"><a href="#cb153-565" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(d<span class="sc">$</span>rank, d<span class="sc">$</span>success)</span>
-<span id="cb153-566"><a href="#cb153-566" aria-hidden="true" tabindex="-1"></a><span class="co"># glm of success ~ age</span></span>
-<span id="cb153-567"><a href="#cb153-567" aria-hidden="true" tabindex="-1"></a>glm <span class="ot">&lt;-</span> <span class="fu">glm</span>(<span class="at">data=</span>d, success <span class="sc">~</span> age, <span class="at">family=</span><span class="st">"poisson"</span>)</span>
-<span id="cb153-568"><a href="#cb153-568" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(glm)</span>
-<span id="cb153-569"><a href="#cb153-569" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb153-570"><a href="#cb153-570" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb153-571"><a href="#cb153-571" aria-hidden="true" tabindex="-1"></a>In the <span class="in">`summary()`</span>, note that the residual deviance is slighly higher than the residual degrees of freedom, which suggests that our data are slightly overdispersed (i.e., there is some extra, unexplained variation in the response, where the variance is greater than the mean). If this were dramatic, we might use "quasipoisson" for the family instead, but we will stick with "poisson".</span>
+<span id="cb153-551"><a href="#cb153-551" aria-hidden="true" tabindex="-1"></a>Researchers studied the reproductive success of a set of male woolly monkeys over a period of 8 years. The age of each monkey at the beginning of the study and the number of successful matings they had during the 8 years were recorded, and they were also scored into ranks of "high", "medium", and "low". We assume the number of matings follows a Poisson distribution, and we are interested in exploring whether mating success depends on the age of the monkey in question.</span>
+<span id="cb153-552"><a href="#cb153-552" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb153-555"><a href="#cb153-555" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb153-556"><a href="#cb153-556" aria-hidden="true" tabindex="-1"></a><span class="co">#| message: false</span></span>
+<span id="cb153-557"><a href="#cb153-557" aria-hidden="true" tabindex="-1"></a>f <span class="ot">&lt;-</span> <span class="st">"https://raw.githubusercontent.com/difiore/ada-datasets/main/woollydata.csv"</span></span>
+<span id="cb153-558"><a href="#cb153-558" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(f, <span class="at">col_names =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb153-559"><a href="#cb153-559" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(d)</span>
+<span id="cb153-560"><a href="#cb153-560" aria-hidden="true" tabindex="-1"></a>d<span class="sc">$</span>name <span class="ot">&lt;-</span> <span class="fu">factor</span>(d<span class="sc">$</span>name)</span>
+<span id="cb153-561"><a href="#cb153-561" aria-hidden="true" tabindex="-1"></a>d<span class="sc">$</span>rank <span class="ot">&lt;-</span> <span class="fu">factor</span>(d<span class="sc">$</span>rank, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"low"</span>, <span class="st">"medium"</span>, <span class="st">"high"</span>))</span>
+<span id="cb153-562"><a href="#cb153-562" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(d)</span>
+<span id="cb153-563"><a href="#cb153-563" aria-hidden="true" tabindex="-1"></a><span class="co"># first, some exploratory visualization</span></span>
+<span id="cb153-564"><a href="#cb153-564" aria-hidden="true" tabindex="-1"></a>(p <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> d, <span class="fu">aes</span>(<span class="at">x =</span> age, <span class="at">y =</span> success)) <span class="sc">+</span> <span class="fu">geom_point</span>()</span>
+<span id="cb153-565"><a href="#cb153-565" aria-hidden="true" tabindex="-1"></a>  <span class="sc">+</span> <span class="fu">xlab</span>(<span class="st">"Age"</span>) <span class="sc">+</span> <span class="fu">ylab</span>(<span class="st">"Mating Success"</span>))</span>
+<span id="cb153-566"><a href="#cb153-566" aria-hidden="true" tabindex="-1"></a><span class="fu">pairs</span>(d)</span>
+<span id="cb153-567"><a href="#cb153-567" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(d<span class="sc">$</span>rank, d<span class="sc">$</span>success)</span>
+<span id="cb153-568"><a href="#cb153-568" aria-hidden="true" tabindex="-1"></a><span class="co"># glm of success ~ age</span></span>
+<span id="cb153-569"><a href="#cb153-569" aria-hidden="true" tabindex="-1"></a>glm <span class="ot">&lt;-</span> <span class="fu">glm</span>(<span class="at">data=</span>d, success <span class="sc">~</span> age, <span class="at">family=</span><span class="st">"poisson"</span>)</span>
+<span id="cb153-570"><a href="#cb153-570" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(glm)</span>
+<span id="cb153-571"><a href="#cb153-571" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb153-572"><a href="#cb153-572" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb153-573"><a href="#cb153-573" aria-hidden="true" tabindex="-1"></a>We can generate a nice summary table of results with <span class="in">`tidy()`</span>, and by setting <span class="in">`conf.int = TRUE`</span> we use an ML approach to estimate the CI.</span>
+<span id="cb153-573"><a href="#cb153-573" aria-hidden="true" tabindex="-1"></a>In the <span class="in">`summary()`</span>, note that the residual deviance is slighly higher than the residual degrees of freedom, which suggests that our data are slightly overdispersed (i.e., there is some extra, unexplained variation in the response, where the variance is greater than the mean). If this were dramatic, we might use "quasipoisson" for the family instead, but we will stick with "poisson".</span>
 <span id="cb153-574"><a href="#cb153-574" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb153-577"><a href="#cb153-577" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb153-578"><a href="#cb153-578" aria-hidden="true" tabindex="-1"></a>(results <span class="ot">&lt;-</span> <span class="fu">tidy</span>(glm, <span class="at">conf.int =</span> <span class="cn">TRUE</span>, <span class="at">conf.level =</span> <span class="fl">0.95</span>))</span>
-<span id="cb153-579"><a href="#cb153-579" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb153-580"><a href="#cb153-580" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb153-581"><a href="#cb153-581" aria-hidden="true" tabindex="-1"></a>Now, let's fit a "line" of best fit through our data, along with 95% CI around this "line". We want to plot the relationship between **success**, rather than **log(success)**, and **age**, so this relationship will not actually be linear but log-linear.</span>
+<span id="cb153-575"><a href="#cb153-575" aria-hidden="true" tabindex="-1"></a>We can generate a nice summary table of results with <span class="in">`tidy()`</span>, and by setting <span class="in">`conf.int = TRUE`</span> we use an ML approach to estimate the CI.</span>
+<span id="cb153-576"><a href="#cb153-576" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb153-579"><a href="#cb153-579" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb153-580"><a href="#cb153-580" aria-hidden="true" tabindex="-1"></a>(results <span class="ot">&lt;-</span> <span class="fu">tidy</span>(glm, <span class="at">conf.int =</span> <span class="cn">TRUE</span>, <span class="at">conf.level =</span> <span class="fl">0.95</span>))</span>
+<span id="cb153-581"><a href="#cb153-581" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb153-582"><a href="#cb153-582" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb153-585"><a href="#cb153-585" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb153-586"><a href="#cb153-586" aria-hidden="true" tabindex="-1"></a>alpha <span class="ot">&lt;-</span> <span class="fl">0.05</span></span>
-<span id="cb153-587"><a href="#cb153-587" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">age =</span> <span class="fu">seq</span>(<span class="at">from =</span> <span class="dv">5</span>, <span class="at">to =</span> <span class="dv">17</span>, <span class="at">by =</span> <span class="dv">1</span>))</span>
-<span id="cb153-588"><a href="#cb153-588" aria-hidden="true" tabindex="-1"></a>prediction <span class="ot">&lt;-</span> <span class="fu">cbind</span>(<span class="at">age =</span> x, <span class="fu">predict</span>(glm, <span class="at">newdata =</span> x, <span class="at">type =</span> <span class="st">"response"</span>, <span class="at">se.fit =</span> <span class="cn">TRUE</span>))</span>
-<span id="cb153-589"><a href="#cb153-589" aria-hidden="true" tabindex="-1"></a><span class="co"># IMPORTANT: Using the argument `type="response"` makes our prediction be in units of our actual Y variable, success, rather than log(success)</span></span>
-<span id="cb153-590"><a href="#cb153-590" aria-hidden="true" tabindex="-1"></a>prediction<span class="sc">$</span>lower <span class="ot">&lt;-</span> prediction<span class="sc">$</span>fit <span class="sc">-</span> <span class="fu">qnorm</span>(<span class="dv">1</span> <span class="sc">-</span> alpha <span class="sc">/</span> <span class="dv">2</span>) <span class="sc">*</span> prediction<span class="sc">$</span>se.fit</span>
-<span id="cb153-591"><a href="#cb153-591" aria-hidden="true" tabindex="-1"></a>prediction<span class="sc">$</span>upper <span class="ot">&lt;-</span> prediction<span class="sc">$</span>fit <span class="sc">+</span> <span class="fu">qnorm</span>(<span class="dv">1</span> <span class="sc">-</span> alpha <span class="sc">/</span> <span class="dv">2</span>) <span class="sc">*</span> prediction<span class="sc">$</span>se.fit</span>
-<span id="cb153-592"><a href="#cb153-592" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(prediction)</span>
-<span id="cb153-593"><a href="#cb153-593" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> p <span class="sc">+</span> <span class="fu">geom_line</span>(<span class="at">data =</span> prediction, <span class="fu">aes</span>(<span class="at">x =</span> age, <span class="at">y =</span> fit)) <span class="sc">+</span></span>
-<span id="cb153-594"><a href="#cb153-594" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_ribbon</span>(<span class="at">data =</span> prediction, <span class="fu">aes</span>(<span class="at">x =</span> age, <span class="at">y =</span> fit,</span>
-<span id="cb153-595"><a href="#cb153-595" aria-hidden="true" tabindex="-1"></a>    <span class="at">ymin =</span> lower, <span class="at">ymax =</span> upper), <span class="at">alpha =</span> <span class="fl">0.2</span>)</span>
-<span id="cb153-596"><a href="#cb153-596" aria-hidden="true" tabindex="-1"></a>p <span class="co"># note the curvilinear "line" of best fit</span></span>
-<span id="cb153-597"><a href="#cb153-597" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb153-598"><a href="#cb153-598" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb153-599"><a href="#cb153-599" aria-hidden="true" tabindex="-1"></a>Is this model better than an intercept-only model? YES!</span>
+<span id="cb153-583"><a href="#cb153-583" aria-hidden="true" tabindex="-1"></a>Now, let's fit a "line" of best fit through our data, along with 95% CI around this "line". We want to plot the relationship between **success**, rather than **log(success)**, and **age**, so this relationship will not actually be linear but log-linear.</span>
+<span id="cb153-584"><a href="#cb153-584" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb153-587"><a href="#cb153-587" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb153-588"><a href="#cb153-588" aria-hidden="true" tabindex="-1"></a>alpha <span class="ot">&lt;-</span> <span class="fl">0.05</span></span>
+<span id="cb153-589"><a href="#cb153-589" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">age =</span> <span class="fu">seq</span>(<span class="at">from =</span> <span class="dv">5</span>, <span class="at">to =</span> <span class="dv">17</span>, <span class="at">by =</span> <span class="dv">1</span>))</span>
+<span id="cb153-590"><a href="#cb153-590" aria-hidden="true" tabindex="-1"></a>prediction <span class="ot">&lt;-</span> <span class="fu">cbind</span>(<span class="at">age =</span> x, <span class="fu">predict</span>(glm, <span class="at">newdata =</span> x, <span class="at">type =</span> <span class="st">"response"</span>, <span class="at">se.fit =</span> <span class="cn">TRUE</span>))</span>
+<span id="cb153-591"><a href="#cb153-591" aria-hidden="true" tabindex="-1"></a><span class="co"># IMPORTANT: Using the argument `type="response"` makes our prediction be in units of our actual Y variable, success, rather than log(success)</span></span>
+<span id="cb153-592"><a href="#cb153-592" aria-hidden="true" tabindex="-1"></a>prediction<span class="sc">$</span>lower <span class="ot">&lt;-</span> prediction<span class="sc">$</span>fit <span class="sc">-</span> <span class="fu">qnorm</span>(<span class="dv">1</span> <span class="sc">-</span> alpha <span class="sc">/</span> <span class="dv">2</span>) <span class="sc">*</span> prediction<span class="sc">$</span>se.fit</span>
+<span id="cb153-593"><a href="#cb153-593" aria-hidden="true" tabindex="-1"></a>prediction<span class="sc">$</span>upper <span class="ot">&lt;-</span> prediction<span class="sc">$</span>fit <span class="sc">+</span> <span class="fu">qnorm</span>(<span class="dv">1</span> <span class="sc">-</span> alpha <span class="sc">/</span> <span class="dv">2</span>) <span class="sc">*</span> prediction<span class="sc">$</span>se.fit</span>
+<span id="cb153-594"><a href="#cb153-594" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(prediction)</span>
+<span id="cb153-595"><a href="#cb153-595" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> p <span class="sc">+</span> <span class="fu">geom_line</span>(<span class="at">data =</span> prediction, <span class="fu">aes</span>(<span class="at">x =</span> age, <span class="at">y =</span> fit)) <span class="sc">+</span></span>
+<span id="cb153-596"><a href="#cb153-596" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_ribbon</span>(<span class="at">data =</span> prediction, <span class="fu">aes</span>(<span class="at">x =</span> age, <span class="at">y =</span> fit,</span>
+<span id="cb153-597"><a href="#cb153-597" aria-hidden="true" tabindex="-1"></a>    <span class="at">ymin =</span> lower, <span class="at">ymax =</span> upper), <span class="at">alpha =</span> <span class="fl">0.2</span>)</span>
+<span id="cb153-598"><a href="#cb153-598" aria-hidden="true" tabindex="-1"></a>p <span class="co"># note the curvilinear "line" of best fit</span></span>
+<span id="cb153-599"><a href="#cb153-599" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb153-600"><a href="#cb153-600" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb153-601"><a href="#cb153-601" aria-hidden="true" tabindex="-1"></a>We can see this by doing a likelihood ratio test.</span>
+<span id="cb153-601"><a href="#cb153-601" aria-hidden="true" tabindex="-1"></a>Is this model better than an intercept-only model? YES!</span>
 <span id="cb153-602"><a href="#cb153-602" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb153-605"><a href="#cb153-605" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb153-606"><a href="#cb153-606" aria-hidden="true" tabindex="-1"></a>proposed <span class="ot">&lt;-</span> <span class="fu">glm</span>(<span class="at">data =</span> d, success <span class="sc">~</span> age, <span class="at">family =</span> <span class="st">"poisson"</span>)</span>
-<span id="cb153-607"><a href="#cb153-607" aria-hidden="true" tabindex="-1"></a>reduced <span class="ot">&lt;-</span> <span class="fu">glm</span>(<span class="at">data =</span> d, success <span class="sc">~</span> <span class="dv">1</span>, <span class="at">family =</span> <span class="st">"poisson"</span>)</span>
-<span id="cb153-608"><a href="#cb153-608" aria-hidden="true" tabindex="-1"></a><span class="co"># using the `lrtest()` function</span></span>
-<span id="cb153-609"><a href="#cb153-609" aria-hidden="true" tabindex="-1"></a><span class="fu">lrtest</span>(reduced, proposed)</span>
-<span id="cb153-610"><a href="#cb153-610" aria-hidden="true" tabindex="-1"></a><span class="co"># or, by using the `anova()` function</span></span>
-<span id="cb153-611"><a href="#cb153-611" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(reduced, proposed, <span class="at">test=</span><span class="st">"Chisq"</span>)</span>
-<span id="cb153-612"><a href="#cb153-612" aria-hidden="true" tabindex="-1"></a><span class="co"># or, based on the deviance difference between the reduced and proposed models</span></span>
-<span id="cb153-613"><a href="#cb153-613" aria-hidden="true" tabindex="-1"></a>(x2 <span class="ot">&lt;-</span> reduced<span class="sc">$</span>deviance <span class="sc">-</span> proposed<span class="sc">$</span>deviance)</span>
-<span id="cb153-614"><a href="#cb153-614" aria-hidden="true" tabindex="-1"></a>(p <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="sc">-</span> <span class="fu">pchisq</span>(x2, <span class="at">df =</span> <span class="dv">1</span>))</span>
-<span id="cb153-615"><a href="#cb153-615" aria-hidden="true" tabindex="-1"></a><span class="co"># or, calculating the model deviances by hand using the `logLik()` function (which returns the log-likelihood of the model) and then taking the difference in deviance</span></span>
-<span id="cb153-616"><a href="#cb153-616" aria-hidden="true" tabindex="-1"></a>(<span class="at">D_reduced =</span> <span class="sc">-</span><span class="dv">2</span> <span class="sc">*</span> <span class="fu">logLik</span>(reduced))</span>
-<span id="cb153-617"><a href="#cb153-617" aria-hidden="true" tabindex="-1"></a>(<span class="at">D_proposed =</span> <span class="sc">-</span><span class="dv">2</span> <span class="sc">*</span> <span class="fu">logLik</span>(proposed))</span>
-<span id="cb153-618"><a href="#cb153-618" aria-hidden="true" tabindex="-1"></a>(x2 <span class="ot">&lt;-</span> D_reduced <span class="sc">-</span> D_proposed)</span>
-<span id="cb153-619"><a href="#cb153-619" aria-hidden="true" tabindex="-1"></a>(p <span class="ot">&lt;-</span> <span class="fu">pchisq</span>(x2, <span class="at">df =</span> <span class="dv">1</span>, <span class="at">lower.tail =</span> <span class="cn">FALSE</span>))</span>
-<span id="cb153-620"><a href="#cb153-620" aria-hidden="true" tabindex="-1"></a><span class="co"># df = difference in # of parameters in the proposed versus reduced model</span></span>
-<span id="cb153-621"><a href="#cb153-621" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb153-622"><a href="#cb153-622" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb153-623"><a href="#cb153-623" aria-hidden="true" tabindex="-1"></a>As mentioned in <span class="co">[</span><span class="ot">**Module 22**</span><span class="co">](#module-22)</span>, the Akaike Information Criterion, or AIC, is another way of evaluating and comparing related models. For similar models, those with lower AIC models are preferred over those with higher AIC. The AIC value is based on the deviance associated with the model, but it penalizes model complexity. Much like an adjusted $R^2$, its intent is to prevent you from including irrelevant predictors when choosing among similar models. Models with low AICs represent a better fit to the data, and if many models have similarly low AICs, you should choose the one with the fewest model terms. For both continuous and categorical predictors, we prefer comparing full and reduced models against one another to test individual terms rather than comparing the fit of all possible models and trying and select a single "best" one. Thus, AIC values are useful for comparing models, but they are not interpretable on their own. The <span class="in">`logLik()`</span> function returns the log-likelihood associated with a particular model and can be used to calculate AIC values by hand.</span>
+<span id="cb153-603"><a href="#cb153-603" aria-hidden="true" tabindex="-1"></a>We can see this by doing a likelihood ratio test.</span>
+<span id="cb153-604"><a href="#cb153-604" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb153-607"><a href="#cb153-607" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb153-608"><a href="#cb153-608" aria-hidden="true" tabindex="-1"></a>proposed <span class="ot">&lt;-</span> <span class="fu">glm</span>(<span class="at">data =</span> d, success <span class="sc">~</span> age, <span class="at">family =</span> <span class="st">"poisson"</span>)</span>
+<span id="cb153-609"><a href="#cb153-609" aria-hidden="true" tabindex="-1"></a>reduced <span class="ot">&lt;-</span> <span class="fu">glm</span>(<span class="at">data =</span> d, success <span class="sc">~</span> <span class="dv">1</span>, <span class="at">family =</span> <span class="st">"poisson"</span>)</span>
+<span id="cb153-610"><a href="#cb153-610" aria-hidden="true" tabindex="-1"></a><span class="co"># using the `lrtest()` function</span></span>
+<span id="cb153-611"><a href="#cb153-611" aria-hidden="true" tabindex="-1"></a><span class="fu">lrtest</span>(reduced, proposed)</span>
+<span id="cb153-612"><a href="#cb153-612" aria-hidden="true" tabindex="-1"></a><span class="co"># or, by using the `anova()` function</span></span>
+<span id="cb153-613"><a href="#cb153-613" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(reduced, proposed, <span class="at">test=</span><span class="st">"Chisq"</span>)</span>
+<span id="cb153-614"><a href="#cb153-614" aria-hidden="true" tabindex="-1"></a><span class="co"># or, based on the deviance difference between the reduced and proposed models</span></span>
+<span id="cb153-615"><a href="#cb153-615" aria-hidden="true" tabindex="-1"></a>(x2 <span class="ot">&lt;-</span> reduced<span class="sc">$</span>deviance <span class="sc">-</span> proposed<span class="sc">$</span>deviance)</span>
+<span id="cb153-616"><a href="#cb153-616" aria-hidden="true" tabindex="-1"></a>(p <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="sc">-</span> <span class="fu">pchisq</span>(x2, <span class="at">df =</span> <span class="dv">1</span>))</span>
+<span id="cb153-617"><a href="#cb153-617" aria-hidden="true" tabindex="-1"></a><span class="co"># or, calculating the model deviances by hand using the `logLik()` function (which returns the log-likelihood of the model) and then taking the difference in deviance</span></span>
+<span id="cb153-618"><a href="#cb153-618" aria-hidden="true" tabindex="-1"></a>(<span class="at">D_reduced =</span> <span class="sc">-</span><span class="dv">2</span> <span class="sc">*</span> <span class="fu">logLik</span>(reduced))</span>
+<span id="cb153-619"><a href="#cb153-619" aria-hidden="true" tabindex="-1"></a>(<span class="at">D_proposed =</span> <span class="sc">-</span><span class="dv">2</span> <span class="sc">*</span> <span class="fu">logLik</span>(proposed))</span>
+<span id="cb153-620"><a href="#cb153-620" aria-hidden="true" tabindex="-1"></a>(x2 <span class="ot">&lt;-</span> D_reduced <span class="sc">-</span> D_proposed)</span>
+<span id="cb153-621"><a href="#cb153-621" aria-hidden="true" tabindex="-1"></a>(p <span class="ot">&lt;-</span> <span class="fu">pchisq</span>(x2, <span class="at">df =</span> <span class="dv">1</span>, <span class="at">lower.tail =</span> <span class="cn">FALSE</span>))</span>
+<span id="cb153-622"><a href="#cb153-622" aria-hidden="true" tabindex="-1"></a><span class="co"># df = difference in # of parameters in the proposed versus reduced model</span></span>
+<span id="cb153-623"><a href="#cb153-623" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb153-624"><a href="#cb153-624" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb153-627"><a href="#cb153-627" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb153-628"><a href="#cb153-628" aria-hidden="true" tabindex="-1"></a>(AICproposed <span class="ot">&lt;-</span> <span class="dv">2</span> <span class="sc">*</span> <span class="dv">2</span> <span class="sc">-</span> <span class="dv">2</span> <span class="sc">*</span> <span class="fu">logLik</span>(proposed))</span>
-<span id="cb153-629"><a href="#cb153-629" aria-hidden="true" tabindex="-1"></a><span class="co"># AIC = (2 * # parameters estimated() minus (2 * log-likelihood of model)</span></span>
-<span id="cb153-630"><a href="#cb153-630" aria-hidden="true" tabindex="-1"></a><span class="co"># for the proposed model, we estimated 2 parameters</span></span>
-<span id="cb153-631"><a href="#cb153-631" aria-hidden="true" tabindex="-1"></a>(AICreduced <span class="ot">&lt;-</span> <span class="dv">2</span> <span class="sc">*</span> <span class="dv">1</span> <span class="sc">-</span> <span class="dv">2</span> <span class="sc">*</span> <span class="fu">logLik</span>(reduced))</span>
-<span id="cb153-632"><a href="#cb153-632" aria-hidden="true" tabindex="-1"></a><span class="co"># for the reduced model, we estimated 1 parameter</span></span>
-<span id="cb153-633"><a href="#cb153-633" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb153-634"><a href="#cb153-634" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb153-635"><a href="#cb153-635" aria-hidden="true" tabindex="-1"></a>Here, the log-likelihood of the model including *age* as a predictor is much lower than the log-likelihood of the reduced (intercept only) model, so we prefer the former.</span>
+<span id="cb153-625"><a href="#cb153-625" aria-hidden="true" tabindex="-1"></a>As mentioned in <span class="co">[</span><span class="ot">**Module 22**</span><span class="co">](#module-22)</span>, the Akaike Information Criterion, or AIC, is another way of evaluating and comparing related models. For similar models, those with lower AIC models are preferred over those with higher AIC. The AIC value is based on the deviance associated with the model, but it penalizes model complexity. Much like an adjusted $R^2$, its intent is to prevent you from including irrelevant predictors when choosing among similar models. Models with low AICs represent a better fit to the data, and if many models have similarly low AICs, you should choose the one with the fewest model terms. For both continuous and categorical predictors, we prefer comparing full and reduced models against one another to test individual terms rather than comparing the fit of all possible models and trying and select a single "best" one. Thus, AIC values are useful for comparing models, but they are not interpretable on their own. The <span class="in">`logLik()`</span> function returns the log-likelihood associated with a particular model and can be used to calculate AIC values by hand.</span>
+<span id="cb153-626"><a href="#cb153-626" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb153-629"><a href="#cb153-629" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb153-630"><a href="#cb153-630" aria-hidden="true" tabindex="-1"></a>(AICproposed <span class="ot">&lt;-</span> <span class="dv">2</span> <span class="sc">*</span> <span class="dv">2</span> <span class="sc">-</span> <span class="dv">2</span> <span class="sc">*</span> <span class="fu">logLik</span>(proposed))</span>
+<span id="cb153-631"><a href="#cb153-631" aria-hidden="true" tabindex="-1"></a><span class="co"># AIC = (2 * # parameters estimated() minus (2 * log-likelihood of model)</span></span>
+<span id="cb153-632"><a href="#cb153-632" aria-hidden="true" tabindex="-1"></a><span class="co"># for the proposed model, we estimated 2 parameters</span></span>
+<span id="cb153-633"><a href="#cb153-633" aria-hidden="true" tabindex="-1"></a>(AICreduced <span class="ot">&lt;-</span> <span class="dv">2</span> <span class="sc">*</span> <span class="dv">1</span> <span class="sc">-</span> <span class="dv">2</span> <span class="sc">*</span> <span class="fu">logLik</span>(reduced))</span>
+<span id="cb153-634"><a href="#cb153-634" aria-hidden="true" tabindex="-1"></a><span class="co"># for the reduced model, we estimated 1 parameter</span></span>
+<span id="cb153-635"><a href="#cb153-635" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb153-636"><a href="#cb153-636" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb153-637"><a href="#cb153-637" aria-hidden="true" tabindex="-1"></a><span class="fu">### CHALLENGE {.unnumbered}</span></span>
+<span id="cb153-637"><a href="#cb153-637" aria-hidden="true" tabindex="-1"></a>Here, the log-likelihood of the model including *age* as a predictor is much lower than the log-likelihood of the reduced (intercept only) model, so we prefer the former.</span>
 <span id="cb153-638"><a href="#cb153-638" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb153-639"><a href="#cb153-639" aria-hidden="true" tabindex="-1"></a>Using the woolly monkey mating success data set, explore multiple Poisson regression models of <span class="co">[</span><span class="ot">a</span><span class="co">]</span> mating success in relation to *rank* and [b] mating success in relation to *age* + *rank*, and [c] mating success in relation to *age* + *rank* + their interaction on your own. What conclusions can you come to about the importance of rank and rank in combination with age versus age alone?</span>
+<span id="cb153-639"><a href="#cb153-639" aria-hidden="true" tabindex="-1"></a><span class="fu">### CHALLENGE {.unnumbered}</span></span>
 <span id="cb153-640"><a href="#cb153-640" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb153-641"><a href="#cb153-641" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Mating Success in Relation to Rank {.unnumbered}</span></span>
+<span id="cb153-641"><a href="#cb153-641" aria-hidden="true" tabindex="-1"></a>Using the woolly monkey mating success data set, explore multiple Poisson regression models of <span class="co">[</span><span class="ot">a</span><span class="co">]</span> mating success in relation to *rank* and [b] mating success in relation to *age* + *rank*, and [c] mating success in relation to *age* + *rank* + their interaction on your own. What conclusions can you come to about the importance of rank and rank in combination with age versus age alone?</span>
 <span id="cb153-642"><a href="#cb153-642" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb153-645"><a href="#cb153-645" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb153-646"><a href="#cb153-646" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-fold: true</span></span>
-<span id="cb153-647"><a href="#cb153-647" aria-hidden="true" tabindex="-1"></a><span class="co"># glm of success ~ rank</span></span>
-<span id="cb153-648"><a href="#cb153-648" aria-hidden="true" tabindex="-1"></a>glm1 <span class="ot">&lt;-</span> <span class="fu">glm</span>(<span class="at">data =</span> d, success <span class="sc">~</span> rank, <span class="at">family =</span> <span class="st">"poisson"</span>)</span>
-<span id="cb153-649"><a href="#cb153-649" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(glm1)</span>
-<span id="cb153-650"><a href="#cb153-650" aria-hidden="true" tabindex="-1"></a><span class="fu">tidy</span>(glm1, <span class="at">conf.int =</span> <span class="cn">TRUE</span>, <span class="at">conf.level =</span> <span class="fl">0.95</span>)</span>
-<span id="cb153-651"><a href="#cb153-651" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb153-652"><a href="#cb153-652" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb153-653"><a href="#cb153-653" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Mating Success in Relation to Age + Rank {.unnumbered}</span></span>
+<span id="cb153-643"><a href="#cb153-643" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Mating Success in Relation to Rank {.unnumbered}</span></span>
+<span id="cb153-644"><a href="#cb153-644" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb153-647"><a href="#cb153-647" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb153-648"><a href="#cb153-648" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-fold: true</span></span>
+<span id="cb153-649"><a href="#cb153-649" aria-hidden="true" tabindex="-1"></a><span class="co"># glm of success ~ rank</span></span>
+<span id="cb153-650"><a href="#cb153-650" aria-hidden="true" tabindex="-1"></a>glm1 <span class="ot">&lt;-</span> <span class="fu">glm</span>(<span class="at">data =</span> d, success <span class="sc">~</span> rank, <span class="at">family =</span> <span class="st">"poisson"</span>)</span>
+<span id="cb153-651"><a href="#cb153-651" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(glm1)</span>
+<span id="cb153-652"><a href="#cb153-652" aria-hidden="true" tabindex="-1"></a><span class="fu">tidy</span>(glm1, <span class="at">conf.int =</span> <span class="cn">TRUE</span>, <span class="at">conf.level =</span> <span class="fl">0.95</span>)</span>
+<span id="cb153-653"><a href="#cb153-653" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb153-654"><a href="#cb153-654" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb153-657"><a href="#cb153-657" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb153-658"><a href="#cb153-658" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-fold: true</span></span>
-<span id="cb153-659"><a href="#cb153-659" aria-hidden="true" tabindex="-1"></a><span class="co"># glm of success~age+rank</span></span>
-<span id="cb153-660"><a href="#cb153-660" aria-hidden="true" tabindex="-1"></a>glm2 <span class="ot">&lt;-</span> <span class="fu">glm</span>(<span class="at">data=</span>d, success<span class="sc">~</span>age<span class="sc">+</span>rank, <span class="at">family=</span><span class="st">"poisson"</span>)</span>
-<span id="cb153-661"><a href="#cb153-661" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(glm2)</span>
-<span id="cb153-662"><a href="#cb153-662" aria-hidden="true" tabindex="-1"></a><span class="fu">tidy</span>(glm2, <span class="at">conf.int =</span> <span class="cn">TRUE</span>, <span class="at">conf.level =</span> <span class="fl">0.95</span>)</span>
-<span id="cb153-663"><a href="#cb153-663" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb153-664"><a href="#cb153-664" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb153-665"><a href="#cb153-665" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Mating Success in Relation to Age + Rank + Their Interaction {.unnumbered}</span></span>
+<span id="cb153-655"><a href="#cb153-655" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Mating Success in Relation to Age + Rank {.unnumbered}</span></span>
+<span id="cb153-656"><a href="#cb153-656" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb153-659"><a href="#cb153-659" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb153-660"><a href="#cb153-660" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-fold: true</span></span>
+<span id="cb153-661"><a href="#cb153-661" aria-hidden="true" tabindex="-1"></a><span class="co"># glm of success~age+rank</span></span>
+<span id="cb153-662"><a href="#cb153-662" aria-hidden="true" tabindex="-1"></a>glm2 <span class="ot">&lt;-</span> <span class="fu">glm</span>(<span class="at">data=</span>d, success<span class="sc">~</span>age<span class="sc">+</span>rank, <span class="at">family=</span><span class="st">"poisson"</span>)</span>
+<span id="cb153-663"><a href="#cb153-663" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(glm2)</span>
+<span id="cb153-664"><a href="#cb153-664" aria-hidden="true" tabindex="-1"></a><span class="fu">tidy</span>(glm2, <span class="at">conf.int =</span> <span class="cn">TRUE</span>, <span class="at">conf.level =</span> <span class="fl">0.95</span>)</span>
+<span id="cb153-665"><a href="#cb153-665" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb153-666"><a href="#cb153-666" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb153-669"><a href="#cb153-669" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb153-670"><a href="#cb153-670" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-fold: true</span></span>
-<span id="cb153-671"><a href="#cb153-671" aria-hidden="true" tabindex="-1"></a><span class="co"># glm of success ~ age + rank + age:rank</span></span>
-<span id="cb153-672"><a href="#cb153-672" aria-hidden="true" tabindex="-1"></a>glm3 <span class="ot">&lt;-</span> <span class="fu">glm</span>(<span class="at">data =</span> d, success <span class="sc">~</span> age <span class="sc">*</span> rank, <span class="at">family =</span> <span class="st">"poisson"</span>)</span>
-<span id="cb153-673"><a href="#cb153-673" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(glm3)</span>
-<span id="cb153-674"><a href="#cb153-674" aria-hidden="true" tabindex="-1"></a><span class="fu">tidy</span>(glm3, <span class="at">conf.int =</span> <span class="cn">TRUE</span>, <span class="at">conf.level =</span> <span class="fl">0.95</span>)</span>
-<span id="cb153-675"><a href="#cb153-675" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb153-676"><a href="#cb153-676" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb153-679"><a href="#cb153-679" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb153-680"><a href="#cb153-680" aria-hidden="true" tabindex="-1"></a><span class="co">#| message: false</span></span>
-<span id="cb153-681"><a href="#cb153-681" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sjPlot)</span>
-<span id="cb153-682"><a href="#cb153-682" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(effects)</span>
-<span id="cb153-683"><a href="#cb153-683" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_model</span>(glm3, <span class="at">type =</span> <span class="st">"eff"</span>, <span class="at">term =</span> <span class="st">"age"</span>) <span class="sc">+</span></span>
-<span id="cb153-684"><a href="#cb153-684" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">data =</span> d, <span class="fu">aes</span>(<span class="at">x =</span> age, <span class="at">y =</span> success))</span>
-<span id="cb153-685"><a href="#cb153-685" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_model</span>(glm3, <span class="at">type =</span> <span class="st">"eff"</span>, <span class="at">term =</span> <span class="st">"rank"</span>)</span>
-<span id="cb153-686"><a href="#cb153-686" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">predictorEffects</span>(glm3, <span class="at">partial.residuals =</span> <span class="cn">TRUE</span>))</span>
-<span id="cb153-687"><a href="#cb153-687" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">allEffects</span>(glm3, <span class="at">partial.residuals =</span> <span class="cn">TRUE</span>))</span>
-<span id="cb153-688"><a href="#cb153-688" aria-hidden="true" tabindex="-1"></a><span class="fu">detach</span>(package<span class="sc">:</span>sjPlot)</span>
-<span id="cb153-689"><a href="#cb153-689" aria-hidden="true" tabindex="-1"></a><span class="fu">detach</span>(package<span class="sc">:</span>effects)</span>
-<span id="cb153-690"><a href="#cb153-690" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb153-691"><a href="#cb153-691" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb153-692"><a href="#cb153-692" aria-hidden="true" tabindex="-1"></a><span class="in">```{r include=FALSE}</span></span>
-<span id="cb153-693"><a href="#cb153-693" aria-hidden="true" tabindex="-1"></a><span class="in">detach(package:lmtest)</span></span>
-<span id="cb153-694"><a href="#cb153-694" aria-hidden="true" tabindex="-1"></a><span class="in">detach(package:broom)</span></span>
-<span id="cb153-695"><a href="#cb153-695" aria-hidden="true" tabindex="-1"></a><span class="in">detach(package:tidyverse)</span></span>
-<span id="cb153-696"><a href="#cb153-696" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb153-697"><a href="#cb153-697" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb153-698"><a href="#cb153-698" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb153-667"><a href="#cb153-667" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Mating Success in Relation to Age + Rank + Their Interaction {.unnumbered}</span></span>
+<span id="cb153-668"><a href="#cb153-668" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb153-671"><a href="#cb153-671" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb153-672"><a href="#cb153-672" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-fold: true</span></span>
+<span id="cb153-673"><a href="#cb153-673" aria-hidden="true" tabindex="-1"></a><span class="co"># glm of success ~ age + rank + age:rank</span></span>
+<span id="cb153-674"><a href="#cb153-674" aria-hidden="true" tabindex="-1"></a>glm3 <span class="ot">&lt;-</span> <span class="fu">glm</span>(<span class="at">data =</span> d, success <span class="sc">~</span> age <span class="sc">*</span> rank, <span class="at">family =</span> <span class="st">"poisson"</span>)</span>
+<span id="cb153-675"><a href="#cb153-675" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(glm3)</span>
+<span id="cb153-676"><a href="#cb153-676" aria-hidden="true" tabindex="-1"></a><span class="fu">tidy</span>(glm3, <span class="at">conf.int =</span> <span class="cn">TRUE</span>, <span class="at">conf.level =</span> <span class="fl">0.95</span>)</span>
+<span id="cb153-677"><a href="#cb153-677" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb153-678"><a href="#cb153-678" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb153-681"><a href="#cb153-681" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb153-682"><a href="#cb153-682" aria-hidden="true" tabindex="-1"></a><span class="co">#| message: false</span></span>
+<span id="cb153-683"><a href="#cb153-683" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sjPlot)</span>
+<span id="cb153-684"><a href="#cb153-684" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(effects)</span>
+<span id="cb153-685"><a href="#cb153-685" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_model</span>(glm3, <span class="at">type =</span> <span class="st">"eff"</span>, <span class="at">term =</span> <span class="st">"age"</span>) <span class="sc">+</span></span>
+<span id="cb153-686"><a href="#cb153-686" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">data =</span> d, <span class="fu">aes</span>(<span class="at">x =</span> age, <span class="at">y =</span> success))</span>
+<span id="cb153-687"><a href="#cb153-687" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_model</span>(glm3, <span class="at">type =</span> <span class="st">"eff"</span>, <span class="at">term =</span> <span class="st">"rank"</span>)</span>
+<span id="cb153-688"><a href="#cb153-688" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">predictorEffects</span>(glm3, <span class="at">partial.residuals =</span> <span class="cn">TRUE</span>))</span>
+<span id="cb153-689"><a href="#cb153-689" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">allEffects</span>(glm3, <span class="at">partial.residuals =</span> <span class="cn">TRUE</span>))</span>
+<span id="cb153-690"><a href="#cb153-690" aria-hidden="true" tabindex="-1"></a><span class="fu">detach</span>(package<span class="sc">:</span>sjPlot)</span>
+<span id="cb153-691"><a href="#cb153-691" aria-hidden="true" tabindex="-1"></a><span class="fu">detach</span>(package<span class="sc">:</span>effects)</span>
+<span id="cb153-692"><a href="#cb153-692" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb153-693"><a href="#cb153-693" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb153-694"><a href="#cb153-694" aria-hidden="true" tabindex="-1"></a><span class="in">```{r include=FALSE}</span></span>
+<span id="cb153-695"><a href="#cb153-695" aria-hidden="true" tabindex="-1"></a><span class="in">detach(package:lmtest)</span></span>
+<span id="cb153-696"><a href="#cb153-696" aria-hidden="true" tabindex="-1"></a><span class="in">detach(package:broom)</span></span>
+<span id="cb153-697"><a href="#cb153-697" aria-hidden="true" tabindex="-1"></a><span class="in">detach(package:tidyverse)</span></span>
+<span id="cb153-698"><a href="#cb153-698" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb153-699"><a href="#cb153-699" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb153-700"><a href="#cb153-700" aria-hidden="true" tabindex="-1"></a><span class="fu">## Concept Review {.unnumbered}</span></span>
+<span id="cb153-700"><a href="#cb153-700" aria-hidden="true" tabindex="-1"></a>---</span>
 <span id="cb153-701"><a href="#cb153-701" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb153-702"><a href="#cb153-702" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Generalized linear modeling extends general linear modeling to accommodate response variables that are not continuously distributed (e.g., binary responses, count data, proportion data)</span>
-<span id="cb153-703"><a href="#cb153-703" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>What is being predicted in generalized linear model is some function of the expected value of an observed response, not the observed response *per se*</span>
-<span id="cb153-704"><a href="#cb153-704" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>The link/inverse link function is what connects the response predicted by the GLM back to the scale of the original observed response</span>
-<span id="cb153-705"><a href="#cb153-705" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>For binary response variables, we use **logistic** regression, where the response variable is natural log of the **odds ratio** between two possible outcomes:</span>
-<span id="cb153-706"><a href="#cb153-706" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb153-707"><a href="#cb153-707" aria-hidden="true" tabindex="-1"></a>$$\ln<span class="co">[</span><span class="ot">\frac{\pi_i}{(1-\pi_i)}</span><span class="co">]</span> = \beta_0 + \beta_1x_i$$</span>
+<span id="cb153-702"><a href="#cb153-702" aria-hidden="true" tabindex="-1"></a><span class="fu">## Concept Review {.unnumbered}</span></span>
+<span id="cb153-703"><a href="#cb153-703" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb153-704"><a href="#cb153-704" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Generalized linear modeling extends general linear modeling to accommodate response variables that are not continuously distributed (e.g., binary responses, count data, proportion data)</span>
+<span id="cb153-705"><a href="#cb153-705" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>What is being predicted in generalized linear model is some function of the expected value of an observed response, not the observed response *per se*</span>
+<span id="cb153-706"><a href="#cb153-706" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>The link/inverse link function is what connects the response predicted by the GLM back to the scale of the original observed response</span>
+<span id="cb153-707"><a href="#cb153-707" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>For binary response variables, we use **logistic** regression, where the response variable is natural log of the **odds ratio** between two possible outcomes:</span>
 <span id="cb153-708"><a href="#cb153-708" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb153-709"><a href="#cb153-709" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>For response variables that are open-ended counts, we use **log-linear** or **Poisson regression**, where the response variable is the natural log of the expected value of the count</span>
+<span id="cb153-709"><a href="#cb153-709" aria-hidden="true" tabindex="-1"></a>$$\ln<span class="co">[</span><span class="ot">\frac{\pi_i}{(1-\pi_i)}</span><span class="co">]</span> = \beta_0 + \beta_1x_i$$</span>
 <span id="cb153-710"><a href="#cb153-710" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb153-711"><a href="#cb153-711" aria-hidden="true" tabindex="-1"></a>$$\lambda_i = \beta_0 + \beta_1x_i$$</span>
+<span id="cb153-711"><a href="#cb153-711" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>For response variables that are open-ended counts, we use **log-linear** or **Poisson regression**, where the response variable is the natural log of the expected value of the count</span>
 <span id="cb153-712"><a href="#cb153-712" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb153-713"><a href="#cb153-713" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>As with simple (or general) linear models, we can create generalized linear models with more than one predictor variable, with a combination of continuous and categorial predictors, and with interactions between predictors</span>
+<span id="cb153-713"><a href="#cb153-713" aria-hidden="true" tabindex="-1"></a>$$\lambda_i = \beta_0 + \beta_1x_i$$</span>
+<span id="cb153-714"><a href="#cb153-714" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb153-715"><a href="#cb153-715" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>As with simple (or general) linear models, we can create generalized linear models with more than one predictor variable, with a combination of continuous and categorial predictors, and with interactions between predictors</span>
 </code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->

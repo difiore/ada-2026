@@ -33,12 +33,10 @@ summary(m)
 beta1 <- cov(d$height, d$weight) / var(d$weight)
 beta0 <- mean(d$height) - beta1 * mean(d$weight)
 
-
 f <- "https://raw.githubusercontent.com/difiore/ada-datasets/main/comparative_primate_sexuality_data.csv"
 
 d <- read_csv(f, col_names = TRUE)
 names(d)
-
 
 ggplot(data = d,
         aes(x=log(Body_mass_male_mean), y = log(Combined_testis_mass))) +
@@ -48,7 +46,6 @@ temp <- d |> filter(!is.na(Combined_testis_mass))
 
 beta1 <- cov(log(temp$Body_mass_male_mean), log(temp$Combined_testis_mass))/var(log(temp$Body_mass_male_mean))
 
-
 m <- lm(log(Combined_testis_mass) ~ log(Body_mass_male_mean), data = d)
 
 summary(m)
@@ -56,8 +53,6 @@ summary(m)
 names(m)
 m$coefficients
 broom::tidy(m)
-
-
 
 library(lmodel2)
 
@@ -67,7 +62,6 @@ m2 <- lmodel2(log(Combined_testis_mass) ~ log(Body_mass_male_mean), data = d, ra
 
 summary(m)
 m2
-
 
 f <- "https://raw.githubusercontent.com/difiore/ada-datasets/main/Street_et_al_2017.csv"
 d <- read_csv(f, col_names = TRUE)
@@ -174,3 +168,4 @@ summary(m)
 # larger sample size?
 set.seed(0)
 d <- rnorm(1000, 50, 10)
+

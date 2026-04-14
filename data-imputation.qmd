@@ -1,0 +1,315 @@
+---
+# Data Imputation in R
+---
+
+## Learning Objectives
+
+By the end of this module, you will be able to:
+
+- Distinguish between the three missing data mechanisms (MCAR, MAR, MNAR)
+- Assess patterns of missingness in a dataset
+- Apply and compare single imputation, multiple imputation (MI), and model-based approaches
+- Implement imputation workflows using `mice`, `Amelia`, and `missForest` in R
+- Evaluate and diagnose imputation quality
+
+---
+
+## 1. Missing Data Mechanisms
+
+Understanding *why* data is missing is prerequisite to choosing an appropriate strategy. Rubin (1976) formalized three mechanisms:
+
+**Missing Completely at Random (MCAR)**  
+The probability of missingness is independent of both observed and unobserved data. Missingness is essentially a random coin flip. Complete-case analysis is unbiased under MCAR, but still inefficient.
+
+**Missing at Random (MAR)**  
+The probability of missingness depends on *observed* data, but not on the missing values themselves. For example, older participants are less likely to report income, but conditional on age, missingness does not depend on the income value. Most modern imputation methods assume MAR.
+
+**Missing Not at Random (MNAR)**  
+The probability of missingness depends on the unobserved values. For example, individuals with very high income are less likely to disclose it. MNAR is the most problematic; standard imputation methods are biased without modeling the missingness mechanism explicitly.
+
+> **Key insight:** You generally cannot distinguish MAR from MNAR using data alone. Sensitivity analyses and domain knowledge are essential.
+
+---
+
+## 2. Diagnosing Missingness
+
+Before imputing, always characterize the pattern and extent of missingness.
+
+```{r}
+# Install and load packages
+install.packages(c("mice", "Amelia", "missForest", "naniar", "VIM", "tidyverse"))
+
+library(tidyverse)
+library(naniar)
+library(VIM)
+
+# Use the nhanes dataset bundled with mice
+library(mice)
+data(nhanes)
+
+# --- Basic summaries ---
+summary(nhanes)
+miss_var_summary(nhanes)   # % missing per variable
+miss_case_summary(nhanes)  # % missing per row
+
+# --- Visualize missingness pattern ---
+md.pattern(nhanes, rotate.names = TRUE)  # mice's built-in pattern plot
+
+# Upset plot (naniar) — shows co-occurrence of missing variables
+gg_miss_upset(nhanes)
+
+# Margin plot for two variables: reveals MAR vs MCAR visually
+marginplot(nhanes[, c("chl", "bmi")], col = c("blue", "red"),
+           main = "Margin Plot: Cholesterol vs BMI")
+# If the red box plots (missings in one variable) differ from blue,
+# this suggests MAR or MNAR.
+
+# --- Little's MCAR test ---
+# install.packages("mcar") or use naniar
+mcar_test(nhanes)
+# p < 0.05 → reject MCAR
+```
+
+**Interpretation guide for `md.pattern()`:**  
+Each row is a distinct missingness pattern; columns are variables. A `1` means observed, `0` means missing. The rightmost column counts missing variables per pattern; the bottom row counts missing values per variable.
+
+---
+
+## 3. Single Imputation (and Why It's Usually Insufficient)
+
+Single imputation fills each missing value with one plausible value. Common methods:
+
+| Method | Function | Limitation |
+|---|---|---|
+| Mean/median | manual | Distorts variance and correlations |
+| Last observation carried forward | manual | Assumes temporal stability |
+| Regression imputation | `mice(method = "norm.predict")` | Underestimates uncertainty |
+| Stochastic regression | `mice(method = "norm")`, n=1 | Better, but still single draw |
+
+```r
+# Mean imputation — illustrative, not recommended
+nhanes_mean_imp <- nhanes %>%
+  mutate(across(everything(), ~ ifelse(is.na(.), mean(., na.rm = TRUE), .)))
+
+# Single stochastic regression imputation via mice (m=1)
+imp_single <- mice(nhanes, m = 1, method = "norm", seed = 42, printFlag = FALSE)
+nhanes_single <- complete(imp_single)
+```
+
+**The core problem:** Single imputation treats imputed values as if they were observed. This ignores imputation uncertainty and produces standard errors that are too small — leading to anti-conservative inference.
+
+---
+
+## 4. Multiple Imputation (MI)
+
+MI addresses the uncertainty problem by creating *m* complete datasets, analyzing each separately, and pooling results using Rubin's Rules.
+
+### 4.1 The MI Workflow
+
+```
+Original data (with missings)
+        ↓
+Create m imputed datasets (e.g., m = 20)
+        ↓
+Analyze each dataset separately
+        ↓
+Pool estimates (Rubin's Rules)
+        ↓
+Single inferential result with correct uncertainty
+```
+
+### 4.2 Rubin's Rules
+
+For parameter estimate $\hat{Q}$ from *m* imputations:
+
+$$\bar{Q} = \frac{1}{m} \sum_{i=1}^{m} \hat{Q}_i$$
+
+Total variance combines within-imputation variance $\bar{U}$ and between-imputation variance $B$:
+
+$$T = \bar{U} + \left(1 + \frac{1}{m}\right) B$$
+
+The fraction of missing information (FMI) ≈ $B / T$ quantifies how much uncertainty is attributable to missingness.
+
+### 4.3 MICE: Multivariate Imputation by Chained Equations
+
+`mice` uses a conditional specification approach — each variable is imputed from a model conditioned on all others, cycling through variables iteratively (Gibbs-style).
+
+```{r}
+library(mice)
+
+# Step 1: Inspect default imputation methods
+imp0 <- mice(nhanes, maxit = 0)
+imp0$method      # default method per variable
+imp0$predictorMatrix  # which variables predict which
+
+# Step 2: Customize methods if needed
+# norm = Bayesian linear regression (continuous)
+# logreg = logistic regression (binary)
+# polyreg = polytomous regression (unordered factor)
+# pmm = predictive mean matching (robust for skewed continuous)
+
+meth <- imp0$method
+meth["bmi"] <- "pmm"   # use PMM for BMI
+
+# Step 3: Run imputation (m=20 recommended for low-moderate missingness)
+imp <- mice(nhanes, m = 20, method = meth, maxit = 10, seed = 500, printFlag = FALSE)
+
+# Step 4: Diagnose convergence — trace plots should mix well (no trend)
+plot(imp)
+
+# Step 5: Check imputed vs observed distributions
+densityplot(imp)     # density overlays per imputed dataset
+stripplot(imp, pch = 20, cex = 1.2)  # strip plots
+
+# Step 6: Analyze each imputed dataset
+fit <- with(imp, lm(chl ~ age + bmi + hyp))
+
+# Step 7: Pool results
+pooled <- pool(fit)
+summary(pooled)
+
+# Fraction of missing information per parameter
+pooled$pooled$fmi
+```
+
+**Practical rule of thumb:** Set `m` ≥ the percentage of incomplete cases (e.g., 30% missing → m ≥ 30). More is generally better for stable FMI estimates.
+
+### 4.4 Amelia II: Bootstrapping + EMB Algorithm
+
+`Amelia` assumes multivariate normality and uses an Expectation-Maximization with Bootstrapping (EMB) algorithm. It is faster than MICE for large datasets when the normality assumption is reasonable.
+
+```{r}
+library(Amelia)
+
+# nhanes2 has factor variables (age, hyp) — all factors must be declared
+# as nominal, ordinal, or ID; Amelia cannot infer intent from factor class
+data(nhanes2)
+str(nhanes2)  # always inspect: age is a factor with ordered levels here
+
+amelia_out <- amelia(nhanes2,
+                     m = 20,
+                     noms = c("hyp", "age"),  # declare all factor columns
+                     ords = NULL,
+                     logs = "chl",            # log-transform skewed variables
+                     seed = 42)
+
+# Diagnostic: compare observed vs imputed margins (only valid on successful run)
+if (!inherits(amelia_out, "ameliaError")) {
+  plot(amelia_out, which.vars = "bmi")  # density overlay for BMI
+  missmap(amelia_out)                   # missingness map
+}
+
+# Analyze and pool manually (Amelia doesn't integrate with mice's pool())
+models <- lapply(amelia_out$imputations, function(d) lm(chl ~ age + bmi + hyp, data = d))
+
+# Pool with mitools
+library(mitools)
+pooled_amelia <- MIcombine(models)
+summary(pooled_amelia)
+```
+
+---
+
+## 5. Non-Parametric Imputation: missForest
+
+`missForest` uses random forests to impute each variable, making no distributional assumptions. Effective for mixed data types and nonlinear relationships, but computationally intensive.
+
+```{r}
+library(missForest)
+
+# missForest requires a data frame with factors for categorical variables
+nhanes_mf <- nhanes2  # already has factor for hyp
+
+set.seed(42)
+imp_rf <- missForest(nhanes_mf, maxiter = 10, ntree = 100, verbose = TRUE)
+
+# Imputed dataset (single imputation — no uncertainty quantification by default)
+nhanes_complete_rf <- imp_rf$ximp
+
+# Out-of-bag imputation error (normalized RMSE for continuous, PFC for categorical)
+imp_rf$OOBerror
+# Lower is better; compare across methods as a diagnostic
+
+# For uncertainty, use missForest with multiple runs or combine with MI bootstrap
+```
+
+> **Limitation:** `missForest` produces a single imputed dataset. For valid inference, either (a) use it within a bootstrap MI framework, or (b) treat the OOB error as a diagnostic rather than a basis for inference.
+
+---
+
+## 6. Method Comparison
+
+| Method | Distributional Assumption | Mixed Data | Uncertainty | Speed | Best For |
+|---|---|---|---|---|---|
+| `mice` (PMM) | Minimal | Yes | Full MI | Moderate | General use |
+| `mice` (norm) | Multivariate normal | Continuous only | Full MI | Moderate | Normal data |
+| `Amelia` | Multivariate normal | With specification | Full MI | Fast | Large normal data |
+| `missForest` | None | Excellent | None (single) | Slow | Exploratory / complex relationships |
+
+---
+
+## 7. Sensitivity Analysis for MNAR
+
+When MNAR is plausible, conduct a *pattern-mixture* or *selection model* sensitivity analysis. A simple approach: the *delta adjustment* or *tipping point analysis*.
+
+```{r}
+# Delta adjustment: shift imputed values by delta to simulate MNAR
+# (how much would our conclusion change if missing values were systematically higher/lower?)
+
+delta_values <- c(-10, -5, 0, 5, 10)  # shift in cholesterol units
+
+results <- lapply(delta_values, function(delta) {
+  imp_d <- imp  # use existing mice object
+  # Add delta to imputed (not observed) cholesterol values
+  imp_d$imp$chl <- imp_d$imp$chl + delta
+  fit_d <- with(imp_d, lm(chl ~ age + bmi + hyp))
+  pooled_d <- pool(fit_d)
+  data.frame(delta = delta,
+             estimate = summary(pooled_d)$estimate[2],
+             pval = summary(pooled_d)$p.value[2])
+})
+
+do.call(rbind, results)
+# Observe how far delta must shift before your key inference changes sign or loses significance
+```
+
+---
+
+## 8. Common Pitfalls
+
+**Not including the outcome in the imputation model.**  
+Always include the analysis outcome in the imputation model, even if you don't impute it. Excluding it biases imputed predictors toward the null.
+
+**Imputing after transformations.**  
+Impute on the natural scale, then transform. Imputing log(x) when some values of x may be unusual can produce artifacts.
+
+**Too few imputations.**  
+m = 5 (the old default) is rarely sufficient. Use m ≥ 20 as a starting point.
+
+**Ignoring convergence.**  
+Always inspect trace plots from `plot(imp)`. Non-mixing chains indicate model misspecification.
+
+**Including collinear or noise predictors.**  
+Use the `predictorMatrix` to exclude variables that are unhelpful or cause numerical instability.
+
+---
+
+## 9. Exercise
+
+Using the `airquality` dataset (built into R), which has missing values in `Ozone` and `Solar.R`:
+
+1. Characterize the missing data patterns and test for MCAR.
+2. Implement MICE with at least two different imputation methods. Justify your method choice.
+3. Fit a linear model regressing `Ozone` on `Solar.R`, `Wind`, and `Temp`. Pool the results.
+4. Compare the pooled MI estimates to a complete-case analysis. What do you observe?
+5. Conduct a brief delta-adjustment sensitivity analysis on the `Ozone` imputation. At what delta does the estimated effect of `Wind` lose significance at α = 0.05?
+
+---
+
+## References
+
+- Rubin, D.B. (1987). *Multiple Imputation for Nonresponse in Surveys.* Wiley.
+- van Buuren, S. (2018). *Flexible Imputation of Missing Data* (2nd ed.). CRC Press. Freely available at: https://stefvanbuuren.name/fimd/
+- Honaker, J., King, G., & Blackwell, M. (2011). Amelia II: A program for missing data. *Journal of Statistical Software*, 45(7), 1–47.
+- Stekhoven, D.J. & Bühlmann, P. (2012). MissForest — non-parametric missing value imputation for mixed-type data. *Bioinformatics*, 28(1), 112–118.
+- Sterne, J.A.C. et al. (2009). Multiple imputation for missing data in epidemiological and clinical research: potential and pitfalls. *BMJ*, 338, b2393.
