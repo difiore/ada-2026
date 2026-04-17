@@ -508,6 +508,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./exercise-10-solution.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Exercise 10 Solution</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./exercise-11.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Exercise 11</span></a>
   </div>
@@ -533,6 +539,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <div class="sidebar-item-container"> 
   <a href="./collaborative-data-science-assignment.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Collaborative Data Science Project</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./creative-dataviz-assignment.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Creative Data Visualization</span></a>
   </div>
 </li>
       </ul>
@@ -680,7 +692,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h3 class="unnumbered anchored" data-anchor-id="loading-data-from-text-files">Loading Data from Text Files</h3>
 <p>In <strong><em>R</em></strong>, we can load a data set from a several types of plain text file stored on a local computer using the <code>read.table()</code> function from the {base} package, with the path to the file as the first (<code>file="&lt;path&gt;"</code>) argument for the function. An additional argument (<code>header=&lt;boolean&gt;</code>) can be used to specify whether the first row of the data file consists of column/field names.</p>
 <p>The generic <code>read.table()</code> function can be used to read data files where columns are separated by tabs, commas, white space, or some other delimiter. The <code>sep=</code> argument tells <strong><em>R</em></strong> what character is used as a delimiter. The <code>skip=</code> argument can be used to start reading a file after a set number of rows.</p>
-<p>There are format-specific variants of <code>read.table()</code> (e.g., <code>read.csv()</code>) that have different defaults and may be quicker for certain file types. Note that, as mentioned in <a href="07-module.html"><strong>Module 07</strong></a>, when using this function from the {base} package, the argument <code>stringsAsFactors=</code> is set to be TRUE by default, and we need to set it as FALSE if we want character strings to be loaded as actual strings.</p>
+<p>There are format-specific variants of <code>read.table()</code> (e.g., <code>read.csv()</code>) that have different defaults and may be quicker for certain file types. Note that, as mentioned in <a href="#module-07"><strong>Module 07</strong></a>, when using this function from the {base} package, the argument <code>stringsAsFactors=</code> is set to be TRUE by default, and we need to set it as FALSE if we want character strings to be loaded as actual strings.</p>
 <p>As an example, we will read in some of the data sets that you have copied and stored locally in the files “CPDS-1960-2014-reduced.csv” and “CPDS-1960-2014-reduced.txt”.</p>
 <section id="reading-comma-separated-.csv-text-files-with-base-r" class="level4 unnumbered">
 <h4 class="unnumbered anchored" data-anchor-id="reading-comma-separated-.csv-text-files-with-base-r">Reading comma-separated (“.csv”) text files with {base} <strong><em>R</em></strong></h4>
@@ -1301,7 +1313,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h3 class="unnumbered anchored" data-anchor-id="importing-data-from-google-sheets">Importing Data from <strong><em>Google Sheets</em></strong></h3>
 <p>Finally, you can also load data directly from a <strong><em>Google Sheets</em></strong> spreadsheet into <strong><em>R</em></strong> using the {googledrive} and {googlesheets4} packages. Try saving one of the “CPDS-1960-2014-reduced” file as a Google Sheet and then extracting it into <strong><em>R</em></strong> using the code below.</p>
 <blockquote class="blockquote">
-<p><strong>NOTE:</strong> The following code block cannot be rendered to show you the output because it requires an interactive <strong><em>R</em></strong> environment for several functions (e.g., <code>drive_auth()</code>). It also uses the native pipe operator (<code>|&gt;</code>), which we have not covered yet, but is discussed in detail in <a href="10-module.html"><strong>Module 10</strong></a>.</p>
+<p><strong>NOTE:</strong> The following code block cannot be rendered to show you the output because it requires an interactive <strong><em>R</em></strong> environment for several functions (e.g., <code>drive_auth()</code>). It also uses the native pipe operator (<code>|&gt;</code>), which we have not covered yet, but is discussed in detail in <a href="#module-10"><strong>Module 10</strong></a>.</p>
 </blockquote>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb60"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(googledrive)</span>

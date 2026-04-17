@@ -80,7 +80,7 @@ book:
       - exercise-09.qmd
       - exercise-09-solution.qmd
       - exercise-10.qmd
-      # - exercise-10-solution.qmd
+      - exercise-10-solution.qmd
       - exercise-11.qmd
       # - exercise-11-solution.qmd
     - part: "Assignments"
@@ -88,7 +88,7 @@ book:
       - data-analysis-replication-assignment.qmd
       # - data-analysis-replication-assignment-template.qmd
       - collaborative-data-science-assignment.qmd
-      # - creative-dataviz-assignment.qmd
+      - creative-dataviz-assignment.qmd
     - part: "References"
       chapters:
         - packages.qmd

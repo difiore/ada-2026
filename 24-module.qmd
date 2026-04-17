@@ -8,9 +8,9 @@
 
 - Install and load these packages in ***R***: [{lme4}](https://cran.r-project.org/web/packages/lme4/lme4.pdf),
 [{redres}](https://cran.r-project.org/web/packages/redres/redres.pdf),
-[{glmmTMB}](https://cran.r-project.org/web/packages/glmmTMB/glmmTMB.pdf), and
-[{mixedup}](https://github.com/m-clark/mixedup/)
-- Load {tidyverse}, {effects}, and {sjPlot}
+[{glmmTMB}](https://cran.r-project.org/web/packages/glmmTMB/glmmTMB.pdf),
+[{mixedup}](https://github.com/m-clark/mixedup/), and [{DHARMa}](https://cran.r-project.org/web/packages/glmmTMB/DHARMa)
+- Load {tidyverse}, {lme4}, {effects}, and {sjPlot}
 - Be sure you have the packages {car}, {cowplot}, {lmtest}, and {MASS} installed
 
 ```{r}
@@ -18,10 +18,11 @@
 #| message: false
 library(tidyverse)
 library(lme4)
-library(redres)
-library(sjPlot)
 library(effects)
+library(sjPlot)
 library(glmmTMB)
+library(redres)
+library(DHARMa)
 ```
 
 ## Overview of "Mixed" Models
@@ -77,6 +78,15 @@ f <- "https://raw.githubusercontent.com/difiore/ada-datasets/main/chimpgrooming.
 d <- read_csv(f, col_names = TRUE)
 head(d)
 summary(d)
+```
+
+- Convert predictors to factors...
+
+```{r}
+d <- d |>
+  mutate(reprocondition = as.factor(reprocondition),
+         parity = as.factor(parity),
+         subject = as.factor(subject))
 ```
 
 - Plot grooming received duration in relation to subject ID...
@@ -175,7 +185,9 @@ Here, the 1 refers to the fact that we want to estimate an *intercept* and the p
 
 We can think of this formula as saying that we expect our dataset to include multiple observations of the response variable per subject, and these responses will depend, in part, on each subject's baseline level. This effectively accounts the nonindependence that stems from having multiple responses by the same subject.
 
-The {lme4} package in **R** is commonly used for mixed effects modeling, and the function `lmer()` is the mixed model equivalent of the function `lm()`. In the formula syntax for mixed effects models using the {lme4} package, fixed effects are included without parentheses while random effects are included in parentheses (the error, $\epsilon$, is understood and is not included explicitly).
+Because our response variable is a continuous numerical variable, the model we want to run is known as a standard (or general) "Linear Mixed Model" (LMM) (we will contrast this with "Generalized Linear Mixed Models", or GLMMs, in a moment). The {lme4} package in **R** is commonly used for linear mixed effects modeling, and the function `lmer()` is the mixed model equivalent of the function `lm()`.
+
+In the formula syntax for mixed effects models using the {lme4} package, fixed effects are included without parentheses while random effects are included inside of parentheses (the error, $\epsilon$, is understood and is not included explicitly).
 
 > **NOTE:** We could also use the package {nlme} for mixed effects modeling (which requires a slightly different formula syntax than that used here). That same package also allows us to do **nonlinear** mixed effects modeling, which we will not be talking about. It is important to note that {lme4} uses, by default, a slightly different parameter estimation algorithm than {nlme}. Unless otherwise specified, {lme4} uses "restricted maximum likelihood" (REML) rather than ordinary maximum likelihood estimation, which is what is used in {nlme}. In practice, these often give very similar results. We will see below that when we want to compare different models using {lme4}, we will need to tell {lme4} to use ordinary maximum likelihood.
 
@@ -202,14 +214,14 @@ Let's also look at the coefficients coming out of the model and their confidence
 
 ```{r}
 coefficients(m)
-# or, for just the fixed effects...
+# or, for just for  the fixed effects...
 # coefficients(summary(m))
 confint(m, level = 0.95, method = "boot")
 ```
 
-> **NOTE**: For the `confint()` function, we can set `method =` argument to "boot" (to generate a CI based on bootstrapping), "profile" (to generate a CI based on likelihoods), or "Wald" (which generates a CI for the fixed effects only). Also, in the output from running `confint()`, ".sigXX" is the square root of the variance associated with each of the random parameter levels and ".sigma" is the square root of the variance associated with the residuals of the model.
+> **NOTE**: For the `confint()` function, we can set `method =` argument either to "boot" (to generate CIs for the fixed effects based on bootstrapping), "profile" (to generate CIs based on likelihoods), or "Wald" (which generates CIs parametrically based on assuming the likelihood surface is quadratic... in general, it's better to use "boot" or "profile", which run more slowly than "Wald"). Also, in the output from running `confint()`, ".sigXX" is the square root of the variance associated with each of the random effects (here, "subject") and ".sigma" is the square root of the variance associated with the residuals of the model. When `method="Wald"` is used, then variance components are not estimated.
 
-We can see the separate intercepts, i.e., the "baseline" level of grooming received, for each female when they are (presumably) nulliparous and in a NONPOP reproductive condition.
+Looking at the resultant coefficients table, we can see separate intercepts (i.e., "baseline" level of grooming received), for each female when they are nulliparous and in a NONPOP reproductive condition.
 
 > **NOTE:** Some females may not ever be seen both parity or reproductive conditions!
 
@@ -224,14 +236,20 @@ plot(predictorEffects(m, partial.residuals = TRUE))
 Similar effects plots for our predictors can be created using `plot_model()` from the {sjPlot} package.
 
 ```{r}
-p1 <- plot_model(m, type = "eff", terms = c("reprocondition"))
-p2 <- plot_model(m, type = "eff", terms = c("parity"))
+#| fig-height: 4
+p1 <- plot_model(m, type = "eff", terms = "reprocondition")
+p2 <- plot_model(m, type = "eff", terms = "parity")
+cowplot::plot_grid(p1, p2, ncol = 2)
+# or plot in same figure...
+p1 <- plot_model(m, type = "eff", terms = c("parity", "reprocondition"))
+p2 <- plot_model(m, type = "eff", terms = c("reprocondition", "parity"))
 cowplot::plot_grid(p1, p2, ncol = 2)
 ```
 
 We can also use `plot_model()` to visualize estimates and confidence intervals for the fixed effect coefficients and for the random effects.
 
 ```{r}
+#| warning: false
 p1 <- plot_model(m, type = "est")
 p2 <- plot_model(m, type = "re")
 cowplot::plot_grid(p1, p2, ncol = 2)
@@ -239,15 +257,21 @@ cowplot::plot_grid(p1, p2, ncol = 2)
 
 The package {mixedup}, installable from [here](https://github.com/m-clark/mixedup/), is a useful package that provides several functions for extracting relevant summary information from mixed models.
 
+> **NOTE:** {mixedup} functions may throw some warnings about deprecated argument names as the package has not been updated in several years.
+
 ```{r}
 #| warning: false
 mixedup::summarize_model(m) # clean model summary
 mixedup::extract_fixed_effects(m) # table of fixed effects coefficients
-mixedup::extract_random_coefficients(m) # table of coefficients for random effects
-mixedup::extract_random_effects(m) # table of coefficients for each level of random effect
+mixedup::extract_random_coefficients(m) # table of coefficients for random effects... returns actual intercept (and slopes) for each group
+mixedup::extract_random_effects(m) # table of coefficients for each *level* of random effect (i.e., how much each level deviates from the baseline)
 ```
 
 ### Residual Analysis
+
+As with any regression, it is important to conduct residual analyses after running a model. Several ***R*** packages are useful for residual analysis of mixed models, including {redres} and {DHARMa}.
+
+#### Using {redres}
 
 We can use functions from the {redres} package to conduct some analyses on the residuals resulting from a mixed effects model. The `plot_resqq()` function creates a QQ plot of the overall residuals from the model. Ideally, these should fall along a line, and we can see that ours do not... 
 
@@ -262,11 +286,9 @@ qqline(compute_redres(m))
 car::qqPlot(compute_redres(m), id = FALSE)
 ```
 
-... rather, the residuals from this model appear to deviate from a normal distribution, thus the appropriatess of using linear regression here is suspect!
+... rather, the residuals from this model appear to deviate from a normal distribution, thus the appropriateness of using linear regression may be in question.
 
-The `plot_redres()` function plots the residuals with respect to fitted values of the response variable.
-
-We can also pass an "xvar =" argument to `plot_redres()` to view our residuals by our different predictor variables, e.g., **reprocondition**, **parity**, or **subject**.
+We can also pass an "xvar =" argument to the function `plot_redres()` to view our residuals in relation to our different predictor variables, e.g., **reprocondition**, **parity**, or **subject**.
 
 The code below generates and prints all of these plots...
 
@@ -278,24 +300,79 @@ p4 <- plot_redres(m, xvar = "subject")
 cowplot::plot_grid(p1, p2, p3, p4, ncol = 2)
 ```
 
-In the plot of residuals by fitted values (upper left), the residuals should roughly form a horizonal belt around the zero line, with the points randomly scattered above and below 0. Such a pattern would be consistent with "homoskedasticity", or equal variance, in the error term across values of the predictor terms and the response. Here, things look pretty good (although perhaps the width of the "belt" of points looks like it may be wider at larger values of the fitted response).
+The `plot_redres()` function plots the raw residuals with respect to fitted values of the response variable. 
+
+In the plot of residuals by fitted values (upper left), the residuals should roughly form a horizontal belt around the zero line, with the points randomly scattered above and below 0. Such a pattern would be consistent with "homoscedasticity", or equality of variance in the error term across values of the fitted response, based on our model. Here, things look pretty good (although perhaps the width of the "belt" of points looks like it may be wider at larger values of the fitted response).
 
 In the other plots, we are looking to see whether the scatter (variance) above and below the zero line is similar across levels of the predictor variables.
 
-Finally, we can use the `plot_ranef()` function to plot estimate modal values for the random effects (i.e., in our model, for each **subject** conditioned on the fixed effects) against quantiles of the normal distribution. For linear regression to be appropriate, the random effects should not deviate from normal expectations.
+Finally, we can use the `plot_ranef()` function to plot estimated modal values for the random effects (i.e., in our model, for **subject** conditioned on the fixed effects) against quantiles of the normal distribution. For linear regression to be appropriate, the random effects should not deviate from normal expectations.
 
 ```{r}
 plot_ranef(m)
 ```
 
-Alternatively, we can use the {sjPlot} function `plot_model()` with the "type = " argument set to "diag" to produce a similar set of diagnostic plots.
+This plot looks good, with all estimated intercepts for different subjects not seeming to deviate significantly from normal expectations.
+
+> **NOTE:** We could also potentially use the {sjPlot} function `plot_model()` with the "type = " argument set to "diag" to produce a similar set of diagnostic plots. However, {sjPlot} treats the mixed model somewhat like a standard linear model diagnostically (e.g., does not distinguish between marginal and conditional residuals), so the residual analysis is less robust than if we use {redres} or {DHARMa}, which are designed for working with mixed models. This is especially important for when we extend to running GLMMs instead of LMMs.
 
 ```{r}
 #| message: false
 #| fig-height: 6
 p <- plot_model(m, type = "diag")
-cowplot::plot_grid(p[[1]], p[[3]], p[[4]], ncol = 1)
+cowplot::plot_grid(p[[1]], p[[2]]$subject, p[[3]], p[[4]], ncol = 2)
 ```
+
+#### Using {DHARMa}
+
+As mentioned above, {DHARMa} is another useful package for residual analysis. It is specifically designed for working with mixed models (both LMMs and, especially, GLMMs), and it performs residual diagnostics using a simulation-based approach. In general, {DHARMa} is considered more powerful than {redres} because it simulates from a fitted model to create residuals that should be uniformly distributed regardless of the model family. This means the same diagnostic approach works for residuals that follow distributions other than the normal ({redres} residuals are more tied to the assumption of normality). Also, because {DHARMa} simulates from the full fitted model, it naturally accounts for the correlation structure among observations of the response variable (induced by both fixed and random effects).
+
+To use {DHARMa}, we start by simulating a large number of residual values under our model...
+
+```{r}
+sim <- simulateResiduals(m, n = 1000)
+```
+
+We then can examine the results of this simulation to evaluate our model. We can first test our residuals overall...
+
+```{r}
+testUniformity(sim)
+```
+
+Note that this plot is a QQ plot, which can be used to detect overall deviations of our observed residuals in comparison to those simulated under our model, with added tests for correct distribution (KS test), dispersion, and outliers. 
+
+Then, since our predictors are categorical, we can use `testCategorical()` to test whether the residuals are uniformly distributed across the levels of each predictor. This process performs a Levene test for homogeneity of variance across levels of a predictor and a KS test for each level of the predictor. The function also plots distribution of the scaled residuals under our model in relation to levels of our categorical predictors.
+
+```{r}
+testCategorical(sim, catPred = d$reprocondition)
+testCategorical(sim, catPred = d$parity)
+testCategorical(sim, catPred = d$subject)
+```
+
+We could also create just the visualizations using the function `plotResiduals()`.
+
+```{r}
+#| eval: false
+plotResiduals(sim, form = d$reprocondition)
+plotResiduals(sim, form = d$parity)
+plotResiduals(sim, form = d$subject)
+```
+
+For our particular model, **m**, we do *not* see evidence of either over- or under-dispersion in our residuals using these diagnostics, except that the plot by subject shows that two females (Nipa and Sofia) may be poorly fitted by the model. With this information, we might want to check for data entry errors or consider whether/how those individuals may represent outliers.
+
+{DHARMa} also contains several additional overdispersion tests that compare the dispersion of observed to simulated residuals more robustly, by directly comparing the variance of observed to simulated residuals.
+
+```{r}
+testDispersion(sim)
+```
+
+A common case of overdispersion in a dataset is "zero-inflation", which is the situation when more zeros appear in our response variable than is expected under a fitted model. {DHARMa} has a special test for zero-inflation, which compares the distribution of expected zeros in the data against the observed zeros. This test can be implemented as follows...
+
+```{r}
+testZeroInflation(sim)
+```
+
+For our particular model, we actually do not have any "zeros" in our responses (in our dataset, all chimpanzee females received >0 minutes of grooming during each observation session), so this particular test is moot.
 
 ### Inference using LRTs {.unnumbered}
 
@@ -320,6 +397,7 @@ full <- lmer(data = d,
              REML = FALSE)
 # note the additional `REML=` argument
 summary(full)
+
 reduced <- lmer(data = d,
                 duration ~
                   parity +
@@ -341,7 +419,7 @@ anova(reduced, full)
 lmtest::lrtest(reduced, full)
 ```
 
-These results tell us that the model containing both **reproductive condition** and **parity** as *fixed* effects fits the data better than a model lacking **reproductive condition** and containing only **parity** as a *fixed* effect, while accounting for **subject** as a *random* effect.
+These results tell us that the model containing both **reproductive condition** and **parity** as *fixed* effects fits the data better than a model lacking **reproductive condition** and containing only **parity** as a *fixed* effect, while still accounting for **subject** as a *random* effect.
 
 ### CHALLENGE {.unnumbered}
 
@@ -357,14 +435,13 @@ full <- lmer(data = d,
                parity +
                (1|subject),
              REML=FALSE)
+
 reduced <- lmer(data = d,
                 duration ~ reprocondition +
                   (1|subject),
                 REML=FALSE)
 
 anova(reduced, full)
-
-plot(predictorEffects(full, partial.residuals = TRUE))
 ```
 
 Based on this result, including **parity** as well as **reproductive condition** as fixed effects also significantly improves the fit of our model.
@@ -382,6 +459,7 @@ full <- lmer(data = d,
                reprocondition * parity +
                (1 | subject),
              REML = FALSE)
+
 reduced <- lmer(data = d,
                 duration ~
                   reprocondition +
@@ -390,17 +468,16 @@ reduced <- lmer(data = d,
                 REML=FALSE)
 
 anova(reduced, full)
-
-plot(predictorEffects(full, partial.residuals = TRUE))
 ```
 
 In this case, adding the interaction of **reproductive condition** and **parity** does not significantly improve the explanatory power of the model.
 
 ## Random Slope Models
 
-In the exercise above, we included only estimation of a separate INTERCEPT for each female and presumed that the same relationships (SLOPES) between grooming duration and reproductive condition + parity obtained for all females. But we can also allow that relationship to vary from subject to subject. We would indicate this model in formula notation as follows:
+In the exercise above, we included only estimation of a separate INTERCEPT for each female and presumed that the same relationships (SLOPES, or regression coefficients) between grooming duration (as our response variable), and reproductive condition and parity (as our predictors) obtained for all females. But we can also allow those relationships between response and predictor to vary from subject to subject. We would indicate this model in formula notation as follows:
 
 $$grooming\ duration \sim reproductive\ condition + parity\ +$$ $$(1 + reproductive\ condition|subject) + (1 + parity|subject) + \epsilon$$
+> **NOTE:** In this particular example, we are using the term "slopes" loosely, because our predictors (reprocondition and parity) are categorical, not continuous. So, our regression coefficients for these fixed predictors are not "slopes" *per se* but rather differences in average grooming between levels of the predictor (or, more specifically, between each level and whatever level we set as baseline).
 
 ```{r}
 #| message: false
@@ -415,11 +492,11 @@ m <- lmer(data = d,
 summary(m)
 ```
 
-Here, we have changed the random effects, which now look a little more complicated. The notation "(1 + reprocondition | subject)" tells the model to estimate differing baseline levels of grooming duration (the intercept, represented by 1) as well as differing responses to the main factor in question, which is reproductive condition in this case. We do the same for parity.
+Here, we have changed the random effects portion of the formula, which now looks a little more complicated. The notation "(1 + reprocondition | subject)" tells the model to estimate differing baseline levels of grooming duration (the intercept, represented by 1) as well as differing responses to the fixed factor in question, which is reproductive condition in this case. We do the same for parity.
 
 > **NOTE**: It is equivalent to use just "(reprocondition | subject)" rather than "(1 + reprocondition | subject)" to specify that we want our analysis to estimate both an intercept and slope coefficient for each subject. We use the latter to be explicit, though, as we could used "(0 + reprocondition | subject)" to return a single intercept but different slopes for each subject, which is sometimes referred to as a "fixed intercept" model.
 
-Looking at the coefficients of the new model, we see the effects. Each female now has a different intercept **and** a different coefficient for the slopes of grooming duration as a function of both reproductive condition and parity.
+Looking at the coefficients of our new model, we see the effects. Each female now has a different intercept **and** a different coefficient for the relationship between grooming duration and both reproductive condition and parity.
 
 ```{r}
 #| warning: false
@@ -444,11 +521,13 @@ mixedup::summarize_model(m)
 mixedup::extract_fixed_effects(m)
 ```
 
-> **NOTE**: Here, running the functions `extract_random_coefficients()` and `extract_random_effect()` would throw an error because we would be generating two (Intercept) terms per random effect level, one for each of two predictors.
+> **NOTE**: Here, running the functions `extract_random_coefficients()` and `extract_random_effect()` from {mixedup} would throw an error because we would be generating two (Intercept) terms per random effect level, one for each of two predictors.
 
 ### Residual Analysis
 
-Once again, we can use the {redres} package to do some visual residual analysis...
+Once again, we can use the {redres} or {DHARMa} packages to do some visual residual analysis...
+
+#### Using {redres}
 
 ```{r}
 plot_resqq(m)
@@ -457,6 +536,16 @@ plot_redres(m, xvar = "subject")
 ```
 
 > **NOTE**: Here, running the functions `plot_ranef()` would throw an error because we would be generating two (Intercept) terms per random effect level, one for each of two predictors. If we wanted, we could run the `ranef()` function on the model, look at the `$subject` dataframe, and pull out the columns we wanted to plot against normal quantiles using `qqPlot()` or `qqnorm()`.
+
+#### Using {DHARMa}
+
+```{r}
+sim <- simulateResiduals(m, n = 1000)
+testUniformity(sim)
+testCategorical(sim, catPred = d$reprocondition)
+testCategorical(sim, catPred = d$parity)
+testCategorical(sim, catPred = d$subject)
+```
 
 ### Inference using LRTs {.unnumbered}
 
@@ -510,7 +599,7 @@ plot(predictorEffects(full, partial.residuals = TRUE))
 
 ### Inference using AIC {.unnumbered}
 
-For a long time, the appropriateness of our mixed models was assessed as above - i.e., by evaluating the significance of each fixed effect using LRTs. As information theoretic approaches have become more popular, it is increasingly common to assess model fit by comparing the AIC values of different models, acknowledging the caveat that AIC can only tell us about the *relative* fit of alternative models, but not whether a particular model is a good fit, overall. Recall that AIC values are a way of inverting and scaling model log-likelihoods that penalizes models with greater numbers of parameters.
+For a long time, the appropriateness of our mixed models was assessed as above -- i.e., by evaluating the significance of each fixed effect using LRTs. As information theoretic approaches have become more popular, it is increasingly common to assess model fit by comparing the AIC values of different models, acknowledging the caveat that AIC can only tell us about the *relative* fit of alternative models, but not whether a particular model is a good fit, overall. Recall that AIC values are a way of inverting and scaling model log-likelihoods that penalizes models with greater numbers of parameters.
 
 The `aictab()` function from {AICcmodavg} neatly prints out tables with AIC, Delta AIC, and log-likelihood values, along with AIC "weights".
 
@@ -543,7 +632,7 @@ Using AIC values for evaluating and expressing how well a particular model fits 
 
 - While AIC provides an estimate of the *relative* fit of various models, it does not say anything about the absolute fit
 - AIC does not address the amount of variance in a response variable explained by a model
-- AIC is not comparable across datasets, and so fit is not generalizable
+- AIC is not comparable across datasets, and so fit is not generalizeable
 
 Nakagawa & Schielzeth (2013) and Nakagawa et al. (2017) have published a simple and effective method for calculating a type of *pseudo-*$R^2$ (or coefficient of determination) value for generalized linear mixed models, and because linear mixed models are a specific type of GLMM, this method can be used with LMMs as well.
 
@@ -642,12 +731,14 @@ To test this, the researchers used a GLMM with Poisson error distribution to exa
 
 We also need to consider that the response variable, **Shared**, is implicitly expressed as a *rate*, i.e., it represents a count of the number of events that occured in over a particular length of time (the variable, **trial duration**). This allows the observation time to vary among records in the dataset. Our regression model, then, needs to contain time on the right-hand side of the regression formula in some way to acknowledge that counts are in some way dependent on the time over which they are collected (i.e., counts are expected to only increase with time).
 
-Additionally, recall that, in Poisson regression, given that our response variable is a *count* of events that occur within a given amount of time, what we are actually modeling as a function of our predictors is *log(count)*... so we need to include *log(time)* as what known as an *offset term* on the right-hand side of the formula. In ***R***, we use the function `offset()` to indicate this in our regression formula. The offset term is, essentially, modeled an additional fixed effect though we will not generate a coefficient for it.
+Additionally, recall that, in Poisson regression, given that our response variable is a *count* of events that occur within a given amount of time, what we are actually modeling as a function of our predictors is *log(count)*... so we need to include *log(time)* as what known as an *offset term* on the right-hand side of the formula.
+
+In ***R***, we use the function `offset()` to indicate this in our regression formula. The offset term is, essentially, modeled as an additional fixed effect though we will not generate a coefficient for it.
 
 $$log(count) \sim offset(log(time))\ +\ ...\ other\ predictors$$
 Finally, the researchers included three random effects in their model: otter ID, trial, and an observation-level random effect. The first of these appears in the author's data frame, and latter two are our variables **trial** and **obs**.
 
-> **NOTE**: To me, it makes little sense to include the third of these random effects as there is no variance associated with this term, but to replicate the researchers' model, we include it.
+> **NOTE**: It does not entirely make sense to me to include the third of these random effects as there is no variance associated with this term, but to replicate the researchers' model, we include it. Conceptually, it might be defensible to do so because there are lots of unmeasured variables that could vary between observations and could impact the response that we are not including in our model (e.g., time of day when sampling is done or proximity in time of when the animals were sampled relative to visitor density at the zoo) and we want to account for this additional source of random variation.
 
 ```{r}
 #| code-fold: true
@@ -738,11 +829,12 @@ mixedup::summarise_model(m5)
 
 ```{r}
 #| include: false
+detach(package:DHARMa)
+detach(package:redres)
 detach(package:glmmTMB)
 detach(package:effects)
 detach(package:sjPlot)
 detach(package:lme4)
-detach(package:redres)
 detach(package:tidyverse)
 ```
 

@@ -1,0 +1,353 @@
+# Exercise 12 {.unnumbered}
+
+# Practice Generalized Linear Mixed Modeling {.unnumbered}
+
+## Learning Objectives {.unnumbered}
+
+- Using a published dataset, run GLMMs with different types of response variables and perform residual diagnostics and model selection 
+
+#### Preliminaries {.unnumbered}
+
+For this exercise, we will work with a dataset used in the following publication...
+
+> Lignac C, and Mumme RL. (2023). Brood parasitism of Hooded Warblers by Brown-headed Cowbirds: Severe impact on individual nests but modest consequences for seasonal fecundity and conservation. *Ornithological Applications* 125: duac041.
+
+... for which the original data are available on Dryad.
+
+Below is some basic background information on this study and on ther dataset provided by the authors in their Dryad files.
+
+#### Study Information
+
+##### Study site and general methods
+
+The study was conducted at Hemlock Hill Field Station in Crawford County, Pennsylvania, USA (41.8°N, 79.9°W). The study site comprises 125 ha of primarily beech-maple-hemlock forest located within a complex rural matrix of agricultural land, abandoned fields, and forest fragments. Data for the present study come from the 8 years 2013–2020, when intensive efforts were made to capture and color-band all breeding adult Hooded Warblers and find and monitor all nests during the May–August nesting season. Nests were checked every 3–5 days, and more frequently around expected dates of hatching and fledging. About half (48%) of all nests were found before the onset of incubation, but when a nest with a complete clutch of eggs or nestlings was found, the date of nest initiation (date the first egg was laid) was estimated based on either the date of hatching, assuming eggs were laid on consecutive days and a 12-day incubation period (Mumme et al. 2023), or the date a previous nesting attempt by the same female had failed. These estimated dates of nest initiation were likely accurate to within 1–2 days. In total, 847 nests were included in the complete dataset.
+
+##### Statistical analysis
+
+The date of nest initiation, which we defined as the day the first egg is laid (FEDay) and recorded as the number of days elapsed since 30 April, is an important determinant of several Hooded Warbler reproductive variables, including probability of nest parasitism, clutch size, and probability of nest predation (Harrod 2021, Lignac 2022). We therefore examined the **effects of cowbird parasitism on Hooded Warbler nesting success** with generalized linear mixed models (GLMM) or generalized linear models (GLM) that included FEDay as a fixed factor. Year was included in these models as either a random effect in a GLMM or a fixed factor in a GLM; the latter approach was used when we encountered model convergence or singularity issues with GLMM. All statistical analyses were conducted using JMP Pro 15.2 (SAS Institute, Cary, North Carolina, USA) and R version 4.2.1 (R Core Team 2022) with package lme4 version 1.1-30 (Bates et al. 2015).
+
+##### Analyses
+
+##### Timing of parasitism, clutch size, and nest abandonment (use all nests)
+
+We analyzed the relationship between the **date of nest initiation (FEDay) and probability of parasitism** using a logistic GLMM with year included as a random effect. (We will also include NestID as a random effect.)
+
+We used a Poisson GLM to examine the **effects of cowbird parasitism on the number of Hooded Warbler eggs in the complete clutch**. The number of cowbird eggs in the nest, FEDay, and year were included as fixed factors.
+
+A logistic GLM was used to **examine the probability of nest abandonment**, with cowbird parasitism, FEDay, and year entered as fixed factors.
+
+### Nest survival to hatching and hatching failure (use subset of nests)
+
+The **effect of cowbird parasitism on the probability of nests surviving to hatching** was examined using a logistic GLMM, with cowbird parasitism and FEDay as fixed factors and year as a random effect. This analysis was limited to 356 nests found before the onset of incubation that were not abandoned.
+
+To examine the **effects of cowbird parasitism on Hooded Warbler hatching failure and egg loss during incubation**, we used Poisson GLMs to analyze the effect of cowbird parasitism on both the number of eggs that failed to hatch and the number of warbler eggs that disappeared during incubation. In these analyses, the number of cowbird eggs, FEDay, and year were entered as fixed factors, with the total number of Hooded Warbler eggs in the clutch serving as the offset variable. These analyses were limited to a sample of 373 nests that were found no later than the fourth day of the 12-day incubation period and did not experience abandonment or complete nest failure before hatching.
+
+### Nest and nestling survival from hatching to fledging (use subset of nests)
+
+We used a logistic GLM to **examine the probability of nests with and without a cowbird nestling surviving to fledging**. This analysis was limited to 492 nests found before hatching that were not abandoned and included FEDay, year, and the presence/absence of a cowbird chick as fixed factors. We also created Kaplan-Meier survival curves to examine the pattern of nest survival during the nestling period.
+
+For 359 nests that survived from hatching to fledging, a Poisson GLM was used to determine if the **presence of a cowbird chick increased the number of Hooded Warbler hatchlings that disappeared and presumably died before fledging**; the number of warbler nestlings that hatched was used as the offset variable in this analysis, and FEDay and year were included as fixed factors.
+
+### Preliminaries
+
+- Set up a new ***GitHub*** repo in your ***GitHub*** workspace named "exercise-12" and clone that down to your computer as a new ***RStudio*** project. The instructions outlined as **Method 1** in [**Module 6**](#module-06) will be helpful.
+
+- Load in needed libraries.
+
+```{r}
+library(tidyverse)
+library(lme4) # glmer() for GLMMs
+library(DHARMa) # simulation-based residual diagnostics
+library(ggeffects) # marginal effects / predicted probability plots
+library(sjPlot)
+library(performance) # r2_nakagawa()
+```
+
+- Using the {tidyverse} `read_csv()` function, load the "Lignac_Mumme_2023_MasterDataFile.csv" dataset from [this URL](https://github.com/difiore/ada-datasets/blob/main/Lignac_Mumme_2023_MasterDataFile.csv) as a "tibble" named **d**.
+
+```{r}
+f <- "https://raw.githubusercontent.com/difiore/ada-datasets/main/Lignac_Mumme_2023_MasterDataFile.csv"
+d <- read_csv(f, col_names = TRUE)
+```
+
+- Rename the variables **SurHat?** as **survived**, **CBP** as **parasitized** and **fYear** as **year**.
+
+```{r}
+d <- d |>
+  rename(survived = `SurHat?`,
+         parasitized = CBP,
+         year = fYear)
+```
+
+- Create a new variable **day** by mean centering each nest's **date of nest initiation (FEDay)**. That new variable will hold the date the first is egg laid in each nest relative to the "average" first lay day.
+
+```{r}
+d <- d |>
+  mutate(day = FEDay - mean(d$FEDay)) |>
+  select(-FEDay)
+```
+
+- Convert the following variables, which are imported as "character" data to "numeric": **Aban**, **NeHW**, **NeCB**, **NnHW**, **NnCB**, **NfHW**, **NfCB**, **CBHatch**, and **survived**.
+
+```{r}
+d <- d |>
+  mutate(across(c("Aban", "NeHW", "NeCB", "NnHW", "NnCB", "NfHW", "NfCB", "CBHatch", "survived"), as.numeric))
+
+# This will throw warning about NAs being introduced by coercion
+```
+
+- Convert the variables **parasitized** and **year** to be factors.
+
+```{r}
+d <- d |>
+  mutate(
+    parasitized = factor(parasitized, levels = c("No", "Yes")),
+    year = factor(year),
+    survived = factor(survived, levels = c(0, 1)))
+```
+
+## Challenge 1 {.unnumbered}
+
+- Do a bit of exploratory data analysis with this dataset. What are the key variables?
+
+```{r}
+names(d)
+head(d)
+glimpse(d)
+# Key variables:
+# survived : 0 = nest failed before hatching, 1 = nest survived to hatching
+# parasitized : "No" = not parasitized, "Yes" = cowbird egg present
+# day : day first egg laid relative to average first egg lay day
+# year : study year
+# Aban : 0 if not abandoned, 1 if abandoned
+# NestID : some nests appear in multiple years
+# NeHW : # eggs Hooded Warbler
+# NeCB : # eggs Brown-headed Cowbird
+# NnHW : # nestlings Hooded Warbler
+# NnCB : # nestlings Brown-headed Cowbird
+# NfHW : # Hooded Warbler nestlings that fledged
+# NfCB : # Brown-headed Cowbird that fledged
+# CBHatch : 0 = absences, 1 = presence of a cowbird nestling
+```
+
+- Create a table of many nests parasitized vs not.
+
+```{r}
+table(d$parasitized)
+```
+
+- Create a cross tabulation of nests in relation to the variables parasitized and survived
+
+```{r}
+table(d$survived, d$parasitized)
+```
+
+# How is first egg day distributed?
+
+```{r}
+ggplot(d, aes(x = day)) +
+  geom_histogram()
+```
+
+# How does this vary with parasitization?
+
+```{r}
+ggplot(d, aes(x = day, fill = parasitized)) +
+  geom_histogram(position = "identity",
+                 alpha = 0.5)
+```
+
+# How about a visualization of survival across the season in relation to parasitism?
+
+```{r}
+ggplot(d |> filter(!is.na(survived)),
+       aes(x = day,
+           y = survived,
+           color = parasitized)) +
+  geom_jitter(height = 0.05, alpha = 0.3)
+```
+
+# How about a visualization of average parasitism per year?
+
+```{r}
+d |>
+  select(year, survived) |>
+  group_by(year) |>
+  filter(!is.na(survived)) |>
+  mutate(survived = as.numeric(as.character(survived))) |>
+  summarize(prop_survived = mean(survived),
+            n = n()) |>
+  ggplot(aes(x = year,
+             y = prop_survived,
+             group = 1)) +
+  geom_line()
+```
+
+## Challenge 1 {.unnumbered}
+
+Run a model to evaluate how **date of nest initiation impacts the probability of parasitism**, including year and nest ID as random effects. What kind of model should this be?
+
+**Logistic GLMM**
+
+```{r}
+m <- glmer(parasitized ~
+             day +
+             (1 | year) +
+             (1 | NestID),
+           data = d,
+           family = binomial(link = "logit"))
+summary(m)
+plot_model(m, type = "eff", terms = "day")
+```
+
+## Challenge 2 {.unnumbered}
+
+Run a model to evaluate the how **cowbird parasitism affects the number of hooded warbler eggs in the clutch**, including date of initiation as an additional fixed effect and year and Nest ID as random effects. What kind of model should this be?
+
+**Poisson GLMM**
+
+```{r}
+m <- glmer(NeHW ~
+             NeCB +
+             day +
+             (1 | year) +
+             (1 | NestID),
+           data = d,
+           family = poisson(link = "log"))
+
+# without random effects because of singular boundary
+
+m_alt <- glm(NeHW ~ NeCB + day + year,
+            data = d,
+            family = "poisson")
+summary(m)
+plot_model(m, type = "eff", terms = "day")
+plot_model(m, type = "eff", terms = "NeCB")
+```
+
+## Challenge 3 {.unnumbered}
+
+Run a model to **examine the probability of nest abandonment in relation to cowbird parasitism**, including date of initiation as an additional fixed effect and year and Nest ID as random effects. What kind of model should this be?
+
+**Logistic GLMM**
+
+```{r}
+m <- glmer(Aban ~
+             parasitized +
+             day +
+             (1 | year) +
+             (1 | NestID),
+           data = d,
+           family = binomial(link = "logit"))
+summary(m)
+plot_model(m, type = "eff", terms = "day")
+plot_model(m, type = "eff", terms = "parasitized")
+```
+
+## Challenge 4 {.unnumbered}
+
+Run a model to **examine the probability of nest survival in relation to cowbird parasitism and date of initiation** (both including and excluding an interaction term) and includinf and year and Nest ID as random effects. What kind of models should this be?
+
+**Logistic GLMM**
+
+```{r}
+m <- glmer(survived ~
+              parasitized +
+              day +
+              (1 | year) +
+              (1 | NestID),
+            data   = d,
+            family = binomial(link = "logit")
+            )
+
+m_int <- glmer(survived ~
+              parasitized *
+              day +
+              (1 | year) +
+              (1 | NestID),
+            data   = d,
+            family = binomial(link = "logit")
+            )
+
+summary(m)
+summary(m_int)
+```
+
+Looking at the summaries, what is the year-to-year variability and nest-to-nest variability? High or low?
+
+**What does the intercept coefficient represent?**
+
+Log-odds of survival for nests with average first lay date and that are unparasitized
+
+**What do the other coefficients represent?**
+
+Effect of parasitism (negative = lower survival)
+
+Effect of lay date (later = higher survival)
+
+**Likelihood ratio test for the interaction term**
+
+Does including the interaction term improve explanatory power over a model with no interaction term?
+
+```{r}
+anova(m, m_int)
+```
+
+Are predictors correlated?
+
+**Convert log-odds to odds ratios** 
+```{r}
+odds <- exp(fixef(m))
+# or
+odds <- exp(m@beta)
+```
+
+Parasitized nests have ~55% lower odds of surviving to hatching compared to unparasitized nests, holding lay date constant.
+
+> NOTE: We should check out expontiated upper and lower bounds of CI, too!
+
+## Challenge 5 {.unnumbered}
+
+### Conduct residual diagnostics using {DHARMa}
+
+Standard residual plots are misleading for binomial GLMMs. The {DHARMa} package uses simulation to create interpretable scaled residuals.
+
+```{r}
+sim <- simulateResiduals(m, n = 1000)
+plot(sim)
+```
+
+Expect points to fall along line in left plot and for there to be no clear relationship between model prediction and residuals in right plot.
+
+```{r}
+# Test for overdispersion explicitly
+testDispersion(sim)
+
+# Test for zero-inflation
+testZeroInflation(sim)
+```
+
+**Plotting the marginal effects**
+
+Predicted survival probabilities...
+
+`plot_model()` back-transforms to the probability scale and averages over random effects (year and NestID...)
+
+```{r}
+plot_model(m, type = "eff", terms = "day") # marginal averaged over whether parasitized or not
+plot_model(m, type = "eff", terms = "parasitized") # marginal averaged over lay day
+```
+
+`ggpredict()` also back-transforms to the probability scale
+
+# Effect of lay date for each parasitism class
+
+```{r}
+p <- ggpredict(m, terms = c("day [all]", "parasitized"))
+
+plot(p) +
+  labs(title = "Nest survival probability across the season",
+       x = "Lay date (centered)",
+       y = "P(survive to hatching)",
+       color = "Parasitism")
+```

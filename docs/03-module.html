@@ -508,6 +508,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./exercise-10-solution.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Exercise 10 Solution</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./exercise-11.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Exercise 11</span></a>
   </div>
@@ -533,6 +539,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <div class="sidebar-item-container"> 
   <a href="./collaborative-data-science-assignment.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Collaborative Data Science Project</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./creative-dataviz-assignment.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Creative Data Visualization</span></a>
   </div>
 </li>
       </ul>
@@ -614,7 +626,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 data-number="3.3" class="anchored" data-anchor-id="r-packages"><span class="header-section-number">3.3</span> <strong><em>R</em></strong> Packages</h2>
 <p>One of the fantastic things about <strong><em>R</em></strong>, and one of the reasons it is such a flexible tool for so many types of data analysis, is the ability to extend its functionality in a huge variety of ways with <em>packages</em>. Packages are sets of reusable <strong><em>R</em></strong> functions created by the core development team or by users and are akin to <em>libraries</em> in other programming software, like <strong><em>Python</em></strong>. As of January 2026, there are almost 23,000(!) packages that have been contributed to the most common package repository, hosted on the <a href="https://cran.r-project.org/">Comprehensive R Archive Network (CRAN)</a> site.</p>
 <p>From the console prompt, packages can be installed into <strong><em>R</em></strong> (using the <code>install.packages()</code> function, with the name of the package included in quotation marks inside the parentheses). Once installed, a package can be loaded into a user’s workspace (using the <code>library()</code> or <code>require()</code> functions), which then gives the user access to all of the functions contained therein, as well as function documentation, datasets, and code vignettes. Both <strong><em>RStudio</em></strong> and the base <strong><em>R</em></strong> GUIs for MacOS and Windows have built-in “package managers” that allow you to search for and install packages.</p>
-<p>Each package includes a <em>namespace</em> associated with the functions contained therein, and those functions are loaded into their own, separate <strong><em>R</em></strong> <em>environments</em>, distinct from the <strong>global</strong> environment, which is where the variables we assigned values to in <a href="01-module.html"><strong>Module 01</strong></a> were created. An <em>environment</em> can be thought of as a collection of objects (functions, data objects, variables, etc.) associated either globally, with the <strong><em>R</em></strong> interpreter (the “R_GlobalEnv”), or with a particular package and its namespace. In <strong><em>RStudio</em></strong>, you can see all of the objects associated with a particular environment by using the <strong>Environment</strong> tab and selecting the environment of interest from the popdown menu.</p>
+<p>Each package includes a <em>namespace</em> associated with the functions contained therein, and those functions are loaded into their own, separate <strong><em>R</em></strong> <em>environments</em>, distinct from the <strong>global</strong> environment, which is where the variables we assigned values to in <a href="#module-01"><strong>Module 01</strong></a> were created. An <em>environment</em> can be thought of as a collection of objects (functions, data objects, variables, etc.) associated either globally, with the <strong><em>R</em></strong> interpreter (the “R_GlobalEnv”), or with a particular package and its namespace. In <strong><em>RStudio</em></strong>, you can see all of the objects associated with a particular environment by using the <strong>Environment</strong> tab and selecting the environment of interest from the popdown menu.</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
@@ -644,7 +656,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="installing-packages" class="level3 unnumbered">
 <h3 class="unnumbered anchored" data-anchor-id="installing-packages">Installing Packages</h3>
 <blockquote class="blockquote">
-<p><strong>NOTE:</strong> A list of packages we will be using in this course is available <a href="packages.html">here</a>.</p>
+<p><strong>NOTE:</strong> A list of packages we will be using in this course is available <a href="#package-list">here</a>.</p>
 </blockquote>
 <section id="using-the-base-macos-gui" class="level4 unnumbered">
 <h4 class="unnumbered anchored" data-anchor-id="using-the-base-macos-gui">Using the base MacOS GUI</h4>

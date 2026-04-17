@@ -508,6 +508,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./exercise-10-solution.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Exercise 10 Solution</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./exercise-11.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Exercise 11</span></a>
   </div>
@@ -533,6 +539,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <div class="sidebar-item-container"> 
   <a href="./collaborative-data-science-assignment.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Collaborative Data Science Project</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./creative-dataviz-assignment.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Creative Data Visualization</span></a>
   </div>
 </li>
       </ul>
@@ -626,7 +638,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Install (but do not load yet) this package in <strong><em>R</em></strong>: <a href="https://cran.r-project.org/web/packages/tidylog/tidylog.pdf">{tidylog}</a></li>
 <li>Install and load this package: <a href="https://cran.r-project.org/web/packages/magrittr/magrittr.pdf">{magrittr}</a></li>
 <li>Load {tidyverse}</li>
-<li>Load in the KamilarAndCooper dataset we used in <a href="09-module.html"><strong>Module 09</strong></a> as a “tibble” named <strong>d</strong></li>
+<li>Load in the KamilarAndCooper dataset we used in <a href="#module-09"><strong>Module 09</strong></a> as a “tibble” named <strong>d</strong></li>
 </ul>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>f <span class="ot">&lt;-</span> <span class="st">"https://raw.githubusercontent.com/difiore/ada-datasets/main/KamilarAndCooperData.csv"</span></span>
@@ -654,7 +666,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="data-wrangling-using-dplyr" class="level2" data-number="10.3">
 <h2 data-number="10.3" class="anchored" data-anchor-id="data-wrangling-using-dplyr"><span class="header-section-number">10.3</span> Data Wrangling Using {dplyr}</h2>
-<p>The {dplyr} package, included in the {tidyverse}, provides “a flexible grammar of data manipulation” that makes many of the manipulations that we explore in <a href="07-module.html"><strong>Module 07</strong></a> and <a href="09-module.html"><strong>Module 09</strong></a> much easier and much more intuitive!</p>
+<p>The {dplyr} package, included in the {tidyverse}, provides “a flexible grammar of data manipulation” that makes many of the manipulations that we explore in <a href="#module-07"><strong>Module 07</strong></a> and <a href="#module-09"><strong>Module 09</strong></a> much easier and much more intuitive!</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
@@ -851,7 +863,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="summarize-and-group_by" class="level3 unnumbered">
 <h3 class="unnumbered anchored" data-anchor-id="summarize-and-group_by"><code>summarize()</code> and <code>group_by()</code></h3>
-<p>The {dplyr} package makes it easy to summarize data using more convenient functions than the {base} function <code>aggregate()</code>, which we looked at in <a href="09-module.html"><strong>Module 09</strong></a>. The <code>summarize()</code> function specifies a list of summary variables that will appear in the output, along with the operations that will be performed on vectors in the data frame to produce those summary variables:</p>
+<p>The {dplyr} package makes it easy to summarize data using more convenient functions than the {base} function <code>aggregate()</code>, which we looked at in <a href="#module-09"><strong>Module 09</strong></a>. The <code>summarize()</code> function specifies a list of summary variables that will appear in the output, along with the operations that will be performed on vectors in the data frame to produce those summary variables:</p>
 <div class="cell" data-layout-align="center" data-out_width="80%">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
