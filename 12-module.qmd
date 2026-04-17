@@ -382,29 +382,51 @@ This process of *simulating* samples drawn from a population and then generating
 #| message: false
 # using `do(reps) *` from {mosaic} to generate a sampling distribution
 reps <- 1000
+
+# generate a sampling distribution for the mean
 samp_dist_mean <-
-  do(reps) * mean(~ averageRating, data=sample_n(d, size = n, replace = FALSE))
-  # generates a sampling distribution
+  do(reps) * mean(~averageRating, data=sample_n(d, size = n, replace = FALSE))
+
 mean_plot <-
-  histogram( ~ mean, data = samp_dist_mean,
-    xlab = "Sampling Distribution for the\nMean of Average Rating")
+  histogram(~mean, data = samp_dist_mean, 
+    xlab = "Sampling Distribution for the\nMean of Average Rating", plot = TRUE)
+
+# generate a sampling distribution for the median
 samp_dist_median <-
-  do(reps) * median( ~ averageRating, data = sample_n(d, size=n, replace=FALSE))
-  # generates a sampling distribution
+  do(reps) * median(~averageRating, data = sample_n(d, size=n, replace=FALSE))
+
 median_plot <-
-  histogram(~ median, data=samp_dist_median,
+  histogram(~median, data = samp_dist_median,
     xlab = "Sampling Distribution for the\nMedian of Average Rating")
 ```
 
-#### Using the {purrr} Package {.unnumbered}
 ```{r}
-library(purrr)
-# using `map()` from {purrr} to generate a sampling distribution
-samp_dist_mean_alt1 <-
-  map(1:reps, ~ mean( ~ averageRating, data = sample_n(d, size = n, replace = FALSE))) |>
-  unlist()
+#| message: false
+#| fig-height: 4
+library(cowplot)
+plot_grid(mean_plot, median_plot, ncol=2)
+detach(package:cowplot)
+```
+
+#### Using `replicate()` from the {base} Package {.unnumbered}
+
+```{r}
+samp_dist_mean_alt1 <- replicate(reps, mean(sample_n(d, size = n, replace = FALSE)$averageRating))
+
 mean_plot_alt1 <-
   histogram(samp_dist_mean_alt1, xlab = "Sampling Distribution for the\nMean of Average Rating")
+```
+
+#### Using the {purrr} Package {.unnumbered}
+
+```{r}
+library(purrr)
+# using `map_dbl()` from {purrr} to generate a sampling distribution and return a vector
+samp_dist_mean_alt2 <-
+  map_dbl(1:reps, ~ mean(sample_n(d, size = n, replace = FALSE)$averageRating))
+
+mean_plot_alt2 <-
+  histogram(samp_dist_mean_alt2, xlab = "Sampling Distribution for the\nMean of Average Rating")
 detach(package:purrr)
 ```
 
@@ -414,7 +436,7 @@ detach(package:purrr)
 #| message: false
 # using `rep_sample_n()` from {infer} to generate a sampling distribution
 library(infer)
-samp_dist_mean_alt2 <- d |>
+samp_dist_mean_alt3 <- d |>
   rep_sample_n(size = n,
                reps = reps,
                replace = FALSE) |>
@@ -423,16 +445,8 @@ samp_dist_mean_alt2 <- d |>
   pull(mean)
 detach(package:infer)
 
-mean_plot_alt2 <-
-  histogram(samp_dist_mean_alt2, xlab = "Sampling Distribution for the\nMean of Average Rating")
-```
-
-```{r}
-#| message: false
-#| fig-height: 4
-library(cowplot)
-plot_grid(mean_plot, median_plot, ncol=2)
-detach(package:cowplot)
+mean_plot_alt3 <-
+  histogram(samp_dist_mean_alt3, xlab = "Sampling Distribution for the\nMean of Average Rating")
 ```
 
 > **IMPORTANT NOTE:** The histograms we plot in the code above are for **sampling distributions** of the statistics in question. They do not represent the distribution of values in any particular sample! This is SUPER IMPORTANT to recognize and keep in mind.
