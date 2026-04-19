@@ -148,7 +148,7 @@ The function `ggpredict()` from {ggeffects} also back-transforms to the probabil
 
 Run models to examine the **probability of nests surviving to hatching in relation to cowbird parasitism**. Again, use the dichotomous variable **parasitized** as your fixed factor for cowbird parasitism and include date of nest initiation as an additional fixed effect and **year** and **ID** as random effects. This time, create two models, one excluding and one including an interaction term among the fixed effects.
 
-> ** NOTE:** For this analysis, the authors report using a subset of their data limited to 356 nests that were found before the onset of incubation and that were not abandoned. From what I can deduce, they must have run the following to get this subset of data:
+> **NOTE:** For this analysis, the authors report using a subset of their data limited to 356 nests that were found before the onset of incubation and that were not abandoned. From what I can deduce, they must have run the following to get this subset of data:
 
 ```{r}
 #| eval: false

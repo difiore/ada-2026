@@ -190,7 +190,7 @@ Run a model to evaluate how the **date of nest initiation impacts the probabilit
 - Given the nature of the data and the response variable, what kind of model would this be?
 
 ```{r}
-# **Logistic GLMM**
+# Logistic GLMM
 m <- glmer(parasitized ~
              day +
              (1 | year) +
@@ -219,7 +219,7 @@ Run a model to evaluate how **cowbird parasitism affects the number of hooded wa
 - Given the nature of the data and the response variable, what kind of model would this be?
 
 ```{r}
-# **Poisson GLMM**
+# Poisson GLMM
 m <- glmer(NeHW ~
              NeCB +
              day +
@@ -298,7 +298,7 @@ Run a model to examine the **probability of nest abandonment in relation to cowb
 - Given the nature of the data and the response variable, what kind of model would this be?
 
 ```{r}
-# **Logistic GLMM**
+# Logistic GLMM
 m <- glmer(Aban ~
              parasitized +
              day +
@@ -423,7 +423,7 @@ d_model <- d |>
 - Given the nature of the data and the response variable, what kind of model would this be?
 
 ```{r}
-# **Logistic GLMM**
+# Logistic GLMM
 m <- glmer(survived ~
               parasitized +
               day +
@@ -534,7 +534,7 @@ d_model <- d |>
 - Given the nature of the data and the response variable, what kind of model would this be?
 
 ```{r}
-# **Logistic GLM**
+# Logistic GLM
 # note that *survived* should be numeric (0/1) for binomial GLM, not a factor, so we convert it
 d_model <- d_model |>
   mutate(survived = as.numeric(as.character(survived)))

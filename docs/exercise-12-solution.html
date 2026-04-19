@@ -919,7 +919,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Given the nature of the data and the response variable, what kind of model would this be?</li>
 </ul>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co"># **Logistic GLMM**</span></span>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Logistic GLMM</span></span>
 <span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>m <span class="ot">&lt;-</span> <span class="fu">glmer</span>(</span>
 <span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>  parasitized <span class="sc">~</span></span>
 <span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>    day <span class="sc">+</span></span>
@@ -994,7 +994,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Given the nature of the data and the response variable, what kind of model would this be?</li>
 </ul>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co"># **Poisson GLMM**</span></span>
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Poisson GLMM</span></span>
 <span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>m <span class="ot">&lt;-</span> <span class="fu">glmer</span>(</span>
 <span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>  NeHW <span class="sc">~</span></span>
 <span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>    NeCB <span class="sc">+</span></span>
@@ -1168,7 +1168,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Given the nature of the data and the response variable, what kind of model would this be?</li>
 </ul>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="co"># **Logistic GLMM**</span></span>
+<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Logistic GLMM</span></span>
 <span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a>m <span class="ot">&lt;-</span> <span class="fu">glmer</span>(</span>
 <span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a>  Aban <span class="sc">~</span></span>
 <span id="cb51-4"><a href="#cb51-4" aria-hidden="true" tabindex="-1"></a>    parasitized <span class="sc">+</span></span>
@@ -1374,7 +1374,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Given the nature of the data and the response variable, what kind of model would this be?</li>
 </ul>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb65"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb65-1"><a href="#cb65-1" aria-hidden="true" tabindex="-1"></a><span class="co"># **Logistic GLMM**</span></span>
+<div class="sourceCode cell-code" id="cb65"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb65-1"><a href="#cb65-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Logistic GLMM</span></span>
 <span id="cb65-2"><a href="#cb65-2" aria-hidden="true" tabindex="-1"></a>m <span class="ot">&lt;-</span> <span class="fu">glmer</span>(</span>
 <span id="cb65-3"><a href="#cb65-3" aria-hidden="true" tabindex="-1"></a>  survived <span class="sc">~</span></span>
 <span id="cb65-4"><a href="#cb65-4" aria-hidden="true" tabindex="-1"></a>    parasitized <span class="sc">+</span></span>
@@ -1536,7 +1536,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Given the nature of the data and the response variable, what kind of model would this be?</li>
 </ul>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb82"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb82-1"><a href="#cb82-1" aria-hidden="true" tabindex="-1"></a><span class="co"># **Logistic GLM**</span></span>
+<div class="sourceCode cell-code" id="cb82"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb82-1"><a href="#cb82-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Logistic GLM</span></span>
 <span id="cb82-2"><a href="#cb82-2" aria-hidden="true" tabindex="-1"></a><span class="co"># note that *survived* should be numeric (0/1) for binomial GLM, not a factor, so we convert it</span></span>
 <span id="cb82-3"><a href="#cb82-3" aria-hidden="true" tabindex="-1"></a>d_model <span class="ot">&lt;-</span> d_model <span class="sc">|&gt;</span></span>
 <span id="cb82-4"><a href="#cb82-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">survived =</span> <span class="fu">as.numeric</span>(<span class="fu">as.character</span>(survived)))</span>
@@ -2555,7 +2555,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb107-222"><a href="#cb107-222" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Given the nature of the data and the response variable, what kind of model would this be?</span>
 <span id="cb107-223"><a href="#cb107-223" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb107-226"><a href="#cb107-226" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb107-227"><a href="#cb107-227" aria-hidden="true" tabindex="-1"></a><span class="co"># **Logistic GLMM**</span></span>
+<span id="cb107-227"><a href="#cb107-227" aria-hidden="true" tabindex="-1"></a><span class="co"># Logistic GLMM</span></span>
 <span id="cb107-228"><a href="#cb107-228" aria-hidden="true" tabindex="-1"></a>m <span class="ot">&lt;-</span> <span class="fu">glmer</span>(parasitized <span class="sc">~</span></span>
 <span id="cb107-229"><a href="#cb107-229" aria-hidden="true" tabindex="-1"></a>             day <span class="sc">+</span></span>
 <span id="cb107-230"><a href="#cb107-230" aria-hidden="true" tabindex="-1"></a>             (<span class="dv">1</span> <span class="sc">|</span> year) <span class="sc">+</span></span>
@@ -2584,7 +2584,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb107-257"><a href="#cb107-257" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Given the nature of the data and the response variable, what kind of model would this be?</span>
 <span id="cb107-258"><a href="#cb107-258" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb107-261"><a href="#cb107-261" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb107-262"><a href="#cb107-262" aria-hidden="true" tabindex="-1"></a><span class="co"># **Poisson GLMM**</span></span>
+<span id="cb107-262"><a href="#cb107-262" aria-hidden="true" tabindex="-1"></a><span class="co"># Poisson GLMM</span></span>
 <span id="cb107-263"><a href="#cb107-263" aria-hidden="true" tabindex="-1"></a>m <span class="ot">&lt;-</span> <span class="fu">glmer</span>(NeHW <span class="sc">~</span></span>
 <span id="cb107-264"><a href="#cb107-264" aria-hidden="true" tabindex="-1"></a>             NeCB <span class="sc">+</span></span>
 <span id="cb107-265"><a href="#cb107-265" aria-hidden="true" tabindex="-1"></a>             day <span class="sc">+</span></span>
@@ -2663,7 +2663,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb107-348"><a href="#cb107-348" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Given the nature of the data and the response variable, what kind of model would this be?</span>
 <span id="cb107-349"><a href="#cb107-349" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb107-352"><a href="#cb107-352" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb107-353"><a href="#cb107-353" aria-hidden="true" tabindex="-1"></a><span class="co"># **Logistic GLMM**</span></span>
+<span id="cb107-353"><a href="#cb107-353" aria-hidden="true" tabindex="-1"></a><span class="co"># Logistic GLMM</span></span>
 <span id="cb107-354"><a href="#cb107-354" aria-hidden="true" tabindex="-1"></a>m <span class="ot">&lt;-</span> <span class="fu">glmer</span>(Aban <span class="sc">~</span></span>
 <span id="cb107-355"><a href="#cb107-355" aria-hidden="true" tabindex="-1"></a>             parasitized <span class="sc">+</span></span>
 <span id="cb107-356"><a href="#cb107-356" aria-hidden="true" tabindex="-1"></a>             day <span class="sc">+</span></span>
@@ -2788,7 +2788,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb107-487"><a href="#cb107-487" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Given the nature of the data and the response variable, what kind of model would this be?</span>
 <span id="cb107-488"><a href="#cb107-488" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb107-491"><a href="#cb107-491" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb107-492"><a href="#cb107-492" aria-hidden="true" tabindex="-1"></a><span class="co"># **Logistic GLMM**</span></span>
+<span id="cb107-492"><a href="#cb107-492" aria-hidden="true" tabindex="-1"></a><span class="co"># Logistic GLMM</span></span>
 <span id="cb107-493"><a href="#cb107-493" aria-hidden="true" tabindex="-1"></a>m <span class="ot">&lt;-</span> <span class="fu">glmer</span>(survived <span class="sc">~</span></span>
 <span id="cb107-494"><a href="#cb107-494" aria-hidden="true" tabindex="-1"></a>              parasitized <span class="sc">+</span></span>
 <span id="cb107-495"><a href="#cb107-495" aria-hidden="true" tabindex="-1"></a>              day <span class="sc">+</span></span>
@@ -2899,7 +2899,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb107-612"><a href="#cb107-612" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Given the nature of the data and the response variable, what kind of model would this be?</span>
 <span id="cb107-613"><a href="#cb107-613" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb107-616"><a href="#cb107-616" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb107-617"><a href="#cb107-617" aria-hidden="true" tabindex="-1"></a><span class="co"># **Logistic GLM**</span></span>
+<span id="cb107-617"><a href="#cb107-617" aria-hidden="true" tabindex="-1"></a><span class="co"># Logistic GLM</span></span>
 <span id="cb107-618"><a href="#cb107-618" aria-hidden="true" tabindex="-1"></a><span class="co"># note that *survived* should be numeric (0/1) for binomial GLM, not a factor, so we convert it</span></span>
 <span id="cb107-619"><a href="#cb107-619" aria-hidden="true" tabindex="-1"></a>d_model <span class="ot">&lt;-</span> d_model <span class="sc">|&gt;</span></span>
 <span id="cb107-620"><a href="#cb107-620" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">survived =</span> <span class="fu">as.numeric</span>(<span class="fu">as.character</span>(survived)))</span>
