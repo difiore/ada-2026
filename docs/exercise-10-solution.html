@@ -547,6 +547,18 @@ window.Quarto = {
  <span class="menu-text">Exercise 11</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./exercise-12.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Exercise 12</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./exercise-12-solution.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Exercise 12 Solution</span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -607,24 +619,9 @@ window.Quarto = {
   <ul>
   <li><a href="#solution" id="toc-solution" class="nav-link active" data-scroll-target="#solution">• Solution</a>
   <ul class="collapse">
-  <li><a href="#challenge-1" id="toc-challenge-1" class="nav-link" data-scroll-target="#challenge-1">Challenge 1</a>
-  <ul class="collapse">
-  <li><a href="#step-1" id="toc-step-1" class="nav-link" data-scroll-target="#step-1">Step 1</a></li>
-  <li><a href="#step-2" id="toc-step-2" class="nav-link" data-scroll-target="#step-2">Step 2</a></li>
-  <li><a href="#step-3" id="toc-step-3" class="nav-link" data-scroll-target="#step-3">Step 3</a></li>
-  <li><a href="#step-4" id="toc-step-4" class="nav-link" data-scroll-target="#step-4">Step 4</a></li>
-  </ul></li>
-  <li><a href="#challenge-2" id="toc-challenge-2" class="nav-link" data-scroll-target="#challenge-2">Challenge 2</a>
-  <ul class="collapse">
-  <li><a href="#step-1-1" id="toc-step-1-1" class="nav-link" data-scroll-target="#step-1-1">Step 1</a></li>
-  <li><a href="#step-2-1" id="toc-step-2-1" class="nav-link" data-scroll-target="#step-2-1">Step 2</a></li>
-  <li><a href="#step-3-1" id="toc-step-3-1" class="nav-link" data-scroll-target="#step-3-1">Step 3</a></li>
-  <li><a href="#step-4-1" id="toc-step-4-1" class="nav-link" data-scroll-target="#step-4-1">Step 4</a></li>
-  <li><a href="#step-5" id="toc-step-5" class="nav-link" data-scroll-target="#step-5">Step 5</a></li>
-  <li><a href="#step-6" id="toc-step-6" class="nav-link" data-scroll-target="#step-6">Step 6</a></li>
-  <li><a href="#step-7" id="toc-step-7" class="nav-link" data-scroll-target="#step-7">Step 7</a></li>
-  </ul></li>
-  <li><a href="#step-8" id="toc-step-8" class="nav-link" data-scroll-target="#step-8">Step 8</a></li>
+  <li><a href="#preliminaries" id="toc-preliminaries" class="nav-link" data-scroll-target="#preliminaries">Preliminaries</a></li>
+  <li><a href="#challenge-1" id="toc-challenge-1" class="nav-link" data-scroll-target="#challenge-1">Challenge 1</a></li>
+  <li><a href="#challenge-2" id="toc-challenge-2" class="nav-link" data-scroll-target="#challenge-2">Challenge 2</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -653,6 +650,8 @@ window.Quarto = {
 
 <section id="solution" class="level1 unnumbered">
 <h1 class="unnumbered">• Solution</h1>
+<section id="preliminaries" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="preliminaries">Preliminaries</h3>
 <ul>
 <li>Using the {tidyverse} <code>read_csv()</code> function, load the “AVONETdataset1.csv” dataset as a “tibble” named <strong>d</strong>.</li>
 </ul>
@@ -1017,10 +1016,11 @@ window.Quarto = {
 </div>
 </div>
 <p>The taxomic variables, along with <strong>Habitat</strong>, <strong>Trophic.Level</strong>, <strong>Trophic.Niche</strong>, and <strong>Migration</strong>, are categorical, although <strong>Migration</strong> is scored using integer factors as “1”, “2”, or “3”. The remaining variables are numeric.</p>
+</section>
 <section id="challenge-1" class="level2 unnumbered">
 <h2 class="unnumbered anchored" data-anchor-id="challenge-1">Challenge 1</h2>
-<section id="step-1" class="level3 unnumbered">
-<h3 class="unnumbered anchored" data-anchor-id="step-1">Step 1</h3>
+<section id="step-1" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="step-1">Step 1</h4>
 <ul>
 <li>Make boxplots of log(<strong>Mass</strong>) in relation to <strong>Trophic.Level</strong> and <strong>Migration</strong> and convert the variable <strong>Migration</strong> into a factor.</li>
 </ul>
@@ -1050,8 +1050,8 @@ window.Quarto = {
 </div>
 </div>
 </section>
-<section id="step-2" class="level3 unnumbered">
-<h3 class="unnumbered anchored" data-anchor-id="step-2">Step 2</h3>
+<section id="step-2" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="step-2">Step 2</h4>
 <ul>
 <li>Run linear models using the <code>lm()</code> function to look at the relationship between log(<strong>Mass</strong>) and <strong>Trophic.Level</strong> and between log(<strong>Mass</strong>) and <strong>Migration</strong>.</li>
 </ul>
@@ -1148,8 +1148,8 @@ window.Quarto = {
 </div>
 <p>Based on the re-leveled model results, <strong>Migration</strong> levels 2 and 3 are also different from one another.</p>
 </section>
-<section id="step-3" class="level3 unnumbered">
-<h3 class="unnumbered anchored" data-anchor-id="step-3">Step 3</h3>
+<section id="step-3" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="step-3">Step 3</h4>
 <ul>
 <li>Conduct a post-hoc Tukey Significant Differences test to also evaluate which <strong>Migration</strong> categories differ “significantly” from one another.</li>
 </ul>
@@ -1180,8 +1180,8 @@ window.Quarto = {
 </div>
 <p>Comparisons among all pairs of levels are significant.</p>
 </section>
-<section id="step-4" class="level3 unnumbered">
-<h3 class="unnumbered anchored" data-anchor-id="step-4">Step 4</h3>
+<section id="step-4" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="step-4">Step 4</h4>
 <ul>
 <li>Use a permutation approach to inference to generate a null distribution of F statistic values for the model of log(<strong>Mass</strong>) in relation to <strong>Trophic.Level</strong> and calculate a p value for your original F statistic.</li>
 </ul>
@@ -1243,8 +1243,8 @@ window.Quarto = {
 </section>
 <section id="challenge-2" class="level2 unnumbered">
 <h2 class="unnumbered anchored" data-anchor-id="challenge-2">Challenge 2</h2>
-<section id="step-1-1" class="level3 unnumbered">
-<h3 class="unnumbered anchored" data-anchor-id="step-1-1">Step 1</h3>
+<section id="step-1-1" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="step-1-1">Step 1</h4>
 <ul>
 <li>Create the following two new variables and add them to AVONET dataset:
 <ul>
@@ -1261,8 +1261,8 @@ window.Quarto = {
 <span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="step-2-1" class="level3 unnumbered">
-<h3 class="unnumbered anchored" data-anchor-id="step-2-1">Step 2</h3>
+<section id="step-2-1" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="step-2-1">Step 2</h4>
 <ul>
 <li>Make a boxplot or violin plot of your new relative tarsus length variable in relation to <strong>Primary.Lifestyle</strong> and of your new relative beak length variable in relation to <strong>Trophic.Niche</strong></li>
 </ul>
@@ -1300,8 +1300,8 @@ window.Quarto = {
 </div>
 </div>
 </section>
-<section id="step-3-1" class="level3 unnumbered">
-<h3 class="unnumbered anchored" data-anchor-id="step-3-1">Step 3</h3>
+<section id="step-3-1" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="step-3-1">Step 3</h4>
 <ul>
 <li>Run ANOVA analyses to look at the association between geographic range size and the variable <strong>Migration</strong>. You should first drop those observations for which <strong>Migration</strong> is not scored and also look at the distribution of the variable <strong>Range.Size</strong> to decide whether and how it might need to be transformed.</li>
 </ul>
@@ -1438,8 +1438,8 @@ window.Quarto = {
 </div>
 </div>
 </section>
-<section id="step-4-1" class="level3 unnumbered">
-<h3 class="unnumbered anchored" data-anchor-id="step-4-1">Step 4</h3>
+<section id="step-4-1" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="step-4-1">Step 4</h4>
 <ul>
 <li>Winnow your original data to just consider birds from the Infraorder “Passeriformes” (song birds).</li>
 </ul>
@@ -1515,8 +1515,8 @@ window.Quarto = {
 </div>
 <p>Relative beak length is significantly associated with both variables, but the R-squared (or eta- squared) values are quite modest.</p>
 </section>
-<section id="step-5" class="level3 unnumbered">
-<h3 class="unnumbered anchored" data-anchor-id="step-5">Step 5</h3>
+<section id="step-5" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="step-5">Step 5</h4>
 <ul>
 <li>Run a two-factor model to look at the association between relative beak length and both <strong>Primary.Lifestyle</strong> and <strong>Trophic.Level</strong> among the passeriforms. Based on the model output, what would you conclude about how relative beak length is related to these two variables?</li>
 </ul>
@@ -1536,8 +1536,8 @@ window.Quarto = {
 </div>
 <p>Both variables are important predictors of relative beak length.</p>
 </section>
-<section id="step-6" class="level3 unnumbered">
-<h3 class="unnumbered anchored" data-anchor-id="step-6">Step 6</h3>
+<section id="step-6" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="step-6">Step 6</h4>
 <ul>
 <li>Finally, run an additional two-way model with the same dataset and predictors, but adding the possibility of an interaction term. Based on the model output, what would you now conclude about how relative beak length is related to these two variables?</li>
 </ul>
@@ -1560,8 +1560,8 @@ window.Quarto = {
 </div>
 <p><strong>Primary.Lifestyle</strong>, <strong>Trophic.Level</strong>, and the interaction of these two variables are all significant predictors of relative beak length.</p>
 </section>
-<section id="step-7" class="level3 unnumbered">
-<h3 class="unnumbered anchored" data-anchor-id="step-7">Step 7</h3>
+<section id="step-7" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="step-7">Step 7</h4>
 <ul>
 <li>Use the <code>interaction.plot()</code> function to visualize the interaction between <strong>Primary.Lifestyle</strong> and <strong>Trophic.Level</strong>.</li>
 </ul>
@@ -1595,9 +1595,8 @@ window.Quarto = {
 </div>
 </div>
 </section>
-</section>
-<section id="step-8" class="level2 unnumbered">
-<h2 class="unnumbered anchored" data-anchor-id="step-8">Step 8</h2>
+<section id="step-8" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="step-8">Step 8</h4>
 <p>Let’s look at the model of <strong>relative beak size ~ trophic level</strong>.</p>
 <p>First, we check the ratio of variances among different levels of the predictor…</p>
 <div class="cell" data-layout-align="center">
@@ -1659,6 +1658,7 @@ window.Quarto = {
 
 <!-- -->
 
+</section>
 </section>
 </section>
 
@@ -2117,429 +2117,431 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb53-3"><a href="#cb53-3" aria-hidden="true" tabindex="-1"></a><span class="fu"># • Solution {.unnumbered}</span></span>
 <span id="cb53-4"><a href="#cb53-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb53-5"><a href="#cb53-5" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Using the {tidyverse} <span class="in">`read_csv()`</span> function, load the "AVONETdataset1.csv" dataset as a "tibble" named **d**.</span>
+<span id="cb53-5"><a href="#cb53-5" aria-hidden="true" tabindex="-1"></a><span class="fu">### Preliminaries {.unnumbered}</span></span>
 <span id="cb53-6"><a href="#cb53-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb53-7"><a href="#cb53-7" aria-hidden="true" tabindex="-1"></a><span class="in">```{r message=FALSE}</span></span>
-<span id="cb53-8"><a href="#cb53-8" aria-hidden="true" tabindex="-1"></a><span class="in">library(tidyverse)</span></span>
-<span id="cb53-9"><a href="#cb53-9" aria-hidden="true" tabindex="-1"></a><span class="in">library(skimr)</span></span>
-<span id="cb53-10"><a href="#cb53-10" aria-hidden="true" tabindex="-1"></a><span class="in">library(cowplot)</span></span>
-<span id="cb53-11"><a href="#cb53-11" aria-hidden="true" tabindex="-1"></a><span class="in">library(broom)</span></span>
-<span id="cb53-12"><a href="#cb53-12" aria-hidden="true" tabindex="-1"></a><span class="in">library(infer)</span></span>
-<span id="cb53-13"><a href="#cb53-13" aria-hidden="true" tabindex="-1"></a><span class="in">library(mosaic)</span></span>
-<span id="cb53-14"><a href="#cb53-14" aria-hidden="true" tabindex="-1"></a><span class="in">library(ggpubr) # for ggqqplot()</span></span>
-<span id="cb53-15"><a href="#cb53-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb53-16"><a href="#cb53-16" aria-hidden="true" tabindex="-1"></a><span class="in">f &lt;- "https://raw.githubusercontent.com/difiore/ada-datasets/main/AVONETdataset1.csv"</span></span>
-<span id="cb53-17"><a href="#cb53-17" aria-hidden="true" tabindex="-1"></a><span class="in">d &lt;- read_csv(f, col_names = TRUE)</span></span>
-<span id="cb53-18"><a href="#cb53-18" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb53-19"><a href="#cb53-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb53-20"><a href="#cb53-20" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Winnow the dataset to variables of interest.</span>
+<span id="cb53-7"><a href="#cb53-7" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Using the {tidyverse} <span class="in">`read_csv()`</span> function, load the "AVONETdataset1.csv" dataset as a "tibble" named **d**.</span>
+<span id="cb53-8"><a href="#cb53-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb53-9"><a href="#cb53-9" aria-hidden="true" tabindex="-1"></a><span class="in">```{r message=FALSE}</span></span>
+<span id="cb53-10"><a href="#cb53-10" aria-hidden="true" tabindex="-1"></a><span class="in">library(tidyverse)</span></span>
+<span id="cb53-11"><a href="#cb53-11" aria-hidden="true" tabindex="-1"></a><span class="in">library(skimr)</span></span>
+<span id="cb53-12"><a href="#cb53-12" aria-hidden="true" tabindex="-1"></a><span class="in">library(cowplot)</span></span>
+<span id="cb53-13"><a href="#cb53-13" aria-hidden="true" tabindex="-1"></a><span class="in">library(broom)</span></span>
+<span id="cb53-14"><a href="#cb53-14" aria-hidden="true" tabindex="-1"></a><span class="in">library(infer)</span></span>
+<span id="cb53-15"><a href="#cb53-15" aria-hidden="true" tabindex="-1"></a><span class="in">library(mosaic)</span></span>
+<span id="cb53-16"><a href="#cb53-16" aria-hidden="true" tabindex="-1"></a><span class="in">library(ggpubr) # for ggqqplot()</span></span>
+<span id="cb53-17"><a href="#cb53-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb53-18"><a href="#cb53-18" aria-hidden="true" tabindex="-1"></a><span class="in">f &lt;- "https://raw.githubusercontent.com/difiore/ada-datasets/main/AVONETdataset1.csv"</span></span>
+<span id="cb53-19"><a href="#cb53-19" aria-hidden="true" tabindex="-1"></a><span class="in">d &lt;- read_csv(f, col_names = TRUE)</span></span>
+<span id="cb53-20"><a href="#cb53-20" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb53-21"><a href="#cb53-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb53-24"><a href="#cb53-24" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb53-25"><a href="#cb53-25" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> d <span class="sc">|&gt;</span> <span class="fu">select</span>(Species1, Family1, Order1,</span>
-<span id="cb53-26"><a href="#cb53-26" aria-hidden="true" tabindex="-1"></a>                 Beak.Length_Culmen, Beak.Width, Beak.Depth,</span>
-<span id="cb53-27"><a href="#cb53-27" aria-hidden="true" tabindex="-1"></a>                 Tarsus.Length, Wing.Length, Tail.Length, Mass,</span>
-<span id="cb53-28"><a href="#cb53-28" aria-hidden="true" tabindex="-1"></a>                  Habitat, Migration, Trophic.Level, Trophic.Niche,</span>
-<span id="cb53-29"><a href="#cb53-29" aria-hidden="true" tabindex="-1"></a>                 Min.Latitude, Max.Latitude, Centroid.Latitude, Range.Size,</span>
-<span id="cb53-30"><a href="#cb53-30" aria-hidden="true" tabindex="-1"></a>                 Primary.Lifestyle)</span>
-<span id="cb53-31"><a href="#cb53-31" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb53-32"><a href="#cb53-32" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb53-33"><a href="#cb53-33" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Do a bit of exploratory data analysis.</span>
+<span id="cb53-22"><a href="#cb53-22" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Winnow the dataset to variables of interest.</span>
+<span id="cb53-23"><a href="#cb53-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb53-26"><a href="#cb53-26" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb53-27"><a href="#cb53-27" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> d <span class="sc">|&gt;</span> <span class="fu">select</span>(Species1, Family1, Order1,</span>
+<span id="cb53-28"><a href="#cb53-28" aria-hidden="true" tabindex="-1"></a>                 Beak.Length_Culmen, Beak.Width, Beak.Depth,</span>
+<span id="cb53-29"><a href="#cb53-29" aria-hidden="true" tabindex="-1"></a>                 Tarsus.Length, Wing.Length, Tail.Length, Mass,</span>
+<span id="cb53-30"><a href="#cb53-30" aria-hidden="true" tabindex="-1"></a>                  Habitat, Migration, Trophic.Level, Trophic.Niche,</span>
+<span id="cb53-31"><a href="#cb53-31" aria-hidden="true" tabindex="-1"></a>                 Min.Latitude, Max.Latitude, Centroid.Latitude, Range.Size,</span>
+<span id="cb53-32"><a href="#cb53-32" aria-hidden="true" tabindex="-1"></a>                 Primary.Lifestyle)</span>
+<span id="cb53-33"><a href="#cb53-33" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb53-34"><a href="#cb53-34" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb53-37"><a href="#cb53-37" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb53-38"><a href="#cb53-38" aria-hidden="true" tabindex="-1"></a><span class="fu">skim</span>(d)</span>
-<span id="cb53-39"><a href="#cb53-39" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb53-40"><a href="#cb53-40" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb53-41"><a href="#cb53-41" aria-hidden="true" tabindex="-1"></a>The taxomic variables, along with **Habitat**, **Trophic.Level**, **Trophic.Niche**, and **Migration**, are categorical, although **Migration** is scored using integer factors as "1", "2", or "3". The remaining variables are numeric.</span>
+<span id="cb53-35"><a href="#cb53-35" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Do a bit of exploratory data analysis.</span>
+<span id="cb53-36"><a href="#cb53-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb53-39"><a href="#cb53-39" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb53-40"><a href="#cb53-40" aria-hidden="true" tabindex="-1"></a><span class="fu">skim</span>(d)</span>
+<span id="cb53-41"><a href="#cb53-41" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb53-42"><a href="#cb53-42" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb53-43"><a href="#cb53-43" aria-hidden="true" tabindex="-1"></a><span class="fu">## Challenge 1 {.unnumbered}</span></span>
+<span id="cb53-43"><a href="#cb53-43" aria-hidden="true" tabindex="-1"></a>The taxomic variables, along with **Habitat**, **Trophic.Level**, **Trophic.Niche**, and **Migration**, are categorical, although **Migration** is scored using integer factors as "1", "2", or "3". The remaining variables are numeric.</span>
 <span id="cb53-44"><a href="#cb53-44" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb53-45"><a href="#cb53-45" aria-hidden="true" tabindex="-1"></a><span class="fu">### Step 1 {.unnumbered}</span></span>
+<span id="cb53-45"><a href="#cb53-45" aria-hidden="true" tabindex="-1"></a><span class="fu">## Challenge 1 {.unnumbered}</span></span>
 <span id="cb53-46"><a href="#cb53-46" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb53-47"><a href="#cb53-47" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Make boxplots of log(**Mass**) in relation to **Trophic.Level** and **Migration** and convert the variable **Migration** into a factor.</span>
+<span id="cb53-47"><a href="#cb53-47" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Step 1 {.unnumbered}</span></span>
 <span id="cb53-48"><a href="#cb53-48" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb53-51"><a href="#cb53-51" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb53-52"><a href="#cb53-52" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> d <span class="sc">|&gt;</span> <span class="fu">mutate</span>(</span>
-<span id="cb53-53"><a href="#cb53-53" aria-hidden="true" tabindex="-1"></a>  <span class="at">logMass =</span> <span class="fu">log</span>(Mass),</span>
-<span id="cb53-54"><a href="#cb53-54" aria-hidden="true" tabindex="-1"></a>  <span class="at">logRS =</span> <span class="fu">log</span>(Range.Size),</span>
-<span id="cb53-55"><a href="#cb53-55" aria-hidden="true" tabindex="-1"></a>  <span class="at">logBeak =</span> <span class="fu">log</span>(Beak.Length_Culmen),</span>
-<span id="cb53-56"><a href="#cb53-56" aria-hidden="true" tabindex="-1"></a>  <span class="at">logTarsus =</span> <span class="fu">log</span>(Tarsus.Length),</span>
-<span id="cb53-57"><a href="#cb53-57" aria-hidden="true" tabindex="-1"></a>  <span class="at">Migration =</span> <span class="fu">as.factor</span>(Migration))</span>
-<span id="cb53-58"><a href="#cb53-58" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb53-59"><a href="#cb53-59" aria-hidden="true" tabindex="-1"></a>p1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> d <span class="sc">|&gt;</span> <span class="fu">drop_na</span>(Trophic.Level), <span class="fu">aes</span>(<span class="at">x =</span> Trophic.Level, <span class="at">y =</span> <span class="fu">log</span>(Mass))) <span class="sc">+</span></span>
-<span id="cb53-60"><a href="#cb53-60" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
-<span id="cb53-61"><a href="#cb53-61" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="at">alpha =</span> <span class="fl">0.05</span>)</span>
-<span id="cb53-62"><a href="#cb53-62" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb53-63"><a href="#cb53-63" aria-hidden="true" tabindex="-1"></a>p2 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> d <span class="sc">|&gt;</span> <span class="fu">drop_na</span>(Migration) , <span class="fu">aes</span>(<span class="at">x =</span> Migration, <span class="at">y =</span> <span class="fu">log</span>(Mass))) <span class="sc">+</span></span>
-<span id="cb53-64"><a href="#cb53-64" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
-<span id="cb53-65"><a href="#cb53-65" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="at">alpha =</span> <span class="fl">0.05</span>)</span>
-<span id="cb53-66"><a href="#cb53-66" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_grid</span>(p1, p2, <span class="at">nrow =</span> <span class="dv">1</span>)</span>
-<span id="cb53-67"><a href="#cb53-67" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb53-68"><a href="#cb53-68" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb53-69"><a href="#cb53-69" aria-hidden="true" tabindex="-1"></a><span class="fu">### Step 2 {.unnumbered}</span></span>
+<span id="cb53-49"><a href="#cb53-49" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Make boxplots of log(**Mass**) in relation to **Trophic.Level** and **Migration** and convert the variable **Migration** into a factor.</span>
+<span id="cb53-50"><a href="#cb53-50" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb53-53"><a href="#cb53-53" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb53-54"><a href="#cb53-54" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> d <span class="sc">|&gt;</span> <span class="fu">mutate</span>(</span>
+<span id="cb53-55"><a href="#cb53-55" aria-hidden="true" tabindex="-1"></a>  <span class="at">logMass =</span> <span class="fu">log</span>(Mass),</span>
+<span id="cb53-56"><a href="#cb53-56" aria-hidden="true" tabindex="-1"></a>  <span class="at">logRS =</span> <span class="fu">log</span>(Range.Size),</span>
+<span id="cb53-57"><a href="#cb53-57" aria-hidden="true" tabindex="-1"></a>  <span class="at">logBeak =</span> <span class="fu">log</span>(Beak.Length_Culmen),</span>
+<span id="cb53-58"><a href="#cb53-58" aria-hidden="true" tabindex="-1"></a>  <span class="at">logTarsus =</span> <span class="fu">log</span>(Tarsus.Length),</span>
+<span id="cb53-59"><a href="#cb53-59" aria-hidden="true" tabindex="-1"></a>  <span class="at">Migration =</span> <span class="fu">as.factor</span>(Migration))</span>
+<span id="cb53-60"><a href="#cb53-60" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb53-61"><a href="#cb53-61" aria-hidden="true" tabindex="-1"></a>p1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> d <span class="sc">|&gt;</span> <span class="fu">drop_na</span>(Trophic.Level), <span class="fu">aes</span>(<span class="at">x =</span> Trophic.Level, <span class="at">y =</span> <span class="fu">log</span>(Mass))) <span class="sc">+</span></span>
+<span id="cb53-62"><a href="#cb53-62" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
+<span id="cb53-63"><a href="#cb53-63" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="at">alpha =</span> <span class="fl">0.05</span>)</span>
+<span id="cb53-64"><a href="#cb53-64" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb53-65"><a href="#cb53-65" aria-hidden="true" tabindex="-1"></a>p2 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> d <span class="sc">|&gt;</span> <span class="fu">drop_na</span>(Migration) , <span class="fu">aes</span>(<span class="at">x =</span> Migration, <span class="at">y =</span> <span class="fu">log</span>(Mass))) <span class="sc">+</span></span>
+<span id="cb53-66"><a href="#cb53-66" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
+<span id="cb53-67"><a href="#cb53-67" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="at">alpha =</span> <span class="fl">0.05</span>)</span>
+<span id="cb53-68"><a href="#cb53-68" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_grid</span>(p1, p2, <span class="at">nrow =</span> <span class="dv">1</span>)</span>
+<span id="cb53-69"><a href="#cb53-69" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb53-70"><a href="#cb53-70" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb53-71"><a href="#cb53-71" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Run linear models using the <span class="in">`lm()`</span> function to look at the relationship between log(**Mass**) and **Trophic.Level** and between log(**Mass**) and **Migration**.</span>
+<span id="cb53-71"><a href="#cb53-71" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Step 2 {.unnumbered}</span></span>
 <span id="cb53-72"><a href="#cb53-72" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb53-75"><a href="#cb53-75" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb53-76"><a href="#cb53-76" aria-hidden="true" tabindex="-1"></a>m1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(logMass <span class="sc">~</span> Trophic.Level, <span class="at">data =</span> d)</span>
-<span id="cb53-77"><a href="#cb53-77" aria-hidden="true" tabindex="-1"></a>m2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(logMass <span class="sc">~</span> Migration, <span class="at">data =</span> d)</span>
-<span id="cb53-78"><a href="#cb53-78" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb53-79"><a href="#cb53-79" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb53-80"><a href="#cb53-80" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Examine the output of the resultant linear models. Is log(**Mass**) associated with either **Trophic.Level** or **Migration** category? That is, in the global test of significance, is the F statistic large enough to reject the null hypothesis of an F value of zero?</span>
+<span id="cb53-73"><a href="#cb53-73" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Run linear models using the <span class="in">`lm()`</span> function to look at the relationship between log(**Mass**) and **Trophic.Level** and between log(**Mass**) and **Migration**.</span>
+<span id="cb53-74"><a href="#cb53-74" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb53-77"><a href="#cb53-77" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb53-78"><a href="#cb53-78" aria-hidden="true" tabindex="-1"></a>m1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(logMass <span class="sc">~</span> Trophic.Level, <span class="at">data =</span> d)</span>
+<span id="cb53-79"><a href="#cb53-79" aria-hidden="true" tabindex="-1"></a>m2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(logMass <span class="sc">~</span> Migration, <span class="at">data =</span> d)</span>
+<span id="cb53-80"><a href="#cb53-80" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb53-81"><a href="#cb53-81" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb53-84"><a href="#cb53-84" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb53-85"><a href="#cb53-85" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(m1)</span>
-<span id="cb53-86"><a href="#cb53-86" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(m2)</span>
-<span id="cb53-87"><a href="#cb53-87" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb53-88"><a href="#cb53-88" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb53-89"><a href="#cb53-89" aria-hidden="true" tabindex="-1"></a>In both cases, the global test is significant.</span>
+<span id="cb53-82"><a href="#cb53-82" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Examine the output of the resultant linear models. Is log(**Mass**) associated with either **Trophic.Level** or **Migration** category? That is, in the global test of significance, is the F statistic large enough to reject the null hypothesis of an F value of zero?</span>
+<span id="cb53-83"><a href="#cb53-83" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb53-86"><a href="#cb53-86" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb53-87"><a href="#cb53-87" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(m1)</span>
+<span id="cb53-88"><a href="#cb53-88" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(m2)</span>
+<span id="cb53-89"><a href="#cb53-89" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb53-90"><a href="#cb53-90" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb53-91"><a href="#cb53-91" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Given the regression coefficients returned for your **Migration** model, which **Migration** categor(ies) are different than the reference level? What level is the reference level?</span>
+<span id="cb53-91"><a href="#cb53-91" aria-hidden="true" tabindex="-1"></a>In both cases, the global test is significant.</span>
 <span id="cb53-92"><a href="#cb53-92" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb53-93"><a href="#cb53-93" aria-hidden="true" tabindex="-1"></a>In m2, **Migration** levels 2 and 3 are both different from **Migration** level 1, which is the reference level.</span>
+<span id="cb53-93"><a href="#cb53-93" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Given the regression coefficients returned for your **Migration** model, which **Migration** categor(ies) are different than the reference level? What level is the reference level?</span>
 <span id="cb53-94"><a href="#cb53-94" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb53-95"><a href="#cb53-95" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Relevel and assess differences among the remaining pair of **Migration** categories.</span>
+<span id="cb53-95"><a href="#cb53-95" aria-hidden="true" tabindex="-1"></a>In m2, **Migration** levels 2 and 3 are both different from **Migration** level 1, which is the reference level.</span>
 <span id="cb53-96"><a href="#cb53-96" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb53-99"><a href="#cb53-99" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb53-100"><a href="#cb53-100" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> d <span class="sc">|&gt;</span> <span class="fu">mutate</span>(<span class="at">Migration =</span> <span class="fu">relevel</span>(Migration, <span class="at">ref =</span> <span class="st">"3"</span>))</span>
-<span id="cb53-101"><a href="#cb53-101" aria-hidden="true" tabindex="-1"></a>m2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(logMass <span class="sc">~</span> Migration, <span class="at">data =</span> d)</span>
-<span id="cb53-102"><a href="#cb53-102" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(m2)</span>
-<span id="cb53-103"><a href="#cb53-103" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb53-104"><a href="#cb53-104" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb53-105"><a href="#cb53-105" aria-hidden="true" tabindex="-1"></a>Based on the re-leveled model results, **Migration** levels 2 and 3 are also different from one another.</span>
+<span id="cb53-97"><a href="#cb53-97" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Relevel and assess differences among the remaining pair of **Migration** categories.</span>
+<span id="cb53-98"><a href="#cb53-98" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb53-101"><a href="#cb53-101" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb53-102"><a href="#cb53-102" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> d <span class="sc">|&gt;</span> <span class="fu">mutate</span>(<span class="at">Migration =</span> <span class="fu">relevel</span>(Migration, <span class="at">ref =</span> <span class="st">"3"</span>))</span>
+<span id="cb53-103"><a href="#cb53-103" aria-hidden="true" tabindex="-1"></a>m2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(logMass <span class="sc">~</span> Migration, <span class="at">data =</span> d)</span>
+<span id="cb53-104"><a href="#cb53-104" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(m2)</span>
+<span id="cb53-105"><a href="#cb53-105" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb53-106"><a href="#cb53-106" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb53-107"><a href="#cb53-107" aria-hidden="true" tabindex="-1"></a><span class="fu">### Step 3 {.unnumbered}</span></span>
+<span id="cb53-107"><a href="#cb53-107" aria-hidden="true" tabindex="-1"></a>Based on the re-leveled model results, **Migration** levels 2 and 3 are also different from one another.</span>
 <span id="cb53-108"><a href="#cb53-108" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb53-109"><a href="#cb53-109" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Conduct a post-hoc Tukey Significant Differences test to also evaluate which **Migration** categories differ "significantly" from one another.</span>
+<span id="cb53-109"><a href="#cb53-109" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Step 3 {.unnumbered}</span></span>
 <span id="cb53-110"><a href="#cb53-110" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb53-113"><a href="#cb53-113" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb53-114"><a href="#cb53-114" aria-hidden="true" tabindex="-1"></a><span class="co"># we need an ANOVA object to run a Tukey test</span></span>
-<span id="cb53-115"><a href="#cb53-115" aria-hidden="true" tabindex="-1"></a>m2 <span class="ot">&lt;-</span> <span class="fu">aov</span>(logMass <span class="sc">~</span> Migration, <span class="at">data =</span> d)</span>
-<span id="cb53-116"><a href="#cb53-116" aria-hidden="true" tabindex="-1"></a>(posthoc <span class="ot">&lt;-</span> <span class="fu">TukeyHSD</span>(m2, <span class="at">which =</span> <span class="st">"Migration"</span>, <span class="at">conf.level =</span> <span class="fl">0.95</span>))</span>
-<span id="cb53-117"><a href="#cb53-117" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(posthoc)</span>
-<span id="cb53-118"><a href="#cb53-118" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb53-119"><a href="#cb53-119" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb53-120"><a href="#cb53-120" aria-hidden="true" tabindex="-1"></a>Comparisons among all pairs of levels are significant.</span>
+<span id="cb53-111"><a href="#cb53-111" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Conduct a post-hoc Tukey Significant Differences test to also evaluate which **Migration** categories differ "significantly" from one another.</span>
+<span id="cb53-112"><a href="#cb53-112" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb53-115"><a href="#cb53-115" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb53-116"><a href="#cb53-116" aria-hidden="true" tabindex="-1"></a><span class="co"># we need an ANOVA object to run a Tukey test</span></span>
+<span id="cb53-117"><a href="#cb53-117" aria-hidden="true" tabindex="-1"></a>m2 <span class="ot">&lt;-</span> <span class="fu">aov</span>(logMass <span class="sc">~</span> Migration, <span class="at">data =</span> d)</span>
+<span id="cb53-118"><a href="#cb53-118" aria-hidden="true" tabindex="-1"></a>(posthoc <span class="ot">&lt;-</span> <span class="fu">TukeyHSD</span>(m2, <span class="at">which =</span> <span class="st">"Migration"</span>, <span class="at">conf.level =</span> <span class="fl">0.95</span>))</span>
+<span id="cb53-119"><a href="#cb53-119" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(posthoc)</span>
+<span id="cb53-120"><a href="#cb53-120" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb53-121"><a href="#cb53-121" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb53-122"><a href="#cb53-122" aria-hidden="true" tabindex="-1"></a><span class="fu">### Step 4 {.unnumbered}</span></span>
+<span id="cb53-122"><a href="#cb53-122" aria-hidden="true" tabindex="-1"></a>Comparisons among all pairs of levels are significant.</span>
 <span id="cb53-123"><a href="#cb53-123" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb53-124"><a href="#cb53-124" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Use a permutation approach to inference to generate a null distribution of F statistic values for the model of log(**Mass**) in relation to **Trophic.Level** and calculate a p value for your original F statistic.</span>
+<span id="cb53-124"><a href="#cb53-124" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Step 4 {.unnumbered}</span></span>
 <span id="cb53-125"><a href="#cb53-125" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb53-128"><a href="#cb53-128" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb53-129"><a href="#cb53-129" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
-<span id="cb53-130"><a href="#cb53-130" aria-hidden="true" tabindex="-1"></a>original.F <span class="ot">&lt;-</span> <span class="fu">aov</span>(logMass <span class="sc">~</span> Trophic.Level, <span class="at">data =</span> d) <span class="sc">|&gt;</span></span>
-<span id="cb53-131"><a href="#cb53-131" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tidy</span>() <span class="sc">|&gt;</span></span>
-<span id="cb53-132"><a href="#cb53-132" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(term <span class="sc">==</span> <span class="st">"Trophic.Level"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb53-133"><a href="#cb53-133" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pull</span>(statistic)</span>
-<span id="cb53-134"><a href="#cb53-134" aria-hidden="true" tabindex="-1"></a><span class="co"># show aov results for F statistic and p value for omnibus F test</span></span>
-<span id="cb53-135"><a href="#cb53-135" aria-hidden="true" tabindex="-1"></a>original.F</span>
-<span id="cb53-136"><a href="#cb53-136" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb53-137"><a href="#cb53-137" aria-hidden="true" tabindex="-1"></a><span class="co"># using {infer}</span></span>
-<span id="cb53-138"><a href="#cb53-138" aria-hidden="true" tabindex="-1"></a>permuted.F <span class="ot">&lt;-</span> d <span class="sc">|&gt;</span></span>
-<span id="cb53-139"><a href="#cb53-139" aria-hidden="true" tabindex="-1"></a>  <span class="fu">specify</span>(logMass <span class="sc">~</span> Trophic.Level) <span class="sc">|&gt;</span></span>
-<span id="cb53-140"><a href="#cb53-140" aria-hidden="true" tabindex="-1"></a>  <span class="fu">hypothesize</span>(<span class="at">null =</span> <span class="st">"independence"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb53-141"><a href="#cb53-141" aria-hidden="true" tabindex="-1"></a>  <span class="fu">generate</span>(<span class="at">reps =</span> <span class="dv">1000</span>, <span class="at">type =</span> <span class="st">"permute"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb53-142"><a href="#cb53-142" aria-hidden="true" tabindex="-1"></a>  <span class="fu">calculate</span>(<span class="at">stat =</span> <span class="st">"F"</span>)</span>
-<span id="cb53-143"><a href="#cb53-143" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb53-144"><a href="#cb53-144" aria-hidden="true" tabindex="-1"></a><span class="fu">visualize</span>(permuted.F) <span class="sc">+</span> <span class="fu">shade_p_value</span>(<span class="at">obs_stat =</span> original.F, <span class="at">direction =</span> <span class="st">"greater"</span>)</span>
+<span id="cb53-126"><a href="#cb53-126" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Use a permutation approach to inference to generate a null distribution of F statistic values for the model of log(**Mass**) in relation to **Trophic.Level** and calculate a p value for your original F statistic.</span>
+<span id="cb53-127"><a href="#cb53-127" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb53-130"><a href="#cb53-130" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb53-131"><a href="#cb53-131" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
+<span id="cb53-132"><a href="#cb53-132" aria-hidden="true" tabindex="-1"></a>original.F <span class="ot">&lt;-</span> <span class="fu">aov</span>(logMass <span class="sc">~</span> Trophic.Level, <span class="at">data =</span> d) <span class="sc">|&gt;</span></span>
+<span id="cb53-133"><a href="#cb53-133" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tidy</span>() <span class="sc">|&gt;</span></span>
+<span id="cb53-134"><a href="#cb53-134" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(term <span class="sc">==</span> <span class="st">"Trophic.Level"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb53-135"><a href="#cb53-135" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pull</span>(statistic)</span>
+<span id="cb53-136"><a href="#cb53-136" aria-hidden="true" tabindex="-1"></a><span class="co"># show aov results for F statistic and p value for omnibus F test</span></span>
+<span id="cb53-137"><a href="#cb53-137" aria-hidden="true" tabindex="-1"></a>original.F</span>
+<span id="cb53-138"><a href="#cb53-138" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb53-139"><a href="#cb53-139" aria-hidden="true" tabindex="-1"></a><span class="co"># using {infer}</span></span>
+<span id="cb53-140"><a href="#cb53-140" aria-hidden="true" tabindex="-1"></a>permuted.F <span class="ot">&lt;-</span> d <span class="sc">|&gt;</span></span>
+<span id="cb53-141"><a href="#cb53-141" aria-hidden="true" tabindex="-1"></a>  <span class="fu">specify</span>(logMass <span class="sc">~</span> Trophic.Level) <span class="sc">|&gt;</span></span>
+<span id="cb53-142"><a href="#cb53-142" aria-hidden="true" tabindex="-1"></a>  <span class="fu">hypothesize</span>(<span class="at">null =</span> <span class="st">"independence"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb53-143"><a href="#cb53-143" aria-hidden="true" tabindex="-1"></a>  <span class="fu">generate</span>(<span class="at">reps =</span> <span class="dv">1000</span>, <span class="at">type =</span> <span class="st">"permute"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb53-144"><a href="#cb53-144" aria-hidden="true" tabindex="-1"></a>  <span class="fu">calculate</span>(<span class="at">stat =</span> <span class="st">"F"</span>)</span>
 <span id="cb53-145"><a href="#cb53-145" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb53-146"><a href="#cb53-146" aria-hidden="true" tabindex="-1"></a>p.value <span class="ot">&lt;-</span> permuted.F <span class="sc">|&gt;</span></span>
-<span id="cb53-147"><a href="#cb53-147" aria-hidden="true" tabindex="-1"></a>  <span class="fu">get_p_value</span>(<span class="at">obs_stat =</span> original.F, <span class="at">direction =</span> <span class="st">"greater"</span>)</span>
-<span id="cb53-148"><a href="#cb53-148" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb53-149"><a href="#cb53-149" aria-hidden="true" tabindex="-1"></a><span class="co"># or...</span></span>
-<span id="cb53-150"><a href="#cb53-150" aria-hidden="true" tabindex="-1"></a><span class="co"># using {mosaic}</span></span>
-<span id="cb53-151"><a href="#cb53-151" aria-hidden="true" tabindex="-1"></a>reps <span class="ot">&lt;-</span> <span class="dv">1000</span></span>
-<span id="cb53-152"><a href="#cb53-152" aria-hidden="true" tabindex="-1"></a>permuted.F <span class="ot">&lt;-</span> <span class="fu">do</span>(reps) <span class="sc">*</span> {</span>
-<span id="cb53-153"><a href="#cb53-153" aria-hidden="true" tabindex="-1"></a>  d <span class="sc">|&gt;</span></span>
-<span id="cb53-154"><a href="#cb53-154" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">Trophic.Level =</span> <span class="fu">sample</span>(Trophic.Level)) <span class="sc">%&gt;%</span></span>
-<span id="cb53-155"><a href="#cb53-155" aria-hidden="true" tabindex="-1"></a>    <span class="co"># note the use of the %&gt;% pipe operator in the line above... for some reason, the native pipe operator (`|&gt;`) throws an error!</span></span>
-<span id="cb53-156"><a href="#cb53-156" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aov</span>(logMass <span class="sc">~</span> Trophic.Level, <span class="at">data =</span> .) <span class="sc">|&gt;</span></span>
-<span id="cb53-157"><a href="#cb53-157" aria-hidden="true" tabindex="-1"></a>    <span class="fu">tidy</span>() <span class="sc">|&gt;</span></span>
-<span id="cb53-158"><a href="#cb53-158" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(term <span class="sc">==</span> <span class="st">"Trophic.Level"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb53-159"><a href="#cb53-159" aria-hidden="true" tabindex="-1"></a>    <span class="fu">pull</span>(statistic)</span>
-<span id="cb53-160"><a href="#cb53-160" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb53-161"><a href="#cb53-161" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb53-162"><a href="#cb53-162" aria-hidden="true" tabindex="-1"></a>permuted.F <span class="ot">&lt;-</span> <span class="fu">as_tibble</span>(permuted.F) <span class="sc">|&gt;</span></span>
-<span id="cb53-163"><a href="#cb53-163" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">stat =</span> <span class="st">"result"</span>)</span>
-<span id="cb53-164"><a href="#cb53-164" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb53-165"><a href="#cb53-165" aria-hidden="true" tabindex="-1"></a>p.value <span class="ot">&lt;-</span> permuted.F <span class="sc">|&gt;</span></span>
-<span id="cb53-166"><a href="#cb53-166" aria-hidden="true" tabindex="-1"></a>  <span class="fu">get_p_value</span>(<span class="at">obs_stat =</span> original.F, <span class="at">direction =</span> <span class="st">"greater"</span>)</span>
-<span id="cb53-167"><a href="#cb53-167" aria-hidden="true" tabindex="-1"></a>p.value</span>
-<span id="cb53-168"><a href="#cb53-168" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb53-169"><a href="#cb53-169" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb53-170"><a href="#cb53-170" aria-hidden="true" tabindex="-1"></a><span class="fu">## Challenge 2 {.unnumbered}</span></span>
+<span id="cb53-146"><a href="#cb53-146" aria-hidden="true" tabindex="-1"></a><span class="fu">visualize</span>(permuted.F) <span class="sc">+</span> <span class="fu">shade_p_value</span>(<span class="at">obs_stat =</span> original.F, <span class="at">direction =</span> <span class="st">"greater"</span>)</span>
+<span id="cb53-147"><a href="#cb53-147" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb53-148"><a href="#cb53-148" aria-hidden="true" tabindex="-1"></a>p.value <span class="ot">&lt;-</span> permuted.F <span class="sc">|&gt;</span></span>
+<span id="cb53-149"><a href="#cb53-149" aria-hidden="true" tabindex="-1"></a>  <span class="fu">get_p_value</span>(<span class="at">obs_stat =</span> original.F, <span class="at">direction =</span> <span class="st">"greater"</span>)</span>
+<span id="cb53-150"><a href="#cb53-150" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb53-151"><a href="#cb53-151" aria-hidden="true" tabindex="-1"></a><span class="co"># or...</span></span>
+<span id="cb53-152"><a href="#cb53-152" aria-hidden="true" tabindex="-1"></a><span class="co"># using {mosaic}</span></span>
+<span id="cb53-153"><a href="#cb53-153" aria-hidden="true" tabindex="-1"></a>reps <span class="ot">&lt;-</span> <span class="dv">1000</span></span>
+<span id="cb53-154"><a href="#cb53-154" aria-hidden="true" tabindex="-1"></a>permuted.F <span class="ot">&lt;-</span> <span class="fu">do</span>(reps) <span class="sc">*</span> {</span>
+<span id="cb53-155"><a href="#cb53-155" aria-hidden="true" tabindex="-1"></a>  d <span class="sc">|&gt;</span></span>
+<span id="cb53-156"><a href="#cb53-156" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">Trophic.Level =</span> <span class="fu">sample</span>(Trophic.Level)) <span class="sc">%&gt;%</span></span>
+<span id="cb53-157"><a href="#cb53-157" aria-hidden="true" tabindex="-1"></a>    <span class="co"># note the use of the %&gt;% pipe operator in the line above... for some reason, the native pipe operator (`|&gt;`) throws an error!</span></span>
+<span id="cb53-158"><a href="#cb53-158" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aov</span>(logMass <span class="sc">~</span> Trophic.Level, <span class="at">data =</span> .) <span class="sc">|&gt;</span></span>
+<span id="cb53-159"><a href="#cb53-159" aria-hidden="true" tabindex="-1"></a>    <span class="fu">tidy</span>() <span class="sc">|&gt;</span></span>
+<span id="cb53-160"><a href="#cb53-160" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(term <span class="sc">==</span> <span class="st">"Trophic.Level"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb53-161"><a href="#cb53-161" aria-hidden="true" tabindex="-1"></a>    <span class="fu">pull</span>(statistic)</span>
+<span id="cb53-162"><a href="#cb53-162" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb53-163"><a href="#cb53-163" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb53-164"><a href="#cb53-164" aria-hidden="true" tabindex="-1"></a>permuted.F <span class="ot">&lt;-</span> <span class="fu">as_tibble</span>(permuted.F) <span class="sc">|&gt;</span></span>
+<span id="cb53-165"><a href="#cb53-165" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">stat =</span> <span class="st">"result"</span>)</span>
+<span id="cb53-166"><a href="#cb53-166" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb53-167"><a href="#cb53-167" aria-hidden="true" tabindex="-1"></a>p.value <span class="ot">&lt;-</span> permuted.F <span class="sc">|&gt;</span></span>
+<span id="cb53-168"><a href="#cb53-168" aria-hidden="true" tabindex="-1"></a>  <span class="fu">get_p_value</span>(<span class="at">obs_stat =</span> original.F, <span class="at">direction =</span> <span class="st">"greater"</span>)</span>
+<span id="cb53-169"><a href="#cb53-169" aria-hidden="true" tabindex="-1"></a>p.value</span>
+<span id="cb53-170"><a href="#cb53-170" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb53-171"><a href="#cb53-171" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb53-172"><a href="#cb53-172" aria-hidden="true" tabindex="-1"></a><span class="fu">### Step 1 {.unnumbered}</span></span>
+<span id="cb53-172"><a href="#cb53-172" aria-hidden="true" tabindex="-1"></a><span class="fu">## Challenge 2 {.unnumbered}</span></span>
 <span id="cb53-173"><a href="#cb53-173" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb53-174"><a href="#cb53-174" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Create the following two new variables and add them to AVONET dataset:</span>
-<span id="cb53-175"><a href="#cb53-175" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>**Relative beak length**, which you should calculate as the *residual* of log(**Beak.Length_Culmen**) on log(**Mass**).</span>
-<span id="cb53-176"><a href="#cb53-176" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>**Relative tarsus length**, which you should calculate as the *residual* of log(**Tarsus.Length**) on log(**Mass**).</span>
-<span id="cb53-177"><a href="#cb53-177" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb53-180"><a href="#cb53-180" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb53-181"><a href="#cb53-181" aria-hidden="true" tabindex="-1"></a>relBeak <span class="ot">&lt;-</span> <span class="fu">lm</span>(logBeak <span class="sc">~</span> logMass, <span class="at">data =</span> d)</span>
-<span id="cb53-182"><a href="#cb53-182" aria-hidden="true" tabindex="-1"></a>relTarsus <span class="ot">&lt;-</span> <span class="fu">lm</span>(logTarsus <span class="sc">~</span> logMass, <span class="at">data =</span> d)</span>
-<span id="cb53-183"><a href="#cb53-183" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> d <span class="sc">|&gt;</span> <span class="fu">mutate</span>(</span>
-<span id="cb53-184"><a href="#cb53-184" aria-hidden="true" tabindex="-1"></a>  <span class="at">relBeak =</span> relBeak<span class="sc">$</span>residuals,</span>
-<span id="cb53-185"><a href="#cb53-185" aria-hidden="true" tabindex="-1"></a>  <span class="at">relTarsus =</span> relTarsus<span class="sc">$</span>residuals)</span>
-<span id="cb53-186"><a href="#cb53-186" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb53-187"><a href="#cb53-187" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb53-188"><a href="#cb53-188" aria-hidden="true" tabindex="-1"></a><span class="fu">### Step 2 {.unnumbered}</span></span>
+<span id="cb53-174"><a href="#cb53-174" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Step 1 {.unnumbered}</span></span>
+<span id="cb53-175"><a href="#cb53-175" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb53-176"><a href="#cb53-176" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Create the following two new variables and add them to AVONET dataset:</span>
+<span id="cb53-177"><a href="#cb53-177" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>**Relative beak length**, which you should calculate as the *residual* of log(**Beak.Length_Culmen**) on log(**Mass**).</span>
+<span id="cb53-178"><a href="#cb53-178" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>**Relative tarsus length**, which you should calculate as the *residual* of log(**Tarsus.Length**) on log(**Mass**).</span>
+<span id="cb53-179"><a href="#cb53-179" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb53-182"><a href="#cb53-182" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb53-183"><a href="#cb53-183" aria-hidden="true" tabindex="-1"></a>relBeak <span class="ot">&lt;-</span> <span class="fu">lm</span>(logBeak <span class="sc">~</span> logMass, <span class="at">data =</span> d)</span>
+<span id="cb53-184"><a href="#cb53-184" aria-hidden="true" tabindex="-1"></a>relTarsus <span class="ot">&lt;-</span> <span class="fu">lm</span>(logTarsus <span class="sc">~</span> logMass, <span class="at">data =</span> d)</span>
+<span id="cb53-185"><a href="#cb53-185" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> d <span class="sc">|&gt;</span> <span class="fu">mutate</span>(</span>
+<span id="cb53-186"><a href="#cb53-186" aria-hidden="true" tabindex="-1"></a>  <span class="at">relBeak =</span> relBeak<span class="sc">$</span>residuals,</span>
+<span id="cb53-187"><a href="#cb53-187" aria-hidden="true" tabindex="-1"></a>  <span class="at">relTarsus =</span> relTarsus<span class="sc">$</span>residuals)</span>
+<span id="cb53-188"><a href="#cb53-188" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb53-189"><a href="#cb53-189" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb53-190"><a href="#cb53-190" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Make a boxplot or violin plot of your new relative tarsus length variable in relation to **Primary.Lifestyle** and of your new relative beak length variable in relation to **Trophic.Niche**</span>
+<span id="cb53-190"><a href="#cb53-190" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Step 2 {.unnumbered}</span></span>
 <span id="cb53-191"><a href="#cb53-191" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb53-194"><a href="#cb53-194" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb53-195"><a href="#cb53-195" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> d <span class="sc">|&gt;</span> <span class="fu">mutate</span>(</span>
-<span id="cb53-196"><a href="#cb53-196" aria-hidden="true" tabindex="-1"></a>  <span class="at">Primary.Lifestyle =</span> <span class="fu">factor</span>(Primary.Lifestyle,</span>
-<span id="cb53-197"><a href="#cb53-197" aria-hidden="true" tabindex="-1"></a>                             <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"Aerial"</span>, <span class="st">"Aquatic"</span>, <span class="st">"Insessorial"</span>, <span class="st">"Terrestrial"</span>, <span class="st">"Generalist"</span>))</span>
-<span id="cb53-198"><a href="#cb53-198" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb53-199"><a href="#cb53-199" aria-hidden="true" tabindex="-1"></a>p1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> d <span class="sc">|&gt;</span> <span class="fu">drop_na</span>(Primary.Lifestyle), <span class="fu">aes</span>(<span class="at">x=</span>Primary.Lifestyle, <span class="at">y=</span>relTarsus)) <span class="sc">+</span></span>
-<span id="cb53-200"><a href="#cb53-200" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
-<span id="cb53-201"><a href="#cb53-201" aria-hidden="true" tabindex="-1"></a>  <span class="co"># geom_jitter(alpha = 0.05) +</span></span>
-<span id="cb53-202"><a href="#cb53-202" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
-<span id="cb53-203"><a href="#cb53-203" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">45</span>, <span class="at">hjust=</span><span class="dv">1</span>))</span>
-<span id="cb53-204"><a href="#cb53-204" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb53-205"><a href="#cb53-205" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> d <span class="sc">|&gt;</span> <span class="fu">mutate</span>(</span>
-<span id="cb53-206"><a href="#cb53-206" aria-hidden="true" tabindex="-1"></a>  <span class="at">Trophic.Niche =</span> <span class="fu">factor</span>(Trophic.Niche,</span>
-<span id="cb53-207"><a href="#cb53-207" aria-hidden="true" tabindex="-1"></a>                         <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"Nectarivore"</span>, <span class="st">"Herbivore aquatic"</span>, <span class="st">"Frugivore"</span>, <span class="st">"Granivore"</span>, <span class="st">"Herbivore terrestrial"</span>, <span class="st">"Aquatic predator"</span>, <span class="st">"Invertivore"</span>, <span class="st">"Vertivore"</span>, <span class="st">"Scavenger"</span>, <span class="st">"Omnivore"</span>))</span>
-<span id="cb53-208"><a href="#cb53-208" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb53-209"><a href="#cb53-209" aria-hidden="true" tabindex="-1"></a>p2 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> d <span class="sc">|&gt;</span> <span class="fu">drop_na</span>(Trophic.Niche), <span class="fu">aes</span>(<span class="at">x=</span>Trophic.Niche, <span class="at">y=</span>relBeak)) <span class="sc">+</span></span>
-<span id="cb53-210"><a href="#cb53-210" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
-<span id="cb53-211"><a href="#cb53-211" aria-hidden="true" tabindex="-1"></a>  <span class="co"># geom_jitter(alpha = 0.05) +</span></span>
-<span id="cb53-212"><a href="#cb53-212" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
-<span id="cb53-213"><a href="#cb53-213" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">45</span>, <span class="at">hjust=</span><span class="dv">1</span>))</span>
-<span id="cb53-214"><a href="#cb53-214" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_grid</span>(p1, p2, <span class="at">nrow =</span> <span class="dv">1</span>)</span>
-<span id="cb53-215"><a href="#cb53-215" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb53-216"><a href="#cb53-216" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb53-217"><a href="#cb53-217" aria-hidden="true" tabindex="-1"></a><span class="fu">### Step 3 {.unnumbered}</span></span>
+<span id="cb53-192"><a href="#cb53-192" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Make a boxplot or violin plot of your new relative tarsus length variable in relation to **Primary.Lifestyle** and of your new relative beak length variable in relation to **Trophic.Niche**</span>
+<span id="cb53-193"><a href="#cb53-193" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb53-196"><a href="#cb53-196" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb53-197"><a href="#cb53-197" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> d <span class="sc">|&gt;</span> <span class="fu">mutate</span>(</span>
+<span id="cb53-198"><a href="#cb53-198" aria-hidden="true" tabindex="-1"></a>  <span class="at">Primary.Lifestyle =</span> <span class="fu">factor</span>(Primary.Lifestyle,</span>
+<span id="cb53-199"><a href="#cb53-199" aria-hidden="true" tabindex="-1"></a>                             <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"Aerial"</span>, <span class="st">"Aquatic"</span>, <span class="st">"Insessorial"</span>, <span class="st">"Terrestrial"</span>, <span class="st">"Generalist"</span>))</span>
+<span id="cb53-200"><a href="#cb53-200" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb53-201"><a href="#cb53-201" aria-hidden="true" tabindex="-1"></a>p1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> d <span class="sc">|&gt;</span> <span class="fu">drop_na</span>(Primary.Lifestyle), <span class="fu">aes</span>(<span class="at">x=</span>Primary.Lifestyle, <span class="at">y=</span>relTarsus)) <span class="sc">+</span></span>
+<span id="cb53-202"><a href="#cb53-202" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
+<span id="cb53-203"><a href="#cb53-203" aria-hidden="true" tabindex="-1"></a>  <span class="co"># geom_jitter(alpha = 0.05) +</span></span>
+<span id="cb53-204"><a href="#cb53-204" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb53-205"><a href="#cb53-205" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">45</span>, <span class="at">hjust=</span><span class="dv">1</span>))</span>
+<span id="cb53-206"><a href="#cb53-206" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb53-207"><a href="#cb53-207" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> d <span class="sc">|&gt;</span> <span class="fu">mutate</span>(</span>
+<span id="cb53-208"><a href="#cb53-208" aria-hidden="true" tabindex="-1"></a>  <span class="at">Trophic.Niche =</span> <span class="fu">factor</span>(Trophic.Niche,</span>
+<span id="cb53-209"><a href="#cb53-209" aria-hidden="true" tabindex="-1"></a>                         <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"Nectarivore"</span>, <span class="st">"Herbivore aquatic"</span>, <span class="st">"Frugivore"</span>, <span class="st">"Granivore"</span>, <span class="st">"Herbivore terrestrial"</span>, <span class="st">"Aquatic predator"</span>, <span class="st">"Invertivore"</span>, <span class="st">"Vertivore"</span>, <span class="st">"Scavenger"</span>, <span class="st">"Omnivore"</span>))</span>
+<span id="cb53-210"><a href="#cb53-210" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb53-211"><a href="#cb53-211" aria-hidden="true" tabindex="-1"></a>p2 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> d <span class="sc">|&gt;</span> <span class="fu">drop_na</span>(Trophic.Niche), <span class="fu">aes</span>(<span class="at">x=</span>Trophic.Niche, <span class="at">y=</span>relBeak)) <span class="sc">+</span></span>
+<span id="cb53-212"><a href="#cb53-212" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
+<span id="cb53-213"><a href="#cb53-213" aria-hidden="true" tabindex="-1"></a>  <span class="co"># geom_jitter(alpha = 0.05) +</span></span>
+<span id="cb53-214"><a href="#cb53-214" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb53-215"><a href="#cb53-215" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">45</span>, <span class="at">hjust=</span><span class="dv">1</span>))</span>
+<span id="cb53-216"><a href="#cb53-216" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_grid</span>(p1, p2, <span class="at">nrow =</span> <span class="dv">1</span>)</span>
+<span id="cb53-217"><a href="#cb53-217" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb53-218"><a href="#cb53-218" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb53-219"><a href="#cb53-219" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Run ANOVA analyses to look at the association between geographic range size and the variable **Migration**. You should first drop those observations for which **Migration** is not scored and also look at the distribution of the variable **Range.Size** to decide whether and how it might need to be transformed.</span>
+<span id="cb53-219"><a href="#cb53-219" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Step 3 {.unnumbered}</span></span>
 <span id="cb53-220"><a href="#cb53-220" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb53-223"><a href="#cb53-223" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb53-224"><a href="#cb53-224" aria-hidden="true" tabindex="-1"></a>migration <span class="ot">&lt;-</span> d <span class="sc">|&gt;</span> <span class="fu">drop_na</span>(Migration)</span>
-<span id="cb53-225"><a href="#cb53-225" aria-hidden="true" tabindex="-1"></a><span class="fu">histogram</span>(migration<span class="sc">$</span>Range.Size)</span>
-<span id="cb53-226"><a href="#cb53-226" aria-hidden="true" tabindex="-1"></a><span class="fu">histogram</span>(migration<span class="sc">$</span>logRS)</span>
-<span id="cb53-227"><a href="#cb53-227" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb53-228"><a href="#cb53-228" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb53-229"><a href="#cb53-229" aria-hidden="true" tabindex="-1"></a>It looks like **Range.Size** should be log transformed!</span>
+<span id="cb53-221"><a href="#cb53-221" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Run ANOVA analyses to look at the association between geographic range size and the variable **Migration**. You should first drop those observations for which **Migration** is not scored and also look at the distribution of the variable **Range.Size** to decide whether and how it might need to be transformed.</span>
+<span id="cb53-222"><a href="#cb53-222" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb53-225"><a href="#cb53-225" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb53-226"><a href="#cb53-226" aria-hidden="true" tabindex="-1"></a>migration <span class="ot">&lt;-</span> d <span class="sc">|&gt;</span> <span class="fu">drop_na</span>(Migration)</span>
+<span id="cb53-227"><a href="#cb53-227" aria-hidden="true" tabindex="-1"></a><span class="fu">histogram</span>(migration<span class="sc">$</span>Range.Size)</span>
+<span id="cb53-228"><a href="#cb53-228" aria-hidden="true" tabindex="-1"></a><span class="fu">histogram</span>(migration<span class="sc">$</span>logRS)</span>
+<span id="cb53-229"><a href="#cb53-229" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb53-230"><a href="#cb53-230" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb53-233"><a href="#cb53-233" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb53-234"><a href="#cb53-234" aria-hidden="true" tabindex="-1"></a><span class="co">#| message: false</span></span>
-<span id="cb53-235"><a href="#cb53-235" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
-<span id="cb53-236"><a href="#cb53-236" aria-hidden="true" tabindex="-1"></a><span class="co"># look at distribution of the data across levels</span></span>
-<span id="cb53-237"><a href="#cb53-237" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> migration, <span class="fu">aes</span>(<span class="at">x =</span> Migration, <span class="at">y =</span> logRS)) <span class="sc">+</span></span>
-<span id="cb53-238"><a href="#cb53-238" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_violin</span>() <span class="sc">+</span></span>
-<span id="cb53-239"><a href="#cb53-239" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="at">alpha =</span> <span class="fl">0.05</span>, <span class="at">width =</span> <span class="fl">0.5</span>) </span>
-<span id="cb53-240"><a href="#cb53-240" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb53-241"><a href="#cb53-241" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb53-244"><a href="#cb53-244" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb53-245"><a href="#cb53-245" aria-hidden="true" tabindex="-1"></a>m3 <span class="ot">&lt;-</span> <span class="fu">lm</span>(logRS <span class="sc">~</span> Migration, <span class="at">data =</span> migration)</span>
-<span id="cb53-246"><a href="#cb53-246" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(m3)</span>
-<span id="cb53-247"><a href="#cb53-247" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb53-248"><a href="#cb53-248" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb53-249"><a href="#cb53-249" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Based on the global model, is range size associated with form of migration? How much of the variance in your measure of range size is associated with **Migration** behavior level?</span>
+<span id="cb53-231"><a href="#cb53-231" aria-hidden="true" tabindex="-1"></a>It looks like **Range.Size** should be log transformed!</span>
+<span id="cb53-232"><a href="#cb53-232" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb53-235"><a href="#cb53-235" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb53-236"><a href="#cb53-236" aria-hidden="true" tabindex="-1"></a><span class="co">#| message: false</span></span>
+<span id="cb53-237"><a href="#cb53-237" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
+<span id="cb53-238"><a href="#cb53-238" aria-hidden="true" tabindex="-1"></a><span class="co"># look at distribution of the data across levels</span></span>
+<span id="cb53-239"><a href="#cb53-239" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> migration, <span class="fu">aes</span>(<span class="at">x =</span> Migration, <span class="at">y =</span> logRS)) <span class="sc">+</span></span>
+<span id="cb53-240"><a href="#cb53-240" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_violin</span>() <span class="sc">+</span></span>
+<span id="cb53-241"><a href="#cb53-241" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="at">alpha =</span> <span class="fl">0.05</span>, <span class="at">width =</span> <span class="fl">0.5</span>) </span>
+<span id="cb53-242"><a href="#cb53-242" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb53-243"><a href="#cb53-243" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb53-246"><a href="#cb53-246" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb53-247"><a href="#cb53-247" aria-hidden="true" tabindex="-1"></a>m3 <span class="ot">&lt;-</span> <span class="fu">lm</span>(logRS <span class="sc">~</span> Migration, <span class="at">data =</span> migration)</span>
+<span id="cb53-248"><a href="#cb53-248" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(m3)</span>
+<span id="cb53-249"><a href="#cb53-249" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb53-250"><a href="#cb53-250" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb53-251"><a href="#cb53-251" aria-hidden="true" tabindex="-1"></a>From the model <span class="in">`summary()`</span>, we can see that the F statistic is significant, although the R-squared value suggests that only ~9% of the variation in log(range size) is associated with **Migration** behavior style.</span>
+<span id="cb53-251"><a href="#cb53-251" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Based on the global model, is range size associated with form of migration? How much of the variance in your measure of range size is associated with **Migration** behavior level?</span>
 <span id="cb53-252"><a href="#cb53-252" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb53-253"><a href="#cb53-253" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; **NOTE:** We can calculate the amount of variance explained by the model (i.e., R-squared, or, a.k.a. $\eta$-squared) ourselves from the ANOVA table output from running </span><span class="in">`aov()`</span><span class="at">. To do so, we calculate the ratio of the *regression sum of squares* to the *total sum of squares*. The code below pulls these value from a </span><span class="in">`tidy()`</span><span class="at"> table of the model coefficients...</span></span>
+<span id="cb53-253"><a href="#cb53-253" aria-hidden="true" tabindex="-1"></a>From the model <span class="in">`summary()`</span>, we can see that the F statistic is significant, although the R-squared value suggests that only ~9% of the variation in log(range size) is associated with **Migration** behavior style.</span>
 <span id="cb53-254"><a href="#cb53-254" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb53-257"><a href="#cb53-257" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb53-258"><a href="#cb53-258" aria-hidden="true" tabindex="-1"></a>m3 <span class="ot">&lt;-</span> <span class="fu">aov</span>(logRS <span class="sc">~</span> Migration, <span class="at">data =</span> migration)</span>
-<span id="cb53-259"><a href="#cb53-259" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(m3)</span>
-<span id="cb53-260"><a href="#cb53-260" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb53-261"><a href="#cb53-261" aria-hidden="true" tabindex="-1"></a>coefs <span class="ot">&lt;-</span> m3 <span class="sc">|&gt;</span> <span class="fu">tidy</span>() <span class="sc">%&gt;%</span> <span class="fu">select</span>(term, sumsq)</span>
-<span id="cb53-262"><a href="#cb53-262" aria-hidden="true" tabindex="-1"></a>(r2 <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="sc">-</span> (coefs <span class="sc">|&gt;</span> <span class="fu">filter</span>(term <span class="sc">==</span> <span class="st">"Residuals"</span>) <span class="sc">|&gt;</span> <span class="fu">pull</span>(sumsq)) <span class="sc">/</span> (coefs <span class="sc">|&gt;</span> <span class="fu">summarize</span>(<span class="at">totalSS =</span> <span class="fu">sum</span>(sumsq)) <span class="sc">|&gt;</span> <span class="fu">pull</span>(totalSS)))</span>
-<span id="cb53-263"><a href="#cb53-263" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb53-264"><a href="#cb53-264" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb53-265"><a href="#cb53-265" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Given the regression coefficients returned in the output of the model, which **Migration** categor(ies) are different than the reference level? What level is the reference level?</span>
+<span id="cb53-255"><a href="#cb53-255" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; **NOTE:** We can calculate the amount of variance explained by the model (i.e., R-squared, or, a.k.a. $\eta$-squared) ourselves from the ANOVA table output from running </span><span class="in">`aov()`</span><span class="at">. To do so, we calculate the ratio of the *regression sum of squares* to the *total sum of squares*. The code below pulls these value from a </span><span class="in">`tidy()`</span><span class="at"> table of the model coefficients...</span></span>
+<span id="cb53-256"><a href="#cb53-256" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb53-259"><a href="#cb53-259" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb53-260"><a href="#cb53-260" aria-hidden="true" tabindex="-1"></a>m3 <span class="ot">&lt;-</span> <span class="fu">aov</span>(logRS <span class="sc">~</span> Migration, <span class="at">data =</span> migration)</span>
+<span id="cb53-261"><a href="#cb53-261" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(m3)</span>
+<span id="cb53-262"><a href="#cb53-262" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb53-263"><a href="#cb53-263" aria-hidden="true" tabindex="-1"></a>coefs <span class="ot">&lt;-</span> m3 <span class="sc">|&gt;</span> <span class="fu">tidy</span>() <span class="sc">%&gt;%</span> <span class="fu">select</span>(term, sumsq)</span>
+<span id="cb53-264"><a href="#cb53-264" aria-hidden="true" tabindex="-1"></a>(r2 <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="sc">-</span> (coefs <span class="sc">|&gt;</span> <span class="fu">filter</span>(term <span class="sc">==</span> <span class="st">"Residuals"</span>) <span class="sc">|&gt;</span> <span class="fu">pull</span>(sumsq)) <span class="sc">/</span> (coefs <span class="sc">|&gt;</span> <span class="fu">summarize</span>(<span class="at">totalSS =</span> <span class="fu">sum</span>(sumsq)) <span class="sc">|&gt;</span> <span class="fu">pull</span>(totalSS)))</span>
+<span id="cb53-265"><a href="#cb53-265" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb53-266"><a href="#cb53-266" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb53-267"><a href="#cb53-267" aria-hidden="true" tabindex="-1"></a>In the <span class="in">`summary()`</span> of the m3 linear model, **Migration** levels 1 and 2 are both different from **Migration** level 3, which is the reference level (because that is what we releveled to above).</span>
+<span id="cb53-267"><a href="#cb53-267" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Given the regression coefficients returned in the output of the model, which **Migration** categor(ies) are different than the reference level? What level is the reference level?</span>
 <span id="cb53-268"><a href="#cb53-268" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb53-269"><a href="#cb53-269" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Re-level and assess differences among the remaining pair of **Migration** categories.</span>
+<span id="cb53-269"><a href="#cb53-269" aria-hidden="true" tabindex="-1"></a>In the <span class="in">`summary()`</span> of the m3 linear model, **Migration** levels 1 and 2 are both different from **Migration** level 3, which is the reference level (because that is what we releveled to above).</span>
 <span id="cb53-270"><a href="#cb53-270" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb53-273"><a href="#cb53-273" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb53-274"><a href="#cb53-274" aria-hidden="true" tabindex="-1"></a>migration <span class="ot">&lt;-</span> migration <span class="sc">|&gt;</span> <span class="fu">mutate</span>(<span class="at">Migration =</span> <span class="fu">relevel</span>(Migration, <span class="at">ref =</span> <span class="st">"1"</span>))</span>
-<span id="cb53-275"><a href="#cb53-275" aria-hidden="true" tabindex="-1"></a>m3 <span class="ot">&lt;-</span> <span class="fu">aov</span>(logRS <span class="sc">~</span> Migration, <span class="at">data =</span> migration)</span>
-<span id="cb53-276"><a href="#cb53-276" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(m3)</span>
-<span id="cb53-277"><a href="#cb53-277" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb53-278"><a href="#cb53-278" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb53-279"><a href="#cb53-279" aria-hidden="true" tabindex="-1"></a>After re-leveling, we can see that **Migration** levels 1 and 2 are also different from one another.</span>
+<span id="cb53-271"><a href="#cb53-271" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Re-level and assess differences among the remaining pair of **Migration** categories.</span>
+<span id="cb53-272"><a href="#cb53-272" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb53-275"><a href="#cb53-275" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb53-276"><a href="#cb53-276" aria-hidden="true" tabindex="-1"></a>migration <span class="ot">&lt;-</span> migration <span class="sc">|&gt;</span> <span class="fu">mutate</span>(<span class="at">Migration =</span> <span class="fu">relevel</span>(Migration, <span class="at">ref =</span> <span class="st">"1"</span>))</span>
+<span id="cb53-277"><a href="#cb53-277" aria-hidden="true" tabindex="-1"></a>m3 <span class="ot">&lt;-</span> <span class="fu">aov</span>(logRS <span class="sc">~</span> Migration, <span class="at">data =</span> migration)</span>
+<span id="cb53-278"><a href="#cb53-278" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(m3)</span>
+<span id="cb53-279"><a href="#cb53-279" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb53-280"><a href="#cb53-280" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb53-281"><a href="#cb53-281" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Also conduct a post-hoc Tukey Honest Significant Differences test to also evaluate which **Migration** categories differ "significantly" from one another.</span>
+<span id="cb53-281"><a href="#cb53-281" aria-hidden="true" tabindex="-1"></a>After re-leveling, we can see that **Migration** levels 1 and 2 are also different from one another.</span>
 <span id="cb53-282"><a href="#cb53-282" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb53-285"><a href="#cb53-285" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb53-286"><a href="#cb53-286" aria-hidden="true" tabindex="-1"></a>(posthoc <span class="ot">&lt;-</span> <span class="fu">TukeyHSD</span>(m3, <span class="at">which =</span> <span class="st">"Migration"</span>, <span class="at">conf.level =</span> <span class="fl">0.95</span>))</span>
-<span id="cb53-287"><a href="#cb53-287" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(posthoc)</span>
-<span id="cb53-288"><a href="#cb53-288" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb53-289"><a href="#cb53-289" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb53-290"><a href="#cb53-290" aria-hidden="true" tabindex="-1"></a><span class="fu">### Step 4 {.unnumbered}</span></span>
+<span id="cb53-283"><a href="#cb53-283" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Also conduct a post-hoc Tukey Honest Significant Differences test to also evaluate which **Migration** categories differ "significantly" from one another.</span>
+<span id="cb53-284"><a href="#cb53-284" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb53-287"><a href="#cb53-287" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb53-288"><a href="#cb53-288" aria-hidden="true" tabindex="-1"></a>(posthoc <span class="ot">&lt;-</span> <span class="fu">TukeyHSD</span>(m3, <span class="at">which =</span> <span class="st">"Migration"</span>, <span class="at">conf.level =</span> <span class="fl">0.95</span>))</span>
+<span id="cb53-289"><a href="#cb53-289" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(posthoc)</span>
+<span id="cb53-290"><a href="#cb53-290" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb53-291"><a href="#cb53-291" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb53-292"><a href="#cb53-292" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Winnow your original data to just consider birds from the Infraorder "Passeriformes" (song birds).</span>
+<span id="cb53-292"><a href="#cb53-292" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Step 4 {.unnumbered}</span></span>
 <span id="cb53-293"><a href="#cb53-293" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb53-296"><a href="#cb53-296" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb53-297"><a href="#cb53-297" aria-hidden="true" tabindex="-1"></a>pass <span class="ot">&lt;-</span> d <span class="sc">|&gt;</span> <span class="fu">filter</span>(Order1 <span class="sc">==</span> <span class="st">"Passeriformes"</span>)</span>
-<span id="cb53-298"><a href="#cb53-298" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb53-299"><a href="#cb53-299" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb53-300"><a href="#cb53-300" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Run separate one-factor ANOVA analyses to look at the association between <span class="co">[</span><span class="ot">1</span><span class="co">]</span> relative beak length and **Primary.Lifestyle** and between [2] relative beak length and **Trophic.Level**. In doing so...</span>
+<span id="cb53-294"><a href="#cb53-294" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Winnow your original data to just consider birds from the Infraorder "Passeriformes" (song birds).</span>
+<span id="cb53-295"><a href="#cb53-295" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb53-298"><a href="#cb53-298" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb53-299"><a href="#cb53-299" aria-hidden="true" tabindex="-1"></a>pass <span class="ot">&lt;-</span> d <span class="sc">|&gt;</span> <span class="fu">filter</span>(Order1 <span class="sc">==</span> <span class="st">"Passeriformes"</span>)</span>
+<span id="cb53-300"><a href="#cb53-300" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb53-301"><a href="#cb53-301" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb53-302"><a href="#cb53-302" aria-hidden="true" tabindex="-1"></a>Make boxplots of the response variable by each predictor and by the combination of predictors...</span>
+<span id="cb53-302"><a href="#cb53-302" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Run separate one-factor ANOVA analyses to look at the association between <span class="co">[</span><span class="ot">1</span><span class="co">]</span> relative beak length and **Primary.Lifestyle** and between [2] relative beak length and **Trophic.Level**. In doing so...</span>
 <span id="cb53-303"><a href="#cb53-303" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb53-306"><a href="#cb53-306" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb53-307"><a href="#cb53-307" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-height: 12</span></span>
-<span id="cb53-308"><a href="#cb53-308" aria-hidden="true" tabindex="-1"></a>p1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data=</span>pass, <span class="fu">aes</span>(<span class="at">x=</span>Primary.Lifestyle, <span class="at">y=</span>relBeak)) <span class="sc">+</span></span>
-<span id="cb53-309"><a href="#cb53-309" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
-<span id="cb53-310"><a href="#cb53-310" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="at">alpha =</span> <span class="fl">0.05</span>) <span class="sc">+</span></span>
-<span id="cb53-311"><a href="#cb53-311" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
-<span id="cb53-312"><a href="#cb53-312" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">45</span>, <span class="at">hjust=</span><span class="dv">1</span>))</span>
-<span id="cb53-313"><a href="#cb53-313" aria-hidden="true" tabindex="-1"></a>p2 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data=</span>pass, <span class="fu">aes</span>(<span class="at">x=</span>Trophic.Level, <span class="at">y=</span>relBeak)) <span class="sc">+</span></span>
-<span id="cb53-314"><a href="#cb53-314" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
-<span id="cb53-315"><a href="#cb53-315" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="at">alpha =</span> <span class="fl">0.05</span>) <span class="sc">+</span></span>
-<span id="cb53-316"><a href="#cb53-316" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
-<span id="cb53-317"><a href="#cb53-317" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">45</span>, <span class="at">hjust=</span><span class="dv">1</span>))</span>
-<span id="cb53-318"><a href="#cb53-318" aria-hidden="true" tabindex="-1"></a>p3 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> pass, <span class="fu">aes</span>(<span class="at">x=</span>Primary.Lifestyle, <span class="at">y=</span>relBeak)) <span class="sc">+</span></span>
-<span id="cb53-319"><a href="#cb53-319" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
-<span id="cb53-320"><a href="#cb53-320" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="at">alpha =</span> <span class="fl">0.05</span>) <span class="sc">+</span></span>
-<span id="cb53-321"><a href="#cb53-321" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>Trophic.Level) <span class="sc">+</span></span>
-<span id="cb53-322"><a href="#cb53-322" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
-<span id="cb53-323"><a href="#cb53-323" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">45</span>, <span class="at">hjust=</span><span class="dv">1</span>))</span>
-<span id="cb53-324"><a href="#cb53-324" aria-hidden="true" tabindex="-1"></a>p4 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> pass, <span class="fu">aes</span>(<span class="at">x=</span>Trophic.Level, <span class="at">y=</span>relBeak)) <span class="sc">+</span></span>
-<span id="cb53-325"><a href="#cb53-325" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
-<span id="cb53-326"><a href="#cb53-326" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="at">alpha =</span> <span class="fl">0.05</span>) <span class="sc">+</span></span>
-<span id="cb53-327"><a href="#cb53-327" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>Primary.Lifestyle) <span class="sc">+</span></span>
-<span id="cb53-328"><a href="#cb53-328" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
-<span id="cb53-329"><a href="#cb53-329" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">45</span>, <span class="at">hjust=</span><span class="dv">1</span>))</span>
-<span id="cb53-330"><a href="#cb53-330" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_grid</span>(<span class="fu">plot_grid</span>(p1, p2, <span class="at">nrow =</span> <span class="dv">1</span>), p3, p4, <span class="at">nrow =</span> <span class="dv">3</span>)</span>
-<span id="cb53-331"><a href="#cb53-331" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb53-332"><a href="#cb53-332" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb53-333"><a href="#cb53-333" aria-hidden="true" tabindex="-1"></a>... and run linear models for each predictor separately and interpret the model output.</span>
+<span id="cb53-304"><a href="#cb53-304" aria-hidden="true" tabindex="-1"></a>Make boxplots of the response variable by each predictor and by the combination of predictors...</span>
+<span id="cb53-305"><a href="#cb53-305" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb53-308"><a href="#cb53-308" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb53-309"><a href="#cb53-309" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-height: 12</span></span>
+<span id="cb53-310"><a href="#cb53-310" aria-hidden="true" tabindex="-1"></a>p1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data=</span>pass, <span class="fu">aes</span>(<span class="at">x=</span>Primary.Lifestyle, <span class="at">y=</span>relBeak)) <span class="sc">+</span></span>
+<span id="cb53-311"><a href="#cb53-311" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
+<span id="cb53-312"><a href="#cb53-312" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="at">alpha =</span> <span class="fl">0.05</span>) <span class="sc">+</span></span>
+<span id="cb53-313"><a href="#cb53-313" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb53-314"><a href="#cb53-314" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">45</span>, <span class="at">hjust=</span><span class="dv">1</span>))</span>
+<span id="cb53-315"><a href="#cb53-315" aria-hidden="true" tabindex="-1"></a>p2 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data=</span>pass, <span class="fu">aes</span>(<span class="at">x=</span>Trophic.Level, <span class="at">y=</span>relBeak)) <span class="sc">+</span></span>
+<span id="cb53-316"><a href="#cb53-316" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
+<span id="cb53-317"><a href="#cb53-317" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="at">alpha =</span> <span class="fl">0.05</span>) <span class="sc">+</span></span>
+<span id="cb53-318"><a href="#cb53-318" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb53-319"><a href="#cb53-319" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">45</span>, <span class="at">hjust=</span><span class="dv">1</span>))</span>
+<span id="cb53-320"><a href="#cb53-320" aria-hidden="true" tabindex="-1"></a>p3 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> pass, <span class="fu">aes</span>(<span class="at">x=</span>Primary.Lifestyle, <span class="at">y=</span>relBeak)) <span class="sc">+</span></span>
+<span id="cb53-321"><a href="#cb53-321" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
+<span id="cb53-322"><a href="#cb53-322" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="at">alpha =</span> <span class="fl">0.05</span>) <span class="sc">+</span></span>
+<span id="cb53-323"><a href="#cb53-323" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>Trophic.Level) <span class="sc">+</span></span>
+<span id="cb53-324"><a href="#cb53-324" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb53-325"><a href="#cb53-325" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">45</span>, <span class="at">hjust=</span><span class="dv">1</span>))</span>
+<span id="cb53-326"><a href="#cb53-326" aria-hidden="true" tabindex="-1"></a>p4 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> pass, <span class="fu">aes</span>(<span class="at">x=</span>Trophic.Level, <span class="at">y=</span>relBeak)) <span class="sc">+</span></span>
+<span id="cb53-327"><a href="#cb53-327" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
+<span id="cb53-328"><a href="#cb53-328" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="at">alpha =</span> <span class="fl">0.05</span>) <span class="sc">+</span></span>
+<span id="cb53-329"><a href="#cb53-329" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>Primary.Lifestyle) <span class="sc">+</span></span>
+<span id="cb53-330"><a href="#cb53-330" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb53-331"><a href="#cb53-331" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">45</span>, <span class="at">hjust=</span><span class="dv">1</span>))</span>
+<span id="cb53-332"><a href="#cb53-332" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_grid</span>(<span class="fu">plot_grid</span>(p1, p2, <span class="at">nrow =</span> <span class="dv">1</span>), p3, p4, <span class="at">nrow =</span> <span class="dv">3</span>)</span>
+<span id="cb53-333"><a href="#cb53-333" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb53-334"><a href="#cb53-334" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb53-337"><a href="#cb53-337" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb53-338"><a href="#cb53-338" aria-hidden="true" tabindex="-1"></a>m5 <span class="ot">&lt;-</span> <span class="fu">aov</span>(relBeak <span class="sc">~</span> Primary.Lifestyle, <span class="at">data =</span> pass)</span>
-<span id="cb53-339"><a href="#cb53-339" aria-hidden="true" tabindex="-1"></a><span class="co"># or</span></span>
-<span id="cb53-340"><a href="#cb53-340" aria-hidden="true" tabindex="-1"></a><span class="co"># m5 &lt;- lm(relBeak ~ Primary.Lifestyle, data = pass)</span></span>
-<span id="cb53-341"><a href="#cb53-341" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(m5)</span>
-<span id="cb53-342"><a href="#cb53-342" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb53-343"><a href="#cb53-343" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb53-346"><a href="#cb53-346" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb53-347"><a href="#cb53-347" aria-hidden="true" tabindex="-1"></a>m6 <span class="ot">&lt;-</span> <span class="fu">aov</span>(relBeak <span class="sc">~</span> Trophic.Level, <span class="at">data =</span> pass)</span>
-<span id="cb53-348"><a href="#cb53-348" aria-hidden="true" tabindex="-1"></a><span class="co"># or</span></span>
-<span id="cb53-349"><a href="#cb53-349" aria-hidden="true" tabindex="-1"></a><span class="co"># m6 &lt;- lm(relBeak ~ Trophic.Level, data = pass)</span></span>
-<span id="cb53-350"><a href="#cb53-350" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(m6)</span>
-<span id="cb53-351"><a href="#cb53-351" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb53-352"><a href="#cb53-352" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb53-353"><a href="#cb53-353" aria-hidden="true" tabindex="-1"></a>Relative beak length is significantly associated with both variables, but the R-squared (or eta- squared) values are quite modest.</span>
+<span id="cb53-335"><a href="#cb53-335" aria-hidden="true" tabindex="-1"></a>... and run linear models for each predictor separately and interpret the model output.</span>
+<span id="cb53-336"><a href="#cb53-336" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb53-339"><a href="#cb53-339" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb53-340"><a href="#cb53-340" aria-hidden="true" tabindex="-1"></a>m5 <span class="ot">&lt;-</span> <span class="fu">aov</span>(relBeak <span class="sc">~</span> Primary.Lifestyle, <span class="at">data =</span> pass)</span>
+<span id="cb53-341"><a href="#cb53-341" aria-hidden="true" tabindex="-1"></a><span class="co"># or</span></span>
+<span id="cb53-342"><a href="#cb53-342" aria-hidden="true" tabindex="-1"></a><span class="co"># m5 &lt;- lm(relBeak ~ Primary.Lifestyle, data = pass)</span></span>
+<span id="cb53-343"><a href="#cb53-343" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(m5)</span>
+<span id="cb53-344"><a href="#cb53-344" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb53-345"><a href="#cb53-345" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb53-348"><a href="#cb53-348" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb53-349"><a href="#cb53-349" aria-hidden="true" tabindex="-1"></a>m6 <span class="ot">&lt;-</span> <span class="fu">aov</span>(relBeak <span class="sc">~</span> Trophic.Level, <span class="at">data =</span> pass)</span>
+<span id="cb53-350"><a href="#cb53-350" aria-hidden="true" tabindex="-1"></a><span class="co"># or</span></span>
+<span id="cb53-351"><a href="#cb53-351" aria-hidden="true" tabindex="-1"></a><span class="co"># m6 &lt;- lm(relBeak ~ Trophic.Level, data = pass)</span></span>
+<span id="cb53-352"><a href="#cb53-352" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(m6)</span>
+<span id="cb53-353"><a href="#cb53-353" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb53-354"><a href="#cb53-354" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb53-355"><a href="#cb53-355" aria-hidden="true" tabindex="-1"></a><span class="fu">### Step 5 {.unnumbered}</span></span>
+<span id="cb53-355"><a href="#cb53-355" aria-hidden="true" tabindex="-1"></a>Relative beak length is significantly associated with both variables, but the R-squared (or eta- squared) values are quite modest.</span>
 <span id="cb53-356"><a href="#cb53-356" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb53-357"><a href="#cb53-357" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Run a two-factor model to look at the association between relative beak length and both **Primary.Lifestyle** and **Trophic.Level** among the passeriforms. Based on the model output, what would you conclude about how relative beak length is related to these two variables?</span>
+<span id="cb53-357"><a href="#cb53-357" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Step 5 {.unnumbered}</span></span>
 <span id="cb53-358"><a href="#cb53-358" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb53-361"><a href="#cb53-361" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb53-362"><a href="#cb53-362" aria-hidden="true" tabindex="-1"></a>m7 <span class="ot">&lt;-</span> <span class="fu">aov</span>(relBeak <span class="sc">~</span> Primary.Lifestyle <span class="sc">+</span> Trophic.Level, <span class="at">data =</span> pass)</span>
-<span id="cb53-363"><a href="#cb53-363" aria-hidden="true" tabindex="-1"></a><span class="co"># or</span></span>
-<span id="cb53-364"><a href="#cb53-364" aria-hidden="true" tabindex="-1"></a><span class="co"># m7 &lt;- lm(relBeak ~ Primary.Lifestyle + Trophic.Level, data = pass)</span></span>
-<span id="cb53-365"><a href="#cb53-365" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(m7)</span>
-<span id="cb53-366"><a href="#cb53-366" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb53-367"><a href="#cb53-367" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb53-368"><a href="#cb53-368" aria-hidden="true" tabindex="-1"></a>Both variables are important predictors of relative beak length.</span>
+<span id="cb53-359"><a href="#cb53-359" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Run a two-factor model to look at the association between relative beak length and both **Primary.Lifestyle** and **Trophic.Level** among the passeriforms. Based on the model output, what would you conclude about how relative beak length is related to these two variables?</span>
+<span id="cb53-360"><a href="#cb53-360" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb53-363"><a href="#cb53-363" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb53-364"><a href="#cb53-364" aria-hidden="true" tabindex="-1"></a>m7 <span class="ot">&lt;-</span> <span class="fu">aov</span>(relBeak <span class="sc">~</span> Primary.Lifestyle <span class="sc">+</span> Trophic.Level, <span class="at">data =</span> pass)</span>
+<span id="cb53-365"><a href="#cb53-365" aria-hidden="true" tabindex="-1"></a><span class="co"># or</span></span>
+<span id="cb53-366"><a href="#cb53-366" aria-hidden="true" tabindex="-1"></a><span class="co"># m7 &lt;- lm(relBeak ~ Primary.Lifestyle + Trophic.Level, data = pass)</span></span>
+<span id="cb53-367"><a href="#cb53-367" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(m7)</span>
+<span id="cb53-368"><a href="#cb53-368" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb53-369"><a href="#cb53-369" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb53-370"><a href="#cb53-370" aria-hidden="true" tabindex="-1"></a><span class="fu">### Step 6 {.unnumbered}</span></span>
+<span id="cb53-370"><a href="#cb53-370" aria-hidden="true" tabindex="-1"></a>Both variables are important predictors of relative beak length.</span>
 <span id="cb53-371"><a href="#cb53-371" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb53-372"><a href="#cb53-372" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Finally, run an additional two-way model with the same dataset and predictors, but adding the possibility of an interaction term. Based on the model output, what would you now conclude about how relative beak length is related to these two variables?</span>
+<span id="cb53-372"><a href="#cb53-372" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Step 6 {.unnumbered}</span></span>
 <span id="cb53-373"><a href="#cb53-373" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb53-376"><a href="#cb53-376" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb53-377"><a href="#cb53-377" aria-hidden="true" tabindex="-1"></a>m8 <span class="ot">&lt;-</span> <span class="fu">aov</span>(relBeak <span class="sc">~</span> Primary.Lifestyle <span class="sc">+</span> Trophic.Level <span class="sc">+</span> Primary.Lifestyle<span class="sc">:</span>Trophic.Level, <span class="at">data =</span> pass)</span>
-<span id="cb53-378"><a href="#cb53-378" aria-hidden="true" tabindex="-1"></a><span class="co"># or</span></span>
-<span id="cb53-379"><a href="#cb53-379" aria-hidden="true" tabindex="-1"></a><span class="co"># m8 &lt;- lm(relBeak ~ Primary.Lifestyle + Trophic.Level + Primary.Lifestyle:Trophic.Level, data = pass)</span></span>
+<span id="cb53-374"><a href="#cb53-374" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Finally, run an additional two-way model with the same dataset and predictors, but adding the possibility of an interaction term. Based on the model output, what would you now conclude about how relative beak length is related to these two variables?</span>
+<span id="cb53-375"><a href="#cb53-375" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb53-378"><a href="#cb53-378" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb53-379"><a href="#cb53-379" aria-hidden="true" tabindex="-1"></a>m8 <span class="ot">&lt;-</span> <span class="fu">aov</span>(relBeak <span class="sc">~</span> Primary.Lifestyle <span class="sc">+</span> Trophic.Level <span class="sc">+</span> Primary.Lifestyle<span class="sc">:</span>Trophic.Level, <span class="at">data =</span> pass)</span>
 <span id="cb53-380"><a href="#cb53-380" aria-hidden="true" tabindex="-1"></a><span class="co"># or</span></span>
-<span id="cb53-381"><a href="#cb53-381" aria-hidden="true" tabindex="-1"></a><span class="co"># m8 &lt;- lm(relBeak ~ Primary.Lifestyle * Trophic.Level, data = pass)</span></span>
-<span id="cb53-382"><a href="#cb53-382" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(m8)</span>
-<span id="cb53-383"><a href="#cb53-383" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb53-384"><a href="#cb53-384" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb53-385"><a href="#cb53-385" aria-hidden="true" tabindex="-1"></a>**Primary.Lifestyle**, **Trophic.Level**, and the interaction of these two variables are all significant predictors of relative beak length.</span>
+<span id="cb53-381"><a href="#cb53-381" aria-hidden="true" tabindex="-1"></a><span class="co"># m8 &lt;- lm(relBeak ~ Primary.Lifestyle + Trophic.Level + Primary.Lifestyle:Trophic.Level, data = pass)</span></span>
+<span id="cb53-382"><a href="#cb53-382" aria-hidden="true" tabindex="-1"></a><span class="co"># or</span></span>
+<span id="cb53-383"><a href="#cb53-383" aria-hidden="true" tabindex="-1"></a><span class="co"># m8 &lt;- lm(relBeak ~ Primary.Lifestyle * Trophic.Level, data = pass)</span></span>
+<span id="cb53-384"><a href="#cb53-384" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(m8)</span>
+<span id="cb53-385"><a href="#cb53-385" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb53-386"><a href="#cb53-386" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb53-387"><a href="#cb53-387" aria-hidden="true" tabindex="-1"></a><span class="fu">### Step 7 {.unnumbered}</span></span>
+<span id="cb53-387"><a href="#cb53-387" aria-hidden="true" tabindex="-1"></a>**Primary.Lifestyle**, **Trophic.Level**, and the interaction of these two variables are all significant predictors of relative beak length.</span>
 <span id="cb53-388"><a href="#cb53-388" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb53-389"><a href="#cb53-389" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Use the <span class="in">`interaction.plot()`</span> function to visualize the interaction between **Primary.Lifestyle** and **Trophic.Level**.</span>
+<span id="cb53-389"><a href="#cb53-389" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Step 7 {.unnumbered}</span></span>
 <span id="cb53-390"><a href="#cb53-390" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb53-393"><a href="#cb53-393" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb53-394"><a href="#cb53-394" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-height: 8</span></span>
-<span id="cb53-395"><a href="#cb53-395" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">1</span>))</span>
-<span id="cb53-396"><a href="#cb53-396" aria-hidden="true" tabindex="-1"></a><span class="fu">interaction.plot</span>(</span>
-<span id="cb53-397"><a href="#cb53-397" aria-hidden="true" tabindex="-1"></a>  <span class="at">x.factor =</span> pass<span class="sc">$</span>Primary.Lifestyle,</span>
-<span id="cb53-398"><a href="#cb53-398" aria-hidden="true" tabindex="-1"></a>  <span class="at">xlab =</span> <span class="st">"Primary Lifestyle"</span>,</span>
-<span id="cb53-399"><a href="#cb53-399" aria-hidden="true" tabindex="-1"></a>  <span class="at">trace.factor =</span> pass<span class="sc">$</span>Trophic.Level,</span>
-<span id="cb53-400"><a href="#cb53-400" aria-hidden="true" tabindex="-1"></a>  <span class="at">trace.label =</span> <span class="st">"Trophic Level"</span>,</span>
-<span id="cb53-401"><a href="#cb53-401" aria-hidden="true" tabindex="-1"></a>  <span class="at">response =</span> pass<span class="sc">$</span>relBeak,</span>
-<span id="cb53-402"><a href="#cb53-402" aria-hidden="true" tabindex="-1"></a>  <span class="at">fun =</span> base<span class="sc">::</span>mean, <span class="co"># make sure we use {base} version</span></span>
-<span id="cb53-403"><a href="#cb53-403" aria-hidden="true" tabindex="-1"></a>  <span class="at">ylab =</span> <span class="st">"Mean Relative Beak Length"</span></span>
-<span id="cb53-404"><a href="#cb53-404" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb53-405"><a href="#cb53-405" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb53-406"><a href="#cb53-406" aria-hidden="true" tabindex="-1"></a><span class="fu">interaction.plot</span>(</span>
-<span id="cb53-407"><a href="#cb53-407" aria-hidden="true" tabindex="-1"></a>  <span class="at">x.factor =</span> pass<span class="sc">$</span>Trophic.Level,</span>
-<span id="cb53-408"><a href="#cb53-408" aria-hidden="true" tabindex="-1"></a>  <span class="at">xlab =</span> <span class="st">"Trophic Level"</span>,</span>
-<span id="cb53-409"><a href="#cb53-409" aria-hidden="true" tabindex="-1"></a>  <span class="at">trace.factor =</span> pass<span class="sc">$</span>Primary.Lifestyle,</span>
-<span id="cb53-410"><a href="#cb53-410" aria-hidden="true" tabindex="-1"></a>  <span class="at">trace.label =</span> <span class="st">"Primary Lifestyle"</span>,</span>
-<span id="cb53-411"><a href="#cb53-411" aria-hidden="true" tabindex="-1"></a>  <span class="at">response =</span> pass<span class="sc">$</span>relBeak,</span>
-<span id="cb53-412"><a href="#cb53-412" aria-hidden="true" tabindex="-1"></a>  <span class="at">fun =</span> base<span class="sc">::</span>mean, <span class="co"># make sure we use {base} version</span></span>
-<span id="cb53-413"><a href="#cb53-413" aria-hidden="true" tabindex="-1"></a>  <span class="at">ylab =</span> <span class="st">"Mean Relative Beak Length"</span></span>
-<span id="cb53-414"><a href="#cb53-414" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb53-415"><a href="#cb53-415" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb53-416"><a href="#cb53-416" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb53-417"><a href="#cb53-417" aria-hidden="true" tabindex="-1"></a><span class="fu">## Step 8 {.unnumbered}</span></span>
+<span id="cb53-391"><a href="#cb53-391" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Use the <span class="in">`interaction.plot()`</span> function to visualize the interaction between **Primary.Lifestyle** and **Trophic.Level**.</span>
+<span id="cb53-392"><a href="#cb53-392" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb53-395"><a href="#cb53-395" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb53-396"><a href="#cb53-396" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-height: 8</span></span>
+<span id="cb53-397"><a href="#cb53-397" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">1</span>))</span>
+<span id="cb53-398"><a href="#cb53-398" aria-hidden="true" tabindex="-1"></a><span class="fu">interaction.plot</span>(</span>
+<span id="cb53-399"><a href="#cb53-399" aria-hidden="true" tabindex="-1"></a>  <span class="at">x.factor =</span> pass<span class="sc">$</span>Primary.Lifestyle,</span>
+<span id="cb53-400"><a href="#cb53-400" aria-hidden="true" tabindex="-1"></a>  <span class="at">xlab =</span> <span class="st">"Primary Lifestyle"</span>,</span>
+<span id="cb53-401"><a href="#cb53-401" aria-hidden="true" tabindex="-1"></a>  <span class="at">trace.factor =</span> pass<span class="sc">$</span>Trophic.Level,</span>
+<span id="cb53-402"><a href="#cb53-402" aria-hidden="true" tabindex="-1"></a>  <span class="at">trace.label =</span> <span class="st">"Trophic Level"</span>,</span>
+<span id="cb53-403"><a href="#cb53-403" aria-hidden="true" tabindex="-1"></a>  <span class="at">response =</span> pass<span class="sc">$</span>relBeak,</span>
+<span id="cb53-404"><a href="#cb53-404" aria-hidden="true" tabindex="-1"></a>  <span class="at">fun =</span> base<span class="sc">::</span>mean, <span class="co"># make sure we use {base} version</span></span>
+<span id="cb53-405"><a href="#cb53-405" aria-hidden="true" tabindex="-1"></a>  <span class="at">ylab =</span> <span class="st">"Mean Relative Beak Length"</span></span>
+<span id="cb53-406"><a href="#cb53-406" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb53-407"><a href="#cb53-407" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb53-408"><a href="#cb53-408" aria-hidden="true" tabindex="-1"></a><span class="fu">interaction.plot</span>(</span>
+<span id="cb53-409"><a href="#cb53-409" aria-hidden="true" tabindex="-1"></a>  <span class="at">x.factor =</span> pass<span class="sc">$</span>Trophic.Level,</span>
+<span id="cb53-410"><a href="#cb53-410" aria-hidden="true" tabindex="-1"></a>  <span class="at">xlab =</span> <span class="st">"Trophic Level"</span>,</span>
+<span id="cb53-411"><a href="#cb53-411" aria-hidden="true" tabindex="-1"></a>  <span class="at">trace.factor =</span> pass<span class="sc">$</span>Primary.Lifestyle,</span>
+<span id="cb53-412"><a href="#cb53-412" aria-hidden="true" tabindex="-1"></a>  <span class="at">trace.label =</span> <span class="st">"Primary Lifestyle"</span>,</span>
+<span id="cb53-413"><a href="#cb53-413" aria-hidden="true" tabindex="-1"></a>  <span class="at">response =</span> pass<span class="sc">$</span>relBeak,</span>
+<span id="cb53-414"><a href="#cb53-414" aria-hidden="true" tabindex="-1"></a>  <span class="at">fun =</span> base<span class="sc">::</span>mean, <span class="co"># make sure we use {base} version</span></span>
+<span id="cb53-415"><a href="#cb53-415" aria-hidden="true" tabindex="-1"></a>  <span class="at">ylab =</span> <span class="st">"Mean Relative Beak Length"</span></span>
+<span id="cb53-416"><a href="#cb53-416" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb53-417"><a href="#cb53-417" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb53-418"><a href="#cb53-418" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb53-419"><a href="#cb53-419" aria-hidden="true" tabindex="-1"></a>Let's look at the model of **relative beak size ~ trophic level**.</span>
+<span id="cb53-419"><a href="#cb53-419" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Step 8 {.unnumbered}</span></span>
 <span id="cb53-420"><a href="#cb53-420" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb53-421"><a href="#cb53-421" aria-hidden="true" tabindex="-1"></a>First, we check the ratio of variances among different levels of the predictor...</span>
+<span id="cb53-421"><a href="#cb53-421" aria-hidden="true" tabindex="-1"></a>Let's look at the model of **relative beak size ~ trophic level**.</span>
 <span id="cb53-422"><a href="#cb53-422" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb53-425"><a href="#cb53-425" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb53-426"><a href="#cb53-426" aria-hidden="true" tabindex="-1"></a>sd_ratio <span class="ot">&lt;-</span> pass <span class="sc">|&gt;</span> <span class="fu">group_by</span>(Trophic.Level) <span class="sc">|&gt;</span></span>
-<span id="cb53-427"><a href="#cb53-427" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">sd =</span> <span class="fu">sd</span>(relBeak, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)) <span class="sc">|&gt;</span> <span class="fu">pull</span>(sd)</span>
-<span id="cb53-428"><a href="#cb53-428" aria-hidden="true" tabindex="-1"></a>(sd_ratio <span class="ot">&lt;-</span> <span class="fu">max</span>(sd_ratio) <span class="sc">/</span> <span class="fu">min</span>(sd_ratio))</span>
-<span id="cb53-429"><a href="#cb53-429" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb53-430"><a href="#cb53-430" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb53-431"><a href="#cb53-431" aria-hidden="true" tabindex="-1"></a>Then, we do visual checks for normality of observations and residuals within groups... all seem to deviate from normality!</span>
+<span id="cb53-423"><a href="#cb53-423" aria-hidden="true" tabindex="-1"></a>First, we check the ratio of variances among different levels of the predictor...</span>
+<span id="cb53-424"><a href="#cb53-424" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb53-427"><a href="#cb53-427" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb53-428"><a href="#cb53-428" aria-hidden="true" tabindex="-1"></a>sd_ratio <span class="ot">&lt;-</span> pass <span class="sc">|&gt;</span> <span class="fu">group_by</span>(Trophic.Level) <span class="sc">|&gt;</span></span>
+<span id="cb53-429"><a href="#cb53-429" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">sd =</span> <span class="fu">sd</span>(relBeak, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)) <span class="sc">|&gt;</span> <span class="fu">pull</span>(sd)</span>
+<span id="cb53-430"><a href="#cb53-430" aria-hidden="true" tabindex="-1"></a>(sd_ratio <span class="ot">&lt;-</span> <span class="fu">max</span>(sd_ratio) <span class="sc">/</span> <span class="fu">min</span>(sd_ratio))</span>
+<span id="cb53-431"><a href="#cb53-431" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb53-432"><a href="#cb53-432" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb53-435"><a href="#cb53-435" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb53-436"><a href="#cb53-436" aria-hidden="true" tabindex="-1"></a><span class="co">#| message: false</span></span>
-<span id="cb53-437"><a href="#cb53-437" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
-<span id="cb53-438"><a href="#cb53-438" aria-hidden="true" tabindex="-1"></a>p1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> pass, <span class="fu">aes</span>(<span class="at">x=</span>relBeak)) <span class="sc">+</span> <span class="fu">geom_histogram</span>() <span class="sc">+</span> <span class="fu">facet_wrap</span>(<span class="sc">~</span>Trophic.Level)</span>
-<span id="cb53-439"><a href="#cb53-439" aria-hidden="true" tabindex="-1"></a>m6data <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">residuals =</span> m6<span class="sc">$</span>residuals, <span class="at">Trophic.Level =</span> m6<span class="sc">$</span>model<span class="sc">$</span>Trophic.Level)</span>
-<span id="cb53-440"><a href="#cb53-440" aria-hidden="true" tabindex="-1"></a>p2 <span class="ot">&lt;-</span> <span class="fu">ggqqplot</span>(<span class="at">data =</span> m6data, <span class="at">x =</span> <span class="st">"residuals"</span>) <span class="sc">+</span> <span class="fu">facet_wrap</span>(<span class="sc">~</span>Trophic.Level)</span>
-<span id="cb53-441"><a href="#cb53-441" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_grid</span>(p1, p2, <span class="at">nrow=</span><span class="dv">2</span>)</span>
-<span id="cb53-442"><a href="#cb53-442" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb53-443"><a href="#cb53-443" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb53-444"><a href="#cb53-444" aria-hidden="true" tabindex="-1"></a>We can do the same for our model of log(range size) ~ migration level.</span>
+<span id="cb53-433"><a href="#cb53-433" aria-hidden="true" tabindex="-1"></a>Then, we do visual checks for normality of observations and residuals within groups... all seem to deviate from normality!</span>
+<span id="cb53-434"><a href="#cb53-434" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb53-437"><a href="#cb53-437" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb53-438"><a href="#cb53-438" aria-hidden="true" tabindex="-1"></a><span class="co">#| message: false</span></span>
+<span id="cb53-439"><a href="#cb53-439" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
+<span id="cb53-440"><a href="#cb53-440" aria-hidden="true" tabindex="-1"></a>p1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> pass, <span class="fu">aes</span>(<span class="at">x=</span>relBeak)) <span class="sc">+</span> <span class="fu">geom_histogram</span>() <span class="sc">+</span> <span class="fu">facet_wrap</span>(<span class="sc">~</span>Trophic.Level)</span>
+<span id="cb53-441"><a href="#cb53-441" aria-hidden="true" tabindex="-1"></a>m6data <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">residuals =</span> m6<span class="sc">$</span>residuals, <span class="at">Trophic.Level =</span> m6<span class="sc">$</span>model<span class="sc">$</span>Trophic.Level)</span>
+<span id="cb53-442"><a href="#cb53-442" aria-hidden="true" tabindex="-1"></a>p2 <span class="ot">&lt;-</span> <span class="fu">ggqqplot</span>(<span class="at">data =</span> m6data, <span class="at">x =</span> <span class="st">"residuals"</span>) <span class="sc">+</span> <span class="fu">facet_wrap</span>(<span class="sc">~</span>Trophic.Level)</span>
+<span id="cb53-443"><a href="#cb53-443" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_grid</span>(p1, p2, <span class="at">nrow=</span><span class="dv">2</span>)</span>
+<span id="cb53-444"><a href="#cb53-444" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb53-445"><a href="#cb53-445" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb53-446"><a href="#cb53-446" aria-hidden="true" tabindex="-1"></a>Ratio of variances...</span>
+<span id="cb53-446"><a href="#cb53-446" aria-hidden="true" tabindex="-1"></a>We can do the same for our model of log(range size) ~ migration level.</span>
 <span id="cb53-447"><a href="#cb53-447" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb53-450"><a href="#cb53-450" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb53-451"><a href="#cb53-451" aria-hidden="true" tabindex="-1"></a>sd_ratio <span class="ot">&lt;-</span> migration <span class="sc">|&gt;</span></span>
-<span id="cb53-452"><a href="#cb53-452" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Migration) <span class="sc">|&gt;</span></span>
-<span id="cb53-453"><a href="#cb53-453" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">sd =</span> <span class="fu">sd</span>(logRS, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)) <span class="sc">|&gt;</span> <span class="fu">pull</span>(sd)</span>
-<span id="cb53-454"><a href="#cb53-454" aria-hidden="true" tabindex="-1"></a>(sd_ratio <span class="ot">&lt;-</span> <span class="fu">max</span>(sd_ratio) <span class="sc">/</span> <span class="fu">min</span>(sd_ratio))</span>
-<span id="cb53-455"><a href="#cb53-455" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb53-456"><a href="#cb53-456" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb53-457"><a href="#cb53-457" aria-hidden="true" tabindex="-1"></a>Visual checks... again all seem to deviate from normality!</span>
+<span id="cb53-448"><a href="#cb53-448" aria-hidden="true" tabindex="-1"></a>Ratio of variances...</span>
+<span id="cb53-449"><a href="#cb53-449" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb53-452"><a href="#cb53-452" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb53-453"><a href="#cb53-453" aria-hidden="true" tabindex="-1"></a>sd_ratio <span class="ot">&lt;-</span> migration <span class="sc">|&gt;</span></span>
+<span id="cb53-454"><a href="#cb53-454" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Migration) <span class="sc">|&gt;</span></span>
+<span id="cb53-455"><a href="#cb53-455" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">sd =</span> <span class="fu">sd</span>(logRS, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)) <span class="sc">|&gt;</span> <span class="fu">pull</span>(sd)</span>
+<span id="cb53-456"><a href="#cb53-456" aria-hidden="true" tabindex="-1"></a>(sd_ratio <span class="ot">&lt;-</span> <span class="fu">max</span>(sd_ratio) <span class="sc">/</span> <span class="fu">min</span>(sd_ratio))</span>
+<span id="cb53-457"><a href="#cb53-457" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb53-458"><a href="#cb53-458" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb53-461"><a href="#cb53-461" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb53-462"><a href="#cb53-462" aria-hidden="true" tabindex="-1"></a><span class="co">#| message: false</span></span>
-<span id="cb53-463"><a href="#cb53-463" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
-<span id="cb53-464"><a href="#cb53-464" aria-hidden="true" tabindex="-1"></a>p1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> migration, <span class="fu">aes</span>(<span class="at">x=</span>logRS)) <span class="sc">+</span> <span class="fu">geom_histogram</span>() <span class="sc">+</span> <span class="fu">facet_wrap</span>(<span class="sc">~</span>Migration)</span>
-<span id="cb53-465"><a href="#cb53-465" aria-hidden="true" tabindex="-1"></a>m3data <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">residuals =</span> m3<span class="sc">$</span>residuals, <span class="at">Migration =</span> m3<span class="sc">$</span>model<span class="sc">$</span>Migration)</span>
-<span id="cb53-466"><a href="#cb53-466" aria-hidden="true" tabindex="-1"></a>p2 <span class="ot">&lt;-</span> <span class="fu">ggqqplot</span>(<span class="at">data =</span> m3data, <span class="at">x =</span> <span class="st">"residuals"</span>) <span class="sc">+</span> <span class="fu">facet_wrap</span>(<span class="sc">~</span>Migration)</span>
-<span id="cb53-467"><a href="#cb53-467" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_grid</span>(p1, p2, <span class="at">nrow=</span><span class="dv">2</span>)</span>
-<span id="cb53-468"><a href="#cb53-468" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb53-469"><a href="#cb53-469" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb53-470"><a href="#cb53-470" aria-hidden="true" tabindex="-1"></a>Although the variance ratios are under 2, given the clear deviation from normality for the residuals, we are not **really** justified in using standard (or general) linear regression for the analyses done above.</span>
+<span id="cb53-459"><a href="#cb53-459" aria-hidden="true" tabindex="-1"></a>Visual checks... again all seem to deviate from normality!</span>
+<span id="cb53-460"><a href="#cb53-460" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb53-463"><a href="#cb53-463" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb53-464"><a href="#cb53-464" aria-hidden="true" tabindex="-1"></a><span class="co">#| message: false</span></span>
+<span id="cb53-465"><a href="#cb53-465" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
+<span id="cb53-466"><a href="#cb53-466" aria-hidden="true" tabindex="-1"></a>p1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> migration, <span class="fu">aes</span>(<span class="at">x=</span>logRS)) <span class="sc">+</span> <span class="fu">geom_histogram</span>() <span class="sc">+</span> <span class="fu">facet_wrap</span>(<span class="sc">~</span>Migration)</span>
+<span id="cb53-467"><a href="#cb53-467" aria-hidden="true" tabindex="-1"></a>m3data <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">residuals =</span> m3<span class="sc">$</span>residuals, <span class="at">Migration =</span> m3<span class="sc">$</span>model<span class="sc">$</span>Migration)</span>
+<span id="cb53-468"><a href="#cb53-468" aria-hidden="true" tabindex="-1"></a>p2 <span class="ot">&lt;-</span> <span class="fu">ggqqplot</span>(<span class="at">data =</span> m3data, <span class="at">x =</span> <span class="st">"residuals"</span>) <span class="sc">+</span> <span class="fu">facet_wrap</span>(<span class="sc">~</span>Migration)</span>
+<span id="cb53-469"><a href="#cb53-469" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_grid</span>(p1, p2, <span class="at">nrow=</span><span class="dv">2</span>)</span>
+<span id="cb53-470"><a href="#cb53-470" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb53-471"><a href="#cb53-471" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb53-474"><a href="#cb53-474" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb53-475"><a href="#cb53-475" aria-hidden="true" tabindex="-1"></a><span class="co">#| include: false</span></span>
-<span id="cb53-476"><a href="#cb53-476" aria-hidden="true" tabindex="-1"></a><span class="fu">detach</span>(package<span class="sc">:</span>ggpubr)</span>
-<span id="cb53-477"><a href="#cb53-477" aria-hidden="true" tabindex="-1"></a><span class="fu">detach</span>(package<span class="sc">:</span>mosaic)</span>
-<span id="cb53-478"><a href="#cb53-478" aria-hidden="true" tabindex="-1"></a><span class="fu">detach</span>(package<span class="sc">:</span>infer)</span>
-<span id="cb53-479"><a href="#cb53-479" aria-hidden="true" tabindex="-1"></a><span class="fu">detach</span>(package<span class="sc">:</span>broom)</span>
-<span id="cb53-480"><a href="#cb53-480" aria-hidden="true" tabindex="-1"></a><span class="fu">detach</span>(package<span class="sc">:</span>cowplot)</span>
-<span id="cb53-481"><a href="#cb53-481" aria-hidden="true" tabindex="-1"></a><span class="fu">detach</span>(package<span class="sc">:</span>skimr)</span>
-<span id="cb53-482"><a href="#cb53-482" aria-hidden="true" tabindex="-1"></a><span class="fu">detach</span>(package<span class="sc">:</span>tidyverse)</span>
-<span id="cb53-483"><a href="#cb53-483" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb53-472"><a href="#cb53-472" aria-hidden="true" tabindex="-1"></a>Although the variance ratios are under 2, given the clear deviation from normality for the residuals, we are not **really** justified in using standard (or general) linear regression for the analyses done above.</span>
+<span id="cb53-473"><a href="#cb53-473" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb53-476"><a href="#cb53-476" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb53-477"><a href="#cb53-477" aria-hidden="true" tabindex="-1"></a><span class="co">#| include: false</span></span>
+<span id="cb53-478"><a href="#cb53-478" aria-hidden="true" tabindex="-1"></a><span class="fu">detach</span>(package<span class="sc">:</span>ggpubr)</span>
+<span id="cb53-479"><a href="#cb53-479" aria-hidden="true" tabindex="-1"></a><span class="fu">detach</span>(package<span class="sc">:</span>mosaic)</span>
+<span id="cb53-480"><a href="#cb53-480" aria-hidden="true" tabindex="-1"></a><span class="fu">detach</span>(package<span class="sc">:</span>infer)</span>
+<span id="cb53-481"><a href="#cb53-481" aria-hidden="true" tabindex="-1"></a><span class="fu">detach</span>(package<span class="sc">:</span>broom)</span>
+<span id="cb53-482"><a href="#cb53-482" aria-hidden="true" tabindex="-1"></a><span class="fu">detach</span>(package<span class="sc">:</span>cowplot)</span>
+<span id="cb53-483"><a href="#cb53-483" aria-hidden="true" tabindex="-1"></a><span class="fu">detach</span>(package<span class="sc">:</span>skimr)</span>
+<span id="cb53-484"><a href="#cb53-484" aria-hidden="true" tabindex="-1"></a><span class="fu">detach</span>(package<span class="sc">:</span>tidyverse)</span>
+<span id="cb53-485"><a href="#cb53-485" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 </code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->

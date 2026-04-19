@@ -8,7 +8,7 @@
 - Performing basic exploratory data analyses and visualization
 - Using {dplyr} and the pipe operator (`|>` or `%>%`) for data wrangling
 
-#### Preliminaries {.unnumbered}
+### Preliminaries {.unnumbered}
 
 - Set up a new ***GitHub*** repo in your ***GitHub*** workspace called "exercise-03" and clone that down your computer as a new ***RStudio*** project. The instructions outlined as **Method 1** in [**Module 6**](#module-06) will be helpful.
 
@@ -16,9 +16,11 @@
 
 > **HINT:** You can use the `names()` function to see a list of variable names in the dataset
 
+## Challenge {.unnumbered}
+
 #### Step 1 {.unnumbered}
 
-Create a new **Quarto** document called "EDA-challenge.qmd" within the project and use it to complete the following challenges. Be sure to include both descriptive text about what you are doing and code blocks -- i.e., follow a "literate programming" approach to be sure that a reader understands what you are doing. For the plots, feel free to use either {base} ***R*** graphics or {ggplot2}, as you prefer. You should use descriptive text to answer the specific questions asked below.
+Create a new **Quarto** document called "exercise-3.qmd" within the project and use it to complete the following challenges. Be sure to include both descriptive text about what you are doing and code blocks -- i.e., follow a "literate programming" approach to be sure that a reader understands what you are doing. For the plots, feel free to use either {base} ***R*** graphics or {ggplot2}, as you prefer. You should use descriptive text to answer the specific questions asked below.
 
 1. Create a new variable named **BSD** (body size dimorphism) which is the ratio of average male to female body mass.
 

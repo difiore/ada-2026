@@ -2,6 +2,8 @@
 
 # • Solution {.unnumbered}
 
+### Preliminaries {.unnumbered}
+
 ```{r}
 #| message: false
 library(tidyverse)
@@ -27,9 +29,9 @@ skim(d)
 
 The variables order, family, Genus, and species are categorical, the rest are numeric.
 
-## Challenge 1 {.unnumbered}
+## Challenge {.unnumbered}
 
-### Step 1 {.unnumbered}
+#### Step 1 {.unnumbered}
 
 - Replace all values of -999 (the authors' code for missing data) with `NA`.
 
@@ -41,7 +43,7 @@ d[d==-999] <- NA # using base ***R***
 # d <- d |> replace_with_na_all(condition = ~.x == -999)
 ```
 
-### Step 2 {.unnumbered}
+#### Step 2 {.unnumbered}
 
 - Drop the variables **litter size** and **refs**.
 
@@ -58,7 +60,7 @@ d <- d |>
   rename(`weanmass(g)` = `wean mass(g)`)
 ```
 
-### Step 3 {.unnumbered}
+#### Step 3 {.unnumbered}
 
 - Log transform all of the other numeric variables.
 
@@ -70,7 +72,7 @@ d <- d |> mutate(across(where(is.numeric), log))
 # d <- d |>mutate(across(all_of(vars), log))
 ```
 
-### Step 4 {.unnumbered}
+#### Step 4 {.unnumbered}
 
 - Regress the (now log transformed) *age* [**gestation(mo)**, **weaning(mo)**, **AFR(mo)** (i.e., age at first reproduction), and **maxlife(mo)** (i.e., maximum lifespan)] and *mass* [**newborn(g)** and **weanmass(g)**] variables on (now log transformed) overall body **mass(g)** and add the residuals to the dataframe as new variables [**relGest**, **relWean**, **relAFR**, **relLife**, **relNewbornMass**, and **relWeaningMass**].
 
@@ -93,7 +95,7 @@ d$relWeaningMass <- resid(lm(`weanmass(g)` ~ `mass(g)`, data = d, na.action=na.e
 # )
 ```
 
-### Step 5 {.unnumbered}
+#### Step 5 {.unnumbered}
 
 - Plot residuals of max lifespan (**relLife**) in relation to **Order**. Which mammalian orders have the highest residual lifespan?
 - Plot residuals of newborn mass (**relNewbornMass**) in relation to **Order**. Which mammalian orders have the have highest residual newborn mass?
@@ -123,13 +125,13 @@ plot_grid(p1, p2, p3, nrow = 3)
 - Orders Macroscelidae and Cetacea have the highest residual newborn mass.
 - Order Perrisodactyla has the highest residual weaning mass.
 
-### Step 6 {.unnumbered}
+#### Step 6 {.unnumbered}
 
 - Run models and a model selection process to evaluate what (now log transformed) variables best predict each of the two response variables, **maxlife(mo)** and **AFR(mo)**, from the set of the following predictors: **gestation(mo)**, **newborn(g)**, **weaning(mo)**, **weanmass(g)**, **litters/year**, and overall body **mass(g)**.
 
-#### Maximum Lifespan
+##### Maximum Lifespan
 
-##### Using Stepwise Model Selection
+###### Using Stepwise Model Selection
 
 ```{r}
 d1 <- d |> drop_na(c("maxlife(mo)", "gestation(mo)", "newborn(g)", "weaning(mo)", "weanmass(g)", "litters/year", "mass(g)"))
@@ -162,7 +164,7 @@ Note that forward and backward selection using F ratio tests yield the same best
 
 $$maxlife(mo) \sim gestation(mo) + litters/year + mass(g) + weaning(mo)$$
 
-##### Using AICc
+###### Using AICc
 
 ```{r}
 ML_mods <- dredge(ML_full)
@@ -187,9 +189,9 @@ plot(ML_mods.avg, full = TRUE, intercept = FALSE)
 
 Based on the plot, we can again see that set of top models includes four predictors for which the 95% CI around the coefficient does not include zero. These are the same predictors identified by forward and backwards selection: **gestation(mo)**, **litters/year**, **mass(g)**, and **weaning(mo)**.
 
-#### Age at First Reproduction
+##### Age at First Reproduction
 
-##### Using Stepwise Model Selection
+###### Using Stepwise Model Selection
 
 ```{r}
 d2 <- d |> drop_na(c("AFR(mo)", "gestation(mo)", "newborn(g)", "weaning(mo)", "weanmass(g)", "litters/year", "mass(g)"))
@@ -224,7 +226,7 @@ $$AFR(mo) \sim gestation(mo) + litters/year + mass(g) + weaning(mo)$$
 BACKWARD:
 $$AFR(mo) \sim gestation(mo) + litters/year + weaning(mo) + weanmass(g)$$
 
-##### Using AICc
+###### Using AICc
 
 ```{r}
 AFR_mods <- dredge(AFR_full)
@@ -248,3 +250,12 @@ plot(AFR_mods.avg, full = TRUE, intercept = FALSE)
 ```
 
 Based on the plot, we again see that the set of top models only includes 3 predictors whose 95% CIs around the regression coefficients do not include 0: **gestation(mo)**, **litters/year**, and **weaning(mo)**.
+
+```{r}
+#| include: false
+detach(package:MuMIn)
+detach(package:broom)
+detach(package:cowplot)
+detach(package:skimr)
+detach(package:tidyverse)
+```

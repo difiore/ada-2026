@@ -518,6 +518,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text">Exercise 11</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./exercise-12.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Exercise 12</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./exercise-12-solution.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Exercise 12 Solution</span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -581,14 +593,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#learning-objectives" id="toc-learning-objectives" class="nav-link" data-scroll-target="#learning-objectives">Learning Objectives</a>
   <ul class="collapse">
   <li><a href="#preliminaries" id="toc-preliminaries" class="nav-link" data-scroll-target="#preliminaries">Preliminaries</a></li>
-  <li><a href="#step-1" id="toc-step-1" class="nav-link" data-scroll-target="#step-1">Step 1</a></li>
-  <li><a href="#step-2" id="toc-step-2" class="nav-link" data-scroll-target="#step-2">Step 2</a></li>
-  <li><a href="#step-3" id="toc-step-3" class="nav-link" data-scroll-target="#step-3">Step 3</a></li>
-  <li><a href="#step-4" id="toc-step-4" class="nav-link" data-scroll-target="#step-4">Step 4</a></li>
-  <li><a href="#step-5" id="toc-step-5" class="nav-link" data-scroll-target="#step-5">Step 5</a></li>
-  <li><a href="#step-6" id="toc-step-6" class="nav-link" data-scroll-target="#step-6">Step 6</a></li>
-  <li><a href="#step-7" id="toc-step-7" class="nav-link" data-scroll-target="#step-7">Step 7</a></li>
   </ul></li>
+  <li><a href="#challenge" id="toc-challenge" class="nav-link" data-scroll-target="#challenge">Challenge</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -630,20 +636,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Set up a new <strong><em>GitHub</em></strong> repo in your <strong><em>GitHub</em></strong> workspace named “exercise-9” and clone that down to your computer as a new <strong><em>RStudio</em></strong> project. The instructions outlined as <strong>Method 1</strong> in <a href="06-module.html"><strong>Module 6</strong></a> will be helpful.</li>
 </ul>
 </section>
-<section id="step-1" class="level3 unnumbered">
-<h3 class="unnumbered anchored" data-anchor-id="step-1">Step 1</h3>
+</section>
+<section id="challenge" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="challenge">Challenge</h2>
+<section id="step-1" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="step-1">Step 1</h4>
 <ul>
 <li>Using the {tidyverse} <code>read_csv()</code> function, load the “KamilarAndCooperData.csv” dataset from <strong><em>GitHub</em></strong> at <a href="https://github.com/difiore/ada-datasets/main/KamilarAndCooperData.csv">this URL</a> as a “tibble” named <strong>d</strong>.</li>
 </ul>
 </section>
-<section id="step-2" class="level3 unnumbered">
-<h3 class="unnumbered anchored" data-anchor-id="step-2">Step 2</h3>
+<section id="step-2" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="step-2">Step 2</h4>
 <ul>
 <li>From this dataset, plot lifespan (scored as <strong>MaxLongevity_m</strong> in the dataset) versus female body mass (scored as <strong>Body_mass_female_mean</strong>). Is the relationship linear? If not, how might you transform one or both variable to more closely approximate a linear relationship?</li>
 </ul>
 </section>
-<section id="step-3" class="level3 unnumbered">
-<h3 class="unnumbered anchored" data-anchor-id="step-3">Step 3</h3>
+<section id="step-3" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="step-3">Step 3</h4>
 <ul>
 <li>Run linear models of:
 <ul>
@@ -653,26 +662,26 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul></li>
 </ul>
 </section>
-<section id="step-4" class="level3 unnumbered">
-<h3 class="unnumbered anchored" data-anchor-id="step-4">Step 4</h3>
+<section id="step-4" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="step-4">Step 4</h4>
 <ul>
 <li>Generate residuals for all three linear models, plot them by hand in relation to the corresponding explanatory variable, and make histograms of the residuals. Do they appear to be normally distributed?</li>
 </ul>
 </section>
-<section id="step-5" class="level3 unnumbered">
-<h3 class="unnumbered anchored" data-anchor-id="step-5">Step 5</h3>
+<section id="step-5" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="step-5">Step 5</h4>
 <ul>
 <li>Generate Q-Q plots for all three linear models. Based on visual inspection of these plots, do the residual appear to deviate from being normally distributed?</li>
 </ul>
 </section>
-<section id="step-6" class="level3 unnumbered">
-<h3 class="unnumbered anchored" data-anchor-id="step-6">Step 6</h3>
+<section id="step-6" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="step-6">Step 6</h4>
 <ul>
 <li>Run the <code>plot()</code> command for all three models and visually inspect the resultant plots. What do the plots suggest about whether the assumptions for regression are met for any of these models?</li>
 </ul>
 </section>
-<section id="step-7" class="level3 unnumbered">
-<h3 class="unnumbered anchored" data-anchor-id="step-7">Step 7</h3>
+<section id="step-7" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="step-7">Step 7</h4>
 <ul>
 <li>Run Shapiro-Wilks tests (e.g., using the function <code>shapiro.test()</code> on the residuals for all three models. What do the results of these test suggest about the whether your data meet the assumptions for using simple linear regression?</li>
 </ul>
@@ -1149,36 +1158,38 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Set up a new ***GitHub*** repo in your ***GitHub*** workspace named "exercise-9" and clone that down to your computer as a new ***RStudio*** project. The instructions outlined as **Method 1** in [**Module 6**](#module-06) will be helpful.</span>
 <span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="fu">### Step 1 {.unnumbered}</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="fu">## Challenge {.unnumbered}</span></span>
 <span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Using the {tidyverse} <span class="in">`read_csv()`</span> function, load the "KamilarAndCooperData.csv" dataset from ***GitHub*** at [this URL](https://github.com/difiore/ada-datasets/main/KamilarAndCooperData.csv) as a "tibble" named **d**.</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Step 1 {.unnumbered}</span></span>
 <span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="fu">### Step 2 {.unnumbered}</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Using the {tidyverse} <span class="in">`read_csv()`</span> function, load the "KamilarAndCooperData.csv" dataset from ***GitHub*** at [this URL](https://github.com/difiore/ada-datasets/main/KamilarAndCooperData.csv) as a "tibble" named **d**.</span>
 <span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>From this dataset, plot lifespan (scored as **MaxLongevity_m** in the dataset) versus female body mass (scored as **Body_mass_female_mean**). Is the relationship linear? If not, how might you transform one or both variable to more closely approximate a linear relationship?</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Step 2 {.unnumbered}</span></span>
 <span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="fu">### Step 3 {.unnumbered}</span></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>From this dataset, plot lifespan (scored as **MaxLongevity_m** in the dataset) versus female body mass (scored as **Body_mass_female_mean**). Is the relationship linear? If not, how might you transform one or both variable to more closely approximate a linear relationship?</span>
 <span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Run linear models of:</span>
-<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>lifespan ~ female body mass</span>
-<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>lifespan ~ log(female body mass)</span>
-<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>log(lifespan) ~ log(female body mass)</span>
-<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a><span class="fu">### Step 4 {.unnumbered}</span></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Step 3 {.unnumbered}</span></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Run linear models of:</span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>lifespan ~ female body mass</span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>lifespan ~ log(female body mass)</span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>log(lifespan) ~ log(female body mass)</span>
 <span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Generate residuals for all three linear models, plot them by hand in relation to the corresponding explanatory variable, and make histograms of the residuals. Do they appear to be normally distributed?</span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Step 4 {.unnumbered}</span></span>
 <span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a><span class="fu">### Step 5 {.unnumbered}</span></span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Generate residuals for all three linear models, plot them by hand in relation to the corresponding explanatory variable, and make histograms of the residuals. Do they appear to be normally distributed?</span>
 <span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Generate Q-Q plots for all three linear models. Based on visual inspection of these plots, do the residual appear to deviate from being normally distributed?</span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Step 5 {.unnumbered}</span></span>
 <span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a><span class="fu">### Step 6 {.unnumbered}</span></span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Generate Q-Q plots for all three linear models. Based on visual inspection of these plots, do the residual appear to deviate from being normally distributed?</span>
 <span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Run the <span class="in">`plot()`</span> command for all three models and visually inspect the resultant plots. What do the plots suggest about whether the assumptions for regression are met for any of these models?</span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Step 6 {.unnumbered}</span></span>
 <span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a><span class="fu">### Step 7 {.unnumbered}</span></span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Run the <span class="in">`plot()`</span> command for all three models and visually inspect the resultant plots. What do the plots suggest about whether the assumptions for regression are met for any of these models?</span>
 <span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Run Shapiro-Wilks tests (e.g., using the function <span class="in">`shapiro.test()`</span> on the residuals for all three models. What do the results of these test suggest about the whether your data meet the assumptions for using simple linear regression?</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Step 7 {.unnumbered}</span></span>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Run Shapiro-Wilks tests (e.g., using the function <span class="in">`shapiro.test()`</span> on the residuals for all three models. What do the results of these test suggest about the whether your data meet the assumptions for using simple linear regression?</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 

@@ -2,6 +2,8 @@
 
 # • Solution {.unnumbered}
 
+### Preliminaries {.unnumbered}
+
 - Using the {tidyverse} `read_csv()` function, load the "AVONETdataset1.csv" dataset as a "tibble" named **d**.
 
 ```{r message=FALSE}
@@ -38,7 +40,7 @@ The taxomic variables, along with **Habitat**, **Trophic.Level**, **Trophic.Nich
 
 ## Challenge 1 {.unnumbered}
 
-### Step 1 {.unnumbered}
+#### Step 1 {.unnumbered}
 
 - Make boxplots of log(**Mass**) in relation to **Trophic.Level** and **Migration** and convert the variable **Migration** into a factor.
 
@@ -60,7 +62,7 @@ p2 <- ggplot(data = d |> drop_na(Migration) , aes(x = Migration, y = log(Mass)))
 plot_grid(p1, p2, nrow = 1)
 ```
 
-### Step 2 {.unnumbered}
+#### Step 2 {.unnumbered}
 
 - Run linear models using the `lm()` function to look at the relationship between log(**Mass**) and **Trophic.Level** and between log(**Mass**) and **Migration**.
 
@@ -92,7 +94,7 @@ summary(m2)
 
 Based on the re-leveled model results, **Migration** levels 2 and 3 are also different from one another.
 
-### Step 3 {.unnumbered}
+#### Step 3 {.unnumbered}
 
 - Conduct a post-hoc Tukey Significant Differences test to also evaluate which **Migration** categories differ "significantly" from one another.
 
@@ -105,7 +107,7 @@ plot(posthoc)
 
 Comparisons among all pairs of levels are significant.
 
-### Step 4 {.unnumbered}
+#### Step 4 {.unnumbered}
 
 - Use a permutation approach to inference to generate a null distribution of F statistic values for the model of log(**Mass**) in relation to **Trophic.Level** and calculate a p value for your original F statistic.
 
@@ -153,7 +155,7 @@ p.value
 
 ## Challenge 2 {.unnumbered}
 
-### Step 1 {.unnumbered}
+#### Step 1 {.unnumbered}
 
 - Create the following two new variables and add them to AVONET dataset:
   - **Relative beak length**, which you should calculate as the *residual* of log(**Beak.Length_Culmen**) on log(**Mass**).
@@ -167,7 +169,7 @@ d <- d |> mutate(
   relTarsus = relTarsus$residuals)
 ```
 
-### Step 2 {.unnumbered}
+#### Step 2 {.unnumbered}
 
 - Make a boxplot or violin plot of your new relative tarsus length variable in relation to **Primary.Lifestyle** and of your new relative beak length variable in relation to **Trophic.Niche**
 
@@ -194,7 +196,7 @@ p2 <- ggplot(data = d |> drop_na(Trophic.Niche), aes(x=Trophic.Niche, y=relBeak)
 plot_grid(p1, p2, nrow = 1)
 ```
 
-### Step 3 {.unnumbered}
+#### Step 3 {.unnumbered}
 
 - Run ANOVA analyses to look at the association between geographic range size and the variable **Migration**. You should first drop those observations for which **Migration** is not scored and also look at the distribution of the variable **Range.Size** to decide whether and how it might need to be transformed.
 
@@ -255,7 +257,7 @@ After re-leveling, we can see that **Migration** levels 1 and 2 are also differe
 plot(posthoc)
 ```
 
-### Step 4 {.unnumbered}
+#### Step 4 {.unnumbered}
 
 - Winnow your original data to just consider birds from the Infraorder "Passeriformes" (song birds).
 
@@ -312,7 +314,7 @@ summary(m6)
 
 Relative beak length is significantly associated with both variables, but the R-squared (or eta- squared) values are quite modest.
 
-### Step 5 {.unnumbered}
+#### Step 5 {.unnumbered}
 
 - Run a two-factor model to look at the association between relative beak length and both **Primary.Lifestyle** and **Trophic.Level** among the passeriforms. Based on the model output, what would you conclude about how relative beak length is related to these two variables?
 
@@ -325,7 +327,7 @@ summary(m7)
 
 Both variables are important predictors of relative beak length.
 
-### Step 6 {.unnumbered}
+#### Step 6 {.unnumbered}
 
 - Finally, run an additional two-way model with the same dataset and predictors, but adding the possibility of an interaction term. Based on the model output, what would you now conclude about how relative beak length is related to these two variables?
 
@@ -340,7 +342,7 @@ summary(m8)
 
 **Primary.Lifestyle**, **Trophic.Level**, and the interaction of these two variables are all significant predictors of relative beak length.
 
-### Step 7 {.unnumbered}
+#### Step 7 {.unnumbered}
 
 - Use the `interaction.plot()` function to visualize the interaction between **Primary.Lifestyle** and **Trophic.Level**.
 
@@ -368,7 +370,7 @@ interaction.plot(
 )
 ```
 
-## Step 8 {.unnumbered}
+#### Step 8 {.unnumbered}
 
 Let's look at the model of **relative beak size ~ trophic level**.
 

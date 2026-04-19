@@ -1,0 +1,229 @@
+# Exercise 12 {.unnumbered}
+
+# Practice Generalized Linear Mixed Modeling {.unnumbered}
+
+## Learning Objectives {.unnumbered}
+
+- Using a published dataset, run GLMMs with different types of response variables and perform residual diagnostics and model selection 
+
+## Background on the Dataset {.unnumbered}
+
+For this exercise, we will work with a dataset used in the following publication...
+
+> Lignac C, and Mumme RL. (2023). Brood parasitism of Hooded Warblers by Brown-headed Cowbirds: Severe impact on individual nests but modest consequences for seasonal fecundity and conservation. *Ornithological Applications* 125: duac041.
+
+... for which the original data are available on Dryad.
+
+Below is some basic background information on this study and on the dataset provided by the authors in their Dryad files. I have lightly edited the authors' text for brevity and clarity.
+
+### Study Information
+
+### Study site and general methods
+
+The study was conducted at Hemlock Hill Field Station in Crawford County, Pennsylvania, USA. The study site comprises 125 ha of forest located within a matrix of agricultural land, abandoned fields, and forest fragments. Data come from 2013–2020, when intensive efforts were made to capture and color-band all breeding adult Hooded Warblers and to find and monitor all nests during the May–August nesting season. Nests were checked every 3–5 days, and more frequently around expected dates of hatching and fledging. About half of all nests were found before the onset of incubation, but when a nest with a complete clutch of eggs or nestlings was found, the date of nest initiation was estimated based on either the date of hatching, assuming eggs were laid on consecutive days and a 12-day incubation period (Mumme et al. 2023), or the date a previous nesting attempt by the same female had failed. These dates of nest initiation were presumed to be accurate to within 1–2 days. The authors also recorded whether the Hooded Warbler nests were parasitized with Brown Headed Cowbird eggs and how many of those eggs they contained. In total, 847 nests are included in the complete dataset.
+
+### Statistical analysis
+
+Prior studies suggest that the date of nest initiation -- defined as the day a first egg is laid -- is an important determinant of several Hooded Warbler reproductive variables, including probability of nest parasitism, clutch size, and probability of nest predation (Harrod 2021, Lignac 2022). The authors therefore examined the **effects of Brown Headed Cowbird parasitism on Hooded Warbler nesting success** using generalized linear mixed models (GLMM) or generalized linear models (GLM) that all included **day of nest initiation** as a fixed factor. In all, they ran a large number of analyses about the timing of parasitism, clutch size, nest abandonment, and nest and nestling survival using these data, some of which we reproduce here.
+
+Because data were collected for the same banded females across different study years and at different nests within the same study year, we will run mixed models that include **year** and female **ID** as random effects. [I presume their variable **NestID** is the unique identifier for individual female's ID band.] The authors, too, used **year** as a predictor in their modeling approach, but interestingly seemingly did not include **ID** as a random effect.
+
+### Preliminaries
+
+- Set up a new ***GitHub*** repo in your ***GitHub*** workspace named "exercise-12" and clone that down to your computer as a new ***RStudio*** project. The instructions outlined as **Method 1** in [**Module 6**](#module-06) will be helpful.
+
+- Load in any needed libraries.
+
+- Using the {tidyverse} `read_csv()` function, load the "Lignac_Mumme_2023_MasterDataFile.csv" dataset from [this URL](https://github.com/difiore/ada-datasets/blob/main/Lignac_Mumme_2023_MasterDataFile.csv) as a "tibble" named **d**.
+
+- Rename the variables **SurHat?** as **survived**, **CBP** as **parasitized**, **fYear** as **year**, and **NestID** as **ID**.
+
+- Create a new variable **day** by mean centering each nest's date of nest initiation **(FEDay)**. That new variable will hold the day the first egg is laid in each nest relative to the "average" first lay day.
+
+- Convert the following variables, which are imported as "character" data, to "numeric": **Aban**, **NeHW**, **NeCB**, **NnHW**, **NnCB**, **NfHW**, **NfCB**, **CBHatch**, and **survived**.
+
+- Convert the variables **parasitized**, **year**, **ID**, and **CBHatch** to be factors.
+
+## Challenge 1 {.unnumbered}
+
+### Exploratory Data Analyses {.unnumbered}
+
+Conduct some exploratory data analyses with this dataset.
+
+- What are the key variables in the dataset and what do they represent?
+
+The key variables include...
+
+- **survived** (originally SurHat?): 0 = nest failed before hatching, 1 = nest survived to hatching
+- **parasitized** (originally CBP): "No" = not parasitized, "Yes" = cowbird egg present
+- **day** (originally FEDay): day first egg laid relative to average first egg lay day
+- **year** (originally fYear): study year
+- **Aban**: 0 if nest not abandoned, 1 if nest abandoned
+- **ID** (originally NestID): unique female identifier
+- **NeHW**: number of Hooded Warbler eggs in the nest
+- **NeCB**: number of Brown-headed Cowbird eggs in the nest
+- **NnHW**: number of Hooded Warbler nestlings in the nest
+- **NnCB**: number of Brown-headed Cowbird nestlings in the nest
+- **NfHW**: number of Hooded Warbler nestlings that fledged
+- **NfCB**: number of Brown-headed Cowbird nestlings that fledged
+- **CBHatch**: 0 = absence, 1 = presence of any Brown Headed cowbird nestling in the nest
+
+- How many nests are there data for?
+
+- How many nests were parasitized? How many were not?
+
+- How many nests survived? How many did not?
+
+- Create a cross tabulation that summarizes nests in relation to the variables **parasitized** and **survived**
+
+- How many unique female IDs are there in the dataset?
+
+- Plot the distribution of nest initiation dates over time.
+
+- Plot how the distribution of nest initiation dates over time varies with parasitization status.
+
+- Plot nest survival (0 or 1) in relation to date of nest initiation and show how this varies with parasitization status. Can you tell if earlier or later initated nests seem more likely to be parasitized?
+
+> **HINT:** When plotting, use geom_jitter() to be able to see individual data points.
+
+- Plot how the average number of parasitized nests varies across study years.
+
+> **HINT:** This will require computing those averages before or while plotting.
+
+## Challenge 2 {.unnumbered}
+
+### Timing of Parasitism {.unnumbered}
+
+Run a model to evaluate how the **date of nest initiation impacts the probability of parasitism**, including **year** and **ID** as random effects.
+
+- Given the nature of the data and the response variable, what kind of model would this be?
+
+- Plot the effects of date of nest initiation on probability (not log odds or odds) of the nest being parasitized.
+
+- Based on these model results, does date of nest initiation predict the probability of parasitism? How?
+
+## Challenge 3 {.unnumbered}
+
+### Parasitism and Clutch Size {.unnumbered}
+
+Run a model to evaluate how **cowbird parasitism affects the number of hooded warbler eggs in the clutch**. For this model, use the number of cowbird eggs (**NeCB**) (not the dichotomous variable **parasitized**) as one fixed effect and include date of nest initiation as an additional fixed effect, and use **year** and **ID** as random effects.
+
+- Given the nature of the data and the response variable, what kind of model would this be?
+
+> **NOTE:** Running this model as specified above should return a warning about a *singular boundary fit*. Looking at the random effects table for this model will reveal that neither of the random effects explained any additional variance beyond that explained by the fixed effects, which may indicate model overfitting. For this analysis, the authors of the study from which this dataset comes actually used a GLM instead of a GLMM and included **year** as an additional fixed effect to still account for inter-annual variation in baseline clutch size. [As in all their models, **ID** was not included as a random effect.] Try running this alternative model...
+
+- Plot (separately) the effects of cowbird parasitism and date of initiation on the number of hooded warbler eggs in the clutch.
+
+- Is warbler clutch size related to parasitism? Is warbler clutch size related to date of nest initiation?
+
+- As a Poisson regression, this model was fit on the log scale. Using the coefficient for **NeCB**, what is the effect of one additional cowbird egg on the expected number of Hooded Warbler eggs? Express your answer as a multiplicative effect and interpret it in plain language: what happens to expected Hooded Warbler egg count as cowbird eggs increase?
+
+- What would you expect the number of Hooded Warbler eggs to be for a nest with 2 cowbird eggs compared to a nest with 0 cowbird eggs at the average first lay date (**day** = 0) and in the earliest year of the study, the reference year (**year** = y2013)?
+
+## Challenge 4 {.unnumbered}
+
+### Parasitism and Nest Abandonment {.unnumbered}
+
+Run a model to examine the **probability of nest abandonment in relation to cowbird parasitism**. This time use the dichotomous variable **parasitized** as your fixed factor for cowbird parasitism and, again, include date of initiation as an additional fixed effect and **year** and **ID** as random effects.
+
+- Given the nature of the data and the response variable, what kind of model would this be?
+
+> **NOTE:** Again, running this model as specified above should return a warning about a *singular boundary fit*. Run revised models, then, removing each random effect individually and also removing both random effects. You will want to first confirm that your dataset is such that all models are based on the same complete set of data.
+
+- Compare these three additional models to the original one using AICc. See if you can create a nice output table that includes the model name, AIC, AICc, log likelihood, K (df) and deltaAIC values for each model. Recall that AICc = AIC + (2K(K+1))/(n-K-1) and logLik = (AIC = 2K) / (-2). Which is the best model (lowest AICc)?
+
+- For the best model, plot (first separately, then on the same figure) the marginal effects of cowbird parasitism and date of nest initiation on the probability of nest abandonment. Make sure your Y axis is plotting predicted survival probabilities, not log odds or odds!
+
+> **HINT**: You can do this using either `plot_model()` or `ggpredict()`.
+
+Remember, the `plot_model()` function, by default, back-transforms to the probability scale and averages over random effects (here, **year**).
+
+The function `ggpredict()` from {ggeffects} also back-transforms to the probability scale. For these plots, we use `type = "fixed"` to get population-level predictions that are not specific to any particular level of our random effect, **year**. That is, we want *marginal* predictions that account for the variance associated with the random effects and propagate the uncertainty from the random effects back into the prediction CIs, rather than *conditional* predictions for a particular level of the random effect. We also use `terms = "day [all]"` in some of the plots to get smoother looking plots, but we could also just use `terms = "day"`.
+
+- Under this model, are parasitized nests more likely to be abandoned than unparasitized ones? Is there a relationship between date of nest initiation and probability of nest abandonment?
+
+## Challenge 5 {.unnumbered}
+
+### Parasitism and Nest Survival {.unnumbered}
+
+Run models to examine the **probability of nests surviving to hatching in relation to cowbird parasitism**. Again, use the dichotomous variable **parasitized** as your fixed factor for cowbird parasitism and include date of nest initiation as an additional fixed effect and **year** and **ID** as random effects. This time, create two models, one excluding and one including an interaction term among the fixed effects.
+
+> ** NOTE:** For this analysis, the authors report using a subset of their data limited to 356 nests that were found before the onset of incubation and that were not abandoned. From what I can deduce, they must have run the following to get this subset of data:
+
+```{r}
+#| eval: false
+d_model <- d |>
+  filter(Aban == 0, EntAge <= 2, !is.na(survived))
+```
+
+- Given the nature of the data and the response variable, what kind of model would this be?
+
+- Does including the interaction term improve explanatory power over a model with no interaction term?
+
+- Looking at the random effects table in the summary for your model without an interaction term, compare the variance components for **year** and **NestID**. What does each tell you about sources of variability in nest survival? Are either random effects contributing meaningfully to the model?
+
+- For this model, what does the intercept coefficient represent? How would you convert this to a probability of nest survival?
+
+- What do the other coefficients represent?
+
+- Look at the correlation matrix at the bottom of the summary output of the model. Are the predictors correlated?
+
+## Challenge 6 {.unnumbered}
+
+### Post-Hatching Survival {.unnumbered}
+
+Run a model to **estimate the effects of the presence of a cowbird chick in the nest on the probability of nests surviving from hatching to fledging**. Use the dichotomous variable **CBHatch** as a fixed factor for cowbird parasitism and include date of nest initiation as **year** as additional fixed effects (following the authors' analyses, we are excluding random effects).
+
+> **NOTE:** For this analysis, the authors report using a subset of their data limited to 492 nests that were found before hatching that were not abandoned. The column “CBHatch” indicates the presence (1) or absence (0) of a cowbird nestling. From what I can deduce, the authors must have run something like the following to get this subset of data, though this produces a filtered dataset with 497 not 492 rows! The 5-record discrepancy is unresolvable without the authors' exact cleaning script, which is a useful lesson about reproducibility. The authors should have reported exactly how they got to this subset of 492 records rather than just saying "found before hatching."
+
+```{r}
+#| eval: false
+d_model <- d |>
+  filter(Aban == 0,
+         EntAge <= 8,
+         FoFAge >= 12,
+         !is.na(CBHatch),
+         !is.na(day),
+         !is.na(survived)
+         )
+```
+
+- Given the nature of the data and the response variable, what kind of model would this be?
+
+- Does the presence of a cowbird chick influence the probability of nest survival when the effects of day of nest initiation and study year are taken into account?
+
+- Run another model with the number of fledged Hooded Warbler nestlings (**NfHW**) as the response variable with the same three fixed effects (presence of a cowbird chick, day of nest initiation and study year).
+
+- Does the presence of a cowbird chick influence the number of successfully fledged Hooded Warbler chicks when the effects of day of nest initiation and study year are taken into account?
+
+## Challenge 7 {.unnumbered}
+
+### Residual Diagnostics {.unnumbered}
+
+So far, we have not conducted any diagnostics with the residuals from our regression models. As discussed in [**Module 24**](#module-24), standard residual plots are misleading for binomial GLMMs. However, the {DHARMa} package is designed for residual diagnostics with mixed models. {DHARMa} uses simulation to create interpretable scaled residuals.
+
+Return to the best model for Challenge 4 about nest abandonment (**Aban**), which was a GLMM that included two fixed effects (**parasitized** and **day**) and one random effect (**1 | ID**)...
+
+- Simulate 1000 residuals under this model.
+
+- Examine the residuals for this model. Is there any evidence that the observed residuals deviate from what is expected under the model? Is there any evidence of a relationship between model predictions and residuals? Is there evidence that the residuals are overdispersed, that the model is zero-inflated, or that any observed residuals are clear outliers from what is expected?
+
+## Challenge 8 {.unnumbered}
+
+### Variance Partitioning {.unnumbered}
+
+Again, using the best model from Challenge 4, calculate the variance explained by the fixed effects alone (marginal R² and by the fixed + random effects (conditional R²).
+
+- How much additional variance in the probability of nest abandonment does including the random effect of **ID** explain?
+
+## Challenge 9 {.unnumbered}
+
+### Extract and Plot Random Effects {.unnumbered}
+
+- Extract the individual random effects from the model as a new dataframe (**re**) using `as.data.frame(ranef(m_no_year))` and then plot a histogram of the density distribution of these effects overlaid with a normal distribution.
+
+> **HINT:** The **condval** column in the **re** dataframe will contain these individual values.
+
+- Do these residuals for the random effect look normal? If not, do they indicate a problem for your regression?
+
+> **HINT:** Use {DHARMa} to simulate residuals from the model and check whether the residuals look okay. This is a more direct test of model fit than looking at the distribution of residuals across individual females.

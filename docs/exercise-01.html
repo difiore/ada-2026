@@ -518,6 +518,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text">Exercise 11</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./exercise-12.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Exercise 12</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./exercise-12-solution.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Exercise 12 Solution</span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -580,18 +592,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul class="collapse">
   <li><a href="#learning-objectives" id="toc-learning-objectives" class="nav-link" data-scroll-target="#learning-objectives">Learning Objectives</a></li>
   <li><a href="#preliminary-steps" id="toc-preliminary-steps" class="nav-link" data-scroll-target="#preliminary-steps">Preliminary Steps</a></li>
-  <li><a href="#sending-an-email-version-1-using-the-emayili-package" id="toc-sending-an-email-version-1-using-the-emayili-package" class="nav-link" data-scroll-target="#sending-an-email-version-1-using-the-emayili-package">Sending an Email Version 1: Using the {emayili} package</a></li>
-  <li><a href="#sending-an-email-version-2-using-the-mailr-package" id="toc-sending-an-email-version-2-using-the-mailr-package" class="nav-link" data-scroll-target="#sending-an-email-version-2-using-the-mailr-package">Sending an Email Version 2: Using the {mailR} package</a></li>
-  <li><a href="#sending-an-email-version-3-using-the-blastula-package" id="toc-sending-an-email-version-3-using-the-blastula-package" class="nav-link" data-scroll-target="#sending-an-email-version-3-using-the-blastula-package">Sending an Email Version 3: Using the {blastula} package</a></li>
-  <li><a href="#sending-an-email-version-4-using-the-sendmailr-package" id="toc-sending-an-email-version-4-using-the-sendmailr-package" class="nav-link" data-scroll-target="#sending-an-email-version-4-using-the-sendmailr-package">Sending an Email Version 4: Using the {sendmailR} package</a></li>
-  <li><a href="#clean-up-steps" id="toc-clean-up-steps" class="nav-link" data-scroll-target="#clean-up-steps">Clean-Up Steps</a></li>
-  <li><a href="#sending-an-sms-or-mms-text" id="toc-sending-an-sms-or-mms-text" class="nav-link" data-scroll-target="#sending-an-sms-or-mms-text">Sending an SMS or MMS Text</a>
+  <li><a href="#challenge-sending-emails" id="toc-challenge-sending-emails" class="nav-link" data-scroll-target="#challenge-sending-emails">Challenge: Sending Emails</a>
+  <ul class="collapse">
+  <li><a href="#sending-an-email-using-the-emayili-package" id="toc-sending-an-email-using-the-emayili-package" class="nav-link" data-scroll-target="#sending-an-email-using-the-emayili-package">Sending an Email Using the {emayili} package</a></li>
+  <li><a href="#sending-an-email-using-the-mailr-package" id="toc-sending-an-email-using-the-mailr-package" class="nav-link" data-scroll-target="#sending-an-email-using-the-mailr-package">Sending an Email using the {mailR} package</a></li>
+  <li><a href="#sending-an-email-using-the-blastula-package" id="toc-sending-an-email-using-the-blastula-package" class="nav-link" data-scroll-target="#sending-an-email-using-the-blastula-package">Sending an Email using the {blastula} package</a></li>
+  <li><a href="#sending-an-email-using-the-sendmailr-package" id="toc-sending-an-email-using-the-sendmailr-package" class="nav-link" data-scroll-target="#sending-an-email-using-the-sendmailr-package">Sending an Email using the {sendmailR} package</a></li>
+  <li><a href="#next-steps-1" id="toc-next-steps-1" class="nav-link" data-scroll-target="#next-steps-1">Next Steps?</a></li>
+  <li><a href="#even-more-next-steps" id="toc-even-more-next-steps" class="nav-link" data-scroll-target="#even-more-next-steps">Even More Next Steps?</a></li>
+  <li><a href="#clean-up" id="toc-clean-up" class="nav-link" data-scroll-target="#clean-up">Clean-Up</a></li>
+  </ul></li>
+  <li><a href="#challenge-sending-an-sms-or-mms-text" id="toc-challenge-sending-an-sms-or-mms-text" class="nav-link" data-scroll-target="#challenge-sending-an-sms-or-mms-text">Challenge: Sending an SMS or MMS Text</a>
   <ul class="collapse">
   <li><a href="#using-textbelt-to-send-text-messages" id="toc-using-textbelt-to-send-text-messages" class="nav-link" data-scroll-target="#using-textbelt-to-send-text-messages">Using Textbelt to send text messages</a></li>
   <li><a href="#sending-text-via-curl" id="toc-sending-text-via-curl" class="nav-link" data-scroll-target="#sending-text-via-curl">Sending text via curl</a></li>
-  <li><a href="#checking-status-of-a-sent-message-via-curl" id="toc-checking-status-of-a-sent-message-via-curl" class="nav-link" data-scroll-target="#checking-status-of-a-sent-message-via-curl">Checking status of a sent message via curl</a></li>
+  <li><a href="#checking-the-status-of-a-sent-message-via-curl" id="toc-checking-the-status-of-a-sent-message-via-curl" class="nav-link" data-scroll-target="#checking-the-status-of-a-sent-message-via-curl">Checking the status of a sent message via {curl}</a></li>
   <li><a href="#checking-your-quota-via-curl" id="toc-checking-your-quota-via-curl" class="nav-link" data-scroll-target="#checking-your-quota-via-curl">Checking your quota via curl</a></li>
-  <li><a href="#testing-your-api-key-with-curl" id="toc-testing-your-api-key-with-curl" class="nav-link" data-scroll-target="#testing-your-api-key-with-curl">Testing your API key with curl</a></li>
+  <li><a href="#testing-your-api-key-with-curl" id="toc-testing-your-api-key-with-curl" class="nav-link" data-scroll-target="#testing-your-api-key-with-curl">Testing your API key with {curl}</a></li>
   </ul></li>
   </ul></li>
   </ul>
@@ -725,8 +742,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>pwd_gmail <span class="ot">&lt;-</span> <span class="st">""</span> <span class="co"># enter your app password between the quotation marks</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="sending-an-email-version-1-using-the-emayili-package" class="level2 unnumbered">
-<h2 class="unnumbered anchored" data-anchor-id="sending-an-email-version-1-using-the-emayili-package">Sending an Email Version 1: Using the {emayili} package</h2>
+<section id="challenge-sending-emails" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="challenge-sending-emails">Challenge: Sending Emails</h2>
+<section id="sending-an-email-using-the-emayili-package" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="sending-an-email-using-the-emayili-package">Sending an Email Using the {emayili} package</h3>
 <p>The {emayili} package makes sending simple text emails very easy.</p>
 <section id="step-1" class="level4 unnumbered">
 <h4 class="unnumbered anchored" data-anchor-id="step-1">Step 1</h4>
@@ -848,8 +867,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Use the <strong><em>RStudio</em></strong> <strong>Help</strong> tab to browse the documentation associated with the {emayali} package to see how you can customize your message, e.g., by adding <code>cc</code> or <code>bcc</code> arguments, by using a different “reply to” address, by adding attachments, or by encrypting your message.</p>
 </section>
 </section>
-<section id="sending-an-email-version-2-using-the-mailr-package" class="level2 unnumbered">
-<h2 class="unnumbered anchored" data-anchor-id="sending-an-email-version-2-using-the-mailr-package">Sending an Email Version 2: Using the {mailR} package</h2>
+<section id="sending-an-email-using-the-mailr-package" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="sending-an-email-using-the-mailr-package">Sending an Email using the {mailR} package</h3>
 <p>The {mailR} package also allows you to easily send simple emails with a single function, <code>send.mail()</code>. Here, we need to specify details about the SMTP server more explicitly than if we use {emayili} (above) or {blastula} (below).</p>
 <section id="step-1-1" class="level4 unnumbered">
 <h4 class="unnumbered anchored" data-anchor-id="step-1-1">Step 1</h4>
@@ -898,8 +917,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </section>
 </section>
-<section id="sending-an-email-version-3-using-the-blastula-package" class="level2 unnumbered">
-<h2 class="unnumbered anchored" data-anchor-id="sending-an-email-version-3-using-the-blastula-package">Sending an Email Version 3: Using the {blastula} package</h2>
+<section id="sending-an-email-using-the-blastula-package" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="sending-an-email-using-the-blastula-package">Sending an Email using the {blastula} package</h3>
 <p>The {blastula} package allows us to create and send more complex HTML and formatted emails using markdown. Using it is a bit more complicated (but more flexible) than using the procedures above.</p>
 <p>Similar to {emayili}, {blastula} provides two main functions: [1] <code>compose_email()</code> for constructing various parts of a message and [2] <code>smtp_send()</code> for specifying email server settings and passing the message to the server to send. However, {blastula} also adds in some helper functions that allow you to store authentication information in either a separate “credentials” text file that is referenced when you run the function to send a message or in your computer’s keychain. {blastula} also stores some default information on commonly-used email providers and services (e.g., on Google’s Gmail server), which may make configuring the server setup easier than using {emayili} or {mailR}.</p>
 <section id="step-1-2" class="level4 unnumbered">
@@ -1023,8 +1042,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </section>
 </section>
-<section id="sending-an-email-version-4-using-the-sendmailr-package" class="level2 unnumbered">
-<h2 class="unnumbered anchored" data-anchor-id="sending-an-email-version-4-using-the-sendmailr-package">Sending an Email Version 4: Using the {sendmailR} package</h2>
+<section id="sending-an-email-using-the-sendmailr-package" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="sending-an-email-using-the-sendmailr-package">Sending an Email using the {sendmailR} package</h3>
 <p>The {sendmailR} is yet another that you can use to send emails from <strong><em>R</em></strong>.</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"sendmailR"</span>)</span>
@@ -1041,12 +1060,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a><span class="co"># can also include the port as part of the smtpServer argument...</span></span>
 <span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a><span class="co"># e.g., `control = list(smtpServer="smtp://smtp.gmail.com:587")`</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<section id="next-steps-1" class="level4 unnumbered">
-<h4 class="unnumbered anchored" data-anchor-id="next-steps-1">Next Steps?</h4>
+</section>
+<section id="next-steps-1" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="next-steps-1">Next Steps?</h3>
 <p>Again, use the <strong><em>RStudio</em></strong> <strong>Help</strong> tab to browse the documentation associated with the {blastula} package to see how you can customize your message, e.g., with attachments.</p>
 </section>
-<section id="even-more-next-steps" class="level4 unnumbered">
-<h4 class="unnumbered anchored" data-anchor-id="even-more-next-steps">Even More Next Steps?</h4>
+<section id="even-more-next-steps" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="even-more-next-steps">Even More Next Steps?</h3>
 <p>Finally, it is a bit more complicated, but note that we can also use the {keyring} package along with {blastula} to set up a credentials “key” in our computer’s keychain and refer to that to specify our credentials for sending a message. When you create the keys, you will be asked to provide your password.</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"keyring"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1078,19 +1098,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-</section>
-<section id="clean-up-steps" class="level2 unnumbered">
-<h2 class="unnumbered anchored" data-anchor-id="clean-up-steps">Clean-Up Steps</h2>
+<section id="clean-up" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="clean-up">Clean-Up</h3>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># delete all keys</span></span>
 <span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="fu">delete_all_credential_keys</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="sending-an-sms-or-mms-text" class="level2">
-<h2 class="anchored" data-anchor-id="sending-an-sms-or-mms-text">Sending an SMS or MMS Text</h2>
+</section>
+<section id="challenge-sending-an-sms-or-mms-text" class="level2">
+<h2 class="anchored" data-anchor-id="challenge-sending-an-sms-or-mms-text">Challenge: Sending an SMS or MMS Text</h2>
 <p>With a little bit of setup, it is possible to send text messages from <strong><em>R</em></strong> as well. There are two basic ways this can be done. One way is by using a package like {emaliyi} or {blastula} to send the message to a cell carrier’s servers, which then passes that on via SMS using an email-SMS converter. Some carriers are picky, however, about passing on what their algorithms may perceive as spam messages. The other way is to use a paid text messaging service API (application programming interface) to create and send messages. One such paid service is <strong>Textbelt</strong>, which is easy to set up and has a simple pricing package.</p>
-<section id="using-textbelt-to-send-text-messages" class="level3">
-<h3 class="anchored" data-anchor-id="using-textbelt-to-send-text-messages">Using Textbelt to send text messages</h3>
+<section id="using-textbelt-to-send-text-messages" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="using-textbelt-to-send-text-messages">Using Textbelt to send text messages</h3>
 <ul>
 <li>Go to <a href="https://textbelt.com/">https://textbelt.com/</a>…</li>
 <li>Select “Create an API key”…</li>
@@ -1233,8 +1253,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
        --data-urlencode message='text message' \
        -d key='apikey'</code></pre>
 </section>
-<section id="checking-status-of-a-sent-message-via-curl" class="level3">
-<h3 class="anchored" data-anchor-id="checking-status-of-a-sent-message-via-curl">Checking status of a sent message via curl</h3>
+<section id="checking-the-status-of-a-sent-message-via-curl" class="level3">
+<h3 class="anchored" data-anchor-id="checking-the-status-of-a-sent-message-via-curl">Checking the status of a sent message via {curl}</h3>
 <p>Use /status/<textid> to view status For example, if your textID is ‘textID’…</textid></p>
 <pre><code>$ curl https://textbelt.com/status/textID</code></pre>
 </section>
@@ -1244,7 +1264,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <pre><code>$ curl https://textbelt.com/quota/apikey</code></pre>
 </section>
 <section id="testing-your-api-key-with-curl" class="level3">
-<h3 class="anchored" data-anchor-id="testing-your-api-key-with-curl">Testing your API key with curl</h3>
+<h3 class="anchored" data-anchor-id="testing-your-api-key-with-curl">Testing your API key with {curl}</h3>
 <p>If you want to just validate your key without actually using your text quota, append “_test” to your key and you will receive a response from the /text endpoint confirming that a text would send, but it will not consume your credits.</p>
 <pre><code>$ curl https://textbelt.com/quota/apikey_test</code></pre>
 
@@ -1790,575 +1810,579 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb38-98"><a href="#cb38-98" aria-hidden="true" tabindex="-1"></a>pwd_gmail <span class="ot">&lt;-</span> <span class="st">""</span> <span class="co"># enter your app password between the quotation marks</span></span>
 <span id="cb38-99"><a href="#cb38-99" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb38-100"><a href="#cb38-100" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-101"><a href="#cb38-101" aria-hidden="true" tabindex="-1"></a><span class="fu">## Sending an Email Version 1: Using the {emayili} package {.unnumbered}</span></span>
+<span id="cb38-101"><a href="#cb38-101" aria-hidden="true" tabindex="-1"></a><span class="fu">## Challenge: Sending Emails {.unnumbered}</span></span>
 <span id="cb38-102"><a href="#cb38-102" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-103"><a href="#cb38-103" aria-hidden="true" tabindex="-1"></a>The {emayili} package makes sending simple text emails very easy.</span>
+<span id="cb38-103"><a href="#cb38-103" aria-hidden="true" tabindex="-1"></a><span class="fu">### Sending an Email Using the {emayili} package {.unnumbered}</span></span>
 <span id="cb38-104"><a href="#cb38-104" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-105"><a href="#cb38-105" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Step 1 {.unnumbered}</span></span>
+<span id="cb38-105"><a href="#cb38-105" aria-hidden="true" tabindex="-1"></a>The {emayili} package makes sending simple text emails very easy.</span>
 <span id="cb38-106"><a href="#cb38-106" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-107"><a href="#cb38-107" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Install the {emayili} and {tidyverse} packages.</span>
+<span id="cb38-107"><a href="#cb38-107" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Step 1 {.unnumbered}</span></span>
 <span id="cb38-108"><a href="#cb38-108" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-109"><a href="#cb38-109" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; Note that {tidyverse} is only needed if we are going to use the </span><span class="in">`%&gt;%`</span><span class="at"> operator (see below).</span></span>
+<span id="cb38-109"><a href="#cb38-109" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Install the {emayili} and {tidyverse} packages.</span>
 <span id="cb38-110"><a href="#cb38-110" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-111"><a href="#cb38-111" aria-hidden="true" tabindex="-1"></a>We can do this at the ***R*** console prompt...</span>
+<span id="cb38-111"><a href="#cb38-111" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; Note that {tidyverse} is only needed if we are going to use the </span><span class="in">`%&gt;%`</span><span class="at"> operator (see below).</span></span>
 <span id="cb38-112"><a href="#cb38-112" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-115"><a href="#cb38-115" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb38-116"><a href="#cb38-116" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
-<span id="cb38-117"><a href="#cb38-117" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"emayili"</span>)</span>
-<span id="cb38-118"><a href="#cb38-118" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"tidyverse"</span>)</span>
-<span id="cb38-119"><a href="#cb38-119" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-120"><a href="#cb38-120" aria-hidden="true" tabindex="-1"></a><span class="co"># or to install both packages together...</span></span>
+<span id="cb38-113"><a href="#cb38-113" aria-hidden="true" tabindex="-1"></a>We can do this at the ***R*** console prompt...</span>
+<span id="cb38-114"><a href="#cb38-114" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-117"><a href="#cb38-117" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb38-118"><a href="#cb38-118" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
+<span id="cb38-119"><a href="#cb38-119" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"emayili"</span>)</span>
+<span id="cb38-120"><a href="#cb38-120" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"tidyverse"</span>)</span>
 <span id="cb38-121"><a href="#cb38-121" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-122"><a href="#cb38-122" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="fu">c</span>(<span class="st">"emayili"</span>, <span class="st">"tidyverse"</span>))</span>
-<span id="cb38-123"><a href="#cb38-123" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb38-124"><a href="#cb38-124" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-125"><a href="#cb38-125" aria-hidden="true" tabindex="-1"></a>We can also do this by using the package manager in ***RStudio***.</span>
+<span id="cb38-122"><a href="#cb38-122" aria-hidden="true" tabindex="-1"></a><span class="co"># or to install both packages together...</span></span>
+<span id="cb38-123"><a href="#cb38-123" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-124"><a href="#cb38-124" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="fu">c</span>(<span class="st">"emayili"</span>, <span class="st">"tidyverse"</span>))</span>
+<span id="cb38-125"><a href="#cb38-125" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb38-126"><a href="#cb38-126" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-129"><a href="#cb38-129" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb38-130"><a href="#cb38-130" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: false</span></span>
-<span id="cb38-131"><a href="#cb38-131" aria-hidden="true" tabindex="-1"></a><span class="co">#| out-width: "80%"</span></span>
-<span id="cb38-132"><a href="#cb38-132" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">include_graphics</span>(<span class="st">"img/install-packages.png"</span>)</span>
-<span id="cb38-133"><a href="#cb38-133" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb38-134"><a href="#cb38-134" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-135"><a href="#cb38-135" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Step 2 {.unnumbered}</span></span>
+<span id="cb38-127"><a href="#cb38-127" aria-hidden="true" tabindex="-1"></a>We can also do this by using the package manager in ***RStudio***.</span>
+<span id="cb38-128"><a href="#cb38-128" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-131"><a href="#cb38-131" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb38-132"><a href="#cb38-132" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: false</span></span>
+<span id="cb38-133"><a href="#cb38-133" aria-hidden="true" tabindex="-1"></a><span class="co">#| out-width: "80%"</span></span>
+<span id="cb38-134"><a href="#cb38-134" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">include_graphics</span>(<span class="st">"img/install-packages.png"</span>)</span>
+<span id="cb38-135"><a href="#cb38-135" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb38-136"><a href="#cb38-136" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-137"><a href="#cb38-137" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Load and attach these packages to the search path so you can call functions they contain.</span>
+<span id="cb38-137"><a href="#cb38-137" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Step 2 {.unnumbered}</span></span>
 <span id="cb38-138"><a href="#cb38-138" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-141"><a href="#cb38-141" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb38-142"><a href="#cb38-142" aria-hidden="true" tabindex="-1"></a><span class="co">#| message: false</span></span>
-<span id="cb38-143"><a href="#cb38-143" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(emayili)</span>
-<span id="cb38-144"><a href="#cb38-144" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb38-145"><a href="#cb38-145" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb38-146"><a href="#cb38-146" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-147"><a href="#cb38-147" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; **NOTE:** We can also use </span><span class="in">`require()`</span><span class="at"> in lieu of </span><span class="in">`library()`</span><span class="at">.</span></span>
+<span id="cb38-139"><a href="#cb38-139" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Load and attach these packages to the search path so you can call functions they contain.</span>
+<span id="cb38-140"><a href="#cb38-140" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-143"><a href="#cb38-143" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb38-144"><a href="#cb38-144" aria-hidden="true" tabindex="-1"></a><span class="co">#| message: false</span></span>
+<span id="cb38-145"><a href="#cb38-145" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(emayili)</span>
+<span id="cb38-146"><a href="#cb38-146" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb38-147"><a href="#cb38-147" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb38-148"><a href="#cb38-148" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-149"><a href="#cb38-149" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Step 3 {.unnumbered}</span></span>
+<span id="cb38-149"><a href="#cb38-149" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; **NOTE:** We can also use </span><span class="in">`require()`</span><span class="at"> in lieu of </span><span class="in">`library()`</span><span class="at">.</span></span>
 <span id="cb38-150"><a href="#cb38-150" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-151"><a href="#cb38-151" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Create a new email "message" with the <span class="in">`envelope()`</span> function from the {emayili} package.</span>
+<span id="cb38-151"><a href="#cb38-151" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Step 3 {.unnumbered}</span></span>
 <span id="cb38-152"><a href="#cb38-152" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-153"><a href="#cb38-153" aria-hidden="true" tabindex="-1"></a>This function takes several intuitive arguments (<span class="in">`from`</span>, <span class="in">`to`</span>, <span class="in">`subject`</span>, and <span class="in">`text`</span>) that we can assign values to directly within the function using the <span class="in">`=`</span> operator.</span>
+<span id="cb38-153"><a href="#cb38-153" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Create a new email "message" with the <span class="in">`envelope()`</span> function from the {emayili} package.</span>
 <span id="cb38-154"><a href="#cb38-154" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-155"><a href="#cb38-155" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; **NOTE:** </span><span class="in">`from=`</span><span class="at"> should typically be the email address you are sending the from, although many SMTP transactions will accept alternatives, such as just a name. You can also use a vector of email addresses for the </span><span class="in">`to=`</span><span class="at"> argument to send a message to more than one recipient. The </span><span class="in">`from`</span><span class="at"> and </span><span class="in">`to`</span><span class="at"> arguments are required... </span><span class="in">`subject`</span><span class="at"> and </span><span class="in">`text`</span><span class="at"> are optional.</span></span>
+<span id="cb38-155"><a href="#cb38-155" aria-hidden="true" tabindex="-1"></a>This function takes several intuitive arguments (<span class="in">`from`</span>, <span class="in">`to`</span>, <span class="in">`subject`</span>, and <span class="in">`text`</span>) that we can assign values to directly within the function using the <span class="in">`=`</span> operator.</span>
 <span id="cb38-156"><a href="#cb38-156" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-159"><a href="#cb38-159" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb38-160"><a href="#cb38-160" aria-hidden="true" tabindex="-1"></a>message_gmail <span class="ot">&lt;-</span> <span class="fu">envelope</span>(</span>
-<span id="cb38-161"><a href="#cb38-161" aria-hidden="true" tabindex="-1"></a>  <span class="at">from =</span> <span class="st">"anthony.difiore@utexas.edu"</span>,</span>
-<span id="cb38-162"><a href="#cb38-162" aria-hidden="true" tabindex="-1"></a>  <span class="at">to =</span> <span class="st">"anthony.difiore@gmail.com"</span>,</span>
-<span id="cb38-163"><a href="#cb38-163" aria-hidden="true" tabindex="-1"></a>  <span class="at">subject =</span> <span class="st">"Sending a message using {emayili}"</span>,</span>
-<span id="cb38-164"><a href="#cb38-164" aria-hidden="true" tabindex="-1"></a>  <span class="at">text =</span> <span class="st">"Hello! This is a plain text message sent to my personal Gmail account from my UT Gmail account."</span>)</span>
-<span id="cb38-165"><a href="#cb38-165" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb38-166"><a href="#cb38-166" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-167"><a href="#cb38-167" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; **NOTE:** ***R*** essentially ignores all the whitespace (spaces and tab characters) and also allows you to have code continue from one line to the next. It is even pretty forgiving about where you put carriage returns, although it is good form to place them following a comma or before/after a parenthesis or brace.</span></span>
+<span id="cb38-157"><a href="#cb38-157" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; **NOTE:** </span><span class="in">`from=`</span><span class="at"> should typically be the email address you are sending the from, although many SMTP transactions will accept alternatives, such as just a name. You can also use a vector of email addresses for the </span><span class="in">`to=`</span><span class="at"> argument to send a message to more than one recipient. The </span><span class="in">`from`</span><span class="at"> and </span><span class="in">`to`</span><span class="at"> arguments are required... </span><span class="in">`subject`</span><span class="at"> and </span><span class="in">`text`</span><span class="at"> are optional.</span></span>
+<span id="cb38-158"><a href="#cb38-158" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-161"><a href="#cb38-161" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb38-162"><a href="#cb38-162" aria-hidden="true" tabindex="-1"></a>message_gmail <span class="ot">&lt;-</span> <span class="fu">envelope</span>(</span>
+<span id="cb38-163"><a href="#cb38-163" aria-hidden="true" tabindex="-1"></a>  <span class="at">from =</span> <span class="st">"anthony.difiore@utexas.edu"</span>,</span>
+<span id="cb38-164"><a href="#cb38-164" aria-hidden="true" tabindex="-1"></a>  <span class="at">to =</span> <span class="st">"anthony.difiore@gmail.com"</span>,</span>
+<span id="cb38-165"><a href="#cb38-165" aria-hidden="true" tabindex="-1"></a>  <span class="at">subject =</span> <span class="st">"Sending a message using {emayili}"</span>,</span>
+<span id="cb38-166"><a href="#cb38-166" aria-hidden="true" tabindex="-1"></a>  <span class="at">text =</span> <span class="st">"Hello! This is a plain text message sent to my personal Gmail account from my UT Gmail account."</span>)</span>
+<span id="cb38-167"><a href="#cb38-167" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb38-168"><a href="#cb38-168" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-169"><a href="#cb38-169" aria-hidden="true" tabindex="-1"></a>Using {tidyverse} syntax, we can set up the same email as follows using the "pipe" operator (<span class="in">`%&gt;%`</span>):</span>
+<span id="cb38-169"><a href="#cb38-169" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; **NOTE:** ***R*** essentially ignores all the whitespace (spaces and tab characters) and also allows you to have code continue from one line to the next. It is even pretty forgiving about where you put carriage returns, although it is good form to place them following a comma or before/after a parenthesis or brace.</span></span>
 <span id="cb38-170"><a href="#cb38-170" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-173"><a href="#cb38-173" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb38-174"><a href="#cb38-174" aria-hidden="true" tabindex="-1"></a>message_gmail <span class="ot">&lt;-</span> <span class="fu">envelope</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb38-175"><a href="#cb38-175" aria-hidden="true" tabindex="-1"></a>  <span class="fu">from</span>(<span class="st">"anthony.difiore@utexas.edu"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb38-176"><a href="#cb38-176" aria-hidden="true" tabindex="-1"></a>  <span class="fu">to</span>(<span class="st">"anthony.difiore@gmail.com"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb38-177"><a href="#cb38-177" aria-hidden="true" tabindex="-1"></a>  <span class="fu">subject</span>(<span class="st">"Sending a message using {emayili}"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb38-178"><a href="#cb38-178" aria-hidden="true" tabindex="-1"></a>  <span class="fu">text</span>(<span class="st">"Hello! This is a plain text message sent to my personal Gmail account from my UT Gmail account."</span>)</span>
-<span id="cb38-179"><a href="#cb38-179" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb38-180"><a href="#cb38-180" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-181"><a href="#cb38-181" aria-hidden="true" tabindex="-1"></a>As of ***R*** version 4.1, we can alternatively use ***R***'s "native" pipe operator, <span class="in">`|&gt;`</span>:</span>
+<span id="cb38-171"><a href="#cb38-171" aria-hidden="true" tabindex="-1"></a>Using {tidyverse} syntax, we can set up the same email as follows using the "pipe" operator (<span class="in">`%&gt;%`</span>):</span>
+<span id="cb38-172"><a href="#cb38-172" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-175"><a href="#cb38-175" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb38-176"><a href="#cb38-176" aria-hidden="true" tabindex="-1"></a>message_gmail <span class="ot">&lt;-</span> <span class="fu">envelope</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb38-177"><a href="#cb38-177" aria-hidden="true" tabindex="-1"></a>  <span class="fu">from</span>(<span class="st">"anthony.difiore@utexas.edu"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb38-178"><a href="#cb38-178" aria-hidden="true" tabindex="-1"></a>  <span class="fu">to</span>(<span class="st">"anthony.difiore@gmail.com"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb38-179"><a href="#cb38-179" aria-hidden="true" tabindex="-1"></a>  <span class="fu">subject</span>(<span class="st">"Sending a message using {emayili}"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb38-180"><a href="#cb38-180" aria-hidden="true" tabindex="-1"></a>  <span class="fu">text</span>(<span class="st">"Hello! This is a plain text message sent to my personal Gmail account from my UT Gmail account."</span>)</span>
+<span id="cb38-181"><a href="#cb38-181" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb38-182"><a href="#cb38-182" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-185"><a href="#cb38-185" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb38-186"><a href="#cb38-186" aria-hidden="true" tabindex="-1"></a>message_gmail <span class="ot">&lt;-</span> <span class="fu">envelope</span>() <span class="sc">|&gt;</span></span>
-<span id="cb38-187"><a href="#cb38-187" aria-hidden="true" tabindex="-1"></a>  <span class="fu">from</span>(<span class="st">"anthony.difiore@utexas.edu"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb38-188"><a href="#cb38-188" aria-hidden="true" tabindex="-1"></a>  <span class="fu">to</span>(<span class="st">"anthony.difiore@gmail.com"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb38-189"><a href="#cb38-189" aria-hidden="true" tabindex="-1"></a>  <span class="fu">subject</span>(<span class="st">"Sending a message using {emayili}"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb38-190"><a href="#cb38-190" aria-hidden="true" tabindex="-1"></a>  <span class="fu">text</span>(<span class="st">"Hello! This is a plain text message sent to my personal Gmail account from my UT Gmail account."</span>)</span>
-<span id="cb38-191"><a href="#cb38-191" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb38-192"><a href="#cb38-192" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-193"><a href="#cb38-193" aria-hidden="true" tabindex="-1"></a>The difference here is that we are first creating an empty "message" object and then "piping" that object using <span class="in">`%&gt;%`</span> or <span class="in">`|&gt;`</span> into different helper functions (<span class="in">`from()`</span>, <span class="in">`to()`</span>, etc.) to create the details of the message.</span>
+<span id="cb38-183"><a href="#cb38-183" aria-hidden="true" tabindex="-1"></a>As of ***R*** version 4.1, we can alternatively use ***R***'s "native" pipe operator, <span class="in">`|&gt;`</span>:</span>
+<span id="cb38-184"><a href="#cb38-184" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-187"><a href="#cb38-187" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb38-188"><a href="#cb38-188" aria-hidden="true" tabindex="-1"></a>message_gmail <span class="ot">&lt;-</span> <span class="fu">envelope</span>() <span class="sc">|&gt;</span></span>
+<span id="cb38-189"><a href="#cb38-189" aria-hidden="true" tabindex="-1"></a>  <span class="fu">from</span>(<span class="st">"anthony.difiore@utexas.edu"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb38-190"><a href="#cb38-190" aria-hidden="true" tabindex="-1"></a>  <span class="fu">to</span>(<span class="st">"anthony.difiore@gmail.com"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb38-191"><a href="#cb38-191" aria-hidden="true" tabindex="-1"></a>  <span class="fu">subject</span>(<span class="st">"Sending a message using {emayili}"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb38-192"><a href="#cb38-192" aria-hidden="true" tabindex="-1"></a>  <span class="fu">text</span>(<span class="st">"Hello! This is a plain text message sent to my personal Gmail account from my UT Gmail account."</span>)</span>
+<span id="cb38-193"><a href="#cb38-193" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb38-194"><a href="#cb38-194" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-195"><a href="#cb38-195" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Step 4 {.unnumbered}</span></span>
+<span id="cb38-195"><a href="#cb38-195" aria-hidden="true" tabindex="-1"></a>The difference here is that we are first creating an empty "message" object and then "piping" that object using <span class="in">`%&gt;%`</span> or <span class="in">`|&gt;`</span> into different helper functions (<span class="in">`from()`</span>, <span class="in">`to()`</span>, etc.) to create the details of the message.</span>
 <span id="cb38-196"><a href="#cb38-196" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-197"><a href="#cb38-197" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Create an SMTP (or "Simple Mail Transfer Protocol") "server" object that includes details about how to send a message, i.e., by specifying the email service's outgoing server host name, a communications port number to use, and user and password information for authenticating use of the server.</span>
-<span id="cb38-198"><a href="#cb38-198" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>SMTP transmission can often use any of several standard port numbers (25, 465, 587, and 2525), but 587 and 465 are the most commonly used and support TLS encryption. To use Google's outgoing email server, set the host to "smtp.gmail.com" and the port to either 465 or 587.</span>
-<span id="cb38-199"><a href="#cb38-199" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-200"><a href="#cb38-200" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; **NOTE:** In the function below, </span><span class="in">`max_times=`</span><span class="at"> sets the number of attempts the function will make to send the message. The default (if the argument is omitted) is 5, but I have set it to 1 to exit quickly if the server is not contacted. For </span><span class="in">`username=`</span><span class="at"> enter your login ID for the service you are sending from, and for </span><span class="in">`password=`</span><span class="at"> either use the variable you set up above to hold the "app password" for your Google account, or enter your password directly here, in quotation marks it, in lieu of the variable </span><span class="in">`gmail_pwd`</span></span>
+<span id="cb38-197"><a href="#cb38-197" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Step 4 {.unnumbered}</span></span>
+<span id="cb38-198"><a href="#cb38-198" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-199"><a href="#cb38-199" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Create an SMTP (or "Simple Mail Transfer Protocol") "server" object that includes details about how to send a message, i.e., by specifying the email service's outgoing server host name, a communications port number to use, and user and password information for authenticating use of the server.</span>
+<span id="cb38-200"><a href="#cb38-200" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>SMTP transmission can often use any of several standard port numbers (25, 465, 587, and 2525), but 587 and 465 are the most commonly used and support TLS encryption. To use Google's outgoing email server, set the host to "smtp.gmail.com" and the port to either 465 or 587.</span>
 <span id="cb38-201"><a href="#cb38-201" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-204"><a href="#cb38-204" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb38-205"><a href="#cb38-205" aria-hidden="true" tabindex="-1"></a>smtp_gmail <span class="ot">&lt;-</span> <span class="fu">server</span>(</span>
-<span id="cb38-206"><a href="#cb38-206" aria-hidden="true" tabindex="-1"></a>  <span class="at">host =</span> <span class="st">"smtp.gmail.com"</span>,</span>
-<span id="cb38-207"><a href="#cb38-207" aria-hidden="true" tabindex="-1"></a>  <span class="at">port =</span> <span class="dv">465</span>,</span>
-<span id="cb38-208"><a href="#cb38-208" aria-hidden="true" tabindex="-1"></a>  <span class="at">max_times =</span> <span class="dv">1</span>,</span>
-<span id="cb38-209"><a href="#cb38-209" aria-hidden="true" tabindex="-1"></a>  <span class="at">username =</span> <span class="st">"anthony.difiore@utexas.edu"</span>,</span>
-<span id="cb38-210"><a href="#cb38-210" aria-hidden="true" tabindex="-1"></a>  <span class="at">password =</span> pwd_gmail</span>
-<span id="cb38-211"><a href="#cb38-211" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb38-212"><a href="#cb38-212" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb38-213"><a href="#cb38-213" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-214"><a href="#cb38-214" aria-hidden="true" tabindex="-1"></a>Alternatively, you can use the <span class="in">`gmail()`</span> function to create a **Gmail** server object more easily...</span>
+<span id="cb38-202"><a href="#cb38-202" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; **NOTE:** In the function below, </span><span class="in">`max_times=`</span><span class="at"> sets the number of attempts the function will make to send the message. The default (if the argument is omitted) is 5, but I have set it to 1 to exit quickly if the server is not contacted. For </span><span class="in">`username=`</span><span class="at"> enter your login ID for the service you are sending from, and for </span><span class="in">`password=`</span><span class="at"> either use the variable you set up above to hold the "app password" for your Google account, or enter your password directly here, in quotation marks it, in lieu of the variable </span><span class="in">`gmail_pwd`</span></span>
+<span id="cb38-203"><a href="#cb38-203" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-206"><a href="#cb38-206" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb38-207"><a href="#cb38-207" aria-hidden="true" tabindex="-1"></a>smtp_gmail <span class="ot">&lt;-</span> <span class="fu">server</span>(</span>
+<span id="cb38-208"><a href="#cb38-208" aria-hidden="true" tabindex="-1"></a>  <span class="at">host =</span> <span class="st">"smtp.gmail.com"</span>,</span>
+<span id="cb38-209"><a href="#cb38-209" aria-hidden="true" tabindex="-1"></a>  <span class="at">port =</span> <span class="dv">465</span>,</span>
+<span id="cb38-210"><a href="#cb38-210" aria-hidden="true" tabindex="-1"></a>  <span class="at">max_times =</span> <span class="dv">1</span>,</span>
+<span id="cb38-211"><a href="#cb38-211" aria-hidden="true" tabindex="-1"></a>  <span class="at">username =</span> <span class="st">"anthony.difiore@utexas.edu"</span>,</span>
+<span id="cb38-212"><a href="#cb38-212" aria-hidden="true" tabindex="-1"></a>  <span class="at">password =</span> pwd_gmail</span>
+<span id="cb38-213"><a href="#cb38-213" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb38-214"><a href="#cb38-214" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb38-215"><a href="#cb38-215" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-218"><a href="#cb38-218" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb38-219"><a href="#cb38-219" aria-hidden="true" tabindex="-1"></a>smtp_gmail <span class="ot">&lt;-</span> <span class="fu">gmail</span>(</span>
-<span id="cb38-220"><a href="#cb38-220" aria-hidden="true" tabindex="-1"></a>  <span class="at">username =</span> <span class="st">"anthony.difiore@utexas.edu"</span>,</span>
-<span id="cb38-221"><a href="#cb38-221" aria-hidden="true" tabindex="-1"></a>  <span class="at">password =</span> pwd_gmail</span>
-<span id="cb38-222"><a href="#cb38-222" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb38-223"><a href="#cb38-223" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb38-224"><a href="#cb38-224" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-227"><a href="#cb38-227" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb38-228"><a href="#cb38-228" aria-hidden="true" tabindex="-1"></a><span class="co">#| include: false</span></span>
-<span id="cb38-229"><a href="#cb38-229" aria-hidden="true" tabindex="-1"></a><span class="co"># Repeat using my personal gmail account to access the server</span></span>
-<span id="cb38-230"><a href="#cb38-230" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-231"><a href="#cb38-231" aria-hidden="true" tabindex="-1"></a>smtp_gmail <span class="ot">&lt;-</span> <span class="fu">server</span>(</span>
-<span id="cb38-232"><a href="#cb38-232" aria-hidden="true" tabindex="-1"></a>  <span class="at">host =</span> <span class="st">"smtp.gmail.com"</span>,</span>
-<span id="cb38-233"><a href="#cb38-233" aria-hidden="true" tabindex="-1"></a>  <span class="at">port =</span> <span class="dv">465</span>,</span>
-<span id="cb38-234"><a href="#cb38-234" aria-hidden="true" tabindex="-1"></a>  <span class="at">max_times =</span> <span class="dv">1</span>,</span>
-<span id="cb38-235"><a href="#cb38-235" aria-hidden="true" tabindex="-1"></a>  <span class="at">username =</span> <span class="st">"anthony.difiore@gmail.com"</span>,</span>
-<span id="cb38-236"><a href="#cb38-236" aria-hidden="true" tabindex="-1"></a>  <span class="at">password =</span> pwd_gmail_personal</span>
-<span id="cb38-237"><a href="#cb38-237" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb38-238"><a href="#cb38-238" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-239"><a href="#cb38-239" aria-hidden="true" tabindex="-1"></a><span class="co"># Or...</span></span>
-<span id="cb38-240"><a href="#cb38-240" aria-hidden="true" tabindex="-1"></a>smtp_gmail <span class="ot">&lt;-</span> <span class="fu">gmail</span>(</span>
-<span id="cb38-241"><a href="#cb38-241" aria-hidden="true" tabindex="-1"></a>  <span class="at">username =</span> <span class="st">"anthony.difiore@gmail.com"</span>,</span>
-<span id="cb38-242"><a href="#cb38-242" aria-hidden="true" tabindex="-1"></a>  <span class="at">password =</span> pwd_gmail_personal</span>
-<span id="cb38-243"><a href="#cb38-243" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb38-244"><a href="#cb38-244" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb38-245"><a href="#cb38-245" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-246"><a href="#cb38-246" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Step 5 {.unnumbered}</span></span>
+<span id="cb38-216"><a href="#cb38-216" aria-hidden="true" tabindex="-1"></a>Alternatively, you can use the <span class="in">`gmail()`</span> function to create a **Gmail** server object more easily...</span>
+<span id="cb38-217"><a href="#cb38-217" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-220"><a href="#cb38-220" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb38-221"><a href="#cb38-221" aria-hidden="true" tabindex="-1"></a>smtp_gmail <span class="ot">&lt;-</span> <span class="fu">gmail</span>(</span>
+<span id="cb38-222"><a href="#cb38-222" aria-hidden="true" tabindex="-1"></a>  <span class="at">username =</span> <span class="st">"anthony.difiore@utexas.edu"</span>,</span>
+<span id="cb38-223"><a href="#cb38-223" aria-hidden="true" tabindex="-1"></a>  <span class="at">password =</span> pwd_gmail</span>
+<span id="cb38-224"><a href="#cb38-224" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb38-225"><a href="#cb38-225" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb38-226"><a href="#cb38-226" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-229"><a href="#cb38-229" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb38-230"><a href="#cb38-230" aria-hidden="true" tabindex="-1"></a><span class="co">#| include: false</span></span>
+<span id="cb38-231"><a href="#cb38-231" aria-hidden="true" tabindex="-1"></a><span class="co"># Repeat using my personal gmail account to access the server</span></span>
+<span id="cb38-232"><a href="#cb38-232" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-233"><a href="#cb38-233" aria-hidden="true" tabindex="-1"></a>smtp_gmail <span class="ot">&lt;-</span> <span class="fu">server</span>(</span>
+<span id="cb38-234"><a href="#cb38-234" aria-hidden="true" tabindex="-1"></a>  <span class="at">host =</span> <span class="st">"smtp.gmail.com"</span>,</span>
+<span id="cb38-235"><a href="#cb38-235" aria-hidden="true" tabindex="-1"></a>  <span class="at">port =</span> <span class="dv">465</span>,</span>
+<span id="cb38-236"><a href="#cb38-236" aria-hidden="true" tabindex="-1"></a>  <span class="at">max_times =</span> <span class="dv">1</span>,</span>
+<span id="cb38-237"><a href="#cb38-237" aria-hidden="true" tabindex="-1"></a>  <span class="at">username =</span> <span class="st">"anthony.difiore@gmail.com"</span>,</span>
+<span id="cb38-238"><a href="#cb38-238" aria-hidden="true" tabindex="-1"></a>  <span class="at">password =</span> pwd_gmail_personal</span>
+<span id="cb38-239"><a href="#cb38-239" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb38-240"><a href="#cb38-240" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-241"><a href="#cb38-241" aria-hidden="true" tabindex="-1"></a><span class="co"># Or...</span></span>
+<span id="cb38-242"><a href="#cb38-242" aria-hidden="true" tabindex="-1"></a>smtp_gmail <span class="ot">&lt;-</span> <span class="fu">gmail</span>(</span>
+<span id="cb38-243"><a href="#cb38-243" aria-hidden="true" tabindex="-1"></a>  <span class="at">username =</span> <span class="st">"anthony.difiore@gmail.com"</span>,</span>
+<span id="cb38-244"><a href="#cb38-244" aria-hidden="true" tabindex="-1"></a>  <span class="at">password =</span> pwd_gmail_personal</span>
+<span id="cb38-245"><a href="#cb38-245" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb38-246"><a href="#cb38-246" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb38-247"><a href="#cb38-247" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-248"><a href="#cb38-248" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Send your message by passing it as an argument to the server object. To confirm that things are working, send a message to yourself and then CHECK YOUR EMAIL to confirm that you receive the message. A copy of the message should appear in the **Sent** folder of your email client!</span>
+<span id="cb38-248"><a href="#cb38-248" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Step 5 {.unnumbered}</span></span>
 <span id="cb38-249"><a href="#cb38-249" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-252"><a href="#cb38-252" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb38-253"><a href="#cb38-253" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: FALSE</span></span>
-<span id="cb38-254"><a href="#cb38-254" aria-hidden="true" tabindex="-1"></a><span class="co"># send using Google's Gmail server...</span></span>
-<span id="cb38-255"><a href="#cb38-255" aria-hidden="true" tabindex="-1"></a><span class="fu">smtp_gmail</span>(message_gmail, <span class="at">verbose =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb38-256"><a href="#cb38-256" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb38-257"><a href="#cb38-257" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-258"><a href="#cb38-258" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Next Steps? {.unnumbered}</span></span>
+<span id="cb38-250"><a href="#cb38-250" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Send your message by passing it as an argument to the server object. To confirm that things are working, send a message to yourself and then CHECK YOUR EMAIL to confirm that you receive the message. A copy of the message should appear in the **Sent** folder of your email client!</span>
+<span id="cb38-251"><a href="#cb38-251" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-254"><a href="#cb38-254" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb38-255"><a href="#cb38-255" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: FALSE</span></span>
+<span id="cb38-256"><a href="#cb38-256" aria-hidden="true" tabindex="-1"></a><span class="co"># send using Google's Gmail server...</span></span>
+<span id="cb38-257"><a href="#cb38-257" aria-hidden="true" tabindex="-1"></a><span class="fu">smtp_gmail</span>(message_gmail, <span class="at">verbose =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb38-258"><a href="#cb38-258" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb38-259"><a href="#cb38-259" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-260"><a href="#cb38-260" aria-hidden="true" tabindex="-1"></a>Use the ***RStudio*** **Help** tab to browse the documentation associated with the {emayali} package to see how you can customize your message, e.g., by adding <span class="in">`cc`</span> or <span class="in">`bcc`</span> arguments, by using a different "reply to" address, by adding attachments, or by encrypting your message.</span>
+<span id="cb38-260"><a href="#cb38-260" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Next Steps? {.unnumbered}</span></span>
 <span id="cb38-261"><a href="#cb38-261" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-262"><a href="#cb38-262" aria-hidden="true" tabindex="-1"></a><span class="fu">## Sending an Email Version 2: Using the {mailR} package {.unnumbered}</span></span>
+<span id="cb38-262"><a href="#cb38-262" aria-hidden="true" tabindex="-1"></a>Use the ***RStudio*** **Help** tab to browse the documentation associated with the {emayali} package to see how you can customize your message, e.g., by adding <span class="in">`cc`</span> or <span class="in">`bcc`</span> arguments, by using a different "reply to" address, by adding attachments, or by encrypting your message.</span>
 <span id="cb38-263"><a href="#cb38-263" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-264"><a href="#cb38-264" aria-hidden="true" tabindex="-1"></a>The {mailR} package also allows you to easily send simple emails with a single function, <span class="in">`send.mail()`</span>. Here, we need to specify details about the SMTP server more explicitly than if we use {emayili} (above) or {blastula} (below).</span>
+<span id="cb38-264"><a href="#cb38-264" aria-hidden="true" tabindex="-1"></a><span class="fu">### Sending an Email using the {mailR} package {.unnumbered}</span></span>
 <span id="cb38-265"><a href="#cb38-265" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-266"><a href="#cb38-266" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Step 1 {.unnumbered}</span></span>
+<span id="cb38-266"><a href="#cb38-266" aria-hidden="true" tabindex="-1"></a>The {mailR} package also allows you to easily send simple emails with a single function, <span class="in">`send.mail()`</span>. Here, we need to specify details about the SMTP server more explicitly than if we use {emayili} (above) or {blastula} (below).</span>
 <span id="cb38-267"><a href="#cb38-267" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-268"><a href="#cb38-268" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Install the {mailR} package.</span>
+<span id="cb38-268"><a href="#cb38-268" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Step 1 {.unnumbered}</span></span>
 <span id="cb38-269"><a href="#cb38-269" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-272"><a href="#cb38-272" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb38-273"><a href="#cb38-273" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
-<span id="cb38-274"><a href="#cb38-274" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"mailR"</span>)</span>
-<span id="cb38-275"><a href="#cb38-275" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb38-276"><a href="#cb38-276" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-277"><a href="#cb38-277" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Step 2 {.unnumbered}</span></span>
+<span id="cb38-270"><a href="#cb38-270" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Install the {mailR} package.</span>
+<span id="cb38-271"><a href="#cb38-271" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-274"><a href="#cb38-274" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb38-275"><a href="#cb38-275" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
+<span id="cb38-276"><a href="#cb38-276" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"mailR"</span>)</span>
+<span id="cb38-277"><a href="#cb38-277" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb38-278"><a href="#cb38-278" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-279"><a href="#cb38-279" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Load the {mailR} package.</span>
+<span id="cb38-279"><a href="#cb38-279" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Step 2 {.unnumbered}</span></span>
 <span id="cb38-280"><a href="#cb38-280" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-283"><a href="#cb38-283" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb38-284"><a href="#cb38-284" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(mailR)</span>
-<span id="cb38-285"><a href="#cb38-285" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb38-286"><a href="#cb38-286" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-287"><a href="#cb38-287" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Step 3 {.unnumbered}</span></span>
+<span id="cb38-281"><a href="#cb38-281" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Load the {mailR} package.</span>
+<span id="cb38-282"><a href="#cb38-282" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-285"><a href="#cb38-285" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb38-286"><a href="#cb38-286" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(mailR)</span>
+<span id="cb38-287"><a href="#cb38-287" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb38-288"><a href="#cb38-288" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-289"><a href="#cb38-289" aria-hidden="true" tabindex="-1"></a>Create and send the email</span>
+<span id="cb38-289"><a href="#cb38-289" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Step 3 {.unnumbered}</span></span>
 <span id="cb38-290"><a href="#cb38-290" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-291"><a href="#cb38-291" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Using Google's Gmail server...</span>
-<span id="cb38-292"><a href="#cb38-292" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>To use the Gmail server with ports *other than 587* (e.g., 465) the argument <span class="in">`ssl=`</span> must be set to TRUE, which initiates a secure connection and allows required encryption</span>
-<span id="cb38-293"><a href="#cb38-293" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>If port 587 is used, either the argument <span class="in">`ssl=`</span> or <span class="in">`tls=`</span> should be set to TRUE</span>
-<span id="cb38-294"><a href="#cb38-294" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-297"><a href="#cb38-297" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb38-298"><a href="#cb38-298" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
-<span id="cb38-299"><a href="#cb38-299" aria-hidden="true" tabindex="-1"></a><span class="fu">send.mail</span>(</span>
-<span id="cb38-300"><a href="#cb38-300" aria-hidden="true" tabindex="-1"></a>  <span class="at">from =</span> <span class="st">"anthony.difiore@utexas.edu"</span>,</span>
-<span id="cb38-301"><a href="#cb38-301" aria-hidden="true" tabindex="-1"></a>  <span class="at">to =</span> <span class="st">"anthony.difiore@gmail.com"</span>,</span>
-<span id="cb38-302"><a href="#cb38-302" aria-hidden="true" tabindex="-1"></a>  <span class="at">subject =</span> <span class="st">"Sending a message using {mailR}"</span>,</span>
-<span id="cb38-303"><a href="#cb38-303" aria-hidden="true" tabindex="-1"></a>  <span class="at">body =</span> <span class="st">"Hello! This is a plain text message sent from a Gmail account."</span>,</span>
-<span id="cb38-304"><a href="#cb38-304" aria-hidden="true" tabindex="-1"></a>  <span class="at">smtp =</span> <span class="fu">list</span>(</span>
-<span id="cb38-305"><a href="#cb38-305" aria-hidden="true" tabindex="-1"></a>    <span class="at">host.name =</span> <span class="st">"smtp.gmail.com"</span>,</span>
-<span id="cb38-306"><a href="#cb38-306" aria-hidden="true" tabindex="-1"></a>    <span class="at">port =</span> <span class="dv">587</span>,</span>
-<span id="cb38-307"><a href="#cb38-307" aria-hidden="true" tabindex="-1"></a>    <span class="at">user.name =</span> <span class="st">"anthony.difiore@utexas.edu"</span>,</span>
-<span id="cb38-308"><a href="#cb38-308" aria-hidden="true" tabindex="-1"></a>    <span class="at">passwd =</span> pwd_gmail,</span>
-<span id="cb38-309"><a href="#cb38-309" aria-hidden="true" tabindex="-1"></a>    <span class="at">ssl =</span> <span class="cn">TRUE</span></span>
-<span id="cb38-310"><a href="#cb38-310" aria-hidden="true" tabindex="-1"></a>  ),</span>
-<span id="cb38-311"><a href="#cb38-311" aria-hidden="true" tabindex="-1"></a>  <span class="at">authenticate =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb38-312"><a href="#cb38-312" aria-hidden="true" tabindex="-1"></a>  <span class="at">send =</span> <span class="cn">TRUE</span></span>
-<span id="cb38-313"><a href="#cb38-313" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb38-314"><a href="#cb38-314" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb38-315"><a href="#cb38-315" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-316"><a href="#cb38-316" aria-hidden="true" tabindex="-1"></a><span class="fu">## Sending an Email Version 3: Using the {blastula} package {.unnumbered}</span></span>
+<span id="cb38-291"><a href="#cb38-291" aria-hidden="true" tabindex="-1"></a>Create and send the email</span>
+<span id="cb38-292"><a href="#cb38-292" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-293"><a href="#cb38-293" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Using Google's Gmail server...</span>
+<span id="cb38-294"><a href="#cb38-294" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>To use the Gmail server with ports *other than 587* (e.g., 465) the argument <span class="in">`ssl=`</span> must be set to TRUE, which initiates a secure connection and allows required encryption</span>
+<span id="cb38-295"><a href="#cb38-295" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>If port 587 is used, either the argument <span class="in">`ssl=`</span> or <span class="in">`tls=`</span> should be set to TRUE</span>
+<span id="cb38-296"><a href="#cb38-296" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-299"><a href="#cb38-299" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb38-300"><a href="#cb38-300" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
+<span id="cb38-301"><a href="#cb38-301" aria-hidden="true" tabindex="-1"></a><span class="fu">send.mail</span>(</span>
+<span id="cb38-302"><a href="#cb38-302" aria-hidden="true" tabindex="-1"></a>  <span class="at">from =</span> <span class="st">"anthony.difiore@utexas.edu"</span>,</span>
+<span id="cb38-303"><a href="#cb38-303" aria-hidden="true" tabindex="-1"></a>  <span class="at">to =</span> <span class="st">"anthony.difiore@gmail.com"</span>,</span>
+<span id="cb38-304"><a href="#cb38-304" aria-hidden="true" tabindex="-1"></a>  <span class="at">subject =</span> <span class="st">"Sending a message using {mailR}"</span>,</span>
+<span id="cb38-305"><a href="#cb38-305" aria-hidden="true" tabindex="-1"></a>  <span class="at">body =</span> <span class="st">"Hello! This is a plain text message sent from a Gmail account."</span>,</span>
+<span id="cb38-306"><a href="#cb38-306" aria-hidden="true" tabindex="-1"></a>  <span class="at">smtp =</span> <span class="fu">list</span>(</span>
+<span id="cb38-307"><a href="#cb38-307" aria-hidden="true" tabindex="-1"></a>    <span class="at">host.name =</span> <span class="st">"smtp.gmail.com"</span>,</span>
+<span id="cb38-308"><a href="#cb38-308" aria-hidden="true" tabindex="-1"></a>    <span class="at">port =</span> <span class="dv">587</span>,</span>
+<span id="cb38-309"><a href="#cb38-309" aria-hidden="true" tabindex="-1"></a>    <span class="at">user.name =</span> <span class="st">"anthony.difiore@utexas.edu"</span>,</span>
+<span id="cb38-310"><a href="#cb38-310" aria-hidden="true" tabindex="-1"></a>    <span class="at">passwd =</span> pwd_gmail,</span>
+<span id="cb38-311"><a href="#cb38-311" aria-hidden="true" tabindex="-1"></a>    <span class="at">ssl =</span> <span class="cn">TRUE</span></span>
+<span id="cb38-312"><a href="#cb38-312" aria-hidden="true" tabindex="-1"></a>  ),</span>
+<span id="cb38-313"><a href="#cb38-313" aria-hidden="true" tabindex="-1"></a>  <span class="at">authenticate =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb38-314"><a href="#cb38-314" aria-hidden="true" tabindex="-1"></a>  <span class="at">send =</span> <span class="cn">TRUE</span></span>
+<span id="cb38-315"><a href="#cb38-315" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb38-316"><a href="#cb38-316" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb38-317"><a href="#cb38-317" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-318"><a href="#cb38-318" aria-hidden="true" tabindex="-1"></a>The {blastula} package allows us to create and send more complex HTML and formatted emails using markdown. Using it is a bit more complicated (but more flexible) than using the procedures above.</span>
+<span id="cb38-318"><a href="#cb38-318" aria-hidden="true" tabindex="-1"></a><span class="fu">### Sending an Email using the {blastula} package {.unnumbered}</span></span>
 <span id="cb38-319"><a href="#cb38-319" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-320"><a href="#cb38-320" aria-hidden="true" tabindex="-1"></a>Similar to {emayili}, {blastula} provides two main functions: <span class="co">[</span><span class="ot">1</span><span class="co">]</span> <span class="in">`compose_email()`</span> for constructing various parts of a message and <span class="co">[</span><span class="ot">2</span><span class="co">]</span> <span class="in">`smtp_send()`</span> for specifying email server settings and passing the message to the server to send. However, {blastula} also adds in some helper functions that allow you to store authentication information in either a separate "credentials" text file that is referenced when you run the function to send a message or in your computer's keychain. {blastula} also stores some default information on commonly-used email providers and services (e.g., on Google's Gmail server), which may make configuring the server setup easier than using {emayili} or {mailR}.</span>
+<span id="cb38-320"><a href="#cb38-320" aria-hidden="true" tabindex="-1"></a>The {blastula} package allows us to create and send more complex HTML and formatted emails using markdown. Using it is a bit more complicated (but more flexible) than using the procedures above.</span>
 <span id="cb38-321"><a href="#cb38-321" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-322"><a href="#cb38-322" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Step 1 {.unnumbered}</span></span>
+<span id="cb38-322"><a href="#cb38-322" aria-hidden="true" tabindex="-1"></a>Similar to {emayili}, {blastula} provides two main functions: <span class="co">[</span><span class="ot">1</span><span class="co">]</span> <span class="in">`compose_email()`</span> for constructing various parts of a message and <span class="co">[</span><span class="ot">2</span><span class="co">]</span> <span class="in">`smtp_send()`</span> for specifying email server settings and passing the message to the server to send. However, {blastula} also adds in some helper functions that allow you to store authentication information in either a separate "credentials" text file that is referenced when you run the function to send a message or in your computer's keychain. {blastula} also stores some default information on commonly-used email providers and services (e.g., on Google's Gmail server), which may make configuring the server setup easier than using {emayili} or {mailR}.</span>
 <span id="cb38-323"><a href="#cb38-323" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-324"><a href="#cb38-324" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Install the {blastula} package.</span>
+<span id="cb38-324"><a href="#cb38-324" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Step 1 {.unnumbered}</span></span>
 <span id="cb38-325"><a href="#cb38-325" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-328"><a href="#cb38-328" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb38-329"><a href="#cb38-329" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
-<span id="cb38-330"><a href="#cb38-330" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"blastula"</span>)</span>
-<span id="cb38-331"><a href="#cb38-331" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb38-332"><a href="#cb38-332" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-333"><a href="#cb38-333" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Step 2 {.unnumbered}</span></span>
+<span id="cb38-326"><a href="#cb38-326" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Install the {blastula} package.</span>
+<span id="cb38-327"><a href="#cb38-327" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-330"><a href="#cb38-330" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb38-331"><a href="#cb38-331" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
+<span id="cb38-332"><a href="#cb38-332" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"blastula"</span>)</span>
+<span id="cb38-333"><a href="#cb38-333" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb38-334"><a href="#cb38-334" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-335"><a href="#cb38-335" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Load the {blastula} package.</span>
+<span id="cb38-335"><a href="#cb38-335" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Step 2 {.unnumbered}</span></span>
 <span id="cb38-336"><a href="#cb38-336" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-339"><a href="#cb38-339" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb38-340"><a href="#cb38-340" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(blastula)</span>
-<span id="cb38-341"><a href="#cb38-341" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb38-342"><a href="#cb38-342" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-343"><a href="#cb38-343" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Step 3 {.unnumbered}</span></span>
+<span id="cb38-337"><a href="#cb38-337" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Load the {blastula} package.</span>
+<span id="cb38-338"><a href="#cb38-338" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-341"><a href="#cb38-341" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb38-342"><a href="#cb38-342" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(blastula)</span>
+<span id="cb38-343"><a href="#cb38-343" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb38-344"><a href="#cb38-344" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-345"><a href="#cb38-345" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Create a new email "message" with the <span class="in">`compose_email()`</span> function.</span>
+<span id="cb38-345"><a href="#cb38-345" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Step 3 {.unnumbered}</span></span>
 <span id="cb38-346"><a href="#cb38-346" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-347"><a href="#cb38-347" aria-hidden="true" tabindex="-1"></a>This function takes several intuitive arguments that we can assign values to directly within the function.</span>
+<span id="cb38-347"><a href="#cb38-347" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Create a new email "message" with the <span class="in">`compose_email()`</span> function.</span>
 <span id="cb38-348"><a href="#cb38-348" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-351"><a href="#cb38-351" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb38-352"><a href="#cb38-352" aria-hidden="true" tabindex="-1"></a><span class="co"># Compose the message</span></span>
-<span id="cb38-353"><a href="#cb38-353" aria-hidden="true" tabindex="-1"></a>message <span class="ot">&lt;-</span> <span class="fu">compose_email</span>(</span>
-<span id="cb38-354"><a href="#cb38-354" aria-hidden="true" tabindex="-1"></a>  <span class="at">body =</span> <span class="st">"Hello! This is a simple HTML message."</span></span>
-<span id="cb38-355"><a href="#cb38-355" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb38-356"><a href="#cb38-356" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-357"><a href="#cb38-357" aria-hidden="true" tabindex="-1"></a><span class="co"># Preview the message.</span></span>
-<span id="cb38-358"><a href="#cb38-358" aria-hidden="true" tabindex="-1"></a><span class="co"># This will open the HTML message in a browser window or in the RStudio Viewer tab</span></span>
-<span id="cb38-359"><a href="#cb38-359" aria-hidden="true" tabindex="-1"></a>message</span>
-<span id="cb38-360"><a href="#cb38-360" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb38-361"><a href="#cb38-361" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-362"><a href="#cb38-362" aria-hidden="true" tabindex="-1"></a>We can add some formatting to our email by using the <span class="in">`md()`</span> function and markdown syntax. Here, we pipe (<span class="in">`%&gt;%`</span> or <span class="in">`|&gt;`</span>) the <span class="in">`body`</span> argument to the <span class="in">`md()`</span> function to convert it to markdown.</span>
+<span id="cb38-349"><a href="#cb38-349" aria-hidden="true" tabindex="-1"></a>This function takes several intuitive arguments that we can assign values to directly within the function.</span>
+<span id="cb38-350"><a href="#cb38-350" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-353"><a href="#cb38-353" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb38-354"><a href="#cb38-354" aria-hidden="true" tabindex="-1"></a><span class="co"># Compose the message</span></span>
+<span id="cb38-355"><a href="#cb38-355" aria-hidden="true" tabindex="-1"></a>message <span class="ot">&lt;-</span> <span class="fu">compose_email</span>(</span>
+<span id="cb38-356"><a href="#cb38-356" aria-hidden="true" tabindex="-1"></a>  <span class="at">body =</span> <span class="st">"Hello! This is a simple HTML message."</span></span>
+<span id="cb38-357"><a href="#cb38-357" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb38-358"><a href="#cb38-358" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-359"><a href="#cb38-359" aria-hidden="true" tabindex="-1"></a><span class="co"># Preview the message.</span></span>
+<span id="cb38-360"><a href="#cb38-360" aria-hidden="true" tabindex="-1"></a><span class="co"># This will open the HTML message in a browser window or in the RStudio Viewer tab</span></span>
+<span id="cb38-361"><a href="#cb38-361" aria-hidden="true" tabindex="-1"></a>message</span>
+<span id="cb38-362"><a href="#cb38-362" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb38-363"><a href="#cb38-363" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-366"><a href="#cb38-366" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb38-367"><a href="#cb38-367" aria-hidden="true" tabindex="-1"></a><span class="co"># Compose the message</span></span>
-<span id="cb38-368"><a href="#cb38-368" aria-hidden="true" tabindex="-1"></a>message <span class="ot">&lt;-</span> <span class="fu">compose_email</span>(</span>
-<span id="cb38-369"><a href="#cb38-369" aria-hidden="true" tabindex="-1"></a>  <span class="at">body =</span> <span class="st">"# Hello!</span><span class="sc">\n</span><span class="st">This is a simple **HTML** message with some *markdown* syntax."</span> <span class="sc">|&gt;</span> <span class="fu">md</span>()</span>
-<span id="cb38-370"><a href="#cb38-370" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb38-371"><a href="#cb38-371" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-372"><a href="#cb38-372" aria-hidden="true" tabindex="-1"></a><span class="co"># Preview the message</span></span>
-<span id="cb38-373"><a href="#cb38-373" aria-hidden="true" tabindex="-1"></a>message</span>
-<span id="cb38-374"><a href="#cb38-374" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb38-375"><a href="#cb38-375" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-376"><a href="#cb38-376" aria-hidden="true" tabindex="-1"></a>We can also spice up our email with an image from a local file. Here, I use an image stored in a folder called "img" inside the my current working directory. </span>
+<span id="cb38-364"><a href="#cb38-364" aria-hidden="true" tabindex="-1"></a>We can add some formatting to our email by using the <span class="in">`md()`</span> function and markdown syntax. Here, we pipe (<span class="in">`%&gt;%`</span> or <span class="in">`|&gt;`</span>) the <span class="in">`body`</span> argument to the <span class="in">`md()`</span> function to convert it to markdown.</span>
+<span id="cb38-365"><a href="#cb38-365" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-368"><a href="#cb38-368" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb38-369"><a href="#cb38-369" aria-hidden="true" tabindex="-1"></a><span class="co"># Compose the message</span></span>
+<span id="cb38-370"><a href="#cb38-370" aria-hidden="true" tabindex="-1"></a>message <span class="ot">&lt;-</span> <span class="fu">compose_email</span>(</span>
+<span id="cb38-371"><a href="#cb38-371" aria-hidden="true" tabindex="-1"></a>  <span class="at">body =</span> <span class="st">"# Hello!</span><span class="sc">\n</span><span class="st">This is a simple **HTML** message with some *markdown* syntax."</span> <span class="sc">|&gt;</span> <span class="fu">md</span>()</span>
+<span id="cb38-372"><a href="#cb38-372" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb38-373"><a href="#cb38-373" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-374"><a href="#cb38-374" aria-hidden="true" tabindex="-1"></a><span class="co"># Preview the message</span></span>
+<span id="cb38-375"><a href="#cb38-375" aria-hidden="true" tabindex="-1"></a>message</span>
+<span id="cb38-376"><a href="#cb38-376" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb38-377"><a href="#cb38-377" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-380"><a href="#cb38-380" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb38-381"><a href="#cb38-381" aria-hidden="true" tabindex="-1"></a><span class="co"># Create text as html</span></span>
-<span id="cb38-382"><a href="#cb38-382" aria-hidden="true" tabindex="-1"></a>text <span class="ot">&lt;-</span> <span class="st">"# Hello!</span><span class="sc">\n</span><span class="st">This is a simple **HTML** message with some *markdown* syntax... and a cool picture!"</span></span>
-<span id="cb38-383"><a href="#cb38-383" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-384"><a href="#cb38-384" aria-hidden="true" tabindex="-1"></a><span class="co"># Create image as html</span></span>
-<span id="cb38-385"><a href="#cb38-385" aria-hidden="true" tabindex="-1"></a>image <span class="ot">&lt;-</span> <span class="fu">add_image</span>(</span>
-<span id="cb38-386"><a href="#cb38-386" aria-hidden="true" tabindex="-1"></a>  <span class="at">file =</span> <span class="st">"img/batnet.jpg"</span>,</span>
-<span id="cb38-387"><a href="#cb38-387" aria-hidden="true" tabindex="-1"></a>  <span class="at">width =</span> <span class="dv">300</span>, <span class="at">align =</span> <span class="st">"center"</span></span>
-<span id="cb38-388"><a href="#cb38-388" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb38-389"><a href="#cb38-389" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-390"><a href="#cb38-390" aria-hidden="true" tabindex="-1"></a><span class="co"># Compose the message</span></span>
-<span id="cb38-391"><a href="#cb38-391" aria-hidden="true" tabindex="-1"></a>message <span class="ot">&lt;-</span> <span class="fu">compose_email</span>(</span>
-<span id="cb38-392"><a href="#cb38-392" aria-hidden="true" tabindex="-1"></a>  <span class="at">body =</span> <span class="fu">c</span>(text, image) <span class="sc">|&gt;</span> <span class="fu">md</span>()</span>
-<span id="cb38-393"><a href="#cb38-393" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb38-394"><a href="#cb38-394" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-395"><a href="#cb38-395" aria-hidden="true" tabindex="-1"></a><span class="co"># Preview the message</span></span>
-<span id="cb38-396"><a href="#cb38-396" aria-hidden="true" tabindex="-1"></a>message</span>
-<span id="cb38-397"><a href="#cb38-397" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb38-398"><a href="#cb38-398" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-399"><a href="#cb38-399" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Step 4 {.unnumbered}</span></span>
+<span id="cb38-378"><a href="#cb38-378" aria-hidden="true" tabindex="-1"></a>We can also spice up our email with an image from a local file. Here, I use an image stored in a folder called "img" inside the my current working directory. </span>
+<span id="cb38-379"><a href="#cb38-379" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-382"><a href="#cb38-382" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb38-383"><a href="#cb38-383" aria-hidden="true" tabindex="-1"></a><span class="co"># Create text as html</span></span>
+<span id="cb38-384"><a href="#cb38-384" aria-hidden="true" tabindex="-1"></a>text <span class="ot">&lt;-</span> <span class="st">"# Hello!</span><span class="sc">\n</span><span class="st">This is a simple **HTML** message with some *markdown* syntax... and a cool picture!"</span></span>
+<span id="cb38-385"><a href="#cb38-385" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-386"><a href="#cb38-386" aria-hidden="true" tabindex="-1"></a><span class="co"># Create image as html</span></span>
+<span id="cb38-387"><a href="#cb38-387" aria-hidden="true" tabindex="-1"></a>image <span class="ot">&lt;-</span> <span class="fu">add_image</span>(</span>
+<span id="cb38-388"><a href="#cb38-388" aria-hidden="true" tabindex="-1"></a>  <span class="at">file =</span> <span class="st">"img/batnet.jpg"</span>,</span>
+<span id="cb38-389"><a href="#cb38-389" aria-hidden="true" tabindex="-1"></a>  <span class="at">width =</span> <span class="dv">300</span>, <span class="at">align =</span> <span class="st">"center"</span></span>
+<span id="cb38-390"><a href="#cb38-390" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb38-391"><a href="#cb38-391" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-392"><a href="#cb38-392" aria-hidden="true" tabindex="-1"></a><span class="co"># Compose the message</span></span>
+<span id="cb38-393"><a href="#cb38-393" aria-hidden="true" tabindex="-1"></a>message <span class="ot">&lt;-</span> <span class="fu">compose_email</span>(</span>
+<span id="cb38-394"><a href="#cb38-394" aria-hidden="true" tabindex="-1"></a>  <span class="at">body =</span> <span class="fu">c</span>(text, image) <span class="sc">|&gt;</span> <span class="fu">md</span>()</span>
+<span id="cb38-395"><a href="#cb38-395" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb38-396"><a href="#cb38-396" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-397"><a href="#cb38-397" aria-hidden="true" tabindex="-1"></a><span class="co"># Preview the message</span></span>
+<span id="cb38-398"><a href="#cb38-398" aria-hidden="true" tabindex="-1"></a>message</span>
+<span id="cb38-399"><a href="#cb38-399" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb38-400"><a href="#cb38-400" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-401"><a href="#cb38-401" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Create a credentials file.</span>
+<span id="cb38-401"><a href="#cb38-401" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Step 4 {.unnumbered}</span></span>
 <span id="cb38-402"><a href="#cb38-402" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-403"><a href="#cb38-403" aria-hidden="true" tabindex="-1"></a>The following code block will create a text file (in <span class="in">`JSON`</span> format) in the current working directory that contains default information for your outgoing mail server, e.g., Google's **Gmail** server (`host = "smtp.gmail.com"`), along with your email address and your password. When you run the following lines of code, you will be asked to enter your password, which will then be stored in the credentials file. For a **Gmail** account, you can use the app password you created above.</span>
+<span id="cb38-403"><a href="#cb38-403" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Create a credentials file.</span>
 <span id="cb38-404"><a href="#cb38-404" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-405"><a href="#cb38-405" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; **NOTE:** Be aware that if you create a credentials file like this, your password will be stored, unencrypted, in the file you create!</span></span>
+<span id="cb38-405"><a href="#cb38-405" aria-hidden="true" tabindex="-1"></a>The following code block will create a text file (in <span class="in">`JSON`</span> format) in the current working directory that contains default information for your outgoing mail server, e.g., Google's **Gmail** server (`host = "smtp.gmail.com"`), along with your email address and your password. When you run the following lines of code, you will be asked to enter your password, which will then be stored in the credentials file. For a **Gmail** account, you can use the app password you created above.</span>
 <span id="cb38-406"><a href="#cb38-406" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-409"><a href="#cb38-409" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb38-410"><a href="#cb38-410" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
-<span id="cb38-411"><a href="#cb38-411" aria-hidden="true" tabindex="-1"></a><span class="co"># credentials file for a Gmail account</span></span>
-<span id="cb38-412"><a href="#cb38-412" aria-hidden="true" tabindex="-1"></a><span class="fu">create_smtp_creds_file</span>(</span>
-<span id="cb38-413"><a href="#cb38-413" aria-hidden="true" tabindex="-1"></a>  <span class="at">file =</span> <span class="st">"my_gmail_creds.txt"</span>,</span>
-<span id="cb38-414"><a href="#cb38-414" aria-hidden="true" tabindex="-1"></a>  <span class="at">user =</span> <span class="st">"anthony.difiore@utexas.edu"</span>,</span>
-<span id="cb38-415"><a href="#cb38-415" aria-hidden="true" tabindex="-1"></a>  <span class="at">provider =</span> <span class="st">"gmail"</span></span>
-<span id="cb38-416"><a href="#cb38-416" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb38-417"><a href="#cb38-417" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb38-418"><a href="#cb38-418" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-419"><a href="#cb38-419" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; **NOTE**: If you omit the </span><span class="in">`provider=`</span><span class="at"> argument, you should then pass the </span><span class="in">`host=`</span><span class="at">, </span><span class="in">`port=`</span><span class="at">, and </span><span class="in">`use_ssl=`</span><span class="at"> arguments yourself to the </span><span class="in">`create_smtp_creds_file()`</span><span class="at"> function. The </span><span class="in">`use_ssl=`</span><span class="at"> argument allows the use of STARTTLS, which initiates secured (encrypted) TLS or SSL connection, which many email servers require.</span></span>
+<span id="cb38-407"><a href="#cb38-407" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; **NOTE:** Be aware that if you create a credentials file like this, your password will be stored, unencrypted, in the file you create!</span></span>
+<span id="cb38-408"><a href="#cb38-408" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-411"><a href="#cb38-411" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb38-412"><a href="#cb38-412" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
+<span id="cb38-413"><a href="#cb38-413" aria-hidden="true" tabindex="-1"></a><span class="co"># credentials file for a Gmail account</span></span>
+<span id="cb38-414"><a href="#cb38-414" aria-hidden="true" tabindex="-1"></a><span class="fu">create_smtp_creds_file</span>(</span>
+<span id="cb38-415"><a href="#cb38-415" aria-hidden="true" tabindex="-1"></a>  <span class="at">file =</span> <span class="st">"my_gmail_creds.txt"</span>,</span>
+<span id="cb38-416"><a href="#cb38-416" aria-hidden="true" tabindex="-1"></a>  <span class="at">user =</span> <span class="st">"anthony.difiore@utexas.edu"</span>,</span>
+<span id="cb38-417"><a href="#cb38-417" aria-hidden="true" tabindex="-1"></a>  <span class="at">provider =</span> <span class="st">"gmail"</span></span>
+<span id="cb38-418"><a href="#cb38-418" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb38-419"><a href="#cb38-419" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb38-420"><a href="#cb38-420" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-421"><a href="#cb38-421" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Step 5 {.unnumbered}</span></span>
+<span id="cb38-421"><a href="#cb38-421" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; **NOTE**: If you omit the </span><span class="in">`provider=`</span><span class="at"> argument, you should then pass the </span><span class="in">`host=`</span><span class="at">, </span><span class="in">`port=`</span><span class="at">, and </span><span class="in">`use_ssl=`</span><span class="at"> arguments yourself to the </span><span class="in">`create_smtp_creds_file()`</span><span class="at"> function. The </span><span class="in">`use_ssl=`</span><span class="at"> argument allows the use of STARTTLS, which initiates secured (encrypted) TLS or SSL connection, which many email servers require.</span></span>
 <span id="cb38-422"><a href="#cb38-422" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-423"><a href="#cb38-423" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Send the message via STMP using a credentials file.</span>
+<span id="cb38-423"><a href="#cb38-423" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Step 5 {.unnumbered}</span></span>
 <span id="cb38-424"><a href="#cb38-424" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-427"><a href="#cb38-427" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb38-428"><a href="#cb38-428" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
-<span id="cb38-429"><a href="#cb38-429" aria-hidden="true" tabindex="-1"></a><span class="co"># send using Google's servers...</span></span>
-<span id="cb38-430"><a href="#cb38-430" aria-hidden="true" tabindex="-1"></a><span class="fu">smtp_send</span>(<span class="at">email =</span> message,</span>
-<span id="cb38-431"><a href="#cb38-431" aria-hidden="true" tabindex="-1"></a>  <span class="at">from =</span> <span class="st">"anthony.difiore@utexas.edu"</span>,</span>
-<span id="cb38-432"><a href="#cb38-432" aria-hidden="true" tabindex="-1"></a>  <span class="at">to =</span> <span class="st">"anthony.difiore@gmail.com"</span>,</span>
-<span id="cb38-433"><a href="#cb38-433" aria-hidden="true" tabindex="-1"></a>  <span class="at">subject =</span> <span class="st">"Sending a message using {blastula} and a credentials file"</span>,</span>
-<span id="cb38-434"><a href="#cb38-434" aria-hidden="true" tabindex="-1"></a>  <span class="at">credentials =</span> <span class="fu">creds_file</span>(<span class="at">file =</span> <span class="st">"my_gmail_creds.txt"</span>)</span>
-<span id="cb38-435"><a href="#cb38-435" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb38-436"><a href="#cb38-436" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb38-437"><a href="#cb38-437" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-438"><a href="#cb38-438" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Step 6 {.unnumbered}</span></span>
+<span id="cb38-425"><a href="#cb38-425" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Send the message via STMP using a credentials file.</span>
+<span id="cb38-426"><a href="#cb38-426" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-429"><a href="#cb38-429" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb38-430"><a href="#cb38-430" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
+<span id="cb38-431"><a href="#cb38-431" aria-hidden="true" tabindex="-1"></a><span class="co"># send using Google's servers...</span></span>
+<span id="cb38-432"><a href="#cb38-432" aria-hidden="true" tabindex="-1"></a><span class="fu">smtp_send</span>(<span class="at">email =</span> message,</span>
+<span id="cb38-433"><a href="#cb38-433" aria-hidden="true" tabindex="-1"></a>  <span class="at">from =</span> <span class="st">"anthony.difiore@utexas.edu"</span>,</span>
+<span id="cb38-434"><a href="#cb38-434" aria-hidden="true" tabindex="-1"></a>  <span class="at">to =</span> <span class="st">"anthony.difiore@gmail.com"</span>,</span>
+<span id="cb38-435"><a href="#cb38-435" aria-hidden="true" tabindex="-1"></a>  <span class="at">subject =</span> <span class="st">"Sending a message using {blastula} and a credentials file"</span>,</span>
+<span id="cb38-436"><a href="#cb38-436" aria-hidden="true" tabindex="-1"></a>  <span class="at">credentials =</span> <span class="fu">creds_file</span>(<span class="at">file =</span> <span class="st">"my_gmail_creds.txt"</span>)</span>
+<span id="cb38-437"><a href="#cb38-437" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb38-438"><a href="#cb38-438" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb38-439"><a href="#cb38-439" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-440"><a href="#cb38-440" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>We could also send the message by specifying our credentials manually within the <span class="in">`smtp_send()`</span> function.</span>
+<span id="cb38-440"><a href="#cb38-440" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Step 6 {.unnumbered}</span></span>
 <span id="cb38-441"><a href="#cb38-441" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-442"><a href="#cb38-442" aria-hidden="true" tabindex="-1"></a>The following will prompt us for our password to send the message:</span>
+<span id="cb38-442"><a href="#cb38-442" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>We could also send the message by specifying our credentials manually within the <span class="in">`smtp_send()`</span> function.</span>
 <span id="cb38-443"><a href="#cb38-443" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-446"><a href="#cb38-446" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb38-447"><a href="#cb38-447" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
-<span id="cb38-448"><a href="#cb38-448" aria-hidden="true" tabindex="-1"></a><span class="co"># send using Google's servers...</span></span>
-<span id="cb38-449"><a href="#cb38-449" aria-hidden="true" tabindex="-1"></a>message <span class="sc">|&gt;</span> <span class="fu">smtp_send</span>(</span>
-<span id="cb38-450"><a href="#cb38-450" aria-hidden="true" tabindex="-1"></a>    <span class="at">from =</span> <span class="st">"anthony.difiore@utexas.edu"</span>,</span>
-<span id="cb38-451"><a href="#cb38-451" aria-hidden="true" tabindex="-1"></a>    <span class="at">to =</span> <span class="st">"anthony.difiore@gmail.com"</span>,</span>
-<span id="cb38-452"><a href="#cb38-452" aria-hidden="true" tabindex="-1"></a>    <span class="at">subject =</span> <span class="st">"Sending a message using {blastula} and entering credentials manually"</span>,</span>
-<span id="cb38-453"><a href="#cb38-453" aria-hidden="true" tabindex="-1"></a>    <span class="at">credentials =</span> <span class="fu">creds</span>(</span>
-<span id="cb38-454"><a href="#cb38-454" aria-hidden="true" tabindex="-1"></a>      <span class="at">user =</span> <span class="st">"anthony.difiore@utexas.edu"</span>,</span>
-<span id="cb38-455"><a href="#cb38-455" aria-hidden="true" tabindex="-1"></a>      <span class="at">provider =</span> <span class="st">"gmail"</span></span>
-<span id="cb38-456"><a href="#cb38-456" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb38-457"><a href="#cb38-457" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb38-458"><a href="#cb38-458" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb38-459"><a href="#cb38-459" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-460"><a href="#cb38-460" aria-hidden="true" tabindex="-1"></a><span class="fu">## Sending an Email Version 4: Using the {sendmailR} package {.unnumbered}</span></span>
+<span id="cb38-444"><a href="#cb38-444" aria-hidden="true" tabindex="-1"></a>The following will prompt us for our password to send the message:</span>
+<span id="cb38-445"><a href="#cb38-445" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-448"><a href="#cb38-448" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb38-449"><a href="#cb38-449" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
+<span id="cb38-450"><a href="#cb38-450" aria-hidden="true" tabindex="-1"></a><span class="co"># send using Google's servers...</span></span>
+<span id="cb38-451"><a href="#cb38-451" aria-hidden="true" tabindex="-1"></a>message <span class="sc">|&gt;</span> <span class="fu">smtp_send</span>(</span>
+<span id="cb38-452"><a href="#cb38-452" aria-hidden="true" tabindex="-1"></a>    <span class="at">from =</span> <span class="st">"anthony.difiore@utexas.edu"</span>,</span>
+<span id="cb38-453"><a href="#cb38-453" aria-hidden="true" tabindex="-1"></a>    <span class="at">to =</span> <span class="st">"anthony.difiore@gmail.com"</span>,</span>
+<span id="cb38-454"><a href="#cb38-454" aria-hidden="true" tabindex="-1"></a>    <span class="at">subject =</span> <span class="st">"Sending a message using {blastula} and entering credentials manually"</span>,</span>
+<span id="cb38-455"><a href="#cb38-455" aria-hidden="true" tabindex="-1"></a>    <span class="at">credentials =</span> <span class="fu">creds</span>(</span>
+<span id="cb38-456"><a href="#cb38-456" aria-hidden="true" tabindex="-1"></a>      <span class="at">user =</span> <span class="st">"anthony.difiore@utexas.edu"</span>,</span>
+<span id="cb38-457"><a href="#cb38-457" aria-hidden="true" tabindex="-1"></a>      <span class="at">provider =</span> <span class="st">"gmail"</span></span>
+<span id="cb38-458"><a href="#cb38-458" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb38-459"><a href="#cb38-459" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb38-460"><a href="#cb38-460" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb38-461"><a href="#cb38-461" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-462"><a href="#cb38-462" aria-hidden="true" tabindex="-1"></a>The {sendmailR} is yet another that you can use to send emails from ***R***.</span>
+<span id="cb38-462"><a href="#cb38-462" aria-hidden="true" tabindex="-1"></a><span class="fu">### Sending an Email using the {sendmailR} package {.unnumbered}</span></span>
 <span id="cb38-463"><a href="#cb38-463" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-466"><a href="#cb38-466" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb38-467"><a href="#cb38-467" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
-<span id="cb38-468"><a href="#cb38-468" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"sendmailR"</span>)</span>
-<span id="cb38-469"><a href="#cb38-469" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sendmailR)</span>
-<span id="cb38-470"><a href="#cb38-470" aria-hidden="true" tabindex="-1"></a><span class="fu">sendmail</span>(</span>
-<span id="cb38-471"><a href="#cb38-471" aria-hidden="true" tabindex="-1"></a>  <span class="at">from =</span> <span class="st">"anthony.difiore@utexas.edu"</span>, </span>
-<span id="cb38-472"><a href="#cb38-472" aria-hidden="true" tabindex="-1"></a>  <span class="at">to =</span> <span class="st">"anthony.difiore@gmail.com"</span>, </span>
-<span id="cb38-473"><a href="#cb38-473" aria-hidden="true" tabindex="-1"></a>  <span class="at">subject =</span> <span class="st">"Sending a message using {sendmailR}"</span>, </span>
-<span id="cb38-474"><a href="#cb38-474" aria-hidden="true" tabindex="-1"></a>  <span class="at">msg =</span> <span class="st">"Hello! This is a plain text message sent to my personal Gmail account from my UT Gmail account."</span>, </span>
-<span id="cb38-475"><a href="#cb38-475" aria-hidden="true" tabindex="-1"></a>  <span class="at">engine =</span> <span class="st">"curl"</span>, </span>
-<span id="cb38-476"><a href="#cb38-476" aria-hidden="true" tabindex="-1"></a>  <span class="at">engineopts =</span> <span class="fu">list</span>(<span class="at">username =</span> <span class="st">"anthony.difiore@utexas.edu"</span>, <span class="at">password =</span> pwd_gmail), </span>
-<span id="cb38-477"><a href="#cb38-477" aria-hidden="true" tabindex="-1"></a>  <span class="at">control =</span> <span class="fu">list</span>(<span class="at">smtpServer=</span><span class="st">"smtp://smtp.gmail.com"</span>, <span class="at">smtpPortSMTP =</span> <span class="dv">587</span>)</span>
-<span id="cb38-478"><a href="#cb38-478" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb38-479"><a href="#cb38-479" aria-hidden="true" tabindex="-1"></a><span class="co"># can also include the port as part of the smtpServer argument...</span></span>
-<span id="cb38-480"><a href="#cb38-480" aria-hidden="true" tabindex="-1"></a><span class="co"># e.g., `control = list(smtpServer="smtp://smtp.gmail.com:587")`</span></span>
-<span id="cb38-481"><a href="#cb38-481" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb38-482"><a href="#cb38-482" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-483"><a href="#cb38-483" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Next Steps? {.unnumbered}</span></span>
+<span id="cb38-464"><a href="#cb38-464" aria-hidden="true" tabindex="-1"></a>The {sendmailR} is yet another that you can use to send emails from ***R***.</span>
+<span id="cb38-465"><a href="#cb38-465" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-468"><a href="#cb38-468" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb38-469"><a href="#cb38-469" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
+<span id="cb38-470"><a href="#cb38-470" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"sendmailR"</span>)</span>
+<span id="cb38-471"><a href="#cb38-471" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sendmailR)</span>
+<span id="cb38-472"><a href="#cb38-472" aria-hidden="true" tabindex="-1"></a><span class="fu">sendmail</span>(</span>
+<span id="cb38-473"><a href="#cb38-473" aria-hidden="true" tabindex="-1"></a>  <span class="at">from =</span> <span class="st">"anthony.difiore@utexas.edu"</span>, </span>
+<span id="cb38-474"><a href="#cb38-474" aria-hidden="true" tabindex="-1"></a>  <span class="at">to =</span> <span class="st">"anthony.difiore@gmail.com"</span>, </span>
+<span id="cb38-475"><a href="#cb38-475" aria-hidden="true" tabindex="-1"></a>  <span class="at">subject =</span> <span class="st">"Sending a message using {sendmailR}"</span>, </span>
+<span id="cb38-476"><a href="#cb38-476" aria-hidden="true" tabindex="-1"></a>  <span class="at">msg =</span> <span class="st">"Hello! This is a plain text message sent to my personal Gmail account from my UT Gmail account."</span>, </span>
+<span id="cb38-477"><a href="#cb38-477" aria-hidden="true" tabindex="-1"></a>  <span class="at">engine =</span> <span class="st">"curl"</span>, </span>
+<span id="cb38-478"><a href="#cb38-478" aria-hidden="true" tabindex="-1"></a>  <span class="at">engineopts =</span> <span class="fu">list</span>(<span class="at">username =</span> <span class="st">"anthony.difiore@utexas.edu"</span>, <span class="at">password =</span> pwd_gmail), </span>
+<span id="cb38-479"><a href="#cb38-479" aria-hidden="true" tabindex="-1"></a>  <span class="at">control =</span> <span class="fu">list</span>(<span class="at">smtpServer=</span><span class="st">"smtp://smtp.gmail.com"</span>, <span class="at">smtpPortSMTP =</span> <span class="dv">587</span>)</span>
+<span id="cb38-480"><a href="#cb38-480" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb38-481"><a href="#cb38-481" aria-hidden="true" tabindex="-1"></a><span class="co"># can also include the port as part of the smtpServer argument...</span></span>
+<span id="cb38-482"><a href="#cb38-482" aria-hidden="true" tabindex="-1"></a><span class="co"># e.g., `control = list(smtpServer="smtp://smtp.gmail.com:587")`</span></span>
+<span id="cb38-483"><a href="#cb38-483" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb38-484"><a href="#cb38-484" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-485"><a href="#cb38-485" aria-hidden="true" tabindex="-1"></a>Again, use the ***RStudio*** **Help** tab to browse the documentation associated with the {blastula} package to see how you can customize your message, e.g., with attachments.</span>
+<span id="cb38-485"><a href="#cb38-485" aria-hidden="true" tabindex="-1"></a><span class="fu">### Next Steps? {.unnumbered}</span></span>
 <span id="cb38-486"><a href="#cb38-486" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-487"><a href="#cb38-487" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Even More Next Steps? {.unnumbered}</span></span>
+<span id="cb38-487"><a href="#cb38-487" aria-hidden="true" tabindex="-1"></a>Again, use the ***RStudio*** **Help** tab to browse the documentation associated with the {blastula} package to see how you can customize your message, e.g., with attachments.</span>
 <span id="cb38-488"><a href="#cb38-488" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-489"><a href="#cb38-489" aria-hidden="true" tabindex="-1"></a>Finally, it is a bit more complicated, but note that we can also use the {keyring} package along with {blastula} to set up a credentials "key" in our computer's keychain and refer to that to specify our credentials for sending a message. When you create the keys, you will be asked to provide your password.</span>
+<span id="cb38-489"><a href="#cb38-489" aria-hidden="true" tabindex="-1"></a><span class="fu">### Even More Next Steps? {.unnumbered}</span></span>
 <span id="cb38-490"><a href="#cb38-490" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-493"><a href="#cb38-493" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb38-494"><a href="#cb38-494" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
-<span id="cb38-495"><a href="#cb38-495" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"keyring"</span>)</span>
-<span id="cb38-496"><a href="#cb38-496" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb38-497"><a href="#cb38-497" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-500"><a href="#cb38-500" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb38-501"><a href="#cb38-501" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(keyring)</span>
-<span id="cb38-502"><a href="#cb38-502" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb38-503"><a href="#cb38-503" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-506"><a href="#cb38-506" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb38-507"><a href="#cb38-507" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
-<span id="cb38-508"><a href="#cb38-508" aria-hidden="true" tabindex="-1"></a><span class="co"># create a Gmail key with a user-specified name, stored with the `id=` argument</span></span>
-<span id="cb38-509"><a href="#cb38-509" aria-hidden="true" tabindex="-1"></a><span class="fu">create_smtp_creds_key</span>(</span>
-<span id="cb38-510"><a href="#cb38-510" aria-hidden="true" tabindex="-1"></a>  <span class="at">id =</span> <span class="st">"my_gmail_key"</span>,</span>
-<span id="cb38-511"><a href="#cb38-511" aria-hidden="true" tabindex="-1"></a>  <span class="at">user =</span> <span class="st">"anthony.difiore@utexas.edu"</span>,</span>
-<span id="cb38-512"><a href="#cb38-512" aria-hidden="true" tabindex="-1"></a>  <span class="at">provider =</span> <span class="st">"gmail"</span>,</span>
-<span id="cb38-513"><a href="#cb38-513" aria-hidden="true" tabindex="-1"></a>  <span class="at">overwrite =</span> <span class="cn">TRUE</span> <span class="co"># this argument is only needed if you have an existing key</span></span>
-<span id="cb38-514"><a href="#cb38-514" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb38-515"><a href="#cb38-515" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb38-516"><a href="#cb38-516" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-519"><a href="#cb38-519" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb38-520"><a href="#cb38-520" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
-<span id="cb38-521"><a href="#cb38-521" aria-hidden="true" tabindex="-1"></a><span class="co"># View all keys</span></span>
-<span id="cb38-522"><a href="#cb38-522" aria-hidden="true" tabindex="-1"></a><span class="fu">view_credential_keys</span>()</span>
-<span id="cb38-523"><a href="#cb38-523" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb38-524"><a href="#cb38-524" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-527"><a href="#cb38-527" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb38-528"><a href="#cb38-528" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
-<span id="cb38-529"><a href="#cb38-529" aria-hidden="true" tabindex="-1"></a><span class="co"># send a message with credentials from a keychain using Google's servers...</span></span>
-<span id="cb38-530"><a href="#cb38-530" aria-hidden="true" tabindex="-1"></a>message <span class="sc">|&gt;</span></span>
-<span id="cb38-531"><a href="#cb38-531" aria-hidden="true" tabindex="-1"></a>  <span class="fu">smtp_send</span>(</span>
-<span id="cb38-532"><a href="#cb38-532" aria-hidden="true" tabindex="-1"></a>    <span class="at">from =</span> <span class="st">"anthony.difiore@utexas.edu"</span>,</span>
-<span id="cb38-533"><a href="#cb38-533" aria-hidden="true" tabindex="-1"></a>    <span class="at">to =</span> <span class="st">"anthony.difiore@gmail.com"</span>,</span>
-<span id="cb38-534"><a href="#cb38-534" aria-hidden="true" tabindex="-1"></a>    <span class="at">subject =</span> <span class="st">"Sending a message using {blastula} and credentials from a keychain"</span>,</span>
-<span id="cb38-535"><a href="#cb38-535" aria-hidden="true" tabindex="-1"></a>    <span class="at">credentials =</span> <span class="fu">creds_key</span>(<span class="at">id =</span> <span class="st">"my_gmail_key"</span>)</span>
-<span id="cb38-536"><a href="#cb38-536" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb38-537"><a href="#cb38-537" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb38-538"><a href="#cb38-538" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-539"><a href="#cb38-539" aria-hidden="true" tabindex="-1"></a><span class="fu">## Clean-Up Steps {.unnumbered}</span></span>
+<span id="cb38-491"><a href="#cb38-491" aria-hidden="true" tabindex="-1"></a>Finally, it is a bit more complicated, but note that we can also use the {keyring} package along with {blastula} to set up a credentials "key" in our computer's keychain and refer to that to specify our credentials for sending a message. When you create the keys, you will be asked to provide your password.</span>
+<span id="cb38-492"><a href="#cb38-492" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-495"><a href="#cb38-495" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb38-496"><a href="#cb38-496" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
+<span id="cb38-497"><a href="#cb38-497" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"keyring"</span>)</span>
+<span id="cb38-498"><a href="#cb38-498" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb38-499"><a href="#cb38-499" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-502"><a href="#cb38-502" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb38-503"><a href="#cb38-503" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(keyring)</span>
+<span id="cb38-504"><a href="#cb38-504" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb38-505"><a href="#cb38-505" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-508"><a href="#cb38-508" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb38-509"><a href="#cb38-509" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
+<span id="cb38-510"><a href="#cb38-510" aria-hidden="true" tabindex="-1"></a><span class="co"># create a Gmail key with a user-specified name, stored with the `id=` argument</span></span>
+<span id="cb38-511"><a href="#cb38-511" aria-hidden="true" tabindex="-1"></a><span class="fu">create_smtp_creds_key</span>(</span>
+<span id="cb38-512"><a href="#cb38-512" aria-hidden="true" tabindex="-1"></a>  <span class="at">id =</span> <span class="st">"my_gmail_key"</span>,</span>
+<span id="cb38-513"><a href="#cb38-513" aria-hidden="true" tabindex="-1"></a>  <span class="at">user =</span> <span class="st">"anthony.difiore@utexas.edu"</span>,</span>
+<span id="cb38-514"><a href="#cb38-514" aria-hidden="true" tabindex="-1"></a>  <span class="at">provider =</span> <span class="st">"gmail"</span>,</span>
+<span id="cb38-515"><a href="#cb38-515" aria-hidden="true" tabindex="-1"></a>  <span class="at">overwrite =</span> <span class="cn">TRUE</span> <span class="co"># this argument is only needed if you have an existing key</span></span>
+<span id="cb38-516"><a href="#cb38-516" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb38-517"><a href="#cb38-517" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb38-518"><a href="#cb38-518" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-521"><a href="#cb38-521" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb38-522"><a href="#cb38-522" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
+<span id="cb38-523"><a href="#cb38-523" aria-hidden="true" tabindex="-1"></a><span class="co"># View all keys</span></span>
+<span id="cb38-524"><a href="#cb38-524" aria-hidden="true" tabindex="-1"></a><span class="fu">view_credential_keys</span>()</span>
+<span id="cb38-525"><a href="#cb38-525" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb38-526"><a href="#cb38-526" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-529"><a href="#cb38-529" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb38-530"><a href="#cb38-530" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
+<span id="cb38-531"><a href="#cb38-531" aria-hidden="true" tabindex="-1"></a><span class="co"># send a message with credentials from a keychain using Google's servers...</span></span>
+<span id="cb38-532"><a href="#cb38-532" aria-hidden="true" tabindex="-1"></a>message <span class="sc">|&gt;</span></span>
+<span id="cb38-533"><a href="#cb38-533" aria-hidden="true" tabindex="-1"></a>  <span class="fu">smtp_send</span>(</span>
+<span id="cb38-534"><a href="#cb38-534" aria-hidden="true" tabindex="-1"></a>    <span class="at">from =</span> <span class="st">"anthony.difiore@utexas.edu"</span>,</span>
+<span id="cb38-535"><a href="#cb38-535" aria-hidden="true" tabindex="-1"></a>    <span class="at">to =</span> <span class="st">"anthony.difiore@gmail.com"</span>,</span>
+<span id="cb38-536"><a href="#cb38-536" aria-hidden="true" tabindex="-1"></a>    <span class="at">subject =</span> <span class="st">"Sending a message using {blastula} and credentials from a keychain"</span>,</span>
+<span id="cb38-537"><a href="#cb38-537" aria-hidden="true" tabindex="-1"></a>    <span class="at">credentials =</span> <span class="fu">creds_key</span>(<span class="at">id =</span> <span class="st">"my_gmail_key"</span>)</span>
+<span id="cb38-538"><a href="#cb38-538" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb38-539"><a href="#cb38-539" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb38-540"><a href="#cb38-540" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-543"><a href="#cb38-543" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb38-544"><a href="#cb38-544" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
-<span id="cb38-545"><a href="#cb38-545" aria-hidden="true" tabindex="-1"></a><span class="co"># delete all keys</span></span>
-<span id="cb38-546"><a href="#cb38-546" aria-hidden="true" tabindex="-1"></a><span class="fu">delete_all_credential_keys</span>()</span>
-<span id="cb38-547"><a href="#cb38-547" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb38-548"><a href="#cb38-548" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-549"><a href="#cb38-549" aria-hidden="true" tabindex="-1"></a><span class="fu">## Sending an SMS or MMS Text </span></span>
-<span id="cb38-550"><a href="#cb38-550" aria-hidden="true" tabindex="-1"></a>With a little bit of setup, it is possible to send text messages from ***R*** as well. There are two basic ways this can be done. One way is by using a package like {emaliyi} or {blastula} to send the message to a cell carrier's servers, which then passes that on via SMS using an email-SMS converter. Some carriers are picky, however, about passing on what their algorithms may perceive as spam messages. The other way is to use a paid text messaging service API (application programming interface) to create and send messages. One such paid service is **Textbelt**, which is easy to set up and has a simple pricing package.</span>
-<span id="cb38-551"><a href="#cb38-551" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-552"><a href="#cb38-552" aria-hidden="true" tabindex="-1"></a><span class="fu">### Using Textbelt to send text messages</span></span>
-<span id="cb38-553"><a href="#cb38-553" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-554"><a href="#cb38-554" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Go to <span class="co">[</span><span class="ot">https://textbelt.com/</span><span class="co">](https://textbelt.com/)</span>...</span>
-<span id="cb38-555"><a href="#cb38-555" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Select "Create an API key"...</span>
+<span id="cb38-541"><a href="#cb38-541" aria-hidden="true" tabindex="-1"></a><span class="fu">### Clean-Up {.unnumbered}</span></span>
+<span id="cb38-542"><a href="#cb38-542" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-545"><a href="#cb38-545" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb38-546"><a href="#cb38-546" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
+<span id="cb38-547"><a href="#cb38-547" aria-hidden="true" tabindex="-1"></a><span class="co"># delete all keys</span></span>
+<span id="cb38-548"><a href="#cb38-548" aria-hidden="true" tabindex="-1"></a><span class="fu">delete_all_credential_keys</span>()</span>
+<span id="cb38-549"><a href="#cb38-549" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb38-550"><a href="#cb38-550" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-551"><a href="#cb38-551" aria-hidden="true" tabindex="-1"></a><span class="fu">## Challenge: Sending an SMS or MMS Text</span></span>
+<span id="cb38-552"><a href="#cb38-552" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-553"><a href="#cb38-553" aria-hidden="true" tabindex="-1"></a>With a little bit of setup, it is possible to send text messages from ***R*** as well. There are two basic ways this can be done. One way is by using a package like {emaliyi} or {blastula} to send the message to a cell carrier's servers, which then passes that on via SMS using an email-SMS converter. Some carriers are picky, however, about passing on what their algorithms may perceive as spam messages. The other way is to use a paid text messaging service API (application programming interface) to create and send messages. One such paid service is **Textbelt**, which is easy to set up and has a simple pricing package.</span>
+<span id="cb38-554"><a href="#cb38-554" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-555"><a href="#cb38-555" aria-hidden="true" tabindex="-1"></a><span class="fu">### Using Textbelt to send text messages {.unnumbered}</span></span>
 <span id="cb38-556"><a href="#cb38-556" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-559"><a href="#cb38-559" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb38-560"><a href="#cb38-560" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: false</span></span>
-<span id="cb38-561"><a href="#cb38-561" aria-hidden="true" tabindex="-1"></a><span class="co">#| out-width: "80%"</span></span>
-<span id="cb38-562"><a href="#cb38-562" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">include_graphics</span>(<span class="st">"img/textbelt.png"</span>)</span>
-<span id="cb38-563"><a href="#cb38-563" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb38-564"><a href="#cb38-564" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-565"><a href="#cb38-565" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Purchase a desired number of credits...</span>
-<span id="cb38-566"><a href="#cb38-566" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-569"><a href="#cb38-569" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb38-570"><a href="#cb38-570" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: false</span></span>
-<span id="cb38-571"><a href="#cb38-571" aria-hidden="true" tabindex="-1"></a><span class="co">#| out-width: "80%"</span></span>
-<span id="cb38-572"><a href="#cb38-572" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">include_graphics</span>(<span class="st">"img/textbelt-api-key.png"</span>)</span>
-<span id="cb38-573"><a href="#cb38-573" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb38-574"><a href="#cb38-574" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-575"><a href="#cb38-575" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>And save the key!</span>
-<span id="cb38-576"><a href="#cb38-576" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-579"><a href="#cb38-579" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb38-580"><a href="#cb38-580" aria-hidden="true" tabindex="-1"></a>key <span class="ot">&lt;-</span> <span class="st">""</span> <span class="co"># enter your Textbelt API key between the quotation marks</span></span>
-<span id="cb38-581"><a href="#cb38-581" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb38-582"><a href="#cb38-582" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-583"><a href="#cb38-583" aria-hidden="true" tabindex="-1"></a>To send messages, we will use the {httr} package, which includes functions for working with URLs and sending HTTP requests over the web.</span>
-<span id="cb38-584"><a href="#cb38-584" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-585"><a href="#cb38-585" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Install and attach the {httr} package.</span>
-<span id="cb38-586"><a href="#cb38-586" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-589"><a href="#cb38-589" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb38-590"><a href="#cb38-590" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
-<span id="cb38-591"><a href="#cb38-591" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"httr"</span>)</span>
-<span id="cb38-592"><a href="#cb38-592" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb38-593"><a href="#cb38-593" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-596"><a href="#cb38-596" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb38-597"><a href="#cb38-597" aria-hidden="true" tabindex="-1"></a><span class="co">#| message: false</span></span>
-<span id="cb38-598"><a href="#cb38-598" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(httr)</span>
-<span id="cb38-599"><a href="#cb38-599" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb38-600"><a href="#cb38-600" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-601"><a href="#cb38-601" aria-hidden="true" tabindex="-1"></a>We can set up a simple function to create an SMS message. It takes as arguments a phone number, a message, and an API key. It then uses the <span class="in">`POST()`</span> function to create and send a HTTP "POST" request to Textbelt's servers that consists of a URL and a POST body.</span>
-<span id="cb38-602"><a href="#cb38-602" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-603"><a href="#cb38-603" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; **NOTE:** If we set verbose = TRUE, we will see what response is sent from Textbelt's servers...</span></span>
-<span id="cb38-604"><a href="#cb38-604" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-607"><a href="#cb38-607" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb38-608"><a href="#cb38-608" aria-hidden="true" tabindex="-1"></a><span class="co"># simple message</span></span>
-<span id="cb38-609"><a href="#cb38-609" aria-hidden="true" tabindex="-1"></a>send_textbelt_sms <span class="ot">&lt;-</span> <span class="cf">function</span>(phone, message, <span class="at">api_key =</span> key, <span class="at">verbose =</span> <span class="cn">FALSE</span>) {</span>
-<span id="cb38-610"><a href="#cb38-610" aria-hidden="true" tabindex="-1"></a>  url <span class="ot">&lt;-</span> <span class="st">"https://textbelt.com/text"</span></span>
-<span id="cb38-611"><a href="#cb38-611" aria-hidden="true" tabindex="-1"></a>  res <span class="ot">&lt;-</span> <span class="fu">POST</span>(</span>
-<span id="cb38-612"><a href="#cb38-612" aria-hidden="true" tabindex="-1"></a>    url,</span>
-<span id="cb38-613"><a href="#cb38-613" aria-hidden="true" tabindex="-1"></a>    <span class="at">body =</span> <span class="fu">list</span>(</span>
-<span id="cb38-614"><a href="#cb38-614" aria-hidden="true" tabindex="-1"></a>      <span class="at">phone =</span> phone,</span>
-<span id="cb38-615"><a href="#cb38-615" aria-hidden="true" tabindex="-1"></a>      <span class="at">message =</span> message,</span>
-<span id="cb38-616"><a href="#cb38-616" aria-hidden="true" tabindex="-1"></a>      <span class="at">key =</span> api_key</span>
-<span id="cb38-617"><a href="#cb38-617" aria-hidden="true" tabindex="-1"></a>    ),</span>
-<span id="cb38-618"><a href="#cb38-618" aria-hidden="true" tabindex="-1"></a>    <span class="at">encode =</span> <span class="st">"form"</span></span>
-<span id="cb38-619"><a href="#cb38-619" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb38-620"><a href="#cb38-620" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (verbose) { <span class="fu">print</span>(res) }</span>
-<span id="cb38-621"><a href="#cb38-621" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stop_for_status</span>(res)</span>
-<span id="cb38-622"><a href="#cb38-622" aria-hidden="true" tabindex="-1"></a>  result <span class="ot">&lt;-</span> <span class="fu">content</span>(res, <span class="st">"parsed"</span>)</span>
-<span id="cb38-623"><a href="#cb38-623" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Print delivery status</span></span>
-<span id="cb38-624"><a href="#cb38-624" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (result<span class="sc">$</span>success) {</span>
-<span id="cb38-625"><a href="#cb38-625" aria-hidden="true" tabindex="-1"></a>    <span class="fu">cat</span>(<span class="st">"✅ SMS sent successfully!</span><span class="sc">\n</span><span class="st">"</span>)</span>
-<span id="cb38-626"><a href="#cb38-626" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
-<span id="cb38-627"><a href="#cb38-627" aria-hidden="true" tabindex="-1"></a>    <span class="fu">cat</span>(<span class="st">"❌ SMS failed: "</span>, result<span class="sc">$</span>error, <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span>
-<span id="cb38-628"><a href="#cb38-628" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb38-629"><a href="#cb38-629" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(result)</span>
-<span id="cb38-630"><a href="#cb38-630" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb38-631"><a href="#cb38-631" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb38-632"><a href="#cb38-632" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-633"><a href="#cb38-633" aria-hidden="true" tabindex="-1"></a>We can also create a version of this function that does the same thing, but also sends a follow--up request to query more information about whether the text was successfully delivered to the recipient.</span>
-<span id="cb38-634"><a href="#cb38-634" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-637"><a href="#cb38-637" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb38-638"><a href="#cb38-638" aria-hidden="true" tabindex="-1"></a>send_textbelt_sms_log <span class="ot">&lt;-</span> <span class="cf">function</span>(phone, message, <span class="at">api_key =</span> key, <span class="at">verbose =</span> <span class="cn">FALSE</span>, <span class="at">check_status =</span> <span class="cn">TRUE</span>, <span class="at">poll_interval =</span> <span class="dv">5</span>, <span class="at">max_checks =</span> <span class="dv">6</span>) {</span>
-<span id="cb38-639"><a href="#cb38-639" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Step 1: Send SMS</span></span>
-<span id="cb38-640"><a href="#cb38-640" aria-hidden="true" tabindex="-1"></a>  url <span class="ot">&lt;-</span> <span class="st">"https://textbelt.com/text"</span></span>
-<span id="cb38-641"><a href="#cb38-641" aria-hidden="true" tabindex="-1"></a>  res <span class="ot">&lt;-</span> <span class="fu">POST</span>(</span>
-<span id="cb38-642"><a href="#cb38-642" aria-hidden="true" tabindex="-1"></a>    url,</span>
-<span id="cb38-643"><a href="#cb38-643" aria-hidden="true" tabindex="-1"></a>    <span class="at">body =</span> <span class="fu">list</span>(</span>
-<span id="cb38-644"><a href="#cb38-644" aria-hidden="true" tabindex="-1"></a>      <span class="at">phone =</span> phone,</span>
-<span id="cb38-645"><a href="#cb38-645" aria-hidden="true" tabindex="-1"></a>      <span class="at">message =</span> message,</span>
-<span id="cb38-646"><a href="#cb38-646" aria-hidden="true" tabindex="-1"></a>      <span class="at">key =</span> api_key</span>
-<span id="cb38-647"><a href="#cb38-647" aria-hidden="true" tabindex="-1"></a>    ),</span>
-<span id="cb38-648"><a href="#cb38-648" aria-hidden="true" tabindex="-1"></a>    <span class="at">encode =</span> <span class="st">"form"</span></span>
-<span id="cb38-649"><a href="#cb38-649" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb38-650"><a href="#cb38-650" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (verbose) { <span class="fu">print</span>(res) }</span>
-<span id="cb38-651"><a href="#cb38-651" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stop_for_status</span>(res)</span>
-<span id="cb38-652"><a href="#cb38-652" aria-hidden="true" tabindex="-1"></a>  result <span class="ot">&lt;-</span> <span class="fu">content</span>(res, <span class="st">"parsed"</span>)</span>
-<span id="cb38-653"><a href="#cb38-653" aria-hidden="true" tabindex="-1"></a>  log <span class="ot">&lt;-</span> <span class="fu">list</span>(</span>
-<span id="cb38-654"><a href="#cb38-654" aria-hidden="true" tabindex="-1"></a>    <span class="at">initial_response =</span> result,</span>
-<span id="cb38-655"><a href="#cb38-655" aria-hidden="true" tabindex="-1"></a>    <span class="at">status_checks =</span> <span class="fu">list</span>())</span>
-<span id="cb38-656"><a href="#cb38-656" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="sc">!</span>result<span class="sc">$</span>success) {</span>
-<span id="cb38-657"><a href="#cb38-657" aria-hidden="true" tabindex="-1"></a>    <span class="fu">cat</span>(<span class="st">"❌ SMS failed: "</span>, result<span class="sc">$</span>error, <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span>
-<span id="cb38-658"><a href="#cb38-658" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(log)</span>
-<span id="cb38-659"><a href="#cb38-659" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb38-660"><a href="#cb38-660" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cat</span>(<span class="st">"✅ SMS sent successfully!</span><span class="sc">\n</span><span class="st">"</span>)</span>
-<span id="cb38-661"><a href="#cb38-661" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Step 2: Poll for delivery status (paid keys only)</span></span>
-<span id="cb38-662"><a href="#cb38-662" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (check_status <span class="sc">&amp;&amp;</span> <span class="sc">!</span><span class="fu">is.null</span>(result<span class="sc">$</span>textId)) {</span>
-<span id="cb38-663"><a href="#cb38-663" aria-hidden="true" tabindex="-1"></a>    status_url <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">"https://textbelt.com/status/"</span>, result<span class="sc">$</span>textId)</span>
-<span id="cb38-664"><a href="#cb38-664" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>max_checks) {</span>
-<span id="cb38-665"><a href="#cb38-665" aria-hidden="true" tabindex="-1"></a>      <span class="fu">Sys.sleep</span>(poll_interval)</span>
-<span id="cb38-666"><a href="#cb38-666" aria-hidden="true" tabindex="-1"></a>      status_res <span class="ot">&lt;-</span> <span class="fu">GET</span>(status_url)</span>
-<span id="cb38-667"><a href="#cb38-667" aria-hidden="true" tabindex="-1"></a>      status <span class="ot">&lt;-</span> <span class="fu">content</span>(status_res, <span class="st">"parsed"</span>)</span>
-<span id="cb38-668"><a href="#cb38-668" aria-hidden="true" tabindex="-1"></a>      log<span class="sc">$</span>status_checks[[i]] <span class="ot">&lt;-</span> status</span>
-<span id="cb38-669"><a href="#cb38-669" aria-hidden="true" tabindex="-1"></a>      <span class="fu">cat</span>(<span class="fu">sprintf</span>(<span class="st">"Status check %d: %s</span><span class="sc">\n</span><span class="st">"</span>, i, status<span class="sc">$</span>status))</span>
-<span id="cb38-670"><a href="#cb38-670" aria-hidden="true" tabindex="-1"></a>      <span class="cf">if</span> (status<span class="sc">$</span>status <span class="sc">==</span> <span class="st">"DELIVERED"</span>) {</span>
-<span id="cb38-671"><a href="#cb38-671" aria-hidden="true" tabindex="-1"></a>        <span class="fu">cat</span>(<span class="st">"✅ Message delivered!</span><span class="sc">\n</span><span class="st">"</span>)</span>
-<span id="cb38-672"><a href="#cb38-672" aria-hidden="true" tabindex="-1"></a>        <span class="cf">break</span></span>
-<span id="cb38-673"><a href="#cb38-673" aria-hidden="true" tabindex="-1"></a>      }</span>
-<span id="cb38-674"><a href="#cb38-674" aria-hidden="true" tabindex="-1"></a>    }</span>
-<span id="cb38-675"><a href="#cb38-675" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb38-676"><a href="#cb38-676" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(log)</span>
-<span id="cb38-677"><a href="#cb38-677" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb38-678"><a href="#cb38-678" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb38-679"><a href="#cb38-679" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-680"><a href="#cb38-680" aria-hidden="true" tabindex="-1"></a>Example usage:</span>
-<span id="cb38-681"><a href="#cb38-681" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-684"><a href="#cb38-684" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb38-685"><a href="#cb38-685" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
-<span id="cb38-686"><a href="#cb38-686" aria-hidden="true" tabindex="-1"></a>phone <span class="ot">&lt;-</span> <span class="st">"+16464004285"</span></span>
-<span id="cb38-687"><a href="#cb38-687" aria-hidden="true" tabindex="-1"></a>message <span class="ot">&lt;-</span> <span class="st">"This is a test of SMS from R using Textbelt"</span></span>
-<span id="cb38-688"><a href="#cb38-688" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-689"><a href="#cb38-689" aria-hidden="true" tabindex="-1"></a>status <span class="ot">&lt;-</span> <span class="fu">send_textbelt_sms</span>(phone, message, key)</span>
-<span id="cb38-690"><a href="#cb38-690" aria-hidden="true" tabindex="-1"></a>status<span class="sc">$</span>success <span class="co"># returns whether text was sent successfully</span></span>
-<span id="cb38-691"><a href="#cb38-691" aria-hidden="true" tabindex="-1"></a>status<span class="sc">$</span>textID <span class="co"># returns textID</span></span>
-<span id="cb38-692"><a href="#cb38-692" aria-hidden="true" tabindex="-1"></a>status<span class="sc">$</span>quotaRemaining <span class="co"># returns number of texts remaining</span></span>
-<span id="cb38-693"><a href="#cb38-693" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-694"><a href="#cb38-694" aria-hidden="true" tabindex="-1"></a>status <span class="ot">&lt;-</span> <span class="fu">send_textbelt_sms_log</span>(phone, message, key)</span>
-<span id="cb38-695"><a href="#cb38-695" aria-hidden="true" tabindex="-1"></a>status<span class="sc">$</span>initial_response<span class="sc">$</span>success <span class="co"># returns textID</span></span>
-<span id="cb38-696"><a href="#cb38-696" aria-hidden="true" tabindex="-1"></a>status<span class="sc">$</span>initial_response<span class="sc">$</span>textId <span class="co"># returns textID</span></span>
-<span id="cb38-697"><a href="#cb38-697" aria-hidden="true" tabindex="-1"></a>status<span class="sc">$</span>initial_response<span class="sc">$</span>quotaRemaining <span class="co"># returns quota remaining</span></span>
-<span id="cb38-698"><a href="#cb38-698" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb38-699"><a href="#cb38-699" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-700"><a href="#cb38-700" aria-hidden="true" tabindex="-1"></a><span class="fu">### Sending text via curl</span></span>
-<span id="cb38-701"><a href="#cb38-701" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-702"><a href="#cb38-702" aria-hidden="true" tabindex="-1"></a>Incidently, because this Textbelt API is based on standard HTTP requests, you can also use a terminal and the ***curl*** program to to send texts in a similar fashion, bypassing ***R***. In the examples below, simpley replace phone number, message, and apikey with the relevant variable values (inside of the single <span class="in">`'`</span>s).</span>
-<span id="cb38-703"><a href="#cb38-703" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-704"><a href="#cb38-704" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb38-705"><a href="#cb38-705" aria-hidden="true" tabindex="-1"></a><span class="in">$ curl -X POST https://textbelt.com/text \</span></span>
-<span id="cb38-706"><a href="#cb38-706" aria-hidden="true" tabindex="-1"></a><span class="in">       --data-urlencode phone='phone number' \</span></span>
-<span id="cb38-707"><a href="#cb38-707" aria-hidden="true" tabindex="-1"></a><span class="in">       --data-urlencode message='text message' \</span></span>
-<span id="cb38-708"><a href="#cb38-708" aria-hidden="true" tabindex="-1"></a><span class="in">       -d key='apikey'</span></span>
-<span id="cb38-709"><a href="#cb38-709" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb38-710"><a href="#cb38-710" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-711"><a href="#cb38-711" aria-hidden="true" tabindex="-1"></a><span class="fu">### Checking status of a sent message via curl</span></span>
-<span id="cb38-712"><a href="#cb38-712" aria-hidden="true" tabindex="-1"></a>Use /status/&lt;textID&gt; to view status For example, if your textID is 'textID'...</span>
+<span id="cb38-557"><a href="#cb38-557" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Go to <span class="co">[</span><span class="ot">https://textbelt.com/</span><span class="co">](https://textbelt.com/)</span>...</span>
+<span id="cb38-558"><a href="#cb38-558" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Select "Create an API key"...</span>
+<span id="cb38-559"><a href="#cb38-559" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-562"><a href="#cb38-562" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb38-563"><a href="#cb38-563" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: false</span></span>
+<span id="cb38-564"><a href="#cb38-564" aria-hidden="true" tabindex="-1"></a><span class="co">#| out-width: "80%"</span></span>
+<span id="cb38-565"><a href="#cb38-565" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">include_graphics</span>(<span class="st">"img/textbelt.png"</span>)</span>
+<span id="cb38-566"><a href="#cb38-566" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb38-567"><a href="#cb38-567" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-568"><a href="#cb38-568" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Purchase a desired number of credits...</span>
+<span id="cb38-569"><a href="#cb38-569" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-572"><a href="#cb38-572" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb38-573"><a href="#cb38-573" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: false</span></span>
+<span id="cb38-574"><a href="#cb38-574" aria-hidden="true" tabindex="-1"></a><span class="co">#| out-width: "80%"</span></span>
+<span id="cb38-575"><a href="#cb38-575" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">include_graphics</span>(<span class="st">"img/textbelt-api-key.png"</span>)</span>
+<span id="cb38-576"><a href="#cb38-576" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb38-577"><a href="#cb38-577" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-578"><a href="#cb38-578" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>And save the key!</span>
+<span id="cb38-579"><a href="#cb38-579" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-582"><a href="#cb38-582" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb38-583"><a href="#cb38-583" aria-hidden="true" tabindex="-1"></a>key <span class="ot">&lt;-</span> <span class="st">""</span> <span class="co"># enter your Textbelt API key between the quotation marks</span></span>
+<span id="cb38-584"><a href="#cb38-584" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb38-585"><a href="#cb38-585" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-586"><a href="#cb38-586" aria-hidden="true" tabindex="-1"></a>To send messages, we will use the {httr} package, which includes functions for working with URLs and sending HTTP requests over the web.</span>
+<span id="cb38-587"><a href="#cb38-587" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-588"><a href="#cb38-588" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Install and attach the {httr} package.</span>
+<span id="cb38-589"><a href="#cb38-589" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-592"><a href="#cb38-592" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb38-593"><a href="#cb38-593" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
+<span id="cb38-594"><a href="#cb38-594" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"httr"</span>)</span>
+<span id="cb38-595"><a href="#cb38-595" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb38-596"><a href="#cb38-596" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-599"><a href="#cb38-599" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb38-600"><a href="#cb38-600" aria-hidden="true" tabindex="-1"></a><span class="co">#| message: false</span></span>
+<span id="cb38-601"><a href="#cb38-601" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(httr)</span>
+<span id="cb38-602"><a href="#cb38-602" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb38-603"><a href="#cb38-603" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-604"><a href="#cb38-604" aria-hidden="true" tabindex="-1"></a>We can set up a simple function to create an SMS message. It takes as arguments a phone number, a message, and an API key. It then uses the <span class="in">`POST()`</span> function to create and send a HTTP "POST" request to Textbelt's servers that consists of a URL and a POST body.</span>
+<span id="cb38-605"><a href="#cb38-605" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-606"><a href="#cb38-606" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; **NOTE:** If we set verbose = TRUE, we will see what response is sent from Textbelt's servers...</span></span>
+<span id="cb38-607"><a href="#cb38-607" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-610"><a href="#cb38-610" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb38-611"><a href="#cb38-611" aria-hidden="true" tabindex="-1"></a><span class="co"># simple message</span></span>
+<span id="cb38-612"><a href="#cb38-612" aria-hidden="true" tabindex="-1"></a>send_textbelt_sms <span class="ot">&lt;-</span> <span class="cf">function</span>(phone, message, <span class="at">api_key =</span> key, <span class="at">verbose =</span> <span class="cn">FALSE</span>) {</span>
+<span id="cb38-613"><a href="#cb38-613" aria-hidden="true" tabindex="-1"></a>  url <span class="ot">&lt;-</span> <span class="st">"https://textbelt.com/text"</span></span>
+<span id="cb38-614"><a href="#cb38-614" aria-hidden="true" tabindex="-1"></a>  res <span class="ot">&lt;-</span> <span class="fu">POST</span>(</span>
+<span id="cb38-615"><a href="#cb38-615" aria-hidden="true" tabindex="-1"></a>    url,</span>
+<span id="cb38-616"><a href="#cb38-616" aria-hidden="true" tabindex="-1"></a>    <span class="at">body =</span> <span class="fu">list</span>(</span>
+<span id="cb38-617"><a href="#cb38-617" aria-hidden="true" tabindex="-1"></a>      <span class="at">phone =</span> phone,</span>
+<span id="cb38-618"><a href="#cb38-618" aria-hidden="true" tabindex="-1"></a>      <span class="at">message =</span> message,</span>
+<span id="cb38-619"><a href="#cb38-619" aria-hidden="true" tabindex="-1"></a>      <span class="at">key =</span> api_key</span>
+<span id="cb38-620"><a href="#cb38-620" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb38-621"><a href="#cb38-621" aria-hidden="true" tabindex="-1"></a>    <span class="at">encode =</span> <span class="st">"form"</span></span>
+<span id="cb38-622"><a href="#cb38-622" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb38-623"><a href="#cb38-623" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (verbose) { <span class="fu">print</span>(res) }</span>
+<span id="cb38-624"><a href="#cb38-624" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stop_for_status</span>(res)</span>
+<span id="cb38-625"><a href="#cb38-625" aria-hidden="true" tabindex="-1"></a>  result <span class="ot">&lt;-</span> <span class="fu">content</span>(res, <span class="st">"parsed"</span>)</span>
+<span id="cb38-626"><a href="#cb38-626" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Print delivery status</span></span>
+<span id="cb38-627"><a href="#cb38-627" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (result<span class="sc">$</span>success) {</span>
+<span id="cb38-628"><a href="#cb38-628" aria-hidden="true" tabindex="-1"></a>    <span class="fu">cat</span>(<span class="st">"✅ SMS sent successfully!</span><span class="sc">\n</span><span class="st">"</span>)</span>
+<span id="cb38-629"><a href="#cb38-629" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
+<span id="cb38-630"><a href="#cb38-630" aria-hidden="true" tabindex="-1"></a>    <span class="fu">cat</span>(<span class="st">"❌ SMS failed: "</span>, result<span class="sc">$</span>error, <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span>
+<span id="cb38-631"><a href="#cb38-631" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb38-632"><a href="#cb38-632" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(result)</span>
+<span id="cb38-633"><a href="#cb38-633" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb38-634"><a href="#cb38-634" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb38-635"><a href="#cb38-635" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-636"><a href="#cb38-636" aria-hidden="true" tabindex="-1"></a>We can also create a version of this function that does the same thing, but also sends a follow--up request to query more information about whether the text was successfully delivered to the recipient.</span>
+<span id="cb38-637"><a href="#cb38-637" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-640"><a href="#cb38-640" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb38-641"><a href="#cb38-641" aria-hidden="true" tabindex="-1"></a>send_textbelt_sms_log <span class="ot">&lt;-</span> <span class="cf">function</span>(phone, message, <span class="at">api_key =</span> key, <span class="at">verbose =</span> <span class="cn">FALSE</span>, <span class="at">check_status =</span> <span class="cn">TRUE</span>, <span class="at">poll_interval =</span> <span class="dv">5</span>, <span class="at">max_checks =</span> <span class="dv">6</span>) {</span>
+<span id="cb38-642"><a href="#cb38-642" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Step 1: Send SMS</span></span>
+<span id="cb38-643"><a href="#cb38-643" aria-hidden="true" tabindex="-1"></a>  url <span class="ot">&lt;-</span> <span class="st">"https://textbelt.com/text"</span></span>
+<span id="cb38-644"><a href="#cb38-644" aria-hidden="true" tabindex="-1"></a>  res <span class="ot">&lt;-</span> <span class="fu">POST</span>(</span>
+<span id="cb38-645"><a href="#cb38-645" aria-hidden="true" tabindex="-1"></a>    url,</span>
+<span id="cb38-646"><a href="#cb38-646" aria-hidden="true" tabindex="-1"></a>    <span class="at">body =</span> <span class="fu">list</span>(</span>
+<span id="cb38-647"><a href="#cb38-647" aria-hidden="true" tabindex="-1"></a>      <span class="at">phone =</span> phone,</span>
+<span id="cb38-648"><a href="#cb38-648" aria-hidden="true" tabindex="-1"></a>      <span class="at">message =</span> message,</span>
+<span id="cb38-649"><a href="#cb38-649" aria-hidden="true" tabindex="-1"></a>      <span class="at">key =</span> api_key</span>
+<span id="cb38-650"><a href="#cb38-650" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb38-651"><a href="#cb38-651" aria-hidden="true" tabindex="-1"></a>    <span class="at">encode =</span> <span class="st">"form"</span></span>
+<span id="cb38-652"><a href="#cb38-652" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb38-653"><a href="#cb38-653" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (verbose) { <span class="fu">print</span>(res) }</span>
+<span id="cb38-654"><a href="#cb38-654" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stop_for_status</span>(res)</span>
+<span id="cb38-655"><a href="#cb38-655" aria-hidden="true" tabindex="-1"></a>  result <span class="ot">&lt;-</span> <span class="fu">content</span>(res, <span class="st">"parsed"</span>)</span>
+<span id="cb38-656"><a href="#cb38-656" aria-hidden="true" tabindex="-1"></a>  log <span class="ot">&lt;-</span> <span class="fu">list</span>(</span>
+<span id="cb38-657"><a href="#cb38-657" aria-hidden="true" tabindex="-1"></a>    <span class="at">initial_response =</span> result,</span>
+<span id="cb38-658"><a href="#cb38-658" aria-hidden="true" tabindex="-1"></a>    <span class="at">status_checks =</span> <span class="fu">list</span>())</span>
+<span id="cb38-659"><a href="#cb38-659" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="sc">!</span>result<span class="sc">$</span>success) {</span>
+<span id="cb38-660"><a href="#cb38-660" aria-hidden="true" tabindex="-1"></a>    <span class="fu">cat</span>(<span class="st">"❌ SMS failed: "</span>, result<span class="sc">$</span>error, <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span>
+<span id="cb38-661"><a href="#cb38-661" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(log)</span>
+<span id="cb38-662"><a href="#cb38-662" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb38-663"><a href="#cb38-663" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cat</span>(<span class="st">"✅ SMS sent successfully!</span><span class="sc">\n</span><span class="st">"</span>)</span>
+<span id="cb38-664"><a href="#cb38-664" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Step 2: Poll for delivery status (paid keys only)</span></span>
+<span id="cb38-665"><a href="#cb38-665" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (check_status <span class="sc">&amp;&amp;</span> <span class="sc">!</span><span class="fu">is.null</span>(result<span class="sc">$</span>textId)) {</span>
+<span id="cb38-666"><a href="#cb38-666" aria-hidden="true" tabindex="-1"></a>    status_url <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">"https://textbelt.com/status/"</span>, result<span class="sc">$</span>textId)</span>
+<span id="cb38-667"><a href="#cb38-667" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>max_checks) {</span>
+<span id="cb38-668"><a href="#cb38-668" aria-hidden="true" tabindex="-1"></a>      <span class="fu">Sys.sleep</span>(poll_interval)</span>
+<span id="cb38-669"><a href="#cb38-669" aria-hidden="true" tabindex="-1"></a>      status_res <span class="ot">&lt;-</span> <span class="fu">GET</span>(status_url)</span>
+<span id="cb38-670"><a href="#cb38-670" aria-hidden="true" tabindex="-1"></a>      status <span class="ot">&lt;-</span> <span class="fu">content</span>(status_res, <span class="st">"parsed"</span>)</span>
+<span id="cb38-671"><a href="#cb38-671" aria-hidden="true" tabindex="-1"></a>      log<span class="sc">$</span>status_checks[[i]] <span class="ot">&lt;-</span> status</span>
+<span id="cb38-672"><a href="#cb38-672" aria-hidden="true" tabindex="-1"></a>      <span class="fu">cat</span>(<span class="fu">sprintf</span>(<span class="st">"Status check %d: %s</span><span class="sc">\n</span><span class="st">"</span>, i, status<span class="sc">$</span>status))</span>
+<span id="cb38-673"><a href="#cb38-673" aria-hidden="true" tabindex="-1"></a>      <span class="cf">if</span> (status<span class="sc">$</span>status <span class="sc">==</span> <span class="st">"DELIVERED"</span>) {</span>
+<span id="cb38-674"><a href="#cb38-674" aria-hidden="true" tabindex="-1"></a>        <span class="fu">cat</span>(<span class="st">"✅ Message delivered!</span><span class="sc">\n</span><span class="st">"</span>)</span>
+<span id="cb38-675"><a href="#cb38-675" aria-hidden="true" tabindex="-1"></a>        <span class="cf">break</span></span>
+<span id="cb38-676"><a href="#cb38-676" aria-hidden="true" tabindex="-1"></a>      }</span>
+<span id="cb38-677"><a href="#cb38-677" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb38-678"><a href="#cb38-678" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb38-679"><a href="#cb38-679" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(log)</span>
+<span id="cb38-680"><a href="#cb38-680" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb38-681"><a href="#cb38-681" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb38-682"><a href="#cb38-682" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-683"><a href="#cb38-683" aria-hidden="true" tabindex="-1"></a>Example usage:</span>
+<span id="cb38-684"><a href="#cb38-684" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-687"><a href="#cb38-687" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb38-688"><a href="#cb38-688" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
+<span id="cb38-689"><a href="#cb38-689" aria-hidden="true" tabindex="-1"></a>phone <span class="ot">&lt;-</span> <span class="st">"+16464004285"</span></span>
+<span id="cb38-690"><a href="#cb38-690" aria-hidden="true" tabindex="-1"></a>message <span class="ot">&lt;-</span> <span class="st">"This is a test of SMS from R using Textbelt"</span></span>
+<span id="cb38-691"><a href="#cb38-691" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-692"><a href="#cb38-692" aria-hidden="true" tabindex="-1"></a>status <span class="ot">&lt;-</span> <span class="fu">send_textbelt_sms</span>(phone, message, key)</span>
+<span id="cb38-693"><a href="#cb38-693" aria-hidden="true" tabindex="-1"></a>status<span class="sc">$</span>success <span class="co"># returns whether text was sent successfully</span></span>
+<span id="cb38-694"><a href="#cb38-694" aria-hidden="true" tabindex="-1"></a>status<span class="sc">$</span>textID <span class="co"># returns textID</span></span>
+<span id="cb38-695"><a href="#cb38-695" aria-hidden="true" tabindex="-1"></a>status<span class="sc">$</span>quotaRemaining <span class="co"># returns number of texts remaining</span></span>
+<span id="cb38-696"><a href="#cb38-696" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-697"><a href="#cb38-697" aria-hidden="true" tabindex="-1"></a>status <span class="ot">&lt;-</span> <span class="fu">send_textbelt_sms_log</span>(phone, message, key)</span>
+<span id="cb38-698"><a href="#cb38-698" aria-hidden="true" tabindex="-1"></a>status<span class="sc">$</span>initial_response<span class="sc">$</span>success <span class="co"># returns textID</span></span>
+<span id="cb38-699"><a href="#cb38-699" aria-hidden="true" tabindex="-1"></a>status<span class="sc">$</span>initial_response<span class="sc">$</span>textId <span class="co"># returns textID</span></span>
+<span id="cb38-700"><a href="#cb38-700" aria-hidden="true" tabindex="-1"></a>status<span class="sc">$</span>initial_response<span class="sc">$</span>quotaRemaining <span class="co"># returns quota remaining</span></span>
+<span id="cb38-701"><a href="#cb38-701" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb38-702"><a href="#cb38-702" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-703"><a href="#cb38-703" aria-hidden="true" tabindex="-1"></a><span class="fu">### Sending text via curl</span></span>
+<span id="cb38-704"><a href="#cb38-704" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-705"><a href="#cb38-705" aria-hidden="true" tabindex="-1"></a>Incidently, because this Textbelt API is based on standard HTTP requests, you can also use a terminal and the ***curl*** program to to send texts in a similar fashion, bypassing ***R***. In the examples below, simpley replace phone number, message, and apikey with the relevant variable values (inside of the single <span class="in">`'`</span>s).</span>
+<span id="cb38-706"><a href="#cb38-706" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-707"><a href="#cb38-707" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb38-708"><a href="#cb38-708" aria-hidden="true" tabindex="-1"></a><span class="in">$ curl -X POST https://textbelt.com/text \</span></span>
+<span id="cb38-709"><a href="#cb38-709" aria-hidden="true" tabindex="-1"></a><span class="in">       --data-urlencode phone='phone number' \</span></span>
+<span id="cb38-710"><a href="#cb38-710" aria-hidden="true" tabindex="-1"></a><span class="in">       --data-urlencode message='text message' \</span></span>
+<span id="cb38-711"><a href="#cb38-711" aria-hidden="true" tabindex="-1"></a><span class="in">       -d key='apikey'</span></span>
+<span id="cb38-712"><a href="#cb38-712" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb38-713"><a href="#cb38-713" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-714"><a href="#cb38-714" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb38-715"><a href="#cb38-715" aria-hidden="true" tabindex="-1"></a><span class="in">$ curl https://textbelt.com/status/textID</span></span>
-<span id="cb38-716"><a href="#cb38-716" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb38-714"><a href="#cb38-714" aria-hidden="true" tabindex="-1"></a><span class="fu">### Checking the status of a sent message via {curl}</span></span>
+<span id="cb38-715"><a href="#cb38-715" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-716"><a href="#cb38-716" aria-hidden="true" tabindex="-1"></a>Use /status/&lt;textID&gt; to view status For example, if your textID is 'textID'...</span>
 <span id="cb38-717"><a href="#cb38-717" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-718"><a href="#cb38-718" aria-hidden="true" tabindex="-1"></a><span class="fu">### Checking your quota via curl</span></span>
-<span id="cb38-719"><a href="#cb38-719" aria-hidden="true" tabindex="-1"></a>Use /quota/&lt;key&gt; to view remaining quota. For example, if your key is 'apikey'...</span>
-<span id="cb38-720"><a href="#cb38-720" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-721"><a href="#cb38-721" aria-hidden="true" tabindex="-1"></a><span class="in">````</span></span>
-<span id="cb38-722"><a href="#cb38-722" aria-hidden="true" tabindex="-1"></a><span class="in">$ curl https://textbelt.com/quota/apikey</span></span>
-<span id="cb38-723"><a href="#cb38-723" aria-hidden="true" tabindex="-1"></a><span class="in">````</span></span>
+<span id="cb38-718"><a href="#cb38-718" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb38-719"><a href="#cb38-719" aria-hidden="true" tabindex="-1"></a><span class="in">$ curl https://textbelt.com/status/textID</span></span>
+<span id="cb38-720"><a href="#cb38-720" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb38-721"><a href="#cb38-721" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-722"><a href="#cb38-722" aria-hidden="true" tabindex="-1"></a><span class="fu">### Checking your quota via curl</span></span>
+<span id="cb38-723"><a href="#cb38-723" aria-hidden="true" tabindex="-1"></a>Use /quota/&lt;key&gt; to view remaining quota. For example, if your key is 'apikey'...</span>
 <span id="cb38-724"><a href="#cb38-724" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-725"><a href="#cb38-725" aria-hidden="true" tabindex="-1"></a><span class="fu">### Testing your API key with curl</span></span>
-<span id="cb38-726"><a href="#cb38-726" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-727"><a href="#cb38-727" aria-hidden="true" tabindex="-1"></a>If you want to just validate your key without actually using your text quota, append "_test" to your key and you will receive a response from the /text endpoint confirming that a text would send, but it will not consume your credits.</span>
+<span id="cb38-725"><a href="#cb38-725" aria-hidden="true" tabindex="-1"></a><span class="in">````</span></span>
+<span id="cb38-726"><a href="#cb38-726" aria-hidden="true" tabindex="-1"></a><span class="in">$ curl https://textbelt.com/quota/apikey</span></span>
+<span id="cb38-727"><a href="#cb38-727" aria-hidden="true" tabindex="-1"></a><span class="in">````</span></span>
 <span id="cb38-728"><a href="#cb38-728" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-729"><a href="#cb38-729" aria-hidden="true" tabindex="-1"></a><span class="in">````</span></span>
-<span id="cb38-730"><a href="#cb38-730" aria-hidden="true" tabindex="-1"></a><span class="in">$ curl https://textbelt.com/quota/apikey_test</span></span>
-<span id="cb38-731"><a href="#cb38-731" aria-hidden="true" tabindex="-1"></a><span class="in">````</span></span>
+<span id="cb38-729"><a href="#cb38-729" aria-hidden="true" tabindex="-1"></a><span class="fu">### Testing your API key with {curl}</span></span>
+<span id="cb38-730"><a href="#cb38-730" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-731"><a href="#cb38-731" aria-hidden="true" tabindex="-1"></a>If you want to just validate your key without actually using your text quota, append "_test" to your key and you will receive a response from the /text endpoint confirming that a text would send, but it will not consume your credits.</span>
 <span id="cb38-732"><a href="#cb38-732" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-735"><a href="#cb38-735" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb38-736"><a href="#cb38-736" aria-hidden="true" tabindex="-1"></a><span class="co">#| include: false</span></span>
-<span id="cb38-737"><a href="#cb38-737" aria-hidden="true" tabindex="-1"></a><span class="fu">detach</span>(package<span class="sc">:</span>httr)</span>
-<span id="cb38-738"><a href="#cb38-738" aria-hidden="true" tabindex="-1"></a><span class="fu">detach</span>(package<span class="sc">:</span>emayili)</span>
-<span id="cb38-739"><a href="#cb38-739" aria-hidden="true" tabindex="-1"></a><span class="fu">detach</span>(package<span class="sc">:</span>tidyverse)</span>
-<span id="cb38-740"><a href="#cb38-740" aria-hidden="true" tabindex="-1"></a><span class="fu">detach</span>(package<span class="sc">:</span>blastula)</span>
-<span id="cb38-741"><a href="#cb38-741" aria-hidden="true" tabindex="-1"></a><span class="fu">detach</span>(package<span class="sc">:</span>keyring)</span>
-<span id="cb38-742"><a href="#cb38-742" aria-hidden="true" tabindex="-1"></a><span class="fu">detach</span>(package<span class="sc">:</span>mailR)</span>
-<span id="cb38-743"><a href="#cb38-743" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb38-733"><a href="#cb38-733" aria-hidden="true" tabindex="-1"></a><span class="in">````</span></span>
+<span id="cb38-734"><a href="#cb38-734" aria-hidden="true" tabindex="-1"></a><span class="in">$ curl https://textbelt.com/quota/apikey_test</span></span>
+<span id="cb38-735"><a href="#cb38-735" aria-hidden="true" tabindex="-1"></a><span class="in">````</span></span>
+<span id="cb38-736"><a href="#cb38-736" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-739"><a href="#cb38-739" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb38-740"><a href="#cb38-740" aria-hidden="true" tabindex="-1"></a><span class="co">#| include: false</span></span>
+<span id="cb38-741"><a href="#cb38-741" aria-hidden="true" tabindex="-1"></a><span class="fu">detach</span>(package<span class="sc">:</span>httr)</span>
+<span id="cb38-742"><a href="#cb38-742" aria-hidden="true" tabindex="-1"></a><span class="fu">detach</span>(package<span class="sc">:</span>emayili)</span>
+<span id="cb38-743"><a href="#cb38-743" aria-hidden="true" tabindex="-1"></a><span class="fu">detach</span>(package<span class="sc">:</span>tidyverse)</span>
+<span id="cb38-744"><a href="#cb38-744" aria-hidden="true" tabindex="-1"></a><span class="fu">detach</span>(package<span class="sc">:</span>blastula)</span>
+<span id="cb38-745"><a href="#cb38-745" aria-hidden="true" tabindex="-1"></a><span class="fu">detach</span>(package<span class="sc">:</span>keyring)</span>
+<span id="cb38-746"><a href="#cb38-746" aria-hidden="true" tabindex="-1"></a><span class="fu">detach</span>(package<span class="sc">:</span>mailR)</span>
+<span id="cb38-747"><a href="#cb38-747" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 </code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->

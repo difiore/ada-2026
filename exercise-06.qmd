@@ -20,26 +20,30 @@ Using location records collected over several years, we have generated several m
 
 - Using the {tidyverse} `read_csv()` function, load [this dataset](https://raw.githubusercontent.com/difiore/ada-2022-datasets/main/tbs-2006-2008-ranges.csv) into ***R*** as a "tibble" named **d** and look at the variables it contains. For this exercise, we are interested in two variables in particular: **sex** ("M" or "F", for male versus female) and **kernel95**, which represents the size of a polygon summarizing the location records for an individual as a 95% utilization density kernel.
 
-### Step 1 {.unnumbered}
+## Challenge {.unnumbered}
+
+### Compare Male and Female Home Range Sizes {.unnumbered}
+
+#### Step 1 {.unnumbered}
 
 - Reduce the dataset to just the two variables of interest.
 
-### Step 2 {.unnumbered}
+#### Step 2 {.unnumbered}
 
 - Determine the mean, standard deviation, and standard error in “kernel95” home range size for each sex.
 
-### Step 3 {.unnumbered}
+#### Step 3 {.unnumbered}
 - Create boxplots comparing “kernel95” home range size by sex.
 
-### Step 4 {.unnumbered}
+#### Step 4 {.unnumbered}
 
 - For each sex, generate a bootstrap distribution for mean kernel95 home range size. To do this, for each sex, you will want to generate a set of 10,000 bootstrap samples (i.e., sampling with replacement), calculate the mean kernel95 home range size for each of these samples, and plot the resulting bootstrap sampling distribution.
 
-### Step 5 {.unnumbered}
+#### Step 5 {.unnumbered}
 
 - Plot an appropriate normal distribution over the bootstrap sampling distribution.
 
-### Step 6 {.unnumbered}
+#### Step 6 {.unnumbered}
 
 - Calculate a 95% confidence interval around for the mean kernel95 home range size for each sex...
 
@@ -47,12 +51,12 @@ Using location records collected over several years, we have generated several m
 
   - Using the theory-based "standard error" method, based on `qnorm()` and the standard deviation of your bootstrap sampling distribution.
 
-### Step 7 {.unnumbered}
+#### Step 7 {.unnumbered}
 
 - Use simulation-based permutation to evaluate the difference in mean kernel95 home range size for males versus females. To do this, you will want to shuffle either the variable "sex" or "kernel95" home range size a total of 10,000 times, recalculating mean kernel95 size by sex for each permuted sample and then compare the difference in male and female kernel95 means from your original sample to the permutation distribution for the difference in means.
 
   - Under this approach, what is the "null" hypothesis? What is the test statistic? Is the difference in mean kernel95 home range size "significant"?
 
-### Step 8 {.unnumbered}
+#### Step 8 {.unnumbered}
 
 - Finally, use a theory-based parametric test (e.g., a t-test) to also calculate an appropriate test statistic and associated p value for the comparison of male and female mean kernel95 home range size. Under this approach, what is the test statistic? Is the difference in mean kernel95 home range size "significant"?

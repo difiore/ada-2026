@@ -547,6 +547,18 @@ window.Quarto = {
  <span class="menu-text">Exercise 11</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./exercise-12.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Exercise 12</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./exercise-12-solution.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Exercise 12 Solution</span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -1342,14 +1354,14 @@ window.Quarto = {
 ## Explanatory: weight (numeric)
 ## Null Hypothesis: ind...
 ## # A tibble: 6 × 2
-##   replicate     stat
-##       &lt;int&gt;    &lt;dbl&gt;
-## 1         1  0.00526
-## 2         2 -0.00177
-## 3         3  0.0150 
-## 4         4 -0.00179
-## 5         5 -0.00809
-## 6         6  0.00119</code></pre>
+##   replicate       stat
+##       &lt;int&gt;      &lt;dbl&gt;
+## 1         1 -0.00796  
+## 2         2 -0.0167   
+## 3         3  0.0000249
+## 4         4  0.00647  
+## 5         5  0.0150   
+## 6         6 -0.0102</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb81"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb81-1"><a href="#cb81-1" aria-hidden="true" tabindex="-1"></a><span class="co"># create confidence intervals</span></span>
 <span id="cb81-2"><a href="#cb81-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -1371,7 +1383,7 @@ window.Quarto = {
 <pre><code>## # A tibble: 1 × 6
 ##    estimate std.error   lower  upper perm.lower perm.upper
 ##       &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;      &lt;dbl&gt;      &lt;dbl&gt;
-## 1 -0.000242   0.00740 -0.0148 0.0143    -0.0155     0.0138</code></pre>
+## 1 -0.000220   0.00736 -0.0147 0.0142    -0.0145     0.0136</code></pre>
 </div>
 </div>
 <p>The <code>get_ci()</code> function from {infer} can be used to return these different types of confidence intervals, too… i.e., either based on the standard error of the permutation distribution or actual quantiles from that distribution.</p>
@@ -1381,7 +1393,7 @@ window.Quarto = {
 <pre><code>## # A tibble: 1 × 2
 ##   lower_ci upper_ci
 ##      &lt;dbl&gt;    &lt;dbl&gt;
-## 1  -0.0155   0.0138</code></pre>
+## 1  -0.0145   0.0136</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb85"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb85-1"><a href="#cb85-1" aria-hidden="true" tabindex="-1"></a><span class="fu">get_ci</span>(permuted.slope,</span>
 <span id="cb85-2"><a href="#cb85-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">level =</span> <span class="dv">1</span> <span class="sc">-</span> alpha, <span class="at">type =</span> <span class="st">"se"</span>,</span>
@@ -1391,7 +1403,7 @@ window.Quarto = {
 <pre><code>## # A tibble: 1 × 2
 ##   lower_ci upper_ci
 ##      &lt;dbl&gt;    &lt;dbl&gt;
-## 1  -0.0147   0.0143</code></pre>
+## 1  -0.0146   0.0142</code></pre>
 </div>
 </div>
 <p>We can also visualize the null distribution of slope coefficients based on permutation and superimpose our actual slope coefficient.</p>
@@ -1474,12 +1486,12 @@ window.Quarto = {
 ## # A tibble: 6 × 2
 ##   replicate  stat
 ##       &lt;int&gt; &lt;dbl&gt;
-## 1         1 0.195
-## 2         2 0.202
-## 3         3 0.197
-## 4         4 0.195
-## 5         5 0.193
-## 6         6 0.195</code></pre>
+## 1         1 0.196
+## 2         2 0.203
+## 3         3 0.189
+## 4         4 0.192
+## 5         5 0.194
+## 6         6 0.196</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb96"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb96-1"><a href="#cb96-1" aria-hidden="true" tabindex="-1"></a><span class="co"># create confidence intervals for regression coefficients</span></span>
 <span id="cb96-2"><a href="#cb96-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -1501,7 +1513,7 @@ window.Quarto = {
 <pre><code>## # A tibble: 1 × 6
 ##   estimate std.error lower upper boot.lower boot.upper
 ##      &lt;dbl&gt;     &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;      &lt;dbl&gt;      &lt;dbl&gt;
-## 1    0.195   0.00397 0.187 0.203      0.188      0.203</code></pre>
+## 1    0.195   0.00418 0.187 0.203      0.187      0.203</code></pre>
 </div>
 </div>
 <p>Again, the <code>get_ci()</code> function from {infer} can be used to return these different types of confidence intervals…</p>

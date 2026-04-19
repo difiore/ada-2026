@@ -14,7 +14,7 @@
 - Practicing data wrangling
 - Dealing with keyboard input
 
-## **Wordle** Puzzle Challenge {.unnumbered}
+## **Wordle** Puzzle {.unnumbered}
 
 The rules of **Wordle** are simple: A player has SIX tries to guess a 5-letter word that has been selected at random from a list of possible words. Guesses need to be valid 5-letter words. After each guess, a player receives feedback about how close their guess was to the word, which provides information they can use to try to solve the puzzle. This feedback lets you know whether each letter your guess is either [1] *in the solution word and in the correct spot*, [2] *in the solution word but in the wrong position*, or [3] *not in the solution word*. In app/browser versions of **Wordle**, this feedback is provided visually using colors, but that need not be the case.
 
@@ -35,9 +35,11 @@ The first of these files (279,497 lines long) contains a list of "Official Scrab
 
 The second of these files (9885 lines long) contains a list of ~10,000 of the most common words in the English language, based on data compiled by Google, and omitting common swear words. Again, the first line is the word "words" and is used as a header.
 
-- Create a new **Quarto** or **RMarkdown** document, called "wordle.qmd" or "wordle.Rmd". In this, you do your best to recreate all of the wordplay used in Wordle.
+- Create a new **Quarto** document, called "wordle.qmd". In this, you do your best to recreate all of the wordplay used in Wordle.
 
-### Introduction {.unnumbered}
+## Challenge {.unnumbered}
+
+### Program your own **Wordle** Game {.unnumbered}
 
 Before we begin programming, an important first step is to break down the problem we are trying to down into discrete pieces... What do we need to do to **set** up a Wordle game? What **steps** does game play need to follow? What has to be **evaluated** at each step? How does the game **end**?
 
@@ -47,7 +49,7 @@ Additionally, also need to establish a dictionary of "valid" words that players 
 
 > **NOTE:** The list of possible "solution" words used in the original Wordle puzzle consists of ~2100 5-letter words, while the list of "valid" words that can be used as guesses totals ~13,000. How many 5-letter words are in each of the two data files you have downloaded?
 
-### Step 1 {.unnumbered}
+#### Step 1 {.unnumbered}
 
 - Create your own custom function called `load_dictionary()` that takes a single argument, "filename", that can be used to read in either of the two data files your downloaded.
 
@@ -70,11 +72,11 @@ Running `str(solution_list)` should return...
 chr [1:8336] "THE" "OF" "AND" "TO"...
 ```
 
-### Step 2 {.unnumbered}
+#### Step 2 {.unnumbered}
 
 - Winnow your variable **solution_list** to only include words that are included in **valid_list**. There are multiple ways that you could do this, but the set operation function, `intersection()` is an easy way. Use ***R*** help to look at the documentation for the `intersection()` function to see if you can get that to work. How many words are in your updated **solution_list** vector?
 
-### Step 3 {.unnumbered}
+#### Step 3 {.unnumbered}
 
 - Write a custom function called `pick_solution()` that [1] removes all words from **solution_list** that are not 5 letters in length, [2] then randomly chooses a single word from those that remain, and [3] then splits that word into a vector of single-character elements. You should be able to pass your **solution_list** vector as the argument to the function.
 
@@ -88,7 +90,7 @@ Once your function works, run it and assign the result to a variable called **so
 solution <- pick_solution(solution_list)
 ```
 
-### Step 4 {.unnumbered}
+#### Step 4 {.unnumbered}
 
 Now, to tackle the bulk of the problem, create two more functions. The first should be called `play_wordle()` and it should take three arguments: [1] the answer to the puzzle (the value of your **solution** variable), [2] a list of valid guesses (the contents of your **valid_list** variable), and [3] a value for "number of guesses", which you should set to the original **Wordle** game default of 6.
 
@@ -134,7 +136,7 @@ guess <- readline("Enter some data here, then press <enter>: ")
 
 7. If all guesses are exhausted, the function should indicate that the player LOST the game and, again, print out their guess and feedback history.
 
-### Optional Next Steps? {.unnumbered}
+#### Optional Next Steps? {.unnumbered}
 
 - Try modifying your code to mimic the "hard mode" in **Wordle**, where information about the letters in the solution and their positions revealed in prior guesses has to be used in subsequent guesses.
 

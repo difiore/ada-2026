@@ -12,7 +12,7 @@ Check out [this website](http://www.dnasonification.org/) for an example of the 
 
 > DNA Sonification refers to the use of audio to convey the information content of a DNA sequence. Audio is created using the rules of gene expression and codons are played as musical notes.
 
-> Temple, Mark D. 2017. An auditory display tool for DNA sequence analysis.” *BMC Bioinformatics* 18: 221. https://doi.org/10.1186/s12859-017-1632-x.
+> Temple MD. 2017. An auditory display tool for DNA sequence analysis. *BMC Bioinformatics* 18: 221. https://doi.org/10.1186/s12859-017-1632-x.
 
 ## What to Turn In {.unnumbered}
 

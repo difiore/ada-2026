@@ -6,7 +6,9 @@
 
 - Integrating an ***RStudio*** project, a local ***git*** repository, and a **GitHub** remote repository
 
-## Task 1: Begin with a remote repo... {.unnumbered}
+## Challenge 1 {.unnumbered}
+
+### Begin with a remote repo... {.unnumbered}
 
 Follow the instructions outlined as **Method 1** in [**Module 6**](#module-06) to do the following:
 
@@ -94,7 +96,9 @@ knitr::include_graphics("img/knit-Rmd.png")
 
 - Submit the URL for your repo in **Canvas**
 
-## Task 2: Begin with a local repo... {.unnumbered}
+## Challenge 2 {.unnumbered}
+
+### Begin with a local repo... {.unnumbered}
 
 This is an alternative workflow to that described above, which also works well. It is outlined in more detail in [**Module 6**](#module-06) as "Option 3" under **Connecting a Local Repo to** ***GitHub***.
 

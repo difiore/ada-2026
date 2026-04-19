@@ -2,6 +2,8 @@
 
 # • Solution {.unnumbered}
 
+### Preliminaries {.unnumbered}
+
 Load in dataset and libraries of interest...
 
 ```{r}
@@ -13,10 +15,12 @@ d <- read_csv(f, col_names = TRUE)
 names(d)
 ```
 
-## Step 1 {.unnumbered}
+## Challenge {.unnumbered}
+
+#### Step 1 {.unnumbered}
 
 ```{r}
-# 1
+#1
 d$BSD <- d$Body_mass_male_mean/d$Body_mass_female_mean
 
 # 2

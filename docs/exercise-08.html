@@ -547,6 +547,18 @@ window.Quarto = {
  <span class="menu-text">Exercise 11</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./exercise-12.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Exercise 12</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./exercise-12-solution.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Exercise 12 Solution</span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -610,15 +622,8 @@ window.Quarto = {
   <li><a href="#learning-objectives" id="toc-learning-objectives" class="nav-link" data-scroll-target="#learning-objectives">Learning Objectives</a>
   <ul class="collapse">
   <li><a href="#preliminaries" id="toc-preliminaries" class="nav-link" data-scroll-target="#preliminaries">Preliminaries</a></li>
-  <li><a href="#step-1" id="toc-step-1" class="nav-link" data-scroll-target="#step-1">Step 1</a></li>
-  <li><a href="#step-2" id="toc-step-2" class="nav-link" data-scroll-target="#step-2">Step 2</a></li>
-  <li><a href="#step-3" id="toc-step-3" class="nav-link" data-scroll-target="#step-3">Step 3</a></li>
-  <li><a href="#step-4" id="toc-step-4" class="nav-link" data-scroll-target="#step-4">Step 4</a></li>
-  <li><a href="#step-5" id="toc-step-5" class="nav-link" data-scroll-target="#step-5">Step 5</a></li>
-  <li><a href="#step-6" id="toc-step-6" class="nav-link" data-scroll-target="#step-6">Step 6</a></li>
-  <li><a href="#step-7" id="toc-step-7" class="nav-link" data-scroll-target="#step-7">Step 7</a></li>
-  <li><a href="#step-8" id="toc-step-8" class="nav-link" data-scroll-target="#step-8">Step 8</a></li>
   </ul></li>
+  <li><a href="#challenge" id="toc-challenge" class="nav-link" data-scroll-target="#challenge">Challenge</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -670,8 +675,11 @@ window.Quarto = {
 <li>Set up a new <strong><em>GitHub</em></strong> repo in your <strong><em>GitHub</em></strong> workspace named “exercise-08” and clone that down to your computer as a new <strong><em>RStudio</em></strong> project. The instructions outlined as <strong>Method 1</strong> in <a href="06-module.html"><strong>Module 6</strong></a> will be helpful.</li>
 </ul>
 </section>
-<section id="step-1" class="level3 unnumbered">
-<h3 class="unnumbered anchored" data-anchor-id="step-1">Step 1</h3>
+</section>
+<section id="challenge" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="challenge">Challenge</h2>
+<section id="step-1" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="step-1">Step 1</h4>
 <ul>
 <li>Using the {tidyverse} <code>read_csv()</code> function, load the “Street_et_al_2017.csv” dataset from <a href="https://raw.githubusercontent.com/difiore/ada-datasets/main/Street_et_al_2017.csv">this URL</a> as a “tibble” named <strong>d</strong>.</li>
 <li>Do a quick exploratory data analysis where you generate the five-number summary (median, minimum and maximum and 1st and 3rd quartile values), plus mean and standard deviation, for each quantitative variable.</li>
@@ -680,14 +688,14 @@ window.Quarto = {
 <p><strong>HINT</strong>: The <code>skim()</code> function from the package {skimr} makes this very easy!</p>
 </blockquote>
 </section>
-<section id="step-2" class="level3 unnumbered">
-<h3 class="unnumbered anchored" data-anchor-id="step-2">Step 2</h3>
+<section id="step-2" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="step-2">Step 2</h4>
 <ul>
 <li>From this dataset, plot brain size (<strong>ECV</strong>) as a function of social group size (<strong>Group_size</strong>), longevity (<strong>Longevity</strong>), juvenile period length (<strong>Weaning</strong>), and reproductive lifespan (<strong>Repro_lifespan</strong>).</li>
 </ul>
 </section>
-<section id="step-3" class="level3 unnumbered">
-<h3 class="unnumbered anchored" data-anchor-id="step-3">Step 3</h3>
+<section id="step-3" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="step-3">Step 3</h4>
 <ul>
 <li>Derive by hand the ordinary least squares regression coefficients <span class="math inline">\(\beta1\)</span> and <span class="math inline">\(\beta0\)</span> for ECV as a function of social group size.</li>
 </ul>
@@ -695,32 +703,32 @@ window.Quarto = {
 <p><strong>HINT</strong>: You will need to remove rows from your dataset where one of these variables is missing.</p>
 </blockquote>
 </section>
-<section id="step-4" class="level3 unnumbered">
-<h3 class="unnumbered anchored" data-anchor-id="step-4">Step 4</h3>
+<section id="step-4" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="step-4">Step 4</h4>
 <ul>
 <li>Confirm that you get the same results using the <code>lm()</code> function.</li>
 </ul>
 </section>
-<section id="step-5" class="level3 unnumbered">
-<h3 class="unnumbered anchored" data-anchor-id="step-5">Step 5</h3>
+<section id="step-5" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="step-5">Step 5</h4>
 <ul>
 <li>Repeat the analysis above for three different major radiations of primates - “catarrhines”, “platyrrhines”, and “strepsirhines”) separately. These are stored in the variable <strong>Taxonomic_group</strong>. Do your regression coefficients differ among groups? How might you determine this?</li>
 </ul>
 </section>
-<section id="step-6" class="level3 unnumbered">
-<h3 class="unnumbered anchored" data-anchor-id="step-6">Step 6</h3>
+<section id="step-6" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="step-6">Step 6</h4>
 <ul>
 <li>For your first regression of ECV on social group size, calculate the standard error for the slope coefficient, the 95% CI, and the <em>p</em> value associated with this coefficient by hand. Also extract this same information from the results of running the <code>lm()</code> function.</li>
 </ul>
 </section>
-<section id="step-7" class="level3 unnumbered">
-<h3 class="unnumbered anchored" data-anchor-id="step-7">Step 7</h3>
+<section id="step-7" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="step-7">Step 7</h4>
 <ul>
 <li>Use a permutation approach with 1000 permutations to generate a null sampling distribution for the <strong>slope coefficient</strong>. What is it that you need to permute? What is the p value associated with your original slope coefficient? You can use either the quantile method (i.e., using quantiles from the actual permutation-based null sampling distribution) or a theory-based method (i.e., using the standard deviation of the permutation-based null sampling distribution as the estimate of the standard error, along with a normal or t distribution), or both, to calculate this p value.</li>
 </ul>
 </section>
-<section id="step-8" class="level3 unnumbered">
-<h3 class="unnumbered anchored" data-anchor-id="step-8">Step 8</h3>
+<section id="step-8" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="step-8">Step 8</h4>
 <ul>
 <li>Use bootstrapping to generate a 95% CI for your estimate of the slope coefficient using both the quantile method and the theory-based method (i.e., using the standard deviation of the bootstrapped sampling distribution as an estimate of the standard error). Do these CIs suggest that your slope coefficient is different from zero?</li>
 </ul>
@@ -1201,47 +1209,48 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="at">&gt;</span></span>
 <span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; Street SE, Navarrete AF, Reader SM, and Laland KN. (2017). Coevolution of cultural intelligence, extended life history, sociality, and brain size in primates. *Proceedings of the National Academy of Sciences* 114: 7908–7914.</span></span>
 <span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="fu">### Preliminaries {.unnumbered}</span></span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Set up a new ***GitHub*** repo in your ***GitHub*** workspace named "exercise-08" and clone that down to your computer as a new ***RStudio*** project. The instructions outlined as **Method 1** in [**Module 6**](#module-06) will be helpful.</span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a><span class="fu">### Step 1 {.unnumbered}</span></span>
-<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Using the {tidyverse} <span class="in">`read_csv()`</span> function, load the "Street_et_al_2017.csv" dataset from <span class="co">[</span><span class="ot">this URL</span><span class="co">](https://raw.githubusercontent.com/difiore/ada-datasets/main/Street_et_al_2017.csv)</span> as a "tibble" named **d**.</span>
-<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Do a quick exploratory data analysis where you generate the five-number summary (median, minimum and maximum and 1st and 3rd quartile values), plus mean and standard deviation, for each quantitative variable.</span>
-<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; **HINT**: The </span><span class="in">`skim()`</span><span class="at"> function from the package {skimr} makes this very easy!</span></span>
-<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a><span class="fu">### Step 2 {.unnumbered}</span></span>
-<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>From this dataset, plot brain size (**ECV**) as a function of social group size (**Group_size**), longevity (**Longevity**), juvenile period length (**Weaning**), and reproductive lifespan (**Repro_lifespan**).</span>
-<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a><span class="fu">### Step 3 {.unnumbered}</span></span>
-<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Derive by hand the ordinary least squares regression coefficients $\beta1$ and $\beta0$ for ECV as a function of social group size.</span>
-<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; **HINT**: You will need to remove rows from your dataset where one of these variables is missing.</span></span>
-<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a><span class="fu">### Step 4 {.unnumbered}</span></span>
-<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Confirm that you get the same results using the <span class="in">`lm()`</span> function.</span>
-<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a><span class="fu">### Step 5 {.unnumbered}</span></span>
-<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Repeat the analysis above for three different major radiations of primates - "catarrhines", "platyrrhines", and "strepsirhines") separately. These are stored in the variable **Taxonomic_group**. Do your regression coefficients differ among groups? How might you determine this?</span>
-<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a><span class="fu">### Step 6 {.unnumbered}</span></span>
-<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>For your first regression of ECV on social group size, calculate the standard error for the slope coefficient, the 95% CI, and the *p* value associated with this coefficient by hand. Also extract this same information from the results of running the <span class="in">`lm()`</span> function.</span>
-<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a><span class="fu">### Step 7 {.unnumbered}</span></span>
-<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Use a permutation approach with 1000 permutations to generate a null sampling distribution for the **slope coefficient**. What is it that you need to permute? What is the p value associated with your original slope coefficient? You can use either the quantile method (i.e., using quantiles from the actual permutation-based null sampling distribution) or a theory-based method (i.e., using the standard deviation of the permutation-based null sampling distribution as the estimate of the standard error, along with a normal or t distribution), or both, to calculate this p value.</span>
-<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-57"><a href="#cb1-57" aria-hidden="true" tabindex="-1"></a><span class="fu">### Step 8 {.unnumbered}</span></span>
-<span id="cb1-58"><a href="#cb1-58" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-59"><a href="#cb1-59" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Use bootstrapping to generate a 95% CI for your estimate of the slope coefficient using both the quantile method and the theory-based method (i.e., using the standard deviation of the bootstrapped sampling distribution as an estimate of the standard error). Do these CIs suggest that your slope coefficient is different from zero?</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="fu">### Preliminaries {.unnumbered}</span></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Set up a new ***GitHub*** repo in your ***GitHub*** workspace named "exercise-08" and clone that down to your computer as a new ***RStudio*** project. The instructions outlined as **Method 1** in [**Module 6**](#module-06) will be helpful.</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="fu">## Challenge {.unnumbered}</span></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Step 1 {.unnumbered}</span></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Using the {tidyverse} <span class="in">`read_csv()`</span> function, load the "Street_et_al_2017.csv" dataset from <span class="co">[</span><span class="ot">this URL</span><span class="co">](https://raw.githubusercontent.com/difiore/ada-datasets/main/Street_et_al_2017.csv)</span> as a "tibble" named **d**.</span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Do a quick exploratory data analysis where you generate the five-number summary (median, minimum and maximum and 1st and 3rd quartile values), plus mean and standard deviation, for each quantitative variable.</span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; **HINT**: The </span><span class="in">`skim()`</span><span class="at"> function from the package {skimr} makes this very easy!</span></span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Step 2 {.unnumbered}</span></span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>From this dataset, plot brain size (**ECV**) as a function of social group size (**Group_size**), longevity (**Longevity**), juvenile period length (**Weaning**), and reproductive lifespan (**Repro_lifespan**).</span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Step 3 {.unnumbered}</span></span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Derive by hand the ordinary least squares regression coefficients $\beta1$ and $\beta0$ for ECV as a function of social group size.</span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; **HINT**: You will need to remove rows from your dataset where one of these variables is missing.</span></span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Step 4 {.unnumbered}</span></span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Confirm that you get the same results using the <span class="in">`lm()`</span> function.</span>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Step 5 {.unnumbered}</span></span>
+<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Repeat the analysis above for three different major radiations of primates - "catarrhines", "platyrrhines", and "strepsirhines") separately. These are stored in the variable **Taxonomic_group**. Do your regression coefficients differ among groups? How might you determine this?</span>
+<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Step 6 {.unnumbered}</span></span>
+<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>For your first regression of ECV on social group size, calculate the standard error for the slope coefficient, the 95% CI, and the *p* value associated with this coefficient by hand. Also extract this same information from the results of running the <span class="in">`lm()`</span> function.</span>
+<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Step 7 {.unnumbered}</span></span>
+<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Use a permutation approach with 1000 permutations to generate a null sampling distribution for the **slope coefficient**. What is it that you need to permute? What is the p value associated with your original slope coefficient? You can use either the quantile method (i.e., using quantiles from the actual permutation-based null sampling distribution) or a theory-based method (i.e., using the standard deviation of the permutation-based null sampling distribution as the estimate of the standard error, along with a normal or t distribution), or both, to calculate this p value.</span>
+<span id="cb1-57"><a href="#cb1-57" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-58"><a href="#cb1-58" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Step 8 {.unnumbered}</span></span>
+<span id="cb1-59"><a href="#cb1-59" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-60"><a href="#cb1-60" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Use bootstrapping to generate a 95% CI for your estimate of the slope coefficient using both the quantile method and the theory-based method (i.e., using the standard deviation of the bootstrapped sampling distribution as an estimate of the standard error). Do these CIs suggest that your slope coefficient is different from zero?</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 

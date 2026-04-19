@@ -10,6 +10,7 @@
 [{redres}](https://cran.r-project.org/web/packages/redres/redres.pdf),
 [{glmmTMB}](https://cran.r-project.org/web/packages/glmmTMB/glmmTMB.pdf),
 [{mixedup}](https://github.com/m-clark/mixedup/), and [{DHARMa}](https://cran.r-project.org/web/packages/glmmTMB/DHARMa)
+- Install the package [{performance}](https://cran.r-project.org/web/packages/performance/performance.pdf)
 - Load {tidyverse}, {lme4}, {effects}, and {sjPlot}
 - Be sure you have the packages {car}, {cowplot}, {lmtest}, and {MASS} installed
 
@@ -353,6 +354,7 @@ We could also create just the visualizations using the function `plotResiduals()
 
 ```{r}
 #| eval: false
+plotResiduals(sim) # plots residuals relative to model prediction
 plotResiduals(sim, form = d$reprocondition)
 plotResiduals(sim, form = d$parity)
 plotResiduals(sim, form = d$subject)
@@ -373,6 +375,12 @@ testZeroInflation(sim)
 ```
 
 For our particular model, we actually do not have any "zeros" in our responses (in our dataset, all chimpanzee females received >0 minutes of grooming during each observation session), so this particular test is moot.
+
+We can also ask {DHARMa} to evaluate whether any of our residuals are seemingly outliers under the model.
+
+```{r}
+testOutliers(sim)
+```
 
 ### Inference using LRTs {.unnumbered}
 
@@ -644,10 +652,10 @@ Nakagawa & Schielzeth (2013) and Nakagawa et al. (2017) have published a simple 
 
 In these papers, two measures are proposed for characterizing the amount of "variance explained" for mixed effects models:
 
-- $Marginal\ R2GLMM(m)^2$ is the amount of variance explained on the latent (or link) scale rather than the original scale. We can interpret this as a measure of the variance explained by only the fixed effects.
-- $Conditional\ R2GLMM(c)^2$ is the amount of variance explained by both fixed and random effects, i.e., by the entire model.
+- **$marginal\ R2GLMM(m)^2$** is the amount of variance explained by the model on the latent (or link) scale rather than the original scale. We can interpret this as a measure of the variance explained by only the fixed effects in the model.
+- **$conditional\ R2GLMM(c)^2$** is the amount of variance explained by both fixed and random effects, i.e., by the entire model.
 
-There is an easy way to calculate these two R2GLMM values in ***R*** using the `r.squaredGLMM()` function in the package {MuMIn}.
+There is an easy way to calculate these two R2GLMM values in ***R*** using the `r.squaredGLMM()` function in the package {MuMIn} or the function `r2_nakagawa()` from the {performance} package.
 
 ### CHALLENGE {.unnumbered}
 
@@ -657,12 +665,21 @@ Compare the full, the two reduced, and the null mixed effects models from our ra
 #| message: false
 #| warning: false
 aic_table # re-print the AIC table
+
 library(MuMIn)
 r.squaredGLMM(full)
 r.squaredGLMM(minusRC)
 r.squaredGLMM(minusP)
 r.squaredGLMM(null)
 detach(package:MuMIn)
+
+# or
+library(performance)
+r2_nakagawa(full)
+r2_nakagawa(minusRC)
+r2_nakagawa(minusP)
+r2_nakagawa(null)
+detach(package:performance)
 ```
 
 ## Generalized LMMs

@@ -518,6 +518,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text">Exercise 11</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./exercise-12.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Exercise 12</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./exercise-12-solution.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Exercise 12 Solution</span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -578,7 +590,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul>
   <li><a href="#solution" id="toc-solution" class="nav-link active" data-scroll-target="#solution">• Solution</a>
   <ul class="collapse">
-  <li><a href="#step-1" id="toc-step-1" class="nav-link" data-scroll-target="#step-1">Step 1</a></li>
+  <li><a href="#preliminaries" id="toc-preliminaries" class="nav-link" data-scroll-target="#preliminaries">Preliminaries</a></li>
+  <li><a href="#challenge" id="toc-challenge" class="nav-link" data-scroll-target="#challenge">Challenge</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -607,6 +620,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <section id="solution" class="level1 unnumbered">
 <h1 class="unnumbered">• Solution</h1>
+<section id="preliminaries" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="preliminaries">Preliminaries</h3>
 <p>Load in dataset and libraries of interest…</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
@@ -628,8 +643,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 ## [23] "Social"</code></pre>
 </div>
 </div>
-<section id="step-1" class="level2 unnumbered">
-<h2 class="unnumbered anchored" data-anchor-id="step-1">Step 1</h2>
+</section>
+<section id="challenge" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="challenge">Challenge</h2>
+<section id="step-1" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="step-1">Step 1</h4>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 1</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>d<span class="sc">$</span>BSD <span class="ot">&lt;-</span> d<span class="sc">$</span>Body_mass_male_mean <span class="sc">/</span> d<span class="sc">$</span>Body_mass_female_mean</span>
@@ -763,6 +781,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <!-- -->
 
+</section>
 </section>
 </section>
 
@@ -1221,83 +1240,87 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="fu"># • Solution {.unnumbered}</span></span>
 <span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>Load in dataset and libraries of interest...</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="fu">### Preliminaries {.unnumbered}</span></span>
 <span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
-<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a><span class="co">#| message: false</span></span>
-<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>f <span class="ot">&lt;-</span> <span class="st">"https://raw.githubusercontent.com/difiore/ada-datasets/main/data-wrangling.csv"</span></span>
-<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(f, <span class="at">col_names =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(d)</span>
-<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a><span class="fu">## Step 1 {.unnumbered}</span></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>Load in dataset and libraries of interest...</span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a><span class="co">#| message: false</span></span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a>f <span class="ot">&lt;-</span> <span class="st">"https://raw.githubusercontent.com/difiore/ada-datasets/main/data-wrangling.csv"</span></span>
+<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(f, <span class="at">col_names =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(d)</span>
+<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-22"><a href="#cb13-22" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb13-23"><a href="#cb13-23" aria-hidden="true" tabindex="-1"></a><span class="co"># 1</span></span>
-<span id="cb13-24"><a href="#cb13-24" aria-hidden="true" tabindex="-1"></a>d<span class="sc">$</span>BSD <span class="ot">&lt;-</span> d<span class="sc">$</span>Body_mass_male_mean<span class="sc">/</span>d<span class="sc">$</span>Body_mass_female_mean</span>
-<span id="cb13-25"><a href="#cb13-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-26"><a href="#cb13-26" aria-hidden="true" tabindex="-1"></a><span class="co"># 2</span></span>
-<span id="cb13-27"><a href="#cb13-27" aria-hidden="true" tabindex="-1"></a>d<span class="sc">$</span>sex_ratio <span class="ot">&lt;-</span> d<span class="sc">$</span>AdultMales<span class="sc">/</span>d<span class="sc">$</span>AdultFemale</span>
-<span id="cb13-28"><a href="#cb13-28" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-29"><a href="#cb13-29" aria-hidden="true" tabindex="-1"></a><span class="co"># 3</span></span>
-<span id="cb13-30"><a href="#cb13-30" aria-hidden="true" tabindex="-1"></a>d<span class="sc">$</span>DI <span class="ot">&lt;-</span> d<span class="sc">$</span>DayLength_km<span class="sc">/</span>(<span class="dv">2</span> <span class="sc">*</span> <span class="fu">sqrt</span>(d<span class="sc">$</span>HomeRange_km2<span class="sc">/</span>pi))</span>
-<span id="cb13-31"><a href="#cb13-31" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-32"><a href="#cb13-32" aria-hidden="true" tabindex="-1"></a><span class="co"># 4</span></span>
-<span id="cb13-33"><a href="#cb13-33" aria-hidden="true" tabindex="-1"></a>(p <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> d, <span class="fu">aes</span>(<span class="at">x =</span> Move, <span class="at">y =</span> DayLength_km)) <span class="sc">+</span></span>
-<span id="cb13-34"><a href="#cb13-34" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span>
-<span id="cb13-35"><a href="#cb13-35" aria-hidden="true" tabindex="-1"></a>(p <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> d, <span class="fu">aes</span>(<span class="at">x =</span> Move, <span class="at">y =</span> DayLength_km)) <span class="sc">+</span></span>
-<span id="cb13-36"><a href="#cb13-36" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="at">na.rm =</span> <span class="cn">TRUE</span>) <span class="sc">+</span></span>
-<span id="cb13-37"><a href="#cb13-37" aria-hidden="true" tabindex="-1"></a>    <span class="fu">facet_wrap</span>(<span class="sc">~</span>Family))</span>
-<span id="cb13-38"><a href="#cb13-38" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-39"><a href="#cb13-39" aria-hidden="true" tabindex="-1"></a><span class="co"># 5</span></span>
-<span id="cb13-40"><a href="#cb13-40" aria-hidden="true" tabindex="-1"></a>(p <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> d, <span class="fu">aes</span>(<span class="at">x =</span> MeanGroupSize, <span class="at">y =</span> DayLength_km)) <span class="sc">+</span></span>
-<span id="cb13-41"><a href="#cb13-41" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span>
-<span id="cb13-42"><a href="#cb13-42" aria-hidden="true" tabindex="-1"></a>(p <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> d, <span class="fu">aes</span>(<span class="at">x =</span> MeanGroupSize, <span class="at">y =</span> DayLength_km)) <span class="sc">+</span></span>
-<span id="cb13-43"><a href="#cb13-43" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="at">na.rm =</span> <span class="cn">TRUE</span>) <span class="sc">+</span></span>
-<span id="cb13-44"><a href="#cb13-44" aria-hidden="true" tabindex="-1"></a>    <span class="fu">facet_wrap</span>(<span class="sc">~</span>Family))</span>
-<span id="cb13-45"><a href="#cb13-45" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-46"><a href="#cb13-46" aria-hidden="true" tabindex="-1"></a><span class="co"># 6</span></span>
-<span id="cb13-47"><a href="#cb13-47" aria-hidden="true" tabindex="-1"></a>(p <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> d, <span class="fu">aes</span>(<span class="at">x =</span> BSD, <span class="at">y =</span> Canine_Dimorphism)) <span class="sc">+</span></span>
-<span id="cb13-48"><a href="#cb13-48" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span>
-<span id="cb13-49"><a href="#cb13-49" aria-hidden="true" tabindex="-1"></a>(p <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> d, <span class="fu">aes</span>(<span class="at">x =</span> BSD, <span class="at">y =</span> Canine_Dimorphism)) <span class="sc">+</span></span>
-<span id="cb13-50"><a href="#cb13-50" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="at">na.rm =</span> <span class="cn">TRUE</span>)) <span class="sc">+</span></span>
-<span id="cb13-51"><a href="#cb13-51" aria-hidden="true" tabindex="-1"></a>    <span class="fu">facet_wrap</span>(<span class="sc">~</span>Family)</span>
-<span id="cb13-52"><a href="#cb13-52" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-53"><a href="#cb13-53" aria-hidden="true" tabindex="-1"></a><span class="co"># 7</span></span>
-<span id="cb13-54"><a href="#cb13-54" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> d <span class="sc">|&gt;</span> <span class="fu">mutate</span>(</span>
-<span id="cb13-55"><a href="#cb13-55" aria-hidden="true" tabindex="-1"></a>  <span class="st">"diet_strategy"</span> <span class="ot">=</span> <span class="fu">case_when</span>(</span>
-<span id="cb13-56"><a href="#cb13-56" aria-hidden="true" tabindex="-1"></a>    Fruit <span class="sc">&gt;=</span> <span class="dv">50</span> <span class="sc">~</span> <span class="st">"frugivore"</span>,</span>
-<span id="cb13-57"><a href="#cb13-57" aria-hidden="true" tabindex="-1"></a>    Leaves <span class="sc">&gt;=</span> <span class="dv">50</span> <span class="sc">~</span> <span class="st">"folivore"</span>,</span>
-<span id="cb13-58"><a href="#cb13-58" aria-hidden="true" tabindex="-1"></a>    Fruit <span class="sc">&lt;</span> <span class="dv">50</span> <span class="sc">&amp;</span> Leaves <span class="sc">&lt;</span> <span class="dv">50</span> <span class="sc">~</span> <span class="st">"omnivore"</span>,</span>
-<span id="cb13-59"><a href="#cb13-59" aria-hidden="true" tabindex="-1"></a>    <span class="cn">TRUE</span> <span class="sc">~</span> <span class="cn">NA</span></span>
-<span id="cb13-60"><a href="#cb13-60" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb13-61"><a href="#cb13-61" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb13-62"><a href="#cb13-62" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-63"><a href="#cb13-63" aria-hidden="true" tabindex="-1"></a>(p <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> <span class="fu">filter</span>(d, <span class="sc">!</span><span class="fu">is.na</span>(diet_strategy)), <span class="fu">aes</span>(<span class="at">x =</span> diet_strategy, <span class="at">y =</span> MeanGroupSize)) <span class="sc">+</span></span>
-<span id="cb13-64"><a href="#cb13-64" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_boxplot</span>())</span>
-<span id="cb13-65"><a href="#cb13-65" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-66"><a href="#cb13-66" aria-hidden="true" tabindex="-1"></a><span class="co"># 8</span></span>
-<span id="cb13-67"><a href="#cb13-67" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> d <span class="sc">|&gt;</span></span>
-<span id="cb13-68"><a href="#cb13-68" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Binomial =</span> <span class="fu">paste0</span>(Genus, <span class="st">" "</span>, Species)) <span class="sc">|&gt;</span></span>
-<span id="cb13-69"><a href="#cb13-69" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Binomial,</span>
-<span id="cb13-70"><a href="#cb13-70" aria-hidden="true" tabindex="-1"></a>         Family,</span>
-<span id="cb13-71"><a href="#cb13-71" aria-hidden="true" tabindex="-1"></a>         Brain_Size_Species_Mean,</span>
-<span id="cb13-72"><a href="#cb13-72" aria-hidden="true" tabindex="-1"></a>         Body_mass_male_mean) <span class="sc">|&gt;</span></span>
-<span id="cb13-73"><a href="#cb13-73" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Family) <span class="sc">|&gt;</span></span>
-<span id="cb13-74"><a href="#cb13-74" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
-<span id="cb13-75"><a href="#cb13-75" aria-hidden="true" tabindex="-1"></a>    <span class="at">meanBrainSize =</span> <span class="fu">mean</span>(Brain_Size_Species_Mean, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb13-76"><a href="#cb13-76" aria-hidden="true" tabindex="-1"></a>    <span class="at">meanMaleBodySize =</span> <span class="fu">mean</span>(Body_mass_male_mean, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb13-77"><a href="#cb13-77" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
-<span id="cb13-78"><a href="#cb13-78" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(meanBrainSize) <span class="sc">|&gt;</span></span>
-<span id="cb13-79"><a href="#cb13-79" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>()</span>
-<span id="cb13-80"><a href="#cb13-80" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb13-81"><a href="#cb13-81" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-84"><a href="#cb13-84" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb13-85"><a href="#cb13-85" aria-hidden="true" tabindex="-1"></a><span class="co">#| include: false</span></span>
-<span id="cb13-86"><a href="#cb13-86" aria-hidden="true" tabindex="-1"></a><span class="fu">detach</span>(package<span class="sc">:</span>tidyverse)</span>
-<span id="cb13-87"><a href="#cb13-87" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a><span class="fu">## Challenge {.unnumbered}</span></span>
+<span id="cb13-21"><a href="#cb13-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-22"><a href="#cb13-22" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Step 1 {.unnumbered}</span></span>
+<span id="cb13-23"><a href="#cb13-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-26"><a href="#cb13-26" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb13-27"><a href="#cb13-27" aria-hidden="true" tabindex="-1"></a><span class="co">#1</span></span>
+<span id="cb13-28"><a href="#cb13-28" aria-hidden="true" tabindex="-1"></a>d<span class="sc">$</span>BSD <span class="ot">&lt;-</span> d<span class="sc">$</span>Body_mass_male_mean<span class="sc">/</span>d<span class="sc">$</span>Body_mass_female_mean</span>
+<span id="cb13-29"><a href="#cb13-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-30"><a href="#cb13-30" aria-hidden="true" tabindex="-1"></a><span class="co"># 2</span></span>
+<span id="cb13-31"><a href="#cb13-31" aria-hidden="true" tabindex="-1"></a>d<span class="sc">$</span>sex_ratio <span class="ot">&lt;-</span> d<span class="sc">$</span>AdultMales<span class="sc">/</span>d<span class="sc">$</span>AdultFemale</span>
+<span id="cb13-32"><a href="#cb13-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-33"><a href="#cb13-33" aria-hidden="true" tabindex="-1"></a><span class="co"># 3</span></span>
+<span id="cb13-34"><a href="#cb13-34" aria-hidden="true" tabindex="-1"></a>d<span class="sc">$</span>DI <span class="ot">&lt;-</span> d<span class="sc">$</span>DayLength_km<span class="sc">/</span>(<span class="dv">2</span> <span class="sc">*</span> <span class="fu">sqrt</span>(d<span class="sc">$</span>HomeRange_km2<span class="sc">/</span>pi))</span>
+<span id="cb13-35"><a href="#cb13-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-36"><a href="#cb13-36" aria-hidden="true" tabindex="-1"></a><span class="co"># 4</span></span>
+<span id="cb13-37"><a href="#cb13-37" aria-hidden="true" tabindex="-1"></a>(p <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> d, <span class="fu">aes</span>(<span class="at">x =</span> Move, <span class="at">y =</span> DayLength_km)) <span class="sc">+</span></span>
+<span id="cb13-38"><a href="#cb13-38" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span>
+<span id="cb13-39"><a href="#cb13-39" aria-hidden="true" tabindex="-1"></a>(p <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> d, <span class="fu">aes</span>(<span class="at">x =</span> Move, <span class="at">y =</span> DayLength_km)) <span class="sc">+</span></span>
+<span id="cb13-40"><a href="#cb13-40" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="at">na.rm =</span> <span class="cn">TRUE</span>) <span class="sc">+</span></span>
+<span id="cb13-41"><a href="#cb13-41" aria-hidden="true" tabindex="-1"></a>    <span class="fu">facet_wrap</span>(<span class="sc">~</span>Family))</span>
+<span id="cb13-42"><a href="#cb13-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-43"><a href="#cb13-43" aria-hidden="true" tabindex="-1"></a><span class="co"># 5</span></span>
+<span id="cb13-44"><a href="#cb13-44" aria-hidden="true" tabindex="-1"></a>(p <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> d, <span class="fu">aes</span>(<span class="at">x =</span> MeanGroupSize, <span class="at">y =</span> DayLength_km)) <span class="sc">+</span></span>
+<span id="cb13-45"><a href="#cb13-45" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span>
+<span id="cb13-46"><a href="#cb13-46" aria-hidden="true" tabindex="-1"></a>(p <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> d, <span class="fu">aes</span>(<span class="at">x =</span> MeanGroupSize, <span class="at">y =</span> DayLength_km)) <span class="sc">+</span></span>
+<span id="cb13-47"><a href="#cb13-47" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="at">na.rm =</span> <span class="cn">TRUE</span>) <span class="sc">+</span></span>
+<span id="cb13-48"><a href="#cb13-48" aria-hidden="true" tabindex="-1"></a>    <span class="fu">facet_wrap</span>(<span class="sc">~</span>Family))</span>
+<span id="cb13-49"><a href="#cb13-49" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-50"><a href="#cb13-50" aria-hidden="true" tabindex="-1"></a><span class="co"># 6</span></span>
+<span id="cb13-51"><a href="#cb13-51" aria-hidden="true" tabindex="-1"></a>(p <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> d, <span class="fu">aes</span>(<span class="at">x =</span> BSD, <span class="at">y =</span> Canine_Dimorphism)) <span class="sc">+</span></span>
+<span id="cb13-52"><a href="#cb13-52" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span>
+<span id="cb13-53"><a href="#cb13-53" aria-hidden="true" tabindex="-1"></a>(p <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> d, <span class="fu">aes</span>(<span class="at">x =</span> BSD, <span class="at">y =</span> Canine_Dimorphism)) <span class="sc">+</span></span>
+<span id="cb13-54"><a href="#cb13-54" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="at">na.rm =</span> <span class="cn">TRUE</span>)) <span class="sc">+</span></span>
+<span id="cb13-55"><a href="#cb13-55" aria-hidden="true" tabindex="-1"></a>    <span class="fu">facet_wrap</span>(<span class="sc">~</span>Family)</span>
+<span id="cb13-56"><a href="#cb13-56" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-57"><a href="#cb13-57" aria-hidden="true" tabindex="-1"></a><span class="co"># 7</span></span>
+<span id="cb13-58"><a href="#cb13-58" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> d <span class="sc">|&gt;</span> <span class="fu">mutate</span>(</span>
+<span id="cb13-59"><a href="#cb13-59" aria-hidden="true" tabindex="-1"></a>  <span class="st">"diet_strategy"</span> <span class="ot">=</span> <span class="fu">case_when</span>(</span>
+<span id="cb13-60"><a href="#cb13-60" aria-hidden="true" tabindex="-1"></a>    Fruit <span class="sc">&gt;=</span> <span class="dv">50</span> <span class="sc">~</span> <span class="st">"frugivore"</span>,</span>
+<span id="cb13-61"><a href="#cb13-61" aria-hidden="true" tabindex="-1"></a>    Leaves <span class="sc">&gt;=</span> <span class="dv">50</span> <span class="sc">~</span> <span class="st">"folivore"</span>,</span>
+<span id="cb13-62"><a href="#cb13-62" aria-hidden="true" tabindex="-1"></a>    Fruit <span class="sc">&lt;</span> <span class="dv">50</span> <span class="sc">&amp;</span> Leaves <span class="sc">&lt;</span> <span class="dv">50</span> <span class="sc">~</span> <span class="st">"omnivore"</span>,</span>
+<span id="cb13-63"><a href="#cb13-63" aria-hidden="true" tabindex="-1"></a>    <span class="cn">TRUE</span> <span class="sc">~</span> <span class="cn">NA</span></span>
+<span id="cb13-64"><a href="#cb13-64" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb13-65"><a href="#cb13-65" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb13-66"><a href="#cb13-66" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-67"><a href="#cb13-67" aria-hidden="true" tabindex="-1"></a>(p <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> <span class="fu">filter</span>(d, <span class="sc">!</span><span class="fu">is.na</span>(diet_strategy)), <span class="fu">aes</span>(<span class="at">x =</span> diet_strategy, <span class="at">y =</span> MeanGroupSize)) <span class="sc">+</span></span>
+<span id="cb13-68"><a href="#cb13-68" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_boxplot</span>())</span>
+<span id="cb13-69"><a href="#cb13-69" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-70"><a href="#cb13-70" aria-hidden="true" tabindex="-1"></a><span class="co"># 8</span></span>
+<span id="cb13-71"><a href="#cb13-71" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> d <span class="sc">|&gt;</span></span>
+<span id="cb13-72"><a href="#cb13-72" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Binomial =</span> <span class="fu">paste0</span>(Genus, <span class="st">" "</span>, Species)) <span class="sc">|&gt;</span></span>
+<span id="cb13-73"><a href="#cb13-73" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Binomial,</span>
+<span id="cb13-74"><a href="#cb13-74" aria-hidden="true" tabindex="-1"></a>         Family,</span>
+<span id="cb13-75"><a href="#cb13-75" aria-hidden="true" tabindex="-1"></a>         Brain_Size_Species_Mean,</span>
+<span id="cb13-76"><a href="#cb13-76" aria-hidden="true" tabindex="-1"></a>         Body_mass_male_mean) <span class="sc">|&gt;</span></span>
+<span id="cb13-77"><a href="#cb13-77" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Family) <span class="sc">|&gt;</span></span>
+<span id="cb13-78"><a href="#cb13-78" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb13-79"><a href="#cb13-79" aria-hidden="true" tabindex="-1"></a>    <span class="at">meanBrainSize =</span> <span class="fu">mean</span>(Brain_Size_Species_Mean, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb13-80"><a href="#cb13-80" aria-hidden="true" tabindex="-1"></a>    <span class="at">meanMaleBodySize =</span> <span class="fu">mean</span>(Body_mass_male_mean, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb13-81"><a href="#cb13-81" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb13-82"><a href="#cb13-82" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(meanBrainSize) <span class="sc">|&gt;</span></span>
+<span id="cb13-83"><a href="#cb13-83" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>()</span>
+<span id="cb13-84"><a href="#cb13-84" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb13-85"><a href="#cb13-85" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-88"><a href="#cb13-88" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb13-89"><a href="#cb13-89" aria-hidden="true" tabindex="-1"></a><span class="co">#| include: false</span></span>
+<span id="cb13-90"><a href="#cb13-90" aria-hidden="true" tabindex="-1"></a><span class="fu">detach</span>(package<span class="sc">:</span>tidyverse)</span>
+<span id="cb13-91"><a href="#cb13-91" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 </code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->

@@ -13,6 +13,8 @@ Use the `Show Code` button to peek at one solution to each of the four functions
 
 > **NOTE:** The `play_wordle()` and `evaluate_guess()` functions include an additional argument, "output_type", that lets the user specify whether they would like to see simple text output or formatted ("graphic") output, which is made possible by using the {huxtable} library. A substantial chunk of the `play_wordle()` and `evaluate_guess()` functions are devoted to producing this graphic output and are not necessary.
 
+## Challenge {.unnumbered}
+
 ### Functions {.unnumbered}
 
 #### `load_dictionary()` {.unnumbered}

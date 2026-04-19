@@ -171,6 +171,7 @@
 - **{AICcmodavg}**: @R-AICcmodavg
 - **{lme4}**: @R-lme4, @lme42015
 - **{redres}**: @R-redres
+- **{DHARMa}**: @R-DHARMa
 - **{effects}**: @R-effects, @effects2009
 - **{cowplot}**: @R-cowplot
 - **{sjPlot}**: @R-sjPlot
@@ -178,14 +179,17 @@
 - **{mixedup}**: @R-mixedup
 - **{glmmML}**: @R-glmmML
 - **{MASS}**: @R-MASS
+- **{performance}**: @R-performance, @performance2021
 
 ### Maximum Likelihood Estimation {.unnumbered}
+
 - **{tidyverse}**: @R-tidyverse, @tidyverse2019
 - **{mosaic}**: @R-mosaic, @mosaic2017
 - **{bbmle}:** @R-bbmle
 - **{maxLik}:** @R-maxLik
 
 ### Bayesian Inference {.unnumbered}
+
 - **{tidyverse}**: @R-tidyverse, @tidyverse2019
 - **{brms}**: @R-brms, @brms2017, @brms2018, @brms2021
 - **{bayesplot}:** @R-bayesplot, @bayesplot2019
@@ -213,6 +217,7 @@
 - **{DT}**: @R-DT
 
 ### Working with and Managing Packages {.unnumbered}
+
 - **{easypackages}**: @R-easypackages
 - **{pacman}**: @R-pacman
 - **{librarian}**: @R-librarian
@@ -235,6 +240,12 @@
 - **{kableExtra}**: @R-kableExtra
 - **{ggpubr}**: @R-ggpubr
 - **{infer}**: @R-infer
+- **{DHARMa}**: @R-DHARMa
+- **{broom}**: @R-broom
+- **{broom.mixed}**: @R-broom
+- **{sjPlot}**: @R-broom
+- **{ggeffects}**: @R-ggeffects, ggeffects2018
+- **{performance}**: @R-performance, @performance2021
 
 <hr>
 
@@ -247,6 +258,7 @@
 - **{blastula}**: @R-blastula
 - **{boot}**: @R-boot, @boot1997
 - **{broom}**: @R-broom
+- **{broom.mixed}**: @R-broom.mixed
 - **{brms}**: @R-brms, @brms2017, @brms2018, @brms2021
 - **{car}**: @R-car, @car2019
 - **{coin}**: @R-coin, @coin2006, @coin2008
@@ -259,6 +271,7 @@
 - **{dataMaid}**: @R-dataMaid, @dataMaid2019
 - **{datawizard}**: @R-datawizard, @datawizard2022
 - **{devtools}**: @R-devtools
+- **{DHARMa}**: @R-DHARMa
 - **{dplyr}**: @R-dplyr
 - **{DT}**: @R-DT
 - **{dunn.test}**: @R-dunn.test
@@ -271,6 +284,7 @@
 - **{forcats}**: @R-forcats
 - **{gdata}**: @R-gdata
 - **{GGally}**: @R-GGally
+- **{ggeffects}**: @R-ggeffects, @ggeffects2018
 - **{ggExtra}**: @R-ggExtra
 - **{ggplot2}**: @R-ggplot2, @ggplot22016
 - **{ggpubr}**: @R-ggpubr
@@ -300,6 +314,7 @@
 - **{pacman}**: @R-pacman
 - **{pastecs}**: @R-pastecs
 - **{patchwork}**: @R-patchwork
+- **{performance}**: @R-performance, @performance2021
 - **{permuco}**: @R-permuco
 - **{psych}**: @R-psych
 - **{purrr}**: @R-purrr

@@ -2,6 +2,8 @@
 
 # • Solution {.unnumbered}
 
+### Preliminaries {.unnumbered}
+
 Load in dataset and libraries of interest...
 
 ```{r}
@@ -15,7 +17,9 @@ d <- read_csv(f, col_names = TRUE)
 head(d)
 ```
 
-### Step 1 {.unnumbered}
+## Challenge {.unnumbered}
+
+#### Step 1 {.unnumbered}
 
 - Reduce the dataset to just the variables of interest.
 
@@ -24,7 +28,7 @@ d <- d |> select(sex, kernel95)
 head(d)
 ```
 
-### Step 2 {.unnumbered}
+#### Step 2 {.unnumbered}
 
 - Determine the mean, standard deviation, and standard error in “kernel95” home range size for each sex.
 
@@ -39,7 +43,7 @@ hr_summary <- d |>
 hr_summary
 ```
 
-### Step 3 {.unnumbered}
+#### Step 3 {.unnumbered}
 
 - Create boxplots comparing “kernel95” home range size by sex.
 
@@ -50,7 +54,7 @@ p <- ggplot(data = d, aes(x = sex, y = kernel95)) +
 p
 ```
 
-### Step 4 {.unnumbered}
+#### Step 4 {.unnumbered}
 
 - For each sex, generate a bootstrap distribution for mean kernel95 home range size.
 
@@ -86,7 +90,7 @@ boot <- s %>%
   pull(mean) # pull out mean column as vector
 ```
 
-### Step 5 {.unnumbered}
+#### Step 5 {.unnumbered}
 
 - Plot the resulting bootstrap sampling distribution and plot an appropriate normal distribution over the bootstrap sampling distribution.
 
@@ -97,7 +101,7 @@ histogram(boot)
 plotDist("norm", mean(boot), se, add = TRUE)
 ```
 
-### Step 6 {.unnumbered}
+#### Step 6 {.unnumbered}
 
 - Calculate a 95% confidence interval around for the mean kernel95 home range size for each sex...
 
@@ -144,7 +148,7 @@ ci_theory <- boot |>
 visualize(boot) + shade_confidence_interval(endpoints = ci_theory, color = "blue", lty = 1, fill = "#c0c0c0") + shade_confidence_interval(endpoints = ci_boot, color = "red", lty = 3, fill = "#c0c0c0")
 ```
 
-### Step 7 {.unnumbered}
+#### Step 7 {.unnumbered}
 
 - Use simulation-based permutation to evaluate the difference in mean kernel95 home range size for males versus females. To do this, you will want to shuffle either the variable "sex" or "kernel95" home range size a total of 10,000 times, recalculating mean kernel95 size by sex for each permuted sample and then compare the difference in male and female kernel95 means from your original sample to the permutation distribution for the difference in means. We can do this with a `for()` loop...
 
@@ -227,7 +231,7 @@ visualize(perm_diff) +
 
 The null hypothesis here is that the difference in mean kernel95 home range size for males versus females is zero. The test statistic is the **actual difference in mean kernel95 home range size for males versus females**, and it is evaluated relative to a permutation distribution for this statistic. Based on our very low p value (less than 0.001), under a null hypothesis significance testing framework, we would conclude that the difference is "significant" (assuming that p is less than the alpha level we specify).
 
-### Step 8 {.unnumbered}
+#### Step 8 {.unnumbered}
 
 - Finally, use a theory-based parametric test (e.g., a t-test) to also calculate an appropriate test statistic and associated p value for the comparison of male and female mean kernel95 home range size. Is the difference in mean kernel95 home range size "significant"?
 

@@ -549,6 +549,18 @@ window.Quarto = {
  <span class="menu-text">Exercise 11</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./exercise-12.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Exercise 12</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./exercise-12-solution.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Exercise 12 Solution</span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -609,30 +621,8 @@ window.Quarto = {
   <ul>
   <li><a href="#solution" id="toc-solution" class="nav-link active" data-scroll-target="#solution">• Solution</a>
   <ul class="collapse">
-  <li><a href="#challenge-1" id="toc-challenge-1" class="nav-link" data-scroll-target="#challenge-1">Challenge 1</a>
-  <ul class="collapse">
-  <li><a href="#step-1" id="toc-step-1" class="nav-link" data-scroll-target="#step-1">Step 1</a></li>
-  <li><a href="#step-2" id="toc-step-2" class="nav-link" data-scroll-target="#step-2">Step 2</a></li>
-  <li><a href="#step-3" id="toc-step-3" class="nav-link" data-scroll-target="#step-3">Step 3</a></li>
-  <li><a href="#step-4" id="toc-step-4" class="nav-link" data-scroll-target="#step-4">Step 4</a></li>
-  <li><a href="#step-5-and-6" id="toc-step-5-and-6" class="nav-link" data-scroll-target="#step-5-and-6">Step 5 and 6</a></li>
-  <li><a href="#step-7" id="toc-step-7" class="nav-link" data-scroll-target="#step-7">Step 7</a></li>
-  <li><a href="#step-8-and-9" id="toc-step-8-and-9" class="nav-link" data-scroll-target="#step-8-and-9">Step 8 and 9</a></li>
-  <li><a href="#step-10" id="toc-step-10" class="nav-link" data-scroll-target="#step-10">Step 10</a></li>
-  </ul></li>
-  <li><a href="#challenge-2" id="toc-challenge-2" class="nav-link" data-scroll-target="#challenge-2">Challenge 2</a>
-  <ul class="collapse">
-  <li><a href="#step-1-1" id="toc-step-1-1" class="nav-link" data-scroll-target="#step-1-1">Step 1</a></li>
-  <li><a href="#step-2-1" id="toc-step-2-1" class="nav-link" data-scroll-target="#step-2-1">Step 2</a></li>
-  <li><a href="#step-3-1" id="toc-step-3-1" class="nav-link" data-scroll-target="#step-3-1">Step 3</a></li>
-  <li><a href="#step-4-1" id="toc-step-4-1" class="nav-link" data-scroll-target="#step-4-1">Step 4</a></li>
-  <li><a href="#step-5" id="toc-step-5" class="nav-link" data-scroll-target="#step-5">Step 5</a></li>
-  <li><a href="#step-6" id="toc-step-6" class="nav-link" data-scroll-target="#step-6">Step 6</a></li>
-  <li><a href="#step-7-1" id="toc-step-7-1" class="nav-link" data-scroll-target="#step-7-1">Step 7</a></li>
-  <li><a href="#step-8" id="toc-step-8" class="nav-link" data-scroll-target="#step-8">Step 8</a></li>
-  <li><a href="#step-9" id="toc-step-9" class="nav-link" data-scroll-target="#step-9">Step 9</a></li>
-  <li><a href="#step-10-1" id="toc-step-10-1" class="nav-link" data-scroll-target="#step-10-1">Step 10</a></li>
-  </ul></li>
+  <li><a href="#challenge-1" id="toc-challenge-1" class="nav-link" data-scroll-target="#challenge-1">Challenge 1</a></li>
+  <li><a href="#challenge-2" id="toc-challenge-2" class="nav-link" data-scroll-target="#challenge-2">Challenge 2</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -680,8 +670,8 @@ window.Quarto = {
 <span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sqrt</span>(<span class="fu">sum</span>((x <span class="sc">-</span> <span class="fu">mean</span>(x))<span class="sc">^</span><span class="dv">2</span>) <span class="sc">/</span> (<span class="fu">length</span>(x)))</span>
 <span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<section id="step-1" class="level3 unnumbered">
-<h3 class="unnumbered anchored" data-anchor-id="step-1">Step 1</h3>
+<section id="step-1" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="step-1">Step 1</h4>
 <ul>
 <li>Using the {tidyverse} <code>read_csv()</code> function, load the “IMDB-movies.csv” dataset from <a href="https://raw.githubusercontent.com/difiore/ada-datasets/main/IMDB-movies.csv">this URL</a> as a “tibble” named <strong>d</strong>.</li>
 </ul>
@@ -700,8 +690,8 @@ window.Quarto = {
 </div>
 </div>
 </section>
-<section id="step-2" class="level3 unnumbered">
-<h3 class="unnumbered anchored" data-anchor-id="step-2">Step 2</h3>
+<section id="step-2" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="step-2">Step 2</h4>
 <ul>
 <li>Use a one-line statement to filter the dataset to include just movies from 1920 to 1979 and movies that are between 1 and 3 hours long (<strong>runtimeMinutes</strong> &gt;= 60 and <strong>runtimeMinutes</strong> &lt;= 180), and add a new column that codes the <strong>startYear</strong> into a new variable, <strong>decade</strong>.</li>
 </ul>
@@ -723,8 +713,8 @@ window.Quarto = {
 </div>
 </div>
 </section>
-<section id="step-3" class="level3 unnumbered">
-<h3 class="unnumbered anchored" data-anchor-id="step-3">Step 3</h3>
+<section id="step-3" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="step-3">Step 3</h4>
 <ul>
 <li>Use {ggplot2} (which is part of {tidyverse}) to plot histograms of the distribution of <strong>runtimeMinutes</strong> for each decade.</li>
 </ul>
@@ -746,8 +736,8 @@ window.Quarto = {
 </div>
 </div>
 </section>
-<section id="step-4" class="level3 unnumbered">
-<h3 class="unnumbered anchored" data-anchor-id="step-4">Step 4</h3>
+<section id="step-4" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="step-4">Step 4</h4>
 <ul>
 <li>Use a one-line statement to calculate the population mean and population standard deviation in <strong>runtimeMinutes</strong> for each decade and save the results in a new dataframe called <strong>results</strong>.</li>
 </ul>
@@ -818,8 +808,8 @@ window.Quarto = {
 </div>
 </div>
 </section>
-<section id="step-5-and-6" class="level3 unnumbered">
-<h3 class="unnumbered anchored" data-anchor-id="step-5-and-6">Step 5 and 6</h3>
+<section id="step-5-and-6" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="step-5-and-6">Step 5 and 6</h4>
 <ul>
 <li><p>Draw a single sample of 100 movies, without replacement, from each decade and calculate the single sample mean and single sample standard deviation in <strong>runtimeMinutes</strong> for each decades.</p></li>
 <li><p>Calculate for each decade the standard error around your estimate of the population mean <strong>runtimeMinutes</strong> based on the standard deviation and sample size (n=100 movies) of your single sample.</p></li>
@@ -902,8 +892,8 @@ window.Quarto = {
 </div>
 </div>
 </section>
-<section id="step-7" class="level3 unnumbered">
-<h3 class="unnumbered anchored" data-anchor-id="step-7">Step 7</h3>
+<section id="step-7" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="step-7">Step 7</h4>
 <ul>
 <li>Compare these estimates to the actual population mean <strong>runtimeMinutes</strong> for each decade and to the calculated SE in the population mean for samples of size 100 based on the population standard deviation for each decade.</li>
 </ul>
@@ -1002,8 +992,8 @@ window.Quarto = {
 </div>
 </div>
 </section>
-<section id="step-8-and-9" class="level3 unnumbered">
-<h3 class="unnumbered anchored" data-anchor-id="step-8-and-9">Step 8 and 9</h3>
+<section id="step-8-and-9" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="step-8-and-9">Step 8 and 9</h4>
 <ul>
 <li>Generate a <em>sampling distribution</em> of mean <strong>runtimeMinutes</strong> for each decade by [a] drawing 1000 samples of 100 movies from each decade and, for each sample, [b] calculating the mean <strong>runtimeMinutes</strong> and the standard deviation in <strong>runtimeMinutes</strong> for each decade.</li>
 </ul>
@@ -1061,8 +1051,8 @@ window.Quarto = {
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># now, distributions are not obviously different from NORMAL :)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="step-10" class="level3 unnumbered">
-<h3 class="unnumbered anchored" data-anchor-id="step-10">Step 10</h3>
+<section id="step-10" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="step-10">Step 10</h4>
 <ul>
 <li>Finally, compare the standard error in <strong>runtimeMinutes</strong> for samples of size 100 from each decade [1] as estimated from your first sample of 100 movies, [2] as calculated from the known <em>population</em> standard deviations for each decade, and [3] as estimated from the sampling distribution of sample means for each decade.</li>
 </ul>
@@ -1137,8 +1127,8 @@ window.Quarto = {
 </section>
 <section id="challenge-2" class="level2 unnumbered">
 <h2 class="unnumbered anchored" data-anchor-id="challenge-2">Challenge 2</h2>
-<section id="step-1-1" class="level3 unnumbered">
-<h3 class="unnumbered anchored" data-anchor-id="step-1-1">Step 1</h3>
+<section id="step-1-1" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="step-1-1">Step 1</h4>
 <ul>
 <li>Using the {tidyverse} <code>read_csv()</code> function, load the “zombies.csv” dataset from <a href="https://raw.githubusercontent.com/difiore/ada-datasets/main/zombies.csv">this URL</a> as a “tibble” named <strong>z</strong>. This dataset includes the first and last name and gender of the entire population of 1000 people who have survived the zombie apocalypse and are now ekeing out an existence somewhere on the Gulf Coast, along with several other variables (height, weight, age, number of years of education, number of zombies they have killed, and college major).</li>
 </ul>
@@ -1221,8 +1211,8 @@ window.Quarto = {
 </div>
 </div>
 </section>
-<section id="step-2-1" class="level3 unnumbered">
-<h3 class="unnumbered anchored" data-anchor-id="step-2-1">Step 2</h3>
+<section id="step-2-1" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="step-2-1">Step 2</h4>
 <ul>
 <li>Calculate the <em>population</em> mean and standard deviation for each quantitative random variable in the dataset (height, weight, age, number of zombies killed, and years of education).</li>
 </ul>
@@ -1332,8 +1322,8 @@ window.Quarto = {
 </div>
 </div>
 </section>
-<section id="step-3-1" class="level3 unnumbered">
-<h3 class="unnumbered anchored" data-anchor-id="step-3-1">Step 3</h3>
+<section id="step-3-1" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="step-3-1">Step 3</h4>
 <ul>
 <li>Use {ggplot} and make boxplots of each of these variables by gender.</li>
 </ul>
@@ -1377,8 +1367,8 @@ window.Quarto = {
 <span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a><span class="co">#   theme(legend.position = "none"))</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="step-4-1" class="level3 unnumbered">
-<h3 class="unnumbered anchored" data-anchor-id="step-4-1">Step 4</h3>
+<section id="step-4-1" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="step-4-1">Step 4</h4>
 <ul>
 <li>Use {ggplot} and make scatterplots of height and weight in relation to age (i.e., use age as the <span class="math inline">\(x\)</span> variable), using different colored points for males versus females. Do these variables seem to be related? In what way?</li>
 </ul>
@@ -1408,8 +1398,8 @@ window.Quarto = {
 </div>
 <p>Both seem to be positive linear functions of age.</p>
 </section>
-<section id="step-5" class="level3 unnumbered">
-<h3 class="unnumbered anchored" data-anchor-id="step-5">Step 5</h3>
+<section id="step-5" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="step-5">Step 5</h4>
 <ul>
 <li>Using histograms and Q-Q plots, check whether the quantitative variables seem to be drawn from a normal distribution.</li>
 </ul>
@@ -1456,8 +1446,8 @@ window.Quarto = {
 </div>
 <p>The first three are seemingly drawn from normal distributions, but not the latter two. These are discrete variables, and they seem to be drawn from the Poisson distribution.</p>
 </section>
-<section id="step-6" class="level3 unnumbered">
-<h3 class="unnumbered anchored" data-anchor-id="step-6">Step 6</h3>
+<section id="step-6" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="step-6">Step 6</h4>
 <ul>
 <li>Now use the <code>sample_n()</code> or <code>slice_sample()</code> function from {dplyr} to sample ONE subset of 50 zombie apocalypse survivors (without replacement) from this population and calculate the mean and sample standard deviation for each variable. Also estimate the standard error for each variable based on this sample and use that to construct a 95% confidence interval for each mean. You can use either the standard normal <em>or</em> a Student’s t distribution to derive the critical values needed to calculate the lower and upper limits of the CI. [As an additional alternative, you could estimate a CI by bootstrap resampling from that first sample as well.]</li>
 </ul>
@@ -1626,8 +1616,8 @@ window.Quarto = {
 </div>
 </div>
 </section>
-<section id="step-7-1" class="level3 unnumbered">
-<h3 class="unnumbered anchored" data-anchor-id="step-7-1">Step 7</h3>
+<section id="step-7-1" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="step-7-1">Step 7</h4>
 <ul>
 <li>Then draw another 199 random samples of 50 zombie apocalypse survivors out of the population and calculate the mean for each of the these samples. Together with the first sample you drew out, you now have a set of 200 means for each variable (each based on 50 observations), which constitutes a sampling distribution for each variable. What are the means and standard deviations of the <strong>sampling distribution</strong> for each variable?</li>
 </ul>
@@ -1813,8 +1803,8 @@ window.Quarto = {
 <p><strong>NOTE:</strong> The columns in this table with asterisks (“**“) are those that you were specifically asked to compare.</p>
 </blockquote>
 </section>
-<section id="step-8" class="level3 unnumbered">
-<h3 class="unnumbered anchored" data-anchor-id="step-8">Step 8</h3>
+<section id="step-8" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="step-8">Step 8</h4>
 <ul>
 <li>Plot the sampling distributions for each variable mean. What do they look like? Are they normally distributed? What about for those variables that you concluded were not originally drawn from a normal distribution?</li>
 </ul>
@@ -1861,8 +1851,8 @@ window.Quarto = {
 </div>
 <p>These all look pretty normally distributed, even for those variables that were not drawn from a normal distribution initially! This becomes even more apparent if we set k to a higher number, e.g., 1000.</p>
 </section>
-<section id="step-9" class="level3 unnumbered">
-<h3 class="unnumbered anchored" data-anchor-id="step-9">Step 9</h3>
+<section id="step-9" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="step-9">Step 9</h4>
 <ul>
 <li>Construct a 95% confidence interval for each mean <strong>directly from the sampling distribution</strong> of sample means using the central 95% that distribution.</li>
 </ul>
@@ -2000,8 +1990,8 @@ window.Quarto = {
 </div>
 </div>
 </section>
-<section id="step-10-1" class="level3 unnumbered">
-<h3 class="unnumbered anchored" data-anchor-id="step-10-1">Step 10</h3>
+<section id="step-10-1" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="step-10-1">Step 10</h4>
 <ul>
 <li>Finally, use bootstrapping to generate a 95% confidence interval for each variable mean <strong>by bootstrapping 1000 samples, with replacement, from your original sample</strong>.</li>
 </ul>
@@ -2499,7 +2489,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb33-33"><a href="#cb33-33" aria-hidden="true" tabindex="-1"></a>}</span>
 <span id="cb33-34"><a href="#cb33-34" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb33-35"><a href="#cb33-35" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-36"><a href="#cb33-36" aria-hidden="true" tabindex="-1"></a><span class="fu">### Step 1 {.unnumbered}</span></span>
+<span id="cb33-36"><a href="#cb33-36" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Step 1 {.unnumbered}</span></span>
 <span id="cb33-37"><a href="#cb33-37" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb33-38"><a href="#cb33-38" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Using the {tidyverse} <span class="in">`read_csv()`</span> function, load the "IMDB-movies.csv" dataset from <span class="co">[</span><span class="ot">this URL</span><span class="co">](https://raw.githubusercontent.com/difiore/ada-datasets/main/IMDB-movies.csv)</span> as a "tibble" named **d**.</span>
 <span id="cb33-39"><a href="#cb33-39" aria-hidden="true" tabindex="-1"></a></span>
@@ -2508,7 +2498,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb33-44"><a href="#cb33-44" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(f, <span class="at">col_names =</span> <span class="cn">TRUE</span>)</span>
 <span id="cb33-45"><a href="#cb33-45" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb33-46"><a href="#cb33-46" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-47"><a href="#cb33-47" aria-hidden="true" tabindex="-1"></a><span class="fu">### Step 2 {.unnumbered}</span></span>
+<span id="cb33-47"><a href="#cb33-47" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Step 2 {.unnumbered}</span></span>
 <span id="cb33-48"><a href="#cb33-48" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb33-49"><a href="#cb33-49" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Use a one-line statement to filter the dataset to include just movies from 1920 to 1979 and movies that are between 1 and 3 hours long (**runtimeMinutes** &gt;= 60 and **runtimeMinutes** &lt;= 180), and add a new column that codes the **startYear** into a new variable, **decade**.</span>
 <span id="cb33-50"><a href="#cb33-50" aria-hidden="true" tabindex="-1"></a></span>
@@ -2527,7 +2517,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb33-65"><a href="#cb33-65" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(d)</span>
 <span id="cb33-66"><a href="#cb33-66" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb33-67"><a href="#cb33-67" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-68"><a href="#cb33-68" aria-hidden="true" tabindex="-1"></a><span class="fu">### Step 3 {.unnumbered}</span></span>
+<span id="cb33-68"><a href="#cb33-68" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Step 3 {.unnumbered}</span></span>
 <span id="cb33-69"><a href="#cb33-69" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb33-70"><a href="#cb33-70" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Use {ggplot2} (which is part of {tidyverse}) to plot histograms of the distribution of **runtimeMinutes** for each decade.</span>
 <span id="cb33-71"><a href="#cb33-71" aria-hidden="true" tabindex="-1"></a></span>
@@ -2540,7 +2530,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb33-80"><a href="#cb33-80" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> decade)</span>
 <span id="cb33-81"><a href="#cb33-81" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb33-82"><a href="#cb33-82" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-83"><a href="#cb33-83" aria-hidden="true" tabindex="-1"></a><span class="fu">### Step 4 {.unnumbered}</span></span>
+<span id="cb33-83"><a href="#cb33-83" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Step 4 {.unnumbered}</span></span>
 <span id="cb33-84"><a href="#cb33-84" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb33-85"><a href="#cb33-85" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Use a one-line statement to calculate the population mean and population standard deviation in **runtimeMinutes** for each decade and save the results in a new dataframe called **results**.</span>
 <span id="cb33-86"><a href="#cb33-86" aria-hidden="true" tabindex="-1"></a></span>
@@ -2556,7 +2546,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb33-98"><a href="#cb33-98" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_styling</span>(<span class="at">font_size =</span> <span class="dv">12</span>, <span class="at">full_width =</span> <span class="cn">FALSE</span>)</span>
 <span id="cb33-99"><a href="#cb33-99" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb33-100"><a href="#cb33-100" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-101"><a href="#cb33-101" aria-hidden="true" tabindex="-1"></a><span class="fu">### Step 5 and 6 {.unnumbered}</span></span>
+<span id="cb33-101"><a href="#cb33-101" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Step 5 and 6 {.unnumbered}</span></span>
 <span id="cb33-102"><a href="#cb33-102" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb33-103"><a href="#cb33-103" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Draw a single sample of 100 movies, without replacement, from each decade and calculate the single sample mean and single sample standard deviation in **runtimeMinutes** for each decades.</span>
 <span id="cb33-104"><a href="#cb33-104" aria-hidden="true" tabindex="-1"></a></span>
@@ -2578,7 +2568,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb33-122"><a href="#cb33-122" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_styling</span>(<span class="at">font_size =</span> <span class="dv">12</span>, <span class="at">full_width =</span> <span class="cn">FALSE</span>)</span>
 <span id="cb33-123"><a href="#cb33-123" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb33-124"><a href="#cb33-124" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-125"><a href="#cb33-125" aria-hidden="true" tabindex="-1"></a><span class="fu">### Step 7 {.unnumbered}</span></span>
+<span id="cb33-125"><a href="#cb33-125" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Step 7 {.unnumbered}</span></span>
 <span id="cb33-126"><a href="#cb33-126" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb33-127"><a href="#cb33-127" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Compare these estimates to the actual population mean **runtimeMinutes** for each decade and to the calculated SE in the population mean for samples of size 100 based on the population standard deviation for each decade.</span>
 <span id="cb33-128"><a href="#cb33-128" aria-hidden="true" tabindex="-1"></a></span>
@@ -2590,7 +2580,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb33-136"><a href="#cb33-136" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_styling</span>(<span class="at">font_size =</span> <span class="dv">12</span>, <span class="at">full_width =</span> <span class="cn">FALSE</span>)</span>
 <span id="cb33-137"><a href="#cb33-137" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb33-138"><a href="#cb33-138" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-139"><a href="#cb33-139" aria-hidden="true" tabindex="-1"></a><span class="fu">### Step 8 and 9 {.unnumbered}</span></span>
+<span id="cb33-139"><a href="#cb33-139" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Step 8 and 9 {.unnumbered}</span></span>
 <span id="cb33-140"><a href="#cb33-140" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb33-141"><a href="#cb33-141" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Generate a *sampling distribution* of mean **runtimeMinutes** for each decade by [a] drawing 1000 samples of 100 movies from each decade and, for each sample, [b] calculating the mean **runtimeMinutes** and the standard deviation in **runtimeMinutes** for each decade.</span>
 <span id="cb33-142"><a href="#cb33-142" aria-hidden="true" tabindex="-1"></a></span>
@@ -2637,7 +2627,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb33-187"><a href="#cb33-187" aria-hidden="true" tabindex="-1"></a><span class="co"># now, distributions are not obviously different from NORMAL :)</span></span>
 <span id="cb33-188"><a href="#cb33-188" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb33-189"><a href="#cb33-189" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-190"><a href="#cb33-190" aria-hidden="true" tabindex="-1"></a><span class="fu">### Step 10 {.unnumbered}</span></span>
+<span id="cb33-190"><a href="#cb33-190" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Step 10 {.unnumbered}</span></span>
 <span id="cb33-191"><a href="#cb33-191" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb33-192"><a href="#cb33-192" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Finally, compare the standard error in **runtimeMinutes** for samples of size 100 from each decade <span class="co">[</span><span class="ot">1</span><span class="co">]</span> as estimated from your first sample of 100 movies, <span class="co">[</span><span class="ot">2</span><span class="co">]</span> as calculated from the known *population* standard deviations for each decade, and <span class="co">[</span><span class="ot">3</span><span class="co">]</span> as estimated from the sampling distribution of sample means for each decade.</span>
 <span id="cb33-193"><a href="#cb33-193" aria-hidden="true" tabindex="-1"></a></span>
@@ -2658,7 +2648,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb33-210"><a href="#cb33-210" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb33-211"><a href="#cb33-211" aria-hidden="true" tabindex="-1"></a><span class="fu">## Challenge 2 {.unnumbered}</span></span>
 <span id="cb33-212"><a href="#cb33-212" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-213"><a href="#cb33-213" aria-hidden="true" tabindex="-1"></a><span class="fu">### Step 1 {.unnumbered}</span></span>
+<span id="cb33-213"><a href="#cb33-213" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Step 1 {.unnumbered}</span></span>
 <span id="cb33-214"><a href="#cb33-214" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Using the {tidyverse} <span class="in">`read_csv()`</span> function, load the "zombies.csv" dataset from <span class="co">[</span><span class="ot">this URL</span><span class="co">](https://raw.githubusercontent.com/difiore/ada-datasets/main/zombies.csv)</span> as a "tibble" named **z**. This dataset includes the first and last name and gender of the entire population of 1000 people who have survived the zombie apocalypse and are now ekeing out an existence somewhere on the Gulf Coast, along with several other variables (height, weight, age, number of years of education, number of zombies they have killed, and college major).</span>
 <span id="cb33-215"><a href="#cb33-215" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb33-218"><a href="#cb33-218" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
@@ -2675,7 +2665,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb33-229"><a href="#cb33-229" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_styling</span>(<span class="at">font_size =</span> <span class="dv">12</span>, <span class="at">full_width =</span> <span class="cn">FALSE</span>)</span>
 <span id="cb33-230"><a href="#cb33-230" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb33-231"><a href="#cb33-231" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-232"><a href="#cb33-232" aria-hidden="true" tabindex="-1"></a><span class="fu">### Step 2 {.unnumbered}</span></span>
+<span id="cb33-232"><a href="#cb33-232" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Step 2 {.unnumbered}</span></span>
 <span id="cb33-233"><a href="#cb33-233" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb33-234"><a href="#cb33-234" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Calculate the *population* mean and standard deviation for each quantitative random variable in the dataset (height, weight, age, number of zombies killed, and years of education).</span>
 <span id="cb33-235"><a href="#cb33-235" aria-hidden="true" tabindex="-1"></a></span>
@@ -2742,7 +2732,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb33-298"><a href="#cb33-298" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_styling</span>(<span class="at">font_size =</span> <span class="dv">12</span>, <span class="at">full_width =</span> <span class="cn">FALSE</span>)</span>
 <span id="cb33-299"><a href="#cb33-299" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb33-300"><a href="#cb33-300" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-301"><a href="#cb33-301" aria-hidden="true" tabindex="-1"></a><span class="fu">### Step 3 {.unnumbered}</span></span>
+<span id="cb33-301"><a href="#cb33-301" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Step 3 {.unnumbered}</span></span>
 <span id="cb33-302"><a href="#cb33-302" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb33-303"><a href="#cb33-303" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Use {ggplot} and make boxplots of each of these variables by gender.</span>
 <span id="cb33-304"><a href="#cb33-304" aria-hidden="true" tabindex="-1"></a></span>
@@ -2783,7 +2773,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb33-343"><a href="#cb33-343" aria-hidden="true" tabindex="-1"></a><span class="co">#   theme(legend.position = "none"))</span></span>
 <span id="cb33-344"><a href="#cb33-344" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb33-345"><a href="#cb33-345" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-346"><a href="#cb33-346" aria-hidden="true" tabindex="-1"></a><span class="fu">### Step 4 {.unnumbered}</span></span>
+<span id="cb33-346"><a href="#cb33-346" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Step 4 {.unnumbered}</span></span>
 <span id="cb33-347"><a href="#cb33-347" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb33-348"><a href="#cb33-348" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Use {ggplot} and make scatterplots of height and weight in relation to age (i.e., use age as the $x$ variable), using different colored points for males versus females. Do these variables seem to be related? In what way?</span>
 <span id="cb33-349"><a href="#cb33-349" aria-hidden="true" tabindex="-1"></a></span>
@@ -2806,7 +2796,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb33-370"><a href="#cb33-370" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb33-371"><a href="#cb33-371" aria-hidden="true" tabindex="-1"></a>Both seem to be positive linear functions of age.</span>
 <span id="cb33-372"><a href="#cb33-372" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-373"><a href="#cb33-373" aria-hidden="true" tabindex="-1"></a><span class="fu">### Step 5 {.unnumbered}</span></span>
+<span id="cb33-373"><a href="#cb33-373" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Step 5 {.unnumbered}</span></span>
 <span id="cb33-374"><a href="#cb33-374" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb33-375"><a href="#cb33-375" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Using histograms and Q-Q plots, check whether the quantitative variables seem to be drawn from a normal distribution.</span>
 <span id="cb33-376"><a href="#cb33-376" aria-hidden="true" tabindex="-1"></a></span>
@@ -2837,7 +2827,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb33-405"><a href="#cb33-405" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb33-406"><a href="#cb33-406" aria-hidden="true" tabindex="-1"></a>The first three are seemingly drawn from normal distributions, but not the latter two. These are discrete variables, and they seem to be drawn from the Poisson distribution.</span>
 <span id="cb33-407"><a href="#cb33-407" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-408"><a href="#cb33-408" aria-hidden="true" tabindex="-1"></a><span class="fu">### Step 6 {.unnumbered}</span></span>
+<span id="cb33-408"><a href="#cb33-408" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Step 6 {.unnumbered}</span></span>
 <span id="cb33-409"><a href="#cb33-409" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb33-410"><a href="#cb33-410" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Now use the <span class="in">`sample_n()`</span> or <span class="in">`slice_sample()`</span> function from {dplyr} to sample ONE subset of 50 zombie apocalypse survivors (without replacement) from this population and calculate the mean and sample standard deviation for each variable. Also estimate the standard error for each variable based on this sample and use that to construct a 95% confidence interval for each mean. You can use either the standard normal *or* a Student's t distribution to derive the critical values needed to calculate the lower and upper limits of the CI. <span class="co">[</span><span class="ot">As an additional alternative, you could estimate a CI by bootstrap resampling from that first sample as well.</span><span class="co">]</span></span>
 <span id="cb33-411"><a href="#cb33-411" aria-hidden="true" tabindex="-1"></a></span>
@@ -2938,7 +2928,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb33-510"><a href="#cb33-510" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_styling</span>(<span class="at">font_size =</span> <span class="dv">12</span>, <span class="at">full_width =</span> <span class="cn">FALSE</span>)</span>
 <span id="cb33-511"><a href="#cb33-511" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb33-512"><a href="#cb33-512" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-513"><a href="#cb33-513" aria-hidden="true" tabindex="-1"></a><span class="fu">### Step 7 {.unnumbered}</span></span>
+<span id="cb33-513"><a href="#cb33-513" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Step 7 {.unnumbered}</span></span>
 <span id="cb33-514"><a href="#cb33-514" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb33-515"><a href="#cb33-515" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Then draw another 199 random samples of 50 zombie apocalypse survivors out of the population and calculate the mean for each of the these samples. Together with the first sample you drew out, you now have a set of 200 means for each variable (each based on 50 observations), which constitutes a sampling distribution for each variable. What are the means and standard deviations of the **sampling distribution** for each variable?</span>
 <span id="cb33-516"><a href="#cb33-516" aria-hidden="true" tabindex="-1"></a></span>
@@ -3019,7 +3009,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb33-595"><a href="#cb33-595" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb33-596"><a href="#cb33-596" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; **NOTE:** The columns in this table with asterisks ("**") are those that you were specifically asked to compare.</span></span>
 <span id="cb33-597"><a href="#cb33-597" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-598"><a href="#cb33-598" aria-hidden="true" tabindex="-1"></a><span class="fu">### Step 8 {.unnumbered}</span></span>
+<span id="cb33-598"><a href="#cb33-598" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Step 8 {.unnumbered}</span></span>
 <span id="cb33-599"><a href="#cb33-599" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb33-600"><a href="#cb33-600" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Plot the sampling distributions for each variable mean. What do they look like? Are they normally distributed? What about for those variables that you concluded were not originally drawn from a normal distribution?</span>
 <span id="cb33-601"><a href="#cb33-601" aria-hidden="true" tabindex="-1"></a></span>
@@ -3049,7 +3039,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb33-627"><a href="#cb33-627" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb33-628"><a href="#cb33-628" aria-hidden="true" tabindex="-1"></a>These all look pretty normally distributed, even for those variables that were not drawn from a normal distribution initially! This becomes even more apparent if we set k to a higher number, e.g., 1000.</span>
 <span id="cb33-629"><a href="#cb33-629" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-630"><a href="#cb33-630" aria-hidden="true" tabindex="-1"></a><span class="fu">### Step 9 {.unnumbered}</span></span>
+<span id="cb33-630"><a href="#cb33-630" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Step 9 {.unnumbered}</span></span>
 <span id="cb33-631"><a href="#cb33-631" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb33-632"><a href="#cb33-632" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Construct a 95% confidence interval for each mean **directly from the sampling distribution** of sample means using the central 95% that distribution.</span>
 <span id="cb33-633"><a href="#cb33-633" aria-hidden="true" tabindex="-1"></a></span>
@@ -3087,7 +3077,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb33-669"><a href="#cb33-669" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_styling</span>(<span class="at">font_size =</span> <span class="dv">12</span>, <span class="at">full_width =</span> <span class="cn">FALSE</span>)</span>
 <span id="cb33-670"><a href="#cb33-670" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb33-671"><a href="#cb33-671" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-672"><a href="#cb33-672" aria-hidden="true" tabindex="-1"></a><span class="fu">### Step 10 {.unnumbered}</span></span>
+<span id="cb33-672"><a href="#cb33-672" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Step 10 {.unnumbered}</span></span>
 <span id="cb33-673"><a href="#cb33-673" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb33-674"><a href="#cb33-674" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Finally, use bootstrapping to generate a 95% confidence interval for each variable mean **by bootstrapping 1000 samples, with replacement, from your original sample**.</span>
 <span id="cb33-675"><a href="#cb33-675" aria-hidden="true" tabindex="-1"></a></span>

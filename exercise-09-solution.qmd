@@ -2,9 +2,11 @@
 
 # • Solution {.unnumbered}
 
-- Using the {tidyverse} `read_csv()` function, load the "KamilarAndCooperData.csv" dataset from ***GitHub*** as a "tibble" named **d**.
+## Challenge {.unnumbered}
 
-### Step 1 {.unnumbered}
+#### Step 1 {.unnumbered}
+
+- Using the {tidyverse} `read_csv()` function, load the "KamilarAndCooperData.csv" dataset from ***GitHub*** as a "tibble" named **d**.
 
 ```{r warning=FALSE, message=FALSE}
 library(tidyverse)
@@ -14,7 +16,7 @@ f <- "https://raw.githubusercontent.com/difiore/ada-datasets/main/KamilarAndCoop
 d <- read_csv(f, col_names = TRUE)
 ```
 
-### Step 2 {.unnumbered}
+#### Step 2 {.unnumbered}
 
 - From this dataset, plot lifespan (scored as **MaxLongevity_m** in the dataset) versus female body mass (scored as **Body_mass_female_mean**). Is the relationship linear? If not, how might you transform one or both variable to more closely approximate a linear relationship?
 
@@ -27,7 +29,7 @@ plot_grid(p1, p2, p3, nrow = 1)
 
 We see the cleanest linear relationship between the two variables when both are log transformed.
 
-### Step 3 {.unnumbered}
+#### Step 3 {.unnumbered}
 
 - Run linear models of:
   - lifespan ~ female body mass
@@ -40,7 +42,7 @@ m2 <- lm(MaxLongevity_m ~ log(Body_mass_female_mean), data = d)
 m3 <- lm(log(MaxLongevity_m) ~ log(Body_mass_female_mean), data = d)
 ```
 
-### Step 4 {.unnumbered}
+#### Step 4 {.unnumbered}
 
 - Generate residuals for all three linear models, plot them by hand in relation to the corresponding explanatory variable, and make histograms of the residuals. Do they appear to be normally distributed?
 
@@ -56,7 +58,7 @@ plot_grid(p1, p4, p2, p5, p3, p6, nrow = 3)
 
 Based on these plots, the m3 residuals appear to be most closely to normally distributed. The m1 residuals are clearly not, and the m2 residuals seems to show increasing variable with log(female body mass)
 
-### Step 5 {.unnumbered}
+#### Step 5 {.unnumbered}
 
 - Generate QQ plots for all three linear models. Based on visual inspection of these plots, do the residual appear to deviate from being normally distributed?
 
@@ -76,7 +78,7 @@ plot_grid(p1, p2, p3, nrow = 1)
 
 Again, the m3 residuals look as if they do not deviate substantively from normal. Residuals for m1 and m2, by contrast, do appear to deviate from normal, with a large number of points falling outside of the confidence band in the QQ plots.
 
-### Step 6 {.unnumbered}
+#### Step 6 {.unnumbered}
 
 - Run the `plot()` command for all three models and visually inspect the resultant plots. What do the plots suggest about whether the assumptions for regression are met for any of these models?
 
@@ -89,7 +91,7 @@ plot(m3)
 
 The plots suggest that m1 and m2 residuals deviate quite markedly from normality,
 
-### Step 7 {.unnumbered}
+#### Step 7 {.unnumbered}
 
 - Run Shapiro-Wilks tests (e.g., using the function `shapiro.test()` on the residuals for all three models. What do the results of these test suggest about the whether your data meet the assumptions for using simple linear regression?
 

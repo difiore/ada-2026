@@ -82,7 +82,9 @@ knitr::include_graphics("img/password.png")
 pwd_gmail <- "" # enter your app password between the quotation marks
 ```
 
-## Sending an Email Version 1: Using the {emayili} package {.unnumbered}
+## Challenge: Sending Emails {.unnumbered}
+
+### Sending an Email Using the {emayili} package {.unnumbered}
 
 The {emayili} package makes sending simple text emails very easy.
 
@@ -223,7 +225,7 @@ smtp_gmail(message_gmail, verbose = TRUE)
 
 Use the ***RStudio*** **Help** tab to browse the documentation associated with the {emayali} package to see how you can customize your message, e.g., by adding `cc` or `bcc` arguments, by using a different "reply to" address, by adding attachments, or by encrypting your message.
 
-## Sending an Email Version 2: Using the {mailR} package {.unnumbered}
+### Sending an Email using the {mailR} package {.unnumbered}
 
 The {mailR} package also allows you to easily send simple emails with a single function, `send.mail()`. Here, we need to specify details about the SMTP server more explicitly than if we use {emayili} (above) or {blastula} (below).
 
@@ -271,7 +273,7 @@ send.mail(
 )
 ```
 
-## Sending an Email Version 3: Using the {blastula} package {.unnumbered}
+### Sending an Email using the {blastula} package {.unnumbered}
 
 The {blastula} package allows us to create and send more complex HTML and formatted emails using markdown. Using it is a bit more complicated (but more flexible) than using the procedures above.
 
@@ -399,7 +401,7 @@ message |> smtp_send(
   )
 ```
 
-## Sending an Email Version 4: Using the {sendmailR} package {.unnumbered}
+### Sending an Email using the {sendmailR} package {.unnumbered}
 
 The {sendmailR} is yet another that you can use to send emails from ***R***.
 
@@ -420,11 +422,11 @@ sendmail(
 # e.g., `control = list(smtpServer="smtp://smtp.gmail.com:587")`
 ```
 
-#### Next Steps? {.unnumbered}
+### Next Steps? {.unnumbered}
 
 Again, use the ***RStudio*** **Help** tab to browse the documentation associated with the {blastula} package to see how you can customize your message, e.g., with attachments.
 
-#### Even More Next Steps? {.unnumbered}
+### Even More Next Steps? {.unnumbered}
 
 Finally, it is a bit more complicated, but note that we can also use the {keyring} package along with {blastula} to set up a credentials "key" in our computer's keychain and refer to that to specify our credentials for sending a message. When you create the keys, you will be asked to provide your password.
 
@@ -466,7 +468,7 @@ message |>
   )
 ```
 
-## Clean-Up Steps {.unnumbered}
+### Clean-Up {.unnumbered}
 
 ```{r}
 #| eval: false
@@ -474,10 +476,11 @@ message |>
 delete_all_credential_keys()
 ```
 
-## Sending an SMS or MMS Text 
+## Challenge: Sending an SMS or MMS Text
+
 With a little bit of setup, it is possible to send text messages from ***R*** as well. There are two basic ways this can be done. One way is by using a package like {emaliyi} or {blastula} to send the message to a cell carrier's servers, which then passes that on via SMS using an email-SMS converter. Some carriers are picky, however, about passing on what their algorithms may perceive as spam messages. The other way is to use a paid text messaging service API (application programming interface) to create and send messages. One such paid service is **Textbelt**, which is easy to set up and has a simple pricing package.
 
-### Using Textbelt to send text messages
+### Using Textbelt to send text messages {.unnumbered}
 
 - Go to [https://textbelt.com/](https://textbelt.com/)...
 - Select "Create an API key"...
@@ -620,7 +623,8 @@ $ curl -X POST https://textbelt.com/text \
        -d key='apikey'
 ```
 
-### Checking status of a sent message via curl
+### Checking the status of a sent message via {curl}
+
 Use /status/<textID> to view status For example, if your textID is 'textID'...
 
 ```
@@ -634,7 +638,7 @@ Use /quota/<key> to view remaining quota. For example, if your key is 'apikey'..
 $ curl https://textbelt.com/quota/apikey
 ````
 
-### Testing your API key with curl
+### Testing your API key with {curl}
 
 If you want to just validate your key without actually using your text quota, append "_test" to your key and you will receive a response from the /text endpoint confirming that a text would send, but it will not consume your credits.
 

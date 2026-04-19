@@ -2,7 +2,9 @@
 
 # • Solution {.unnumbered}
 
-### Step 1 {.unnumbered}
+## Challenge {.unnumbered}
+
+#### Step 1 {.unnumbered}
 
 Using the {tidyverse} `read_csv()` function, load the "Street_et_al_2017.csv" dataset as a "tibble" named **d**.
 
@@ -29,7 +31,7 @@ detach(package:kableExtra)
 detach(package:skimr)
 ```
 
-### Step 2 {.unnumbered}
+#### Step 2 {.unnumbered}
 
 From this dataset, plot brain size (**ECV**) as a function of social group size (**Group_size**), longevity (**Longevity**), juvenile period length (**Weaning**), and reproductive lifespan (**Repro_lifespan**).
 
@@ -46,7 +48,7 @@ plot_grid(p1, p2, p3, p4, nrow = 2)
 
 > **NOTE:** It looks like most of these variables should probably be log transformed, though that is not essential for this exercise ;)
 
-### Step 3 {.unnumbered}
+#### Step 3 {.unnumbered}
 
 Derive by hand the ordinary least squares regression coefficients $\beta1$ and $\beta0$ for ECV as a function of social group size.
 
@@ -59,7 +61,7 @@ d_mod <- d |> drop_na(ECV, Group_size)
 (b0 <- mean(d_mod$ECV) - b1 * mean(d_mod$Group_size))
 ```
 
-### Step 4 {.unnumbered}
+#### Step 4 {.unnumbered}
 
 Confirm that you get the same results using the `lm()` function.
 
@@ -71,7 +73,7 @@ results <- m |>
 results
 ```
 
-### Step 5 {.unnumbered}
+#### Step 5 {.unnumbered}
 
 Repeat the analysis above for three different major radiations of primates - "catarrhines", "platyrrhines", and "strepsirhines") separately. Do your regression coefficients differ among groups? How might you determine this?
 
@@ -107,7 +109,7 @@ strepsirhini <- d_mod |> filter(Taxonomic_group == "Strepsirhini")
 
 As seen from the results above, the coefficients do differ among groups... but how might we test if this difference is signficant? One way would be to permute the group assignments randomly, for each permutation, calculate the difference in slopes between pairs of groups to create permutation distributions for that test statistic under a null model of no difference between groups. We could then compare the observed difference in slopes between groups to the "expected" distribution under that specified null model.
 
-### Step 6 {.unnumbered}
+#### Step 6 {.unnumbered}
 
 For your first regression of ECV on social group size, calculate the standard error for the slope coefficient, the 95% CI, and the *p* value associated with this coefficient by hand.
 
@@ -160,7 +162,7 @@ Also extract this same information from the results of running the `lm()` functi
   tidy(conf.int = TRUE, conf.level = 1 - alpha))
 ```
 
-### Step 7 {.unnumbered}
+#### Step 7 {.unnumbered}
 
 Then, use a permutation approach with 1000 permutations to generate a null sampling distribution for the slope coefficient.
 
@@ -220,7 +222,7 @@ What is the p value associated with your original slope coefficient? You can use
 # the `2 *` the upper-tail probability in this calculation is to make this a 2-tailed test
 ```
 
-### Step 8 {.unnumbered}
+#### Step 8 {.unnumbered}
 
 Use bootstrapping to generate a 95% CI for your estimate of the slope coefficient using both the quantile method and the theory-based method (i.e., based on the standard deviation of the bootstrapped sampling distribution). Do these CIs suggest that your slope coefficient is different from zero?
 

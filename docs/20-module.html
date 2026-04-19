@@ -547,6 +547,18 @@ window.Quarto = {
  <span class="menu-text">Exercise 11</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./exercise-12.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Exercise 12</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./exercise-12-solution.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Exercise 12 Solution</span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -1066,7 +1078,7 @@ window.Quarto = {
 <pre><code>## # A tibble: 1 × 1
 ##   p_value
 ##     &lt;dbl&gt;
-## 1   0.237</code></pre>
+## 1   0.246</code></pre>
 </div>
 </div>
 <p>Note that, for these data, the p value estimated through simulation-based inference is very similar to that calculated parameterically based on mathematical theory. This is not always the case!</p>
@@ -1080,7 +1092,7 @@ window.Quarto = {
 <pre><code>## # A tibble: 1 × 1
 ##   p_value
 ##     &lt;dbl&gt;
-## 1   0.237</code></pre>
+## 1   0.246</code></pre>
 </div>
 </div>
 <p>Alternatively, the {permuco} package introduces the <code>aovperm()</code> and <code>lmperm()</code> functions as analogs for <code>aov()</code> and <code>lm()</code> for analysis of variance and simple linear regression, where p values are calculated by permutation.</p>
@@ -1092,7 +1104,7 @@ window.Quarto = {
 <pre><code>## Anova Table
 ## Resampling test using freedman_lane to handle nuisance variables and 5000 permutations.
 ##                 SS  df     F parametric P(&gt;F) resampled P(&gt;F)
-## occupation   12.85   3 1.403           0.2403          0.2402
+## occupation   12.85   3 1.403           0.2403          0.2406
 ## Residuals  3041.08 996</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(m.aovperm)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1115,9 +1127,9 @@ window.Quarto = {
 ## occupationother        0.10424    0.13496  0.7724           4.401e-01
 ##                       resampled Pr(&lt;t) resampled Pr(&gt;t) resampled Pr(&gt;|t|)
 ## (Intercept)                                                               
-## occupationengineering           0.9768           0.0234             0.0416
-## occupationlogistics             0.7246           0.2756             0.5462
-## occupationother                 0.7804           0.2198             0.4384</code></pre>
+## occupationengineering           0.9796           0.0206             0.0418
+## occupationlogistics             0.7186           0.2816             0.5550
+## occupationother                 0.7798           0.2204             0.4414</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb54"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="fu">detach</span>(package<span class="sc">:</span>permuco)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -1133,7 +1145,7 @@ window.Quarto = {
 ## 
 ## data:  zombies_killed by
 ##   occupation (natural science, engineering, logistics, other)
-## chi-squared = 4.2048, p-value = 0.245</code></pre>
+## chi-squared = 4.2048, p-value = 0.2483</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb57"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="fu">detach</span>(package<span class="sc">:</span>coin)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
