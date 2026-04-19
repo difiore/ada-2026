@@ -974,15 +974,15 @@ window.Quarto = {
 </div>
 <div class="cell-output cell-output-stderr">
 <pre><code>## 
-## 7 message(s): boundary (singular) fit: see help('isSingular')</code></pre>
+## 4 message(s): boundary (singular) fit: see help('isSingular')</code></pre>
 </div>
 <div class="cell-output cell-output-stdout">
-<pre><code>##                       2.5 %    97.5 %
-## .sig01             4.032427  42.95498
-## .sigma            24.981497  33.59369
-## (Intercept)       99.024832 162.06475
-## reproconditionPOP  7.002023  32.81493
-## parityP           68.376398 150.65278</code></pre>
+<pre><code>##                        2.5 %    97.5 %
+## .sig01              5.703238  41.23595
+## .sigma             24.327697  33.62228
+## (Intercept)       103.745974 161.47712
+## reproconditionPOP   7.572929  32.71936
+## parityP            68.505860 153.19451</code></pre>
 </div>
 </div>
 <blockquote class="blockquote">
@@ -1671,7 +1671,10 @@ window.Quarto = {
 <section id="random-slope-models" class="level2" data-number="24.5">
 <h2 data-number="24.5" class="anchored" data-anchor-id="random-slope-models"><span class="header-section-number">24.5</span> Random Slope Models</h2>
 <p>In the exercise above, we included only estimation of a separate INTERCEPT for each female and presumed that the same relationships (SLOPES, or regression coefficients) between grooming duration (as our response variable), and reproductive condition and parity (as our predictors) obtained for all females. But we can also allow those relationships between response and predictor to vary from subject to subject. We would indicate this model in formula notation as follows:</p>
-<p><span class="math display">\[grooming\ duration \sim reproductive\ condition + parity\ +\]</span> <span class="math display">\[(1 + reproductive\ condition|subject) + (1 + parity|subject) + \epsilon\]</span> &gt; <strong>NOTE:</strong> In this particular example, we are using the term “slopes” loosely, because our predictors (reprocondition and parity) are categorical, not continuous. So, our regression coefficients for these fixed predictors are not “slopes” <em>per se</em> but rather differences in average grooming between levels of the predictor (or, more specifically, between each level and whatever level we set as baseline).</p>
+<p><span class="math display">\[grooming\ duration \sim reproductive\ condition + parity\ +\]</span> <span class="math display">\[(1 + reproductive\ condition|subject) + (1 + parity|subject) + \epsilon\]</span></p>
+<blockquote class="blockquote">
+<p><strong>NOTE:</strong> In this particular example, we are using the term “slopes” loosely, because our predictors (reprocondition and parity) are categorical, not continuous. So, our regression coefficients for these fixed predictors are not “slopes” <em>per se</em> but rather differences in average grooming between levels of the predictor (or, more specifically, between each level and whatever level we set as baseline).</p>
+</blockquote>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb71"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb71-1"><a href="#cb71-1" aria-hidden="true" tabindex="-1"></a>m <span class="ot">&lt;-</span> <span class="fu">lmer</span>(</span>
 <span id="cb71-2"><a href="#cb71-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> d,</span>
@@ -1741,17 +1744,17 @@ window.Quarto = {
 </div>
 <div class="sourceCode cell-code" id="cb75"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb75-1"><a href="#cb75-1" aria-hidden="true" tabindex="-1"></a><span class="fu">confint</span>(m, <span class="at">level =</span> <span class="fl">0.95</span>, <span class="at">method =</span> <span class="st">"boot"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>##                           2.5 %      97.5 %
-## .sig01             0.000000e+00  19.6756151
-## .sig02             9.042069e-05  17.0902222
-## .sig03            -1.000000e+00   1.0000000
-## .sig04             0.000000e+00  41.6913648
-## .sig05             1.785576e-04  41.6882270
-## .sig06            -1.000000e+00  -0.4933524
-## .sigma             2.359036e+01  32.9240407
-## (Intercept)        9.767583e+01 166.0950409
-## reproconditionPOP  6.340123e+00  33.6557178
-## parityP            7.597122e+01 145.9350894</code></pre>
+<pre><code>##                          2.5 %      97.5 %
+## .sig01             0.000000000  21.2143041
+## .sig02             0.000201950  17.9597348
+## .sig03            -1.000000000   1.0000000
+## .sig04             0.000000000  40.8893287
+## .sig05             0.000115706  40.8898919
+## .sig06            -1.000000000  -0.6084994
+## .sigma            23.365725401  32.9730945
+## (Intercept)       99.012704666 164.2597902
+## reproconditionPOP  5.998085579  32.7125944
+## parityP           75.488143680 147.7708631</code></pre>
 </div>
 </div>
 <p>Finally, effects plots of how the expected amount of grooming received varies with the fixed effects (<strong>reprocondition</strong> and <strong>parity</strong>) under our new random slope model is the same as that under the random intercept model.</p>
@@ -3550,387 +3553,388 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb156-541"><a href="#cb156-541" aria-hidden="true" tabindex="-1"></a>In the exercise above, we included only estimation of a separate INTERCEPT for each female and presumed that the same relationships (SLOPES, or regression coefficients) between grooming duration (as our response variable), and reproductive condition and parity (as our predictors) obtained for all females. But we can also allow those relationships between response and predictor to vary from subject to subject. We would indicate this model in formula notation as follows:</span>
 <span id="cb156-542"><a href="#cb156-542" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb156-543"><a href="#cb156-543" aria-hidden="true" tabindex="-1"></a>$$grooming\ duration \sim reproductive\ condition + parity\ +$$ $$(1 + reproductive\ condition|subject) + (1 + parity|subject) + \epsilon$$</span>
-<span id="cb156-544"><a href="#cb156-544" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; **NOTE:** In this particular example, we are using the term "slopes" loosely, because our predictors (reprocondition and parity) are categorical, not continuous. So, our regression coefficients for these fixed predictors are not "slopes" *per se* but rather differences in average grooming between levels of the predictor (or, more specifically, between each level and whatever level we set as baseline).</span></span>
-<span id="cb156-545"><a href="#cb156-545" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb156-548"><a href="#cb156-548" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb156-549"><a href="#cb156-549" aria-hidden="true" tabindex="-1"></a><span class="co">#| message: false</span></span>
-<span id="cb156-550"><a href="#cb156-550" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
-<span id="cb156-551"><a href="#cb156-551" aria-hidden="true" tabindex="-1"></a>m <span class="ot">&lt;-</span> <span class="fu">lmer</span>(<span class="at">data =</span> d,</span>
-<span id="cb156-552"><a href="#cb156-552" aria-hidden="true" tabindex="-1"></a>          duration <span class="sc">~</span></span>
-<span id="cb156-553"><a href="#cb156-553" aria-hidden="true" tabindex="-1"></a>            reprocondition <span class="sc">+</span></span>
-<span id="cb156-554"><a href="#cb156-554" aria-hidden="true" tabindex="-1"></a>            parity <span class="sc">+</span> </span>
-<span id="cb156-555"><a href="#cb156-555" aria-hidden="true" tabindex="-1"></a>            (<span class="dv">1</span> <span class="sc">+</span> reprocondition <span class="sc">|</span> subject) <span class="sc">+</span></span>
-<span id="cb156-556"><a href="#cb156-556" aria-hidden="true" tabindex="-1"></a>            (<span class="dv">1</span> <span class="sc">+</span> parity <span class="sc">|</span> subject),</span>
-<span id="cb156-557"><a href="#cb156-557" aria-hidden="true" tabindex="-1"></a>          <span class="at">REML =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb156-558"><a href="#cb156-558" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(m)</span>
-<span id="cb156-559"><a href="#cb156-559" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb156-560"><a href="#cb156-560" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb156-561"><a href="#cb156-561" aria-hidden="true" tabindex="-1"></a>Here, we have changed the random effects portion of the formula, which now looks a little more complicated. The notation "(1 + reprocondition | subject)" tells the model to estimate differing baseline levels of grooming duration (the intercept, represented by 1) as well as differing responses to the fixed factor in question, which is reproductive condition in this case. We do the same for parity.</span>
-<span id="cb156-562"><a href="#cb156-562" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb156-563"><a href="#cb156-563" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; **NOTE**: It is equivalent to use just "(reprocondition | subject)" rather than "(1 + reprocondition | subject)" to specify that we want our analysis to estimate both an intercept and slope coefficient for each subject. We use the latter to be explicit, though, as we could used "(0 + reprocondition | subject)" to return a single intercept but different slopes for each subject, which is sometimes referred to as a "fixed intercept" model.</span></span>
-<span id="cb156-564"><a href="#cb156-564" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb156-565"><a href="#cb156-565" aria-hidden="true" tabindex="-1"></a>Looking at the coefficients of our new model, we see the effects. Each female now has a different intercept **and** a different coefficient for the relationship between grooming duration and both reproductive condition and parity.</span>
-<span id="cb156-566"><a href="#cb156-566" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb156-569"><a href="#cb156-569" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb156-570"><a href="#cb156-570" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
-<span id="cb156-571"><a href="#cb156-571" aria-hidden="true" tabindex="-1"></a><span class="fu">coefficients</span>(m)</span>
-<span id="cb156-572"><a href="#cb156-572" aria-hidden="true" tabindex="-1"></a><span class="fu">confint</span>(m, <span class="at">level =</span> <span class="fl">0.95</span>, <span class="at">method =</span> <span class="st">"boot"</span>)</span>
-<span id="cb156-573"><a href="#cb156-573" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb156-574"><a href="#cb156-574" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb156-575"><a href="#cb156-575" aria-hidden="true" tabindex="-1"></a>Finally, effects plots of how the expected amount of grooming received varies with the fixed effects (**reprocondition** and **parity**) under our new random slope model is the same as that under the random intercept model.</span>
-<span id="cb156-576"><a href="#cb156-576" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb156-579"><a href="#cb156-579" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb156-580"><a href="#cb156-580" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">predictorEffects</span>(m, <span class="at">partial.residuals =</span> <span class="cn">TRUE</span>))</span>
-<span id="cb156-581"><a href="#cb156-581" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb156-582"><a href="#cb156-582" aria-hidden="true" tabindex="-1"></a><span class="co"># or</span></span>
-<span id="cb156-583"><a href="#cb156-583" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb156-584"><a href="#cb156-584" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_model</span>(m, <span class="at">type =</span> <span class="st">"eff"</span>, <span class="at">term =</span> <span class="st">"reprocondition"</span>)</span>
-<span id="cb156-585"><a href="#cb156-585" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_model</span>(m, <span class="at">type =</span> <span class="st">"eff"</span>, <span class="at">term =</span> <span class="st">"parity"</span>)</span>
-<span id="cb156-586"><a href="#cb156-586" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb156-587"><a href="#cb156-587" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb156-590"><a href="#cb156-590" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb156-591"><a href="#cb156-591" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
-<span id="cb156-592"><a href="#cb156-592" aria-hidden="true" tabindex="-1"></a>mixedup<span class="sc">::</span><span class="fu">summarize_model</span>(m)</span>
-<span id="cb156-593"><a href="#cb156-593" aria-hidden="true" tabindex="-1"></a>mixedup<span class="sc">::</span><span class="fu">extract_fixed_effects</span>(m)</span>
-<span id="cb156-594"><a href="#cb156-594" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb156-595"><a href="#cb156-595" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb156-596"><a href="#cb156-596" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; **NOTE**: Here, running the functions </span><span class="in">`extract_random_coefficients()`</span><span class="at"> and </span><span class="in">`extract_random_effect()`</span><span class="at"> from {mixedup} would throw an error because we would be generating two (Intercept) terms per random effect level, one for each of two predictors.</span></span>
-<span id="cb156-597"><a href="#cb156-597" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb156-598"><a href="#cb156-598" aria-hidden="true" tabindex="-1"></a><span class="fu">### Residual Analysis</span></span>
-<span id="cb156-599"><a href="#cb156-599" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb156-600"><a href="#cb156-600" aria-hidden="true" tabindex="-1"></a>Once again, we can use the {redres} or {DHARMa} packages to do some visual residual analysis...</span>
-<span id="cb156-601"><a href="#cb156-601" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb156-602"><a href="#cb156-602" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Using {redres}</span></span>
-<span id="cb156-603"><a href="#cb156-603" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb156-606"><a href="#cb156-606" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb156-607"><a href="#cb156-607" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_resqq</span>(m)</span>
-<span id="cb156-608"><a href="#cb156-608" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_redres</span>(m)</span>
-<span id="cb156-609"><a href="#cb156-609" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_redres</span>(m, <span class="at">xvar =</span> <span class="st">"subject"</span>)</span>
-<span id="cb156-610"><a href="#cb156-610" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb156-611"><a href="#cb156-611" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb156-612"><a href="#cb156-612" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; **NOTE**: Here, running the functions </span><span class="in">`plot_ranef()`</span><span class="at"> would throw an error because we would be generating two (Intercept) terms per random effect level, one for each of two predictors. If we wanted, we could run the </span><span class="in">`ranef()`</span><span class="at"> function on the model, look at the </span><span class="in">`$subject`</span><span class="at"> dataframe, and pull out the columns we wanted to plot against normal quantiles using </span><span class="in">`qqPlot()`</span><span class="at"> or </span><span class="in">`qqnorm()`</span><span class="at">.</span></span>
-<span id="cb156-613"><a href="#cb156-613" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb156-614"><a href="#cb156-614" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Using {DHARMa}</span></span>
-<span id="cb156-615"><a href="#cb156-615" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb156-618"><a href="#cb156-618" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb156-619"><a href="#cb156-619" aria-hidden="true" tabindex="-1"></a>sim <span class="ot">&lt;-</span> <span class="fu">simulateResiduals</span>(m, <span class="at">n =</span> <span class="dv">1000</span>)</span>
-<span id="cb156-620"><a href="#cb156-620" aria-hidden="true" tabindex="-1"></a><span class="fu">testUniformity</span>(sim)</span>
-<span id="cb156-621"><a href="#cb156-621" aria-hidden="true" tabindex="-1"></a><span class="fu">testCategorical</span>(sim, <span class="at">catPred =</span> d<span class="sc">$</span>reprocondition)</span>
-<span id="cb156-622"><a href="#cb156-622" aria-hidden="true" tabindex="-1"></a><span class="fu">testCategorical</span>(sim, <span class="at">catPred =</span> d<span class="sc">$</span>parity)</span>
-<span id="cb156-623"><a href="#cb156-623" aria-hidden="true" tabindex="-1"></a><span class="fu">testCategorical</span>(sim, <span class="at">catPred =</span> d<span class="sc">$</span>subject)</span>
-<span id="cb156-624"><a href="#cb156-624" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb156-625"><a href="#cb156-625" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb156-626"><a href="#cb156-626" aria-hidden="true" tabindex="-1"></a><span class="fu">### Inference using LRTs {.unnumbered}</span></span>
-<span id="cb156-627"><a href="#cb156-627" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb156-628"><a href="#cb156-628" aria-hidden="true" tabindex="-1"></a>To then get p values associated with each of the fixed factors, we can use likelihood ratio tests...</span>
-<span id="cb156-629"><a href="#cb156-629" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb156-632"><a href="#cb156-632" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb156-633"><a href="#cb156-633" aria-hidden="true" tabindex="-1"></a><span class="co">#| message: false</span></span>
-<span id="cb156-634"><a href="#cb156-634" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
-<span id="cb156-635"><a href="#cb156-635" aria-hidden="true" tabindex="-1"></a><span class="co"># random effects only</span></span>
-<span id="cb156-636"><a href="#cb156-636" aria-hidden="true" tabindex="-1"></a>null <span class="ot">&lt;-</span> <span class="fu">lmer</span>(<span class="at">data =</span> d,</span>
-<span id="cb156-637"><a href="#cb156-637" aria-hidden="true" tabindex="-1"></a>             duration <span class="sc">~</span></span>
-<span id="cb156-638"><a href="#cb156-638" aria-hidden="true" tabindex="-1"></a>               (<span class="dv">1</span> <span class="sc">+</span> reprocondition <span class="sc">|</span> subject) <span class="sc">+</span></span>
-<span id="cb156-639"><a href="#cb156-639" aria-hidden="true" tabindex="-1"></a>               (<span class="dv">1</span> <span class="sc">+</span> parity <span class="sc">|</span> subject),</span>
-<span id="cb156-640"><a href="#cb156-640" aria-hidden="true" tabindex="-1"></a>             <span class="at">REML =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb156-641"><a href="#cb156-641" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb156-642"><a href="#cb156-642" aria-hidden="true" tabindex="-1"></a><span class="co"># full model with both fixed effects</span></span>
-<span id="cb156-643"><a href="#cb156-643" aria-hidden="true" tabindex="-1"></a>full <span class="ot">&lt;-</span> <span class="fu">lmer</span>(<span class="at">data =</span> d,</span>
-<span id="cb156-644"><a href="#cb156-644" aria-hidden="true" tabindex="-1"></a>             duration <span class="sc">~</span></span>
-<span id="cb156-645"><a href="#cb156-645" aria-hidden="true" tabindex="-1"></a>               reprocondition <span class="sc">+</span></span>
-<span id="cb156-646"><a href="#cb156-646" aria-hidden="true" tabindex="-1"></a>               parity <span class="sc">+</span></span>
-<span id="cb156-647"><a href="#cb156-647" aria-hidden="true" tabindex="-1"></a>               (<span class="dv">1</span> <span class="sc">+</span> reprocondition <span class="sc">|</span> subject) <span class="sc">+</span></span>
-<span id="cb156-648"><a href="#cb156-648" aria-hidden="true" tabindex="-1"></a>               (<span class="dv">1</span> <span class="sc">+</span> parity <span class="sc">|</span> subject),</span>
-<span id="cb156-649"><a href="#cb156-649" aria-hidden="true" tabindex="-1"></a>             <span class="at">REML =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb156-650"><a href="#cb156-650" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb156-651"><a href="#cb156-651" aria-hidden="true" tabindex="-1"></a><span class="co"># model without reproductive condition as a fixed effect</span></span>
-<span id="cb156-652"><a href="#cb156-652" aria-hidden="true" tabindex="-1"></a>minusRC <span class="ot">&lt;-</span> <span class="fu">lmer</span>(<span class="at">data =</span> d,</span>
-<span id="cb156-653"><a href="#cb156-653" aria-hidden="true" tabindex="-1"></a>                duration <span class="sc">~</span></span>
-<span id="cb156-654"><a href="#cb156-654" aria-hidden="true" tabindex="-1"></a>                  parity <span class="sc">+</span></span>
-<span id="cb156-655"><a href="#cb156-655" aria-hidden="true" tabindex="-1"></a>                  (<span class="dv">1</span> <span class="sc">+</span> reprocondition <span class="sc">|</span> subject) <span class="sc">+</span></span>
-<span id="cb156-656"><a href="#cb156-656" aria-hidden="true" tabindex="-1"></a>                  (<span class="dv">1</span> <span class="sc">+</span> parity <span class="sc">|</span> subject),</span>
-<span id="cb156-657"><a href="#cb156-657" aria-hidden="true" tabindex="-1"></a>                <span class="at">REML =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb156-658"><a href="#cb156-658" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb156-659"><a href="#cb156-659" aria-hidden="true" tabindex="-1"></a><span class="co"># model without parity as a fixed effect</span></span>
-<span id="cb156-660"><a href="#cb156-660" aria-hidden="true" tabindex="-1"></a>minusP <span class="ot">&lt;-</span> <span class="fu">lmer</span>(<span class="at">data =</span> d,</span>
-<span id="cb156-661"><a href="#cb156-661" aria-hidden="true" tabindex="-1"></a>               duration <span class="sc">~</span></span>
-<span id="cb156-662"><a href="#cb156-662" aria-hidden="true" tabindex="-1"></a>                 reprocondition <span class="sc">+</span></span>
-<span id="cb156-663"><a href="#cb156-663" aria-hidden="true" tabindex="-1"></a>                 (<span class="dv">1</span> <span class="sc">+</span> reprocondition <span class="sc">|</span> subject) <span class="sc">+</span></span>
-<span id="cb156-664"><a href="#cb156-664" aria-hidden="true" tabindex="-1"></a>                 (<span class="dv">1</span> <span class="sc">+</span> parity <span class="sc">|</span> subject),</span>
-<span id="cb156-665"><a href="#cb156-665" aria-hidden="true" tabindex="-1"></a>               <span class="at">REML =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb156-666"><a href="#cb156-666" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb156-667"><a href="#cb156-667" aria-hidden="true" tabindex="-1"></a><span class="co"># p value for reproductive condition as a fixed effect</span></span>
-<span id="cb156-668"><a href="#cb156-668" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(minusRC, full)</span>
-<span id="cb156-669"><a href="#cb156-669" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb156-670"><a href="#cb156-670" aria-hidden="true" tabindex="-1"></a><span class="co"># p value for parity as a fixed effect</span></span>
-<span id="cb156-671"><a href="#cb156-671" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(minusP, full)</span>
-<span id="cb156-672"><a href="#cb156-672" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb156-673"><a href="#cb156-673" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb156-676"><a href="#cb156-676" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb156-677"><a href="#cb156-677" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">predictorEffects</span>(full, <span class="at">partial.residuals =</span> <span class="cn">TRUE</span>))</span>
-<span id="cb156-678"><a href="#cb156-678" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb156-679"><a href="#cb156-679" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb156-680"><a href="#cb156-680" aria-hidden="true" tabindex="-1"></a><span class="fu">### Inference using AIC {.unnumbered}</span></span>
-<span id="cb156-681"><a href="#cb156-681" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb156-682"><a href="#cb156-682" aria-hidden="true" tabindex="-1"></a>For a long time, the appropriateness of our mixed models was assessed as above -- i.e., by evaluating the significance of each fixed effect using LRTs. As information theoretic approaches have become more popular, it is increasingly common to assess model fit by comparing the AIC values of different models, acknowledging the caveat that AIC can only tell us about the *relative* fit of alternative models, but not whether a particular model is a good fit, overall. Recall that AIC values are a way of inverting and scaling model log-likelihoods that penalizes models with greater numbers of parameters.</span>
-<span id="cb156-683"><a href="#cb156-683" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb156-684"><a href="#cb156-684" aria-hidden="true" tabindex="-1"></a>The <span class="in">`aictab()`</span> function from {AICcmodavg} neatly prints out tables with AIC, Delta AIC, and log-likelihood values, along with AIC "weights".</span>
-<span id="cb156-685"><a href="#cb156-685" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb156-688"><a href="#cb156-688" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb156-689"><a href="#cb156-689" aria-hidden="true" tabindex="-1"></a><span class="co">#| message: false</span></span>
-<span id="cb156-690"><a href="#cb156-690" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
-<span id="cb156-691"><a href="#cb156-691" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(AICcmodavg)</span>
-<span id="cb156-692"><a href="#cb156-692" aria-hidden="true" tabindex="-1"></a>(aic_table <span class="ot">&lt;-</span> <span class="fu">aictab</span>( <span class="fu">list</span>(full, minusRC, minusP, null),</span>
-<span id="cb156-693"><a href="#cb156-693" aria-hidden="true" tabindex="-1"></a>  <span class="at">modnames =</span> <span class="fu">c</span>(<span class="st">"full"</span>, <span class="st">"minusRC"</span>, <span class="st">"minusP"</span>, <span class="st">"null"</span>)))</span>
-<span id="cb156-694"><a href="#cb156-694" aria-hidden="true" tabindex="-1"></a><span class="fu">detach</span>(package<span class="sc">:</span>AICcmodavg)</span>
-<span id="cb156-695"><a href="#cb156-695" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb156-696"><a href="#cb156-696" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb156-697"><a href="#cb156-697" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; **NOTE:** Here we are printing out AICc values, rather than AIC values. AICc is simply a version of AIC with a correction added for small sample sizes. To print the uncorrected AIC values, which appear in the </span><span class="in">`anova()`</span><span class="at"> LRT output, we can add the argument "second.ord = TRUE" to the </span><span class="in">`aictab()`</span><span class="at"> function.</span></span>
-<span id="cb156-698"><a href="#cb156-698" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb156-699"><a href="#cb156-699" aria-hidden="true" tabindex="-1"></a>$$AIC_c = AIC + \frac{2K^2 + 2K}{n-K-1}$$</span>
-<span id="cb156-700"><a href="#cb156-700" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb156-701"><a href="#cb156-701" aria-hidden="true" tabindex="-1"></a>where $K$ is the number of parameters and $n$ is the sample size.</span>
-<span id="cb156-702"><a href="#cb156-702" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb156-703"><a href="#cb156-703" aria-hidden="true" tabindex="-1"></a>In the table, for each model, $K$ is the number of model parameters, the $Delta\  AICc$ value is the difference between that model's AICc and the best model's AICc (again, here, that is the full model), and the $AICc\ weight$ is the relative likelihood of that model. <span class="co">[</span><span class="ot">The weights for a particular set of models sum to 1, with each weight equal to the model's likelihood divided by the summed likelihoods across all models.</span><span class="co">]</span></span>
-<span id="cb156-704"><a href="#cb156-704" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb156-705"><a href="#cb156-705" aria-hidden="true" tabindex="-1"></a>Where the best model has a very high Akaike weight, e.g., &gt;0.9, it is reasonable to base inferences about the included variables on that single most parsimonious model, but when several models rank highly (e.g., several models have Delta AICc values &lt;2 to 4), it is common to model-average effect sizes for the variables that have the most support across that set of models. That is, "model averaging" means making inferences based on a **set** of candidate models, instead of on a single "best" model.</span>
-<span id="cb156-706"><a href="#cb156-706" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb156-707"><a href="#cb156-707" aria-hidden="true" tabindex="-1"></a>Here, note that the full model containing both *reproductive condition* and *parity* has the highest likelihood (the least negative log-likelihood value) and a much lower AICc than any of the less complex alternative models tested. It also has a very high Akaike weight (0.91).</span>
-<span id="cb156-708"><a href="#cb156-708" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb156-709"><a href="#cb156-709" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; **NOTE:** When running a number of the above models and/or in doing the likelihood ratio tests, we saw a significant result but we also got either a warning that our null models "failed to converge" or we saw a warning about a "boundary (singular) fit". Both of these warning are due to having a LOT of parameters we are trying to estimate relative to the number of observations we have. Dealing with lack of convergence in fitting maximum likelihood models is beyond what we can cover here, but I encourage you to explore that on your own!</span></span>
-<span id="cb156-710"><a href="#cb156-710" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb156-711"><a href="#cb156-711" aria-hidden="true" tabindex="-1"></a><span class="fu">### Other Methods for Assessing Fit {.unnumbered}</span></span>
-<span id="cb156-712"><a href="#cb156-712" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb156-713"><a href="#cb156-713" aria-hidden="true" tabindex="-1"></a>Using AIC values for evaluating and expressing how well a particular model fits a dataset has some critical limitations:</span>
-<span id="cb156-714"><a href="#cb156-714" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb156-715"><a href="#cb156-715" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>While AIC provides an estimate of the *relative* fit of various models, it does not say anything about the absolute fit</span>
-<span id="cb156-716"><a href="#cb156-716" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>AIC does not address the amount of variance in a response variable explained by a model</span>
-<span id="cb156-717"><a href="#cb156-717" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>AIC is not comparable across datasets, and so fit is not generalizeable</span>
-<span id="cb156-718"><a href="#cb156-718" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb156-719"><a href="#cb156-719" aria-hidden="true" tabindex="-1"></a>Nakagawa &amp; Schielzeth (2013) and Nakagawa et al. (2017) have published a simple and effective method for calculating a type of *pseudo-*$R^2$ (or coefficient of determination) value for generalized linear mixed models, and because linear mixed models are a specific type of GLMM, this method can be used with LMMs as well.</span>
-<span id="cb156-720"><a href="#cb156-720" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb156-721"><a href="#cb156-721" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; See:</span></span>
-<span id="cb156-722"><a href="#cb156-722" aria-hidden="true" tabindex="-1"></a><span class="at">&gt;</span></span>
-<span id="cb156-723"><a href="#cb156-723" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; - Nakagawa, S., &amp; Schielzeth, H. (2013). A general and simple method for obtaining R2 from generalized linear mixed-effects models. *Methods in Ecology and Evolution*, 4, 133--142.</span></span>
-<span id="cb156-724"><a href="#cb156-724" aria-hidden="true" tabindex="-1"></a><span class="at">&gt;</span></span>
-<span id="cb156-725"><a href="#cb156-725" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; - Nakagawa, S., Johnson, P. C. D., &amp; Schielzeth, H. (2017). The coefficient of determination R2 and intra-class correlation coefficient from generalized linear mixed-effects models revisited and expanded. *Journal of the Royal Society Interface*, 14, article 20170213.</span></span>
-<span id="cb156-726"><a href="#cb156-726" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb156-727"><a href="#cb156-727" aria-hidden="true" tabindex="-1"></a>In these papers, two measures are proposed for characterizing the amount of "variance explained" for mixed effects models:</span>
-<span id="cb156-728"><a href="#cb156-728" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb156-729"><a href="#cb156-729" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**$marginal\ R2GLMM(m)^2$** is the amount of variance explained by the model on the latent (or link) scale rather than the original scale. We can interpret this as a measure of the variance explained by only the fixed effects in the model.</span>
-<span id="cb156-730"><a href="#cb156-730" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**$conditional\ R2GLMM(c)^2$** is the amount of variance explained by both fixed and random effects, i.e., by the entire model.</span>
-<span id="cb156-731"><a href="#cb156-731" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb156-732"><a href="#cb156-732" aria-hidden="true" tabindex="-1"></a>There is an easy way to calculate these two R2GLMM values in ***R*** using the <span class="in">`r.squaredGLMM()`</span> function in the package {MuMIn} or the function <span class="in">`r2_nakagawa()`</span> from the {performance} package.</span>
-<span id="cb156-733"><a href="#cb156-733" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb156-734"><a href="#cb156-734" aria-hidden="true" tabindex="-1"></a><span class="fu">### CHALLENGE {.unnumbered}</span></span>
-<span id="cb156-735"><a href="#cb156-735" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb156-736"><a href="#cb156-736" aria-hidden="true" tabindex="-1"></a>Compare the full, the two reduced, and the null mixed effects models from our random slope exercise using an information theoretic approach. Is the best model (full) the one that explains the greatest amount of variance in the dataset? In the full model, how much more of the total variance is explained by the random effects than by the fixed effects alone?</span>
-<span id="cb156-737"><a href="#cb156-737" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb156-740"><a href="#cb156-740" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb156-741"><a href="#cb156-741" aria-hidden="true" tabindex="-1"></a><span class="co">#| message: false</span></span>
-<span id="cb156-742"><a href="#cb156-742" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
-<span id="cb156-743"><a href="#cb156-743" aria-hidden="true" tabindex="-1"></a>aic_table <span class="co"># re-print the AIC table</span></span>
-<span id="cb156-744"><a href="#cb156-744" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb156-745"><a href="#cb156-745" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(MuMIn)</span>
-<span id="cb156-746"><a href="#cb156-746" aria-hidden="true" tabindex="-1"></a><span class="fu">r.squaredGLMM</span>(full)</span>
-<span id="cb156-747"><a href="#cb156-747" aria-hidden="true" tabindex="-1"></a><span class="fu">r.squaredGLMM</span>(minusRC)</span>
-<span id="cb156-748"><a href="#cb156-748" aria-hidden="true" tabindex="-1"></a><span class="fu">r.squaredGLMM</span>(minusP)</span>
-<span id="cb156-749"><a href="#cb156-749" aria-hidden="true" tabindex="-1"></a><span class="fu">r.squaredGLMM</span>(null)</span>
-<span id="cb156-750"><a href="#cb156-750" aria-hidden="true" tabindex="-1"></a><span class="fu">detach</span>(package<span class="sc">:</span>MuMIn)</span>
-<span id="cb156-751"><a href="#cb156-751" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb156-752"><a href="#cb156-752" aria-hidden="true" tabindex="-1"></a><span class="co"># or</span></span>
-<span id="cb156-753"><a href="#cb156-753" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(performance)</span>
-<span id="cb156-754"><a href="#cb156-754" aria-hidden="true" tabindex="-1"></a><span class="fu">r2_nakagawa</span>(full)</span>
-<span id="cb156-755"><a href="#cb156-755" aria-hidden="true" tabindex="-1"></a><span class="fu">r2_nakagawa</span>(minusRC)</span>
-<span id="cb156-756"><a href="#cb156-756" aria-hidden="true" tabindex="-1"></a><span class="fu">r2_nakagawa</span>(minusP)</span>
-<span id="cb156-757"><a href="#cb156-757" aria-hidden="true" tabindex="-1"></a><span class="fu">r2_nakagawa</span>(null)</span>
-<span id="cb156-758"><a href="#cb156-758" aria-hidden="true" tabindex="-1"></a><span class="fu">detach</span>(package<span class="sc">:</span>performance)</span>
-<span id="cb156-759"><a href="#cb156-759" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb156-760"><a href="#cb156-760" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb156-761"><a href="#cb156-761" aria-hidden="true" tabindex="-1"></a><span class="fu">## Generalized LMMs</span></span>
-<span id="cb156-762"><a href="#cb156-762" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb156-763"><a href="#cb156-763" aria-hidden="true" tabindex="-1"></a>Just as we extended our standard linear modeling approach to include non-normally distributed response variables/error structures, so too can we extend our mixed effects modeling to such situations. This is referred to as **generalized linear mixed modeling, or GLMM**. There are several ***R*** packages we can use to do this under either a maximum likelihood (e.g., {lme4}, {glmmML}, the no-longer-maintained {glmmboot}) or Bayesian (e.g., {MCMCglmm}, {glmmTMB}, {brms}) framework. The methods for generating maximum likelihood and Bayesian parameter estimates under GLMMs are more complicated, but conceptually, the process is an extension of what we have talked about already. Below, we explore such a scenario.</span>
-<span id="cb156-764"><a href="#cb156-764" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb156-765"><a href="#cb156-765" aria-hidden="true" tabindex="-1"></a><span class="fu">### CHALLENGE {.unnumbered}</span></span>
-<span id="cb156-766"><a href="#cb156-766" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb156-767"><a href="#cb156-767" aria-hidden="true" tabindex="-1"></a>Boden-Parry et al. (2020) studied the effect of food type and abundance on the begging and food sharing behavior of otters in captivity. Here, we work with the dataset provided in the article below and replicate one of their models.</span>
-<span id="cb156-768"><a href="#cb156-768" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb156-769"><a href="#cb156-769" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Bowden-Parry, M.; Postma, E.; and Boogert, N.J. (2020). Effects of food type and abundance on begging and sharing in Asian small-clawed otters (*Aonyx cinereus*). *PeerJ* 8: e10369.</span>
-<span id="cb156-770"><a href="#cb156-770" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb156-771"><a href="#cb156-771" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Step 1  {.unnumbered}</span></span>
-<span id="cb156-772"><a href="#cb156-772" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb156-773"><a href="#cb156-773" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Read in the data set and look at the variables included.</span>
-<span id="cb156-774"><a href="#cb156-774" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb156-777"><a href="#cb156-777" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb156-778"><a href="#cb156-778" aria-hidden="true" tabindex="-1"></a><span class="co">#| message: false</span></span>
-<span id="cb156-779"><a href="#cb156-779" aria-hidden="true" tabindex="-1"></a>f <span class="ot">&lt;-</span> <span class="st">"https://raw.githubusercontent.com/difiore/ada-datasets/main/Bowden-ParryOtterdata.csv"</span></span>
-<span id="cb156-780"><a href="#cb156-780" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(f, <span class="at">col_names =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb156-781"><a href="#cb156-781" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(d)</span>
-<span id="cb156-782"><a href="#cb156-782" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb156-783"><a href="#cb156-783" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb156-784"><a href="#cb156-784" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Step 2 {.unnumbered}</span></span>
-<span id="cb156-785"><a href="#cb156-785" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb156-786"><a href="#cb156-786" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Create a new random variable, **trial**, that joins together the variables **zoo** and **trialorder**. This will be used as a random effect.</span>
-<span id="cb156-787"><a href="#cb156-787" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Create a new random variable, **obs**, that is simply an observation number. This will also be used as a random effect.</span>
-<span id="cb156-788"><a href="#cb156-788" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb156-789"><a href="#cb156-789" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; **HINT:** Check out the useful function </span><span class="in">`row_to_column_id()`</span></span>
-<span id="cb156-790"><a href="#cb156-790" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb156-791"><a href="#cb156-791" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Rename the variable **TotalSharebothharasspro** as **Shared**.</span>
-<span id="cb156-792"><a href="#cb156-792" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Rename the variable **begreceived** as **BegRec**.</span>
-<span id="cb156-793"><a href="#cb156-793" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb156-796"><a href="#cb156-796" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb156-797"><a href="#cb156-797" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-fold: true</span></span>
-<span id="cb156-798"><a href="#cb156-798" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-summary: "Show Code"</span></span>
-<span id="cb156-799"><a href="#cb156-799" aria-hidden="true" tabindex="-1"></a><span class="co">#| attr.output: '.details summary="Show Output"'</span></span>
-<span id="cb156-800"><a href="#cb156-800" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> d <span class="sc">|&gt;</span></span>
-<span id="cb156-801"><a href="#cb156-801" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">trial =</span> <span class="fu">paste0</span>(zoo, trialorder))</span>
-<span id="cb156-802"><a href="#cb156-802" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> <span class="fu">rowid_to_column</span>(d, <span class="at">var =</span> <span class="st">"obs"</span>)</span>
-<span id="cb156-803"><a href="#cb156-803" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> d <span class="sc">|&gt;</span></span>
-<span id="cb156-804"><a href="#cb156-804" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">Shared =</span> TotalSharebothharasspro,</span>
-<span id="cb156-805"><a href="#cb156-805" aria-hidden="true" tabindex="-1"></a>         <span class="at">BegRec =</span> begreceived)</span>
-<span id="cb156-806"><a href="#cb156-806" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb156-807"><a href="#cb156-807" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb156-808"><a href="#cb156-808" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Step 3 {.unnumbered}</span></span>
-<span id="cb156-809"><a href="#cb156-809" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb156-810"><a href="#cb156-810" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Plot total food transferred (**Shared**) in relation to begging received (**BegReceived**).</span>
-<span id="cb156-811"><a href="#cb156-811" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb156-814"><a href="#cb156-814" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb156-815"><a href="#cb156-815" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-fold: true</span></span>
-<span id="cb156-816"><a href="#cb156-816" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-summary: "Show Code"</span></span>
-<span id="cb156-817"><a href="#cb156-817" aria-hidden="true" tabindex="-1"></a><span class="co">#| attr.output: '.details summary="Show Output"'</span></span>
-<span id="cb156-818"><a href="#cb156-818" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(d, <span class="fu">aes</span>(<span class="at">x =</span> BegRec, <span class="at">y =</span> Shared)) <span class="sc">+</span></span>
-<span id="cb156-819"><a href="#cb156-819" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>() <span class="sc">+</span></span>
-<span id="cb156-820"><a href="#cb156-820" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Begging Received (total number)"</span>) <span class="sc">+</span></span>
-<span id="cb156-821"><a href="#cb156-821" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"Food Transfers (total number)"</span>)<span class="sc">+</span></span>
-<span id="cb156-822"><a href="#cb156-822" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">12</span>))</span>
-<span id="cb156-823"><a href="#cb156-823" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb156-824"><a href="#cb156-824" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb156-825"><a href="#cb156-825" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Step 4 {.unnumbered}</span></span>
-<span id="cb156-826"><a href="#cb156-826" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb156-827"><a href="#cb156-827" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Does the amount of begging received influence sharing frequency?</span>
-<span id="cb156-828"><a href="#cb156-828" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb156-829"><a href="#cb156-829" aria-hidden="true" tabindex="-1"></a>To test this, the researchers used a GLMM with Poisson error distribution to examine how the number of "food transfers" between otters (**Shared**) in trials was related to the total number of instances of "begging received" (**BegRec**) as a fixed effect.</span>
-<span id="cb156-830"><a href="#cb156-830" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb156-831"><a href="#cb156-831" aria-hidden="true" tabindex="-1"></a>We also need to consider that the response variable, **Shared**, is implicitly expressed as a *rate*, i.e., it represents a count of the number of events that occured in over a particular length of time (the variable, **trial duration**). This allows the observation time to vary among records in the dataset. Our regression model, then, needs to contain time on the right-hand side of the regression formula in some way to acknowledge that counts are in some way dependent on the time over which they are collected (i.e., counts are expected to only increase with time).</span>
-<span id="cb156-832"><a href="#cb156-832" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb156-833"><a href="#cb156-833" aria-hidden="true" tabindex="-1"></a>Additionally, recall that, in Poisson regression, given that our response variable is a *count* of events that occur within a given amount of time, what we are actually modeling as a function of our predictors is *log(count)*... so we need to include *log(time)* as what known as an *offset term* on the right-hand side of the formula.</span>
-<span id="cb156-834"><a href="#cb156-834" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb156-835"><a href="#cb156-835" aria-hidden="true" tabindex="-1"></a>In ***R***, we use the function <span class="in">`offset()`</span> to indicate this in our regression formula. The offset term is, essentially, modeled as an additional fixed effect though we will not generate a coefficient for it.</span>
-<span id="cb156-836"><a href="#cb156-836" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb156-837"><a href="#cb156-837" aria-hidden="true" tabindex="-1"></a>$$log(count) \sim offset(log(time))\ +\ ...\ other\ predictors$$</span>
-<span id="cb156-838"><a href="#cb156-838" aria-hidden="true" tabindex="-1"></a>Finally, the researchers included three random effects in their model: otter ID, trial, and an observation-level random effect. The first of these appears in the author's data frame, and latter two are our variables **trial** and **obs**.</span>
-<span id="cb156-839"><a href="#cb156-839" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb156-840"><a href="#cb156-840" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; **NOTE**: It does not entirely make sense to me to include the third of these random effects as there is no variance associated with this term, but to replicate the researchers' model, we include it. Conceptually, it might be defensible to do so because there are lots of unmeasured variables that could vary between observations and could impact the response that we are not including in our model (e.g., time of day when sampling is done or proximity in time of when the animals were sampled relative to visitor density at the zoo) and we want to account for this additional source of random variation.</span></span>
-<span id="cb156-841"><a href="#cb156-841" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb156-844"><a href="#cb156-844" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb156-845"><a href="#cb156-845" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-fold: true</span></span>
-<span id="cb156-846"><a href="#cb156-846" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-summary: "Show Code"</span></span>
-<span id="cb156-847"><a href="#cb156-847" aria-hidden="true" tabindex="-1"></a><span class="co">#| attr.output: '.details summary="Show Output"'</span></span>
-<span id="cb156-848"><a href="#cb156-848" aria-hidden="true" tabindex="-1"></a>m1 <span class="ot">&lt;-</span> <span class="fu">glmer</span>(</span>
-<span id="cb156-849"><a href="#cb156-849" aria-hidden="true" tabindex="-1"></a>  Shared <span class="sc">~</span></span>
-<span id="cb156-850"><a href="#cb156-850" aria-hidden="true" tabindex="-1"></a>    BegRec <span class="sc">+</span></span>
-<span id="cb156-851"><a href="#cb156-851" aria-hidden="true" tabindex="-1"></a>    <span class="fu">offset</span>(<span class="fu">log</span>(trialduration<span class="sc">/</span><span class="dv">60</span>)) <span class="sc">+</span></span>
-<span id="cb156-852"><a href="#cb156-852" aria-hidden="true" tabindex="-1"></a>    (<span class="dv">1</span><span class="sc">|</span>ID) <span class="sc">+</span></span>
-<span id="cb156-853"><a href="#cb156-853" aria-hidden="true" tabindex="-1"></a>    (<span class="dv">1</span><span class="sc">|</span>trial) <span class="sc">+</span></span>
-<span id="cb156-854"><a href="#cb156-854" aria-hidden="true" tabindex="-1"></a>    (<span class="dv">1</span><span class="sc">|</span>obs),</span>
-<span id="cb156-855"><a href="#cb156-855" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> d,</span>
-<span id="cb156-856"><a href="#cb156-856" aria-hidden="true" tabindex="-1"></a>  <span class="at">family =</span> <span class="fu">poisson</span>(<span class="at">link =</span> <span class="st">"log"</span>))</span>
-<span id="cb156-857"><a href="#cb156-857" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(m1)</span>
-<span id="cb156-858"><a href="#cb156-858" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb156-859"><a href="#cb156-859" aria-hidden="true" tabindex="-1"></a>m2 <span class="ot">&lt;-</span> <span class="fu">glmer</span>(</span>
-<span id="cb156-860"><a href="#cb156-860" aria-hidden="true" tabindex="-1"></a>  Shared <span class="sc">~</span></span>
-<span id="cb156-861"><a href="#cb156-861" aria-hidden="true" tabindex="-1"></a>    <span class="fu">offset</span>(<span class="fu">log</span>(trialduration<span class="sc">/</span><span class="dv">60</span>)) <span class="sc">+</span></span>
-<span id="cb156-862"><a href="#cb156-862" aria-hidden="true" tabindex="-1"></a>    (<span class="dv">1</span><span class="sc">|</span>ID) <span class="sc">+</span></span>
-<span id="cb156-863"><a href="#cb156-863" aria-hidden="true" tabindex="-1"></a>    (<span class="dv">1</span><span class="sc">|</span>trial) <span class="sc">+</span></span>
-<span id="cb156-864"><a href="#cb156-864" aria-hidden="true" tabindex="-1"></a>    (<span class="dv">1</span><span class="sc">|</span>obs),</span>
-<span id="cb156-865"><a href="#cb156-865" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> d,</span>
-<span id="cb156-866"><a href="#cb156-866" aria-hidden="true" tabindex="-1"></a>  <span class="at">family =</span> <span class="fu">poisson</span>(<span class="at">link =</span> log))</span>
-<span id="cb156-867"><a href="#cb156-867" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb156-868"><a href="#cb156-868" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(m1, m2, <span class="at">test =</span> <span class="st">"F"</span>)</span>
-<span id="cb156-869"><a href="#cb156-869" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb156-870"><a href="#cb156-870" aria-hidden="true" tabindex="-1"></a><span class="co"># or</span></span>
-<span id="cb156-871"><a href="#cb156-871" aria-hidden="true" tabindex="-1"></a>lmtest<span class="sc">::</span><span class="fu">lrtest</span>(m1, m2)</span>
-<span id="cb156-872"><a href="#cb156-872" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb156-873"><a href="#cb156-873" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb156-874"><a href="#cb156-874" aria-hidden="true" tabindex="-1"></a>Looking at these results, we would conclude that the model with **BegRec** has a lower AIC, higher log likelihood, lower deviance than the model without **BegRec**, thus variance in the food sharing is associated with the amount of begging received. The coefficent for **BegRec** (~0.09) is positive, indicating that sharing increases with the amount of begging received.</span>
-<span id="cb156-875"><a href="#cb156-875" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb156-876"><a href="#cb156-876" aria-hidden="true" tabindex="-1"></a>Again, the {mixedup} package allows us to neatly extract summary information from mixed effects models.</span>
-<span id="cb156-877"><a href="#cb156-877" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb156-880"><a href="#cb156-880" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb156-881"><a href="#cb156-881" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
-<span id="cb156-882"><a href="#cb156-882" aria-hidden="true" tabindex="-1"></a>mixedup<span class="sc">::</span><span class="fu">summarize_model</span>(m1)</span>
-<span id="cb156-883"><a href="#cb156-883" aria-hidden="true" tabindex="-1"></a>mixedup<span class="sc">::</span><span class="fu">extract_fixed_effects</span>(m1)</span>
-<span id="cb156-884"><a href="#cb156-884" aria-hidden="true" tabindex="-1"></a>mixedup<span class="sc">::</span><span class="fu">extract_random_coefficients</span>(m1) <span class="sc">|&gt;</span> <span class="fu">head</span>()</span>
-<span id="cb156-885"><a href="#cb156-885" aria-hidden="true" tabindex="-1"></a>mixedup<span class="sc">::</span><span class="fu">extract_random_effects</span>(m1) <span class="sc">|&gt;</span> <span class="fu">head</span>()</span>
-<span id="cb156-886"><a href="#cb156-886" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb156-887"><a href="#cb156-887" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb156-888"><a href="#cb156-888" aria-hidden="true" tabindex="-1"></a>The <span class="in">`glmmTMB()`</span> function from {glmmTMB} can also be used for mixed effects modeling and gives very similar results...</span>
-<span id="cb156-889"><a href="#cb156-889" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb156-892"><a href="#cb156-892" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb156-893"><a href="#cb156-893" aria-hidden="true" tabindex="-1"></a>m3 <span class="ot">&lt;-</span> <span class="fu">glmmTMB</span>(</span>
-<span id="cb156-894"><a href="#cb156-894" aria-hidden="true" tabindex="-1"></a>  Shared <span class="sc">~</span></span>
-<span id="cb156-895"><a href="#cb156-895" aria-hidden="true" tabindex="-1"></a>    BegRec <span class="sc">+</span></span>
-<span id="cb156-896"><a href="#cb156-896" aria-hidden="true" tabindex="-1"></a>    <span class="fu">offset</span>(<span class="fu">log</span>(trialduration<span class="sc">/</span><span class="dv">60</span>)) <span class="sc">+</span></span>
-<span id="cb156-897"><a href="#cb156-897" aria-hidden="true" tabindex="-1"></a>    (<span class="dv">1</span><span class="sc">|</span>ID) <span class="sc">+</span></span>
-<span id="cb156-898"><a href="#cb156-898" aria-hidden="true" tabindex="-1"></a>    (<span class="dv">1</span><span class="sc">|</span>trial) <span class="sc">+</span></span>
-<span id="cb156-899"><a href="#cb156-899" aria-hidden="true" tabindex="-1"></a>    (<span class="dv">1</span><span class="sc">|</span>obs),</span>
-<span id="cb156-900"><a href="#cb156-900" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> d,</span>
-<span id="cb156-901"><a href="#cb156-901" aria-hidden="true" tabindex="-1"></a>  <span class="at">family =</span> <span class="fu">poisson</span>(<span class="at">link =</span> <span class="st">"log"</span>))</span>
-<span id="cb156-902"><a href="#cb156-902" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb156-903"><a href="#cb156-903" aria-hidden="true" tabindex="-1"></a>mixedup<span class="sc">::</span><span class="fu">summarise_model</span>(m3)</span>
-<span id="cb156-904"><a href="#cb156-904" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb156-905"><a href="#cb156-905" aria-hidden="true" tabindex="-1"></a>m4 <span class="ot">&lt;-</span> <span class="fu">glmmTMB</span>(</span>
-<span id="cb156-906"><a href="#cb156-906" aria-hidden="true" tabindex="-1"></a>  Shared <span class="sc">~</span></span>
-<span id="cb156-907"><a href="#cb156-907" aria-hidden="true" tabindex="-1"></a>    <span class="fu">offset</span>(<span class="fu">log</span>(trialduration<span class="sc">/</span><span class="dv">60</span>)) <span class="sc">+</span></span>
-<span id="cb156-908"><a href="#cb156-908" aria-hidden="true" tabindex="-1"></a>    (<span class="dv">1</span><span class="sc">|</span>ID) <span class="sc">+</span></span>
-<span id="cb156-909"><a href="#cb156-909" aria-hidden="true" tabindex="-1"></a>    (<span class="dv">1</span><span class="sc">|</span>trial) <span class="sc">+</span></span>
-<span id="cb156-910"><a href="#cb156-910" aria-hidden="true" tabindex="-1"></a>    (<span class="dv">1</span><span class="sc">|</span>obs),</span>
-<span id="cb156-911"><a href="#cb156-911" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> d,</span>
-<span id="cb156-912"><a href="#cb156-912" aria-hidden="true" tabindex="-1"></a>  <span class="at">family =</span> <span class="fu">poisson</span>(<span class="at">link =</span> <span class="st">"log"</span>))</span>
-<span id="cb156-913"><a href="#cb156-913" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb156-914"><a href="#cb156-914" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(m3, m4, <span class="at">test =</span> <span class="st">"F"</span>)</span>
-<span id="cb156-915"><a href="#cb156-915" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb156-916"><a href="#cb156-916" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb156-917"><a href="#cb156-917" aria-hidden="true" tabindex="-1"></a>Finally, the {MASS} package provides yet another function, <span class="in">`glmmPQL()`</span>, that can be used for mixed effects modeling. The structure for specifying the model is different than we have used before, with a list of the random effects being presented as a separate argument from the model including the fixed effects. Note the absence of **obs** as a random effect in the model below... including it causes the model to fail to run due to singular convergence, i.e., the variance in that random effect variable is essentially zero.</span>
-<span id="cb156-918"><a href="#cb156-918" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb156-921"><a href="#cb156-921" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb156-922"><a href="#cb156-922" aria-hidden="true" tabindex="-1"></a><span class="co">#| message: false</span></span>
-<span id="cb156-923"><a href="#cb156-923" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
-<span id="cb156-924"><a href="#cb156-924" aria-hidden="true" tabindex="-1"></a>m5 <span class="ot">&lt;-</span> MASS<span class="sc">::</span><span class="fu">glmmPQL</span>(</span>
-<span id="cb156-925"><a href="#cb156-925" aria-hidden="true" tabindex="-1"></a>  Shared <span class="sc">~</span></span>
-<span id="cb156-926"><a href="#cb156-926" aria-hidden="true" tabindex="-1"></a>    BegRec <span class="sc">+</span></span>
-<span id="cb156-927"><a href="#cb156-927" aria-hidden="true" tabindex="-1"></a>    <span class="fu">offset</span>(<span class="fu">log</span>(trialduration<span class="sc">/</span><span class="dv">60</span>)),</span>
-<span id="cb156-928"><a href="#cb156-928" aria-hidden="true" tabindex="-1"></a>  <span class="at">random =</span> <span class="fu">list</span>(<span class="at">ID =</span> <span class="sc">~</span> <span class="dv">1</span>, <span class="at">trial =</span> <span class="sc">~</span> <span class="dv">1</span>),</span>
-<span id="cb156-929"><a href="#cb156-929" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> d,</span>
-<span id="cb156-930"><a href="#cb156-930" aria-hidden="true" tabindex="-1"></a>  <span class="at">family =</span> <span class="fu">poisson</span>(<span class="at">link =</span> <span class="st">"log"</span>))</span>
-<span id="cb156-931"><a href="#cb156-931" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb156-932"><a href="#cb156-932" aria-hidden="true" tabindex="-1"></a>mixedup<span class="sc">::</span><span class="fu">summarise_model</span>(m5)</span>
-<span id="cb156-933"><a href="#cb156-933" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb156-934"><a href="#cb156-934" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb156-935"><a href="#cb156-935" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; **NOTE**: The coefficient values estimated by </span><span class="in">`glmmPQL()`</span><span class="at"> are similar to, but not the same, as those estimated by </span><span class="in">`glmer()`</span><span class="at"> and </span><span class="in">`glmmTMB()`</span><span class="at">.</span></span>
-<span id="cb156-936"><a href="#cb156-936" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb156-939"><a href="#cb156-939" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb156-940"><a href="#cb156-940" aria-hidden="true" tabindex="-1"></a><span class="co">#| include: false</span></span>
-<span id="cb156-941"><a href="#cb156-941" aria-hidden="true" tabindex="-1"></a><span class="fu">detach</span>(package<span class="sc">:</span>DHARMa)</span>
-<span id="cb156-942"><a href="#cb156-942" aria-hidden="true" tabindex="-1"></a><span class="fu">detach</span>(package<span class="sc">:</span>redres)</span>
-<span id="cb156-943"><a href="#cb156-943" aria-hidden="true" tabindex="-1"></a><span class="fu">detach</span>(package<span class="sc">:</span>glmmTMB)</span>
-<span id="cb156-944"><a href="#cb156-944" aria-hidden="true" tabindex="-1"></a><span class="fu">detach</span>(package<span class="sc">:</span>effects)</span>
-<span id="cb156-945"><a href="#cb156-945" aria-hidden="true" tabindex="-1"></a><span class="fu">detach</span>(package<span class="sc">:</span>sjPlot)</span>
-<span id="cb156-946"><a href="#cb156-946" aria-hidden="true" tabindex="-1"></a><span class="fu">detach</span>(package<span class="sc">:</span>lme4)</span>
-<span id="cb156-947"><a href="#cb156-947" aria-hidden="true" tabindex="-1"></a><span class="fu">detach</span>(package<span class="sc">:</span>tidyverse)</span>
-<span id="cb156-948"><a href="#cb156-948" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb156-949"><a href="#cb156-949" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb156-950"><a href="#cb156-950" aria-hidden="true" tabindex="-1"></a>---</span>
-<span id="cb156-951"><a href="#cb156-951" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb156-952"><a href="#cb156-952" aria-hidden="true" tabindex="-1"></a><span class="fu">## Concept Review {.unnumbered}</span></span>
-<span id="cb156-953"><a href="#cb156-953" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb156-954"><a href="#cb156-954" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>"Mixed" modeling extends general and generalized linear modeling to consider cases where we have additional "random" factors that are another source of possible variation in our response variable</span>
-<span id="cb156-955"><a href="#cb156-955" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>The approach allows us to estimate either different intercepts or different slopes *and* intercepts for each level of the random factor</span>
-<span id="cb156-956"><a href="#cb156-956" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>As in generalized linear modeling, likelihood ratio tests and information criteria approaches can be used to compare the explanatory power of different models</span>
-<span id="cb156-957"><a href="#cb156-957" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Though we do not address it in this class, regression modeling can be extended further to consider NONLINEAR relationships among predictor variables</span>
-<span id="cb156-958"><a href="#cb156-958" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>The ***R*** packages {lme4} and {nlme} include functions for performing for "nonlinear mixed effects modeling"</span>
-<span id="cb156-959"><a href="#cb156-959" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb156-960"><a href="#cb156-960" aria-hidden="true" tabindex="-1"></a>The website <span class="co">[</span><span class="ot">Mixed Models with R</span><span class="co">](https://m-clark.github.io/mixed-models-with-R/)</span> is great resource for information about mixed effects modeling.</span>
+<span id="cb156-544"><a href="#cb156-544" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb156-545"><a href="#cb156-545" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; **NOTE:** In this particular example, we are using the term "slopes" loosely, because our predictors (reprocondition and parity) are categorical, not continuous. So, our regression coefficients for these fixed predictors are not "slopes" *per se* but rather differences in average grooming between levels of the predictor (or, more specifically, between each level and whatever level we set as baseline).</span></span>
+<span id="cb156-546"><a href="#cb156-546" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb156-549"><a href="#cb156-549" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb156-550"><a href="#cb156-550" aria-hidden="true" tabindex="-1"></a><span class="co">#| message: false</span></span>
+<span id="cb156-551"><a href="#cb156-551" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
+<span id="cb156-552"><a href="#cb156-552" aria-hidden="true" tabindex="-1"></a>m <span class="ot">&lt;-</span> <span class="fu">lmer</span>(<span class="at">data =</span> d,</span>
+<span id="cb156-553"><a href="#cb156-553" aria-hidden="true" tabindex="-1"></a>          duration <span class="sc">~</span></span>
+<span id="cb156-554"><a href="#cb156-554" aria-hidden="true" tabindex="-1"></a>            reprocondition <span class="sc">+</span></span>
+<span id="cb156-555"><a href="#cb156-555" aria-hidden="true" tabindex="-1"></a>            parity <span class="sc">+</span> </span>
+<span id="cb156-556"><a href="#cb156-556" aria-hidden="true" tabindex="-1"></a>            (<span class="dv">1</span> <span class="sc">+</span> reprocondition <span class="sc">|</span> subject) <span class="sc">+</span></span>
+<span id="cb156-557"><a href="#cb156-557" aria-hidden="true" tabindex="-1"></a>            (<span class="dv">1</span> <span class="sc">+</span> parity <span class="sc">|</span> subject),</span>
+<span id="cb156-558"><a href="#cb156-558" aria-hidden="true" tabindex="-1"></a>          <span class="at">REML =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb156-559"><a href="#cb156-559" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(m)</span>
+<span id="cb156-560"><a href="#cb156-560" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb156-561"><a href="#cb156-561" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb156-562"><a href="#cb156-562" aria-hidden="true" tabindex="-1"></a>Here, we have changed the random effects portion of the formula, which now looks a little more complicated. The notation "(1 + reprocondition | subject)" tells the model to estimate differing baseline levels of grooming duration (the intercept, represented by 1) as well as differing responses to the fixed factor in question, which is reproductive condition in this case. We do the same for parity.</span>
+<span id="cb156-563"><a href="#cb156-563" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb156-564"><a href="#cb156-564" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; **NOTE**: It is equivalent to use just "(reprocondition | subject)" rather than "(1 + reprocondition | subject)" to specify that we want our analysis to estimate both an intercept and slope coefficient for each subject. We use the latter to be explicit, though, as we could used "(0 + reprocondition | subject)" to return a single intercept but different slopes for each subject, which is sometimes referred to as a "fixed intercept" model.</span></span>
+<span id="cb156-565"><a href="#cb156-565" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb156-566"><a href="#cb156-566" aria-hidden="true" tabindex="-1"></a>Looking at the coefficients of our new model, we see the effects. Each female now has a different intercept **and** a different coefficient for the relationship between grooming duration and both reproductive condition and parity.</span>
+<span id="cb156-567"><a href="#cb156-567" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb156-570"><a href="#cb156-570" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb156-571"><a href="#cb156-571" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
+<span id="cb156-572"><a href="#cb156-572" aria-hidden="true" tabindex="-1"></a><span class="fu">coefficients</span>(m)</span>
+<span id="cb156-573"><a href="#cb156-573" aria-hidden="true" tabindex="-1"></a><span class="fu">confint</span>(m, <span class="at">level =</span> <span class="fl">0.95</span>, <span class="at">method =</span> <span class="st">"boot"</span>)</span>
+<span id="cb156-574"><a href="#cb156-574" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb156-575"><a href="#cb156-575" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb156-576"><a href="#cb156-576" aria-hidden="true" tabindex="-1"></a>Finally, effects plots of how the expected amount of grooming received varies with the fixed effects (**reprocondition** and **parity**) under our new random slope model is the same as that under the random intercept model.</span>
+<span id="cb156-577"><a href="#cb156-577" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb156-580"><a href="#cb156-580" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb156-581"><a href="#cb156-581" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">predictorEffects</span>(m, <span class="at">partial.residuals =</span> <span class="cn">TRUE</span>))</span>
+<span id="cb156-582"><a href="#cb156-582" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb156-583"><a href="#cb156-583" aria-hidden="true" tabindex="-1"></a><span class="co"># or</span></span>
+<span id="cb156-584"><a href="#cb156-584" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb156-585"><a href="#cb156-585" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_model</span>(m, <span class="at">type =</span> <span class="st">"eff"</span>, <span class="at">term =</span> <span class="st">"reprocondition"</span>)</span>
+<span id="cb156-586"><a href="#cb156-586" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_model</span>(m, <span class="at">type =</span> <span class="st">"eff"</span>, <span class="at">term =</span> <span class="st">"parity"</span>)</span>
+<span id="cb156-587"><a href="#cb156-587" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb156-588"><a href="#cb156-588" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb156-591"><a href="#cb156-591" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb156-592"><a href="#cb156-592" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
+<span id="cb156-593"><a href="#cb156-593" aria-hidden="true" tabindex="-1"></a>mixedup<span class="sc">::</span><span class="fu">summarize_model</span>(m)</span>
+<span id="cb156-594"><a href="#cb156-594" aria-hidden="true" tabindex="-1"></a>mixedup<span class="sc">::</span><span class="fu">extract_fixed_effects</span>(m)</span>
+<span id="cb156-595"><a href="#cb156-595" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb156-596"><a href="#cb156-596" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb156-597"><a href="#cb156-597" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; **NOTE**: Here, running the functions </span><span class="in">`extract_random_coefficients()`</span><span class="at"> and </span><span class="in">`extract_random_effect()`</span><span class="at"> from {mixedup} would throw an error because we would be generating two (Intercept) terms per random effect level, one for each of two predictors.</span></span>
+<span id="cb156-598"><a href="#cb156-598" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb156-599"><a href="#cb156-599" aria-hidden="true" tabindex="-1"></a><span class="fu">### Residual Analysis</span></span>
+<span id="cb156-600"><a href="#cb156-600" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb156-601"><a href="#cb156-601" aria-hidden="true" tabindex="-1"></a>Once again, we can use the {redres} or {DHARMa} packages to do some visual residual analysis...</span>
+<span id="cb156-602"><a href="#cb156-602" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb156-603"><a href="#cb156-603" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Using {redres}</span></span>
+<span id="cb156-604"><a href="#cb156-604" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb156-607"><a href="#cb156-607" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb156-608"><a href="#cb156-608" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_resqq</span>(m)</span>
+<span id="cb156-609"><a href="#cb156-609" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_redres</span>(m)</span>
+<span id="cb156-610"><a href="#cb156-610" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_redres</span>(m, <span class="at">xvar =</span> <span class="st">"subject"</span>)</span>
+<span id="cb156-611"><a href="#cb156-611" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb156-612"><a href="#cb156-612" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb156-613"><a href="#cb156-613" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; **NOTE**: Here, running the functions </span><span class="in">`plot_ranef()`</span><span class="at"> would throw an error because we would be generating two (Intercept) terms per random effect level, one for each of two predictors. If we wanted, we could run the </span><span class="in">`ranef()`</span><span class="at"> function on the model, look at the </span><span class="in">`$subject`</span><span class="at"> dataframe, and pull out the columns we wanted to plot against normal quantiles using </span><span class="in">`qqPlot()`</span><span class="at"> or </span><span class="in">`qqnorm()`</span><span class="at">.</span></span>
+<span id="cb156-614"><a href="#cb156-614" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb156-615"><a href="#cb156-615" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Using {DHARMa}</span></span>
+<span id="cb156-616"><a href="#cb156-616" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb156-619"><a href="#cb156-619" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb156-620"><a href="#cb156-620" aria-hidden="true" tabindex="-1"></a>sim <span class="ot">&lt;-</span> <span class="fu">simulateResiduals</span>(m, <span class="at">n =</span> <span class="dv">1000</span>)</span>
+<span id="cb156-621"><a href="#cb156-621" aria-hidden="true" tabindex="-1"></a><span class="fu">testUniformity</span>(sim)</span>
+<span id="cb156-622"><a href="#cb156-622" aria-hidden="true" tabindex="-1"></a><span class="fu">testCategorical</span>(sim, <span class="at">catPred =</span> d<span class="sc">$</span>reprocondition)</span>
+<span id="cb156-623"><a href="#cb156-623" aria-hidden="true" tabindex="-1"></a><span class="fu">testCategorical</span>(sim, <span class="at">catPred =</span> d<span class="sc">$</span>parity)</span>
+<span id="cb156-624"><a href="#cb156-624" aria-hidden="true" tabindex="-1"></a><span class="fu">testCategorical</span>(sim, <span class="at">catPred =</span> d<span class="sc">$</span>subject)</span>
+<span id="cb156-625"><a href="#cb156-625" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb156-626"><a href="#cb156-626" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb156-627"><a href="#cb156-627" aria-hidden="true" tabindex="-1"></a><span class="fu">### Inference using LRTs {.unnumbered}</span></span>
+<span id="cb156-628"><a href="#cb156-628" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb156-629"><a href="#cb156-629" aria-hidden="true" tabindex="-1"></a>To then get p values associated with each of the fixed factors, we can use likelihood ratio tests...</span>
+<span id="cb156-630"><a href="#cb156-630" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb156-633"><a href="#cb156-633" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb156-634"><a href="#cb156-634" aria-hidden="true" tabindex="-1"></a><span class="co">#| message: false</span></span>
+<span id="cb156-635"><a href="#cb156-635" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
+<span id="cb156-636"><a href="#cb156-636" aria-hidden="true" tabindex="-1"></a><span class="co"># random effects only</span></span>
+<span id="cb156-637"><a href="#cb156-637" aria-hidden="true" tabindex="-1"></a>null <span class="ot">&lt;-</span> <span class="fu">lmer</span>(<span class="at">data =</span> d,</span>
+<span id="cb156-638"><a href="#cb156-638" aria-hidden="true" tabindex="-1"></a>             duration <span class="sc">~</span></span>
+<span id="cb156-639"><a href="#cb156-639" aria-hidden="true" tabindex="-1"></a>               (<span class="dv">1</span> <span class="sc">+</span> reprocondition <span class="sc">|</span> subject) <span class="sc">+</span></span>
+<span id="cb156-640"><a href="#cb156-640" aria-hidden="true" tabindex="-1"></a>               (<span class="dv">1</span> <span class="sc">+</span> parity <span class="sc">|</span> subject),</span>
+<span id="cb156-641"><a href="#cb156-641" aria-hidden="true" tabindex="-1"></a>             <span class="at">REML =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb156-642"><a href="#cb156-642" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb156-643"><a href="#cb156-643" aria-hidden="true" tabindex="-1"></a><span class="co"># full model with both fixed effects</span></span>
+<span id="cb156-644"><a href="#cb156-644" aria-hidden="true" tabindex="-1"></a>full <span class="ot">&lt;-</span> <span class="fu">lmer</span>(<span class="at">data =</span> d,</span>
+<span id="cb156-645"><a href="#cb156-645" aria-hidden="true" tabindex="-1"></a>             duration <span class="sc">~</span></span>
+<span id="cb156-646"><a href="#cb156-646" aria-hidden="true" tabindex="-1"></a>               reprocondition <span class="sc">+</span></span>
+<span id="cb156-647"><a href="#cb156-647" aria-hidden="true" tabindex="-1"></a>               parity <span class="sc">+</span></span>
+<span id="cb156-648"><a href="#cb156-648" aria-hidden="true" tabindex="-1"></a>               (<span class="dv">1</span> <span class="sc">+</span> reprocondition <span class="sc">|</span> subject) <span class="sc">+</span></span>
+<span id="cb156-649"><a href="#cb156-649" aria-hidden="true" tabindex="-1"></a>               (<span class="dv">1</span> <span class="sc">+</span> parity <span class="sc">|</span> subject),</span>
+<span id="cb156-650"><a href="#cb156-650" aria-hidden="true" tabindex="-1"></a>             <span class="at">REML =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb156-651"><a href="#cb156-651" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb156-652"><a href="#cb156-652" aria-hidden="true" tabindex="-1"></a><span class="co"># model without reproductive condition as a fixed effect</span></span>
+<span id="cb156-653"><a href="#cb156-653" aria-hidden="true" tabindex="-1"></a>minusRC <span class="ot">&lt;-</span> <span class="fu">lmer</span>(<span class="at">data =</span> d,</span>
+<span id="cb156-654"><a href="#cb156-654" aria-hidden="true" tabindex="-1"></a>                duration <span class="sc">~</span></span>
+<span id="cb156-655"><a href="#cb156-655" aria-hidden="true" tabindex="-1"></a>                  parity <span class="sc">+</span></span>
+<span id="cb156-656"><a href="#cb156-656" aria-hidden="true" tabindex="-1"></a>                  (<span class="dv">1</span> <span class="sc">+</span> reprocondition <span class="sc">|</span> subject) <span class="sc">+</span></span>
+<span id="cb156-657"><a href="#cb156-657" aria-hidden="true" tabindex="-1"></a>                  (<span class="dv">1</span> <span class="sc">+</span> parity <span class="sc">|</span> subject),</span>
+<span id="cb156-658"><a href="#cb156-658" aria-hidden="true" tabindex="-1"></a>                <span class="at">REML =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb156-659"><a href="#cb156-659" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb156-660"><a href="#cb156-660" aria-hidden="true" tabindex="-1"></a><span class="co"># model without parity as a fixed effect</span></span>
+<span id="cb156-661"><a href="#cb156-661" aria-hidden="true" tabindex="-1"></a>minusP <span class="ot">&lt;-</span> <span class="fu">lmer</span>(<span class="at">data =</span> d,</span>
+<span id="cb156-662"><a href="#cb156-662" aria-hidden="true" tabindex="-1"></a>               duration <span class="sc">~</span></span>
+<span id="cb156-663"><a href="#cb156-663" aria-hidden="true" tabindex="-1"></a>                 reprocondition <span class="sc">+</span></span>
+<span id="cb156-664"><a href="#cb156-664" aria-hidden="true" tabindex="-1"></a>                 (<span class="dv">1</span> <span class="sc">+</span> reprocondition <span class="sc">|</span> subject) <span class="sc">+</span></span>
+<span id="cb156-665"><a href="#cb156-665" aria-hidden="true" tabindex="-1"></a>                 (<span class="dv">1</span> <span class="sc">+</span> parity <span class="sc">|</span> subject),</span>
+<span id="cb156-666"><a href="#cb156-666" aria-hidden="true" tabindex="-1"></a>               <span class="at">REML =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb156-667"><a href="#cb156-667" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb156-668"><a href="#cb156-668" aria-hidden="true" tabindex="-1"></a><span class="co"># p value for reproductive condition as a fixed effect</span></span>
+<span id="cb156-669"><a href="#cb156-669" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(minusRC, full)</span>
+<span id="cb156-670"><a href="#cb156-670" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb156-671"><a href="#cb156-671" aria-hidden="true" tabindex="-1"></a><span class="co"># p value for parity as a fixed effect</span></span>
+<span id="cb156-672"><a href="#cb156-672" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(minusP, full)</span>
+<span id="cb156-673"><a href="#cb156-673" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb156-674"><a href="#cb156-674" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb156-677"><a href="#cb156-677" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb156-678"><a href="#cb156-678" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">predictorEffects</span>(full, <span class="at">partial.residuals =</span> <span class="cn">TRUE</span>))</span>
+<span id="cb156-679"><a href="#cb156-679" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb156-680"><a href="#cb156-680" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb156-681"><a href="#cb156-681" aria-hidden="true" tabindex="-1"></a><span class="fu">### Inference using AIC {.unnumbered}</span></span>
+<span id="cb156-682"><a href="#cb156-682" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb156-683"><a href="#cb156-683" aria-hidden="true" tabindex="-1"></a>For a long time, the appropriateness of our mixed models was assessed as above -- i.e., by evaluating the significance of each fixed effect using LRTs. As information theoretic approaches have become more popular, it is increasingly common to assess model fit by comparing the AIC values of different models, acknowledging the caveat that AIC can only tell us about the *relative* fit of alternative models, but not whether a particular model is a good fit, overall. Recall that AIC values are a way of inverting and scaling model log-likelihoods that penalizes models with greater numbers of parameters.</span>
+<span id="cb156-684"><a href="#cb156-684" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb156-685"><a href="#cb156-685" aria-hidden="true" tabindex="-1"></a>The <span class="in">`aictab()`</span> function from {AICcmodavg} neatly prints out tables with AIC, Delta AIC, and log-likelihood values, along with AIC "weights".</span>
+<span id="cb156-686"><a href="#cb156-686" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb156-689"><a href="#cb156-689" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb156-690"><a href="#cb156-690" aria-hidden="true" tabindex="-1"></a><span class="co">#| message: false</span></span>
+<span id="cb156-691"><a href="#cb156-691" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
+<span id="cb156-692"><a href="#cb156-692" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(AICcmodavg)</span>
+<span id="cb156-693"><a href="#cb156-693" aria-hidden="true" tabindex="-1"></a>(aic_table <span class="ot">&lt;-</span> <span class="fu">aictab</span>( <span class="fu">list</span>(full, minusRC, minusP, null),</span>
+<span id="cb156-694"><a href="#cb156-694" aria-hidden="true" tabindex="-1"></a>  <span class="at">modnames =</span> <span class="fu">c</span>(<span class="st">"full"</span>, <span class="st">"minusRC"</span>, <span class="st">"minusP"</span>, <span class="st">"null"</span>)))</span>
+<span id="cb156-695"><a href="#cb156-695" aria-hidden="true" tabindex="-1"></a><span class="fu">detach</span>(package<span class="sc">:</span>AICcmodavg)</span>
+<span id="cb156-696"><a href="#cb156-696" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb156-697"><a href="#cb156-697" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb156-698"><a href="#cb156-698" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; **NOTE:** Here we are printing out AICc values, rather than AIC values. AICc is simply a version of AIC with a correction added for small sample sizes. To print the uncorrected AIC values, which appear in the </span><span class="in">`anova()`</span><span class="at"> LRT output, we can add the argument "second.ord = TRUE" to the </span><span class="in">`aictab()`</span><span class="at"> function.</span></span>
+<span id="cb156-699"><a href="#cb156-699" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb156-700"><a href="#cb156-700" aria-hidden="true" tabindex="-1"></a>$$AIC_c = AIC + \frac{2K^2 + 2K}{n-K-1}$$</span>
+<span id="cb156-701"><a href="#cb156-701" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb156-702"><a href="#cb156-702" aria-hidden="true" tabindex="-1"></a>where $K$ is the number of parameters and $n$ is the sample size.</span>
+<span id="cb156-703"><a href="#cb156-703" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb156-704"><a href="#cb156-704" aria-hidden="true" tabindex="-1"></a>In the table, for each model, $K$ is the number of model parameters, the $Delta\  AICc$ value is the difference between that model's AICc and the best model's AICc (again, here, that is the full model), and the $AICc\ weight$ is the relative likelihood of that model. <span class="co">[</span><span class="ot">The weights for a particular set of models sum to 1, with each weight equal to the model's likelihood divided by the summed likelihoods across all models.</span><span class="co">]</span></span>
+<span id="cb156-705"><a href="#cb156-705" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb156-706"><a href="#cb156-706" aria-hidden="true" tabindex="-1"></a>Where the best model has a very high Akaike weight, e.g., &gt;0.9, it is reasonable to base inferences about the included variables on that single most parsimonious model, but when several models rank highly (e.g., several models have Delta AICc values &lt;2 to 4), it is common to model-average effect sizes for the variables that have the most support across that set of models. That is, "model averaging" means making inferences based on a **set** of candidate models, instead of on a single "best" model.</span>
+<span id="cb156-707"><a href="#cb156-707" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb156-708"><a href="#cb156-708" aria-hidden="true" tabindex="-1"></a>Here, note that the full model containing both *reproductive condition* and *parity* has the highest likelihood (the least negative log-likelihood value) and a much lower AICc than any of the less complex alternative models tested. It also has a very high Akaike weight (0.91).</span>
+<span id="cb156-709"><a href="#cb156-709" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb156-710"><a href="#cb156-710" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; **NOTE:** When running a number of the above models and/or in doing the likelihood ratio tests, we saw a significant result but we also got either a warning that our null models "failed to converge" or we saw a warning about a "boundary (singular) fit". Both of these warning are due to having a LOT of parameters we are trying to estimate relative to the number of observations we have. Dealing with lack of convergence in fitting maximum likelihood models is beyond what we can cover here, but I encourage you to explore that on your own!</span></span>
+<span id="cb156-711"><a href="#cb156-711" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb156-712"><a href="#cb156-712" aria-hidden="true" tabindex="-1"></a><span class="fu">### Other Methods for Assessing Fit {.unnumbered}</span></span>
+<span id="cb156-713"><a href="#cb156-713" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb156-714"><a href="#cb156-714" aria-hidden="true" tabindex="-1"></a>Using AIC values for evaluating and expressing how well a particular model fits a dataset has some critical limitations:</span>
+<span id="cb156-715"><a href="#cb156-715" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb156-716"><a href="#cb156-716" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>While AIC provides an estimate of the *relative* fit of various models, it does not say anything about the absolute fit</span>
+<span id="cb156-717"><a href="#cb156-717" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>AIC does not address the amount of variance in a response variable explained by a model</span>
+<span id="cb156-718"><a href="#cb156-718" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>AIC is not comparable across datasets, and so fit is not generalizeable</span>
+<span id="cb156-719"><a href="#cb156-719" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb156-720"><a href="#cb156-720" aria-hidden="true" tabindex="-1"></a>Nakagawa &amp; Schielzeth (2013) and Nakagawa et al. (2017) have published a simple and effective method for calculating a type of *pseudo-*$R^2$ (or coefficient of determination) value for generalized linear mixed models, and because linear mixed models are a specific type of GLMM, this method can be used with LMMs as well.</span>
+<span id="cb156-721"><a href="#cb156-721" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb156-722"><a href="#cb156-722" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; See:</span></span>
+<span id="cb156-723"><a href="#cb156-723" aria-hidden="true" tabindex="-1"></a><span class="at">&gt;</span></span>
+<span id="cb156-724"><a href="#cb156-724" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; - Nakagawa, S., &amp; Schielzeth, H. (2013). A general and simple method for obtaining R2 from generalized linear mixed-effects models. *Methods in Ecology and Evolution*, 4, 133--142.</span></span>
+<span id="cb156-725"><a href="#cb156-725" aria-hidden="true" tabindex="-1"></a><span class="at">&gt;</span></span>
+<span id="cb156-726"><a href="#cb156-726" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; - Nakagawa, S., Johnson, P. C. D., &amp; Schielzeth, H. (2017). The coefficient of determination R2 and intra-class correlation coefficient from generalized linear mixed-effects models revisited and expanded. *Journal of the Royal Society Interface*, 14, article 20170213.</span></span>
+<span id="cb156-727"><a href="#cb156-727" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb156-728"><a href="#cb156-728" aria-hidden="true" tabindex="-1"></a>In these papers, two measures are proposed for characterizing the amount of "variance explained" for mixed effects models:</span>
+<span id="cb156-729"><a href="#cb156-729" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb156-730"><a href="#cb156-730" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**$marginal\ R2GLMM(m)^2$** is the amount of variance explained by the model on the latent (or link) scale rather than the original scale. We can interpret this as a measure of the variance explained by only the fixed effects in the model.</span>
+<span id="cb156-731"><a href="#cb156-731" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**$conditional\ R2GLMM(c)^2$** is the amount of variance explained by both fixed and random effects, i.e., by the entire model.</span>
+<span id="cb156-732"><a href="#cb156-732" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb156-733"><a href="#cb156-733" aria-hidden="true" tabindex="-1"></a>There is an easy way to calculate these two R2GLMM values in ***R*** using the <span class="in">`r.squaredGLMM()`</span> function in the package {MuMIn} or the function <span class="in">`r2_nakagawa()`</span> from the {performance} package.</span>
+<span id="cb156-734"><a href="#cb156-734" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb156-735"><a href="#cb156-735" aria-hidden="true" tabindex="-1"></a><span class="fu">### CHALLENGE {.unnumbered}</span></span>
+<span id="cb156-736"><a href="#cb156-736" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb156-737"><a href="#cb156-737" aria-hidden="true" tabindex="-1"></a>Compare the full, the two reduced, and the null mixed effects models from our random slope exercise using an information theoretic approach. Is the best model (full) the one that explains the greatest amount of variance in the dataset? In the full model, how much more of the total variance is explained by the random effects than by the fixed effects alone?</span>
+<span id="cb156-738"><a href="#cb156-738" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb156-741"><a href="#cb156-741" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb156-742"><a href="#cb156-742" aria-hidden="true" tabindex="-1"></a><span class="co">#| message: false</span></span>
+<span id="cb156-743"><a href="#cb156-743" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
+<span id="cb156-744"><a href="#cb156-744" aria-hidden="true" tabindex="-1"></a>aic_table <span class="co"># re-print the AIC table</span></span>
+<span id="cb156-745"><a href="#cb156-745" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb156-746"><a href="#cb156-746" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(MuMIn)</span>
+<span id="cb156-747"><a href="#cb156-747" aria-hidden="true" tabindex="-1"></a><span class="fu">r.squaredGLMM</span>(full)</span>
+<span id="cb156-748"><a href="#cb156-748" aria-hidden="true" tabindex="-1"></a><span class="fu">r.squaredGLMM</span>(minusRC)</span>
+<span id="cb156-749"><a href="#cb156-749" aria-hidden="true" tabindex="-1"></a><span class="fu">r.squaredGLMM</span>(minusP)</span>
+<span id="cb156-750"><a href="#cb156-750" aria-hidden="true" tabindex="-1"></a><span class="fu">r.squaredGLMM</span>(null)</span>
+<span id="cb156-751"><a href="#cb156-751" aria-hidden="true" tabindex="-1"></a><span class="fu">detach</span>(package<span class="sc">:</span>MuMIn)</span>
+<span id="cb156-752"><a href="#cb156-752" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb156-753"><a href="#cb156-753" aria-hidden="true" tabindex="-1"></a><span class="co"># or</span></span>
+<span id="cb156-754"><a href="#cb156-754" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(performance)</span>
+<span id="cb156-755"><a href="#cb156-755" aria-hidden="true" tabindex="-1"></a><span class="fu">r2_nakagawa</span>(full)</span>
+<span id="cb156-756"><a href="#cb156-756" aria-hidden="true" tabindex="-1"></a><span class="fu">r2_nakagawa</span>(minusRC)</span>
+<span id="cb156-757"><a href="#cb156-757" aria-hidden="true" tabindex="-1"></a><span class="fu">r2_nakagawa</span>(minusP)</span>
+<span id="cb156-758"><a href="#cb156-758" aria-hidden="true" tabindex="-1"></a><span class="fu">r2_nakagawa</span>(null)</span>
+<span id="cb156-759"><a href="#cb156-759" aria-hidden="true" tabindex="-1"></a><span class="fu">detach</span>(package<span class="sc">:</span>performance)</span>
+<span id="cb156-760"><a href="#cb156-760" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb156-761"><a href="#cb156-761" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb156-762"><a href="#cb156-762" aria-hidden="true" tabindex="-1"></a><span class="fu">## Generalized LMMs</span></span>
+<span id="cb156-763"><a href="#cb156-763" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb156-764"><a href="#cb156-764" aria-hidden="true" tabindex="-1"></a>Just as we extended our standard linear modeling approach to include non-normally distributed response variables/error structures, so too can we extend our mixed effects modeling to such situations. This is referred to as **generalized linear mixed modeling, or GLMM**. There are several ***R*** packages we can use to do this under either a maximum likelihood (e.g., {lme4}, {glmmML}, the no-longer-maintained {glmmboot}) or Bayesian (e.g., {MCMCglmm}, {glmmTMB}, {brms}) framework. The methods for generating maximum likelihood and Bayesian parameter estimates under GLMMs are more complicated, but conceptually, the process is an extension of what we have talked about already. Below, we explore such a scenario.</span>
+<span id="cb156-765"><a href="#cb156-765" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb156-766"><a href="#cb156-766" aria-hidden="true" tabindex="-1"></a><span class="fu">### CHALLENGE {.unnumbered}</span></span>
+<span id="cb156-767"><a href="#cb156-767" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb156-768"><a href="#cb156-768" aria-hidden="true" tabindex="-1"></a>Boden-Parry et al. (2020) studied the effect of food type and abundance on the begging and food sharing behavior of otters in captivity. Here, we work with the dataset provided in the article below and replicate one of their models.</span>
+<span id="cb156-769"><a href="#cb156-769" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb156-770"><a href="#cb156-770" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Bowden-Parry, M.; Postma, E.; and Boogert, N.J. (2020). Effects of food type and abundance on begging and sharing in Asian small-clawed otters (*Aonyx cinereus*). *PeerJ* 8: e10369.</span>
+<span id="cb156-771"><a href="#cb156-771" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb156-772"><a href="#cb156-772" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Step 1  {.unnumbered}</span></span>
+<span id="cb156-773"><a href="#cb156-773" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb156-774"><a href="#cb156-774" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Read in the data set and look at the variables included.</span>
+<span id="cb156-775"><a href="#cb156-775" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb156-778"><a href="#cb156-778" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb156-779"><a href="#cb156-779" aria-hidden="true" tabindex="-1"></a><span class="co">#| message: false</span></span>
+<span id="cb156-780"><a href="#cb156-780" aria-hidden="true" tabindex="-1"></a>f <span class="ot">&lt;-</span> <span class="st">"https://raw.githubusercontent.com/difiore/ada-datasets/main/Bowden-ParryOtterdata.csv"</span></span>
+<span id="cb156-781"><a href="#cb156-781" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(f, <span class="at">col_names =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb156-782"><a href="#cb156-782" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(d)</span>
+<span id="cb156-783"><a href="#cb156-783" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb156-784"><a href="#cb156-784" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb156-785"><a href="#cb156-785" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Step 2 {.unnumbered}</span></span>
+<span id="cb156-786"><a href="#cb156-786" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb156-787"><a href="#cb156-787" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Create a new random variable, **trial**, that joins together the variables **zoo** and **trialorder**. This will be used as a random effect.</span>
+<span id="cb156-788"><a href="#cb156-788" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Create a new random variable, **obs**, that is simply an observation number. This will also be used as a random effect.</span>
+<span id="cb156-789"><a href="#cb156-789" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb156-790"><a href="#cb156-790" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; **HINT:** Check out the useful function </span><span class="in">`row_to_column_id()`</span></span>
+<span id="cb156-791"><a href="#cb156-791" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb156-792"><a href="#cb156-792" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Rename the variable **TotalSharebothharasspro** as **Shared**.</span>
+<span id="cb156-793"><a href="#cb156-793" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Rename the variable **begreceived** as **BegRec**.</span>
+<span id="cb156-794"><a href="#cb156-794" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb156-797"><a href="#cb156-797" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb156-798"><a href="#cb156-798" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-fold: true</span></span>
+<span id="cb156-799"><a href="#cb156-799" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-summary: "Show Code"</span></span>
+<span id="cb156-800"><a href="#cb156-800" aria-hidden="true" tabindex="-1"></a><span class="co">#| attr.output: '.details summary="Show Output"'</span></span>
+<span id="cb156-801"><a href="#cb156-801" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> d <span class="sc">|&gt;</span></span>
+<span id="cb156-802"><a href="#cb156-802" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">trial =</span> <span class="fu">paste0</span>(zoo, trialorder))</span>
+<span id="cb156-803"><a href="#cb156-803" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> <span class="fu">rowid_to_column</span>(d, <span class="at">var =</span> <span class="st">"obs"</span>)</span>
+<span id="cb156-804"><a href="#cb156-804" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> d <span class="sc">|&gt;</span></span>
+<span id="cb156-805"><a href="#cb156-805" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">Shared =</span> TotalSharebothharasspro,</span>
+<span id="cb156-806"><a href="#cb156-806" aria-hidden="true" tabindex="-1"></a>         <span class="at">BegRec =</span> begreceived)</span>
+<span id="cb156-807"><a href="#cb156-807" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb156-808"><a href="#cb156-808" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb156-809"><a href="#cb156-809" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Step 3 {.unnumbered}</span></span>
+<span id="cb156-810"><a href="#cb156-810" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb156-811"><a href="#cb156-811" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Plot total food transferred (**Shared**) in relation to begging received (**BegReceived**).</span>
+<span id="cb156-812"><a href="#cb156-812" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb156-815"><a href="#cb156-815" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb156-816"><a href="#cb156-816" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-fold: true</span></span>
+<span id="cb156-817"><a href="#cb156-817" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-summary: "Show Code"</span></span>
+<span id="cb156-818"><a href="#cb156-818" aria-hidden="true" tabindex="-1"></a><span class="co">#| attr.output: '.details summary="Show Output"'</span></span>
+<span id="cb156-819"><a href="#cb156-819" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(d, <span class="fu">aes</span>(<span class="at">x =</span> BegRec, <span class="at">y =</span> Shared)) <span class="sc">+</span></span>
+<span id="cb156-820"><a href="#cb156-820" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>() <span class="sc">+</span></span>
+<span id="cb156-821"><a href="#cb156-821" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Begging Received (total number)"</span>) <span class="sc">+</span></span>
+<span id="cb156-822"><a href="#cb156-822" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"Food Transfers (total number)"</span>)<span class="sc">+</span></span>
+<span id="cb156-823"><a href="#cb156-823" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">12</span>))</span>
+<span id="cb156-824"><a href="#cb156-824" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb156-825"><a href="#cb156-825" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb156-826"><a href="#cb156-826" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Step 4 {.unnumbered}</span></span>
+<span id="cb156-827"><a href="#cb156-827" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb156-828"><a href="#cb156-828" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Does the amount of begging received influence sharing frequency?</span>
+<span id="cb156-829"><a href="#cb156-829" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb156-830"><a href="#cb156-830" aria-hidden="true" tabindex="-1"></a>To test this, the researchers used a GLMM with Poisson error distribution to examine how the number of "food transfers" between otters (**Shared**) in trials was related to the total number of instances of "begging received" (**BegRec**) as a fixed effect.</span>
+<span id="cb156-831"><a href="#cb156-831" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb156-832"><a href="#cb156-832" aria-hidden="true" tabindex="-1"></a>We also need to consider that the response variable, **Shared**, is implicitly expressed as a *rate*, i.e., it represents a count of the number of events that occured in over a particular length of time (the variable, **trial duration**). This allows the observation time to vary among records in the dataset. Our regression model, then, needs to contain time on the right-hand side of the regression formula in some way to acknowledge that counts are in some way dependent on the time over which they are collected (i.e., counts are expected to only increase with time).</span>
+<span id="cb156-833"><a href="#cb156-833" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb156-834"><a href="#cb156-834" aria-hidden="true" tabindex="-1"></a>Additionally, recall that, in Poisson regression, given that our response variable is a *count* of events that occur within a given amount of time, what we are actually modeling as a function of our predictors is *log(count)*... so we need to include *log(time)* as what known as an *offset term* on the right-hand side of the formula.</span>
+<span id="cb156-835"><a href="#cb156-835" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb156-836"><a href="#cb156-836" aria-hidden="true" tabindex="-1"></a>In ***R***, we use the function <span class="in">`offset()`</span> to indicate this in our regression formula. The offset term is, essentially, modeled as an additional fixed effect though we will not generate a coefficient for it.</span>
+<span id="cb156-837"><a href="#cb156-837" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb156-838"><a href="#cb156-838" aria-hidden="true" tabindex="-1"></a>$$log(count) \sim offset(log(time))\ +\ ...\ other\ predictors$$</span>
+<span id="cb156-839"><a href="#cb156-839" aria-hidden="true" tabindex="-1"></a>Finally, the researchers included three random effects in their model: otter ID, trial, and an observation-level random effect. The first of these appears in the author's data frame, and latter two are our variables **trial** and **obs**.</span>
+<span id="cb156-840"><a href="#cb156-840" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb156-841"><a href="#cb156-841" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; **NOTE**: It does not entirely make sense to me to include the third of these random effects as there is no variance associated with this term, but to replicate the researchers' model, we include it. Conceptually, it might be defensible to do so because there are lots of unmeasured variables that could vary between observations and could impact the response that we are not including in our model (e.g., time of day when sampling is done or proximity in time of when the animals were sampled relative to visitor density at the zoo) and we want to account for this additional source of random variation.</span></span>
+<span id="cb156-842"><a href="#cb156-842" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb156-845"><a href="#cb156-845" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb156-846"><a href="#cb156-846" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-fold: true</span></span>
+<span id="cb156-847"><a href="#cb156-847" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-summary: "Show Code"</span></span>
+<span id="cb156-848"><a href="#cb156-848" aria-hidden="true" tabindex="-1"></a><span class="co">#| attr.output: '.details summary="Show Output"'</span></span>
+<span id="cb156-849"><a href="#cb156-849" aria-hidden="true" tabindex="-1"></a>m1 <span class="ot">&lt;-</span> <span class="fu">glmer</span>(</span>
+<span id="cb156-850"><a href="#cb156-850" aria-hidden="true" tabindex="-1"></a>  Shared <span class="sc">~</span></span>
+<span id="cb156-851"><a href="#cb156-851" aria-hidden="true" tabindex="-1"></a>    BegRec <span class="sc">+</span></span>
+<span id="cb156-852"><a href="#cb156-852" aria-hidden="true" tabindex="-1"></a>    <span class="fu">offset</span>(<span class="fu">log</span>(trialduration<span class="sc">/</span><span class="dv">60</span>)) <span class="sc">+</span></span>
+<span id="cb156-853"><a href="#cb156-853" aria-hidden="true" tabindex="-1"></a>    (<span class="dv">1</span><span class="sc">|</span>ID) <span class="sc">+</span></span>
+<span id="cb156-854"><a href="#cb156-854" aria-hidden="true" tabindex="-1"></a>    (<span class="dv">1</span><span class="sc">|</span>trial) <span class="sc">+</span></span>
+<span id="cb156-855"><a href="#cb156-855" aria-hidden="true" tabindex="-1"></a>    (<span class="dv">1</span><span class="sc">|</span>obs),</span>
+<span id="cb156-856"><a href="#cb156-856" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> d,</span>
+<span id="cb156-857"><a href="#cb156-857" aria-hidden="true" tabindex="-1"></a>  <span class="at">family =</span> <span class="fu">poisson</span>(<span class="at">link =</span> <span class="st">"log"</span>))</span>
+<span id="cb156-858"><a href="#cb156-858" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(m1)</span>
+<span id="cb156-859"><a href="#cb156-859" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb156-860"><a href="#cb156-860" aria-hidden="true" tabindex="-1"></a>m2 <span class="ot">&lt;-</span> <span class="fu">glmer</span>(</span>
+<span id="cb156-861"><a href="#cb156-861" aria-hidden="true" tabindex="-1"></a>  Shared <span class="sc">~</span></span>
+<span id="cb156-862"><a href="#cb156-862" aria-hidden="true" tabindex="-1"></a>    <span class="fu">offset</span>(<span class="fu">log</span>(trialduration<span class="sc">/</span><span class="dv">60</span>)) <span class="sc">+</span></span>
+<span id="cb156-863"><a href="#cb156-863" aria-hidden="true" tabindex="-1"></a>    (<span class="dv">1</span><span class="sc">|</span>ID) <span class="sc">+</span></span>
+<span id="cb156-864"><a href="#cb156-864" aria-hidden="true" tabindex="-1"></a>    (<span class="dv">1</span><span class="sc">|</span>trial) <span class="sc">+</span></span>
+<span id="cb156-865"><a href="#cb156-865" aria-hidden="true" tabindex="-1"></a>    (<span class="dv">1</span><span class="sc">|</span>obs),</span>
+<span id="cb156-866"><a href="#cb156-866" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> d,</span>
+<span id="cb156-867"><a href="#cb156-867" aria-hidden="true" tabindex="-1"></a>  <span class="at">family =</span> <span class="fu">poisson</span>(<span class="at">link =</span> log))</span>
+<span id="cb156-868"><a href="#cb156-868" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb156-869"><a href="#cb156-869" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(m1, m2, <span class="at">test =</span> <span class="st">"F"</span>)</span>
+<span id="cb156-870"><a href="#cb156-870" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb156-871"><a href="#cb156-871" aria-hidden="true" tabindex="-1"></a><span class="co"># or</span></span>
+<span id="cb156-872"><a href="#cb156-872" aria-hidden="true" tabindex="-1"></a>lmtest<span class="sc">::</span><span class="fu">lrtest</span>(m1, m2)</span>
+<span id="cb156-873"><a href="#cb156-873" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb156-874"><a href="#cb156-874" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb156-875"><a href="#cb156-875" aria-hidden="true" tabindex="-1"></a>Looking at these results, we would conclude that the model with **BegRec** has a lower AIC, higher log likelihood, lower deviance than the model without **BegRec**, thus variance in the food sharing is associated with the amount of begging received. The coefficent for **BegRec** (~0.09) is positive, indicating that sharing increases with the amount of begging received.</span>
+<span id="cb156-876"><a href="#cb156-876" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb156-877"><a href="#cb156-877" aria-hidden="true" tabindex="-1"></a>Again, the {mixedup} package allows us to neatly extract summary information from mixed effects models.</span>
+<span id="cb156-878"><a href="#cb156-878" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb156-881"><a href="#cb156-881" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb156-882"><a href="#cb156-882" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
+<span id="cb156-883"><a href="#cb156-883" aria-hidden="true" tabindex="-1"></a>mixedup<span class="sc">::</span><span class="fu">summarize_model</span>(m1)</span>
+<span id="cb156-884"><a href="#cb156-884" aria-hidden="true" tabindex="-1"></a>mixedup<span class="sc">::</span><span class="fu">extract_fixed_effects</span>(m1)</span>
+<span id="cb156-885"><a href="#cb156-885" aria-hidden="true" tabindex="-1"></a>mixedup<span class="sc">::</span><span class="fu">extract_random_coefficients</span>(m1) <span class="sc">|&gt;</span> <span class="fu">head</span>()</span>
+<span id="cb156-886"><a href="#cb156-886" aria-hidden="true" tabindex="-1"></a>mixedup<span class="sc">::</span><span class="fu">extract_random_effects</span>(m1) <span class="sc">|&gt;</span> <span class="fu">head</span>()</span>
+<span id="cb156-887"><a href="#cb156-887" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb156-888"><a href="#cb156-888" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb156-889"><a href="#cb156-889" aria-hidden="true" tabindex="-1"></a>The <span class="in">`glmmTMB()`</span> function from {glmmTMB} can also be used for mixed effects modeling and gives very similar results...</span>
+<span id="cb156-890"><a href="#cb156-890" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb156-893"><a href="#cb156-893" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb156-894"><a href="#cb156-894" aria-hidden="true" tabindex="-1"></a>m3 <span class="ot">&lt;-</span> <span class="fu">glmmTMB</span>(</span>
+<span id="cb156-895"><a href="#cb156-895" aria-hidden="true" tabindex="-1"></a>  Shared <span class="sc">~</span></span>
+<span id="cb156-896"><a href="#cb156-896" aria-hidden="true" tabindex="-1"></a>    BegRec <span class="sc">+</span></span>
+<span id="cb156-897"><a href="#cb156-897" aria-hidden="true" tabindex="-1"></a>    <span class="fu">offset</span>(<span class="fu">log</span>(trialduration<span class="sc">/</span><span class="dv">60</span>)) <span class="sc">+</span></span>
+<span id="cb156-898"><a href="#cb156-898" aria-hidden="true" tabindex="-1"></a>    (<span class="dv">1</span><span class="sc">|</span>ID) <span class="sc">+</span></span>
+<span id="cb156-899"><a href="#cb156-899" aria-hidden="true" tabindex="-1"></a>    (<span class="dv">1</span><span class="sc">|</span>trial) <span class="sc">+</span></span>
+<span id="cb156-900"><a href="#cb156-900" aria-hidden="true" tabindex="-1"></a>    (<span class="dv">1</span><span class="sc">|</span>obs),</span>
+<span id="cb156-901"><a href="#cb156-901" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> d,</span>
+<span id="cb156-902"><a href="#cb156-902" aria-hidden="true" tabindex="-1"></a>  <span class="at">family =</span> <span class="fu">poisson</span>(<span class="at">link =</span> <span class="st">"log"</span>))</span>
+<span id="cb156-903"><a href="#cb156-903" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb156-904"><a href="#cb156-904" aria-hidden="true" tabindex="-1"></a>mixedup<span class="sc">::</span><span class="fu">summarise_model</span>(m3)</span>
+<span id="cb156-905"><a href="#cb156-905" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb156-906"><a href="#cb156-906" aria-hidden="true" tabindex="-1"></a>m4 <span class="ot">&lt;-</span> <span class="fu">glmmTMB</span>(</span>
+<span id="cb156-907"><a href="#cb156-907" aria-hidden="true" tabindex="-1"></a>  Shared <span class="sc">~</span></span>
+<span id="cb156-908"><a href="#cb156-908" aria-hidden="true" tabindex="-1"></a>    <span class="fu">offset</span>(<span class="fu">log</span>(trialduration<span class="sc">/</span><span class="dv">60</span>)) <span class="sc">+</span></span>
+<span id="cb156-909"><a href="#cb156-909" aria-hidden="true" tabindex="-1"></a>    (<span class="dv">1</span><span class="sc">|</span>ID) <span class="sc">+</span></span>
+<span id="cb156-910"><a href="#cb156-910" aria-hidden="true" tabindex="-1"></a>    (<span class="dv">1</span><span class="sc">|</span>trial) <span class="sc">+</span></span>
+<span id="cb156-911"><a href="#cb156-911" aria-hidden="true" tabindex="-1"></a>    (<span class="dv">1</span><span class="sc">|</span>obs),</span>
+<span id="cb156-912"><a href="#cb156-912" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> d,</span>
+<span id="cb156-913"><a href="#cb156-913" aria-hidden="true" tabindex="-1"></a>  <span class="at">family =</span> <span class="fu">poisson</span>(<span class="at">link =</span> <span class="st">"log"</span>))</span>
+<span id="cb156-914"><a href="#cb156-914" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb156-915"><a href="#cb156-915" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(m3, m4, <span class="at">test =</span> <span class="st">"F"</span>)</span>
+<span id="cb156-916"><a href="#cb156-916" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb156-917"><a href="#cb156-917" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb156-918"><a href="#cb156-918" aria-hidden="true" tabindex="-1"></a>Finally, the {MASS} package provides yet another function, <span class="in">`glmmPQL()`</span>, that can be used for mixed effects modeling. The structure for specifying the model is different than we have used before, with a list of the random effects being presented as a separate argument from the model including the fixed effects. Note the absence of **obs** as a random effect in the model below... including it causes the model to fail to run due to singular convergence, i.e., the variance in that random effect variable is essentially zero.</span>
+<span id="cb156-919"><a href="#cb156-919" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb156-922"><a href="#cb156-922" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb156-923"><a href="#cb156-923" aria-hidden="true" tabindex="-1"></a><span class="co">#| message: false</span></span>
+<span id="cb156-924"><a href="#cb156-924" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
+<span id="cb156-925"><a href="#cb156-925" aria-hidden="true" tabindex="-1"></a>m5 <span class="ot">&lt;-</span> MASS<span class="sc">::</span><span class="fu">glmmPQL</span>(</span>
+<span id="cb156-926"><a href="#cb156-926" aria-hidden="true" tabindex="-1"></a>  Shared <span class="sc">~</span></span>
+<span id="cb156-927"><a href="#cb156-927" aria-hidden="true" tabindex="-1"></a>    BegRec <span class="sc">+</span></span>
+<span id="cb156-928"><a href="#cb156-928" aria-hidden="true" tabindex="-1"></a>    <span class="fu">offset</span>(<span class="fu">log</span>(trialduration<span class="sc">/</span><span class="dv">60</span>)),</span>
+<span id="cb156-929"><a href="#cb156-929" aria-hidden="true" tabindex="-1"></a>  <span class="at">random =</span> <span class="fu">list</span>(<span class="at">ID =</span> <span class="sc">~</span> <span class="dv">1</span>, <span class="at">trial =</span> <span class="sc">~</span> <span class="dv">1</span>),</span>
+<span id="cb156-930"><a href="#cb156-930" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> d,</span>
+<span id="cb156-931"><a href="#cb156-931" aria-hidden="true" tabindex="-1"></a>  <span class="at">family =</span> <span class="fu">poisson</span>(<span class="at">link =</span> <span class="st">"log"</span>))</span>
+<span id="cb156-932"><a href="#cb156-932" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb156-933"><a href="#cb156-933" aria-hidden="true" tabindex="-1"></a>mixedup<span class="sc">::</span><span class="fu">summarise_model</span>(m5)</span>
+<span id="cb156-934"><a href="#cb156-934" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb156-935"><a href="#cb156-935" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb156-936"><a href="#cb156-936" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; **NOTE**: The coefficient values estimated by </span><span class="in">`glmmPQL()`</span><span class="at"> are similar to, but not the same, as those estimated by </span><span class="in">`glmer()`</span><span class="at"> and </span><span class="in">`glmmTMB()`</span><span class="at">.</span></span>
+<span id="cb156-937"><a href="#cb156-937" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb156-940"><a href="#cb156-940" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb156-941"><a href="#cb156-941" aria-hidden="true" tabindex="-1"></a><span class="co">#| include: false</span></span>
+<span id="cb156-942"><a href="#cb156-942" aria-hidden="true" tabindex="-1"></a><span class="fu">detach</span>(package<span class="sc">:</span>DHARMa)</span>
+<span id="cb156-943"><a href="#cb156-943" aria-hidden="true" tabindex="-1"></a><span class="fu">detach</span>(package<span class="sc">:</span>redres)</span>
+<span id="cb156-944"><a href="#cb156-944" aria-hidden="true" tabindex="-1"></a><span class="fu">detach</span>(package<span class="sc">:</span>glmmTMB)</span>
+<span id="cb156-945"><a href="#cb156-945" aria-hidden="true" tabindex="-1"></a><span class="fu">detach</span>(package<span class="sc">:</span>effects)</span>
+<span id="cb156-946"><a href="#cb156-946" aria-hidden="true" tabindex="-1"></a><span class="fu">detach</span>(package<span class="sc">:</span>sjPlot)</span>
+<span id="cb156-947"><a href="#cb156-947" aria-hidden="true" tabindex="-1"></a><span class="fu">detach</span>(package<span class="sc">:</span>lme4)</span>
+<span id="cb156-948"><a href="#cb156-948" aria-hidden="true" tabindex="-1"></a><span class="fu">detach</span>(package<span class="sc">:</span>tidyverse)</span>
+<span id="cb156-949"><a href="#cb156-949" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb156-950"><a href="#cb156-950" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb156-951"><a href="#cb156-951" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb156-952"><a href="#cb156-952" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb156-953"><a href="#cb156-953" aria-hidden="true" tabindex="-1"></a><span class="fu">## Concept Review {.unnumbered}</span></span>
+<span id="cb156-954"><a href="#cb156-954" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb156-955"><a href="#cb156-955" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>"Mixed" modeling extends general and generalized linear modeling to consider cases where we have additional "random" factors that are another source of possible variation in our response variable</span>
+<span id="cb156-956"><a href="#cb156-956" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>The approach allows us to estimate either different intercepts or different slopes *and* intercepts for each level of the random factor</span>
+<span id="cb156-957"><a href="#cb156-957" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>As in generalized linear modeling, likelihood ratio tests and information criteria approaches can be used to compare the explanatory power of different models</span>
+<span id="cb156-958"><a href="#cb156-958" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Though we do not address it in this class, regression modeling can be extended further to consider NONLINEAR relationships among predictor variables</span>
+<span id="cb156-959"><a href="#cb156-959" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>The ***R*** packages {lme4} and {nlme} include functions for performing for "nonlinear mixed effects modeling"</span>
+<span id="cb156-960"><a href="#cb156-960" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb156-961"><a href="#cb156-961" aria-hidden="true" tabindex="-1"></a>The website <span class="co">[</span><span class="ot">Mixed Models with R</span><span class="co">](https://m-clark.github.io/mixed-models-with-R/)</span> is great resource for information about mixed effects modeling.</span>
 </code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->

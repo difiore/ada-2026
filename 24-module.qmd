@@ -485,6 +485,7 @@ In this case, adding the interaction of **reproductive condition** and **parity*
 In the exercise above, we included only estimation of a separate INTERCEPT for each female and presumed that the same relationships (SLOPES, or regression coefficients) between grooming duration (as our response variable), and reproductive condition and parity (as our predictors) obtained for all females. But we can also allow those relationships between response and predictor to vary from subject to subject. We would indicate this model in formula notation as follows:
 
 $$grooming\ duration \sim reproductive\ condition + parity\ +$$ $$(1 + reproductive\ condition|subject) + (1 + parity|subject) + \epsilon$$
+
 > **NOTE:** In this particular example, we are using the term "slopes" loosely, because our predictors (reprocondition and parity) are categorical, not continuous. So, our regression coefficients for these fixed predictors are not "slopes" *per se* but rather differences in average grooming between levels of the predictor (or, more specifically, between each level and whatever level we set as baseline).
 
 ```{r}

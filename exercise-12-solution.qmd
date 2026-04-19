@@ -7,6 +7,7 @@
 - Load in any needed libraries.
 
 ```{r}
+#| message: false
 library(tidyverse)
 library(lme4) # for glm() and glmer()
 library(broom) # for tidying model summaries
@@ -47,6 +48,7 @@ d <- d |>
 - Convert the following variables, which are imported as "character" data, to "numeric": **Aban**, **NeHW**, **NeCB**, **NnHW**, **NnCB**, **NfHW**, **NfCB**, **CBHatch**, and **survived**.
 
 ```{r}
+#| warning: false
 d <- d |>
   mutate(across(
     c(
@@ -63,7 +65,7 @@ d <- d |>
     as.numeric
   ))
 
-# NOTE: This will throw warnings about NAs being introduced by coercion
+# NOTE: This may throw warnings about NAs being introduced by coercion
 ```
 
 - Convert the variables **parasitized**, **year**, **ID**, and **CBHatch** to be factors.
@@ -139,6 +141,8 @@ length(unique(d$ID))
 - Plot the distribution of nest initiation dates over time.
 
 ```{r}
+#| message: false
+#| fig-height: 3
 ggplot(d, aes(x = day)) +
   geom_histogram()
 ```
@@ -146,6 +150,8 @@ ggplot(d, aes(x = day)) +
 - Plot how the distribution of nest initiation dates over time varies with parasitization status.
 
 ```{r}
+#| message: false
+#| fig-height: 3
 ggplot(d, aes(x = day, fill = parasitized)) +
   geom_histogram(position = "identity", alpha = 0.5)
 ```
@@ -155,6 +161,8 @@ ggplot(d, aes(x = day, fill = parasitized)) +
 > **HINT:** When plotting, use geom_jitter() to be able to see individual data points.
 
 ```{r}
+#| message: false
+#| fig-height: 3
 ggplot(d |> filter(!is.na(survived)), aes(x = day, y = survived, color = parasitized)) +
   geom_jitter(height = 0.05, alpha = 0.3)
 ```
@@ -164,6 +172,8 @@ ggplot(d |> filter(!is.na(survived)), aes(x = day, y = survived, color = parasit
 > **HINT:** This will require computing those averages before or while plotting.
 
 ```{r}
+#| message: false
+#| fig-height: 3
 d |>
   select(year, survived) |>
   group_by(year) |>
@@ -302,6 +312,8 @@ m <- glmer(Aban ~
 > **NOTE:** Again, running this model as specified above should return a warning about a *singular boundary fit*. Run revised models, then, removing each random effect individually and also removing both random effects. You will want to first confirm that your dataset is such that all models are based on the same complete set of data.
 
 ```{r}
+#| warning: false
+#| message: false
 d_model <- d |>
   select(Aban, parasitized, day, year, ID) |>
   na.omit()
@@ -401,7 +413,7 @@ summary(m_no_year)
 
 Run models to examine the **probability of nests surviving to hatching in relation to cowbird parasitism**. Again, use the dichotomous variable **parasitized** as your fixed factor for cowbird parasitism and include date of nest initiation as an additional fixed effect and **year** and **ID** as random effects. This time, create two models, one excluding and one including an interaction term among the fixed effects.
 
-> ** NOTE:** For this analysis, the authors report using a subset of their data limited to 356 nests that were found before the onset of incubation and that were not abandoned. From what I can deduce, they must have run the following to get this subset of data:
+> **NOTE:** For this analysis, the authors report using a subset of their data limited to 356 nests that were found before the onset of incubation and that were not abandoned. From what I can deduce, they must have run the following to get this subset of data:
 
 ```{r}
 d_model <- d |>
@@ -444,13 +456,13 @@ anova(m, m_int)
 summary(m)
 # for **year**, there is some between-year variation in baseline survival beyond what is already explained by the fixed effects, meaning some years were slightly better or worse for survival overall regardless of parasitism or date of nest initiation.
 
-# for **NestID**, there is also some variation nest survival probability that is attributable to differences between females, beyond what is already explained by the fixed effects.
+# for **ID**, there is also some variation nest survival probability that is attributable to differences between females, beyond what is already explained by the fixed effects.
 ```
 
 - For this model, what does the intercept coefficient represent? How would you convert this to a probability of nest survival?
 
 ```{r}
-# intercept: log-odds of survival for nests with average first lay date = 0 and that are unparasitized, where the random effects for **year** and **ID** are at their mean (i.e., an average year, an average female).
+# **(Intercept)**: log-odds of survival for nests with average first lay date = 0 and that are unparasitized, where the random effects for **year** and **ID** are at their mean (i.e., an average year, an average female).
 
 int <- tidy(m) |>
   filter(term == "(Intercept)") |>
@@ -465,7 +477,7 @@ plogis(int)
 - What do the other coefficients represent?
 
 ```{r}
-# parasitizedYes: the difference in log-odds of survival for parasitized versus non-parasitized nests, holding day constant
+# **parasitizedYes**: the difference in log-odds of survival for parasitized versus non-parasitized nests, holding day constant
 
 parasitizedYes <- tidy(m) |>
   filter(term == "parasitizedYes") |>
@@ -476,7 +488,7 @@ exp(parasitizedYes)
 
 # parasitized nests have 0.68 times the odds of surviving to hatching compared to non-parasitized nests, or about a 32% reduction in odds... however this effect is not significant, so there is not strong evidence that parasitism affects survival to hatching in this model
 
-# day: the change in log-odds of nest survival for each one-unit increase in day (i.e., each day later than the average first lay date), holding parasitism constant
+# **day**: the change in log-odds of nest survival for each one-unit increase in day (i.e., each day later than the average first lay date), holding parasitism constant
 
 day <- tidy(m) |>
   filter(term == "day") |>
@@ -506,7 +518,7 @@ exp(day)
 
 Run a model to **estimate the effects of the presence of a cowbird chick in the nest on the probability of nests surviving from hatching to fledging**. Use the dichotomous variable **CBHatch** as a fixed factor for cowbird parasitism and include date of nest initiation as **year** as additional fixed effects (following the authors' analyses, we are excluding random effects).
 
-> ** NOTE:** For this analysis, the authors report using a subset of their data limited to 492 nests that were found before hatching that were not abandoned. The column “CBHatch” indicates the presence (1) or absence (0) of a cowbird nestling. From what I can deduce, the authors must have run something like the following to get this subset of data, though this produces a filtered dataset with 497 not 492 rows! The 5-record discrepancy is unresolvable without the authors' exact cleaning script, which is a useful lesson about reproducibility. The authors should have reported exactly how they got to this subset of 492 records rather than just saying "found before hatching."
+> **NOTE:** For this analysis, the authors report using a subset of their data limited to 492 nests that were found before hatching that were not abandoned. The column “CBHatch” indicates the presence (1) or absence (0) of a cowbird nestling. From what I can deduce, the authors must have run something like the following to get this subset of data, though this produces a filtered dataset with 497 not 492 rows! The 5-record discrepancy is unresolvable without the authors' exact cleaning script, which is a useful lesson about reproducibility. The authors should have reported exactly how they got to this subset of 492 records rather than just saying "found before hatching."
 
 ```{r}
 d_model <- d |>
@@ -523,7 +535,7 @@ d_model <- d |>
 
 ```{r}
 # **Logistic GLM**
-# NOTE: *survived* should be numeric (0/1) for binomial GLM, not a factor
+# note that *survived* should be numeric (0/1) for binomial GLM, not a factor, so we convert it
 d_model <- d_model |>
   mutate(survived = as.numeric(as.character(survived)))
 
@@ -601,17 +613,17 @@ sim <- simulateResiduals(m_no_year, n = 1000)
 ```{r}
 plotResiduals(sim)
 
-# Tests for uniformity
+# tests for uniformity
 testUniformity(sim)
 testCategorical(sim, catPred = d_model$parasitized)
 
-# Test for overdispersion
+# test for overdispersion
 testDispersion(sim)
 
-# Test for zero-inflation
+# test for zero-inflation
 testZeroInflation(sim)
 
-# Test for outliers
+# test for outliers
 testOutliers(sim)
 ```
 
@@ -624,22 +636,22 @@ Again, using the best model from Challenge 4, calculate the variance explained b
 ```{r}
 r2_nakagawa(m_no_year)
 
-# marginal R²: this is the variance explained by the fixed effects alone (i.e., **parasitized** + **day**... these predictors of interest collectively explain about 8% of the variance in nest abandonment
+# **marginal R²**: this is the variance explained by the fixed effects alone (i.e., **parasitized** + **day**... these predictors of interest collectively explain about 8% of the variance in nest abandonment
 
-# conditional R²: is the variance explained by the fixed effects and the random effect (**ID**)... together they account for 46% of the variance
+# **conditional R²**: is the variance explained by the fixed effects and the random effect (**ID**)... together they account for 46% of the variance
 
-# there is a big difference between these values, thus individual female identity (**ID**) seems to explains a huge amount of variation in the probability of nest abandonment... far more than **parasitism** status or date of nest initiation, i.e., some females are just much more prone to abandoning nests than others, regardless of whether they've been parasitized!
+# note that there is a big difference between these values, thus individual female identity (**ID**) seems to explains a huge amount of variation in the probability of nest abandonment... far more than **parasitism** status or date of nest initiation, i.e., some females are just much more prone to abandoning nests than others, regardless of whether they've been parasitized!
 ```
 
 ## Challenge 9 {.unnumbered}
-
-### Extract and Plot Random Effects {.unnumbered}
 
 - Extract the individual random effects from the model as a new dataframe (**re**) using `as.data.frame(ranef(m_no_year))` and then plot a histogram of the density distribution of these effects overlaid with a normal distribution.
 
 > **HINT:** The **condval** column in the **re** dataframe will contain these individual values.
 
 ```{r}
+#| message: false
+#| fig-height: 3
 re <- as.data.frame(ranef(m_no_year))
 
 ggplot(re, aes(x = condval)) +
