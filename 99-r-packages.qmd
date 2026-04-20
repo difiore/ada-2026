@@ -99,7 +99,7 @@ Once you create a new package project by this process, a new ***RStudio*** sessi
 - An `.Rbuildignore file`, which like `.gitignore` is a list of files and directories that you do not want included with your package when you eventually "build" it (i.e., bundle it up into a single archive for distribution)
 - A `man/` directory, which will hold the manual pages for your package
 
-> **NOTE:** This method differs from **Method 1** in that it creates a `man/` directory and sets up your package development repository as a ***git*** repository.
+> **NOTE:** This method differs from **Method 1** in that it creates a `man/` directory and sets up your package development repository as a ***git*** repository from the onset.
 
 Whichever method you use to create a new package, make sure you now work in the ***R*** session where your new project is active. Confirm that your working directory is set to be the new project directory using `getwd()`.
 
@@ -148,7 +148,7 @@ When you build a package, all of the code in the `R/` directory is executed and 
 
 If you used **Method 1**, you can simply edit the "hello.R" file adding the code for the function(s) you want to bundle into your package (changing the name of the file if you like). If you used **Method 2**, you can simply create a new ".R" script file containing the function(s) you want to bundle into your package inside the `R` folder within your package directory. For example, I designed the following function, `power.plot()` for [**Module 17**](#module-17) that lets a user explore the relationship between sample size, alpha level, mean, standard deviation, and power. I used the code below and saved this function in a file called "powerplot.R".
 
-> **NOTE:** In the code below, I have prefaced all {ggplot2} library function calls with "ggplot2::" as these are not included in {base} ***R***. This will become important in a minute.
+> **NOTE:** In the code below, I have prefaced all {ggplot2} library function calls with `ggplot2::` as these are not included in {base} ***R***. This will become important in a minute.
 
 ```{r}
 #| eval: false
@@ -172,7 +172,7 @@ power.plot <- function(sigma, mu0, muA, n, alpha,
       fun = dnorm,
       geom = "line",
       args = list(mean = mu0, sd = sigma / sqrt(n)),
-      size = 1,
+      linewidth = 1,
       col = "red",
       show.legend = TRUE
     )
@@ -181,7 +181,7 @@ power.plot <- function(sigma, mu0, muA, n, alpha,
       fun = dnorm,
       geom = "line",
       args = list(mean = muA, sd = sigma / sqrt(n)),
-      size = 1,
+      linewidth = 1,
       col = "blue",
       show.legend = TRUE
     )
@@ -194,7 +194,7 @@ power.plot <- function(sigma, mu0, muA, n, alpha,
           yend = max(
             dnorm(mu0, mu0, sigma / sqrt(n)) + 0.025,
             dnorm(muA, muA, sigma / sqrt(n)) + 0.025
-          ), size = 0.5, linetype = 3)
+          ), linewidth = 0.5, linetype = 3)
       g <-
         g + ggplot2::geom_polygon(
           data = data.frame(cbind(
@@ -218,7 +218,7 @@ power.plot <- function(sigma, mu0, muA, n, alpha,
           yend = max(
             dnorm(mu0, mu0, sigma / sqrt(n)) + 0.025,
             dnorm(muA, muA, sigma / sqrt(n)) + 0.025
-          ), size = 0.5, linetype = 3)
+          ), linewidth = 0.5, linetype = 3)
       g <-
         g + ggplot2::geom_polygon(
           data = data.frame(cbind(
@@ -242,7 +242,7 @@ power.plot <- function(sigma, mu0, muA, n, alpha,
           yend = max(
             dnorm(mu0, mu0, sigma / sqrt(n)) + 0.025,
             dnorm(muA, muA, sigma / sqrt(n)) + 0.025
-          ), size = 0.5, linetype = 3)
+          ), linewidth = 0.5, linetype = 3)
       g <-
         g + ggplot2::geom_polygon(
           data = data.frame(cbind(
@@ -265,7 +265,7 @@ power.plot <- function(sigma, mu0, muA, n, alpha,
             dnorm(mu0, mu0, sigma / sqrt(n)) + 0.025,
             dnorm(muA, muA, sigma / sqrt(n)) + 0.025
           ),
-          size = 0.5, linetype = 3)
+          linewidth = 0.5, linetype = 3)
       g <-
         g + ggplot2::geom_polygon(
           data = data.frame(cbind(
@@ -343,7 +343,7 @@ on.exit(options(original), add = TRUE)
 
 **EXAMPLE:**
 
-In your function, you could include the following...
+In your function, you *could* include the following...
 
 ```{r}
 #| eval: false
@@ -359,7 +359,7 @@ on.exit(setwd(original), add=TRUE)
 
 We next add documentation to our ***R*** script containing the `power.plot()` function by adding special structured comments to the begining of the ".R" file. These comments begin with `#'` and then include certain parameter tags, marked with `@`. These comments will be read and compiled into the correct format for showing in the help/documentation files for our package when we build the package using {devtools} and {roxygen2}. Details for common parameter tags can be found in online {roxygen2} documentation, e.g., [here](https://rstats-pkgs.readthedocs.io/en/latest/roxygen2.html#common-roxygen2-tags) or [here](https://bookdown.org/rdpeng/RProgDA/documentation.html#common-roxygen2-tags).
 
-Minimally, we want to add the following tags to the start of our function file.
+Minimally, we want to add the following tags to the start of the function file.
 
 - `@title`
 - `@description`
@@ -400,14 +400,12 @@ This function adds the following lines to the DESCRIPTION file:
 Imports:
   ggplot2
 ````
-Also, because I tend to use this function inside of a function from {manipulate} (see [**Module 17**](#module-17)), I also run the following...
+Also, because I tend to use this function inside of a function from {manipulate} (see [**Module 17**](#module-17)), I also run the following to add a "Suggests" block to the DESCRIPTION file:
 
 ```{r}
 #| eval: false
 usethis::use_package("manipulate", "Suggests")
 ```
-
-... to add a "Suggests" block to the DESCRIPTION file:
 
 ````
 Suggests: 
@@ -435,9 +433,24 @@ devtools::document()
 
 This function automatically creates one or more ".Rd" (**RDocument**) files and places them in the `man` (i.e., "manual") directory, creating that directory if it does not already exist. It also adds a NAMESPACE file to the main package directory, if that does not already exist, or rewrites that file if it does.
 
+### Check the Package for Errors {.unnumbered}
+
+Before we bundle all of the elements of our package together for distribution either as a built file or via the Comprehensive R Archive Network (CRAN), it is a good idea to run certain tests to make sure that it is constructed correctly. This can be done from ***R*** using {devtools} from inside the package directory...
+
+```{r}
+#| eval: false
+devtools::check()
+```
+
+You could also run this from the terminal, in which case we would need to be in the parent directory for our package and we would need to reference the parent directory as the argument for the command (note the `/` at the end of) `powerplot/`...
+
+```
+R CMD check powerplot/
+```
+
 ### Build the Package {.unnumbered}
 
-The next thing we do is to bundle up all of the elements in our package directory into a single file and create a compressed version of that file. We do this by runnning the `build()` function from {devtools}. If we are in the package directory itself, then we do not need to specify an argument to `build()`, but we can provide `build()` with a path to the package directory if needed.
+Once we have checked our package, the next thing we do is to bundle up all of the elements in our package directory into a single file and create a compressed version of that file. We do this by runnning the `build()` function from {devtools}. If we are in the package directory itself, then we do not need to specify an argument to `build()`, but we can provide `build()` with a path to the package directory if needed.
 
 ```{r}
 #| eval: false
@@ -447,7 +460,19 @@ devtools::build("~/Development/Repos/powerplot")
 
 > **NOTE:** When we run `build()`, we might get the message "Warning: invalid uid value replaced by that for user 'nobody'". You can safely ignore that warning.
 
+You could also run this from the terminal, in which case we again would need to be in the parent directory for our package, but now we just use the parent directory name as the command argument... 
+
+```
+R CMD build powerplot
+```
+
 Running `build()` creates a ".tar.gz" file for your package in the parent directory of your package directory. This file is basically a compressed (".gz") version of a bundled (".tar") file that contains all of the important components of your ***R*** package... the function files in the `R` folder, the DESCRIPTION and NAMESPACE files, and the `man` folder containining RDocument document files (".Rd") for your package's functions.
+
+If we built a package without checking it, or if we were want to check a package before installing it, we can use `R CMD check` on a ".tar.gz" file to run a series of automated checks. To do this, open a terminal window and navigate to the directory containing the ".tar.gz" file (which typically will be the parent directory of your ***R*** package), if you built it from withing the package:
+
+```
+R CMD check powerplot_0.0.1.0.tar.gz
+```
 
 ### Install and Load the Package {.unnumbered}
 
@@ -460,7 +485,7 @@ We can now install this package into our working environment and check out our n
 devtools::load_all()
 ```
 
-Now try out your new function! First, use `library(powerplot)` to load in your library. Then, here is what you should see in the "Help" tab when you type "?power.plot" at console line.
+Now try out your new function! First, use `library(powerplot)` to load in your library. Then, here is what you should see in the "Help" tab when you type `?power.plot` at console the line.
 
 ```{r}
 #| echo: false
@@ -468,7 +493,7 @@ Now try out your new function! First, use `library(powerplot)` to load in your l
 knitr::include_graphics("img/power.plot-help.png")
 ```
 
-You can also install your package to your system or user library by using the {devtools} function `install()`. Here, I am installing to my user library.
+You can also install your package to your system or user library directory by using the {devtools} function `install()`. Here, I am installing to my user library directory.
 
 ```{r}
 #| eval: false
@@ -483,33 +508,20 @@ with_libpaths(
 detach(package:withr)
 ```
 
-You can also use the {base} function `install.packages()` function with the path to the ".tar.gz" file you created with `build()` as an argument. Here, we use `repos = NULL` because we are installing from a local file and we set `type = source` as we're installing a bundled, compressed source file. In the code below, I have set `lib =` to be the location of my system library, but you can instead use a user library (as we did above).
+> **NOTE:** The function `.libPaths()` will list the full paths to any library directories where ***R*** has installed packages, and the first element in this vector will be the directory to which new packages are installed by default.
 
-> **NOTE:** You may need to change the path depending on your operating system (the path below is a common one for MacOS users) and on where your system library is located. You may also need to have administrator privileges to successfully install to that location.
+You can also use the {base} function `install.packages()` function with the path to the ".tar.gz" file you created with `build()` as an argument. Here, we use `repos = NULL` because we are installing from a local file and we set `type = source` as we are installing a bundled, compressed source file. In the code below, I have set `lib =` to be the location of my user library directory, but you can instead use a system library directory (if you provide it the correct path).
+
+> **NOTE:** You may need to change the path depending on your operating system (the path to the user library directory below is a common one for MacOS users). To successfully install packages into a system library directory, you will likely need to have administrator privileges.
 
 ```{r}
 #| eval: false
 install.packages("~/Development/Repos/powerplot_0.0.1.0.tar.gz",
   repos = NULL, type = "source",
-  lib = "/Library/Frameworks/R.framework/Versions/4.5/Resources/library")
+  lib = "/Users/ad26693/Library/R/arm64/4.5/library")
 ```
 
 > **NOTE:** You may occasionally need to restart ***R*** after installing (or removing) a package in order to be able to access it. If, after installing your package and running `library()`, you cannot visualize the documentaton in the **Help** tab, try restarting ***R*** with the following command: `.rs.restartR()`
-
-### Check the Package for Errors {.unnumbered}
-
-It is always a good idea to run certain tests on your package to make sure that it is constructed correctly before distributing it to others to install, either as a built file or via the Comprehensive R Archive Network (CRAN). The terminal function `R CMD check` is one way to run a series of automated checks. To do this, open a terminal window and navigate to the directory containing the ".tar.gz" file (which should be the parent directory for your ***R*** package), and then run:
-
-```
-R CMD check powerplot_0.0.1.0.tar.gz
-```
-
-This can also be done from ***R*** using {devtools} from inside the package directory.
-
-```{r}
-#| eval: false
-devtools::check()
-```
 
 **EXAMPLE:** Using the Package you Just Created
 
@@ -529,11 +541,11 @@ detach(package:manipulate)
 
 ## Writing a Vignette {.unnumbered}
 
-To include an **R Markdown** document as a vignette in your ***R*** package, all you need to do is:
+To include an **Quarto** document as a vignette in your ***R*** package, all you need to do is:
 
 - Create a `vignettes` subdirectory within the package directory.
-- Put your vignette ".Rmd" file in that directory.
-- Within the YAML header at the top of the ".Rmd" file, include code like the following:
+- Put your vignette ".qmd" file in that directory.
+- Within the YAML header at the top of the ".qmd" file, include code like the following:
 
 ````
 ---
@@ -549,34 +561,27 @@ vignette: >
 -   And add the following lines to your package's DESCRIPTION file:
 
 ````
-Suggests: knitr, rmarkdown
-VignetteBuilder: knitr
+Suggests: knitr, quarto
+VignetteBuilder: quarto
 ````
 
-The command `use_vignette()` from {usethis} will do all of this for us and give us a template ".Rmd" file we can edit for our vignette...
+The command `use_vignette()` from {usethis} will do all of this for us and give us a template ".qmd" file we can edit for our vignette...
 
 ```{r}
 #| eval: false
-usethis::use_vignette("powerplot", title = "Power Plot Vignette")
+usethis::use_vignette("powerplot.qmd", title = "Power Plot Vignette")
 ```
 
-Once you have your ".Rmd" file completed, can build (i.e., "knit") your vignette using...
-
-```{r}
-#| eval: false
-devtools::build_vignettes()
-```
-
-The resulting rendered ".html" version of your vignette will be placed into the `inst/doc` folder inside the package directory.
-
-After creating your vignette, you should run `build()` again to bundle the vignette into your ".tar.gz" package file.
+Once you have your ".qmd" file completed, can render your vignette by running `devtools::build()` again...
 
 ```{r}
 #| eval: false
 devtools::build()
 ```
 
-Alternatively, you can run `R CMD build` from a terminal prompt from inside the package directory to build a ".tar.gz" file that contains the ".html" version of the vignette.
+The resulting rendered ".html" version of your vignette will be placed into the `inst/doc` folder inside the package directory and the vignette will be bundled into your ".tar.gz" package file.
+
+Alternatively, instead of `devtools::build()` you could run `R CMD build` from a terminal prompt from inside the package directory to build the ".tar.gz" file that contains the ".html" version of the vignette.
 
 Then, you can run `install()` (or `install_packages()`), `and library()` again to pull the new package with vignette into ***R***.
 
@@ -588,7 +593,7 @@ devtools::install(build_vignettes = TRUE)
 # OR
 library(withr)
 with_libpaths(
-  "/Library/Frameworks/R.framework/Versions/4.5/Resources/library",
+  "/Users/ad26693/Library/R/arm64/4.5/library",
   code = devtools::install(build_vignettes = TRUE)
 )
 # again, this puts powerplot in my system library instead of my user library...
@@ -596,7 +601,7 @@ detach(package:withr)
 # OR
 install.packages("~/Development/Repos/powerplot_0.0.1.0.tar.gz",
   repos = NULL, type = "source",
-  lib = "/Library/Frameworks/R.framework/Versions/4.5/Resources/library")
+  lib = "/Users/ad26693/Library/R/arm64/4.5/library")
 library(powerplot)
 ```
 
@@ -628,7 +633,7 @@ save(zombies, file = "data/zombies.RData")
 save(zombies, file = "data/zombies.rda")
 ```
 
-Then, run `document()` and `build()`again as above to create the package anew with the data included in it, and run `install()` and `library()` to load it into your workspace. Voíla! You can confirm that your dataset loaded by running the following...
+Then, run `document()`, `build()`, and `check()` again as above to create the package anew with the data included in it, and run `install()` and `library()` to load it into your workspace. Voíla! You can confirm that your dataset loaded by running the following...
 
 ```{r}
 #| eval: false
@@ -643,12 +648,12 @@ To share your package with another user, simply pass them the ".tar.gz" file and
 #| eval: false
 install.packages("~/Development/Repos/powerplot_0.0.1.0.tar.gz",
   repos = NULL, type = "source",
-  lib = "/Library/Frameworks/R.framework/Versions/4.5/Resources/library")
+  lib = "/Users/ad26693/Library/R/arm64/4.5/library")
 ```
 
 ## An Example with Vignette and Data {.unnumbered}
 
-For your group project, you may find that you do not need to write your own custom functions, but you will still need to create a vignette and a dataset to distribute... and I **do** want you to include at least two functions in your vignette to make sure you get experience with including those in a package. Here, I demonstrate creating such a package based on [**Module 21**](#module-21) on multiple regression and ANCOVA.
+For your group project, you may find that you do not really need to write your own custom functions, but you will still need to create a vignette and a dataset to distribute... and I **do** want you to include at least two functions in your vignette to make sure you get experience with including those in a package. Here, I demonstrate creating such a package based on [**Module 21**](#module-21) on multiple regression and ANCOVA.
 
 ### Create the Package Directory {.unnumbered}
 
@@ -683,6 +688,7 @@ LazyData: true
 
 ```{r}
 #| eval: false
+usethis::use_package("ggplot2")
 usethis::use_package("car")
 usethis::use_package("jtools")
 usethis::use_package("sjPlot")
@@ -699,13 +705,13 @@ usethis::use_package_doc()
 
 ```{r}
 #| eval: false
-usethis::use_vignette("vignette",
+usethis::use_vignette("vignette.qmd",
   title = "Multiple Regression and ANCOVA Vignette")
 ```
 
-Now, edit the vignette ".Rmd" file as you see fit!
+Now, edit the vignette ".qmd" file as you see fit!
 
-As an example, you can copy and paste the text and code below to the end of the vignette ".Rmd" file. Note that the ***R*** code should be included in a code block.
+As an example, you can copy and paste the text and code below to the end of the vignette ".qmd" file. Note that the ***R*** code should be included in a code block.
 
 ````
 The following code uses the **zombies** dataset
@@ -754,13 +760,6 @@ zombies <- read_csv(f, col_names = TRUE)
 usethis::use_data(zombies)
 ```
 
-### Build Vignettes {.unnumbered}
-
-```{r}
-#| eval: false
-devtools::build_vignettes()
-```
-
 ### Process the Documentation Files {.unnumbered}
 
 ```{r}
@@ -768,7 +767,14 @@ devtools::build_vignettes()
 devtools::document()
 ```
 
-### Build the Package {.unnumbered}
+### Check the Package for Errors {.unnumbered}
+
+```{r}
+#| eval: false
+devtools::check()
+```
+
+### Build the Package and Vignettes {.unnumbered}
 
 ```{r}
 #| eval: false
@@ -780,17 +786,6 @@ devtools::build()
 ```{r}
 #| eval: false
 devtools::install(build_vignettes = TRUE)
-# or
-install.packages("~/Development/Repos/multireg_0.0.1.0.tar.gz",
-  repos = NULL, type = "source",
-  lib = "/Library/Frameworks/R.framework/Versions/4.1/Resources/library")
-```
-
-### Check the Package for Errors {.unnumbered}
-
-```{r}
-#| eval: false
-devtools::check()
 ```
 
 ### Load and Use the Package {.unnumbered}
