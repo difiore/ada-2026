@@ -387,16 +387,19 @@ reps <- 1000
 samp_dist_mean <-
   do(reps) * mean(~averageRating, data=sample_n(d, size = n, replace = FALSE))
 
+names(samp_dist_mean)[1] <- "sample_mean"
+
 mean_plot <-
-  histogram(~mean, data = samp_dist_mean, 
+  histogram(~sample_mean, data = samp_dist_mean, 
     xlab = "Sampling Distribution for the\nMean of Average Rating", plot = TRUE)
 
 # generate a sampling distribution for the median
 samp_dist_median <-
   do(reps) * median(~averageRating, data = sample_n(d, size=n, replace=FALSE))
+names(samp_dist_median)[1] <- "sample_median"
 
 median_plot <-
-  histogram(~median, data = samp_dist_median,
+  histogram(~sample_median, data = samp_dist_median,
     xlab = "Sampling Distribution for the\nMedian of Average Rating")
 ```
 

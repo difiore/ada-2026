@@ -1,8 +1,3 @@
----
-output: html_document
-editor_options: 
-  chunk_output_type: console
----
 # Building Interactive Web Apps {#shiny .unnumbered}
 
 ## Objectives {.unnumbered}
@@ -172,7 +167,7 @@ ui <- fluidPage(
   sidebarLayout(
     sidebarPanel("sidebar panel"),
     mainPanel(h3("Wow, I'm creating a webpage and web server!"),
-              h4("This is really cool.")
+              h4("This is really cool!")
               )
     )
   )
@@ -212,7 +207,12 @@ The `img()` function from {shiny} looks for your image file **in a specific plac
 
 Replace the sidebar panel line with...
 
-`sidebarPanel(img(src = "pvz-zombie1.png", width = 100), style = "text-align:center")`
+```
+sidebarPanel(
+    img(src = "zombie.png", width = 100),
+    style = "text-align:center"
+)
+```
 
 ... and then rerun your app.
 
@@ -250,11 +250,12 @@ Add a button labeled "SUBMIT" to the `sidebarPanel` of your app below the image 
 Replace the sidebar panel line with...
 
 ```
-sidebarPanel(img(src = "pvz-zombie1.png", width = 100), style = "text-align:center"),
+sidebarPanel(img(src = "zombie.png", width = 100),
     br(),
     br(),
     actionButton("submit", "SUBMIT"),
-    style = "text-align:center")
+    style = "text-align:center"
+),
 ```
 
 ... and then rerun your app.
@@ -267,7 +268,7 @@ Select the widget that you want and then click the "See Code" button below the w
 
 ## Displaying Reactive Values {.unnumbered}
 
-If we now want our web app to conduct some analysis or display some data visualization that responds to user input, we need to set up the `ui` and the associated `server` function to create and **reactive** output. This involves two basic steps:
+If we now want our web app to conduct some analysis or display some data visualization that responds to user input, we need to set up the `ui` and the associated `server` functions to create **reactive** output. This involves two basic steps:
 
 - Adding an ***R*** object to our user interface.
 - Telling {shiny} how to build that object in the `server()` function. The object will be **reactive** if the code that builds it calls a widget value.
@@ -297,7 +298,7 @@ You can add output to the user interface in the same way that we added HTML elem
 
 Let's add a `selectInput()` popdown menu element to the `sidebarPanel()` of your app. This function takes up to four arguments, the element name, the element label, a vector of choices to select from, and the name of the default choice.
 
-Replace the `actionButton()` you added to the sidebarPanel with the following and rerun your app.
+Replace the items in your `sidebarPanel()` with the following and rerun your app.
 
 ```
 selectInput(
@@ -305,15 +306,16 @@ selectInput(
   label = "Choose one of the following...",
   choices = c("Zombie", "Vampire", "Alien", "Werewolf"),
   selected = "Zombie"
-  )
+)
 ```
 
-Now add a reactive `textOutput()` function to the `mainPanel` element of your app... it should now look like this...
+Now add an empty line (`br()`) and a reactive `textOutput()` function to the `mainPanel` element of your app and also change some of the text in your `h3()` and `h4()` elements... it should now look like this...
 
 ```
 mainPanel(
-  h3("Wow, I'm creating a webpage and web server!"),
-  h4("This is really cool."),
+  h3("Wanna see a picture of your favorite monster?"),
+  h4("This is really cool!"),
+  br(),
   textOutput("favorite_monster")
   )
 ```
@@ -336,7 +338,7 @@ Modify the `server()` function in your app to look like the code below and then 
 
 ```
 server <- function(input, output) {
-  output$favorite_monster <- renderText({"argument"})
+  output$favorite_monster <- renderText({"MY FAVORITE"})
 }
 ```
 
@@ -356,12 +358,94 @@ Again, modify the `server()` function in your app to look like the code below an
 
 ```
 server <- function(input, output) {
-  output$favorite_monster <- renderText({paste0("You have selected... ", input$favorite_monster)})
+  output$favorite_monster <- renderText({paste0("You have picked... ", input$favorite_monster)})
 }
 ```
+
 {shiny} tracks which outputs depend on which widgets. When a user changes a widget, {shiny} rebuilds all of the outputs that depend on that widget, using the new value of the widget as it goes.
 
-This is how you create reactivity with {shiny}, by connecting the values of "input" to the objects in "output". {shiny} takes care of all of the other details.
+Let's add another element to the main panel of our app to display an image of the monster you have chosen. Add two more lines to the `mainPanel()` so that it now looks like this...
+
+```
+mainPanel(
+  h3("Wanna see a picture of your favorite monster?"),
+  h4("This is really cool!"),
+  br(),
+  textOutput("favorite_monster"),
+  br(),
+  uiOutput("monster_image")
+  )
+```
+
+We also have to add another reactive element in the `server()` section of our app...
+
+```
+output$monster_image <- renderUI({
+  img_src <- case_when(
+    input$favorite_monster == "Zombie"   ~ "zombie.png",
+    input$favorite_monster == "Vampire"  ~ "vampire.png",
+    input$favorite_monster == "Alien"    ~ "alien.png",
+    input$favorite_monster == "Werewolf" ~ "werewolf.png"
+  )
+  img(src = img_src, height = 300)
+})
+```
+
+Once you have made these additions, save and run your app!
+
+> **NOTE:** Click `Show Code` to view the complete code for this app.
+
+```{r}
+#| eval: false
+#| code-fold: true
+#| code-summary: "Show Code"
+# monster_picker.R
+library(shiny)
+
+# Define the UI ----
+ui <- fluidPage(
+  titlePanel(h1("Monster Picker")),
+  sidebarLayout(
+    sidebarPanel(
+      selectInput("favorite_monster",
+                  label = "Choose one of the following...",
+                  choices = c("Zombie", "Vampire", "Alien", "Werewolf"),
+                  selected = "Zombie"
+      )
+    ),
+    mainPanel(
+      h3("Wanna see a picture of your favorite monster?"),
+      h4("This is really cool!"),
+      br(),
+      textOutput("favorite_monster"),
+      br(),
+      uiOutput("monster_image")
+    )
+  )
+)
+
+# Define server logic ----
+server <- function(input, output) {
+    output$favorite_monster <- renderText({
+      paste0("You have picked ", input$favorite_monster)
+    })
+
+    output$monster_image <- renderUI({
+      img_src <- case_when(
+        input$favorite_monster == "Zombie"   ~ "zombie.png",
+        input$favorite_monster == "Vampire"  ~ "vampire.png",
+        input$favorite_monster == "Alien"    ~ "alien.png",
+        input$favorite_monster == "Werewolf" ~ "werewolf.png"
+      )
+      img(src = img_src, height = 300)
+    })
+}
+
+# Run the app ----
+shinyApp(ui = ui, server = server)
+```
+
+This is how you create reactivity with {shiny} -- by connecting the values of "input" to the objects in "output". {shiny} takes care of all of the other details.
 
 ## Loading in a Data from a File {.unnumbered}
 
@@ -412,6 +496,7 @@ We are now going to use some of the above techniques to build a functional web a
 - Create a new {shiny} app called "lm.R" with the three standard sections of a {shiny} app:
 
 ```
+library(shiny)
 ui <- fluidPage()
 server <- function(input,output){}
 shinyApp(ui = ui, server = server)
@@ -440,7 +525,6 @@ ui <- fluidPage(
 - Add code to the start of your app to load in the {DT} and {tidyverse} (and, by extension, the {dplyr} and {ggplot2}) libraries and to read our zombie apocalypse survivors dataset into the app as a variable named **d** when the app starts up.
 
 ```
-library(shiny)
 library(DT)
 library(tidyverse)
 library(broom)
@@ -472,6 +556,7 @@ server <- function(input, output) {
       lengthMenu = list(c(5, 10, 25, -1), c('5', '10', '25', 'All')),
       pageLength = 5
     ))
+}
 ```
 
 Now run your app... what does it do?
@@ -541,7 +626,7 @@ A second code chunk prints out the `lm()` being fitted.
   output$model <- renderText({paste0("Model: ", print(m()))})
 ```
 
-Code chunk 3 outputs a table of coefficients resulting from the linear model formula stored in `m()`, and it updates every time the user changes `input$response` or `input$predictors` because doing that updates the value of `m()` the output function first confirms that a valid linear model has been constructed.
+A third code chunk outputs a table of coefficients resulting from the linear model formula stored in `m()`, and it updates every time the user changes `input$response` or `input$predictors` because doing that updates the value of `m()` the output function first confirms that a valid linear model has been constructed.
 
 ```{r}
 #| eval: false
@@ -616,6 +701,131 @@ With two continuous predictor variables, or with more than two predictor variabl
 #### Step 8 {.unnumbered}
 
 - Run and play with your app!
+
+> **NOTE:** Click `Show Code` to view the complete code for this app.
+
+```{r}
+#| eval: false
+#| code-fold: true
+#| code-summary: "Show Code"
+# lm.R code
+library(shiny)
+library(DT)
+library(tidyverse)
+library(broom)
+f <- "https://raw.githubusercontent.com/difiore/ada-datasets/main/zombies.csv"
+d <- read_csv(f, col_names = TRUE)
+d <- select(d, height, weight, age, gender, major)
+d$gender <- factor(d$gender)
+d$major <- factor(d$major)
+r <- c("height", "weight", "age")
+p <- names(d)
+
+ui <- fluidPage(
+  titlePanel(h1("Simple LM Visualizer")),
+  sidebarLayout(
+    sidebarPanel(width = 5,
+                 selectInput(
+                   "response",
+                   label = "Choose a response variable...",
+                   choices = c("", r)
+                 ),
+                 selectInput(
+                   "predictors",
+                   label = "Choose one or more predictor variables...",
+                   choices = p,
+                   multiple = TRUE
+                 ),
+                 textOutput("model"),
+                 tableOutput("modelresults")
+    ),
+    mainPanel(width = 7,
+              dataTableOutput("datatable"),
+              plotOutput("plot")
+    )
+  )
+)
+
+server <- function(input, output) {
+  m <- reactive({
+    mod <- NULL
+    if (input$response == "" | length(input$predictors) == 0){return(mod)}
+    mod <- paste0(input$response," ~ ", input$predictors[1])
+    if (length(input$predictors) > 1){
+      for (i in 2:length(input$predictors)){
+        mod <- paste0(mod, " + ", input$predictors[i])
+      }
+    }
+    return(mod)
+  })
+
+  output$datatable <-
+    renderDataTable(d, options = list(
+      paging = TRUE,
+      lengthMenu = list(c(5, 10, 25, -1), c('5', '10', '25', 'All')),
+      pageLength = 5
+    ))
+
+  output$model <- renderText({paste0("Model: ", print(m()))})
+
+  output$modelresults <- renderTable({
+    if (!is.null(m())){
+      res <- lm(data =d , formula = m())
+      res <- as.data.frame(coefficients(res))
+      names(res) <- "Beta"
+      res
+    }
+  }, width = "100%", rownames = TRUE, striped = TRUE, spacing = "s", bordered = TRUE, align = "c", digits = 3)
+
+  output$plot <- renderPlot({
+    if (!is.null(m()) & length(input$predictors) == 1) {
+      y <- input$response
+      x <- input$predictors
+      if (class(d[[x]]) != "factor") {
+        p <- ggplot(data = d, aes(x = .data[[x]], y = .data[[y]])) +
+          geom_point() +
+          geom_smooth(method = lm)
+      } else {
+        p <- ggplot(data = d, aes(x = .data[[x]], y = .data[[y]])) +
+          geom_violin() +
+          geom_jitter(width = 0.2, alpha = 0.5)
+      }
+      p <- p + xlab(x) + ylab(y) +
+        theme(axis.text.x = element_text(angle = 90, hjust = 1))
+      p
+    } else if (!is.null(m()) & length(input$predictors) == 2) {
+      y <- input$response
+      x <- input$predictors
+      if (class(d[[x[1]]]) == "factor" & class(d[[x[2]]]) == "factor") {
+        p <- ggplot(data = d, aes(x = .data[[x[1]]], y = .data[[y]])) +
+          geom_violin() +
+          geom_jitter(width = 0.2, alpha = 0.5) +
+          facet_wrap(~ d[[x[2]]])
+        p <- p + xlab(x[1]) + ylab(y)
+      } else if (class(d[[x[1]]]) != "factor" & class(d[[x[2]]]) == "factor"){
+        p <- ggplot(data = d, aes(x = .data[[x[1]]], y = .data[[y]])) +
+          geom_point() +
+          geom_smooth(method = lm) +
+          facet_wrap(~ d[[x[2]]])
+        p <- p + xlab(x[1]) + ylab(y)
+      } else if (class(d[[x[1]]]) == "factor" & class(d[[x[2]]]) != "factor"){
+        p <- ggplot(data = d, aes(x = .data[[x[2]]], y = .data[[y]])) +
+          geom_point() +
+          geom_smooth(method = lm) +
+          facet_wrap(~ d[[x[1]]])
+        p <- p + xlab(x[2]) + ylab(y)
+      } else {
+        p <- NULL
+      }
+      p <- p + theme(axis.text.x = element_text(angle = 90, hjust = 1))
+      p
+    }
+  })
+
+}
+
+shinyApp(ui = ui, server = server)
+```
 
 ```{r}
 #| include: false

@@ -6,3 +6,4 @@
 my_gmail_creds.R
 /.quarto/
 .httr-oauth
+.positai
