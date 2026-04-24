@@ -15,7 +15,6 @@ library(tidyverse)
 library(infer) # for rep_sample_n()
 library(ggformula) # for gf_ functions
 library(cowplot) # for plot_grid()
-library(mosaic) # for do() * <function>
 library(kableExtra) # for kable_styling()
 ```
 
@@ -103,6 +102,8 @@ $$\bar{x} = \mu$$
 $$s = \frac{\sigma}{\sqrt{n}}$$
 
 ```{r}
+#| message: false
+#| warning: false
 # sample size
 n <- 10
 # number of replicates
@@ -111,18 +112,14 @@ reps <- 1000
 # normal distribution
 # generate 1 sample of size n...
 x <- rnorm(n, mean=2, sd=1)
-# and plot it along with the distribution it was
-# drawn from and the mean of the sample
+# and plot it along with the distribution it was drawn from and the mean of the sample
 a <- gf_dhistogram(~x) |>
   gf_dist("norm", mean=2, sd=1) |>
   gf_vline(xintercept = ~ c(mean(x)))
 
-# generate a sampling distribution for the sample mean
-# based on *reps* samples of size *n* and put it
-# in a vector...
-n_mean <- tibble(do(reps) * mean(rnorm(n, mean=2, sd=1))) |> pull(mean)
-# and plot it along with the sampling distribution
-# and the mean of the sample
+# generate a sampling distribution for the sample mean based on *reps* samples of size *n* and put it in a vector...
+n_mean <- replicate(reps, mean(rnorm(n, mean=2, sd=1)))
+# and plot it along with the sampling distribution and the mean of the sample
 b <- gf_dhistogram(~n_mean, bins=30) |>
   gf_dist("norm", mean=mean(n_mean), sd=sd(n_mean)) |>
   gf_vline(xintercept = ~ c(mean(n_mean)))
@@ -132,18 +129,14 @@ row1 <- plot_grid(a,b)
 # beta distribution
 # generate 1 sample of size n...
 x <- rbeta(reps, shape1=2, shape2=10)
-# and plot it along with the distribution it was
-# drawn from and the mean of the sample
+# and plot it along with the distribution it was drawn from and the mean of the sample
 a <- gf_dhistogram(~x) |>
   gf_dist("beta", shape1=2, shape2=10) |>
   gf_vline(xintercept = ~ c(mean(x)))
 
-# generate a sampling distribution for the sample mean
-# based on *reps* samples of size *n* and put it
-# in a vector...
-b_mean <- tibble(do(reps) * mean(rbeta(reps, shape1=2, shape2=10))) |> pull(mean)
-# and plot it along with the sampling distribution
-# and the mean of the sample
+# generate a sampling distribution for the sample mean based on *reps* samples of size *n* and put it in a vector...
+b_mean <- replicate(reps, mean(rbeta(reps, shape1=2, shape2=10)))
+# and plot it along with the sampling distribution and the mean of the sample
 b <- gf_dhistogram(~b_mean) |>
   gf_dist("norm", mean=mean(b_mean), sd=sd(b_mean)) |>
   gf_vline(xintercept = ~ c(mean(b_mean)))
@@ -153,18 +146,14 @@ row2 <- plot_grid(a,b)
 # uniform distribution
 # generate 1 sample of size n...
 x <- runif(reps, min=1, max=2)
-# and plot it along with the distribution it was
-# drawn from and the mean of the sample
+# and plot it along with the distribution it was drawn from and the mean of the sample
 a <- gf_dhistogram(~x) |>
   gf_dist("unif", min=1, max=2) |>
   gf_vline(xintercept = ~ c(mean(x)))
 
-# generate a sampling distribution for the sample mean
-# based on *reps* samples of size *n* and put it
-# in a vector...
-u_mean <- tibble(do(reps) * mean(runif(reps, min=1, max=2))) |> pull(mean)
-# and plot it along with the sampling distribution
-# and the mean of the sample
+# generate a sampling distribution for the sample mean based on *reps* samples of size *n* and put it in a vector...
+u_mean <- replicate(reps, mean(runif(reps, min=1, max=2)))
+# and plot it along with the sampling distribution and the mean of the sample
 b <- gf_dhistogram(~u_mean) |>
   gf_dist("norm", mean=mean(u_mean), sd=sd(u_mean)) |>
   gf_vline(xintercept = ~ c(mean(u_mean)))
@@ -174,18 +163,14 @@ row3 <- plot_grid(a,b)
 # normal distribution... with a different statistic
 # generate 1 sample of size n...
 x <- rnorm(n, mean=2, sd=1)
-# and plot it along with the distribution it was
-# drawn from and the mean of the sample
+# and plot it along with the distribution it was drawn from and the mean of the sample
 a <- gf_dhistogram(~x) |>
   gf_dist("norm", mean=2, sd=1) |>
   gf_vline(xintercept = ~ c(quantile(x, 0.025)))
 
-# generate a sampling distribution for the sample mean
-# based on *reps* samples of size *n* and put it
-# in a vector...
-n_mean <- tibble(do(reps) * quantile(rnorm(n, mean=2, sd=1), 0.025)) |> pull(X2.5.)
-# and plot it along with the sampling distribution
-# and the mean of the sample
+# generate a sampling distribution for the sample mean based on *reps* samples of size *n* and put it in a vector...
+n_mean <- replicate(reps, quantile(rnorm(n, mean=2, sd=1), 0.025))
+# and plot it along with the sampling distribution and the mean of the sample
 b <- gf_dhistogram(~n_mean, bins=30) |>
   gf_dist("norm", mean=mean(n_mean), sd=sd(n_mean)) |>
   gf_vline(xintercept = ~ c(mean(n_mean)))
@@ -195,18 +180,14 @@ row4 <- plot_grid(a,b)
 # uniform distribution... with a different statistic
 # generate 1 sample of size n...
 x <- runif(reps, min=1, max=2)
-# and plot it along with the distribution it was
-# drawn from and the 0.25 quantile of the sample
+# and plot it along with the distribution it was drawn from and the 0.25 quantile of the sample
 a <- gf_dhistogram(~x) |>
   gf_dist("unif", min=1, max=2) |>
   gf_vline(xintercept = ~ c(quantile(x, 0.25)))
 
-# generate a sampling distribution for the 0.25 quantile
-# based on *reps* samples of size *n* and put it
-# in a vector...
-u_mean <- tibble(do(reps) * quantile(runif(reps, min=1, max=2), 0.25)) |> pull(X25.)
-# and plot it along with the sampling distribution
-# and the mean of the sample
+# generate a sampling distribution for the 0.25 quantile based on *reps* samples of size *n* and put it in a vector...
+u_mean <- replicate(reps, quantile(runif(reps, min=1, max=2), 0.25))
+# and plot it along with the sampling distribution and the mean of the sample
 b <- gf_dhistogram(~u_mean) |>
   gf_dist("norm", mean=mean(u_mean), sd=sd(u_mean)) |>
   gf_vline(xintercept = ~ c(mean(u_mean)))
@@ -227,6 +208,8 @@ The following code draws a single sample of size **n** from a normal distributio
 * Using the *estimate of the standard error generated from the original sample*, along with the original sample mean, to generate an alternative theory-based CI, but presuming that the shape of sampling distribution is better modeled as a *t-distribution*
 
 ```{r}
+#| message: false
+#| warning: false
 # sample size
 n <- 10
 # number of replicates
@@ -255,12 +238,9 @@ rep_sample_n(size=length(x), replace=TRUE, reps=reps) |> group_by(replicate) |>
   summarize(mean = mean(x)) |> pull(mean)
 
 # or...
-boot <- do(reps) * mean(sample(x, length(x), replace=TRUE))
-boot <- boot$mean
+boot <- replicate(reps, mean(sample(x, length(x), replace=TRUE)))
 
-
-# plot a histogram of our bootstrapped sample means with
-# normal curve and original sample mean superimposed
+# plot a histogram of our bootstrapped sample means with normal curve and original sample mean superimposed
 plot4 <- gf_dhistogram(~boot, title = "Bootstrap Sampling Distribution", xlab = "x") |>
   gf_dist("norm", mean=mean(boot), sd=sd(boot)) |>
   gf_vline(xintercept = ~ c(mean(x))) # mean of our original vector of samples
@@ -300,7 +280,6 @@ plot4
 ```{r}
 #| include: false
 detach(package:kableExtra)
-detach(package:mosaic)
 detach(package:cowplot)
 detach(package:ggformula)
 detach(package:infer)

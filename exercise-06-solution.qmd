@@ -65,7 +65,7 @@ p
 n_boot <- 10000
 s <- d |> filter(sex == "M")
 
-# option 1 - using {base} R
+# option 1 - using a loop
 boot <- vector()
 # the size of each bootstrap sample should equivalent to the size our original sample
 for (i in 1:n_boot){
@@ -73,17 +73,14 @@ for (i in 1:n_boot){
     mean(sample(s$kernel95, length(s$kernel95), replace=TRUE))
 }
 
-# option 2 - using {mosaic}
-# note that the entire do()* loop code needs to be wrapped in braces or parentheses before pull()
-boot <- {do(n_boot) *
-    mean(sample(s$kernel95, size = length(s$kernel95), replace = TRUE))
-  } |>
-  pull(mean) # pull out mean column as vector
+# option 2 - using the replicate() function
+boot <- replicate(n_boot,
+    mean(sample(s$kernel95, size = length(s$kernel95), replace = TRUE)))
 
 # option 3 - using {infer}
-boot <- s %>%
+boot <- s |>
   rep_sample_n(replace = TRUE,
-               size = nrow(.),
+               size = nrow(s),
                reps = 10000) |>
   group_by(replicate) |>
   summarize(mean = mean(kernel95)) |>

@@ -372,35 +372,23 @@ histogram(~ averageRating, data=s, xlab="Average Rating")
 
 Note that each time we select a sample and calculate summary statistics, such as the mean and standard deviation of a sample, we get slightly different results. If we repeat this sampling process multiple times, we can use the results to generate a **distribution** for a particular summary statistic of interest, e.g., for the mean or the median. This process generates what is called a **sampling distribution** for the statistic.
 
-The code below allows us to generate a sampling distribution virtually. The `do() *` construction from {mosaic}, in combination with one of the {mosaic} package's aggregating functions (e.g., `mean()`, `median()`, etc.), can be used to repeat sampling from the population a user-specified number of times, calculate a summary statistic, and then bundle the results into a vector all in the same line. [Of course, we could also write a loop to do the same thing... and there are other ways we could do this as well (see examples below).]
+The code below allows us to generate a sampling distribution virtually. The `replicate()` function from {base} ***R*** can be used to repeat sampling from the population a user-specified number of times, calculate a summary statistic, and then bundle the results into a vector all in the same line. [Of course, we could also write a loop to do the same thing... and there are other ways we could do this as well (see examples below).]
 
 This process of *simulating* samples drawn from a population and then generating statistics on the basis of each of our virtual samples is a very powerful tool that we will apply over and over again as we talk about statistical inference. This process is the basis for bootstrapping confidence intervals (see [**Module 14**](#module-14)) and for conducting randomization/permutation tests (see [**Module 16**](#module-16)).
 
-#### Using the {mosaic} Package {.unnumbered}
+#### Using `replicate()` from the {base} Package {.unnumbered}
 
 ```{r}
-#| message: false
-# using `do(reps) *` from {mosaic} to generate a sampling distribution
 reps <- 1000
-
-# generate a sampling distribution for the mean
-samp_dist_mean <-
-  do(reps) * mean(~averageRating, data=sample_n(d, size = n, replace = FALSE))
-
-names(samp_dist_mean)[1] <- "sample_mean"
+samp_dist_mean <- replicate(reps, mean(sample_n(d, size = n, replace = FALSE)$averageRating))
 
 mean_plot <-
-  histogram(~sample_mean, data = samp_dist_mean, 
-    xlab = "Sampling Distribution for the\nMean of Average Rating", plot = TRUE)
+  histogram(~samp_dist_mean, xlab = "Sampling Distribution for the\nMean of Average Rating")
 
-# generate a sampling distribution for the median
-samp_dist_median <-
-  do(reps) * median(~averageRating, data = sample_n(d, size=n, replace=FALSE))
-names(samp_dist_median)[1] <- "sample_median"
+samp_dist_median <- replicate(reps, median(sample_n(d, size = n, replace = FALSE)$averageRating))
 
 median_plot <-
-  histogram(~sample_median, data = samp_dist_median,
-    xlab = "Sampling Distribution for the\nMedian of Average Rating")
+  histogram(~samp_dist_median, xlab = "Sampling Distribution for the\nMedian of Average Rating")
 ```
 
 ```{r}
@@ -408,16 +396,6 @@ median_plot <-
 #| fig-height: 4
 library(cowplot)
 plot_grid(mean_plot, median_plot, ncol=2)
-detach(package:cowplot)
-```
-
-#### Using `replicate()` from the {base} Package {.unnumbered}
-
-```{r}
-samp_dist_mean_alt1 <- replicate(reps, mean(sample_n(d, size = n, replace = FALSE)$averageRating))
-
-mean_plot_alt1 <-
-  histogram(samp_dist_mean_alt1, xlab = "Sampling Distribution for the\nMean of Average Rating")
 ```
 
 #### Using the {purrr} Package {.unnumbered}
@@ -425,12 +403,24 @@ mean_plot_alt1 <-
 ```{r}
 library(purrr)
 # using `map_dbl()` from {purrr} to generate a sampling distribution and return a vector
-samp_dist_mean_alt2 <-
+samp_dist_mean_alt1 <-
   map_dbl(1:reps, ~ mean(sample_n(d, size = n, replace = FALSE)$averageRating))
 
-mean_plot_alt2 <-
-  histogram(samp_dist_mean_alt2, xlab = "Sampling Distribution for the\nMean of Average Rating")
+mean_plot <-
+  histogram(samp_dist_mean_alt1, xlab = "Sampling Distribution for the\nMean of Average Rating")
+
+samp_dist_median_alt1 <-
+  map_dbl(1:reps, ~ median(sample_n(d, size = n, replace = FALSE)$averageRating))
+
+median_plot <-
+  histogram(samp_dist_median_alt1, xlab = "Sampling Distribution for the\nMean of Average Rating")
 detach(package:purrr)
+```
+
+```{r}
+#| message: false
+#| fig-height: 4
+plot_grid(mean_plot, median_plot, ncol=2)
 ```
 
 #### Using the {infer} Package {.unnumbered}
@@ -439,17 +429,35 @@ detach(package:purrr)
 #| message: false
 # using `rep_sample_n()` from {infer} to generate a sampling distribution
 library(infer)
-samp_dist_mean_alt3 <- d |>
+samp_dist_mean_alt2 <- d |>
   rep_sample_n(size = n,
                reps = reps,
                replace = FALSE) |>
   group_by(replicate) |>
   summarize(mean = mean(averageRating)) |>
   pull(mean)
-detach(package:infer)
 
-mean_plot_alt3 <-
-  histogram(samp_dist_mean_alt3, xlab = "Sampling Distribution for the\nMean of Average Rating")
+mean_plot <-
+  histogram(samp_dist_mean_alt2, xlab = "Sampling Distribution for the\nMean of Average Rating")
+
+samp_dist_median_alt2 <- d |>
+  rep_sample_n(size = n,
+               reps = reps,
+               replace = FALSE) |>
+  group_by(replicate) |>
+  summarize(median = median(averageRating)) |>
+  pull(median)
+
+mean_plot <-
+  histogram(samp_dist_mean_alt2, xlab = "Sampling Distribution for the\nMean of Average Rating")
+detach(package:infer)
+```
+
+```{r}
+#| message: false
+#| fig-height: 4
+plot_grid(mean_plot, median_plot, ncol=2)
+detach(package:cowplot)
 ```
 
 > **IMPORTANT NOTE:** The histograms we plot in the code above are for **sampling distributions** of the statistics in question. They do not represent the distribution of values in any particular sample! This is SUPER IMPORTANT to recognize and keep in mind.
@@ -458,10 +466,10 @@ The **mean of the sampling distribution** (i.e., the mean of $\bar{x}$) for a pa
 
 ```{r}
 #| message: false
-mean( ~ mean, data = samp_dist_mean)
+mean(samp_dist_mean)
 # this is the estimated population mean calculated as the mean of the sampling distribution of sample means
 pop_stats$mean # true population mean
-mean( ~ median, data = samp_dist_median)
+mean(samp_dist_median)
 # this is the estimated population median calculated as the mean of the sampling distribution of sample medians
 pop_stats$median # true population median
 ```
@@ -480,18 +488,18 @@ To estimate the SE from a sampling distribution, we simply take the standard sta
 
 ```{r}
 #| message: false
-se_mean <- favstats(~ mean, data=samp_dist_mean)$sd
-# or, se_mean <- sd(samp_dist_mean$mean)
+se_mean <- favstats(samp_dist_mean)$sd
+# or, se_mean <- sd(samp_dist_mean)
 (paste0( "Estimated population mean = ",
-  round(favstats(~ mean, data=samp_dist_mean)$mean,3),
+  round(favstats(samp_dist_mean)$mean,3),
   " ± ", round(se_mean,3),
   " SE based on ", reps, " samples of size ", n))
 
-se_median <- favstats(~ median, data=samp_dist_median)$sd
-# or, se_median <- sd(samp_dist_median$median)
+se_median <- favstats(samp_dist_median)$sd
+# or, se_median <- sd(samp_dist_median)
 
 (paste0( "Estimated population median = ",
-  round(favstats(~ median, data=samp_dist_median)$mean, 3),
+  round(favstats(samp_dist_median)$mean, 3),
   " ± ", round(se_median,3),
   " SE based on ", reps, " samples of size ", n))
 ```

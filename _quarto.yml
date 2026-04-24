@@ -40,9 +40,9 @@ book:
       - 11-module.qmd
     - part: "Part II - Statistics and Inference"
       chapters:
-      # - 12-module.qmd
+      - 12-module.qmd
       - 13-module.qmd
-      # - 14-module.qmd
+      - 14-module.qmd
       - 15-module.qmd
       - 16-module.qmd
       - 17-module.qmd
@@ -73,7 +73,7 @@ book:
       - exercise-05.qmd
       - exercise-05-solution.qmd
       - exercise-06.qmd
-      # - exercise-06-solution.qmd
+      - exercise-06-solution.qmd
       - exercise-07.qmd
       - exercise-08.qmd
       - exercise-08-solution.qmd

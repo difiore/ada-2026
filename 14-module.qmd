@@ -617,15 +617,16 @@ As is typically the case with ***R***, we have many choices for perform we might
 
 #### Using the {mosaic} Package {.unnumbered}
 
-We are already familiar with the `do(reps) *` formulation from the {mosaic} package...
+We are already familiar with the `replicate()` function from {base} ***R***...
 
 ```{r}
-boot <- do(n_boot) * mean(~ sample(s, length(s), replace = TRUE))
-hist(boot$mean,
+boot <- replicate(n_boot, mean(~ sample(s, length(s), replace = TRUE)))
+
+hist(boot,
           breaks = 25,
           ylim = c(0, 1600),
           xlab = "Mean",
-          main = "Bootstrap Sampling Distribution\nfrom do(reps) *")
+          main = "Bootstrap Sampling Distribution\nfrom replicate()")
 ```
 
 #### Using the {infer} Package {.unnumbered}
@@ -656,11 +657,8 @@ For this approach, we define a custom function that we will use to generate the 
 #| warning: false
 #| message: false
 library(boot)
-# here, the `stat()` function we define calculates the mean value of a bootstrap sample
-#   taken with replacement from a vector of interest passed into `data`
-# the function we write for `statistic=` has two arguments, a data set and a
-#   set of indices, generated at random by the `boot()` function, to sample
-#   from the dataset
+# here, the `stat()` function we define calculates the mean value of a bootstrap sample taken with replacement from a vector of interest passed into `data`
+# the function we write for `statistic=` has two arguments, a data set and a set of indices, generated at random by the `boot()` function, to sample from the dataset
 # this corresponds to the default argument `stype="i"` in the `boot()` call
 stat <- function(data, indices) {
   return(mean(data[indices])) 
@@ -672,8 +670,7 @@ Then, we run the `boot()` function passing in the data to be resampled from ("da
 ```{r}
 #| fig-keep: last
 boot <- boot(data = s, statistic = stat, R = n_boot) # stype="i" by default
-# the object returned includes a table, `t`, of `stat`s results from each
-#   bootstrap
+# the object returned includes a table, `t`, of `stat`s results from each bootstrap
 ```
 
 Again, it is interesting to plot the bootstrap sampling distibution and compare methods for calculating CIs.
@@ -681,7 +678,6 @@ Again, it is interesting to plot the bootstrap sampling distibution and compare 
 ```{r}
 #| fig-keep: last
 # Visualizing the results and comparing methods for calculating CIs
-# 
 hist(boot$t, breaks = 25,
      ylim = c(0, 1500),
      xlab = "Mean",
