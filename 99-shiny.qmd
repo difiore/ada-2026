@@ -393,7 +393,7 @@ output$monster_image <- renderUI({
 
 Once you have made these additions, save and run your app!
 
-> **NOTE:** Click `Show Code` to view the complete code for this app.
+> **NOTE:** Click `Show Code` below to view the complete code for this app.
 
 ```{r}
 #| eval: false
@@ -487,7 +487,7 @@ You should generally avoid placing code inside a `render*()` function that does 
 
 ## Example Linear Model Visualizer App {.unnumbered}
 
-We are now going to use some of the above techniques to build a functional web app that loads in data from the "zombies.csv" file we have been using, displays the data in a table, and then lets us interactively explore simple and multiple regression linear model to generate a table of beta coefficients and plot bivariate scatterplots and boxplots. A full version of this app can be viewed or downloaded from [here](https://raw.githubusercontent.com/difiore/ada-datasets/main/lm.R).
+We are now going to use some of the above techniques to build a functional web app that loads in data from the "zombies.csv" file we have been using, displays the data in a table, and then lets us interactively explore simple and multiple regression linear model to generate a table of beta coefficients and plot bivariate scatterplots and boxplots.
 
 ### CHALLENGE {.unnumbered}
 
@@ -702,7 +702,7 @@ With two continuous predictor variables, or with more than two predictor variabl
 
 - Run and play with your app!
 
-> **NOTE:** Click `Show Code` to view the complete code for this app.
+> **NOTE:** Click `Show Code` below to view the complete code for this app.
 
 ```{r}
 #| eval: false

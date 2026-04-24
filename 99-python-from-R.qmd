@@ -14,6 +14,7 @@
 #| include: false
 #| message: false
 library(reticulate)
+use_miniconda(condaenv = "r-reticulate", required = TRUE)
 ```
 
 > **NOTE:** Recent versions of the MacOS, Windows, and Linux operating systems typically include a ***Python*** installation by default, but that may not be an up-to-date version and the included package manager may not be comprehensive. Thus, for most users, it is worthwhile to download and install an updated version of ***Python*** along with a software system for managing ***Python*** libraries and environments.

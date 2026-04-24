@@ -2,6 +2,9 @@ project:
   type: book
   output-dir: docs
 
+execute:
+  freeze: auto
+
 book:
   title: "Applied Data Analysis 2026"
   # author: "Anthony Di Fiore"
@@ -57,7 +60,7 @@ book:
       chapters:
       - 99-maximum_likelihood-estimation.qmd
       - 99-bayesian-inference.qmd
-      # - 99-python-from-R.qmd
+      - 99-python-from-R.qmd
       # - 99-geospatial-data.qmd
       - 99-r-packages.qmd
       - 99-shiny.qmd
@@ -82,13 +85,13 @@ book:
       - exercise-10.qmd
       - exercise-10-solution.qmd
       - exercise-11.qmd
-      # - exercise-11-solution.qmd
+      - exercise-11-solution.qmd
       - exercise-12.qmd
       - exercise-12-solution.qmd
     - part: "Assignments"
       chapters:
       - data-analysis-replication-assignment.qmd
-      # - data-analysis-replication-assignment-template.qmd
+      - data-analysis-replication-assignment-template.qmd
       - collaborative-data-science-assignment.qmd
       - creative-dataviz-assignment.qmd
     - part: "References"

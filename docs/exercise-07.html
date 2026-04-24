@@ -414,6 +414,12 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./99-python-from-R.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Using <strong><em>Python</em></strong> from <strong><em>R</em></strong></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./99-r-packages.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Building Custom <strong><em>R</em></strong> Packages</span></a>
   </div>
@@ -551,6 +557,12 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./exercise-11-solution.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Exercise 11 Solution</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./exercise-12.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Exercise 12</span></a>
   </div>
@@ -576,6 +588,12 @@ window.Quarto = {
   <div class="sidebar-item-container"> 
   <a href="./data-analysis-replication-assignment.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Data Analysis Replication</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./data-analysis-replication-assignment-template.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Data Analysis Replication Assignment</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -882,7 +900,7 @@ window.Quarto = {
 <span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(n, <span class="at">mean =</span> <span class="dv">2</span>, <span class="at">sd =</span> <span class="dv">1</span>)</span>
 <span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>## [1] 1.948863</code></pre>
+<pre><code>## [1] 2.64995</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># close to, but not the same, as the population mean</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>se <span class="ot">&lt;-</span> <span class="fu">sd</span>(x) <span class="sc">/</span> <span class="fu">sqrt</span>(<span class="fu">length</span>(x))</span>
@@ -953,23 +971,23 @@ window.Quarto = {
 <tbody>
 <tr class="odd">
 <td style="text-align: left;">ci.boot.quantiles</td>
-<td style="text-align: right;">1.298</td>
-<td style="text-align: right;">2.616</td>
+<td style="text-align: right;">2.393</td>
+<td style="text-align: right;">2.918</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">ci.boot.theory</td>
-<td style="text-align: right;">1.283</td>
-<td style="text-align: right;">2.615</td>
+<td style="text-align: right;">2.384</td>
+<td style="text-align: right;">2.916</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">ci.norm.theory</td>
-<td style="text-align: right;">1.247</td>
-<td style="text-align: right;">2.650</td>
+<td style="text-align: right;">2.370</td>
+<td style="text-align: right;">2.930</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">ci.t.theory</td>
-<td style="text-align: right;">1.139</td>
-<td style="text-align: right;">2.759</td>
+<td style="text-align: right;">2.327</td>
+<td style="text-align: right;">2.973</td>
 </tr>
 </tbody>
 </table>
