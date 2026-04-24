@@ -3948,14 +3948,14 @@
     ]
   },
   {
-    "objectID": "data-analysis-replication-assignment-template.html#summarydiscussion",
-    "href": "data-analysis-replication-assignment-template.html#summarydiscussion",
-    "title": "25  Data Analysis Replication Assignment",
-    "section": "25.4 Summary/Discussion",
-    "text": "25.4 Summary/Discussion\n[Narrative section that overviews how successful were you at replicating the analyses and visualizations in the study. What problems did you encounter? Why might you have encountered those problems? What details were lacking from the original study’s methods that might have hampered your ability to replicate the authors’ results?]",
+    "objectID": "data-analysis-replication-assignment-template.html#summary-and-discussion",
+    "href": "data-analysis-replication-assignment-template.html#summary-and-discussion",
+    "title": "Data Analysis Replication Template",
+    "section": "Summary and Discussion",
+    "text": "Summary and Discussion\n[Narrative section that overviews how successful were you at replicating the analyses and visualizations in the study. What problems did you encounter? Why might you have encountered those problems? What details were lacking from the original study’s methods that might have hampered your ability to replicate the authors’ results?]",
     "crumbs": [
       "Assignments",
-      "<span class='chapter-number'>25</span>  <span class='chapter-title'>Data Analysis Replication Assignment</span>"
+      "Data Analysis Replication Template"
     ]
   },
   {
@@ -4088,17 +4088,6 @@
     "crumbs": [
       "References",
       "List of Packages Used"
-    ]
-  },
-  {
-    "objectID": "data-analysis-replication-assignment-template.html#summary-and-discussion",
-    "href": "data-analysis-replication-assignment-template.html#summary-and-discussion",
-    "title": "Data Analysis Replication Template",
-    "section": "Summary and Discussion",
-    "text": "Summary and Discussion\n[Narrative section that overviews how successful were you at replicating the analyses and visualizations in the study. What problems did you encounter? Why might you have encountered those problems? What details were lacking from the original study’s methods that might have hampered your ability to replicate the authors’ results?]",
-    "crumbs": [
-      "Assignments",
-      "Data Analysis Replication Template"
     ]
   }
 ]
